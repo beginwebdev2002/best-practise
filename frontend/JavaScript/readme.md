@@ -1,6 +1,6 @@
-# JavaScript Modern Best Practices & Anti-Patterns
+# JavaScript Best Practise
 
-![JavaScript Logo](./js.png)
+![JavaScript Logo](https://img.icons8.com/?size=100&id=108784&format=png&color=000000)
 
 ## I. Fundamentals (The Basics)
 
