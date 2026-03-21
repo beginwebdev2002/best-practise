@@ -1,0 +1,1 @@
+@./.gemini/memory/github-seo.md
