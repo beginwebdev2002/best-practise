@@ -31,6 +31,25 @@
 
 ---
 
+## 🤖 Топ-10 AI Агентов и Инструментов (IDE)
+
+В современных реалиях Vibe Coding активно используются следующие мощные AI инструменты. Вот 10 самых популярных из них:
+
+| Логотип | Инструмент | Описание |
+|:---:|:---|:---|
+| <img src="https://img.shields.io/badge/Cursor-000000?style=flat-square&logo=cursor&logoColor=white" alt="Cursor"> | **Cursor AI** | Продвинутый форк VS Code, глубоко интегрированный с моделями (Claude 3.5 Sonnet, GPT-4o) для автодополнения и рефакторинга целых кодовых баз. |
+| <img src="https://img.shields.io/badge/Antigravity-4285F4?style=flat-square&logo=google&logoColor=white" alt="Antigravity"> | **Antigravity IDE** | Мощная автономная среда и AI-агент от команды Google DeepMind. Понимает сложный контекст и многоэтапные задачи. |
+| <img src="https://img.shields.io/badge/Copilot-181717?style=flat-square&logo=githubcopilot&logoColor=white" alt="GitHub Copilot"> | **GitHub Copilot** | Главный ИИ-помощник от GitHub и OpenAI, который был пионером в автодополнении кода и продолжает развиваться (Copilot Workspace). |
+| <img src="https://img.shields.io/badge/Windsurf-0284C7?style=flat-square" alt="Windsurf"> | **Windsurf** | Революционная IDE от Codeium с "потоковым" взаимодействием агентов и программиста (Flow State). |
+| <img src="https://img.shields.io/badge/Cline-F97316?style=flat-square" alt="Cline"> | **Cline (бывш. Devin/Claude Dev)** | Автономный ИИ-разработчик прямо в вашем VS Code, способный создавать проекты с нуля и запускать команды в терминале. |
+| <img src="https://img.shields.io/badge/Aider-22C55E?style=flat-square" alt="Aider"> | **Aider** | Консольный AI-агент, который идеально работает с Git-репозиториями и позволяет управлять проектами прямо из терминала. |
+| <img src="https://img.shields.io/badge/Codeium-09B6A2?style=flat-square&logo=codeium&logoColor=white" alt="Codeium"> | **Codeium** | Полностью бесплатный (для частного использования) и молниеносный AI-помощник, встраиваемый в любую среду разработки. |
+| <img src="https://img.shields.io/badge/Tabnine-3A23AD?style=flat-square&logo=tabnine&logoColor=white" alt="Tabnine"> | **Tabnine** | Enterprise-решение с высокой степенью конфиденциальности, обучающееся на вашем собственном коде без утечек в публичные модели. |
+| <img src="https://img.shields.io/badge/Amazon_Q-232F3E?style=flat-square&logo=amazonaws&logoColor=white" alt="Amazon Q"> | **Amazon Q Developer** | Ассистент от AWS (ранее CodeWhisperer), отлично подходящий для интеграции с облачной инфраструктурой и поиска уязвимостей. |
+| <img src="https://img.shields.io/badge/Cody-FF5543?style=flat-square&logo=sourcegraph&logoColor=white" alt="Sourcegraph Cody"> | **Sourcegraph Cody** | Инструмент, имеющий глубокий доступ к графу вашего кода на всём предприятии для сверхточного поиска и генерации. |
+
+---
+
 ## 🎯 Agent Integration Guide
 
 To maximize the potential of your AI coding assistants, integrate this repository into your workflow using the following methods:
