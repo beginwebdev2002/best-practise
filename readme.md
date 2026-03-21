@@ -67,9 +67,9 @@ graph TD
     B -->|Backend| C2[backend/readme.md]
     B -->|Architecture|C3[architectures/readme.md]
     
-    C1 --> D1[Technology: angular/readme.md]
-    C2 --> D2[Technology: nestjs/readme.md]
-    C3 --> D3[Architecture: fsd/readme.md]
+    C1 --> D1[Technology: **angular/readme.md**]
+    C2 --> D2[Technology: **nestjs/readme.md**]
+    C3 --> D3[Architecture: **fsd/readme.md**]
     
     D1 --> E1[Specification: performance.md]
     D1 --> E2[Specification: state-management.md]
@@ -81,10 +81,10 @@ graph TD
     D3 --> E6[Specification: public-api-policy.md]
     
     %% Styling
-    classDef root fill:#f9f,stroke:#333,stroke-width:2px;
-    classDef domain fill:#bbf,stroke:#333,stroke-width:2px;
-    classDef tech fill:#bfb,stroke:#333,stroke-width:2px;
-    classDef spec fill:#fbb,stroke:#333,stroke-width:2px;
+    classDef root fill:#f9f,font-weight:bold,stroke:#333,stroke-width:2px;
+    classDef domain fill:#bbf,font-weight:bold,stroke:#333,stroke-width:2px,color:#111;
+    classDef tech fill:#bfb,font-weight:bold,stroke:#333,stroke-width:2px,color:#111;
+    classDef spec fill:#fbb,font-weight:bold,stroke:#333,stroke-width:2px,color:#111;
     
     class A root;
     class B,C1,C2,C3 domain;
