@@ -62,23 +62,38 @@ The repository is structured hierarchically to allow AI agents to progressively 
 
 ```mermaid
 graph TD
-    A[Root: agents.md] --> B{Domain}
-    B -->|Frontend| C1[frontend/readme.md]
-    B -->|Backend| C2[backend/readme.md]
-    B -->|Architecture|C3[architectures/readme.md]
+    A["📄 Root: agents.md"] --> B{"🌐 Domain"}
+    B -->|Frontend| C1["🖥️ frontend/readme.md"]
+    B -->|Backend| C2["⚙️ backend/readme.md"]
+    B -->|Architecture|C3["📐 architectures/readme.md"]
     
-    C1 --> D1[Technology: **angular/readme.md**]
-    C2 --> D2[Technology: **nestjs/readme.md**]
-    C3 --> D3[Architecture: **fsd/readme.md**]
+    C1 --> D1["🅰️ Technology: angular/readme.md"]
+    C2 --> D2["🐱 Technology: nestjs/readme.md"]
+    C3 --> D3["🧩 Architecture: fsd/readme.md"]
     
-    D1 --> E1[Specification: performance.md]
-    D1 --> E2[Specification: state-management.md]
+    D1 --> E1["⚡ Specification: performance.md"]
+    D1 --> E2["📦 Specification: state-management.md"]
     
-    D2 --> E3[Specification: security.md]
-    D2 --> E4[Specification: database.md]
+    D2 --> E3["🛡️ Specification: security.md"]
+    D2 --> E4["🗄️ Specification: database.md"]
 
-    D3 --> E5[Specification: layer-isolation.md]
-    D3 --> E6[Specification: public-api-policy.md]
+    D3 --> E5["📚 Specification: layer-isolation.md"]
+    D3 --> E6["🚪 Specification: public-api-policy.md"]
+    
+    %% Clickable Links
+    click A "agents.md"
+    click C1 "frontend/readme.md"
+    click C2 "backend/readme.md"
+    click C3 "architectures/readme.md"
+    click D1 "frontend/angular/readme.md"
+    click D2 "backend/nestjs/readme.md"
+    click D3 "architectures/fsd/readme.md"
+    click E1 "frontend/angular/performance.md"
+    click E2 "frontend/angular/state-management.md"
+    click E3 "backend/nestjs/security.md"
+    click E4 "backend/nestjs/database.md"
+    click E5 "architectures/fsd/layer-isolation.md"
+    click E6 "architectures/fsd/public-api-policy.md"
     
     %% Styling
     classDef root fill:#f9f,font-weight:bold,stroke:#333,stroke-width:2px,color:#111;
@@ -91,6 +106,38 @@ graph TD
     class D1,D2,D3 tech;
     class E1,E2,E3,E4,E5,E6 spec;
 ```
+## 🌴 Folder Tree
+
+* 📦 **[best-practise](./)**
+  * 📄 [agents.md](./agents.md)
+  * 🌐 **[architectures/](./architectures/)**
+    * 📄 [readme.md](./architectures/readme.md)
+    * 🧩 **[fsd/](./architectures/fsd/)**
+      * 📚 [layer-isolation.md](./architectures/fsd/layer-isolation.md)
+      * 🚪 [public-api-policy.md](./architectures/fsd/public-api-policy.md)
+      * 📄 [readme.md](./architectures/fsd/readme.md)
+    * 🏗️ **[mvc/](./architectures/mvc/)**
+      * 📄 [readme.md](./architectures/mvc/readme.md)
+  * ⚙️ **[backend/](./backend/)**
+    * 📄 [readme.md](./backend/readme.md)
+    * 🚂 **[express/](./backend/express/)**
+      * 📄 [readme.md](./backend/express/readme.md)
+    * 🐱 **[nestjs/](./backend/nestjs/)**
+      * 🗄️ [database.md](./backend/nestjs/database.md)
+      * 📄 [readme.md](./backend/nestjs/readme.md)
+      * 🛡️ [security.md](./backend/nestjs/security.md)
+    * 🟢 **[nodejs/](./backend/nodejs/)**
+      * 📄 [readme.md](./backend/nodejs/readme.md)
+  * 🖥️ **[frontend/](./frontend/)**
+    * 📄 [readme.md](./frontend/readme.md)
+    * 🅰️ **[angular/](./frontend/angular/)**
+      * ⚡ [performance.md](./frontend/angular/performance.md)
+      * 📄 [readme.md](./frontend/angular/readme.md)
+      * 📦 [state-management.md](./frontend/angular/state-management.md)
+    * 🟨 **[javascript/](./frontend/javascript/)**
+      * 📄 [readme.md](./frontend/javascript/readme.md)
+    * 🟦 **[typescript/](./frontend/typescript/)**
+      * 📄 [readme.md](./frontend/typescript/readme.md)
 
 ---
 
