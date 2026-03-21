@@ -81,7 +81,7 @@ graph TD
     D3 --> E6[Specification: public-api-policy.md]
     
     %% Styling
-    classDef root fill:#f9f,font-weight:bold,stroke:#333,stroke-width:2px;
+    classDef root fill:#f9f,font-weight:bold,stroke:#333,stroke-width:2px,color:#111;
     classDef domain fill:#bbf,font-weight:bold,stroke:#333,stroke-width:2px,color:#111;
     classDef tech fill:#bfb,font-weight:bold,stroke:#333,stroke-width:2px,color:#111;
     classDef spec fill:#fbb,font-weight:bold,stroke:#333,stroke-width:2px,color:#111;
