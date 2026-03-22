@@ -1,3 +1,7 @@
+[ 🇺🇸 English ](#english) | [ 🇷🇺 Русский ](#russian)
+
+<a id="english"></a>
+
 <div align="center">
   <img src="https://cdn.simpleicons.org/probot" width="100" alt="Probot Logo">
   
@@ -123,3 +127,133 @@ Copy and paste this checklist into your PR description. Do not request an archit
 ---
 
 *We engineer the intelligence that engineers the code. Execute with precision.*
+
+---
+
+<a id="russian"></a>
+
+<div align="center">
+  <img src="https://cdn.simpleicons.org/probot" width="100" alt="Probot Logo">
+  
+  # 👥 Контрибьюция (Contributing)
+  
+  [![Security: Active](https://img.shields.io/badge/Security-Active-brightgreen?style=for-the-badge&logo=springsecurity)](#)
+  [![Vibe-Coding Protected](https://img.shields.io/badge/Vibe--Coding-Protected-blue?style=for-the-badge&logo=shield)](#)
+</div>
+
+---
+
+## 🔄 Жизненный цикл контрибьюции (Contribution Lifecycle)
+
+Мы проектируем контекст (AI Context Engineering). Процесс добавления мета-инструкций должен быть таким же строгим, как и определяемые нами программные архитектуры (Architectural Integrity). Следуйте этому циклу без отклонений. Детерминированная разработка (Deterministic Development) является нашим приоритетом.
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    [*] --> Discovery: Search Issues
+    Discovery --> Forking: Fork Origin
+    Forking --> Branching: feat/* or fix/*
+    Branching --> Writing: Atomic Rules
+    Writing --> AI_Verification: Test in Agent
+    AI_Verification --> PR_Submission: Pull Request
+    PR_Submission --> Review: Code Review Gate
+    Review --> Merge: Standards Met
+    Review --> Writing: Remediation Required
+    Merge --> [*]
+```
+
+---
+
+## 🧠 Стандарты написания ИИ-контекста (Спецификация)
+
+AI Agents (Cursor, Windsurf, Antigravity) не нуждаются в разговорной речи; им требуются аналитические директивы высокой плотности.
+
+> [!IMPORTANT]
+> Исключите «воду». Используйте повелительное наклонение. Максимизируйте токеновую эффективность (Token efficiency). Наша цель — детерминированный "Beautiful Code".
+
+### 📊 Плохой контент vs. Хороший контент
+
+| Качество | Пример контента | Значимость |
+| :---: | :--- | :--- |
+| ❌ **BAD** | "Please make sure to try and use functional components if you can, it's usually better." | Разговорный, неоднозначный стиль ("постарайтесь использовать", "если можете", "обычно"). |
+| ✅ **GOOD**| "Use React Functional Components exclusively. Class components are strictly prohibited." | Императивное, абсолютное ограничение (Absolute constraint), детерминированная граница для LLM. |
+
+### 🛠️ Токены доменов и технологий (Domain & Technology Tokens)
+
+Каждая инструкция должна быть нацелена на точный технический домен. Логично тегируйте документацию:
+
+* <img src="https://cdn.simpleicons.org/react/61DAFB" width="16" /> **Frontend**: Фреймворки, управление состоянием (State management), чистая UI-архитектура.
+* <img src="https://cdn.simpleicons.org/nodedotjs/339933" width="16" /> **Backend**: Проектирование API, базы данных, микросервисы.
+* <img src="https://cdn.simpleicons.org/googlecloud/4285F4" width="16" /> **Architecture**: CI/CD, стратегии развертывания (Deployment strategy), системный дизайн.
+
+> [!NOTE]
+> **Диаграммы Mermaid обязательны:** Любой архитектурный паттерн, поток данных (Data flow) или правила конечного автомата (State machine), включающие более двух сущностей, **должны** сопровождаться диаграммой Mermaid. Модели ИИ значительно лучше парсят явные структурные ограничения (Constraints), если они визуализированы в Markdown.
+
+---
+
+## 🚀 Пошаговый рабочий процесс (Workflow)
+
+Выполняйте контрибьюции, используя следующий пайплайн:
+
+1. 🏗️ **Стратегия ветвления (Branching Strategy)**:
+   * Всегда создавайте Branch от `main`.
+   * Используйте строгие префиксы категорий: `feat/tech-name`, `fix/tech-name` или `docs/tech-name`.
+2. ✍️ **Рекомендации по контенту**:
+   * Строгий аналитический тон. Используйте Markdown-таблицы для сводов правил (Rulesheets). Используйте Task Lists для последовательных операций.
+3. 🧪 **Верификация (The Vibe Coding Test)**:
+   * **Обязательно**: Вы должны передать целевую инструкцию в Cursor, Windsurf или Antigravity и проверить вывод. Если агент генерирует некачественный код или галлюцинации (Hallucinations), инструкция ошибочна. Исправьте её перед отправкой Pull Request.
+
+---
+
+## 🏗️ Архитектура репозитория
+
+Наша структура абсолютна. Мы изолируем контекст (AI Context Injection) по домену и технологии, чтобы предотвратить загрязнение контекста ИИ (Context pollution). Соблюдение цельности архитектуры (Architectural Integrity) обязательно.
+
+```text
+📂 best-practise
+├── 📂 [domain]            (e.g., frontend, backend, devops)
+│   └── 📂 [technology]    (e.g., angular, nestjs, docker)
+│       ├── 📄 readme.md   (Mandatory: Primary Entry Point & Index)
+│       └── 📄 [spec].md   (Granular Constraints, e.g., reactive-forms.md)
+```
+
+> [!TIP]
+> Не разбрасывайте инструкции по конфигурации. Если домен или технология не существуют — создайте их, но они **обязаны** содержать файл `readme.md`.
+
+---
+
+## 📜 Конвенция коммитов (Commit Convention)
+
+Мы используем автоматизированный semver и генерацию changelog. Неструктурированные коммиты ломают автоматизацию и будут отклонены. Используйте [Conventional Commits](https://www.conventionalcommits.org/).
+
+| Type | Описание |
+| :--- | :--- |
+| `feat:` | Создает новую мета-инструкцию или паттерн. |
+| `fix:` | Исправляет существующую, ошибочную инструкцию. |
+| `docs:` | Обновляет глобальные конфигурационные документы (подобные этому файлу). |
+| `refactor:` | Реструктурирует существующие домены и директории. |
+| `chore:` | Тулинг, форматирование или задачи обслуживания. |
+
+**Пример идеального коммита:**
+```bash
+feat(backend): implement NestJS strategy pattern instructions
+```
+
+---
+
+## 🛡️ Шлюз Pull Request (Pull Request Gate)
+
+Скопируйте и вставьте этот чеклист в описание вашего Pull Request. Не запрашивайте архитектурное ревью, пока не будет отмечен каждый пункт.
+
+```markdown
+### PR Quality Gate
+- [ ] Follows the absolute `[domain]/[technology]` atomic file structure.
+- [ ] Integrates SVG/Devicons to demarcate technology sections.
+- [ ] Includes at least one Mermaid diagram for complex constraints/logic.
+- [ ] Language is zero-fluff, analytical, and highly technical.
+- [ ] Proven via the "Vibe Coding Test" (AI execution output/proof included below).
+```
+
+---
+
+*Мы проектируем интеллект, который проектирует код. Исполняйте с точностью (Execute with precision).*
