@@ -1,0 +1,69 @@
+# ###########################################################
+# Global .gitignore for "best-practise" (Vibe Coding Stack)
+# ###########################################################
+
+# --- System Files ---
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+*.swp
+
+# --- Dependencies (Node.js/Frontend/Backend) ---
+node_modules/
+.npm/
+.pnpm-store/
+jspm_packages/
+bower_components/
+
+# --- Build & Output ---
+dist/
+out/
+build/
+.angular/
+.next/
+.cache/
+.nyc_output/
+coverage/
+
+# --- Environment & Secrets (CRITICAL) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+auth.json
+secrets.json
+
+# --- AI Tools & Vibe Coding (Context & Cache) ---
+# Игнорируем локальные логи и кэш ИИ, но СОХРАНЯЕМ инструкции
+.cursor/
+.windsurf/
+.agents/cache/
+.agents/logs/
+.agents/sessions/
+*.ai-session.json
+
+# --- Editors & IDEs ---
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# --- Database (Local Development) ---
+dump/
+data/
+*.db
+*.sqlite
+mongo-data/
+
+# --- Documentation Artifacts ---
+# Если ты генерируешь PDF или HTML из своих Markdown
+docs/build/
+site/

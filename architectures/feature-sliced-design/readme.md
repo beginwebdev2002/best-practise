@@ -1,3 +1,13 @@
+---
+technology: Feature-Sliced Design
+domain: architecture
+level: Senior/Architect
+version: Agnostic
+tags: [fsd, modular-architecture, frontend, system-design, clean-architecture]
+ai_role: Senior Frontend Architect
+last_updated: 2026-03-22
+---
+
 <div align="center">
   <img src="https://feature-sliced.design/img/brand/logo-primary.png" width="100" alt="FSD Logo">
   

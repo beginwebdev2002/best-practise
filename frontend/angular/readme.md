@@ -1,3 +1,13 @@
+---
+technology: Angular
+domain: frontend
+level: Senior/Architect
+version: "20"
+tags: [angular, signals, performance, best-practices, typescript]
+ai_role: Senior Angular Performance Expert
+last_updated: 2026-03-22
+---
+
 # Angular v20: The Ultimate Best Practices & Anti-Patterns Registry
 
 ## I. Basics & Popular (1-15)

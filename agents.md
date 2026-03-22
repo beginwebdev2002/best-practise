@@ -1,3 +1,13 @@
+---
+technology: AI Guidelines
+domain: general
+level: Senior/Architect
+version: 1.0.0
+tags: [ai-agents, vibe-coding, cursor-rules, meta-programming, prompt-engineering]
+ai_role: Senior AI Solutions Architect
+last_updated: 2026-03-22
+---
+
 # AGENTS.md: The Meta-Intelligence & Vibe Coding Protocol
 
 ## 1. Global Vision

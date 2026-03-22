@@ -1,3 +1,13 @@
+---
+technology: NestJS
+domain: backend
+level: Senior/Architect
+version: "10+"
+tags: [nestjs, clean-architecture, typescript, dependency-injection, node-js]
+ai_role: Senior NestJS Architecture Expert
+last_updated: 2026-03-22
+---
+
 <div align="center">
   <img src="https://cdn.simpleicons.org/nestjs/E0234E" width="100" alt="NestJS Logo">
   

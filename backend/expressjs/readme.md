@@ -1,3 +1,13 @@
+---
+technology: Express.js
+domain: backend
+level: Senior/Architect
+version: 4.x / 5.x
+tags: [expressjs, mvc, node-js, best-practices, javascript]
+ai_role: Senior Express.js Backend Expert
+last_updated: 2026-03-22
+---
+
 <div align="center">
   <img src="https://cdn.simpleicons.org/express/000000" width="100" alt="ExpressJS Logo">
   

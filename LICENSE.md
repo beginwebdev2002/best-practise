@@ -1,4 +1,13 @@
-﻿# Краткое резюме (License Summary)
+﻿---
+technology: General
+domain: general
+level: Senior/Architect
+tags: [license, gpl-3.0, legal, open-source, compliance]
+ai_role: Senior Legal Compliance Expert
+last_updated: 2026-03-22
+---
+
+# Краткое резюме (License Summary)
 
 **На простом языке:**
 - ✅ **Использование и модификация:** Вы можете свободно использовать, изменять и распространять эти инструкции в любых целях.

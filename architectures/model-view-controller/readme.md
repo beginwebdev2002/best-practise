@@ -1,3 +1,13 @@
+---
+technology: Model-View-Controller
+domain: architecture
+level: Senior/Architect
+version: Agnostic
+tags: [mvc, design-patterns, backend, system-design, architecture]
+ai_role: Senior Software Architect
+last_updated: 2026-03-22
+---
+
 <div align="center">
   <img src="https://img.icons8.com/?size=100&id=102832&format=png&color=000000" width="100" alt="MVC Logo">
   

@@ -1,3 +1,13 @@
+---
+technology: General
+domain: general
+level: Senior/Architect
+version: Agnostic
+tags: [best-practices, architecture, clean-code, system-design, vibe-coding]
+ai_role: Senior Enterprise Architect
+last_updated: 2026-03-22
+---
+
 <div align="center">
 
 # 🌌 best-practise
