@@ -34,7 +34,7 @@ In our repository dedicated to *Vibe Coding* and architectural AI instructions, 
 
 ---
 
-## 🔄 Interaction Lifecycle
+##  Interaction Lifecycle
 
 Interaction within the **best-practise** project is built on mutual respect and continuous improvement of AI instructions. This visual graph demonstrates the stages of healthy communication in the project:
 
@@ -57,6 +57,50 @@ graph TD
     class D warning;
     class F success;
 ```
+
+---
+
+## 📝 Как писать инструкции (Best Practices)
+
+В нашем репозитории мы придерживаемся единого стандарта написания инструкций. В качестве эталонного примера вы можете изучить файл `frontend/typescript/readme.md`.
+
+Каждая инструкция должна начинаться со следующего блока метаданных (YAML frontmatter):
+
+```yaml
+---
+technology: [Inferred Tech]
+domain: [Inferred Domain]
+level: Senior/Architect
+version: [Inferred Version]
+tags: [tag1, tag2, tag3]
+ai_role: [Specific Persona]
+last_updated: YYYY-MM-DD
+---
+```
+
+Далее, для описания каждого правила или паттерна, необходимо использовать следующую структуру. **Эта структура повторяется столько раз, сколько необходимо** для полного покрытия темы. Вот один из самых понятных и популярных примеров:
+
+### ❌ Bad Practice
+```typescript
+function process(data: any) {
+    console.log(data.name); // Нет ошибки, но может упасть в рантайме
+}
+```
+
+### ⚠️ Problem
+Использование `any` равносильно отключению TypeScript. Это позволяет коду скомпилироваться в любом случае, но скрывает потенциальные исключения во время выполнения программы.
+
+### ✅ Best Practice
+```typescript
+function process(data: unknown) {
+    if (data && typeof data === 'object' && 'name' in data) {
+        console.log((data as { name: string }).name);
+    }
+}
+```
+
+### 🚀 Solution
+Используйте `unknown` для значений, тип которых еще не определен. Это обязывает разработчика выполнить проверку типа перед использованием, гарантируя безопасность структуры данных.
 
 ---
 
