@@ -1,6 +1,6 @@
 ---
+trigger: glob
 description: Architectural guidelines and taxonomy for navigating the Vibe Coding meta-instruction base repository.
-trigger: model_decision
 ---
 
 # Project Architecture: Context Deep-Dive
