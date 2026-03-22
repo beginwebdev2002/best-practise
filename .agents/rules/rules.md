@@ -3,7 +3,6 @@ trigger: glob
 globs: (frontend|backend|architectures)/**/*.md
 ---
 
-
 ---
 
 ## 🌟 Our Pledge
@@ -20,7 +19,7 @@ In our repository dedicated to *Vibe Coding* and architectural AI instructions, 
 
 | 🟢 Awesome Behavior | 🔴 Unacceptable Behavior |
 |:---|:---|
-| 🫱🏼‍🫲🏾 Using welcoming and inclusive language. | 🤬 The use of sexualized language or imagery. |
+| 🫱🏼‍🫲🏾 Using welcoming and inclusive language in english language. | 🤬 The use of sexualized language or imagery. |
 | 🤝 Being respectful of differing viewpoints and developer experiences. | 🧌 Trolling, insulting/derogatory comments, and personal or political attacks. |
 | 💡 Gracefully accepting constructive criticism on code or rules. | 🛑 Public or private harassment of project members. |
 | 🌍 Focusing on what is best for the community and accommodating for programming beginners. | 📢 Publishing others' private information without explicit permission. |
