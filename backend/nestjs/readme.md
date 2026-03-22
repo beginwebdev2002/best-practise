@@ -3,20 +3,14 @@ technology: NestJS
 domain: backend
 level: Senior/Architect
 version: "10+"
-tags: [nestjs, clean-architecture, typescript, dependency-injection, node-js]
+tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior NestJS Architecture Expert
 last_updated: 2026-03-22
 ---
 
-<div align="center">
-  <img src="https://cdn.simpleicons.org/nestjs/E0234E" width="100" alt="NestJS Logo">
-  
-  # 🦁 NestJS Best Practices
-</div>
+# NestJS Best Practices & Production-Ready Patterns
 
----
-
-## Context & Scope
+# Context & Scope
 - **Primary Goal:** Enforce enterprise-grade architecture and TypeScript safety in Node.js backends.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** NestJS 10+

@@ -3,15 +3,20 @@ technology: General Architecture
 domain: architecture
 level: Senior/Architect
 version: Agnostic
-tags: [system-design, scalable-architecture, microservices, monolithic, design-patterns]
+tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior Software Architect
 last_updated: 2026-03-22
 ---
 
+# Architecture Best Practices & Production-Ready Patterns
+
+# Context & Scope
+- **Primary Goal:** Establish definitive rules and best practices for system design and architecture.
+- **Target Tooling:** Cursor, Windsurf, Antigravity.
+- **Tech Stack Version:** Agnostic
+
 <div align="center">
   <img src="https://img.icons8.com/?size=100&id=102832&format=png&color=000000" width="100" alt="Architecture Logo">
-  
-  # 📐 Top Patterns and Architectures
   
   **The foundation for scalable, maintainable, and reliable applications.**
 </div>
@@ -50,7 +55,16 @@ Below are the most popular architectural patterns along with examples, tips, tec
 
 **Description:** A modern architectural methodology for Frontend applications. It separates code by business meaning (features) and technical layers. It ensures strict unidirectional isolation.
 
-**Folder Tree:**
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    App[app] --> Pages[pages]
+    Pages --> Widgets[widgets]
+    Widgets --> Features[features]
+    Features --> Entities[entities]
+    Entities --> Shared[shared]
+```
+
 ```text
 src/
 ├── 📁 app/        # Global app setup (Global Store, Global CSS, Router init)
@@ -74,7 +88,14 @@ src/
 
 **Description:** A concept created by Robert C. Martin (Uncle Bob). It separates a project into concentric rings. The main rule is the Dependency Rule: dependencies can only point inward (towards core business entities).
 
-**Folder Tree:**
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    Infrastructure[Infrastructure] --> InterfaceAdapters[Interface Adapters]
+    InterfaceAdapters --> UseCases[Use Cases]
+    UseCases --> Domain[Domain Entities]
+```
+
 ```text
 src/
 ├── 📁 domain/               # The heart of the system: Entities and Interfaces
@@ -96,7 +117,15 @@ src/
 
 **Description:** The classic design pattern for user-facing applications. It separates data logic (`Model`), presentation (`View`), and user action handling (`Controller`).
 
-**Folder Tree:**
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph LR
+    User --> Controller
+    Controller --> Model
+    Model --> View
+    View --> User
+```
+
 ```text
 src/
 ├── 📁 models/        # Database schemas and data manipulation methods
@@ -117,7 +146,16 @@ src/
 
 **Description:** Breaking down a giant monolithic system into small, independent pieces, each handling its own business capability. Each service has its own Database and communicates via REST, gRPC, or events.
 
-**Folder Tree:**
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    Client --> Gateway[API Gateway]
+    Gateway --> Auth[Auth Service]
+    Gateway --> Order[Order Service]
+    Gateway --> Pay[Payment Service]
+    Gateway --> Notif[Notification Service]
+```
+
 ```text
 microservices-cluster/
 ├── 📁 auth-service/         # Authentication Microservice (w/ PostgreSQL)
@@ -140,7 +178,15 @@ microservices-cluster/
 
 **Description:** A logical evolution of Clean Architecture. The core of the system is isolated from specific technologies. All interaction with databases, UI, and side-effects happens through "Ports" (Interfaces), satisfying via "Adapters" (Implementations).
 
-**Folder Tree:**
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    Primary[Primary Adapters] --> PortsIN[Ports: Input]
+    PortsIN --> Domain[Core Domain]
+    Domain --> PortsOUT[Ports: Output]
+    PortsOUT --> Secondary[Secondary Adapters]
+```
+
 ```text
 src/
 ├── 📁 core/                 # Ports (Interfaces) and strict Domain
@@ -163,7 +209,14 @@ src/
 
 **Description:** A philosophy and design approach centered entirely around the business "Domain". The whole team communicates using a "Ubiquitous Language," and domains are split into `Bounded Contexts`.
 
-**Folder Tree:**
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    Context1[Identity & Access] --> C1Domain[Domain]
+    Context1 --> C1App[Application]
+    Context1 --> C1Infra[Infrastructure]
+```
+
 ```text
 src/
 ├── 📁 identity-access/      # Bounded Context (Auth domain)
@@ -187,7 +240,14 @@ src/
 
 **Description:** System components know nothing about each other (Low Coupling). They merely "publish" events and "subscribe" to them, reacting asynchronously. Ideal for high-load, highly-scalable backend systems.
 
-**Folder Tree:**
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph LR
+    Pub[Publisher] --> Broker[Message Broker]
+    Broker --> Sub1[Subscriber 1]
+    Broker --> Sub2[Subscriber 2]
+```
+
 ```text
 src/
 ├── 📁 publishers/           # Generate events (e.g., OrderPayedEvent)
@@ -208,7 +268,13 @@ src/
 
 **Description:** Developers do not manage servers at all. The entire "server" consists of bite-sized pieces of business logic (functions/Lambdas) living in the cloud, executed only via triggers. You pay solely for compute execution time.
 
-**Folder Tree:**
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    Trigger[Event Trigger] --> Func1[Function 1]
+    Trigger2[HTTP Request] --> Func2[Function 2]
+```
+
 ```text
 project-functions/
 ├── 📁 user-signup/        # Cloud Function (Lambda) for registration
@@ -230,7 +296,14 @@ project-functions/
 
 **Description:** The entire system components (Database, Message Queues, Business Logic, APIs) are deployed and operated from a single codebase on a single server. This is the optimal start for startups to avoid unnecessary complexity upfront. 
 
-**Folder Tree:**
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    Project[Monolithic App] --> UI[Public / UI]
+    Project --> Logic[Business Logic]
+    Project --> Data[Database]
+```
+
 ```text
 monolith-app/
 ├── 📁 public/        # Static files for the server (incl. bundled React UI)
@@ -251,7 +324,16 @@ monolith-app/
 
 **Description:** A powerful pattern where Commands (actions that mutate system data) are entirely decoupled from Queries (actions that only read data). This separation enables extremely sophisticated load distribution.
 
-**Folder Tree:**
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph LR
+    UI --> Command[Command]
+    Command --> WriteDB[(Write DB)]
+    UI --> Query[Query]
+    Query --> ReadDB[(Read DB)]
+    WriteDB -. sync .-> ReadDB
+```
+
 ```text
 src/
 ├── 📁 commands/           # Mutates system state
