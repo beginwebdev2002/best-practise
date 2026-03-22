@@ -1,13 +1,3 @@
----
-technology: General
-domain: general
-level: Senior/Architect
-version: Agnostic
-tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
-ai_role: Senior Enterprise Architect
-last_updated: 2026-03-22
----
-
 <div align="center">
   <img src="https://cdn.simpleicons.org/probot" width="100" alt="Probot Logo">
   

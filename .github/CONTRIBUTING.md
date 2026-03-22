@@ -1,13 +1,10 @@
 <div align="center">
-
-# 🌌 best-practise
-
-![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)
-![Standard](https://img.shields.io/badge/Standard-Conventional%20Commits-blue.svg?style=for-the-badge)
-![AI-Verified](https://img.shields.io/badge/AI--Verified-100%25-blueviolet.svg?style=for-the-badge)
-
-**Building the future of AI-driven development. The global, architecture-first library of meta-instructions for Vibe Coding (Cursor, Windsurf, Antigravity).**
-
+  <img src="https://cdn.simpleicons.org/probot" width="100" alt="Probot Logo">
+  
+  # 👥 Contributing
+  
+  [![Security: Active](https://img.shields.io/badge/Security-Active-brightgreen?style=for-the-badge&logo=springsecurity)](#)
+  [![Vibe-Coding Protected](https://img.shields.io/badge/Vibe--Coding-Protected-blue?style=for-the-badge&logo=shield)](#)
 </div>
 
 ---
