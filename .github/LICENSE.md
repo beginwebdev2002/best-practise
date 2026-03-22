@@ -1,18 +1,9 @@
-﻿---
-technology: General
-domain: general
-level: Senior/Architect
-tags: [license, gpl-3.0, legal, open-source, compliance]
-ai_role: Senior Legal Compliance Expert
-last_updated: 2026-03-22
----
+﻿# Quick Summary (License Summary)
 
-# Краткое резюме (License Summary)
-
-**На простом языке:**
-- ✅ **Использование и модификация:** Вы можете свободно использовать, изменять и распространять эти инструкции в любых целях.
-- 🔄 **Обязанность делиться (Copyleft):** Если вы распространяете изменения, вы **ОБЯЗАНЫ** делать это под этой же лицензией (GPL-3.0) бесплатно.
-- ⚠️ **Отказ от ответственности:** Все материалы предоставляются «как есть». Автор не несет ответственности за использование данных инструкций.
+**In Plain English:**
+- ✅ **Use and Modification:** You are free to use, modify, and distribute these instructions for any purpose.
+- 🔄 **Copyleft:** If you distribute modifications, you **MUST** do so under this same license (GPL-3.0) for free.
+- ⚠️ **Disclaimer:** All materials are provided "as is." The author assumes no liability for the use of these instructions.
 
 ---
                     GNU GENERAL PUBLIC LICENSE
