@@ -68,15 +68,15 @@ Below is a visual flowchart of our standard process for handling discovered thre
 
 ```mermaid
 graph TD
-    A([User finds dangerous rule]) --> B{Is it critical?}
-    B -->|Yes (P0, P1)| C[Submit private Security Advisory]
-    B -->|No (P2, P3)| D[Open standard Issue / Pull Request]
+    A(["User finds dangerous rule"]) --> B{"Is it critical?"}
+    B -->|"Yes (P0, P1)"| C["Submit private Security Advisory"]
+    B -->|"No (P2, P3)"| D["Open standard Issue / Pull Request"]
     
-    C --> E[Threat analysis by maintainers]
-    E --> F[Vulnerability isolation, disable rule]
-    F --> G[Patch MD file and update instructions]
-    G --> H[Publish Security Release & Notify]
-    H --> I([Vulnerability resolved])
+    C --> E["Threat analysis by maintainers"]
+    E --> F["Vulnerability isolation, disable rule"]
+    F --> G["Patch MD file and update instructions"]
+    G --> H["Publish Security Release & Notify"]
+    H --> I(["Vulnerability resolved"])
     
     D --> G
     
@@ -170,15 +170,15 @@ If you propose new instructions or architectural standards (via PR), strictly ad
 
 ```mermaid
 graph TD
-    A([User finds dangerous rule]) --> B{Is it critical?}
-    B -->|Yes (P0, P1)| C[Submit private Security Advisory]
-    B -->|No (P2, P3)| D[Open standard Issue / Pull Request]
+    A(["Пользователь обнаружил опасное правило"]) --> B{"Оно критично?"}
+    B -->|"Да (P0, P1)"| C["Отправить частное Security Advisory"]
+    B -->|"Нет (P2, P3)"| D["Открыть стандартный Issue / Pull Request"]
     
-    C --> E[Threat analysis by maintainers]
-    E --> F[Vulnerability isolation, disable rule]
-    F --> G[Patch MD file and update instructions]
-    G --> H[Publish Security Release & Notify]
-    H --> I([Vulnerability resolved])
+    C --> E["Анализ угроз мейнтейнерами"]
+    E --> F["Изоляция уязвимости, отключение правила"]
+    F --> G["Исправление MD файла и обновление инструкций"]
+    G --> H["Публикация Security Release & Уведомление"]
+    H --> I(["Уязвимость устранена"])
     
     D --> G
     
