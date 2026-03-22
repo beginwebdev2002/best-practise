@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://cdn.simpleicons.org/probot" width="80" alt="Probot Logo">
+  <img src="https://cdn.simpleicons.org/probot" width="100" alt="Probot Logo">
   
   # Community Code of Conduct
   
