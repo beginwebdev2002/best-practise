@@ -1,5 +1,4 @@
-<div align="center"></div>
-[🇺🇸 English](#english) | [🇷🇺 Русский](#russian)
+[ 🇺🇸 English ](#english) | [ 🇷🇺 Русский ](#russian)
 
 <a id="english"></a>
 
@@ -152,7 +151,7 @@ Answers to common questions about this code of conduct can be found in the offic
 
 ---
 
-<a name="russian"></a>
+<a id="russian"></a>
 
 <div align="center">
   <img src="https://cdn.simpleicons.org/probot" width="100" alt="Probot Logo">
