@@ -1,6 +1,11 @@
+---
+description: The Meta-Intelligence & Vibe Coding Protocol defining how AI agents interact with the repository and follow architectural guidelines.
+tags: [vibe coding, ai agents, execution protocol, context mapping, global constraints]
+---
+
 # AGENTS.md: The Meta-Intelligence & Vibe Coding Protocol
 
-## 1. Global Vision
+## 🌍 1. Global Vision
 **The Gold Standard for AI-Driven Development Instructions.**
 
 This repository is not a codebase; it is a **Machine-Readable Intelligence Layer**. Its mission is to bridge the gap between human intent and AI execution by providing a curated ecosystem of meta-instructions. We aim to:
@@ -10,12 +15,12 @@ This repository is not a codebase; it is a **Machine-Readable Intelligence Layer
 
 ---
 
-## 2. Context Mapping
+## 🗺️ 2. Context Mapping
 AI Agents MUST traverse this repository using the following hierarchical logic:
 
 ```mermaid
 graph TD
-    Global[Global Constraints: .gemini/memory/github-seo.md] --> Arch[Architectural Patterns: /architectures/]
+    Global[Global Constraints: .agents/rules/github-seo.md] --> Arch[Architectural Patterns: /architectures/]
     Arch --> FSD[Feature-Sliced Design]
     Arch --> MVC[Model-View-Controller]
     
@@ -35,14 +40,14 @@ graph TD
 ### Resource Directory
 | Path | Intent | Agent Constraint |
 | :--- | :--- | :--- |
-| `/.gemini/memory/` | Global SEO & Metadata | Must be injected into the system prompt for project indexing. |
+| `/.agents/rules/` | Global SEO & Metadata | Must be injected into the system prompt for project indexing. |
 | `/architectures/` | System Design Blueprints | Defines the folder structure and module boundaries. |
 | `/frontend/` | UI/UX & Client Logic | Specific rules for React, Angular, and TypeScript safety. |
 | `/backend/` | Server-side & API | Rules for scalability, security, and DTO validation. |
 
 ---
 
-## 3. Tool-Specific Integration
+## 🛠️ 3. Tool-Specific Integration
 To leverage these rules in your IDE, follow these implementation paths:
 
 ### 🧩 Cursor AI (`.cursorrules`)
@@ -63,7 +68,7 @@ For extensions like Cloud Code or GitHub Copilot, append the contents of `AGENTS
 
 ---
 
-## 4. Agent Execution Protocol
+## 🤖 4. Agent Execution Protocol
 **Any AI Agent interacting with this repository MUST follow this 4-step execution loop:**
 
 1.  **Context Discovery:** Scan `AGENTS.md` to identify the project's meta-structure.
@@ -73,7 +78,7 @@ For extensions like Cloud Code or GitHub Copilot, append the contents of `AGENTS
 
 ---
 
-## 5. SEO & Discoverability
+## 🔍 5. SEO & Discoverability
 <!--
 | Metadata Key | Values |
 | :--- | :--- |

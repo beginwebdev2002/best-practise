@@ -1,4 +1,5 @@
 ---
+description: Vibe coding guidelines and architectural constraints for Angular within the frontend domain.
 technology: Angular
 domain: frontend
 level: Senior/Architect

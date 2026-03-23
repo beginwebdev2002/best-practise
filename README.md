@@ -1,3 +1,7 @@
+---
+description: The entry point for developers and AI agents to the Best-Practise AI Context Library.
+tags: [vibe coding, ai agents, context injection, architectural constraints, clean code]
+---
 [ 🇺🇸 English ](#english) | [ 🇷🇺 Русский ](#russian)
 
 <a id="english"></a>
@@ -14,7 +18,7 @@
   **"The Gold Standard for AI Agent Context Injection."**
 </div>
 
-# Context & Scope
+# ⚙️ Context & Scope
 - **Primary Goal:** Provide an AI-readable index for all architectural and technological constraints to ensure Vibe Coding best practices.
 - **Target Tooling:** Cursor, Windsurf, Antigravity, GitHub Copilot.
 - **Tech Stack Version:** Agnostic
@@ -199,7 +203,7 @@ This is a living repository. Even if you're building alone, the AI ecosystem thr
   **"Золотой стандарт для внедрения контекста в ИИ-агентствах."**
 </div>
 
-# Контекст & Сфера применения
+# ⚙️ Контекст & Сфера применения
 - **Основная цель:** Обеспечить AI-читаемый индекс для трансляции архитектурных концепций и технологических Constraints (Ограничения) с целью обеспечения стандартов Vibe Coding.
 - **Целевое ПО (Target Tooling):** Cursor, Windsurf, Antigravity, GitHub Copilot.
 - **Версия техстека:** Агностична
