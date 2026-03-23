@@ -89,7 +89,20 @@ For extensions like Cloud Code or GitHub Copilot, append the contents of `AGENTS
 | `#AgenticWorkflow` | Designed for autonomous and semi-autonomous AI agents. |
 
 ---
+
+### Language - English
+**All documentation and code comments must be in English.**
+1. **Technical Easy English language**
+2. **No slang or colloquialisms**
+3. **No jargon or technical terms without explanation**
+4. **No abbreviations or acronyms without explanation**
+5. **No metaphors or analogies without explanation**
+6. **No sarcasm or irony**
+7. **No humor or jokes**
+8. **No cultural references**
+9. **No idioms or expressions**
+10. **No slang or colloquialisms**
+
 **Status:** `READY_FOR_INFERENCE`
 **Version:** `1.0.0`
 **Architect:** `Senior AI Solutions Architect`
-**Language** `Technical Easy English language`
