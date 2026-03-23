@@ -58,31 +58,31 @@
 
 ---
 
-## 🎯 Agent Integration Guide
+## 🎯 Integration Guide: Injecting AI Context
 
-To maximize the potential of your AI coding assistants, integrate this repository into your workflow using the following methods:
+To establish a deterministic, scalable **Agentic Workflow**, engineers must perform **Context Injection**. By injecting these **Deterministic Rules** into your AI toolchain, you ensure that agents strictly adhere to the project's baseline architecture and constraints.
 
-### CURSOR AI
-Create or update your `.cursorrules` file at the root of your project and reference the specific instructions:
-```markdown
-# Base Architectural Rules
-Read and strictly follow instructions from:
-https://github.com/[your-repo]/best-practise/blob/main/frontend/angular/readme.md
+### Context Injection Lifecycle
+
+```mermaid
+graph LR
+    A[Best-Practise Library] --> B[Select Technology .md]
+    B --> C[Copy to Local .ide-folder/]
+    C --> D[AI Agent Activation]
 ```
 
-### ANTIGRAVITY IDE
-Antigravity supports modular instruction sets. Place the relevant rules in your `.agents/rules/` directory and update your `agents.md`:
-```markdown
-- [angular-best-practices.md]: Guidelines for Angular 20+ development.
-- [fsd-architecture.md]: Feature-Sliced Design constraints.
-```
+### Folder Mapping Table
 
-### WINDSURF & COPILOT
-When prompting Windsurf or GitHub Copilot Workspace, explicitly set the context at the beginning of your session:
-> "Before writing code, reference the architectural guidelines for NestJS found in the `best-practise` repository at `backend/nestjs/readme.md`. Strictly adhere to these constraints."
+For the **Deterministic Rules** to be accurately parsed and strictly followed, instructions MUST be placed in these specific hidden directories based on your AI tooling:
 
+| AI Tool | Instruction Directory Mapping |
+| :--- | :--- |
+| **Antigravity IDE** | `.agents/rules/*.md` |
+| **Cursor AI** | `.cursor/rules/*.md` |
+| **Windsurf** | `.windsurf/rules/` |
+| **GitHub Copilot** | `.github/copilot-instructions.md` (or root `.github/` for general context) |
+| **Cloud Code AI / Claude Code** | Root directory or `.claude/` (depending on agent configuration) |
 ---
-
 ## 🛠️ Visual Architecture: Context Deep-Dive
 
 The repository is structured hierarchically to allow AI agents to progressively deepen their understanding of your project constraints.
@@ -243,29 +243,34 @@ This is a living repository. Even if you're building alone, the AI ecosystem thr
 
 ---
 
-## 🎯 Agent Integration Guide
+<!-- Agent Integration Guide moved to bilingual section above -->
 
-С целью максимизации профита от AI-контекст инъекции, используйте следующие алгоритмы внедрения мета-инструкций в рабочий цикл:
+---
 
-### CURSOR AI
-Создайте в корне проекта или обновите манифест `.cursorrules`, осуществив внешний референс на директиву:
-```markdown
-# Base Architectural Rules
-Read and strictly follow instructions from:
-https://github.com/[your-repo]/best-practise/blob/main/frontend/angular/readme.md
+## 🎯 Руководство по интеграции: Инъекция контекста
+
+Для выстраивания детерминированного и масштабируемого **Agentic Workflow**, разработчики должны реализовать **Инъекцию контекста** (Context Injection). Интеграция данных **Deterministic Rules** в ваш инструментарий ИИ гарантирует строгое соблюдение базовой архитектуры и заданных ограничений агентами.
+
+### Жизненный цикл Инъекции контекста
+
+```mermaid
+graph LR
+    A[Best-Practise Library] --> B[Select Technology .md]
+    B --> C[Copy to Local .ide-folder/]
+    C --> D[AI Agent Activation]
 ```
 
-### ANTIGRAVITY IDE
-Antigravity поддерживает декомпозицию правил. Интегрируйте набор в директорию `.agents/rules/` с последующим маппингом внутри `agents.md`:
-```markdown
-- [angular-best-practices.md]: Guidelines for Angular 20+ development.
-- [fsd-architecture.md]: Feature-Sliced Design constraints.
-```
+### Таблица: Маппинг директорий
 
-### WINDSURF & COPILOT
-Для настройки контекста моделей Windsurf и Copilot Workspace необходимо явно передавать стартовый промпт сессии в формате системного императива:
-> "Before writing code, reference the architectural guidelines for NestJS found in the `best-practise` repository at `backend/nestjs/readme.md`. Strictly adhere to these constraints."
+Для того чтобы **Deterministic Rules** корректно парсились и строго исполнялись ИИ-ассистентами, инструкции ДОЛЖНЫ быть размещены в следующих скрытых директориях, в зависимости от инструмента:
 
+| AI Инструмент | Маппинг директорий |
+| :--- | :--- |
+| **Antigravity IDE** | `.agents/rules/*.md` |
+| **Cursor AI** | `.cursor/rules/*.md` |
+| **Windsurf** | `.windsurf/rules/` |
+| **GitHub Copilot** | `.github/copilot-instructions.md` (или корень `.github/` для общего контекста) |
+| **Cloud Code AI / Claude Code** | Корневая директория или `.claude/` (в зависимости от конфигурации агента) |
 ---
 
 ## 🛠️ Visual Architecture: Context Deep-Dive
