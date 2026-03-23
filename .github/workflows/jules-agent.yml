@@ -2,7 +2,7 @@ name: Jules Agent Integration
 on:
   pull_request:
     types: [opened, synchronize]
-  discussions:
+  discussion:
     types: [created]
 
 jobs:
