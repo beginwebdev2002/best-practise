@@ -1,0 +1,20 @@
+name: Jules Agent Integration
+on:
+  pull_request:
+    types: [opened, synchronize]
+  discussions:
+    types: [created]
+
+jobs:
+  jules_review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Run Jules Analysis
+        env:
+          GITHUB_TOKEN: ${{ secrets.JULES_GITHUB_TOKEN }}
+        run: |
+          # Здесь вызывается CLI-команда Jules или твой скрипт интеграции
+          jules-cli analyze --pr ${{ github.event.number }} --rules .agents/rules/
