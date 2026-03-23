@@ -1,4 +1,5 @@
 ---
+description: Vibe coding guidelines and architectural constraints for Feature-Sliced Design within the Architecture domain.
 technology: Feature-Sliced Design
 domain: Architecture
 level: Senior/Architect

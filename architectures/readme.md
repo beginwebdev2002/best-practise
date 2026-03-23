@@ -1,4 +1,5 @@
 ---
+description: Vibe coding guidelines and architectural constraints for General Architecture within the architecture domain.
 technology: General Architecture
 domain: architecture
 level: Senior/Architect

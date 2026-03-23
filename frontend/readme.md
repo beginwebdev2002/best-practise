@@ -1,4 +1,5 @@
 ---
+description: Vibe coding guidelines and architectural constraints for Frontend Architecture within the frontend domain.
 technology: Frontend Architecture
 domain: frontend
 level: Senior/Architect

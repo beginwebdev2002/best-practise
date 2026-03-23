@@ -1,4 +1,5 @@
 ---
+description: Vibe coding guidelines and architectural constraints for NestJS within the backend domain.
 technology: NestJS
 domain: backend
 level: Senior/Architect

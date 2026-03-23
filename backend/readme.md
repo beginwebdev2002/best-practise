@@ -1,4 +1,5 @@
 ---
+description: Vibe coding guidelines and architectural constraints for Backend Architecture within the backend domain.
 technology: Backend Architecture
 domain: backend
 level: Senior/Architect
