@@ -1,4 +1,5 @@
 ---
+description: Vibe coding guidelines and architectural constraints for JavaScript within the frontend domain.
 technology: JavaScript
 domain: frontend
 level: Senior/Architect

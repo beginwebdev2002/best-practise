@@ -1,4 +1,5 @@
 ---
+description: Vibe coding guidelines and architectural constraints for TypeScript within the frontend domain.
 technology: TypeScript
 domain: frontend
 level: Senior/Architect

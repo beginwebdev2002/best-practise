@@ -1,4 +1,5 @@
 ---
+description: Vibe coding guidelines and architectural constraints for Model-View-Controller (MVC) within the Architecture domain.
 technology: Model-View-Controller (MVC)
 domain: Architecture
 level: Senior/Architect
