@@ -18,3 +18,4 @@ jobs:
         run: |
           # Здесь вызывается CLI-команда Jules или твой скрипт интеграции
           jules-cli analyze --pr ${{ github.event.number }} --rules .agents/rules/
+          
