@@ -1,8 +1,3 @@
----
-description: Design, UI/UX, and accessibility (a11y) standards for the Jules AI agent.
-tags: [ui/ux, responsive design, accessibility, a11y, design tokens, styling, clean ui]
----
-
 # 🎨 UI/UX Design & Styling Rules for Jules
 
 ## 1. Context & Scope

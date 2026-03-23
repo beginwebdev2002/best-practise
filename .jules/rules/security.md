@@ -1,8 +1,3 @@
----
-description: Enterprise security protocols, vulnerability prevention, and data protection rules for the Jules AI agent.
-tags: [security, owasp, data protection, authentication, authorization, secure coding, input validation]
----
-
 # 🛡️ System Security & Hardening Rules for Jules
 
 ## 1. Context & Scope

@@ -1,8 +1,3 @@
----
-description: Instructions for the Jules AI agent on performance optimization, front-end and back-end efficiency, and scaling.
-tags: [performance optimization, high-performance, scalability, lazy loading, caching, bundle size, fast load times]
----
-
 # ⚡ Performance Optimization Rules for Jules
 
 ## 1. Context & Scope
