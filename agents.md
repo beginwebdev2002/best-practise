@@ -92,3 +92,4 @@ For extensions like Cloud Code or GitHub Copilot, append the contents of `AGENTS
 **Status:** `READY_FOR_INFERENCE`
 **Version:** `1.0.0`
 **Architect:** `Senior AI Solutions Architect`
+**Language** `Technical Easy English language`
