@@ -188,7 +188,7 @@ class SocialContentEngine {
       return;
     }
 
-    const baseUrl = (BUFFER_API || 'https://api.bufferapp.com').replace(/\/$/, '');
+    const baseUrl = 'https://api.bufferapp.com';
 
     for (let i = 0; i < ids.length; i++) {
       const id = ids[i];
