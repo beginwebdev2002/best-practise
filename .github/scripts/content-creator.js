@@ -212,7 +212,7 @@ class SocialContentEngine {
       } catch(e) {
         const platform = PLATFORM_ORDER[i] || 'instagram';
         this.profileMap[id] = platform;
-        console.warn(`⚠️  Could not fetch profile ${id}, assuming → ${platform}`,url, e);
+        console.warn(`⚠️  Could not fetch profile ${id}, assuming → ${platform}`,JSON.stringify(url), e);
       }
     }
   }
