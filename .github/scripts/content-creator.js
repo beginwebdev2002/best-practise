@@ -208,10 +208,10 @@ class SocialContentEngine {
 
         this.profileMap[id] = platform;
         console.log(`📋 Profile ${id} → ${platform} (Buffer service: "${service}")`);
-      } catch {
+      } catch(e) {
         const platform = PLATFORM_ORDER[i] || 'instagram';
         this.profileMap[id] = platform;
-        console.warn(`⚠️  Could not fetch profile ${id}, assuming → ${platform}`);
+        console.warn(`⚠️  Could not fetch profile ${id}, assuming → ${platform}`, e);
       }
     }
   }
