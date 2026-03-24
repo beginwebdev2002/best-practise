@@ -193,7 +193,8 @@ class SocialContentEngine {
     for (let i = 0; i < ids.length; i++) {
       const id = ids[i];
       try {
-        const { data } = await axios.get(`${baseUrl}/1/profiles/${id}.json`, {
+        const url = `${baseUrl}/1/profiles/${id}.json`
+        const { data } = await axios.get(url, {
           params:  { access_token: BUFFER_ACCESS_TOKEN },
           timeout: 8_000,
         });
@@ -211,7 +212,7 @@ class SocialContentEngine {
       } catch(e) {
         const platform = PLATFORM_ORDER[i] || 'instagram';
         this.profileMap[id] = platform;
-        console.warn(`⚠️  Could not fetch profile ${id}, assuming → ${platform}`, e);
+        console.warn(`⚠️  Could not fetch profile ${id}, assuming → ${platform}`,url, e);
       }
     }
   }
