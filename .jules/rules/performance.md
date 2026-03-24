@@ -1,6 +1,11 @@
+---
+description: Key instructions for Jules regarding performance optimization standards, ensuring fast load times and global scalability.
+tags: [performance optimization, scalability, fast load times, lazy loading, caching, pagination, frontend optimization, backend efficiency]
+---
+
 # ⚡ Performance Optimization Rules for Jules
 
-## 1. Context & Scope
+## 1. 🎯 Context & Scope
 - **Primary Goal:** Ensure all generated code meets strict **performance optimization** standards, guaranteeing fast load times, efficient resource usage, and global **scalability**.
 - **Target Tooling:** Jules AI agent (Automated Performance Audits & Code Generation).
 - **Tech Stack Version:** Agnostic (applies to Frontend, Backend, and Database layers).
@@ -11,24 +16,44 @@
 
 ---
 
-## 2. Core Performance Guidelines
+## 2. 🚀 Core Performance Guidelines
+
+### Performance Strategies Overview
+
+```mermaid
+graph TD
+    A[Performance Optimization] --> B(Frontend Optimization)
+    A --> C(Backend & Database Efficiency)
+
+    B --> B1[Lazy Loading]
+    B --> B2[Memoization & Re-renders]
+    B --> B3[Asset Optimization]
+
+    C --> C1[Query Optimization]
+    C --> C2[Caching Strategy]
+    C --> C3[Pagination]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bfb,stroke:#333,stroke-width:2px
+```
 
 > [!WARNING]
 > **Performance Regressions:** Never introduce synchronous blocking operations in the main thread (Node.js/Browser). Always favor asynchronous, non-blocking APIs.
 
-### Frontend Optimization
+### 🎨 Frontend Optimization
 For Web and UI clients, Jules must ensure:
 1. **Lazy Loading:** Components, routes, and heavy modules (like charts or rich text editors) must be lazy-loaded to reduce the initial bundle size.
 2. **Memoization & Re-renders:** Prevent unnecessary component re-renders (using `useMemo`, `React.memo`, or Angular's `OnPush` change detection).
 3. **Asset Optimization:** Images must be optimized (WebP/AVIF format) and served with native lazy loading (`loading="lazy"`).
 
-### Backend & Database Efficiency
+### 🛡️ Backend & Database Efficiency
 For server infrastructure:
 1. **Query Optimization:** Never use `SELECT *` in SQL databases. Always explicitly request only the required fields. Add standard indexes for frequently queried columns.
 2. **Caching Strategy:** Implement in-memory caching (like Redis) for expensive computations or frequently accessed, rarely mutated data.
 3. **Pagination:** All endpoints returning lists of data must implement pagination (Cursor-based or Offset-based) and rate limiting.
 
-### Performance Pattern Selection
+### 🛠️ Performance Pattern Selection
 
 | Strategy | Ideal Use Case | Jules Rule |
 | :--- | :--- | :--- |
@@ -39,7 +64,7 @@ For server infrastructure:
 
 ---
 
-## 3. Checklist for Jules Agent
+## 3. ✅ Checklist for Jules Agent
 
 When writing or reviewing code for performance:
 - [ ] Determine if the new feature negatively impacts bundle size or memory usage.
