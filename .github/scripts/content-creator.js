@@ -192,8 +192,8 @@ class SocialContentEngine {
 
     for (let i = 0; i < ids.length; i++) {
       const id = ids[i];
+      const url = `${baseUrl}/1/profiles/${id}.json`
       try {
-        const url = `${baseUrl}/1/profiles/${id}.json`
         const { data } = await axios.get(url, {
           params:  { access_token: BUFFER_ACCESS_TOKEN },
           timeout: 8_000,
