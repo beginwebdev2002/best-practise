@@ -6,6 +6,7 @@ const path = require('path');
 
 // Environment Variables
 const PROJECT_ID = process.env.PROJECT_ID;
+const LOCATION = process.env.LOCATION
 const API_KEY = process.env.GOOGLE_AI_API_KEY; // Теперь используем API Key напрямую для простоты
 const BUCKET_NAME = process.env.GCS_BUCKET_NAME;
 const RELEASE_BODY = process.env.RELEASE_BODY || 'New release with performance improvements.';
@@ -13,9 +14,12 @@ const RELEASE_TAG = process.env.RELEASE_TAG || '@latest';
 const RELEASE_URL = process.env.RELEASE_URL || 'https://github.com/beginwebdev2002/best-practise/releases';
 
 class AIProductionEngine {
-  constructor() {
-    // Инициализация нового Google Gen AI SDK 
-    this.genAI = new GoogleGenAI(API_KEY);
+ constructor() {
+    // Исправленная инициализация
+    this.genAI = new GoogleGenAI({ 
+      project: PROJECT_ID, 
+      location: LOCATION 
+    });
     this.storage = new Storage();
     this.results = {
       text: {},
@@ -69,21 +73,32 @@ class AIProductionEngine {
   async generateVisuals() {
     console.log('🎨 Generating 4K cover with Nano Banana 2 (Imagen 3)...');
     try {
-      // Для Imagen 3 на Vertex AI по-прежнему надежнее использовать 
-      // прямой вызов или специализированный клиент
-      const modelId = 'imagen-3.0-generate-002';
-      console.log(`📸 Prompting ${modelId} for ${RELEASE_TAG}`);
-
-      // Здесь должен быть ваш вызов PredictionServiceClient (как мы обсуждали ранее)
-      // для физического создания файла release-cover.png
-      const localPath = path.join(process.cwd(), 'release-cover.png');
+      // Для генерации изображений используем метод из нового SDK
+      const model = this.genAI.getGenerativeModel({ model: "imagen-3.0-generate-002" });
       
-      // Имитируем успешное создание файла для демонстрации логики сохранения
+      const prompt = `Professional 4K tech illustration, futuristic architecture for ${RELEASE_TAG}, clean lines, cinematic lighting.`;
+
+      const result = await model.generateContent({
+        contents: [{ role: 'user', parts: [{ text: prompt }] }],
+        // Параметры специфичные для Imagen
+        generationConfig: {
+          sampleCount: 1,
+          aspectRatio: "16:9",
+        }
+      });
+
+      const response = await result.response;
+      // Imagen возвращает данные в формате base64 в первом кандидате
+      const b64Image = response.candidates[0].content.parts[0].inlineData.data;
+      
+      const localPath = path.join(process.cwd(), 'release-cover.png');
+      fs.writeFileSync(localPath, b64Image, 'base64');
+
       this.results.media.image = {
         localPath,
         filename: `release-${RELEASE_TAG.replace(/[@/]/g, '')}-cover.png`
       };
-      console.log('✅ Image asset ready for upload.');
+      console.log('✅ Visual assets created and saved to disk.');
     } catch (error) {
       console.error('❌ Visuals Error:', error.message);
     }
