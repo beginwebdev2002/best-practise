@@ -17,5 +17,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.JULES_GITHUB_TOKEN_BOT }}
         run: |
           # Здесь вызывается CLI-команда Jules или твой скрипт интеграции
-          jules-cli analyze --pr ${{ github.event.number }} --rules .agents/rules/
+          jules-cli analyze --pr ${{ github.event.number }} --rules .jules/rules/
           
