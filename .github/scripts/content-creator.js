@@ -195,7 +195,7 @@ class SocialContentEngine {
       const url = `${baseUrl}/1/profiles/${id}.json`
       try {
         const response = await axios.get(url, {
-          params:  { access_token: BUFFER_ACCESS_TOKEN },
+          params:  { access_token: BUFFER_API },
           timeout: 8_000,
         });
         console.log('data: ', response);
