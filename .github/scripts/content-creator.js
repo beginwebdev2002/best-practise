@@ -309,7 +309,7 @@ brand colors (deep navy #0F0F1A to electric violet #6C63FF), Angular logo motifs
 
     try {
       const response = await this.ai.models.generateContent({
-        model:    'gemini-2.5-pro-002',   // pinned for stability
+        model:    'gemini-2.5-pro',   // Vertex AI model ID (no -002 suffix on Vertex)
         contents: prompt,
         config: {
           systemInstruction,
@@ -386,7 +386,16 @@ brand colors (deep navy #0F0F1A to electric violet #6C63FF), Angular logo motifs
       },
     ];
 
-    for (const variant of variants) {
+    for (let i = 0; i < variants.length; i++) {
+      const variant = variants[i];
+
+      // ── Rate-limit guard: Imagen 3 quota is per-minute ──────
+      // Wait 8 seconds between requests to avoid 429 RESOURCE_EXHAUSTED
+      if (i > 0) {
+        console.log(`   ⏳ [Module 2] Waiting 8s before next Imagen request (quota guard)...`);
+        await sleep(8_000);
+      }
+
       const prompt = variant.prompt ||
         `Professional tech art for ${variant.label}, software release ${RELEASE_TAG}, ` +
         `Angular aesthetic, deep navy to electric violet gradient, cinematic quality, ${variant.ratio} format.`;
@@ -478,7 +487,9 @@ brand colors (deep navy #0F0F1A to electric violet #6C63FF), Angular logo motifs
 
         let pollResult;
         try {
-          pollResult = await this.ai.operations.get({ name: opName });
+          // @google/genai: operations.get() takes the operation name string directly,
+          // NOT wrapped in an object. Passing { name: opName } causes a TypeError.
+          pollResult = await this.ai.operations.get(opName);
         } catch (pollErr) {
           console.warn(`   [Module 3] Poll attempt ${attempt}/${MAX_ATTEMPTS} failed: ${pollErr.message}`);
           continue;
