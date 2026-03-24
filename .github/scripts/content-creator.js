@@ -8,7 +8,13 @@ const path = require('path');
 const PROJECT_ID = process.env.PROJECT_ID;
 const LOCATION = process.env.LOCATION
 const API_KEY = process.env.GOOGLE_AI_API_KEY; // Теперь используем API Key напрямую для простоты
-const BUCKET_NAME = process.env.GCS_BUCKET_NAME;
+const NANO_BANANA_API_KEY = process.env.NANO_BANANA_API_KEY
+const VEO3_API_KEY = process.env.VEO3_API_KEY;
+const BUFFER_ACCESS_TOKEN = process.env.BUFFER_ACCESS_TOKEN;
+const BUFFER_PROFILE_IDS = process.env.BUFFER_PROFILE_IDS;
+const BUFFER_API = process.env.BUFFER_API;
+const GCP_SA_KEY = process.env.GCP_SA_KEY;
+const BUCKET_NAME = process.env.GCS_MARKETING_BUCKET;
 const RELEASE_BODY = process.env.RELEASE_BODY || 'New release with performance improvements.';
 const RELEASE_TAG = process.env.RELEASE_TAG || '@latest';
 const RELEASE_URL = process.env.RELEASE_URL || 'https://github.com/beginwebdev2002/best-practise/releases';
@@ -18,7 +24,9 @@ class AIProductionEngine {
     // Исправленная инициализация
     this.genAI = new GoogleGenAI({ 
       project: PROJECT_ID, 
-      location: LOCATION 
+      location: LOCATION,
+      vertexai: true,
+      apiKey: API_KEY
     });
     this.storage = new Storage();
     this.results = {
