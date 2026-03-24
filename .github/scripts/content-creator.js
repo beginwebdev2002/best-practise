@@ -8,8 +8,8 @@ const PROJECT_ID = process.env.PROJECT_ID;
 const LOCATION = process.env.LOCATION || 'us-central1';
 const BUCKET_NAME = process.env.GCS_BUCKET_NAME;
 const RELEASE_BODY = process.env.RELEASE_BODY || 'New release with performance improvements and bug fixes.';
-const RELEASE_TAG = process.env.RELEASE_TAG || 'v1.0.0';
-const RELEASE_URL = process.env.RELEASE_URL || '';
+const RELEASE_TAG = process.env.RELEASE_TAG || '@latest';
+const RELEASE_URL = process.env.RELEASE_URL || 'https://github.com/beginwebdev2002/best-practise/releases';
 
 class AIProductionEngine {
   constructor() {
