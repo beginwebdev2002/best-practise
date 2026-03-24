@@ -1,21 +1,57 @@
 name: Jules Agent Integration
+
 on:
   pull_request:
     types: [opened, synchronize]
   discussion:
     types: [created]
 
+# Добавляем права на запись, чтобы агент мог оставлять комментарии
+permissions:
+  contents: read
+  pull-requests: write
+  discussions: write
+
 jobs:
   jules_review:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        # Если jules-cli — это часть твоего проекта, устанавливаем его.
+        # Если это внешний пакет, используй: npm install -g @your-scope/jules-cli
+        run: |
+          if [ -f package.json ]; then
+            npm install
+          fi
+
       - name: Run Jules Analysis
         env:
           GITHUB_TOKEN: ${{ secrets.JULES_GITHUB_TOKEN_BOT }}
+          # Передаем контекст события (PR или Discussion)
+          EVENT_NUMBER: ${{ github.event.pull_request.number || github.event.discussion.number }}
         run: |
-          # Здесь вызывается CLI-команда Jules или твой скрипт интеграции
-          jules-cli analyze --pr ${{ github.event.number }} --rules .jules/rules/
+          echo "🚀 Starting analysis for item #$EVENT_NUMBER"
           
+          # Используем npx для запуска, чтобы избежать ошибки "command not found"
+          # Если jules-cli — это локальный скрипт, используй путь: node ./scripts/jules-cli.js
+          npx jules-cli analyze \
+            --pr "$EVENT_NUMBER" \
+            --rules .jules/rules/ \
+            --engine gemini-1.5-pro-002
+            
+      - name: Upload Analysis Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jules-report-${{ github.run_id }}
+          path: .jules/reports/
