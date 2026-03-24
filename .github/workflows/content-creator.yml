@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   marketing-assets-gen:
-    name: Generate Autonomous Marketing Assets
+    name: Generate Social Media Content (IG · YT · TT)
     runs-on: ubuntu-latest
     if: github.event_name == 'release' || github.event_name == 'workflow_dispatch'
 
@@ -29,8 +29,9 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      # Authenticates gcloud & sets Application Default Credentials (ADC)
-      # that @google-cloud/storage and Vertex AI will pick up automatically.
+      # Sets Application Default Credentials (ADC) used by:
+      # - @google/genai  (Vertex AI — Gemini, Imagen 3, Veo 3)
+      # - @google-cloud/storage  (GCS asset upload)
       - name: Google Cloud Auth
         uses: google-github-actions/auth@v2
         with:
@@ -38,31 +39,38 @@ jobs:
 
       - name: Content Creator Script
         env:
-          # ── Google AI / Vertex AI ──────────────────────────────
+          # ── Vertex AI ──────────────────────────────────────────
           PROJECT_ID:          ${{ secrets.GCP_PROJECT_ID }}
-          LOCATION:            'us-central1'
-          GOOGLE_AI_API_KEY:   ${{ secrets.GOOGLE_AI_API_KEY }}   # Gemini API key (fallback)
+          LOCATION:            us-central1
+          GOOGLE_AI_API_KEY:   ${{ secrets.GOOGLE_AI_API_KEY }}   # fallback (API key mode)
+
           # ── Additional AI APIs ─────────────────────────────────
           NANO_BANANA_API_KEY: ${{ secrets.NANO_BANANA_API_KEY }}
           VEO3_API_KEY:        ${{ secrets.VEO3_API_KEY }}
-          # ── Buffer Social API ──────────────────────────────────
-          BUFFER_ACCESS_TOKEN: ${{ secrets.BUFFER_ACCESS_TOKEN }}
-          BUFFER_PROFILE_IDS:  ${{ secrets.BUFFER_PROFILE_IDS }}
-          BUFFER_API:          ${{ secrets.BUFFER_API }}
+
+          # ── Buffer Social Publishing ───────────────────────────
+          # BUFFER_PROFILE_IDS: comma-separated in this exact ORDER:
+          #   instagram_profile_id,youtube_profile_id,tiktok_profile_id
+          BUFFER_ACCESS_TOKEN:  ${{ secrets.BUFFER_ACCESS_TOKEN }}
+          BUFFER_PROFILE_IDS:   ${{ secrets.BUFFER_PROFILE_IDS }}
+          BUFFER_API:           ${{ secrets.BUFFER_API }}
+
           # ── Google Cloud Storage ───────────────────────────────
           GCS_MARKETING_BUCKET: ${{ secrets.GCS_MARKETING_BUCKET }}
           GCP_SA_KEY:           ${{ secrets.GCP_SA_KEY }}
-          # ── Release Metadata ───────────────────────────────────
+
+          # ── Release Metadata (from GitHub Event) ───────────────
           RELEASE_BODY: ${{ github.event.release.body }}
           RELEASE_TAG:  ${{ github.event.release.tag_name }}
           RELEASE_URL:  ${{ github.event.release.html_url }}
+
         run: node .github/scripts/content-creator.js
 
       - name: Upload Pipeline Artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: marketing-artifacts-${{ github.event.release.tag_name || 'manual' }}
+          name: social-content-${{ github.event.release.tag_name || 'manual' }}
           path: |
             buffer-payload.json
             *.png
