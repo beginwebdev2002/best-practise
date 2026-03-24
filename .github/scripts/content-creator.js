@@ -194,10 +194,13 @@ class SocialContentEngine {
       const id = ids[i];
       const url = `${baseUrl}/1/profiles/${id}.json`
       try {
-        const { data } = await axios.get(url, {
+        const response = await axios.get(url, {
           params:  { access_token: BUFFER_ACCESS_TOKEN },
           timeout: 8_000,
         });
+        console.log('data: ', response);
+        
+        const data = response?.data
         const service = (data?.service || '').toLowerCase();
 
         // Normalise to our three platform keys
