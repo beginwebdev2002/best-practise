@@ -1,4 +1,4 @@
-const { GoogleGenerativeAI } = require('@google/genai'); // Новый SDK 
+const { GoogleGenAI  } = require('@google/genai'); // Новый SDK 
 const { Storage } = require('@google-cloud/storage');
 const axios = require('axios');
 const fs = require('fs');
@@ -15,7 +15,7 @@ const RELEASE_URL = process.env.RELEASE_URL || 'https://github.com/beginwebdev20
 class AIProductionEngine {
   constructor() {
     // Инициализация нового Google Gen AI SDK 
-    this.genAI = new GoogleGenerativeAI(API_KEY);
+    this.genAI = new GoogleGenAI(API_KEY);
     this.storage = new Storage();
     this.results = {
       text: {},
