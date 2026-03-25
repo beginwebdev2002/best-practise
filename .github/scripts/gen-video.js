@@ -4,9 +4,8 @@ import { convertGcsUriToPublicUrl } from './utils.js';
 export async function generateVeoVideo(prompt) {
   const ai = createAIClient();
 //   const modelName = 'veo-3.0-generate-preview';
-  const modelName = 'veo-3.1-generate-preview';
+  const modelName = 'veo-3.0-generate-preview';
   console.log(`🎥 [Veo 3] Запуск генерации видео...`);
-  console.log(`📝 Промпт: ${prompt}`);
 
   try {
     // Шаг 1: Отправка запроса на генерацию
@@ -16,7 +15,7 @@ export async function generateVeoVideo(prompt) {
     prompt: prompt,
     config: {
       durationSeconds: 10,
-      aspectRatio: '16:9',
+      aspectRatio: '9:16',
       outputGcsUri,
     },
   });
