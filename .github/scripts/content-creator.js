@@ -674,6 +674,7 @@ brand colors (deep navy #0F0F1A to electric violet #6C63FF), Angular logo motifs
       if (!opName) throw new Error('Veo 3: no operation name returned — cannot poll.');
 
       console.log(`   [Module 3] Operation started → ${opName}`);
+      console.log('Operation: ', JSON.stringify(operation));
       console.log(`   [Module 3] Polling every ${POLL_INTERVAL_MS / 1000}s (max ${MAX_ATTEMPTS} attempts)...`);
 
       let succeeded      = false;
@@ -684,7 +685,6 @@ brand colors (deep navy #0F0F1A to electric violet #6C63FF), Angular logo motifs
 
         let pollResult;
         try {
-          console.log('Operation: ', JSON.stringify(operation));
           
           pollResult = await this.ai.operations.get(opName);
         } catch (pollErr) {
