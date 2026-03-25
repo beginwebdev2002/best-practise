@@ -5,10 +5,10 @@ import { generateVeoVideo } from './gen-video.js';
 import { publishImageToInstagram, publishVideoToInstagram } from './meta.js';
 import { genPromptDescription, genPromptImage, genPromptVideo } from './prompts.js';
 import { RELEASE_BODY, RELEASE_TAG, RELEASE_URL } from './config.js';
-console.log('RELEASE_BODY', RELEASE_BODY, 'RELEASE_TAG', RELEASE_TAG, 'RELEASE_URL', RELEASE_URL);
 
 
 async function init() {
+    console.log('RELEASE_BODY', RELEASE_BODY, 'RELEASE_TAG', RELEASE_TAG, 'RELEASE_URL', RELEASE_URL);
     await initInstagramPhoto();
     await initInstagramVideo();
 }
