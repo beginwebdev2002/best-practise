@@ -17,6 +17,9 @@ async function initInstagramPhoto() {
     const imagePrompt = await genPromptImage();
     const descriptionPrompt = await genPromptDescription();
     const generateDescription = await generateText(descriptionPrompt);
+    console.log('generateDescription', generateDescription);
+    console.log('imagePrompt', imagePrompt);
+    
     const generateImage = await generateImagen3(imagePrompt);
     const publishInstagramImage = await publishImageToInstagram(generateImage, generateDescription);
     return publishInstagramImage;
