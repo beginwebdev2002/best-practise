@@ -1,7 +1,7 @@
 import {convertGcsUriToPublicUrl} from './utils.js';
 import {createAIClient} from './ai-client.js';
 import {SYSTEM_INSTRUCTION} from './config.js';
-export async function generateImagen3(prompt, filename = 'generated-image.png', numberOfImages = 1, aspectRatio = '9:16', outputMimeType = 'image/png') {
+export async function generateImagen3(prompt, filename = 'generated-image.png', numberOfImages = 1, aspectRatio = '4:5', outputMimeType = 'image/png') {
   const ai = createAIClient();
   
   // Выбираем модель Imagen 3 (качество или скорость)
