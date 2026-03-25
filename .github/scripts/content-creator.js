@@ -646,7 +646,7 @@ brand colors (deep navy #0F0F1A to electric violet #6C63FF), Angular logo motifs
 
     const MODEL            = 'veo-3.0-generate-preview';
     const POLL_INTERVAL_MS = 30_000;
-    const MAX_ATTEMPTS     = 10;
+    const MAX_ATTEMPTS     = 3;
 
     const prompt = this.bundle.copy?.instagram?.reelPrompt ||
       `Ultra-energetic 10-second vertical video for software release "${RELEASE_TAG}".
@@ -684,6 +684,8 @@ brand colors (deep navy #0F0F1A to electric violet #6C63FF), Angular logo motifs
 
         let pollResult;
         try {
+          console.log('Operation: ', operation);
+          
           pollResult = await this.ai.operations.get(opName);
         } catch (pollErr) {
           console.warn(`   [Module 3] Poll attempt ${attempt}/${MAX_ATTEMPTS} failed: ${pollErr.message}`);
