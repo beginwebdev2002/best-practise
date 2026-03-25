@@ -63,7 +63,7 @@ jobs:
           RELEASE_TAG:  ${{ github.event.release.tag_name }}
           RELEASE_URL:  ${{ github.event.release.html_url }}
 
-        run: node .github/scripts/content-creator.js
+        run: node .github/scripts/index.js
 
       - name: Upload Pipeline Artifacts
         if: always()
