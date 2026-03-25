@@ -64,6 +64,18 @@ graph TD
     Widgets --> Features[features]
     Features --> Entities[entities]
     Entities --> Shared[shared]
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Shared component;
+    class Features component;
+    class Pages component;
+    class App component;
+    class Entities component;
+    class Widgets component;
+
 ```
 
 ```text
@@ -95,6 +107,16 @@ graph TD
     Infrastructure[Infrastructure] --> InterfaceAdapters[Interface Adapters]
     InterfaceAdapters --> UseCases[Use Cases]
     UseCases --> Domain[Domain Entities]
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Infrastructure component;
+    class InterfaceAdapters component;
+    class UseCases component;
+    class Domain component;
+
 ```
 
 ```text
@@ -125,6 +147,16 @@ graph LR
     Controller --> Model
     Model --> View
     View --> User
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class View component;
+    class Controller component;
+    class User component;
+    class Model component;
+
 ```
 
 ```text
@@ -155,6 +187,18 @@ graph TD
     Gateway --> Order[Order Service]
     Gateway --> Pay[Payment Service]
     Gateway --> Notif[Notification Service]
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Order component;
+    class Client component;
+    class Auth component;
+    class Notif component;
+    class Gateway component;
+    class Pay component;
+
 ```
 
 ```text
@@ -186,6 +230,17 @@ graph TD
     PortsIN --> Domain[Core Domain]
     Domain --> PortsOUT[Ports: Output]
     PortsOUT --> Secondary[Secondary Adapters]
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class PortsOUT component;
+    class PortsIN component;
+    class Primary component;
+    class Domain component;
+    class Secondary component;
+
 ```
 
 ```text
@@ -216,6 +271,16 @@ graph TD
     Context1[Identity & Access] --> C1Domain[Domain]
     Context1 --> C1App[Application]
     Context1 --> C1Infra[Infrastructure]
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class C1Infra component;
+    class C1Domain component;
+    class Context1 component;
+    class C1App component;
+
 ```
 
 ```text
@@ -247,6 +312,16 @@ graph LR
     Pub[Publisher] --> Broker[Message Broker]
     Broker --> Sub1[Subscriber 1]
     Broker --> Sub2[Subscriber 2]
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Sub1 component;
+    class Sub2 component;
+    class Broker component;
+    class Pub component;
+
 ```
 
 ```text
@@ -274,6 +349,16 @@ src/
 graph TD
     Trigger[Event Trigger] --> Func1[Function 1]
     Trigger2[HTTP Request] --> Func2[Function 2]
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Func1 component;
+    class Trigger component;
+    class Func2 component;
+    class Trigger2 component;
+
 ```
 
 ```text
@@ -303,6 +388,16 @@ graph TD
     Project[Monolithic App] --> UI[Public / UI]
     Project --> Logic[Business Logic]
     Project --> Data[Database]
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Logic component;
+    class Data component;
+    class UI component;
+    class Project component;
+
 ```
 
 ```text
@@ -333,6 +428,17 @@ graph LR
     UI --> Query[Query]
     Query --> ReadDB[(Read DB)]
     WriteDB -. sync .-> ReadDB
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class WriteDB component;
+    class Query component;
+    class ReadDB component;
+    class Command component;
+    class UI component;
+
 ```
 
 ```text

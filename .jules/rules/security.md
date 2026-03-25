@@ -52,6 +52,11 @@ graph TD
     style E fill:#f00,stroke:#333,stroke-width:2px,color:#fff
     style F fill:#ccc,stroke:#333,stroke-width:2px
     style G fill:#ddd,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
 ```
 
 | Security Layer | Pattern/Standard | Jules Requirement |

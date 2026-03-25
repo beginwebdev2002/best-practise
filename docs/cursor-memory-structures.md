@@ -24,6 +24,17 @@ graph TD
 
     style UserPrompt fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
     style ContextWindow fill:#ff9800,stroke:#f57c00,stroke-width:2px,color:#fff
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class AIGeneration component;
+    class ShortTerm component;
+    class Embedding component;
+    class LongTerm component;
+    class Codebase component;
+
 ```
 
 ## 📊 3. Types of Memory in Cursor

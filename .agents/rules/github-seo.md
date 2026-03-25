@@ -56,6 +56,15 @@ Every file must start with a `# Context & Scope` section that defines:
   graph LR
     A[Component] --> B[Feature Logic]
     B --> C[Shared Layer]
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class C component;
+    class A component;
+    class B component;
+
   ```
 
 ### Code Standards
