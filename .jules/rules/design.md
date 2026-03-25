@@ -36,6 +36,13 @@ graph TD
     style Tokens fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
     style Elements fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000
     style Components fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Layouts component;
+
 ```
 
 ---

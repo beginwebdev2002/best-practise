@@ -35,6 +35,22 @@ graph TD
     BE --> Express[Express]
 
     style Global fill:#f9f,stroke:#333,stroke-width:4px
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class BE component;
+    class Tech component;
+    class MVC component;
+    class TS component;
+    class Angular component;
+    class FSD component;
+    class FE component;
+    class Express component;
+    class Arch component;
+    class Nest component;
+
 ```
 
 ### Resource Directory
