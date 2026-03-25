@@ -73,6 +73,16 @@ graph LR
     A[Best-Practise Library] --> B[Select Technology .md]
     B --> C[Copy to Local .ide-folder/]
     C --> D[AI Agent Activation]
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class C component;
+    class A component;
+    class D component;
+    class B component;
+
 ```
 
 ### Folder Mapping Table
@@ -136,6 +146,25 @@ graph TD
     class B,C1,C2,C3 domain;
     class D1,D2,D3 tech;
     class E1,E2,E3,E4,E5,E6 spec;
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class E1 component;
+    class E5 component;
+    class E3 component;
+    class E6 component;
+    class D3 component;
+    class C1 component;
+    class E2 component;
+    class D1 component;
+    class D2 component;
+    class E4 component;
+    class C2 component;
+    class C3 component;
+    class B component;
+
 ```
 ## 🌴 Folder Tree
 
@@ -262,6 +291,16 @@ graph LR
     A[Best-Practise Library] --> B[Select Technology .md]
     B --> C[Copy to Local .ide-folder/]
     C --> D[AI Agent Activation]
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class C component;
+    class A component;
+    class D component;
+    class B component;
+
 ```
 
 ### Таблица: Маппинг директорий
@@ -326,6 +365,25 @@ graph TD
     class B,C1,C2,C3 domain;
     class D1,D2,D3 tech;
     class E1,E2,E3,E4,E5,E6 spec;
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class E1 component;
+    class E5 component;
+    class E3 component;
+    class E6 component;
+    class D3 component;
+    class C1 component;
+    class E2 component;
+    class D1 component;
+    class D2 component;
+    class E4 component;
+    class C2 component;
+    class C3 component;
+    class B component;
+
 ```
 ## 🌴 Folder Tree
 

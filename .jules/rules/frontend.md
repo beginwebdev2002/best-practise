@@ -34,6 +34,18 @@ graph TD
     Widgets --> Features[4. Features / User Actions]
     Features --> Entities[5. Entities / Business Data]
     Entities --> Shared[6. Shared / UI Library, Utils]
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Shared component;
+    class Features component;
+    class Pages component;
+    class App component;
+    class Entities component;
+    class Widgets component;
+
 ```
 
 | Layer | Description | Examples |
