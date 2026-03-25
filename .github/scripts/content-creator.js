@@ -686,7 +686,7 @@ brand colors (deep navy #0F0F1A to electric violet #6C63FF), Angular logo motifs
         let pollResult;
         try {
           
-          pollResult = await this.ai.operations.get(opName);
+          pollResult = await this.ai.operations.get(operation);
         } catch (pollErr) {
           console.warn(`   [Module 3] Poll attempt ${attempt}/${MAX_ATTEMPTS} failed: ${pollErr.message}`);
           continue;
