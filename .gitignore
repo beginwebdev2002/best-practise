@@ -67,3 +67,6 @@ mongo-data/
 # Если ты генерируешь PDF или HTML из своих Markdown
 docs/build/
 site/
+
+test.*
+tokens.*

@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   marketing-assets-gen:
-    name: Generate Social Media Content (IG · YT · TT)
+    name: Generate Social Media Content (IG · FB)
     runs-on: ubuntu-latest
     if: github.event_name == 'release' || github.event_name == 'workflow_dispatch'
 
@@ -30,8 +30,8 @@ jobs:
         run: npm install
 
       # Sets Application Default Credentials (ADC) used by:
-      # - @google/genai  (Vertex AI — Gemini, Imagen 3, Veo 3)
-      # - @google-cloud/storage  (GCS asset upload)
+      # - @google/genai  (Vertex AI — Gemini 2.5 Pro, Imagen 3, Veo 3)
+      # - @google-cloud/storage  (GCS public asset hosting)
       - name: Google Cloud Auth
         uses: google-github-actions/auth@v2
         with:
@@ -48,12 +48,11 @@ jobs:
           NANO_BANANA_API_KEY: ${{ secrets.NANO_BANANA_API_KEY }}
           VEO3_API_KEY:        ${{ secrets.VEO3_API_KEY }}
 
-          # ── Buffer Social Publishing ───────────────────────────
-          # BUFFER_PROFILE_IDS: comma-separated in this exact ORDER:
-          #   instagram_profile_id,youtube_profile_id,tiktok_profile_id
-          BUFFER_ACCESS_TOKEN:  ${{ secrets.BUFFER_ACCESS_TOKEN }}
-          BUFFER_PROFILE_IDS:   ${{ secrets.BUFFER_PROFILE_IDS }}
-          BUFFER_API:           ${{ secrets.BUFFER_API }}
+          # ── Meta Graph API (Direct Publishing) ────────────────
+          META_ACCESS_TOKEN:   ${{ secrets.META_ACCESS_TOKEN }}   # Long-lived Page Access Token
+          IG_BUSINESS_ID:      ${{ secrets.IG_BUSINESS_ID }}      # Instagram Business Account ID
+          FB_PAGE_ID:          ${{ secrets.FB_PAGE_ID }}          # Facebook Page ID
+          APP_ID:              ${{ secrets.APP_ID }}              # Meta App ID
 
           # ── Google Cloud Storage ───────────────────────────────
           GCS_MARKETING_BUCKET: ${{ secrets.GCS_MARKETING_BUCKET }}
@@ -64,7 +63,7 @@ jobs:
           RELEASE_TAG:  ${{ github.event.release.tag_name }}
           RELEASE_URL:  ${{ github.event.release.html_url }}
 
-        run: node .github/scripts/content-creator.js
+        run: node .github/scripts/index.js
 
       - name: Upload Pipeline Artifacts
         if: always()
@@ -72,7 +71,7 @@ jobs:
         with:
           name: social-content-${{ github.event.release.tag_name || 'manual' }}
           path: |
-            buffer-payload.json
+            meta-payload.json
             *.png
             *.mp4
           retention-days: 30

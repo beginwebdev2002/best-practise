@@ -15,6 +15,8 @@ permissions:
 jobs:
   jules_review:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     
     steps:
       - name: Checkout Code
@@ -35,6 +37,7 @@ jobs:
           fi
 
       - name: Run Jules Analysis
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.JULES_GITHUB_TOKEN_BOT }}
           # Передаем контекст события (PR или Discussion)
@@ -55,3 +58,4 @@ jobs:
         with:
           name: jules-report-${{ github.run_id }}
           path: .jules/reports/
+          if-no-files-found: ignore

@@ -1,6 +1,6 @@
 ---
 description: Key instructions for Jules regarding performance optimization standards, ensuring fast load times and global scalability.
-tags: [performance optimization, scalability, fast load times, lazy loading, caching, pagination, frontend optimization, backend efficiency]
+tags: [performance optimization, scalability, fast load times, lazy loading, caching, pagination, frontend optimization, backend efficiency, ai agent]
 ---
 
 # ⚡ Performance Optimization Rules for Jules
@@ -17,38 +17,6 @@ tags: [performance optimization, scalability, fast load times, lazy loading, cac
 ---
 
 ## 2. 🚀 Core Performance Guidelines
-
-### Performance Strategies Overview
-
-```mermaid
-graph TD
-    A[Performance Optimization] --> B(Frontend Optimization)
-    A --> C(Backend & Database Efficiency)
-
-    B --> B1[Lazy Loading]
-    B --> B2[Memoization & Re-renders]
-    B --> B3[Asset Optimization]
-
-    C --> C1[Query Optimization]
-    C --> C2[Caching Strategy]
-    C --> C3[Pagination]
-
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style C fill:#bfb,stroke:#333,stroke-width:2px
-    %% Added Design Token Styles for Mermaid Diagrams
-    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
-    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
-    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
-
-    class B1 component;
-    class C1 component;
-    class B3 component;
-    class C3 component;
-    class C2 component;
-    class B2 component;
-
-```
 
 > [!WARNING]
 > **Performance Regressions:** Never introduce synchronous blocking operations in the main thread (Node.js/Browser). Always favor asynchronous, non-blocking APIs.
@@ -73,6 +41,24 @@ For server infrastructure:
 | **Server-Side Rendering (SSR)** | SEO-heavy public pages | Pre-render initial HTML for faster First Contentful Paint (FCP). |
 | **Web Workers** | Heavy client-side computations | Offload data parsing or cryptographic tasks from the main thread. |
 | **Connection Pooling** | Database connections | Always reuse database connections across requests to prevent overhead. |
+
+```mermaid
+graph TD
+    A[Performance Optimization] --> B(Frontend Optimization)
+    A --> C(Backend & Database Efficiency)
+
+    B --> B1[Lazy Loading]
+    B --> B2[Memoization & Re-renders]
+    B --> B3[Asset Optimization]
+
+    C --> C1[Query Optimization]
+    C --> C2[Caching Strategy]
+    C --> C3[Pagination]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bfb,stroke:#333,stroke-width:2px
+```
 
 ---
 
