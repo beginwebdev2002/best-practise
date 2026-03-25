@@ -1,6 +1,9 @@
 {
+  "name": "best-practise",
+  "type": "module",
   "scripts": {
-    "dev": "nodemon .github/scripts/index.js"
+    "dev": "nodemon .github/scripts/index.js",
+    "test": "nodemon ./test-gen/index.js"
   },
   "devDependencies": {
     "dotenv": "^17.3.1",

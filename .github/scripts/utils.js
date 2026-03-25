@@ -1,85 +1,67 @@
-'use strict';
+import 'dotenv/config';
+import { writeFile } from 'fs';
+import { join } from 'path';
 
-const axios = require('axios');
-const { META_ACCESS_TOKEN, META_API_BASE } = require('./config');
-
-// ═══════════════════════════════════════════════════════════════
-//  UTILITY HELPERS
-// ═══════════════════════════════════════════════════════════════
-
-/**
- * sanitizeFilename — makes any string safe for GCS object names.
- * Lowercases, replaces non-alphanumeric chars with '-',
- * collapses consecutive hyphens, strips leading/trailing hyphens.
- */
-function sanitizeFilename(input) {
-  return String(input)
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/-{2,}/g, '-')
-    .replace(/^-|-$/g, '');
+export async function saveImage(bytes, filename = randomText() + '.png') {
+    const localPath = join(process.cwd(), filename);
+    await writeFile(localPath, bytes, { encoding: 'base64' }, (err) => {
+        if (err) throw err;
+        console.log(`✅ Изображение успешно сгенерировано`);
+    });
+    return localPath;
 }
 
-/** Sleep for `ms` milliseconds (used in polling loops). */
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+export async function saveVideo(bytes, filename = randomText() + '.mp4') {
+    const localPath = join(process.cwd(), filename);
+    await writeFile(localPath, bytes, { encoding: 'base64' });
+    console.log(`✅ Видео успешно сгенерировано`);
+    return localPath;
+}
 
-/**
- * metaRequest — thin axios wrapper for Meta Graph API calls.
- *
- * Automatically injects access_token, handles:
- *   - 429 → exponential back-off retry (up to maxRetries)
- *   - 401/403 → throws descriptive auth error
- *   - Other errors → retries with brief pause, throws on last attempt
- *
- * @param {'get'|'post'} method
- * @param {string}       endpoint   - path after META_API_BASE (e.g. '/{id}/media')
- * @param {object}       [params]   - query params (merged with access_token)
- * @param {object}       [data]     - POST body
- * @param {number}       [maxRetries=3]
- */
-async function metaRequest(method, endpoint, params = {}, data = null, maxRetries = 3) {
-  const url = `${META_API_BASE}${endpoint}`;
-  const config = {
-    method,
-    url,
-    params:  { access_token: META_ACCESS_TOKEN, ...params },
-    timeout: 30_000,
-  };
-  if (data) config.data = data;
+export function randomText() {
+    let symbols = [1, 2,3,5,6,7,8,9,0,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+    symbols = symbols.map(() => {
+        return symbols[Math.floor(Math.random() * symbols.length)]
+    });
 
-  for (let attempt = 1; attempt <= maxRetries; attempt++) {
-    try {
-      const resp = await axios(config);
-      return resp.data;
-    } catch (err) {
-      const status = err.response?.status;
-      const body   = err.response?.data ?? {};
+    return symbols.join('');
+}
 
-      if (status === 429) {
-        const retryAfter = parseInt(err.response?.headers?.['retry-after'] || '30', 10);
-        const waitMs     = retryAfter * 1000 * attempt;
-        console.warn(`   ⏳ Rate-limited by Meta (429), retrying in ${waitMs / 1000}s… (attempt ${attempt}/${maxRetries})`);
-        await sleep(waitMs);
-        continue;
-      }
 
-      if (status === 401 || status === 403) {
-        throw new Error(
-          `🛑 Meta auth error (${status}) – check META_ACCESS_TOKEN and permissions.\n` +
-          `   Detail: ${JSON.stringify(body)}`
-        );
-      }
+export function convertGcsUriToPublicUrl(gcsUri) {
+    const publicUrl = gcsUri.split('gs://')[1];
+    const url = new URL(publicUrl, 'https://storage.googleapis.com');
+    return url.href;
+}
 
-      if (attempt === maxRetries) {
-        throw new Error(
-          `Meta API ${method.toUpperCase()} ${endpoint} failed (HTTP ${status ?? 'network'}):\n` +
-          `   ${JSON.stringify(body || err.message)}`
-        );
-      }
+export function parseJson(rawText) {
+  if (!rawText || typeof rawText !== 'string') return null;
 
-      await sleep(2_000 * attempt);
+  try {
+    // 1. Убираем возможные Markdown-заборы ```json и ```
+    let cleanText = rawText
+      .replace(/```json/g, '')
+      .replace(/```/g, '')
+      .trim();
+
+    // 2. Находим индекс первой '{' и последней '}' 
+    // Это спасет, если AI добавил какой-то текст до или после JSON
+    const firstBrace = cleanText.indexOf('{');
+    const lastBrace = cleanText.lastIndexOf('}');
+
+    if (firstBrace === -1 || lastBrace === -1) {
+      throw new Error("JSON не найден в ответе модели");
     }
+
+    cleanText = cleanText.substring(firstBrace, lastBrace + 1);
+
+    // 3. Финальный парсинг
+    return JSON.parse(cleanText);
+  } catch (error) {
+    console.error("🛑 Ошибка парсинга JSON:");
+    console.error("Message:", error.message);
+    return null;
   }
 }
-
-module.exports = { sanitizeFilename, sleep, metaRequest };
+// export convert
+export const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
