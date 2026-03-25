@@ -1,6 +1,6 @@
 ---
 description: Key instructions for Jules regarding performance optimization standards, ensuring fast load times and global scalability.
-tags: [performance optimization, scalability, fast load times, lazy loading, caching, pagination, frontend optimization, backend efficiency]
+tags: [performance optimization, scalability, fast load times, lazy loading, caching, pagination, frontend optimization, backend efficiency, ai agent]
 ---
 
 # ⚡ Performance Optimization Rules for Jules
@@ -17,26 +17,6 @@ tags: [performance optimization, scalability, fast load times, lazy loading, cac
 ---
 
 ## 2. 🚀 Core Performance Guidelines
-
-### Performance Strategies Overview
-
-```mermaid
-graph TD
-    A[Performance Optimization] --> B(Frontend Optimization)
-    A --> C(Backend & Database Efficiency)
-
-    B --> B1[Lazy Loading]
-    B --> B2[Memoization & Re-renders]
-    B --> B3[Asset Optimization]
-
-    C --> C1[Query Optimization]
-    C --> C2[Caching Strategy]
-    C --> C3[Pagination]
-
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style C fill:#bfb,stroke:#333,stroke-width:2px
-```
 
 > [!WARNING]
 > **Performance Regressions:** Never introduce synchronous blocking operations in the main thread (Node.js/Browser). Always favor asynchronous, non-blocking APIs.
@@ -61,6 +41,24 @@ For server infrastructure:
 | **Server-Side Rendering (SSR)** | SEO-heavy public pages | Pre-render initial HTML for faster First Contentful Paint (FCP). |
 | **Web Workers** | Heavy client-side computations | Offload data parsing or cryptographic tasks from the main thread. |
 | **Connection Pooling** | Database connections | Always reuse database connections across requests to prevent overhead. |
+
+```mermaid
+graph TD
+    A[Performance Optimization] --> B(Frontend Optimization)
+    A --> C(Backend & Database Efficiency)
+
+    B --> B1[Lazy Loading]
+    B --> B2[Memoization & Re-renders]
+    B --> B3[Asset Optimization]
+
+    C --> C1[Query Optimization]
+    C --> C2[Caching Strategy]
+    C --> C3[Pagination]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bfb,stroke:#333,stroke-width:2px
+```
 
 ---
 
