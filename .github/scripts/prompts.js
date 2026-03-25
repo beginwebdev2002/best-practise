@@ -94,5 +94,11 @@ STRUCTURE:
 6 caption: Punchy copy, emojis, and MIN ${PLATFORM_CONFIG.instagram.hashtagCount} hashtags.
 
 TONE: Engineering-first, analytical, high-authority, no fluff.
+
+must have technical details:
+max_symbols_description: 2000
+min_symbols_description: 1000
+max_hashtags_description: 25
+min_hashtags_description: 15
     `
 }
