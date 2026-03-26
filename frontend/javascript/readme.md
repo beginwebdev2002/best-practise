@@ -9,7 +9,7 @@ ai_role: Senior JavaScript Performance Expert
 last_updated: 2026-03-22
 ---
 
-# JavaScript Best Practise
+# 🎨 JavaScript Best Practise
 
 ![JavaScript Logo](https://img.icons8.com/?size=100&id=108784&format=png&color=000000)
 
@@ -226,6 +226,7 @@ Use descriptive, camelCase names that convey the intent and data type of the var
 
 ---
 
+<<<<<<< feat/autonomous-vibe-coding-docs-10177351143416239543
 ---
 [⬆️ Back to Top](#)
 
@@ -811,3 +812,13 @@ for (const item of arr) { /* ... */ }
 ```
 #### 🚀 Solution
 Focus on "Big O" complexity and clean code. Only micro-optimize after profiling identifies a specific performance hotspot.
+=======
+
+## 📚 Specialized Topics
+
+For further reading, please refer to the following specialized guides:
+
+- [✨ Modern Syntax & Functional Programming](./modern-syntax.md)
+- [⏳ Asynchronous & Logic](./async-logic.md)
+- [🧠 Professional & Niche Topics](./professional-niche.md)
+>>>>>>> main

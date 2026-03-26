@@ -9,9 +9,15 @@ ai_role: Senior Angular Performance Expert
 last_updated: 2026-03-22
 ---
 
+<<<<<<< feat/autonomous-vibe-coding-docs-10177351143416239543
 # 🅰️ Angular Best Practices & Production-Ready Patterns
 
 ## 🎯 Context & Scope
+=======
+# 🎨 Angular Best Practices & Production-Ready Patterns
+
+# 🎨 Context & Scope
+>>>>>>> main
 - **Primary Goal:** Enforce strict adherence to modern Angular v20 patterns, specifically Zoneless reactivity and functional APIs for optimal best practices.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** Angular 20
@@ -290,6 +296,7 @@ Migrate to Zoneless mode. Use Signals to notify Angular when a re-render is need
 
 ---
 
+<<<<<<< feat/autonomous-vibe-coding-docs-10177351143416239543
 ---
 [⬆️ Back to Top](#)
 
@@ -929,3 +936,14 @@ Use this helper to execute functions requiring a DI context outside the construc
 
 ---
 [⬆️ Back to Top](#)
+=======
+
+## 📚 Specialized Topics
+
+For further reading, please refer to the following specialized guides:
+
+- [🏗 Architecture & Dependency Injection](./architecture.md)
+- [🚀 Advanced Performance](./advanced-performance.md)
+- [📝 Data & Forms](./data-forms.md)
+- [🧠 Expert/Niche Topics](./expert-niche.md)
+>>>>>>> main

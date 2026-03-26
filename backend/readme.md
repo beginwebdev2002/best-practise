@@ -42,3 +42,4 @@ last_updated: 2026-03-22
 This folder acts as a container for documentation around the following backend technologies:
 - [NestJS](./nestjs/readme.md)
 - [ExpressJS](./expressjs/readme.md)
+- [Node.js](./nodejs/readme.md)
