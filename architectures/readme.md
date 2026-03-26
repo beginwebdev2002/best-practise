@@ -55,6 +55,7 @@ Below are the most popular architectural patterns along with examples, tips, tec
 <img src="https://feature-sliced.design/img/brand/logo-primary.png" width="80" alt="FSD Logo"/>
 
 **Description:** A modern architectural methodology for Frontend applications. It separates code by business meaning (features) and technical layers. It ensures strict unidirectional isolation.
+**📖 Map of Patterns:** [Go to FSD Guidelines](./feature-sliced-design/readme.md)
 
 **Architecture Diagram & Folder Tree:**
 ```mermaid
@@ -139,6 +140,7 @@ src/
 [![MVC](https://img.shields.io/badge/Pattern-MVC-blue?style=flat-square)](#)
 
 **Description:** The classic design pattern for user-facing applications. It separates data logic (`Model`), presentation (`View`), and user action handling (`Controller`).
+**📖 Map of Patterns:** [Go to MVC Guidelines](./model-view-controller/readme.md)
 
 **Architecture Diagram & Folder Tree:**
 ```mermaid
@@ -222,6 +224,7 @@ microservices-cluster/
 [![Hexagonal](https://img.shields.io/badge/Ports_&_Adapters-purple?style=flat-square)](#)
 
 **Description:** A logical evolution of Clean Architecture. The core of the system is isolated from specific technologies. All interaction with databases, UI, and side-effects happens through "Ports" (Interfaces), satisfying via "Adapters" (Implementations).
+**📖 Map of Patterns:** [Go to Hexagonal Architecture Guidelines](./hexagonal-architecture/readme.md)
 
 **Architecture Diagram & Folder Tree:**
 ```mermaid
