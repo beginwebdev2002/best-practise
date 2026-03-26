@@ -10,7 +10,9 @@ tags:
   - jules
 ---
 
-# 🎨 UI/UX Design & Styling Rules for Jules
+# 🎨 UI/UX Design Production-Ready Best Practices
+
+This document outlines the production-ready best practices for UI/UX Design and styling, specifically tailored for the Jules AI agent. It ensures consistent, accessible, and responsive user interfaces.
 
 ## 1. Context & Scope
 - **Primary Goal:** Maintain a consistent, **accessible (a11y)**, and visually appealing user interface across all applications through strict **responsive design** practices.
@@ -27,6 +29,14 @@ tags:
 
 > [!CAUTION]
 > **Hardcoded Values:** Never use hardcoded colors, spacing, or typography values (`#FF0000`, `14px`). Always use established **Design Tokens** (e.g., CSS Variables or Tailwind classes like `text-primary`, `p-4`).
+
+### Hardcoded vs Design Tokens Comparison
+
+| Aspect | Hardcoded Value (Avoid) | Design Token (Prefer) | Benefits |
+| :--- | :--- | :--- | :--- |
+| **Colors** | `#FF0000`, `rgb(255, 0, 0)` | `var(--color-primary)`, `text-primary` | Theming, consistency, single source of truth |
+| **Spacing** | `14px`, `20px` | `var(--spacing-md)`, `p-4` | Rhythm, responsiveness |
+| **Typography** | `16px`, `bold` | `var(--font-size-base)`, `text-base font-bold` | Scalability, accessibility |
 
 ### Responsive & Adaptive Principles
 1. **Mobile-First Approach:** Always write base CSS for mobile screens first, then progressively enhance the design for larger screens using `min-width` media queries.
@@ -45,16 +55,15 @@ graph TD
     Elements --> Components[Complex Components: Cards, Modals]
     Components --> Layouts[Page Layouts: Grids, Sections]
 
-    style Tokens fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
-    style Elements fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000
-    style Components fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000
     %% Added Design Token Styles for Mermaid Diagrams
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
     classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
     classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
 
+    class Tokens layout;
+    class Elements default;
+    class Components component;
     class Layouts component;
-
 ```
 
 ---
