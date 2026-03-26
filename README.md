@@ -188,6 +188,8 @@ graph TD
       * 🛡️ [security.md](./backend/nestjs/security.md)
     * 🟢 **[nodejs/](./backend/nodejs/)**
       * 📄 [readme.md](./backend/nodejs/readme.md)
+  * 📄 **[docs/](./docs/)**
+    * 🤖 [vibe-coding-agents.md](./docs/vibe-coding-agents.md)
   * 🖥️ **[frontend/](./frontend/)**
     * 📄 [readme.md](./frontend/readme.md)
     * 🅰️ **[angular/](./frontend/angular/)**
