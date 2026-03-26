@@ -9,9 +9,9 @@ ai_role: Senior Frontend Architect
 last_updated: 2026-03-22
 ---
 
-# Frontend Best Practices & Production-Ready Patterns
+# 🎨 Frontend Best Practices & Production-Ready Patterns
 
-# Context & Scope
+# 📖 Context & Scope
 - **Primary Goal:** Outline the overarching philosophy and standards for Frontend development inside the ecosystem.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** Agnostic
@@ -24,12 +24,12 @@ last_updated: 2026-03-22
 
 ---
 
-## Architecture Principles
+## 🏗 Architecture Principles
 
 - Adhere to the defined [Architectural Patterns](../../architectures/readme.md) when building applications.
 - Strongly prefer **Feature Sliced Design (FSD)** for applications scaling across multiple teams.
 
-## Technical Requirements for AI Generation
+## 🤖 Technical Requirements for AI Generation
 
 > [!IMPORTANT]
 > **Constraint:** Do not mutate shared DOM properties directly unless explicitly interacting with Browser APIs outside the framework context.
@@ -38,9 +38,11 @@ last_updated: 2026-03-22
 - **TypeScript Strictness:** Exploit TypeScript. `any` is strictly prohibited. Use explicit return types for all public methods.
 - **State Management:** Abstract global state logically depending on the specific framework rules, but never tightly couple presentation layers directly to store calls.
 
-## Technologies Included
+## 💻 Technologies Included
 
 This folder acts as a container for documentation around the following technologies:
 - [Angular](./angular/readme.md)
 - [JavaScript](./javascript/readme.md)
 - [TypeScript](./typescript/readme.md)
+- [SolidJS](./solidjs/readme.md)
+- [Qwik](./qwik/readme.md)
