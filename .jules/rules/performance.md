@@ -69,3 +69,5 @@ When writing or reviewing code for performance:
 - [ ] Use Big-O notation analysis; avoid nested loops $O(n^2)$ for large data sets.
 - [ ] Ensure API responses are compressed (Gzip/Brotli).
 - [ ] Identify opportunities to batch or debounce repetitive actions (like user typing or API requests).
+
+## 4. ❓ Frequently Asked Questions:
