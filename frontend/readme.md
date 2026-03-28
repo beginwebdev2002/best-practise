@@ -44,5 +44,6 @@ This folder acts as a container for documentation around the following technolog
 - [Angular](./angular/readme.md)
 - [JavaScript](./javascript/readme.md)
 - [TypeScript](./typescript/readme.md)
+- [React](./react/readme.md)
 - [SolidJS](./solidjs/readme.md)
 - [Qwik](./qwik/readme.md)
