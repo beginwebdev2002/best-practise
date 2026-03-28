@@ -39,10 +39,12 @@ last_updated: 2026-03-22
 
 ## Technologies Included
 
+
 This folder acts as a container for documentation around the following backend technologies:
 - [NestJS](./nestjs/readme.md)
 - [ExpressJS](./expressjs/readme.md)
 - [Node.js](./nodejs/readme.md)
 - [PostgreSQL](./postgresql/readme.md)
+- [MongoDB](./mongodb/readme.md)
 - [Redis](./redis/readme.md)
 - [Microservices](./microservices/readme.md)
