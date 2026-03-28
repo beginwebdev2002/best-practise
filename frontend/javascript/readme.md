@@ -226,7 +226,6 @@ Use descriptive, camelCase names that convey the intent and data type of the var
 
 ---
 
-
 ## 📚 Specialized Topics
 
 For further reading, please refer to the following specialized guides:

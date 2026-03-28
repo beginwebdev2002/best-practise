@@ -308,6 +308,7 @@ src/
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apachekafka/apachekafka-original.svg" width="30" alt="Kafka Logo"/> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/RabbitMQ_logo.svg/100px-RabbitMQ_logo.svg.png" width="20" alt="RabbitMQ"/>
 
 **Description:** System components know nothing about each other (Low Coupling). They merely "publish" events and "subscribe" to them, reacting asynchronously. Ideal for high-load, highly-scalable backend systems.
+**📖 Map of Patterns:** [Go to EDA Guidelines](./event-driven-architecture/readme.md)
 
 **Architecture Diagram & Folder Tree:**
 ```mermaid

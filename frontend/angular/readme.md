@@ -290,7 +290,6 @@ Migrate to Zoneless mode. Use Signals to notify Angular when a re-render is need
 
 ---
 
-
 ## 📚 Specialized Topics
 
 For further reading, please refer to the following specialized guides:

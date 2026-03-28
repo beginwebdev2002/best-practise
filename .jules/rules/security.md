@@ -60,7 +60,7 @@ graph TD
 
 ```
 
-| Security Layer | Pattern/Standard | Jules Requirement |
+| 🛡️ Security Layer | 🧩 Pattern/Standard | 🤖 Jules Requirement |
 | :--- | :--- | :--- |
 | **Transport** | TLS / HTTPS | Ensure all intra-service and external communication is encrypted (HTTPS only). |
 | **API Defense** | Rate Limiting | Add middleware to block brute-force and DDoS attempts per IP/User. |

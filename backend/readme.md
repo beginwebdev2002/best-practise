@@ -43,3 +43,6 @@ This folder acts as a container for documentation around the following backend t
 - [NestJS](./nestjs/readme.md)
 - [ExpressJS](./expressjs/readme.md)
 - [Node.js](./nodejs/readme.md)
+- [PostgreSQL](./postgresql/readme.md)
+- [Redis](./redis/readme.md)
+- [Microservices](./microservices/readme.md)
