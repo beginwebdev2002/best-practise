@@ -19,6 +19,13 @@ last_updated: 2026-03-22
 
 This engineering directive contains strict architectural guidelines and 20 practical patterns for using the Feature-Sliced Design methodology to build scalable and deterministic Frontend applications.
 
+
+## Map of Patterns
+- 📊 [**Data Flow:** Request and Event Lifecycle](./data-flow.md)
+- 📁 [**Folder Structure:** Layering publisher/subscriber logic](./folder-structure.md)
+- ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
+- 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
+
 ## 1. Unidirectional Dependency Rule
 
 ### ❌ Bad Practice
