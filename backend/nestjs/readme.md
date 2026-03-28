@@ -3,7 +3,7 @@ description: Vibe coding guidelines and architectural constraints for NestJS wit
 technology: NestJS
 domain: backend
 level: Senior/Architect
-version: "10+"
+version: "11+"
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior NestJS Architecture Expert
 last_updated: 2026-03-23
@@ -22,13 +22,46 @@ last_updated: 2026-03-23
 ## 🎯 Context & Scope
 - **Primary Goal:** Предоставить строгие архитектурные правила и 30 паттернов разработки на NestJS.
 - **Target Tooling:** AI-агенты (Cursor, Windsurf, Copilot) и Senior-разработчики.
-- **Tech Stack Version:** NestJS 10+
+- **Tech Stack Version:** NestJS 11+
 
 > [!IMPORTANT]
 > **Архитектурный стандарт (Contract):** Используйте строгую типизацию TypeScript, DI (Dependency Injection) и модульную структуру. Бизнес-логика должна быть изолирована от деталей HTTP-уровня и баз данных.
 
 ---
 
+
+## 🔄 Architecture Data Flow
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Controller as Controller (Thin)
+    participant Pipe as ValidationPipe (Global)
+    participant Guard as AuthGuard
+    participant Service as Service (Fat)
+    participant Repo as Repository (Port)
+    participant DB as Database
+
+    Client->>Controller: HTTP Request
+    Controller->>Guard: Check Authorization
+    Guard-->>Controller: Authorized
+    Controller->>Pipe: Validate DTO
+    Pipe-->>Controller: Validated
+    Controller->>Service: Execute Business Logic
+    Service->>Repo: Fetch/Save Data
+    Repo->>DB: Query
+    DB-->>Repo: Data
+    Repo-->>Service: Domain Entity
+    Service-->>Controller: Result (mapped to DTO)
+    Controller-->>Client: HTTP Response
+```
+
+
+## 📚 Specialized Documentation
+- [architecture.md](./architecture.md)
+- [security-best-practices.md](./security-best-practices.md)
+
+---
 ### 🚨 1. Clean Architecture Modules (Изоляция логики)
 #### ❌ Bad Practice
 ```typescript
