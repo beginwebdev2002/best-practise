@@ -29,6 +29,41 @@ last_updated: 2026-03-23
 
 ---
 
+
+## 🔄 Architecture Data Flow
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Router as Express Router
+    participant AuthMW as Auth Middleware
+    participant ValMW as Validation Middleware
+    participant Controller as Controller
+    participant Service as Service Layer
+    participant ErrorMW as Global Error Handler
+
+    Client->>Router: HTTP Request
+    Router->>AuthMW: Authenticate
+    AuthMW-->>Router: Authorized
+    Router->>ValMW: Validate Request
+    ValMW-->>Router: Validated
+    Router->>Controller: Route Request
+    Controller->>Service: Execute Logic
+
+    alt Success
+        Service-->>Controller: Return Result
+        Controller-->>Client: HTTP Response
+    else Failure
+        Service-->>ErrorMW: Throw Error
+        ErrorMW-->>Client: Standardized Error Response
+    end
+```
+
+## 📚 Specialized Documentation
+- [architecture.md](./architecture.md)
+- [security-best-practices.md](./security-best-practices.md)
+
+---
 ## 1. Controller / Route Decoupling
 ### ❌ Bad Practice
 ```javascript

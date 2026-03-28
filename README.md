@@ -189,7 +189,7 @@ graph TD
     * 🟢 **[nodejs/](./backend/nodejs/)**
       * 📄 [readme.md](./backend/nodejs/readme.md)
   * 📄 **[docs/](./docs/)**
-    * 🤖 [ai-agent-orchestration-patterns.md](./docs/ai-agent-orchestration-patterns.md)
+    * 🤖 [ai-agent-orchestration.md](./docs/ai-agent-orchestration.md)
     * 🤖 [vibe-coding-agents.md](./docs/vibe-coding-agents.md)
   * 🖥️ **[frontend/](./frontend/)**
     * 📄 [readme.md](./frontend/readme.md)
@@ -410,6 +410,9 @@ graph TD
       * 🛡️ [security.md](./backend/nestjs/security.md)
     * 🟢 **[nodejs/](./backend/nodejs/)**
       * 📄 [readme.md](./backend/nodejs/readme.md)
+  * 📄 **[docs/](./docs/)**
+    * 🤖 [ai-agent-orchestration.md](./docs/ai-agent-orchestration.md)
+    * 🤖 [vibe-coding-agents.md](./docs/vibe-coding-agents.md)
   * 🖥️ **[frontend/](./frontend/)**
     * 📄 [readme.md](./frontend/readme.md)
     * 🅰️ **[angular/](./frontend/angular/)**
