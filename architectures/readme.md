@@ -467,3 +467,46 @@ src/
 - **Languages:** Strongly-typed languages (TypeScript, C#).
 - **Patterns / Principles:** Event Sourcing, CQS, Mediator.
 - **Tools/Databases:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" width="16"/> PostgreSQL (Command DB), <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/elasticsearch/elasticsearch-original.svg" width="16"/> ElasticSearch or Redis (Query DB).
+
+---
+
+### 11. Micro-frontends
+[![Micro-frontends](https://img.shields.io/badge/Architecture-Micro--frontends-orange?style=flat-square)](#)
+
+**Description:** An architectural style where independently deliverable frontend applications are composed into a greater whole. This enables multiple teams to work simultaneously without stepping on each other's toes, making scaling enterprise frontends deterministic.
+**📖 Map of Patterns:** [Go to Micro-frontends Guidelines](./micro-frontends/readme.md)
+
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    AppShell[App Shell / Host] --> MFE_Auth[Micro-frontend: Auth]
+    AppShell --> MFE_Catalog[Micro-frontend: Catalog]
+    AppShell --> MFE_Checkout[Micro-frontend: Checkout]
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class AppShell layout;
+    class MFE_Auth component;
+    class MFE_Catalog component;
+    class MFE_Checkout component;
+```
+
+```text
+workspace/
+├── 📁 apps/
+│   ├── 📁 app-shell/     # Entry point, Router, Module Federation config
+│   ├── 📁 mfe-catalog/   # Independent application
+│   └── 📁 mfe-checkout/  # Independent application
+└── 📁 packages/
+    ├── 📁 design-system/ # Pure, dumb UI components only
+    └── 📁 event-bus/     # Agnostic communication contract types
+```
+
+**Best Compatibility:**
+- **Frameworks:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" width="16"/> React, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg" width="16"/> Vue, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" width="16"/> Angular.
+- **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript.
+- **Patterns / Principles:** Module Federation, Event-Driven Communication.
+- **Tools:** Webpack 5, Vite.
