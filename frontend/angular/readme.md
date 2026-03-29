@@ -39,6 +39,8 @@ title = input<string>('');
 #### 🚀 Solution
 Use Signal Inputs (`input()`). This allows Angular to precisely know *which* specific component requires an update, paving the way for Zoneless applications.
 
+---
+
 ### 🚨 2. Using `@Output()` Decorator
 **Context:** Component Outputs
 #### ❌ Bad Practice
@@ -53,6 +55,8 @@ save = output<void>();
 ```
 #### 🚀 Solution
 Use the `output()` function. It provides strict typing, better performance, and a unified API with Signal Inputs.
+
+---
 
 ### 🚨 3. Two-Way Binding with `@Input()` and `@Output()`
 **Context:** Model Synchronization
@@ -69,6 +73,8 @@ value = model<string>();
 ```
 #### 🚀 Solution
 Use `model()`. This creates a Signal that can be both read and written to, automatically synchronizing its state with the parent.
+
+---
 
 ### 🚨 4. Structural Directives (`*ngIf`, `*ngFor`)
 **Context:** Template Control Flow
@@ -93,6 +99,8 @@ Directives require importing `CommonModule` or `NgIf/NgFor`, increasing bundle s
 #### 🚀 Solution
 Use the built-in Control Flow (`@if`, `@for`). It is built into the compiler, requires no imports, supports improved type-narrowing, and runs faster.
 
+---
+
 ### 🚨 5. Subscribing in Components (Logic in `ngOnInit`)
 **Context:** Data Fetching
 #### ❌ Bad Practice
@@ -111,6 +119,8 @@ data = toSignal(this.service.getData());
 #### 🚀 Solution
 Use `toSignal()` to convert an Observable into a Signal. This automatically manages the subscription and integrates the data stream into the reactivity system.
 
+---
+
 ### 🚨 6. `BehaviorSubject` for Local State
 **Context:** Component State Management
 #### ❌ Bad Practice
@@ -128,6 +138,8 @@ count = signal(0);
 ```
 #### 🚀 Solution
 Use `signal()` for local state. It is a primitive designed specifically for synchronizing UI and data.
+
+---
 
 ### 🚨 7. Derived State with `ngOnChanges`
 **Context:** Reactivity
@@ -148,6 +160,8 @@ fullName = computed(() => `${this.firstName()} ${this.lastName()}`);
 #### 🚀 Solution
 Use `computed()`. The signal is recalculated *only* when its dependencies change, and the result is memoized (cached).
 
+---
+
 ### 🚨 8. Constructor Dependency Injection
 **Context:** DI Pattern
 #### ❌ Bad Practice
@@ -163,6 +177,8 @@ private store = inject(Store);
 ```
 #### 🚀 Solution
 Use the `inject()` function. It operates in the initialization context (fields or constructor), is type-safe, and does not require `super()` during inheritance.
+
+---
 
 ### 🚨 9. Modules (`NgModule`)
 **Context:** App Architecture
@@ -186,6 +202,8 @@ Modules create an unnecessary level of indirection. Components become dependent 
 #### 🚀 Solution
 Use Standalone Components. This is the Angular v14+ standard that makes components self-sufficient and tree-shakable.
 
+---
+
 ### 🚨 10. String-based Route Loading
 **Context:** Lazy Loading Routing
 #### ❌ Bad Practice
@@ -200,6 +218,8 @@ loadComponent: () => import('./user.component').then(c => c.UserComponent)
 ```
 #### 🚀 Solution
 Use `loadComponent` for routing to Standalone components. This ensures minimal chunk size.
+
+---
 
 ### 🚨 11. Heavy Logic in Templates
 **Context:** Template Performance
@@ -219,6 +239,8 @@ total = computed(() => this.calculateTotal(this.items()));
 #### 🚀 Solution
 Extract logic into `computed()` signals or Pure Pipes. They are only executed when input data changes.
 
+---
+
 ### 🚨 12. Manual Subscription Management (`takeUntil`)
 **Context:** RxJS Memory Leaks
 #### ❌ Bad Practice
@@ -235,6 +257,8 @@ stream$.pipe(takeUntilDestroyed()).subscribe();
 ```
 #### 🚀 Solution
 Use the `takeUntilDestroyed()` operator. It automatically unsubscribes upon context destruction (component, directive, service).
+
+---
 
 ### 🚨 13. Deeply Nested Components Passing Data
 **Context:** Prop Drilling
@@ -257,6 +281,8 @@ theme = inject(ThemeService).theme;
 #### 🚀 Solution
 Use Signal Stores or services for state sharing, or the new `input()` API with context inheritance (in the future).
 
+---
+
 ### 🚨 14. Accessing DOM directly (`ElementRef.nativeElement`)
 **Context:** Security & Abstraction
 #### ❌ Bad Practice
@@ -272,6 +298,8 @@ Direct DOM access breaks abstraction (doesn't work in SSR/Web Workers) and opens
 ```
 #### 🚀 Solution
 Use style/class bindings or `Renderer2`. For direct manipulations, consider directives.
+
+---
 
 ### 🚨 15. Zone.js overhead
 **Context:** Change Detection
@@ -289,6 +317,7 @@ bootstrapApplication(App, {
 Migrate to Zoneless mode. Use Signals to notify Angular when a re-render is needed.
 
 ---
+[⬆️ Back to Top](#)
 
 ## 📚 Specialized Topics
 
@@ -296,5 +325,6 @@ For further reading, please refer to the following specialized guides:
 
 - [🏗 Architecture & Dependency Injection](./architecture.md)
 - [🚀 Advanced Performance](./advanced-performance.md)
+- [📦 State Management](./state-management.md)
 - [📝 Data & Forms](./data-forms.md)
 - [🧠 Expert/Niche Topics](./expert-niche.md)

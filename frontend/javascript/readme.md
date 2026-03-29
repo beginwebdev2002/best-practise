@@ -16,7 +16,7 @@ last_updated: 2026-03-22
 ---
 [⬆️ Back to Top](#)
 
-## I. Fundamentals (The Basics)
+## 🚀 I. Fundamentals (The Basics)
 
 ### 🚨 1. `var` vs `const/let`
 **Context:** Scoping and hoisting mechanisms in modern JavaScript. `var` is function-scoped and hoisted, leading to unpredictable behavior and accidental global leakage.
@@ -41,6 +41,8 @@ console.log(price); // 100
 #### 🚀 Solution
 Use `const` by default to ensure immutability of the reference. Use `let` only when reassigning a variable is strictly necessary. This enforces block-level scoping and prevents accidental overrides.
 
+---
+
 ### 🚨 2. Loose equality `==`
 **Context:** JavaScript's type coercion rules are complex and often counter-intuitive.
 #### ❌ Bad Practice
@@ -59,6 +61,8 @@ if (userCount === 0) {
 ```
 #### 🚀 Solution
 Always use strict equality `===` and inequality `!==`. This forces the developer to handle type conversions explicitly, making the code's intent clear and predictable.
+
+---
 
 ### 🚨 3. Global Scope Pollution
 **Context:** The global namespace is shared. Overwriting global properties can break third-party libraries or browser APIs.
@@ -83,6 +87,8 @@ export const config = { api: '/v1' };
 #### 🚀 Solution
 Use ES Modules (`import/export`) to encapsulate code. Modules have their own scope and do not leak to the global object.
 
+---
+
 ### 🚨 4. String concatenation vs Template Literals
 **Context:** Readability and handling of multi-line strings/expressions.
 #### ❌ Bad Practice
@@ -99,6 +105,8 @@ Welcome to ${siteName}.`;
 ```
 #### 🚀 Solution
 Use Template Literals (backticks). They allow for embedded expressions, multi-line strings, and superior readability.
+
+---
 
 ### 🚨 5. Magic Numbers
 **Context:** Numbers with no context make the codebase hard to maintain.
@@ -121,6 +129,8 @@ if (user.age >= LEGAL_AGE) {
 #### 🚀 Solution
 Extract magic numbers into named constants. This provides semantic meaning and a single source of truth for configuration.
 
+---
+
 ### 🚨 6. Boolean comparisons `(if x === true)`
 **Context:** Redundancy in conditional logic.
 #### ❌ Bad Practice
@@ -136,6 +146,8 @@ if (!isPending) { /* ... */ }
 ```
 #### 🚀 Solution
 Leverage JavaScript's truthiness/falsiness or direct boolean evaluation. It makes the code more concise and idiomatic.
+
+---
 
 ### 🚨 7. Array/Object literal vs `new` constructor
 **Context:** Object and Array instantiation.
@@ -153,6 +165,8 @@ const map = {};
 ```
 #### 🚀 Solution
 Use literals `[]` and `{}`. They are visually cleaner and perform slightly better as they don't involve a function call.
+
+---
 
 ### 🚨 8. Function length/complexity
 **Context:** The Single Responsibility Principle (SRP).
@@ -178,6 +192,8 @@ function processOrder(order) {
 ```
 #### 🚀 Solution
 Break functions into smaller, pure components. Aim for functions under 20 lines that do exactly one thing.
+
+---
 
 ### 🚨 9. Deeply nested `if/else` (Arrow code)
 **Context:** Cognitive load and code readability.
@@ -206,6 +222,8 @@ function getData(user) {
 ```
 #### 🚀 Solution
 Use "Guard Clauses" to return early. This flattens the structure and handles edge cases first, leaving the happy path at the lowest nesting level.
+
+---
 
 ### 🚨 10. Improper naming (Single letters)
 **Context:** Self-documenting code.
