@@ -7,18 +7,20 @@ version: "11+"
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior NestJS Architecture Expert
 last_updated: 2026-03-23
----
+topic: NestJS
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
+
 
 <div align="center">
   <img src="https://nestjs.com/img/logo-small.svg" width="100" alt="NestJS Logo">
   
   # 🦁 NestJS Production-Ready Best Practices
 </div>
-
 ---
 
 Этот документ определяет **лучшие практики (best practices)** для фреймворка NestJS. Руководство создано для обеспечения масштабируемости, безопасности и качества Enterprise-приложений.
-
 ## 🎯 Context & Scope
 - **Primary Goal:** Предоставить строгие архитектурные правила и 30 паттернов разработки на NestJS.
 - **Target Tooling:** AI-агенты (Cursor, Windsurf, Copilot) и Senior-разработчики.
@@ -26,9 +28,7 @@ last_updated: 2026-03-23
 
 > [!IMPORTANT]
 > **Архитектурный стандарт (Contract):** Используйте строгую типизацию TypeScript, DI (Dependency Injection) и модульную структуру. Бизнес-логика должна быть изолирована от деталей HTTP-уровня и баз данных.
-
 ---
-
 
 ## 🔄 Architecture Data Flow
 
@@ -56,11 +56,9 @@ sequenceDiagram
     Controller-->>Client: HTTP Response
 ```
 
-
 ## 📚 Specialized Documentation
 - [architecture.md](./architecture.md)
 - [security-best-practices.md](./security-best-practices.md)
-
 ---
 ### 🚨 1. Clean Architecture Modules (Изоляция логики)
 #### ❌ Bad Practice
@@ -100,7 +98,7 @@ app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: t
 #### ❌ Bad Practice
 ```typescript
 @Post()
-create(@Body() body: any) {} // Потеря типизации
+create(@Body() body: unknown) {} // Потеря типизации
 ```
 #### ✅ Best Practice
 ```typescript
@@ -364,7 +362,7 @@ handleCron() { this.cleanupData(); }
 #### ✅ Best Practice
 ```typescript
 @MessagePattern({ cmd: 'get_user' })
-getUser(data: any) { return this.userService.findById(data.id); }
+getUser(data: unknown) { return this.userService.findById(data.id); }
 ```
 #### 🚀 Solution
 Для общения микросервисов внутри кластера используйте TCP, Redis или RabbitMQ через `@MessagePattern`.
@@ -498,6 +496,9 @@ app.enableShutdownHooks();
 #### 🚀 Solution
 Вызывайте `enableShutdownHooks()`, чтобы отлавливать SIGINT/SIGTERM и безопасно завершать процессы базы данных.
 
+
+### ⚠️ Problem
+[Analysis of the risks]
 ---
 [⬆️ Back to Top](#)
 

@@ -7,25 +7,26 @@ version: Agnostic
 tags: [fsd, modular-architecture, frontend, system-design, clean-architecture]
 ai_role: Senior Frontend Architect
 last_updated: 2026-03-22
----
+topic: FSD
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
+
 
 <div align="center">
   <img src="https://feature-sliced.design/img/brand/logo-primary.png" width="100" alt="FSD Logo">
   
   # 🍰 Feature-Sliced Design (FSD)
 </div>
-
 ---
 
 This engineering directive contains strict architectural guidelines and 20 practical patterns for using the Feature-Sliced Design methodology to build scalable and deterministic Frontend applications.
-
 
 ## Map of Patterns
 - 📊 [**Data Flow:** Request and Event Lifecycle](./data-flow.md)
 - 📁 [**Folder Structure:** Layering publisher/subscriber logic](./folder-structure.md)
 - ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
-
 ## 1. Unidirectional Dependency Rule
 
 ### ❌ Bad Practice
@@ -45,9 +46,7 @@ import { Button } from 'shared/ui/button';
 
 ### 🚀 Solution
 Layers must import modules exclusively from layers located strictly lower in the hierarchy: `app` -> `pages` -> `widgets` -> `features` -> `entities` -> `shared`.
-
 ---
-
 ## 2. Cross-Slice Imports Within the Same Layer
 
 ### ❌ Bad Practice
@@ -75,9 +74,7 @@ const ProductWidget = () => (
 
 ### 🚀 Solution
 Interaction between slices at the same level should occur through composition at higher layers (`widgets`, `pages`) or via global patterns (Global State, Event Bus).
-
 ---
-
 ## 3. Public API Encapsulation (Bypassing Public API)
 
 ### ❌ Bad Practice
@@ -98,9 +95,7 @@ import { UserCard, fetchUser } from 'entities/user';
 
 ### 🚀 Solution
 Every slice must have an entry point `index.ts` (Public API) that explicitly exports only what is intended for external use (Contract). All other files are considered strictly internal/private.
-
 ---
-
 ## 4. Separation of Business Logic (Entity vs Feature)
 
 ### ❌ Bad Practice
@@ -131,9 +126,7 @@ export const LikeButton = ({ articleId }) => {
 
 ### 🚀 Solution
 Separate the structure of the entity (`entities`) from user business actions (`features`). Integrate features into entities via render-props or React slots at the widgets layer.
-
 ---
-
 ## 5. Domain Specifics in the Shared Layer
 
 ### ❌ Bad Practice
@@ -154,9 +147,7 @@ import { Button } from 'shared/ui/button';
 
 ### 🚀 Solution
 The `shared` layer contains purely infrastructural code, reusable dumb components (UI-kit), and helpers, completely abstracted from the project's business knowledge.
-
 ---
-
 ## 6. Area of Responsibility for Pages (Thick Pages)
 
 ### ❌ Bad Practice
@@ -188,9 +179,7 @@ export const ProductPage = () => {
 
 ### 🚀 Solution
 Delegate business logic and state management to `widgets` and `features`. The page (`pages`) is responsible for routing, SEO tags, and composing major blocks into the layout.
-
 ---
-
 ## 7. Arbitrary Segment Structure Inside a Slice
 
 ### ❌ Bad Practice
@@ -218,9 +207,7 @@ features/auth-user/
 
 ### 🚀 Solution
 Standard FSD segments must be applied exclusively within each slice: `ui` (JSX/components), `model` (state, hooks), `api` (network connectors), `lib` (helpers), `config` (variables/constants).
-
 ---
-
 ## 8. Root App Component Architecture (God Object App)
 
 ### ❌ Bad Practice
@@ -250,9 +237,7 @@ export const App = () => (
 
 ### 🚀 Solution
 Session business states are outsourced to `entities/session` or `features`. The `app` layer combines global configurations (Redux, QueryClient, DI Containers), global styles, and the routing tree.
-
 ---
-
 ## 9. Global Store (Centralized State Management)
 
 ### ❌ Bad Practice
@@ -285,9 +270,7 @@ const store = configureStore({
 
 ### 🚀 Solution
 Each slice sets up its own chunk of state locally in `model/slice.ts`, exporting the Reducer via the Public API. The root store in `app/store` simply composes them together.
-
 ---
-
 ## 10. Deep Relative Imports
 
 ### ❌ Bad Practice
@@ -308,9 +291,7 @@ import { Button } from '@/shared/ui/button'; // Optionally via alias
 
 ### 🚀 Solution
 Configure absolute path aliases in `tsconfig.json`. Apply them when importing across cross-layers and slices. Relative paths (`./`, `../`) are strictly allowed only within the boundaries of a single slice.
-
 ---
-
 ## 11. Type Contract Encapsulation Leaks
 
 ### ❌ Bad Practice
@@ -334,9 +315,7 @@ export type { UserDTO } from './model/types';
 
 ### 🚀 Solution
 Business types are declared uniquely in the `model` or `api` segment of the respective domain slice (`entities`, `features`) and are exposed externally exclusively through its root `index.ts`.
-
 ---
-
 ## 12. Globalizing Local Configuration Constants
 
 ### ❌ Bad Practice
@@ -359,9 +338,7 @@ import { MAX_MESSAGE_LENGTH } from '../config/constants';
 
 ### 🚀 Solution
 Exploit the `config` segment to stockpile isolated constants, limits, and locales particular to a feature. Genuine global constants are kept in `shared/config`.
-
 ---
-
 ## 13. Component Testing by Bypassing Public API
 
 ### ❌ Bad Practice
@@ -381,9 +358,7 @@ import { AuthFeature } from 'features/auth';
 
 ### 🚀 Solution
 Write tests for features and entities by importing their behaviors entirely via the Public API layer (`index.ts`). For test mocks, fashion an isolated `testing.ts` endpoint adjacent to the Public API.
-
 ---
-
 ## 14. Domain Object Mixing (God Entity Objects)
 
 ### ❌ Bad Practice
@@ -406,9 +381,7 @@ entities/payment/    // Financial endpoints and transactional ledgers
 
 ### 🚀 Solution
 Each `entities` slice correlates to a rigorous and indivisible domain scope. Eliminate the architecting of "God Entities". Propel horizontal application scalability by shattering monoliths into manageable micro-domains.
-
 ---
-
 ## 15. Hardwired Local Routing in an Isolated Slice
 
 ### ❌ Bad Practice
@@ -435,9 +408,7 @@ export const UserCard = ({ onNavigate }: Props) => (
 
 ### 🚀 Solution
 Construct features and entities to operate Routing-Agnostic. They do not orchestrate route changes—they relay Event-triggers (Callbacks). Segregate routing mechanisms at the `pages` or `app/providers` layer.
-
 ---
-
 ## 16. Polluting External Dependencies (Third-party Coupling)
 
 ### ❌ Bad Practice
@@ -464,9 +435,7 @@ import { formatDate } from 'shared/lib/date';
 
 ### 🚀 Solution
 Encase external Utility and API libraries behind an Adapter pattern explicitly at the `shared/lib` or `shared/api` strata. Export solely an encapsulated facet, concealing the underlying vendor details from feature modules.
-
 ---
-
 ## 17. Fragmenting System Networking Errors
 
 ### ❌ Bad Practice
@@ -491,9 +460,7 @@ apiClient.interceptors.response.use(res => res, err => {
 
 ### 🚀 Solution
 Engineer top-level Interceptor filters (Axios object overrides, Fetch API wrappers) exactly within the `shared/api` segment. Constrain localized feature handling strictly to discrete business-tier violations (e.g., "Bad format", HTTP 400).
-
 ---
-
 ## 18. Abstraction Degradation in Slice Naming Conventions
 
 ### ❌ Bad Practice
@@ -517,9 +484,7 @@ widgets/header-navigation/
 
 ### 🚀 Solution
 Employ discernible industry nouns for `entities` and `widgets`. Utilize strictly descriptive business processes (Action-names) for defining `features`. Ultimately, slices must act as self-documenting assets based merely on title assignments.
-
 ---
-
 ## 19. Misplaced Global Providers/HOCs Integrations
 
 ### ❌ Bad Practice
@@ -551,9 +516,7 @@ export const AppLayer = () => (
 
 ### 🚀 Solution
 Any foundational systems (Theme logic, i18n, Central Redux Store, React Query Client mounts) are stringently dictated to execute out of `app/providers` globally exported via single orchestrator element (`<WithProviders>`).
-
 ---
-
 ## 20. Engineering the Widgets Payload (Orchestration Scope)
 
 ### ❌ Bad Practice
@@ -586,7 +549,6 @@ export const HeaderWidget = () => {
 
 ### 🚀 Solution
 The inherent mission and philosophy underlying the `widgets` stratum is high-level grouping and process orchestration. It acts solely to bind numerous Entities (Data) alongside disparate Features (Actions) assembling a perfectly sovereign, ready-to-deploy modular chunk (Headings, Interactive Sidebars, Auth-Panels).
-
 ---
 
 <br>

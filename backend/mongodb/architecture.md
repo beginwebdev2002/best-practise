@@ -10,13 +10,11 @@ version: "7.0+"
 tags: [architecture-patterns, mongodb, nosql, database, system-design, production-ready, scalable-code]
 ai_role: Senior MongoDB Database Architect
 last_updated: 2026-03-28
-last_evolution: 2026-03-28
----
+last_evolution: 2026-03-28---
 
 # 🏛️ MongoDB Architecture Constraints
 
 This document provides the "executable blueprints" for MongoDB architecture, outlining folder hierarchies, request/data flows, and entity relationships to ensure AI-agent readiness.
-
 ## 📂 Folder Hierarchy Constraints
 
 ```mermaid
@@ -41,7 +39,6 @@ graph TD
   class domains,user,order,schemas,models,repositories domain;
   class core,database,connection,config core;
 ```
-
 ## 🔄 Request / Data Flow
 
 ```mermaid
@@ -61,7 +58,6 @@ sequenceDiagram
     Service-->>Controller: Domain Response
     Controller-->>Client: 201 Created (Response DTO)
 ```
-
 ## 🔗 Entity Relationships
 
 ```mermaid
@@ -98,7 +94,6 @@ classDiagram
     User "1" --> "*" Comment : writes
     Post "1" --> "*" Comment : contains
 ```
-
 ---
 
 [⬆ Back to Top](#-mongodb-architecture-constraints)

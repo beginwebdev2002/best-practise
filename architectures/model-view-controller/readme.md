@@ -7,16 +7,18 @@ version: Agnostic
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns, mvc-best-practise, angular-best-practise, expressjs-best-practise, ai-instructions, vibe-coding-instructions, mongodb, angular, nestjs, html, scss, javascript, js, typescript-best-practise, css, css3]
 ai_role: Senior Software Architect
 last_updated: 2026-03-22
----
+topic: MVC
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
+
 
 <div align="center">
   # 🏛️ Model-View-Controller (MVC) Production-Ready Best Practices
 </div>
-
 ---
 
 Этот инженерный директив определяет **лучшие практики (best practices)** для архитектуры MVC. Данный документ спроектирован для обеспечения максимальной масштабируемости, безопасности и качества кода при разработке приложений корпоративного уровня.
-
 # Context & Scope
 - **Primary Goal:** Предоставить строгие архитектурные правила и 20 практических паттернов для создания масштабируемых и детерминированных MVC-приложений.
 - **Target Tooling:** AI-агенты (Cursor, Windsurf, Copilot, Antigravity) и Senior-разработчики.
@@ -24,7 +26,6 @@ last_updated: 2026-03-22
 
 > [!IMPORTANT]
 > **Архитектурный стандарт (Contract):** Контроллер принимает HTTP-запрос и маршрутизирует команды, Сервисы (или Доменная Модель) содержат бизнес-логику, Представление (View) отвечает исключительно за рендеринг абстрактных Data Transfer Objects (DTO).
-
 ## Architecture Flow (Mental Model)
 
 ```mermaid
@@ -55,16 +56,13 @@ graph TD
     class Router component;
 
 ```
-
 ---
-
 
 ## Map of Patterns
 - 📊 [**Data Flow:** Request and Event Lifecycle](./data-flow.md)
 - 📁 [**Folder Structure:** Layering logic](./folder-structure.md)
 - ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
-
 ## 1. Fat Controllers (God Object Controller)
 
 ### ❌ Bad Practice
@@ -104,9 +102,7 @@ class UserController {
 
 ### 🚀 Solution
 Придерживайтесь парадигмы «Тонкие контроллеры» (Thin Controllers). Делегируйте все бизнес-сценарии в выделенный сервисный слой (Service Layer) или агрегатные доменные модели.
-
 ---
-
 ## 2. Anemic Domain Model (Анемичная модель)
 
 ### ❌ Bad Practice
@@ -144,9 +140,7 @@ class Order {
 
 ### 🚀 Solution
 Инкапсулируйте изменение внутреннего состояния (мутации) внутри самой Модели (Rich Model). Сторонние сервисы обязаны вызывать методы-действия модели через подготовленные контракты, а не переопределять её данные.
-
 ---
-
 ## 3. Direct Model Exposure to View (Утечка схемы базы данных)
 
 ### ❌ Bad Practice
@@ -176,9 +170,7 @@ class UserController {
 
 ### 🚀 Solution
 Архитектурно необходимо применять классы DTO (Data Transfer Objects) или ViewModels для изолированной трансформации доменной модели в структуру, безопасную для клиента (View / API).
-
 ---
-
 ## 4. Complex Logic within Views (Шаблонизация бизнес-правил)
 
 ### ❌ Bad Practice
@@ -206,9 +198,7 @@ class UserController {
 
 ### 🚀 Solution
 Экспортируйте агрегированные состояния для представления (View) в слое Презентера (ViewModel). View обязан оставаться «Глупым» (Dumb View), способным лишь на рендеринг булевых флагов и массивов из DTO.
-
 ---
-
 ## 5. View Layer Initiating Database Transactions
 
 ### ❌ Bad Practice
@@ -234,9 +224,7 @@ class UserController {
 
 ### 🚀 Solution
 Вектор зависимости слоя View строго однонаправлен «Сверху вниз» на данные, инжектированные Контроллером. Представление не должно осознавать факт существования Хранилищ (Repositories/DBs).
-
 ---
-
 ## 6. Global State and Singletons Bound to Models
 
 ### ❌ Bad Practice
@@ -265,9 +253,7 @@ class Invoice {
 
 ### 🚀 Solution
 Исключите использование глобальных Синглтонов в доменной зоне. Все внешние параметры или конфигурационное окружение передаются в модели прозрачно (explicit dependencies) через конструкторы или аргументы методов.
-
 ---
-
 ## 7. Mixing Low-Level Routing with Controller Logic
 
 ### ❌ Bad Practice
@@ -296,9 +282,7 @@ router.get('/settings', userController.showSettings);
 
 ### 🚀 Solution
 Оставьте маршутизацию (Routing) фреймворку или выделенному слою Router. Задача Контроллера — реагировать на уже сформированный вызов метода с готовым payload.
-
 ---
-
 ## 8. Validation Rules Leaking into the Domain Layers
 
 ### ❌ Bad Practice
@@ -329,9 +313,7 @@ class UserController {
 
 ### 🚀 Solution
 Валидация синтаксиса и форматов (JSON Schema, DTO Validation) обязана выполняться на слое обработки запросов (Gateways / Controllers). В Сервисы должны поступать исключительно детерминированные форматы данных.
-
 ---
-
 ## 9. Lack of Dependency Injection in Controllers
 
 ### ❌ Bad Practice
@@ -357,9 +339,7 @@ class OrderController {
 
 ### 🚀 Solution
 Утилизируйте паттерн Dependency Injection (DI). Контроллеры запрашивают нужные сервисы или репозитории через интерфейсы (IoC Containers), что гарантирует возможность горячей подмены абстракций.
-
 ---
-
 ## 10. Generating Raw HTML Strings Inside Controllers
 
 ### ❌ Bad Practice
@@ -387,9 +367,7 @@ class WelcomeController {
 
 ### 🚀 Solution
 Контроллер НИКОГДА не генерирует разметку напрямую. Его функциональная гарантия — передать структуру данных (ViewModel / JSON) стандартизированному движку шаблонизации (Handlebars, React Server, EJS).
-
 ---
-
 ## 11. God Models (Monolithic Bounded Contexts)
 
 ### ❌ Bad Practice
@@ -415,9 +393,7 @@ class PdfGeneratorService { ... }
 
 ### 🚀 Solution
 Декомпозируйте супер-модели на узконаправленные агрегаты (Aggregates) в рамках строгих контекстов предметной области (Bounded Contexts).
-
 ---
-
 ## 12. View Layer Mutating Upstream State
 
 ### ❌ Bad Practice
@@ -439,9 +415,7 @@ class PdfGeneratorService { ... }
 
 ### 🚀 Solution
 Паттерн MVC предполагает, что View является лишь отражением (Read-only Projection) текущих данных. Для мутаций View должен отправить инструкцию для Контроллера (HTTP Request, Event), который санкционирует процесс.
-
 ---
-
 ## 13. Hardwired Environment Secrets within Logic Code
 
 ### ❌ Bad Practice
@@ -469,9 +443,7 @@ class BillingService {
 
 ### 🚀 Solution
 Запрещен хардкод любых параметров окружения (Passwords, URLs, Tokens) в Контроллерах и Моделях. Вся инфраструктура загружается из специализированного провайдера конфигураций.
-
 ---
-
 ## 14. Blocking Main Thread in Standard Controllers
 
 ### ❌ Bad Practice
@@ -501,9 +473,7 @@ class ReportController {
 
 ### 🚀 Solution
 Интегрируйте Job-системы (RabbitMQ, Redis Queues). Контроллер должен делегировать ресурсоемкие задачи воркеру в фоне и мгновенно возвращать HTTP 202 (Accepted).
-
 ---
-
 ## 15. The "Repository" Abstraction Leak to View/Controller
 
 ### ❌ Bad Practice
@@ -533,9 +503,7 @@ class DashboardController {
 
 ### 🚀 Solution
 Ограждайте слой Представлений и Контроллеров от низкоуровневых операций I/O. Интегрируйте паттерны Repository / Data Access Object (DAO).
-
 ---
-
 ## 16. Exposing Sequent Database Identifiers (IDOR Threat)
 
 ### ❌ Bad Practice
@@ -558,9 +526,7 @@ class TransactionResponse {
 
 ### 🚀 Solution
 Транслируйте внутренние физические идентификаторы БД (Integers) во внешние строковые UUID или хэши прежде чем Контроллер перебросит их на View.
-
 ---
-
 ## 17. Duplicating Core Invariants Inside Templates
 
 ### ❌ Bad Practice
@@ -583,9 +549,7 @@ class Package { isFragile() { return this.weight > 50; } }
 
 ### 🚀 Solution
 Доменная Модель — единственный "Источник Правды" (Source of Truth). View должно читать готовое вычисленное полиморфное состояние, предоставленное системой.
-
 ---
-
 ## 18. Side-Effects Orchestration Inside Controller Scope
 
 ### ❌ Bad Practice
@@ -618,9 +582,7 @@ class SubscriptionController {
 
 ### 🚀 Solution
 Внедряйте Domain Events Architectures (Pub/Sub брокеры). Контроллер отвечает сугубо за инициирование бизнес-события "Оплата совершена", логики рассылки не должны блокировать канал ответа клиенту.
-
 ---
-
 ## 19. Fractured Exception Logging (Try-Catch Hell)
 
 ### ❌ Bad Practice
@@ -652,9 +614,7 @@ class ItemController {
 
 ### 🚀 Solution
 Абстрагируйте процедуру захвата ошибок (Error Handling) в Глобальные Фильтры Исключений (Global Exception Handlers) фреймворка, стандартизировав формат возврата HTTP 4XX / 5XX ошибок для View.
-
 ---
-
 ## 20. Overusing the Model Segment for Hardware Infrastructure (AWS, FS)
 
 ### ❌ Bad Practice
@@ -689,7 +649,6 @@ class AssetUploaderService {
 
 ### 🚀 Solution
 Соблюдайте границу Ports and Adapters. Переносите интеграцию с аппаратным вводом (Файловые системы, AWS, Redis) на плечи внешних Infrastructure Services, оставляя MVC Модели концептуально абстрактными сущностями.
-
 ---
 
 <br>

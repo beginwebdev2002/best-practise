@@ -7,16 +7,18 @@ last_evolution: 2026-03-27
 vibe_coding_ready: true
 tags: [eda, trade-offs, architecture, messaging, kafka]
 topic: Event-Driven Trade-offs
----
+level: Senior/Architect
+version: Latest
+ai_role: Senior Event-Driven Architecture Expert
+last_updated: 2026-03-29---
+
 
 <div align="center">
   # ⚖️ EDA Trade-offs (Pros & Cons Blueprint)
 </div>
-
 ---
 
 This document outlines the high-level trade-offs associated with Event-Driven Architecture. EDA introduces incredible scalability and loose coupling but incurs extreme operational complexity, eventual consistency, and distributed debugging challenges.
-
 ## 1. High-Level Comparison
 
 | 🌟 **Pros (Advantages)** | ⚠️ **Cons (Disadvantages)** |
@@ -26,9 +28,7 @@ This document outlines the high-level trade-offs associated with Event-Driven Ar
 | **Scalability:** You can scale consumers horizontally (Kafka Consumer Groups) based on queue lag. | **Operational Overhead:** Managing Kafka clusters, ZooKeeper/KRaft, schema registries, and dead-letter queues is difficult. |
 | **Extensibility:** Adding a new feature (e.g., a new Notification Service) requires zero changes to the Publisher. | **Duplicate Events:** Brokers guarantee "at-least-once" delivery. Consumers MUST be strictly idempotent. |
 | **Polyglot Systems:** Microservices can be written in any language as long as they adhere to the broker protocol and schema. | **Dual-Write Problem:** Guaranteeing a local DB commit and a Kafka publish simultaneously requires the Outbox Pattern. |
-
 ---
-
 ## 2. Distributed Anti-Patterns
 
 ### ❌ The "Distributed Monolith"
@@ -42,7 +42,6 @@ This document outlines the high-level trade-offs associated with Event-Driven Ar
 ### ❌ Shared Database Integration
 **Symptom:** Two microservices communicate via Kafka, but both services still connect to the same PostgreSQL database directly to read/write state.
 **Resolution:** Strictly adhere to the "Database-per-Service" pattern. Services must rely on their own materialized views built from consuming events.
-
 ---
 
 <div align="center">

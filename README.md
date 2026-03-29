@@ -1,7 +1,17 @@
 ---
 description: The entry point for developers and AI agents to the Best-Practise AI Context Library.
 tags: [vibe coding, ai agents, context injection, architectural constraints, clean code]
----
+technology: TypeScript
+domain: Documentation
+level: Senior/Architect
+version: Latest
+ai_role: Senior TypeScript Expert
+last_updated: 2026-03-29
+topic: TypeScript
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
+
 [ 🇺🇸 English ](#english) | [ 🇷🇺 Русский ](#russian)
 
 <a id="english"></a>
@@ -17,22 +27,17 @@ tags: [vibe coding, ai agents, context injection, architectural constraints, cle
 
   **"The Gold Standard for AI Agent Context Injection."**
 </div>
-
 # ⚙️ Context & Scope
 - **Primary Goal:** Provide an AI-readable index for all architectural and technological constraints to ensure Vibe Coding best practices.
 - **Target Tooling:** Cursor, Windsurf, Antigravity, GitHub Copilot.
 - **Tech Stack Version:** Agnostic
-
 ---
-
 ## 🚀 The "Vibe Coding" Value Proposition
 
 **The Problem:** Generic LLMs produce generic code because they lack deep project context. Without strict architectural guidelines, codebases built with AI quickly turn into unmaintainable spaghetti code.
 
 **The Solution:** This repository provides a global, open-source library of meta-instructions for **Vibe Coding**. By injecting these strict architectural constraints into your AI agents, you ensure **deterministic, scalable, and "beautiful" production-ready code generation**.
-
 ---
-
 ## 🗺️ Interactive Tech Stack Map
 
 | Domain | Technology | Status |
@@ -40,9 +45,7 @@ tags: [vibe coding, ai agents, context injection, architectural constraints, cle
 | **Frontend** | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" width="20"/> [Angular 20+](frontend/angular/) <br> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" width="20"/> [JavaScript (ES6+)](frontend/javascript/) <br> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="20"/> [TypeScript](frontend/typescript/) | ✅ |
 | **Backend** | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" width="20"/> [NestJS](backend/nestjs/) <br> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" width="20"/> [Express.js](backend/express/) <br> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" width="20"/> [Node.js](backend/nodejs/) | ✅ |
 | **Architecture** | 📐 [Feature-Sliced Design (FSD)](architecture/fsd/) <br> 🏗️ [MVC](architecture/mvc/) | 🛠️ |
-
 ---
-
 ## 🤖 Топ-10 AI Агентов и Инструментов (IDE)
 
 В современных реалиях Vibe Coding активно используются следующие мощные AI инструменты. Вот 10 самых популярных из них:
@@ -59,9 +62,7 @@ tags: [vibe coding, ai agents, context injection, architectural constraints, cle
 | <img src="https://img.shields.io/badge/Tabnine-3A23AD?style=flat-square&logo=tabnine&logoColor=white" alt="Tabnine"> | **Tabnine** | Enterprise-level solution with a high degree of confidentiality, trained on your own code without leaks to public models. |
 | <img src="https://img.shields.io/badge/Amazon_Q-232F3E?style=flat-square&logo=amazonaws&logoColor=white" alt="Amazon Q"> | **Amazon Q Developer** | An assistant from AWS (formerly CodeWhisperer), ideal for integration with cloud infrastructure and vulnerability scanning. |
 | <img src="https://img.shields.io/badge/Cody-FF5543?style=flat-square&logo=sourcegraph&logoColor=white" alt="Sourcegraph Cody"> | **Sourcegraph Cody** | An instrument with deep access to your enterprise code graph for ultra-precise search and generation. |
-
 ---
-
 ## 🎯 Integration Guide: Injecting AI Context
 
 To establish a deterministic, scalable **Agentic Workflow**, engineers must perform **Context Injection**. By injecting these **Deterministic Rules** into your AI toolchain, you ensure that agents strictly adhere to the project's baseline architecture and constraints.
@@ -95,9 +96,7 @@ For the **Deterministic Rules** to be accurately parsed and strictly followed, i
 | **Cursor AI** | `.cursor/rules/*.md` |
 | **Windsurf** | `.windsurf/rules/` |
 | **GitHub Copilot** | `.github/copilot-instructions.md` (or root `.github/` for general context) |
-| **Cloud Code AI / Claude Code** | Root directory or `.claude/` (depending on agent configuration) |
----
-## 🛠️ Visual Architecture: Context Deep-Dive
+| **Cloud Code AI / Claude Code** | Root directory or `.claude/` (depending on agent configuration) |---## 🛠️ Visual Architecture: Context Deep-Dive
 
 The repository is structured hierarchically to allow AI agents to progressively deepen their understanding of your project constraints.
 
@@ -165,8 +164,7 @@ graph TD
     class C3 component;
     class B component;
 
-```
-## 🌴 Folder Tree
+```## 🌴 Folder Tree
 
 * 📦 **[best-practise](./)**
   * 📄 [agents.md](./agents.md)
@@ -202,9 +200,7 @@ graph TD
       * 📄 [readme.md](./frontend/javascript/readme.md)
     * 🟦 **[typescript/](./frontend/typescript/)**
       * 📄 [readme.md](./frontend/typescript/readme.md)
-
 ---
-
 ## 🤝 How to Contribute
 
 This is a living repository. Even if you're building alone, the AI ecosystem thrives on shared knowledge. If you are an expert in a specific technology, we invite you to add your specific constraints and rules!
@@ -212,13 +208,11 @@ This is a living repository. Even if you're building alone, the AI ecosystem thr
 2. Navigate to the appropriate `[domain]/[technology]/` folder (or create it).
 3. Add a `readme.md` with core principles, and break down complex rules into specific markdown files.
 4. Submit a Pull Request.
-
 ---
 
 <div align="center">
   <b>Author:</b> Jamoliddin Qodirov <i>(Software Architect & Teacher)</i>
 </div>
-
 
 ---
 
@@ -235,22 +229,17 @@ This is a living repository. Even if you're building alone, the AI ecosystem thr
 
   **"Золотой стандарт для внедрения контекста в ИИ-агентствах."**
 </div>
-
 # ⚙️ Контекст & Сфера применения
 - **Основная цель:** Обеспечить AI-читаемый индекс для трансляции архитектурных концепций и технологических Constraints (Ограничения) с целью обеспечения стандартов Vibe Coding.
 - **Целевое ПО (Target Tooling):** Cursor, Windsurf, Antigravity, GitHub Copilot.
 - **Версия техстека:** Агностична
-
 ---
-
 ## 🚀 "Vibe Coding" Ценностное предложение
 
 **Проблема:** Базовые LLM генерируют абстрактный код по причине дефицита глубокого контекста о проекте. Отсутствие строго регламентированных архитектурных ограничений неизбежно приводит к переходу кодовой базы, сгенерированной ИИ, в технический долг (спагетти-код) и провоцирует Hallucinations (Галлюцинации).
 
 **Решение:** Данный репозиторий представляет собой эталонную open-source библиотеку мета-инструкций для **Vibe Coding**. Осуществляя строгий AI Context Injection в ваших агентах, вы достигаете **детерминированного транслирования архитектуры, обеспечения масштабируемости и генерации production-ready кода**.
-
 ---
-
 ## 🗺️ Интерактивная карта технологического стека
 
 | Домен | Технология | Статус |
@@ -258,9 +247,7 @@ This is a living repository. Even if you're building alone, the AI ecosystem thr
 | **Frontend** | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" width="20"/> [Angular 20+](frontend/angular/) <br> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" width="20"/> [JavaScript (ES6+)](frontend/javascript/) <br> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="20"/> [TypeScript](frontend/typescript/) | ✅ |
 | **Backend** | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" width="20"/> [NestJS](backend/nestjs/) <br> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" width="20"/> [Express.js](backend/express/) <br> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" width="20"/> [Node.js](backend/nodejs/) | ✅ |
 | **Architecture** | 📐 [Feature-Sliced Design (FSD)](architecture/fsd/) <br> 🏗️ [MVC](architecture/mvc/) | 🛠️ |
-
 ---
-
 ## 🤖 Топ-10 AI Агентов и Инструментов (IDE)
 
 В парадигме Vibe Coding в продакшене внедрены следующие ИИ-инструменты. Ниже приведен топ-10 актуальных решений:
@@ -277,13 +264,10 @@ This is a living repository. Even if you're building alone, the AI ecosystem thr
 | <img src="https://img.shields.io/badge/Tabnine-3A23AD?style=flat-square&logo=tabnine&logoColor=white" alt="Tabnine"> | **Tabnine** | Enterprise-решение с упором на секьюрити. Обучается изолированно на инхаус коде для пресечения утечек данных. |
 | <img src="https://img.shields.io/badge/Amazon_Q-232F3E?style=flat-square&logo=amazonaws&logoColor=white" alt="Amazon Q"> | **Amazon Q Developer** | Корпоративный ассистент от AWS. Внедрен как модуль-профайлер облачных инфраструктур и анализа уязвимостей. |
 | <img src="https://img.shields.io/badge/Cody-FF5543?style=flat-square&logo=sourcegraph&logoColor=white" alt="Sourcegraph Cody"> | **Sourcegraph Cody** | Инструмент для дата-майнинга и анализа Enterprise-кодовых графов, обеспечивающий маппинг компонентов с высокой степенью согласованности. |
-
 ---
 
 <!-- Agent Integration Guide moved to bilingual section above -->
-
 ---
-
 ## 🎯 Руководство по интеграции: Инъекция контекста
 
 Для выстраивания детерминированного и масштабируемого **Agentic Workflow**, разработчики должны реализовать **Инъекцию контекста** (Context Injection). Интеграция данных **Deterministic Rules** в ваш инструментарий ИИ гарантирует строгое соблюдение базовой архитектуры и заданных ограничений агентами.
@@ -317,9 +301,7 @@ graph LR
 | **Cursor AI** | `.cursor/rules/*.md` |
 | **Windsurf** | `.windsurf/rules/` |
 | **GitHub Copilot** | `.github/copilot-instructions.md` (или корень `.github/` для общего контекста) |
-| **Cloud Code AI / Claude Code** | Корневая директория или `.claude/` (в зависимости от конфигурации агента) |
----
-
+| **Cloud Code AI / Claude Code** | Корневая директория или `.claude/` (в зависимости от конфигурации агента) |---
 ## 🛠️ Visual Architecture: Context Deep-Dive
 
 Топология проекта организована иерархически. Архитектура разработана для прогрессивного спускания AI-агентов по информационным узлам (Context Drilling) до спецификаций конкретной технологии.
@@ -388,8 +370,7 @@ graph TD
     class C3 component;
     class B component;
 
-```
-## 🌴 Folder Tree
+```## 🌴 Folder Tree
 
 * 📦 **[best-practise](./)**
   * 📄 [agents.md](./agents.md)
@@ -425,9 +406,7 @@ graph TD
       * 📄 [readme.md](./frontend/javascript/readme.md)
     * 🟦 **[typescript/](./frontend/typescript/)**
       * 📄 [readme.md](./frontend/typescript/readme.md)
-
 ---
-
 ## 🤝 Стать contributer проект
 
 В условиях развития AI-экосистемы аккумулирование Enterprise-опыта является критически важным. Инженерам, обладающим подтвержденной квалификацией (Senior level) в конкретных субдоменах, предлагается расширять реестр Constraints:
@@ -435,7 +414,6 @@ graph TD
 2. Проведите локализацию в директории `[domain]/[technology]/`.
 3. Реализуйте файл `readme.md`, декларирующий ключевые парадигмы в рамках стэка. Для покрытия узкоспециализированных кейсов инициируйте декомпозицию с выделением изолированных конфигураций (например, `performance.md`).
 4. Настройте Pull Request в ветку `main`.
-
 ---
 
 <div align="center">

@@ -1,9 +1,19 @@
-# GitHub SEO & AI-Context Master Strategy: `best-practise`
+---
+description: Vibe coding guidelines and architectural constraints for TypeScript within the Documentation domain.
+tags: [typescript, documentation, best-practices, architecture]
+topic: TypeScript
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true
+technology: TypeScript
+domain: Documentation
+level: Senior/Architect
+version: Latest
+ai_role: Senior TypeScript Expert
+last_updated: 2026-03-29---# GitHub SEO & AI-Context Master Strategy: `best-practise`
 
 This document serves as the primary "Memory" and governance file for the `best-practise` repository. It defines the standards for generating high-performance instructions optimized for both GitHub’s search algorithms and "Vibe Coding" AI tools (Cursor, Windsurf, Copilot).
-
 ---
-
 ## 1. Indexing Strategy & Keyword Optimization
 
 To ensure the repository ranks at the top of GitHub search results and search engines, every document must adhere to specific semantic rules.
@@ -19,9 +29,7 @@ To ensure the repository ranks at the top of GitHub search results and search en
 - **LSI Keywords:** Naturally integrate terms like *production-ready*, *enterprise-grade*, *scalable architecture*, *clean code*, and *software design patterns*.
 - **Initial Context:** The first 200 characters of every file must contain the primary technology and the keyword "best practices".
 - **Density:** Maintain a 1-3% keyword density for the main topic to avoid "keyword stuffing" while remaining relevant to GitHub's search indexer.
-
 ---
-
 ## 2. Structure for AI-Context (Vibe Coding Optimization)
 
 Documentation must be structured to allow LLMs to ingest "system prompts" and "project rules" with zero ambiguity.
@@ -36,9 +44,7 @@ Every file must start with a `# Context & Scope` section that defines:
 - **Checklists:** Use `- [ ]` for actionable verification steps. LLMs respond better to checklist-style instructions.
 - **Strict Constraints:** Use a `> [!IMPORTANT]` or `> [!CAUTION]` block to list "Never" and "Always" rules.
 - **Code Annotations:** Use comments within code blocks to explain *why* a pattern is used, not just *what* it does.
-
 ---
-
 ## 3. Technical Text Standard
 
 ### Tone and Style
@@ -65,9 +71,7 @@ Every file must start with a `# Context & Scope` section that defines:
 ### Code Standards
 - **Naming Conventions:** Enforce `PascalCase` for classes/components, `camelCase` for functions/variables, and `kebab-case` for file names.
 - **Folder Structure:** Define a clear directory hierarchy (e.g., `src/features/*`, `src/shared/ui/*`).
-
 ---
-
 ## 4. Internal Linking Rules
 
 To build a "Knowledge Graph" within the repository, files must be cross-referenced using relative Markdown links.
@@ -75,9 +79,7 @@ To build a "Knowledge Graph" within the repository, files must be cross-referenc
 - **Dependency Linking:** If a TypeScript guide is used, it must link to the `Architecture` guide (e.g., `[View Architecture Standards](../../architectures/fsd.md)`).
 - **Pattern Inheritance:** Link specialized patterns (e.g., Factory) to general programming principles (e.g., SOLID).
 - **Navigation:** Every sub-folder should have a `readme.md` that maps out the local files and their relationship to the repository root.
-
 ---
-
 ## 5. Repository Metadata
 
 ### About Section (GitHub Sidebar)

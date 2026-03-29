@@ -7,10 +7,12 @@ version: Agnostic
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior Software Architect
 last_updated: 2026-03-22
----
+topic: TypeScript
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # Architecture Best Practices & Production-Ready Patterns
-
 # Context & Scope
 - **Primary Goal:** Establish definitive rules and best practices for system design and architecture.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
@@ -21,9 +23,7 @@ last_updated: 2026-03-22
   
   **The foundation for scalable, maintainable, and reliable applications.**
 </div>
-
 ---
-
 ## 🌟 The Importance of Architecture in Modern Projects
 
 In a world where application logic becomes more complex every day, **Architecture** is not just a folder structure; it is the set of laws by which your code lives. A proper architecture solves three key problems:
@@ -32,9 +32,7 @@ In a world where application logic becomes more complex every day, **Architectur
 3. **Isolation & Testability:** Changing a single feature doesn't break the entire business process, because the logic is isolated from the UI and third-party libraries.
 
 Without strict architecture, even the most modern frameworks (Angular, React, Vue, NestJS) quickly become unmanageable.
-
 ---
-
 ## 💡 Best Tips for Choosing an Architecture
 
 Don't know where to start? Here are a few golden rules:
@@ -42,13 +40,10 @@ Don't know where to start? Here are a few golden rules:
 - **Separation of Concerns:** Whichever architecture you choose, always decouple how data is stored (DB) from how it is displayed (UI).
 - **Match Your Team's Expertise:** Choose the approach that your team understands or is ready to learn. If everyone knows React inside out, use *FSD*. Lone wolves ruin team productivity.
 - **Embrace Change:** The perfect architecture allows you to painlessly swap your database (e.g., PostgreSQL for MongoDB) or your UI component library without rewriting the core.
-
 ---
-
 ## 🏆 Top 10 Best Architectural Approaches
 
 Below are the most popular architectural patterns along with examples, tips, technology stacks, and their logos. A Folder Tree is provided for each to give you a deep understanding of its structure.
-
 ---
 
 ### 1. Feature-Sliced Design (FSD)
@@ -94,7 +89,6 @@ src/
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript
 - **Patterns / Principles:** Public API, Low Coupling, High Cohesion.
 - **Tools/Libraries:** Redux Toolkit, Zustand, React Router.
-
 ---
 
 ### 2. Clean Architecture
@@ -134,7 +128,6 @@ src/
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" width="16"/> C#, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript
 - **Patterns / Principles:** SOLID, Dependency Injection (DI), Repository.
 - **Tools/Libraries:** ORMs (TypeORM, Prisma).
-
 ---
 
 ### 3. MVC (Model-View-Controller)
@@ -174,7 +167,6 @@ src/
 - **Frameworks:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" width="16"/> Express.js, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rubyonrails/rubyonrails-original.svg" width="16"/> Ruby on Rails, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" width="16"/> Laravel, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg" width="16"/> Django
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ruby/ruby-original.svg" width="16"/> Ruby, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" width="16"/> PHP, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="16"/> Python
 - **Patterns / Principles:** Active Record, REST, DRY.
-
 ---
 
 ### 4. Microservices
@@ -219,7 +211,6 @@ microservices-cluster/
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original.svg" width="16"/> Go, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" width="16"/> Node.js
 - **Patterns / Principles:** API Gateway, Circuit Breaker, Saga Pattern.
 - **Tools:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" width="16"/> Docker, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-plain.svg" width="16"/> Kubernetes, gRPC.
-
 ---
 
 ### 5. Hexagonal Architecture (Ports & Adapters)
@@ -262,7 +253,6 @@ src/
 - **Frameworks:** Any strictly-typed IoC frameworks.
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" width="16"/> C#
 - **Patterns / Principles:** SOLID, Dependency Inversion (D in SOLID), Adapter.
-
 ---
 
 ### 6. DDD (Domain-Driven Design)
@@ -304,7 +294,6 @@ src/
 - **Frameworks:** Complex Backend ERP or Banking systems.
 - **Languages:** Highly-typed OOP languages (Java, C#, TypeScript).
 - **Patterns / Principles:** Bounded Contexts, Value Objects, Aggregates.
-
 ---
 
 ### 7. Event-Driven Architecture (EDA)
@@ -344,7 +333,6 @@ src/
 - **Frameworks/Platforms:** Node.js, Spring Cloud.
 - **Tools/Libraries:** Apache Kafka, RabbitMQ, Redis Pub/Sub, AWS EventBridge.
 - **Patterns / Principles:** Pub/Sub, Async Communication, Event Sourcing.
-
 ---
 
 ### 8. Serverless (Function-as-a-Service / FaaS)
@@ -383,7 +371,6 @@ project-functions/
 - **Frameworks:** Serverless Framework, AWS SAM. Clouds: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-plain.svg" width="16"/> Firebase, Vercel Functions.
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" width="16"/> Node.js, Python, Go (Languages with fast cold starts).
 - **Patterns / Principles:** Backend-as-a-Service (BaaS), Vendor Lock-in (use cautiously).
-
 ---
 
 ### 9. Monolithic Architecture
@@ -422,7 +409,6 @@ monolith-app/
 - **Frameworks:** Django, Ruby on Rails, NestJS (without microservices).
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="16"/> Python, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" width="16"/> PHP, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ruby/ruby-original.svg" width="16"/> Ruby.
 - **Patterns / Principles:** Three-Tier Architecture, KISS, YAGNI.
-
 ---
 
 ### 10. CQRS (Command Query Responsibility Segregation)

@@ -7,16 +7,18 @@ last_evolution: 2026-03-27
 vibe_coding_ready: true
 tags: [eda, data-flow, sequence-diagram, asynchronous, messaging, event-lifecycle]
 topic: Event-Driven Data Flow
----
+level: Senior/Architect
+version: Latest
+ai_role: Senior Event-Driven Architecture Expert
+last_updated: 2026-03-29---
+
 
 <div align="center">
   # 📊 EDA Data Flow (Sequence Blueprint)
 </div>
-
 ---
 
 This document illustrates the execution lifecycle of a distributed, asynchronous event-driven system. It defines the path an initial synchronous request takes as it propagates across independent microservices via a message broker.
-
 ## Mental Model & Asynchronous Lifecycle
 
 The architectural contract is simple:
@@ -65,9 +67,7 @@ sequenceDiagram
         NotifySvc->>Client: Push Notification / Email (Failure)
     end
 ```
-
 ---
-
 ## The Outbox Pattern (Reliable Publishing)
 
 To ensure dual-write safety (saving state in the local DB and publishing the event to Kafka simultaneously), EDA relies on the **Transactional Outbox Pattern**.
@@ -77,7 +77,6 @@ To ensure dual-write safety (saving state in the local DB and publishing the eve
 3. The service inserts an event record in an `outbox` table in the SAME transaction.
 4. The service commits the transaction.
 5. A background process (e.g., Debezium, CDC) reads the `outbox` table and publishes the messages to Kafka, ensuring "at-least-once" delivery.
-
 ---
 
 <div align="center">

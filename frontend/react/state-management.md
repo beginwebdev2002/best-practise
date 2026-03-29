@@ -10,18 +10,15 @@ domain: frontend
 level: Senior/Architect
 version: "19+"
 ai_role: Senior React State Management Expert
-last_updated: 2026-03-22
----
+last_updated: 2026-03-22---
 
 # 🔄 React State Management & Server Actions Best Practices
 
 [⬆️ Back to Top](#)
-
 # 📖 Context & Scope
 - **Primary Goal:** Provide best practices for managing state, including React 19+ Server Actions.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** React 19+
-
 ## 📚 Topics
 
 ### 1. Handling Async Actions (Forms)

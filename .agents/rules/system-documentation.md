@@ -1,10 +1,18 @@
 ---
 description: Instructions for the Jules AI agent on maintaining and updating core system documentation, AI rules, and repository guidelines.
 tags: [system documentation, AI agent rules, documentation quality, vibe coding, github-seo, repository management, clean documentation]
----
+technology: Vibe Coding
+domain: Documentation
+level: Senior/Architect
+version: Latest
+ai_role: Senior Vibe Coding Expert
+last_updated: 2026-03-29
+topic: Vibe Coding
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # ⚙️ System Documentation & AI Quality Rules for Jules
-
 ## 1. Context & Scope
 - **Primary Goal:** Ensure the continuous improvement and high **documentation quality** of the core system files that guide developers and AI agents.
 - **Target Tooling:** Jules AI agent (Vibe Coding, Automated Maintenance).
@@ -15,9 +23,7 @@ tags: [system documentation, AI agent rules, documentation quality, vibe coding,
 
   **Maintaining the Machine-Readable Intelligence Layer of the repository.**
 </div>
-
 ---
-
 ## 2. Core System Files and Directories
 
 > [!WARNING]
@@ -42,9 +48,7 @@ The following files are systemic for promoting high **documentation quality** an
 - `.agents/rules/github-seo.md` – Search Engine Optimization and metadata structures.
 - `.agents/rules/project-architecture.md` – Core architectural constraints.
 - `.agents/rules/rules.md` & `.agents/rules/system-markdown.md` – Specific constraints enforcing clean code and high documentation searchability.
-
 ---
-
 ## 3. Maintenance Protocol for Jules
 
 Jules must actively sync these files whenever a new global rule is adopted.
@@ -73,9 +77,7 @@ graph TD
     class UpdateSEO component;
 
 ```
-
 ---
-
 ## 4. Documentation Quality Standards
 
 When writing or updating **system documentation**, Jules must verify the following constraints:

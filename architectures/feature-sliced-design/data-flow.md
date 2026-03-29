@@ -1,5 +1,16 @@
-# Feature-Sliced Design (FSD) - Data Flow
-
+---
+description: Vibe coding guidelines and architectural constraints for FSD within the Architecture domain.
+tags: [fsd, architecture, best-practices, architecture]
+topic: FSD
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true
+technology: FSD
+domain: Architecture
+level: Senior/Architect
+version: Latest
+ai_role: Senior FSD Expert
+last_updated: 2026-03-29---# Feature-Sliced Design (FSD) - Data Flow
 ## Request and Event Lifecycle
 
 ```mermaid

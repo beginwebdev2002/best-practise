@@ -7,17 +7,17 @@ version: "20"
 tags: [performance, advanced, angular, best-practices, clean-code, scalable-code]
 ai_role: Senior Angular Performance Expert
 last_updated: 2026-03-22
----
+topic: Angular
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # 🚀 Angular Advanced Performance Best Practices & Expert Patterns
-
 # 📖 Context & Scope
 - **Primary Goal:** Enforce strict adherence to advanced performance best practices.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** Angular 20
-
 ## III. Advanced Performance (31-45)
-
 ## 31. Eager Loading of Heavy Components
 **Context:** Bundle Size
 ### ❌ Bad Practice
@@ -36,7 +36,6 @@ A charting library (e.g., ECharts) loads immediately, blocking TTI (Time to Inte
 ```
 ### 🚀 Solution
 Use `@defer`. This defers component code loading until a trigger occurs (viewport, interaction, timer).
-
 ## 32. Heavy Computation in Main Thread
 **Context:** Event Loop Blocking
 ### ❌ Bad Practice
@@ -47,7 +46,6 @@ Freezes the UI.
 Offload computations to a Web Worker.
 ### 🚀 Solution
 Use Angular Web Workers. In v20, this is easily configured via the CLI.
-
 ## 33. Memory Leaks in `effect()`
 **Context:** Signal Effects
 ### ❌ Bad Practice
@@ -68,7 +66,6 @@ effect((onCleanup) => {
 ```
 ### 🚀 Solution
 Always use the `onCleanup` callback to release resources.
-
 ## 34. Excessive Change Detection with `NgZone.run()`
 **Context:** Zone Integration
 ### ❌ Bad Practice
@@ -83,7 +80,6 @@ ngZone.runOutsideAngular(() => {
 ```
 ### 🚀 Solution
 Run frequent events (scroll, mousemove, animationFrame) *outside* the Angular zone. Update signals only when UI updates are required.
-
 ## 35. Signals equality check default
 **Context:** Signal Performance
 ### ❌ Bad Practice
@@ -99,7 +95,6 @@ data = signal(obj, { equal: isEqual });
 ```
 ### 🚀 Solution
 Use a custom comparison function for complex objects to avoid redundant re-renders.
-
 ## 36. Lacking `trackBy` in iterables
 **Context:** Re-rendering Lists
 ### ❌ Bad Practice
@@ -114,7 +109,6 @@ Without tracking, any array change leads to the recreation of all DOM nodes in t
 ```
 ### 🚀 Solution
 Always use a unique key in `track`. This allows Angular to move DOM nodes instead of recreating them.
-
 ## 37. Recursive Template without Caching
 **Context:** Tree Rendering
 ### ❌ Bad Practice
@@ -124,6 +118,9 @@ Exponential growth in change detection checks.
 ### ✅ Best Practice
 Using the `Memoization` pattern or `computed()` to prepare the tree data structure.
 
+
+### 🚀 Solution
+[Architectural justification of the solution]
 ## 38. Global Styles Leakage
 **Context:** CSS Encapsulation
 ### ❌ Bad Practice
@@ -137,7 +134,6 @@ Global styles unpredictably affect components.
 Use `ViewEncapsulation.Emulated` (default) and specific selectors.
 ### 🚀 Solution
 Keep styles locally within components.
-
 ## 39. Large Component Bundle
 **Context:** Split Chunks
 ### ❌ Bad Practice
@@ -148,7 +144,6 @@ Poor readability, rendering lazy loading of UI parts impossible.
 Decompose into "dumb" (UI) and "smart" components.
 ### 🚀 Solution
 Break down the UI into small, reusable blocks.
-
 ## 40. Image Optimization Ignorance
 **Context:** Core Web Vitals (LCP)
 ### ❌ Bad Practice
@@ -163,7 +158,6 @@ The browser loads the full image, shifting the layout (CLS).
 ```
 ### 🚀 Solution
 Use the `NgOptimizedImage` directive. It automatically handles lazy loading, preconnect, and srcset.
-
 ## 41. Hydration Mismatch
 **Context:** SSR / SSG
 ### ❌ Bad Practice
@@ -174,7 +168,6 @@ The server generates one number, the client another. This causes "flickering" an
 Use stable data or defer random generation until `afterNextRender`.
 ### 🚀 Solution
 Pay attention to template determinism with SSR.
-
 ## 42. Synchronous `inject()` inside loops
 **Context:** DI Performance
 ### ❌ Bad Practice
@@ -184,6 +177,9 @@ Although `inject` is fast, in hot paths these are unnecessary DI tree lookups.
 ### ✅ Best Practice
 Inject dependency once at the class/file constant level.
 
+
+### 🚀 Solution
+[Architectural justification of the solution]
 ## 43. Unused Signal Dependencies
 **Context:** Signal Graph
 ### ❌ Bad Practice
@@ -193,6 +189,9 @@ Angular dynamically builds the dependency graph. If you accidentally read a sign
 ### ✅ Best Practice
 Use `untracked()` to read signals whose changes should not trigger a recalculation.
 
+
+### 🚀 Solution
+[Architectural justification of the solution]
 ## 44. Excessive Wrappers (`div` soup)
 **Context:** DOM Size
 ### ❌ Bad Practice
@@ -204,6 +203,9 @@ Increases DOM tree depth, slowing down Style Recalculation and Layout.
 ### ✅ Best Practice
 Use `<ng-container>` to group elements without creating extra DOM nodes.
 
+
+### 🚀 Solution
+[Architectural justification of the solution]
 ## 45. Neglecting `runOutsideAngular` for Events
 **Context:** High-frequency events
 ### ❌ Bad Practice
@@ -213,4 +215,7 @@ Every scroll event triggers Change Detection.
 ### ✅ Best Practice
 Subscribe manually in `runOutsideAngular` and update the signal only when necessary.
 
+
+### 🚀 Solution
+[Architectural justification of the solution]
 ---

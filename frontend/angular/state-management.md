@@ -10,12 +10,11 @@ last_evolution: 2026-03-28
 version: "20"
 tags: [state-management, signals, zoneless, angular, best-practices, clean-code, scalable-code]
 ai_role: Senior Angular State Management Expert
----
+last_updated: 2026-03-29---
+
 
 > 📦 [best-practise](../../README.md) / 🖥️ [frontend](../readme.md) / 🅰️ [angular](./readme.md)
-
 # 📦 Angular State Management: Zoneless Reactivity & Signals
-
 # 📖 Context & Scope
 - **Primary Goal:** Enforce strictly functional state management patterns using Angular 20's Zoneless architecture.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
@@ -26,9 +25,7 @@ ai_role: Senior Angular State Management Expert
 > - Avoid RxJS `BehaviorSubject` for local and synchronous global component state.
 > - Strictly use `signal()`, `computed()`, and `effect()` to manage all dynamic data states.
 > - Never use the `@Input()` and `@Output()` decorators for sharing state across component trees; rely solely on functional `input()` and `output()`.
-
 ---
-
 ## 🏗 Architecture & Data Flow
 
 State management in Angular 20 relies entirely on the granular reactivity provided by Signals. This architecture inherently supports Zoneless change detection by exactly tracking which views need updates without relying on `zone.js`.
@@ -50,9 +47,7 @@ graph TD
     class Child default;
     class Child2 default;
 ```
-
 ---
-
 ## 🚀 I. Local State Management
 
 ### 🚨 1. Managing Component State with Signals
@@ -60,7 +55,7 @@ graph TD
 #### ❌ Bad Practice
 ```typescript
 isLoading: boolean = false;
-data: any[] = [];
+data: unknown[] = [];
 
 fetchData() {
   this.isLoading = true;
@@ -87,9 +82,7 @@ fetchData() {
 ```
 #### 🚀 Solution
 Use `signal()`. It forces the developer to explicitly use `.set()` or `.update()`, signaling to the framework exactly when and where the change occurred.
-
 ---
-
 ## ⚙️ II. Derived State
 
 ### 🚨 2. Computing Values
@@ -112,9 +105,7 @@ total = computed(() => this.items().reduce((a, b) => a + b, 0));
 ```
 #### 🚀 Solution
 Use `computed()`. The calculated value is memoized and only re-evaluates when its specific signal dependencies (in this case, `items`) change.
-
 ---
-
 ## ⚡ III. Side Effects
 
 ### 🚨 3. Handling Side Effects Safely
@@ -134,9 +125,7 @@ constructor() {
 ```
 #### 🚀 Solution
 Use `effect()`. Effects track dependencies automatically and ensure the side effect runs solely when required. Always define them within an injection context (like a constructor).
-
 ---
-
 ## 🔗 IV. Component Communication
 
 ### 🚨 4. Modern Data Passing
@@ -158,7 +147,6 @@ userProfile = model<User>();
 ```
 #### 🚀 Solution
 Use the `input()` and `model()` functional APIs. They return signals that can be directly used in `computed()` properties within the child component.
-
 ---
 
 [⬆️ Back to Top](#)

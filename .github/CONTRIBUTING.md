@@ -1,3 +1,16 @@
+---
+description: Vibe coding guidelines and architectural constraints for Angular within the Documentation domain.
+tags: [angular, documentation, best-practices, architecture]
+topic: Angular
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true
+technology: Angular
+domain: Documentation
+level: Senior/Architect
+version: Latest
+ai_role: Senior Angular Expert
+last_updated: 2026-03-29---
 [ 🇺🇸 English ](#english) | [ 🇷🇺 Русский ](#russian)
 
 <a id="english"></a>
@@ -10,9 +23,7 @@
   [![Security: Active](https://img.shields.io/badge/Security-Active-brightgreen?style=for-the-badge&logo=springsecurity)](#)
   [![Vibe-Coding Protected](https://img.shields.io/badge/Vibe--Coding-Protected-blue?style=for-the-badge&logo=shield)](#)
 </div>
-
 ---
-
 ## 🔄 The Contribution Lifecycle
 
 We engineer context. The process of contributing meta-instructions must be as rigorous as the software architectures we define. Follow this lifecycle without deviation.
@@ -36,9 +47,7 @@ stateDiagram-v2
     classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
 
 ```
-
 ---
-
 ## 🧠 Writing Standards for AI Context (The Spec)
 
 AI Agents (Cursor, Windsurf, Antigravity) do not need conversational prose; they need high-density, analytical directives.
@@ -63,9 +72,7 @@ Every instruction must target its exact technical domain. Tag your docs logicall
 
 > [!NOTE]
 > **Mermaid Diagrams are Mandatory:** Any architectural pattern, data flow, or state machine rule that involves more than two entities **must** be accompanied by a Mermaid diagram. AI models parse explicit structural limits significantly better when visualized in markdown.
-
 ---
-
 ## 🚀 Step-by-Step Workflow
 
 Execute your contributions using the following pipeline:
@@ -77,9 +84,7 @@ Execute your contributions using the following pipeline:
    * Enforce analytical tone. Use Markdown Tables for rulesheets. Use Task Lists for sequential operations.
 3. 🧪 **Verification (The Vibe Coding Test)**:
    * **Mandatory**: You must pass the target instruction into Cursor, Windsurf, or Antigravity and verify the output. If the agent generates hallucinated or sub-standard code, the instruction is flawed. Fix it before submitting.
-
 ---
-
 ## 🏗️ Repository Architecture
 
 Our structure is absolute. We isolate context by domain and technology to prevent AI context pollution.
@@ -94,9 +99,7 @@ Our structure is absolute. We isolate context by domain and technology to preven
 
 > [!TIP]
 > Do not scatter configuration instructions. If a domain or technology doesn't exist, create it, but it **must** contain a `readme.md`.
-
 ---
-
 ## 📜 Commit Convention
 
 We run automated semver and changelogs. Unstructured commits break automation and will be rejected. Use [Conventional Commits](https://www.conventionalcommits.org/).
@@ -113,9 +116,7 @@ We run automated semver and changelogs. Unstructured commits break automation an
 ```bash
 feat(backend): implement NestJS strategy pattern instructions
 ```
-
 ---
-
 ## 🛡️ The Pull Request Gate
 
 Copy and paste this checklist into your PR description. Do not request an architectural review until every box is checked.
@@ -128,11 +129,9 @@ Copy and paste this checklist into your PR description. Do not request an archit
 - [ ] Language is zero-fluff, analytical, and highly technical.
 - [ ] Proven via the "Vibe Coding Test" (AI execution output/proof included below).
 ```
-
 ---
 
 *We engineer the intelligence that engineers the code. Execute with precision.*
-
 ---
 
 <a id="russian"></a>
@@ -145,9 +144,7 @@ Copy and paste this checklist into your PR description. Do not request an archit
   [![Security: Active](https://img.shields.io/badge/Security-Active-brightgreen?style=for-the-badge&logo=springsecurity)](#)
   [![Vibe-Coding Protected](https://img.shields.io/badge/Vibe--Coding-Protected-blue?style=for-the-badge&logo=shield)](#)
 </div>
-
 ---
-
 ## 🔄 Жизненный цикл контрибьютора
 
 Мы проектируем контекст. Процесс внесения мета-инструкций должен быть таким же строгим, как и архитектура программного обеспечения, которую мы определяем. Следуйте этому жизненному циклу без отклонений.
@@ -171,9 +168,7 @@ stateDiagram-v2
     classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
 
 ```
-
 ---
-
 ## 🧠 Стандарты написания контекста для ИИ (Спецификация)
 
 ИИ-агентам (Cursor, Windsurf, Antigravity) не нужна разговорная проза; им нужны высокоплотные, аналитические директивы.
@@ -198,9 +193,7 @@ stateDiagram-v2
 
 > [!NOTE]
 > **Диаграммы Mermaid обязательны:** Любой архитектурный паттерн, поток данных (Data Flow) или правило конечного автомата, включающее более двух сущностей, **обязаны** сопровождаться диаграммой Mermaid. Модели ИИ значительно лучше понимают явные структурные ограничения при их визуализации в Markdown.
-
 ---
-
 ## 🚀 Пошаговый Workflow (Рабочий процесс)
 
 Вносите свой вклад, используя следующий пайплайн:
@@ -212,9 +205,7 @@ stateDiagram-v2
    * Придерживайтесь аналитического тона. Используйте таблицы Markdown для свода правил. Используйте списки задач (Task Lists) для последовательных операций.
 3. 🧪 **Верификация (Vibe Coding Test)**:
    * **Обязательно**: Вы должны передать целевую инструкцию в Cursor, Windsurf или Antigravity и проверить результат. Если агент генерирует галлюцинации или нестандартный код, инструкция ошибочна. Исправьте её перед отправкой (PR).
-
 ---
-
 ## 🏗️ Архитектура репозитория
 
 Наша структура абсолютна. Мы изолируем контекст по доменам и технологиям, чтобы предотвратить "загрязнение" контекста для ИИ (AI context pollution).
@@ -229,9 +220,7 @@ stateDiagram-v2
 
 > [!TIP]
 > Не разбрасывайте инструкции по настройке. Если домен или технология еще не существует, создайте их, но в директории **обязан** быть файл `readme.md`.
-
 ---
-
 ## 📜 Соглашения о коммитах (Commit Convention)
 
 Мы используем автоматизированное семантическое версионирование (semver) и генерацию Changelog. Неструктурированные коммиты ломают автоматизацию и будут отклонены. Используйте [Conventional Commits](https://www.conventionalcommits.org/).
@@ -248,9 +237,7 @@ stateDiagram-v2
 ```bash
 feat(backend): implement NestJS strategy pattern instructions
 ```
-
 ---
-
 ## 🛡️ Врата Pull Request (PR Gate)
 
 Скопируйте и вставьте этот чек-лист в описание вашего PR. Не запрашивайте архитектурное ревью, пока не будут отмечены все пункты.
@@ -263,7 +250,6 @@ feat(backend): implement NestJS strategy pattern instructions
 - [ ] Язык без "воды", аналитичный и высокотехничный.
 - [ ] Доказано через "Vibe Coding Test" (вывод ИИ-агента или доказательство успешного тестирования прикреплено ниже).
 ```
-
 ---
 
 *Мы проектируем интеллект, который проектирует код. Работайте с точностью.*

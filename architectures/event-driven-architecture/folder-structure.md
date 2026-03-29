@@ -7,16 +7,18 @@ last_evolution: 2026-03-27
 vibe_coding_ready: true
 tags: [eda, folder-structure, architecture-hierarchy, backend, microservices]
 topic: Event-Driven Folder Structure
----
+level: Senior/Architect
+version: Latest
+ai_role: Senior Event-Driven Architecture Expert
+last_updated: 2026-03-29---
+
 
 <div align="center">
   # 📁 EDA Folder Structure (Hierarchy Blueprint)
 </div>
-
 ---
 
 This document outlines the optimal 2026-grade folder structure for an Event-Driven microservice (or bounded context). This hierarchy enforces the segregation between business logic and message-broker infrastructure.
-
 ## Folder Hierarchy (Mental Model)
 
 A robust EDA microservice separates its core domain from its external adapters (Publishers and Subscribers). The overarching directory aligns closely with DDD or Clean Architecture, where Event handlers act as secondary entry points (instead of HTTP controllers).
@@ -51,9 +53,7 @@ graph TD
     class Domain,App,Handlers component;
     class Infra,DB,Msg,Pub,Sub,Config default;
 ```
-
 ---
-
 ## Detailed Directory Tree
 
 ```text
@@ -85,7 +85,6 @@ src/
 2. **`infrastructure/messaging/publishers/`**: This directory contains implementations of your output ports. It serializes the internal domain event into a payload (JSON/Avro) and publishes it to the external topic.
 3. **`infrastructure/messaging/subscribers/`**: This directory acts exactly like HTTP Controllers. A consumer listens to a Kafka topic, deserializes the message, and hands it off to a `core/application/handlers/` class to perform the actual business logic.
 4. **`infrastructure/messaging/schemas/`**: Strongly-typed schemas (like Protobuf or Avro) defining the contract for events passing through the broker.
-
 ---
 
 <div align="center">

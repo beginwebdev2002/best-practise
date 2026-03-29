@@ -1,5 +1,16 @@
-# 🎨 UI/UX Design & Styling Rules for Jules
-
+---
+description: Vibe coding guidelines and architectural constraints for Vibe Coding within the Documentation domain.
+tags: [vibe-coding, documentation, best-practices, architecture]
+topic: Vibe Coding
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true
+technology: Vibe Coding
+domain: Documentation
+level: Senior/Architect
+version: Latest
+ai_role: Senior Vibe Coding Expert
+last_updated: 2026-03-29---# 🎨 UI/UX Design & Styling Rules for Jules
 ## 1. Context & Scope
 - **Primary Goal:** Maintain a consistent, **accessible (a11y)**, and visually appealing user interface across all applications through strict **responsive design** practices.
 - **Target Tooling:** Jules AI agent (UI Generation & CSS Audits).
@@ -8,9 +19,7 @@
 <div align="center">
   <img src="https://img.icons8.com/?size=100&id=65664&format=png&color=000000" width="100" alt="Design Overview">
 </div>
-
 ---
-
 ## 2. Design System & Styling Rules
 
 > [!CAUTION]
@@ -33,9 +42,9 @@ graph TD
     Elements --> Components[Complex Components: Cards, Modals]
     Components --> Layouts[Page Layouts: Grids, Sections]
     
-    style Tokens fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
-    style Elements fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000
-    style Components fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000
+    class Tokens auto_style_Tokens
+    class Elements auto_style_Elements
+    class Components auto_style_Components
     %% Added Design Token Styles for Mermaid Diagrams
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
     classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
@@ -43,10 +52,13 @@ graph TD
 
     class Layouts component;
 
+
+    %% Auto-generated Design Tokens
+    classDef auto_style_Tokens fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef auto_style_Elements fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000
+    classDef auto_style_Components fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000
 ```
-
 ---
-
 ## 3. Checklist for Jules Agent
 
 When generating UI components or modifying styles:

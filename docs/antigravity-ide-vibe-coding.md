@@ -1,12 +1,20 @@
 ---
 description: Discover the ultimate vibe coding and AI Agents guidelines for the Antigravity IDE. Understand core memory strategies and context optimization.
 tags: [vibe coding, AI Agents, Antigravity IDE, context window, ai coding]
----
+technology: Vibe Coding
+domain: Documentation
+level: Senior/Architect
+version: Latest
+ai_role: Senior Vibe Coding Expert
+last_updated: 2026-03-29
+topic: Vibe Coding
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # Antigravity IDE Vibe Coding Best Practices
 
 When using the Antigravity IDE, applying the best practices is essential for efficient vibe coding. By understanding how AI Agents interact with this standalone environment, developers can generate highly optimized, production-ready code.
-
 ## Context and Scope
 
 - **Primary Goal:** Provide an actionable guide for using AI Agents within the Antigravity IDE.
@@ -18,7 +26,6 @@ When using the Antigravity IDE, applying the best practices is essential for eff
 
   **Mastering Vibe Coding with Antigravity**
 </div>
-
 ## Context Window Management for AI Agents
 
 Antigravity IDE is deeply integrated with large context window capabilities. Efficient Context Window Management ensures that the AI Agents do not hallucinate and can precisely follow instructions for vibe coding.
@@ -40,7 +47,6 @@ graph TD
     class UserPrompt default;
     class Codebase layout;
 ```
-
 ## System Constraints and Memory Strategies
 
 To achieve enterprise-grade scalability, it is important to utilize memory strategies effectively. The following table illustrates the recommended memory strategies inside the Antigravity IDE.
@@ -50,7 +56,6 @@ To achieve enterprise-grade scalability, it is important to utilize memory strat
 | **Agentic Rulesets** | Providing static `.agents/rules` files. | High-level system design |
 | **Active File Focus** | Keeping only necessary files open. | Direct refactoring |
 | **Semantic Search** | Vector search across the codebase. | Broad feature discovery |
-
 ## Production-Ready Actionable Checklist
 
 To ensure a smooth vibe coding experience, use this checklist before invoking the AI Agents:

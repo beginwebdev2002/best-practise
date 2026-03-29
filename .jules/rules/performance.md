@@ -1,10 +1,18 @@
 ---
 description: Key instructions for Jules regarding performance optimization standards, ensuring fast load times and global scalability.
 tags: [performance optimization, scalability, fast load times, lazy loading, caching, pagination, frontend optimization, backend efficiency, ai agent]
----
+technology: Angular
+domain: Documentation
+level: Senior/Architect
+version: Latest
+ai_role: Senior Angular Expert
+last_updated: 2026-03-29
+topic: Angular
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # ⚡ Performance Optimization Rules for Jules
-
 ## 1. 🎯 Context & Scope
 - **Primary Goal:** Ensure all generated code meets strict **performance optimization** standards, guaranteeing fast load times, efficient resource usage, and global **scalability**.
 - **Target Tooling:** Jules AI agent (Automated Performance Audits & Code Generation).
@@ -13,9 +21,7 @@ tags: [performance optimization, scalability, fast load times, lazy loading, cac
 <div align="center">
   <img src="https://img.icons8.com/?size=100&id=13441&format=png&color=000000" width="100" alt="Performance Overview">
 </div>
-
 ---
-
 ## 2. 🚀 Core Performance Guidelines
 
 > [!WARNING]
@@ -55,13 +61,16 @@ graph TD
     C --> C2[Caching Strategy]
     C --> C3[Pagination]
 
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style C fill:#bfb,stroke:#333,stroke-width:2px
+    class A auto_style_A
+    class B auto_style_B
+    class C auto_style_C
+
+    %% Auto-generated Design Tokens
+    classDef auto_style_A fill:#f9f,stroke:#333,stroke-width:2px
+    classDef auto_style_B fill:#bbf,stroke:#333,stroke-width:2px
+    classDef auto_style_C fill:#bfb,stroke:#333,stroke-width:2px
 ```
-
 ---
-
 ## 3. ✅ Checklist for Jules Agent
 
 When writing or reviewing code for performance:
@@ -69,5 +78,4 @@ When writing or reviewing code for performance:
 - [ ] Use Big-O notation analysis; avoid nested loops $O(n^2)$ for large data sets.
 - [ ] Ensure API responses are compressed (Gzip/Brotli).
 - [ ] Identify opportunities to batch or debounce repetitive actions (like user typing or API requests).
-
 ## 4. ❓ Frequently Asked Questions:

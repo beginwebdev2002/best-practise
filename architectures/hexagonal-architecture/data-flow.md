@@ -7,16 +7,17 @@ version: Agnostic
 tags: [best-practices, data-flow, hexagonal-architecture, ports-and-adapters]
 ai_role: Senior Software Architect
 last_updated: 2026-03-22
----
+topic: Hexagonal Architecture
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # 🔄 Hexagonal Architecture Data Flow Best Practices
 
 <div align="center">
   **Execution paths and communication between layers.**
 </div>
-
 ---
-
 ## 🔁 The Sequence of Execution
 
 In Hexagonal Architecture, a request from the outside world must pierce through the layers strictly via defined Interfaces (Ports).
@@ -43,7 +44,6 @@ sequenceDiagram
     Domain-->>IP: Return Result/DTO
     IP-->>UI: Form HTTP/RPC Response
 ```
-
 ## ⛔ Boundary Constraints (Data Flow Rules)
 
 1. **No External Imports in Domain:** The Core Domain must NEVER import code from an Adapter (e.g., `import { PostgresDB } from '../adapters/db'`). It only implements Interfaces.

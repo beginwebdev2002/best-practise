@@ -7,17 +7,17 @@ version: "20"
 tags: [architecture, dependency-injection, angular, best-practices, clean-code, scalable-code]
 ai_role: Senior Angular Architecture Expert
 last_updated: 2026-03-22
----
+topic: Angular
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # 🏗 Angular Architecture & Dependency Injection Best Practices
-
 # 📖 Context & Scope
 - **Primary Goal:** Provide architectural best practices for Angular including DI usage, modules, routing, and guards.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** Angular 20
-
 ## II. Architecture & DI (16-30)
-
 ## 16. Services provided in 'root' vs Modules
 **Context:** Tree Shaking
 ### ❌ Bad Practice
@@ -32,7 +32,6 @@ The service is included in the bundle even if it is not used.
 ```
 ### 🚀 Solution
 Always use `providedIn: 'root'`. This allows the bundler to remove unused services (Tree Shaking).
-
 ## 17. Class-based Guards
 **Context:** Routing Security
 ### ❌ Bad Practice
@@ -50,7 +49,6 @@ export const authGuard: CanActivateFn = (route, state) => {
 ```
 ### 🚀 Solution
 Use functional Guards (`CanActivateFn`). They are concise, easy to test, and composable.
-
 ## 18. Class-based Interceptors
 **Context:** HTTP Requests
 ### ❌ Bad Practice
@@ -69,7 +67,6 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
 ```
 ### 🚀 Solution
 Use functional Interceptors (`HttpInterceptorFn`) with `provideHttpClient(withInterceptors([...]))`.
-
 ## 19. State Mutation in Services
 **Context:** Data Integrity
 ### ❌ Bad Practice
@@ -89,7 +86,6 @@ updateUser(user: User) {
 ```
 ### 🚀 Solution
 Use Signals for state management. They guarantee reactivity and atomicity of updates.
-
 ## 20. Calling functions inside `@for` tracking
 **Context:** Rendering Performance
 ### ❌ Bad Practice
@@ -104,7 +100,6 @@ The tracking function is called for each element during every re-render.
 ```
 ### 🚀 Solution
 Use an object property (ID or a unique key) directly. If a function is needed, it must be as simple and pure as possible.
-
 ## 21. `host` property vs `@HostListener`
 **Context:** Component Metadata
 ### ❌ Bad Practice
@@ -125,7 +120,6 @@ Decorators increase class size and scatter host configuration across the file.
 ```
 ### 🚀 Solution
 Use the `host` property in component metadata. This centralizes all host element settings.
-
 ## 22. Dynamic Components with `ComponentFactoryResolver`
 **Context:** Dynamic Rendering
 ### ❌ Bad Practice
@@ -143,7 +137,6 @@ this.container.createComponent(MyComponent);
 ```
 ### 🚀 Solution
 Use `ViewContainerRef.createComponent` directly with the component class or the `ngComponentOutlet` directive.
-
 ## 23. Shared Modules (The "Dump" Module)
 **Context:** Modular Architecture
 ### ❌ Bad Practice
@@ -154,7 +147,6 @@ If a component needs a single button, it is forced to pull the entire `SharedMod
 Import only what is needed directly into the `imports` of the Standalone component.
 ### 🚀 Solution
 Abandon `SharedModule` in favor of granular imports of Standalone entities.
-
 ## 24. Circular Dependencies in DI
 **Context:** Architecture
 ### ❌ Bad Practice
@@ -165,7 +157,6 @@ Leads to runtime errors ("Cannot instantiate cyclic dependency"). Indicates poor
 Use `forwardRef()` as a crutch, but it's better to extract the shared logic into a third Service C.
 ### 🚀 Solution
 Refactoring: break services into smaller ones following SRP (Single Responsibility Principle).
-
 ## 25. Logic in Pipes
 **Context:** Separation of Concerns
 ### ❌ Bad Practice
@@ -176,12 +167,11 @@ Pipes are intended for data transformation in the template. Side effects in pipe
 Pipes should be "Pure" (without side effects) and fast.
 ### 🚀 Solution
 Extract logic into services/signals. Leave only formatting to pipes.
-
 ## 26. `any` in Services
 **Context:** TypeScript Safety
 ### ❌ Bad Practice
 ```typescript
-getData(): Observable<any> { ... }
+getData(): Observable<unknown> { ... }
 ```
 ### ⚠️ Problem
 `any` disables type checking, nullifying the benefits of TypeScript. Errors only surface at runtime.
@@ -191,7 +181,6 @@ getData(): Observable<UserDto> { ... }
 ```
 ### 🚀 Solution
 Use DTO interfaces (generate them from Swagger/OpenAPI) and Zod for API response validation.
-
 ## 27. Multiple `async` pipes for same stream
 **Context:** RxJS Subscriptions
 ### ❌ Bad Practice
@@ -208,12 +197,11 @@ Each `async` pipe creates a new subscription. This can lead to duplicated HTTP r
 ```
 ### 🚀 Solution
 Use aliases in the template (`as varName`) or convert the stream to a signal (`toSignal`).
-
 ## 28. ProvidedIn 'any'
 **Context:** DI Scopes
 ### ❌ Bad Practice
 ```typescript
-@Injectable({ providedIn: 'any' })
+@Injectable({ providedIn: 'unknown' })
 ```
 ### ⚠️ Problem
 Creates a new service instance for each lazy-loaded module. This is often unexpected behavior, leading to state desynchronization (different singleton instances).
@@ -221,7 +209,6 @@ Creates a new service instance for each lazy-loaded module. This is often unexpe
 `providedIn: 'root'` or providing at the level of a specific component (`providers: []`).
 ### 🚀 Solution
 Avoid `any`. Explicitly control the scope: either global (`root`) or local.
-
 ## 29. Imperative Routing
 **Context:** Navigation
 ### ❌ Bad Practice
@@ -236,7 +223,6 @@ this.router.navigate(['users', id]);
 ```
 ### 🚀 Solution
 Use an array of segments. It is safer (automatic encoding of URL parameters) and cleaner.
-
 ## 30. Ignoring `OnPush` Strategy
 **Context:** Change Detection Strategy
 ### ❌ Bad Practice
@@ -249,5 +235,4 @@ changeDetection: ChangeDetectionStrategy.OnPush
 ```
 ### 🚀 Solution
 Always set `OnPush`. With signals, this becomes the de facto standard, as updates occur precisely.
-
 ---

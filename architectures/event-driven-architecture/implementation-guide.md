@@ -7,19 +7,21 @@ last_evolution: 2026-03-27
 vibe_coding_ready: true
 tags: [eda, implementation-guide, kafka, microservices, typescript, nestjs, architecture-patterns]
 topic: Event-Driven Implementation Guide
----
+level: Senior/Architect
+version: Latest
+ai_role: Senior Event-Driven Architecture Expert
+last_updated: 2026-03-29---
+
 
 <div align="center">
   # 🛠️ EDA Implementation Guide (Code Blueprint)
 </div>
-
 ---
 
 This blueprint details strict coding patterns and anti-patterns for implementing Event-Driven Architecture, ensuring "at-least-once" delivery, schema registry compliance, and robust idempotency.
 
 > [!IMPORTANT]
 > **Implementation Contract:** All code must adhere to 2026 modern backend standards (Node.js 24+, TypeScript 5.5+, strict types, decorators, or class-based dependency injection). Services must integrate safely with message brokers (Kafka) without tightly coupling business logic.
-
 ## Entity & Handler Relationships
 
 ```mermaid
@@ -46,9 +48,7 @@ classDiagram
     DomainEvent <-- EventHandler
     DomainEvent <-- EventPublisher
 ```
-
 ---
-
 ## 1. Idempotent Consumers (Crucial)
 
 Because Kafka or RabbitMQ may deliver the same message twice (e.g., during a consumer rebalance), handlers must be purely idempotent. Processing the exact same `eventId` twice MUST NOT duplicate the business outcome (e.g., charging a credit card twice).
@@ -88,8 +88,14 @@ class PaymentEventHandler {
 }
 ```
 
----
 
+### ⚠️ Problem
+[Analysis of the risks]
+
+
+### 🚀 Solution
+[Architectural justification of the solution]
+---
 ## 2. The Transactional Outbox Pattern
 
 To solve the "Dual-Write Problem" (saving state to the DB and publishing to Kafka reliably), we use an Outbox table. If the application crashes after saving to the DB but before publishing to Kafka, the message is permanently lost.
@@ -135,8 +141,14 @@ class OrderService {
 }
 ```
 
----
 
+### ⚠️ Problem
+[Analysis of the risks]
+
+
+### 🚀 Solution
+[Architectural justification of the solution]
+---
 ## 3. Strictly Typed Schemas (Schema Registry)
 
 Microservices evolve independently. If a publisher changes the shape of a JSON event payload, all downstream subscribers will break. Always enforce a Schema Registry (Avro, Protobuf, JSON Schema) for all events.
@@ -172,6 +184,17 @@ class OrderKafkaPublisher {
 }
 ```
 
+
+### ❌ Bad Practice
+[Need to fill in example of non-optimal code]
+
+
+### ⚠️ Problem
+[Analysis of the risks]
+
+
+### 🚀 Solution
+[Architectural justification of the solution]
 ---
 
 <div align="center">

@@ -10,18 +10,15 @@ domain: frontend
 level: Senior/Architect
 version: "19+"
 ai_role: Senior React Performance Expert
-last_updated: 2026-03-22
----
+last_updated: 2026-03-22---
 
 # ⚡ React Performance & Best Practices
 
 [⬆️ Back to Top](#)
-
 # 📖 Context & Scope
 - **Primary Goal:** Outline advanced techniques for optimal performance in React 19+.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** React 19+
-
 ## 📚 Topics
 
 ### 1. Manual Memoization vs React Compiler

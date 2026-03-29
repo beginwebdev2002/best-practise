@@ -10,13 +10,11 @@ version: "7.0+"
 tags: [security-best-practices, mongodb, nosql, database, authentication, authorization, rbac, encryption, injection-prevention, production-ready, scalable-code]
 ai_role: Senior MongoDB Database Architect
 last_updated: 2026-03-28
-last_evolution: 2026-03-28
----
+last_evolution: 2026-03-28---
 
 # 🔒 MongoDB Security Best Practices
 
 This document outlines essential security controls for enterprise-level MongoDB deployments, focusing on RBAC, encryption at rest, and preventing NoSQL injections.
-
 ## 🛡️ 1. Authentication and Authorization (RBAC)
 
 Ensure MongoDB requires authentication and enforce Role-Based Access Control (RBAC) to limit privileges to the absolute minimum necessary.
@@ -54,8 +52,10 @@ db.createUser({
 });
 ```
 
----
 
+### ⚠️ Problem
+[Analysis of the risks]
+---
 ## 🔐 2. NoSQL Injection Prevention
 
 MongoDB queries can be vulnerable to NoSQL injection if user input is not properly sanitized or if raw operator objects are passed directly to query parameters.
@@ -93,8 +93,10 @@ const user = await db.collection('users').findOne({
 });
 ```
 
----
 
+### ⚠️ Problem
+[Analysis of the risks]
+---
 ## 🗄️ 3. Encryption at Rest
 
 Protect data stored on disk by enabling encryption at rest, ensuring that unauthorized parties cannot access the database files if the host is compromised.
@@ -106,13 +108,23 @@ Enable WiredTiger encryption at rest using a robust Key Management Service (KMS)
 ### 🚀 Configuration
 
 ```yaml
+
+### ❌ Bad Practice
+[Need to fill in example of non-optimal code]
+
+
+### ⚠️ Problem
+[Analysis of the risks]
+
+
+### 🚀 Solution
+[Architectural justification of the solution]
 # mongod.conf
 security:
   enableEncryption: true
   encryptionCipherMode: AES256-CBC
   encryptionKeyFile: /path/to/master/key/file
 ```
-
 ---
 
 [⬆ Back to Top](#-mongodb-security-best-practices)

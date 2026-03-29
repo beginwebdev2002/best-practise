@@ -1,10 +1,18 @@
 ---
 description: Key instructions for Jules regarding enterprise system architectures: Clean Architecture, Microservices, MVC, CQRS.
 tags: [software architecture, system design, enterprise patterns, production-ready, scalable architecture, clean code, hexagonal-architecture, microservices]
----
+technology: Vibe Coding
+domain: Documentation
+level: Senior/Architect
+version: Latest
+ai_role: Senior Vibe Coding Expert
+last_updated: 2026-03-29
+topic: Vibe Coding
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # 🏗️ System Design & Enterprise Architecture Rules for Jules
-
 ## 1. Context & Scope
 - **Primary Goal:** Ensure the implementation of **software architecture** and **system design** standards to construct **scalable architecture** and write **production-ready** code.
 - **Target Tooling:** Jules AI agent (Vibe Coding).
@@ -13,9 +21,7 @@ tags: [software architecture, system design, enterprise patterns, production-rea
 <div align="center">
   <img src="https://img.icons8.com/?size=100&id=102832&format=png&color=000000" width="100" alt="Architecture Overview">
 </div>
-
 ---
-
 ## 2. Architecture Generation Instructions
 
 When the User requests a new service or module, Jules must first rely on these **enterprise patterns**. 
@@ -32,8 +38,8 @@ graph TD
     Adapters --> Logic[Business Use Cases]
     Logic --> Domain[Domain Entities]
     
-    style Domain fill:#4caf50,stroke:#388e3c,stroke-width:2px,color:#fff
-    style Logic fill:#2196f3,stroke:#1976d2,stroke-width:2px,color:#fff
+    class Domain auto_style_Domain
+    class Logic auto_style_Logic
     %% Added Design Token Styles for Mermaid Diagrams
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
     classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
@@ -42,6 +48,10 @@ graph TD
     class UI component;
     class Adapters component;
 
+
+    %% Auto-generated Design Tokens
+    classDef auto_style_Domain fill:#4caf50,stroke:#388e3c,stroke-width:2px,color:#fff
+    classDef auto_style_Logic fill:#2196f3,stroke:#1976d2,stroke-width:2px,color:#fff
 ```
 
 ### Architecture Comparison for Selection
@@ -52,9 +62,7 @@ graph TD
 | **Microservices** | Large enterprise systems | Services must only communicate through Application Programming Interfaces (API) or Event systems. |
 | **Clean Architecture** | Complex business rules and logic | Dependencies must only point inward toward the core Domain. |
 | **CQRS** | Systems with very high read traffic | Separate the methods that write data (Command) from the methods that read data (Query). |
-
 ---
-
 ## 3. Checklist for Jules Agent
 
 When starting a new feature:

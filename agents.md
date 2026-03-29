@@ -1,10 +1,18 @@
 ---
 description: The Meta-Intelligence & Vibe Coding Protocol defining how AI agents interact with the repository and follow architectural guidelines.
 tags: [vibe coding, ai agents, execution protocol, context mapping, global constraints]
----
+technology: TypeScript
+domain: Documentation
+level: Senior/Architect
+version: Latest
+ai_role: Senior TypeScript Expert
+last_updated: 2026-03-29
+topic: TypeScript
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # AGENTS.md: The Meta-Intelligence & Vibe Coding Protocol
-
 ## 🌍 1. Global Vision
 **The Gold Standard for AI-Driven Development Instructions.**
 
@@ -12,9 +20,7 @@ This repository is not a codebase; it is a **Machine-Readable Intelligence Layer
 - **Automate the Mundane:** Shift the burden of boilerplate and syntax to the AI.
 - **Architectural Excellence:** Force AI agents to respect high-level patterns (FSD, MVC) before writing a single line of logic.
 - **Vibe Coding Synchronization:** Provide a unified "Source of Truth" for any LLM-based agent (Cursor, Windsurf, Copilot) to ensure "perfect first-time" generation.
-
 ---
-
 ## 🗺️ 2. Context Mapping
 AI Agents MUST traverse this repository using the following hierarchical logic:
 
@@ -34,7 +40,7 @@ graph TD
     BE --> Nest[NestJS]
     BE --> Express[Express]
 
-    style Global fill:#f9f,stroke:#333,stroke-width:4px
+    class Global auto_style_Global
     %% Added Design Token Styles for Mermaid Diagrams
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
     classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
@@ -51,6 +57,9 @@ graph TD
     class Arch component;
     class Nest component;
 
+
+    %% Auto-generated Design Tokens
+    classDef auto_style_Global fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ### Resource Directory
@@ -60,9 +69,7 @@ graph TD
 | `/architectures/` | System Design Blueprints | Defines the folder structure and module boundaries. |
 | `/frontend/` | UI/UX & Client Logic | Specific rules for React, Angular, and TypeScript safety. |
 | `/backend/` | Server-side & API | Rules for scalability, security, and DTO validation. |
-
 ---
-
 ## 🛠️ 3. Tool-Specific Integration
 To leverage these rules in your IDE, follow these implementation paths:
 
@@ -81,9 +88,7 @@ Reference this repository in your `.windsurfrules` file:
 
 ### 💻 VS Code (Custom Instructions)
 For extensions like Cloud Code or GitHub Copilot, append the contents of `AGENTS.md` to your **Settings > Custom Instructions** field to establish the "Architectural Guardrails."
-
 ---
-
 ## 🤖 4. Agent Execution Protocol
 **Any AI Agent interacting with this repository MUST follow this 4-step execution loop:**
 
@@ -91,9 +96,7 @@ For extensions like Cloud Code or GitHub Copilot, append the contents of `AGENTS
 2.  **Constraint Identification:** Locate the specific `.md` file corresponding to the user's task (e.g., if the user asks for a NestJS service, read `backend/nestjs/readme.md`).
 3.  **Hierarchy Alignment:** Prioritize `architectures/` constraints over `frontend/` or `backend/` specifics to ensure structural integrity.
 4.  **Verification:** Before outputting code, run a "Constraint Check" against the identified rules to ensure zero violations of the "Best Practise" standard.
-
 ---
-
 ## 🔍 5. SEO & Discoverability
 <!--
 | Metadata Key | Values |
@@ -108,7 +111,6 @@ For extensions like Cloud Code or GitHub Copilot, append the contents of `AGENTS
 | `#VibeCoding` | Optimized for high-velocity, intent-based programming. |
 | `#CleanCode` | Enforces industry-standard patterns automatically. |
 | `#AgenticWorkflow` | Designed for autonomous and semi-autonomous AI agents. |
-
 ---
 
 ### Language - English
