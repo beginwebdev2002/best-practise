@@ -101,6 +101,7 @@ src/
 [![Clean Arch](https://img.shields.io/badge/Clean_Architecture-black?style=flat-square)](#)
 
 **Description:** A concept created by Robert C. Martin (Uncle Bob). It separates a project into concentric rings. The main rule is the Dependency Rule: dependencies can only point inward (towards core business entities).
+**📖 Map of Patterns:** [Go to Clean Architecture Guidelines](./clean-architecture/readme.md)
 
 **Architecture Diagram & Folder Tree:**
 ```mermaid
@@ -180,6 +181,7 @@ src/
 <img src="https://img.icons8.com/?size=100&id=D0aIuUaQjZzR&format=png&color=000000" width="40" alt="Microservices"/>
 
 **Description:** Breaking down a giant monolithic system into small, independent pieces, each handling its own business capability. Each service has its own Database and communicates via REST, gRPC, or events.
+**📖 Map of Patterns:** [Go to Microservices Guidelines](./microservices/readme.md)
 
 **Architecture Diagram & Folder Tree:**
 ```mermaid
@@ -267,6 +269,7 @@ src/
 [![DDD](https://img.shields.io/badge/Architecture-DDD-darkred?style=flat-square)](#)
 
 **Description:** A philosophy and design approach centered entirely around the business "Domain". The whole team communicates using a "Ubiquitous Language," and domains are split into `Bounded Contexts`.
+**📖 Map of Patterns:** [Go to DDD Guidelines](./domain-driven-design/readme.md)
 
 **Architecture Diagram & Folder Tree:**
 ```mermaid
@@ -308,6 +311,7 @@ src/
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apachekafka/apachekafka-original.svg" width="30" alt="Kafka Logo"/> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/RabbitMQ_logo.svg/100px-RabbitMQ_logo.svg.png" width="20" alt="RabbitMQ"/>
 
 **Description:** System components know nothing about each other (Low Coupling). They merely "publish" events and "subscribe" to them, reacting asynchronously. Ideal for high-load, highly-scalable backend systems.
+**📖 Map of Patterns:** [Go to Event-Driven Architecture Guidelines](./event-driven-architecture/readme.md)
 **📖 Map of Patterns:** [Go to EDA Guidelines](./event-driven-architecture/readme.md)
 
 **Architecture Diagram & Folder Tree:**
@@ -347,6 +351,7 @@ src/
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" width="40" alt="AWS"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg" width="20" alt="GCP"/>
 
 **Description:** Developers do not manage servers at all. The entire "server" consists of bite-sized pieces of business logic (functions/Lambdas) living in the cloud, executed only via triggers. You pay solely for compute execution time.
+**📖 Map of Patterns:** [Go to Serverless Guidelines](./serverless/readme.md)
 
 **Architecture Diagram & Folder Tree:**
 ```mermaid
@@ -385,6 +390,7 @@ project-functions/
 [![Monolithic](https://img.shields.io/badge/Architecture-Monolithic-brown?style=flat-square)](#)
 
 **Description:** The entire system components (Database, Message Queues, Business Logic, APIs) are deployed and operated from a single codebase on a single server. This is the optimal start for startups to avoid unnecessary complexity upfront. 
+**📖 Map of Patterns:** [Go to Monolithic Architecture Guidelines](./monolithic-architecture/readme.md)
 
 **Architecture Diagram & Folder Tree:**
 ```mermaid
@@ -423,6 +429,7 @@ monolith-app/
 [![CQRS](https://img.shields.io/badge/Pattern-CQRS-teal?style=flat-square)](#)
 
 **Description:** A powerful pattern where Commands (actions that mutate system data) are entirely decoupled from Queries (actions that only read data). This separation enables extremely sophisticated load distribution.
+**📖 Map of Patterns:** [Go to CQRS Guidelines](./cqrs/readme.md)
 
 **Architecture Diagram & Folder Tree:**
 ```mermaid

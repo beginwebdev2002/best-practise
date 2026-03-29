@@ -58,6 +58,13 @@ graph TD
 
 ---
 
+
+## Map of Patterns
+- 📊 [**Data Flow:** Request and Event Lifecycle](./data-flow.md)
+- 📁 [**Folder Structure:** Layering logic](./folder-structure.md)
+- ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
+- 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
+
 ## 1. Fat Controllers (God Object Controller)
 
 ### ❌ Bad Practice
