@@ -7,6 +7,10 @@ version: Agnostic
 tags: [best-practices, trade-offs, hexagonal-architecture, ports-and-adapters]
 ai_role: Senior Software Architect
 last_updated: 2026-03-22
+topic: Hexagonal-architecture
+complexity: Architect
+last_evolution: 2026-03-22
+vibe_coding_ready: true
 ---
 
 # ⚖️ Hexagonal Architecture Trade-offs and Constraints

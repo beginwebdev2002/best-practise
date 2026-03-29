@@ -10,6 +10,7 @@ last_evolution: 2026-03-28
 version: "20"
 tags: [state-management, signals, zoneless, angular, best-practices, clean-code, scalable-code]
 ai_role: Senior Angular State Management Expert
+last_updated: 2026-03-29
 ---
 
 > 📦 [best-practise](../../README.md) / 🖥️ [frontend](../readme.md) / 🅰️ [angular](./readme.md)

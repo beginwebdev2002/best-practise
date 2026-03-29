@@ -7,6 +7,10 @@ version: "11+"
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior NestJS Architecture Expert
 last_updated: 2026-03-23
+topic: Nestjs
+complexity: Architect
+last_evolution: 2026-03-22
+vibe_coding_ready: true
 ---
 
 <div align="center">
@@ -364,7 +368,12 @@ handleCron() { this.cleanupData(); }
 #### ✅ Best Practice
 ```typescript
 @MessagePattern({ cmd: 'get_user' })
-getUser(data: any) { return this.userService.findById(data.id); }
+getUser(data: unknown) {
+  if (data && typeof data === 'object' && 'id' in data) {
+    return this.userService.findById((data as { id: number }).id);
+  }
+  throw new RpcException('Invalid data payload');
+}
 ```
 #### 🚀 Solution
 Для общения микросервисов внутри кластера используйте TCP, Redis или RabbitMQ через `@MessagePattern`.

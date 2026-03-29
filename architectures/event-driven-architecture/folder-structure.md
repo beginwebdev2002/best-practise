@@ -7,6 +7,10 @@ last_evolution: 2026-03-27
 vibe_coding_ready: true
 tags: [eda, folder-structure, architecture-hierarchy, backend, microservices]
 topic: Event-Driven Folder Structure
+level: Senior/Architect
+version: "Latest"
+ai_role: System Architect
+last_updated: 2026-03-29
 ---
 
 <div align="center">
