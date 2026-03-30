@@ -1,16 +1,12 @@
 ---
-description: Vibe coding guidelines and architectural constraints for MongoDB within the backend domain.
 technology: MongoDB
 domain: backend
 level: Senior/Architect
-complexity: Advanced
-topic: MongoDB Architecture
-vibe_coding_ready: true
 version: "7.0+"
 tags: [architecture-patterns, mongodb, nosql, database, system-design, production-ready, scalable-code]
 ai_role: Senior MongoDB Database Architect
 last_updated: 2026-03-28
-last_evolution: 2026-03-28---
+---
 
 # 🏛️ MongoDB Architecture Constraints
 

@@ -1,16 +1,12 @@
 ---
-description: Vibe coding guidelines and database optimization constraints for MongoDB within the backend domain.
 technology: MongoDB
 domain: backend
 level: Senior/Architect
-complexity: Advanced
-topic: MongoDB Database Optimization
-vibe_coding_ready: true
 version: "7.0+"
 tags: [database-optimization, mongodb, nosql, indexing, aggregation-pipeline, system-design, production-ready, scalable-code]
 ai_role: Senior MongoDB Database Architect
 last_updated: 2026-03-28
-last_evolution: 2026-03-28---
+---
 
 # ⚡ MongoDB Database Optimization Best Practices
 
@@ -47,7 +43,7 @@ db.orders.createIndex({ status: 1, date: 1, amount: 1 })
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ---
 ## 🏗️ 2. Aggregation Pipeline Optimization
 
@@ -81,7 +77,7 @@ db.users.aggregate([
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ---
 ## 📉 3. Covered Queries
 
@@ -105,7 +101,7 @@ db.orders.find(
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 
 
 ### ✅ Best Practice

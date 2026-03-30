@@ -1,5 +1,4 @@
 ---
-description: Vibe coding guidelines and architectural constraints for Node.js within the backend domain.
 technology: Node.js
 domain: backend
 level: Senior/Architect
@@ -7,10 +6,7 @@ version: "24+"
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, javascript, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior Node.js Architecture Expert
 last_updated: 2026-03-23
-topic: Node.js
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true---
+---
 
 
 <div align="center">
@@ -76,7 +72,7 @@ Never use synchronous methods (`*Sync`) on the main thread for crypto, I/O, or h
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 2. 🗂️ Project Structure & Module Separation
 ### ❌ Bad Practice
 ```text
@@ -96,7 +92,7 @@ Implement a multi-layered folder architecture. Strictly separate the HTTP transp
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 3. 🛡️ Strict Environment Configuration
 ### ❌ Bad Practice
 ```javascript
@@ -118,7 +114,7 @@ Fail fast. Validate all necessary environment variables upon application startup
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 4. 🛑 Error Handling with Custom Classes
 ### ❌ Bad Practice
 ```javascript
@@ -140,7 +136,7 @@ Extend the built-in `Error` object to create custom operational errors. This all
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 5. 🎛️ Handling Uncaught Exceptions & Rejections
 ### ❌ Bad Practice
 // Ignoring process-level events, allowing the app to run in an unpredictable state after an error.
@@ -161,7 +157,7 @@ Always capture `uncaughtException` and `unhandledRejection`. Log the fatal error
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 6. 🔒 Hiding Sensitive Headers
 ### ❌ Bad Practice
 // Sending default headers that expose the framework, like `X-Powered-By: Express`.
@@ -176,7 +172,7 @@ Sanitize outgoing HTTP headers to prevent information leakage about the server i
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 7. ⏱️ Implementing Graceful Shutdown
 ### ❌ Bad Practice
 // Application crashes abruptly during deployments, interrupting active user requests and corrupting database transactions.
@@ -198,7 +194,7 @@ Listen for termination signals (`SIGTERM`, `SIGINT`). Finish processing ongoing 
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 8. 🔍 Input Validation and Sanitization
 ### ❌ Bad Practice
 ```javascript
@@ -219,7 +215,7 @@ Never trust external data. Validate input strictly using schema definitions and 
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 9. 🚀 Utilizing Worker Threads for Heavy Tasks
 ### ❌ Bad Practice
 ```javascript
@@ -245,7 +241,7 @@ Offload CPU-intensive operations (image processing, video encoding, heavy crypto
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 10. 📝 Centralized and Structured Logging
 ### ❌ Bad Practice
 ```javascript
@@ -273,4 +269,4 @@ Avoid `console.log`. Use a sophisticated logging library (like Pino or Winston) 
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.

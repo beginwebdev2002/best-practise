@@ -1,5 +1,4 @@
 ---
-description: Vibe coding guidelines and architectural constraints for Express.js within the backend domain.
 technology: Express.js
 domain: backend
 level: Senior/Architect
@@ -7,10 +6,7 @@ version: "4.x / 5.x"
 tags: [best-practices, clean-code, expressjs, vibe-coding, cursor-rules, javascript, typescript, software-architecture, system-design, mvc, production-ready, programming-standards, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, enterprise-patterns, backend]
 ai_role: Senior Express.js Backend Expert
 last_updated: 2026-03-23
-topic: Express.js
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true---
+---
 
 
 <div align="center">
@@ -81,7 +77,7 @@ class UserController {
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 2. Async/Await Error Wrapping (Express 4)
 ### ❌ Bad Practice
 ```javascript
@@ -97,7 +93,7 @@ router.get('/', asyncHandler(UserController.get));
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 3. Global Error Handler Middleware
 ### ❌ Bad Practice
 ```javascript
@@ -115,7 +111,7 @@ app.use((err, req, res, next) => {
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 4. Request Payload Validation (Joi / Zod)
 ### ❌ Bad Practice
 ```javascript
@@ -135,7 +131,7 @@ router.post('/', validate(userSchema), UserController.create);
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 5. Environment Variables separation
 ### ❌ Bad Practice
 ```javascript
@@ -151,7 +147,7 @@ mongoose.connect(process.env.DB_URI);
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 6. HTTP Security Headers (Helmet)
 ### ❌ Bad Practice
 // Приложение светит 'X-Powered-By: Express'
@@ -165,7 +161,7 @@ app.use(helmet());
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 7. Cross-Origin Resource Sharing (CORS)
 ### ❌ Bad Practice
 ```javascript
@@ -181,7 +177,7 @@ app.use(cors({ origin: 'https://myapp.com', credentials: true }));
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 8. Rate Limiting (Защита от DDoS)
 ### ❌ Bad Practice
 // API открыт для миллиона запросов в секунду
@@ -195,7 +191,7 @@ app.use('/api/', rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 9. Body Parsing & Payload Limits
 ### ❌ Bad Practice
 ```javascript
@@ -211,7 +207,7 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 10. Centralized Logging (Morgan + Winston)
 ### ❌ Bad Practice
 ```javascript
@@ -227,7 +223,7 @@ winstonLogger.info('User signed in');
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 11. Database Connection Management
 ### ❌ Bad Practice
 ```javascript
@@ -244,7 +240,7 @@ mongoose.connect(process.env.DB_URI).then(() => {
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 12. JWT Authentication Middleware
 ### ❌ Bad Practice
 ```javascript
@@ -264,7 +260,7 @@ const authGuard = (req, res, next) => {
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 13. Role-Based Access Control (RBAC) Middleware
 ### ❌ Bad Practice
 ```javascript
@@ -283,7 +279,7 @@ router.delete('/:id', requireRole('admin', 'manager'), Controller.del);
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 14. Standard API Response Wrapper
 ### ❌ Bad Practice
 ```javascript
@@ -301,7 +297,7 @@ class ApiResponse {
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 15. Pagination details in API
 ### ❌ Bad Practice
 ```javascript
@@ -318,7 +314,7 @@ res.json({ data: users, meta: { total, page, limit, pages: Math.ceil(total/limit
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 16. Graceful Shutdown
 ### ❌ Bad Practice
 // При получении SIGTERM сервер моментально обрывает процессы
@@ -335,7 +331,7 @@ process.on('SIGTERM', () => {
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 17. 404 Route Handler
 ### ❌ Bad Practice
 // Если роут не найден, возвращается пустая белая страница
@@ -350,7 +346,7 @@ app.use('*', (req, res) => {
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 18. Application Structure (Folder organization)
 ### ❌ Bad Practice
 ```
@@ -371,7 +367,7 @@ src/
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 19. Health Check Endpoint
 ### ❌ Bad Practice
 // Нет проверки жизнеспособности подов Kubernetes
@@ -386,7 +382,7 @@ app.get('/health', (req, res) => {
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 20. Data Sanitization (XSS / NoSQL Injection)
 ### ❌ Bad Practice
 ```javascript
@@ -404,7 +400,7 @@ app.use(xss());
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 21. Swagger / OpenAPI documentation
 ### ❌ Bad Practice
 // Документация в стороннем Word-файле
@@ -419,7 +415,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 22. Manual Dependency Injection
 ### ❌ Bad Practice
 ```javascript
@@ -437,7 +433,7 @@ const controller = new UserController(new UserService(db));
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 23. File Uploads (Multer)
 ### ❌ Bad Practice
 // Парсинг бинарников руками
@@ -452,7 +448,7 @@ router.post('/avatar', upload.single('file'), Controller.upload);
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 24. Event Emitters (Фоновые задачи)
 ### ❌ Bad Practice
 ```javascript
@@ -473,7 +469,7 @@ res.send('Welcome');
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 25. Caching (Redis Middleware)
 ### ❌ Bad Practice
 // БД обрабатывает сложные расчеты на каждый хит
@@ -491,7 +487,7 @@ const cacheMiddleware = (req, res, next) => {
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 26. Custom Error Classes
 ### ❌ Bad Practice
 ```javascript
@@ -513,7 +509,7 @@ throw new AppError('User not found', 404);
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 27. Proxy Trust in Production
 ### ❌ Bad Practice
 ```javascript
@@ -528,7 +524,7 @@ app.set('trust proxy', 1); // Доверяем первому прокси
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 28. Separating Server from App
 ### ❌ Bad Practice
 ```javascript
@@ -549,7 +545,7 @@ app.listen(3000);
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 29. UUID Request Correlation
 ### ❌ Bad Practice
 // Ошибки в логах невозможно связать с конкретным пользователем
@@ -567,7 +563,7 @@ app.use((req, res, next) => {
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 30. Secure Session Management
 ### ❌ Bad Practice
 // Сессия хранится в памяти (MemoryStore) с открытыми куками
@@ -591,4 +587,4 @@ app.use(session({
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.

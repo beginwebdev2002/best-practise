@@ -1,16 +1,12 @@
 ---
-description: Vibe coding guidelines and security constraints for MongoDB within the backend domain.
 technology: MongoDB
 domain: backend
 level: Senior/Architect
-complexity: Advanced
-topic: MongoDB Security Best Practices
-vibe_coding_ready: true
 version: "7.0+"
 tags: [security-best-practices, mongodb, nosql, database, authentication, authorization, rbac, encryption, injection-prevention, production-ready, scalable-code]
 ai_role: Senior MongoDB Database Architect
 last_updated: 2026-03-28
-last_evolution: 2026-03-28---
+---
 
 # 🔒 MongoDB Security Best Practices
 
@@ -54,7 +50,7 @@ db.createUser({
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ---
 ## 🔐 2. NoSQL Injection Prevention
 
@@ -95,7 +91,7 @@ const user = await db.collection('users').findOne({
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ---
 ## 🗄️ 3. Encryption at Rest
 
@@ -114,7 +110,7 @@ Enable WiredTiger encryption at rest using a robust Key Management Service (KMS)
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 
 
 ### 🚀 Solution

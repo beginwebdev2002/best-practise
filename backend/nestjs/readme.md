@@ -1,5 +1,4 @@
 ---
-description: Vibe coding guidelines and architectural constraints for NestJS within the backend domain.
 technology: NestJS
 domain: backend
 level: Senior/Architect
@@ -7,10 +6,7 @@ version: "11+"
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior NestJS Architecture Expert
 last_updated: 2026-03-23
-topic: NestJS
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true---
+---
 
 
 <div align="center">
@@ -498,7 +494,7 @@ app.enableShutdownHooks();
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ---
 [⬆️ Back to Top](#)
 
