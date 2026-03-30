@@ -1,16 +1,12 @@
 ---
-description: Vibe coding guidelines and architectural constraints for React State Management within the frontend domain.
-tags: [react, state-management, server-actions, best-practices, architecture, clean-code]
-topic: React State Management
-complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
 technology: React
 domain: frontend
 level: Senior/Architect
 version: "19+"
+tags: [react, state-management, server-actions, best-practices, architecture, clean-code]
 ai_role: Senior React State Management Expert
-last_updated: 2026-03-22---
+last_updated: 2026-03-22
+---
 
 # 🔄 React State Management & Server Actions Best Practices
 
