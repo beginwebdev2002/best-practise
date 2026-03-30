@@ -7,6 +7,10 @@ version: "4.x / 5.x"
 tags: [best-practices, clean-code, expressjs, vibe-coding, cursor-rules, javascript, typescript, software-architecture, system-design, mvc, production-ready, programming-standards, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, enterprise-patterns, backend]
 ai_role: Senior Express.js Backend Expert
 last_updated: 2026-03-23
+topic: Backend Architecture
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true
 ---
 
 <div align="center">
@@ -71,6 +75,9 @@ app.post('/api/users', async (req, res) => {
   /* бизнес-логика здесь */
 });
 ```
+### ⚠️ Problem
+Synchronous operations block the main event loop, causing severe performance degradation and potential denial-of-service (DoS) under load.
+
 ### ✅ Best Practice
 ```javascript
 router.post('/api/users', UserController.create);
@@ -87,6 +94,9 @@ class UserController {
 ```javascript
 router.get('/', async (req, res) => { throw new Error('Crash'); }); // Express 4 не ловит rejection
 ```
+### ⚠️ Problem
+Synchronous operations block the main event loop, causing severe performance degradation and potential denial-of-service (DoS) under load.
+
 ### ✅ Best Practice
 ```javascript
 const asyncHandler = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
@@ -100,6 +110,9 @@ router.get('/', asyncHandler(UserController.get));
 ```javascript
 app.use((req, res) => res.status(404).send('Not Found')); // Нет ловца ошибок 500
 ```
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 app.use((err, req, res, next) => {
@@ -115,6 +128,9 @@ app.use((err, req, res, next) => {
 ```javascript
 if (!req.body.email || req.body.age < 18) return res.status(400); // Ручная проверка
 ```
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 const validate = schema => (req, res, next) => {
@@ -132,6 +148,9 @@ router.post('/', validate(userSchema), UserController.create);
 ```javascript
 mongoose.connect('mongodb://admin:pass@host/db'); // Хардкод секретов
 ```
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 require('dotenv').config();
@@ -143,6 +162,9 @@ mongoose.connect(process.env.DB_URI);
 ## 6. HTTP Security Headers (Helmet)
 ### ❌ Bad Practice
 // Приложение светит 'X-Powered-By: Express'
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 const helmet = require('helmet');
@@ -156,6 +178,9 @@ app.use(helmet());
 ```javascript
 app.use((req, res, next) => { res.header("Access-Control-Allow-Origin", "*"); next(); });
 ```
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 const cors = require('cors');
@@ -167,6 +192,9 @@ app.use(cors({ origin: 'https://myapp.com', credentials: true }));
 ## 8. Rate Limiting (Защита от DDoS)
 ### ❌ Bad Practice
 // API открыт для миллиона запросов в секунду
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 const rateLimit = require('express-rate-limit');
@@ -180,6 +208,9 @@ app.use('/api/', rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 ```javascript
 app.use(express.json()); // Злоумышленник может отправить 500Мб JSON
 ```
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 app.use(express.json({ limit: '10kb' }));
@@ -193,6 +224,9 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 ```javascript
 console.log('User signed in'); 
 ```
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 app.use(morgan('combined', { stream: winstonLogger.stream }));
@@ -206,6 +240,9 @@ winstonLogger.info('User signed in');
 ```javascript
 // Коннект к базе делается перед каждым запросом
 ```
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 mongoose.connect(process.env.DB_URI).then(() => {
@@ -220,6 +257,9 @@ mongoose.connect(process.env.DB_URI).then(() => {
 ```javascript
 // Проверка токена встроена в контроллер профиля
 ```
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 const authGuard = (req, res, next) => {
@@ -237,6 +277,9 @@ const authGuard = (req, res, next) => {
 ```javascript
 if (req.user.role !== 'admin') return res.status(403);
 ```
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 const requireRole = (...roles) => (req, res, next) => {
@@ -253,6 +296,9 @@ router.delete('/:id', requireRole('admin', 'manager'), Controller.del);
 ```javascript
 res.json({ foo: 'bar' }); // Каждый метод возвращает случайную структуру
 ```
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 class ApiResponse {
@@ -268,6 +314,9 @@ class ApiResponse {
 ```javascript
 res.json(users); // Выбросить миллион записей
 ```
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 const page = parseInt(req.query.page) || 1;
@@ -280,6 +329,9 @@ res.json({ data: users, meta: { total, page, limit, pages: Math.ceil(total/limit
 ## 16. Graceful Shutdown
 ### ❌ Bad Practice
 // При получении SIGTERM сервер моментально обрывает процессы
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 process.on('SIGTERM', () => {
@@ -294,6 +346,9 @@ process.on('SIGTERM', () => {
 ## 17. 404 Route Handler
 ### ❌ Bad Practice
 // Если роут не найден, возвращается пустая белая страница
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 app.use('*', (req, res) => {
@@ -309,6 +364,9 @@ app.use('*', (req, res) => {
 /routes.js
 /app.js  // Монолит на 5000 строк
 ```
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```
 src/
@@ -324,6 +382,9 @@ src/
 ## 19. Health Check Endpoint
 ### ❌ Bad Practice
 // Нет проверки жизнеспособности подов Kubernetes
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 app.get('/health', (req, res) => {
@@ -338,6 +399,9 @@ app.get('/health', (req, res) => {
 ```javascript
 User.find({ username: req.body.username }); // body.username = { "$gt": "" }
 ```
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 const mongoSanitize = require('express-mongo-sanitize');
@@ -351,6 +415,9 @@ app.use(xss());
 ## 21. Swagger / OpenAPI documentation
 ### ❌ Bad Practice
 // Документация в стороннем Word-файле
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 const swaggerUi = require('swagger-ui-express');
@@ -365,6 +432,9 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 ```javascript
 const UserService = require('./UserService'); // Прямой импорт, невозможно тестировать
 ```
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 class UserController {
@@ -378,6 +448,9 @@ const controller = new UserController(new UserService(db));
 ## 23. File Uploads (Multer)
 ### ❌ Bad Practice
 // Парсинг бинарников руками
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 const multer = require('multer');
@@ -393,6 +466,9 @@ router.post('/avatar', upload.single('file'), Controller.upload);
 await emailService.send(); // Блокировка респонса
 res.send('Welcome');
 ```
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 const EventEmitter = require('events');
@@ -408,6 +484,9 @@ res.send('Welcome');
 ## 25. Caching (Redis Middleware)
 ### ❌ Bad Practice
 // БД обрабатывает сложные расчеты на каждый хит
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 const cacheMiddleware = (req, res, next) => {
@@ -425,6 +504,9 @@ const cacheMiddleware = (req, res, next) => {
 ```javascript
 throw new Error('Not found');
 ```
+### ⚠️ Problem
+Improper error handling leads to unhandled rejections or crashes, creating unpredictable state and making debugging difficult for AI agents.
+
 ### ✅ Best Practice
 ```javascript
 class AppError extends Error {
@@ -444,6 +526,9 @@ throw new AppError('User not found', 404);
 ```javascript
 req.ip // Дает '127.0.0.1' через Nginx
 ```
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 app.set('trust proxy', 1); // Доверяем первому прокси
@@ -457,6 +542,9 @@ app.set('trust proxy', 1); // Доверяем первому прокси
 // app.js
 app.listen(3000); // Мешает интеграционным тестам
 ```
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 // app.js
@@ -472,6 +560,9 @@ app.listen(3000);
 ## 29. UUID Request Correlation
 ### ❌ Bad Practice
 // Ошибки в логах невозможно связать с конкретным пользователем
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 const { v4: uuidv4 } = require('uuid');
@@ -487,6 +578,9 @@ app.use((req, res, next) => {
 ## 30. Secure Session Management
 ### ❌ Bad Practice
 // Сессия хранится в памяти (MemoryStore) с открытыми куками
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 ### ✅ Best Practice
 ```javascript
 app.use(session({
