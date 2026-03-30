@@ -7,6 +7,10 @@ version: Agnostic
 tags: [architecture, system-design, monolithic-architecture, best-practices]
 ai_role: Senior Architect
 last_updated: 2026-03-22
+topic: Monolithic-architecture
+complexity: Architect
+last_evolution: 2026-03-22
+vibe_coding_ready: true
 ---
 
 <div align="center">

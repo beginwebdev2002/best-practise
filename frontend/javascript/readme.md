@@ -7,6 +7,10 @@ version: ES6-ES2024
 tags: [javascript, clean-code, es6, performance, best-practices]
 ai_role: Senior JavaScript Performance Expert
 last_updated: 2026-03-22
+topic: Javascript
+complexity: Architect
+last_evolution: 2026-03-22
+vibe_coding_ready: true
 ---
 
 # 🎨 JavaScript Best Practise

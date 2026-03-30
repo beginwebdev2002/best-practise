@@ -7,6 +7,10 @@ last_evolution: 2026-03-27
 vibe_coding_ready: true
 tags: [eda, event-driven, architecture, pub-sub, asynchronous, messaging, kafka, rabbitmq, system-design]
 topic: Event-Driven Architecture
+level: Senior/Architect
+version: Latest
+ai_role: System Architect
+last_updated: 2026-03-22
 ---
 
 <div align="center">

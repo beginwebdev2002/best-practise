@@ -7,6 +7,10 @@ version: Agnostic
 tags: [fsd, modular-architecture, frontend, system-design, clean-architecture]
 ai_role: Senior Frontend Architect
 last_updated: 2026-03-22
+topic: Feature-sliced-design
+complexity: Architect
+last_evolution: 2026-03-22
+vibe_coding_ready: true
 ---
 
 <div align="center">

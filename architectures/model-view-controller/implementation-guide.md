@@ -1,3 +1,18 @@
+---
+technology: Model-view-controller
+domain: architecture
+level: Senior/Architect
+version: Latest
+tags: [architecture, best-practices]
+ai_role: System Architect
+last_updated: 2026-03-22
+description: AI agent blueprint constraint
+topic: Model-view-controller
+complexity: Architect
+last_evolution: 2026-03-22
+vibe_coding_ready: true
+---
+
 # Model-View-Controller (MVC) - Implementation Guide
 
 ## Code patterns and Anti-patterns

@@ -7,6 +7,10 @@ version: Agnostic
 tags: [best-practices, clean-code, hexagonal-architecture, ports-and-adapters, system-design, vibe-coding]
 ai_role: Senior Software Architect
 last_updated: 2026-03-22
+topic: Hexagonal-architecture
+complexity: Architect
+last_evolution: 2026-03-22
+vibe_coding_ready: true
 ---
 
 # 🛑 Hexagonal Architecture Production-Ready Best Practices
