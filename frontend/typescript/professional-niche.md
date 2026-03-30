@@ -1,5 +1,4 @@
 ---
-description: Vibe coding guidelines and architectural constraints for TypeScript Professional & Niche topics within the frontend domain.
 technology: TypeScript
 domain: frontend
 level: Senior/Architect
@@ -7,19 +6,19 @@ version: "5.5+"
 tags: [typescript, advanced, best-practices, clean-code, scalable-code]
 ai_role: Senior TypeScript Expert
 last_updated: 2026-03-22
-topic: TypeScript
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true---
+---
 
 # 🧠 TypeScript Professional & Niche Best Practices
+
+[⬆️ Back to Top](#)
 # 📖 Context & Scope
 - **Primary Goal:** Advanced TypeScript features, metaprogramming, and precise utility types.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** TypeScript 5.5+
-## IV. Professional & Niche (31-40)
-## 31. Using `satisfies` to preserve literal types
-**Context:** Checking an object against a type without widening it.
+## ⚡ IV. Professional & Niche (31-40)
+## ⚡ 31. Using `satisfies` to preserve literal types
+> [!NOTE]
+> **Context:** Checking an object against a type without widening it.
 ### ❌ Bad Practice
 ```typescript
 const config: Record<string, string> = {
@@ -38,8 +37,9 @@ const config = {
 ```
 ### 🚀 Solution
 Use `satisfies` (TS 4.9+). It validates the structure but preserves the narrowest possible type for the value.
-## 32. `const` type parameters (TS 5.0)
-**Context:** Improving inference for generic constants.
+## ⚡ 32. `const` type parameters (TS 5.0)
+> [!NOTE]
+> **Context:** Improving inference for generic constants.
 ### ❌ Bad Practice
 ```typescript
 function route<T extends string[]>(paths: T) { ... }
@@ -54,8 +54,9 @@ route(['/home', '/about']); // T is readonly ['/home', '/about']
 ```
 ### 🚀 Solution
 Use `const` before a type parameter to force the compiler to treat the input as a constant, preserving literal types without requiring the caller to use `as const`.
-## 33. Branding/Tagging for Nominal Typing
-**Context:** Preventing accidental mixing of identical primitive types (e.g., `UserId` and `OrderId`).
+## ⚡ 33. Branding/Tagging for Nominal Typing
+> [!NOTE]
+> **Context:** Preventing accidental mixing of identical primitive types (e.g., `UserId` and `OrderId`).
 ### ❌ Bad Practice
 ```typescript
 type UserId = string;
@@ -77,8 +78,9 @@ const uid = 'user_1' as UserId;
 ```
 ### 🚀 Solution
 Use "Branding" (adding a phantom property) to simulate nominal typing for critical identifiers.
-## 34. Covariance/Contravariance in callbacks
-**Context:** Ensuring safe function assignments.
+## ⚡ 34. Covariance/Contravariance in callbacks
+> [!NOTE]
+> **Context:** Ensuring safe function assignments.
 ### ❌ Bad Practice
 ```typescript
 interface Logger {
@@ -95,8 +97,9 @@ interface Logger {
 ```
 ### 🚀 Solution
 Use method syntax in interfaces for stricter **contravariant** checking of parameters.
-## 35. Avoiding "God Objects" through Mapped Types
-**Context:** Transforming object structures dynamically.
+## ⚡ 35. Avoiding "God Objects" through Mapped Types
+> [!NOTE]
+> **Context:** Transforming object structures dynamically.
 ### ❌ Bad Practice
 ```typescript
 interface API {
@@ -115,8 +118,9 @@ type API = {
 ```
 ### 🚀 Solution
 Use Mapped Types and Key Remapping (`as`) to generate interface structures from a single source of truth (like a union of keys).
-## 36. Template Literal Types for string-based APIs
-**Context:** Enforcing patterns in strings.
+## ⚡ 36. Template Literal Types for string-based APIs
+> [!NOTE]
+> **Context:** Enforcing patterns in strings.
 ### ❌ Bad Practice
 ```typescript
 function setPadding(value: string) { ... } // Accepts "10" (invalid)
@@ -130,8 +134,9 @@ function setPadding(value: CssValue) { ... }
 ```
 ### 🚀 Solution
 Use Template Literal types to enforce specific string patterns at compile time.
-## 37. Exhaustiveness checking with `never`
-**Context:** Ensuring all cases in a union are handled.
+## ⚡ 37. Exhaustiveness checking with `never`
+> [!NOTE]
+> **Context:** Ensuring all cases in a union are handled.
 ### ❌ Bad Practice
 ```typescript
 function handle(action: 'START' | 'STOP') {
@@ -158,8 +163,9 @@ function handle(action: 'START' | 'STOP' | 'PAUSE') {
 ```
 ### 🚀 Solution
 Assign the `default` case to a variable of type `never`. This triggers a compile error if any member of the union is unhandled.
-## 38. Recursive Type Aliases
-**Context:** Modeling nested structures like JSON or file trees.
+## ⚡ 38. Recursive Type Aliases
+> [!NOTE]
+> **Context:** Modeling nested structures like JSON or file trees.
 ### ❌ Bad Practice
 ```typescript
 type Json = string | number | boolean | JsonObject | JsonArray;
@@ -176,8 +182,9 @@ type JSONValue =
 ```
 ### 🚀 Solution
 Use recursive type aliases for cleaner definitions of deeply nested data structures.
-## 39. `infer` keyword in conditional types
-**Context:** Extracting internal types from complex structures.
+## ⚡ 39. `infer` keyword in conditional types
+> [!NOTE]
+> **Context:** Extracting internal types from complex structures.
 ### ❌ Bad Practice
 ```typescript
 // Hardcoded extraction
@@ -191,8 +198,9 @@ type GetArrayType<T> = T extends (infer U)[] ? U : never;
 ```
 ### 🚀 Solution
 Use `infer` within conditional types to let TypeScript dynamically capture and name types from within generics.
-## 40. Tuple types for fixed-length data
-**Context:** Representing arrays with specific structures (e.g., coordinates).
+## ⚡ 40. Tuple types for fixed-length data
+> [!NOTE]
+> **Context:** Representing arrays with specific structures (e.g., coordinates).
 ### ❌ Bad Practice
 ```typescript
 const point: number[] = [10, 20];

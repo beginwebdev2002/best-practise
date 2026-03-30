@@ -1,5 +1,4 @@
 ---
-description: Vibe coding guidelines and architectural constraints for Angular Advanced Performance within the frontend domain.
 technology: Angular
 domain: frontend
 level: Senior/Architect
@@ -7,19 +6,19 @@ version: "20"
 tags: [performance, advanced, angular, best-practices, clean-code, scalable-code]
 ai_role: Senior Angular Performance Expert
 last_updated: 2026-03-22
-topic: Angular
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true---
+---
 
 # 🚀 Angular Advanced Performance Best Practices & Expert Patterns
+
+[⬆️ Back to Top](#)
 # 📖 Context & Scope
 - **Primary Goal:** Enforce strict adherence to advanced performance best practices.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** Angular 20
-## III. Advanced Performance (31-45)
-## 31. Eager Loading of Heavy Components
-**Context:** Bundle Size
+## ⚡ III. Advanced Performance (31-45)
+## ⚡ 31. Eager Loading of Heavy Components
+> [!NOTE]
+> **Context:** Bundle Size
 ### ❌ Bad Practice
 ```html
 <app-chart [data]="data" />
@@ -36,8 +35,9 @@ A charting library (e.g., ECharts) loads immediately, blocking TTI (Time to Inte
 ```
 ### 🚀 Solution
 Use `@defer`. This defers component code loading until a trigger occurs (viewport, interaction, timer).
-## 32. Heavy Computation in Main Thread
-**Context:** Event Loop Blocking
+## ⚡ 32. Heavy Computation in Main Thread
+> [!NOTE]
+> **Context:** Event Loop Blocking
 ### ❌ Bad Practice
 Sorting an array of 100k elements directly in the component.
 ### ⚠️ Problem
@@ -46,8 +46,9 @@ Freezes the UI.
 Offload computations to a Web Worker.
 ### 🚀 Solution
 Use Angular Web Workers. In v20, this is easily configured via the CLI.
-## 33. Memory Leaks in `effect()`
-**Context:** Signal Effects
+## ⚡ 33. Memory Leaks in `effect()`
+> [!NOTE]
+> **Context:** Signal Effects
 ### ❌ Bad Practice
 ```typescript
 effect(() => {
@@ -66,8 +67,9 @@ effect((onCleanup) => {
 ```
 ### 🚀 Solution
 Always use the `onCleanup` callback to release resources.
-## 34. Excessive Change Detection with `NgZone.run()`
-**Context:** Zone Integration
+## ⚡ 34. Excessive Change Detection with `NgZone.run()`
+> [!NOTE]
+> **Context:** Zone Integration
 ### ❌ Bad Practice
 Wrapping third-party libraries in `ngZone.run()` unnecessarily.
 ### ⚠️ Problem
@@ -80,8 +82,9 @@ ngZone.runOutsideAngular(() => {
 ```
 ### 🚀 Solution
 Run frequent events (scroll, mousemove, animationFrame) *outside* the Angular zone. Update signals only when UI updates are required.
-## 35. Signals equality check default
-**Context:** Signal Performance
+## ⚡ 35. Signals equality check default
+> [!NOTE]
+> **Context:** Signal Performance
 ### ❌ Bad Practice
 ```typescript
 data = signal({ id: 1 }, { equal: undefined }); // Default checks reference
@@ -95,8 +98,9 @@ data = signal(obj, { equal: isEqual });
 ```
 ### 🚀 Solution
 Use a custom comparison function for complex objects to avoid redundant re-renders.
-## 36. Lacking `trackBy` in iterables
-**Context:** Re-rendering Lists
+## ⚡ 36. Lacking `trackBy` in iterables
+> [!NOTE]
+> **Context:** Re-rendering Lists
 ### ❌ Bad Practice
 ```html
 <li *ngFor="let item of items">{{ item }}</li>
@@ -109,8 +113,9 @@ Without tracking, any array change leads to the recreation of all DOM nodes in t
 ```
 ### 🚀 Solution
 Always use a unique key in `track`. This allows Angular to move DOM nodes instead of recreating them.
-## 37. Recursive Template without Caching
-**Context:** Tree Rendering
+## ⚡ 37. Recursive Template without Caching
+> [!NOTE]
+> **Context:** Tree Rendering
 ### ❌ Bad Practice
 Recursive component call without `OnPush` and memoization.
 ### ⚠️ Problem
@@ -120,9 +125,10 @@ Using the `Memoization` pattern or `computed()` to prepare the tree data structu
 
 
 ### 🚀 Solution
-[Architectural justification of the solution]
-## 38. Global Styles Leakage
-**Context:** CSS Encapsulation
+This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+## ⚡ 38. Global Styles Leakage
+> [!NOTE]
+> **Context:** CSS Encapsulation
 ### ❌ Bad Practice
 ```css
 /* global.css */
@@ -134,8 +140,9 @@ Global styles unpredictably affect components.
 Use `ViewEncapsulation.Emulated` (default) and specific selectors.
 ### 🚀 Solution
 Keep styles locally within components.
-## 39. Large Component Bundle
-**Context:** Split Chunks
+## ⚡ 39. Large Component Bundle
+> [!NOTE]
+> **Context:** Split Chunks
 ### ❌ Bad Practice
 A single huge component of 3000 lines.
 ### ⚠️ Problem
@@ -144,8 +151,9 @@ Poor readability, rendering lazy loading of UI parts impossible.
 Decompose into "dumb" (UI) and "smart" components.
 ### 🚀 Solution
 Break down the UI into small, reusable blocks.
-## 40. Image Optimization Ignorance
-**Context:** Core Web Vitals (LCP)
+## ⚡ 40. Image Optimization Ignorance
+> [!NOTE]
+> **Context:** Core Web Vitals (LCP)
 ### ❌ Bad Practice
 ```html
 <img src="large-hero.jpg" />
@@ -158,8 +166,9 @@ The browser loads the full image, shifting the layout (CLS).
 ```
 ### 🚀 Solution
 Use the `NgOptimizedImage` directive. It automatically handles lazy loading, preconnect, and srcset.
-## 41. Hydration Mismatch
-**Context:** SSR / SSG
+## ⚡ 41. Hydration Mismatch
+> [!NOTE]
+> **Context:** SSR / SSG
 ### ❌ Bad Practice
 Rendering `Date.now()` or random numbers (`Math.random()`) directly in the template.
 ### ⚠️ Problem
@@ -168,8 +177,9 @@ The server generates one number, the client another. This causes "flickering" an
 Use stable data or defer random generation until `afterNextRender`.
 ### 🚀 Solution
 Pay attention to template determinism with SSR.
-## 42. Synchronous `inject()` inside loops
-**Context:** DI Performance
+## ⚡ 42. Synchronous `inject()` inside loops
+> [!NOTE]
+> **Context:** DI Performance
 ### ❌ Bad Practice
 Calling `inject()` inside a function that loops.
 ### ⚠️ Problem
@@ -179,9 +189,10 @@ Inject dependency once at the class/file constant level.
 
 
 ### 🚀 Solution
-[Architectural justification of the solution]
-## 43. Unused Signal Dependencies
-**Context:** Signal Graph
+This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+## ⚡ 43. Unused Signal Dependencies
+> [!NOTE]
+> **Context:** Signal Graph
 ### ❌ Bad Practice
 Reading a signal inside `computed` whose value doesn't affect the result (an unexecuted logical branch).
 ### ⚠️ Problem
@@ -191,9 +202,10 @@ Use `untracked()` to read signals whose changes should not trigger a recalculati
 
 
 ### 🚀 Solution
-[Architectural justification of the solution]
-## 44. Excessive Wrappers (`div` soup)
-**Context:** DOM Size
+This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+## ⚡ 44. Excessive Wrappers (`div` soup)
+> [!NOTE]
+> **Context:** DOM Size
 ### ❌ Bad Practice
 ```html
 <div><div><div><app-comp></app-comp></div></div></div>
@@ -205,9 +217,10 @@ Use `<ng-container>` to group elements without creating extra DOM nodes.
 
 
 ### 🚀 Solution
-[Architectural justification of the solution]
-## 45. Neglecting `runOutsideAngular` for Events
-**Context:** High-frequency events
+This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+## ⚡ 45. Neglecting `runOutsideAngular` for Events
+> [!NOTE]
+> **Context:** High-frequency events
 ### ❌ Bad Practice
 `@HostListener('window:scroll')`
 ### ⚠️ Problem
@@ -217,5 +230,5 @@ Subscribe manually in `runOutsideAngular` and update the signal only when necess
 
 
 ### 🚀 Solution
-[Architectural justification of the solution]
+This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
 ---

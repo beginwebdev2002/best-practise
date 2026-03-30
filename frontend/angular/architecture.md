@@ -1,5 +1,4 @@
 ---
-description: Vibe coding guidelines and architectural constraints for Angular Architecture within the frontend domain.
 technology: Angular
 domain: frontend
 level: Senior/Architect
@@ -7,19 +6,19 @@ version: "20"
 tags: [architecture, dependency-injection, angular, best-practices, clean-code, scalable-code]
 ai_role: Senior Angular Architecture Expert
 last_updated: 2026-03-22
-topic: Angular
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true---
+---
 
 # 🏗 Angular Architecture & Dependency Injection Best Practices
+
+[⬆️ Back to Top](#)
 # 📖 Context & Scope
 - **Primary Goal:** Provide architectural best practices for Angular including DI usage, modules, routing, and guards.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** Angular 20
-## II. Architecture & DI (16-30)
-## 16. Services provided in 'root' vs Modules
-**Context:** Tree Shaking
+## 🏗️ II. Architecture & DI (16-30)
+## ⚡ 16. Services provided in 'root' vs Modules
+> [!NOTE]
+> **Context:** Tree Shaking
 ### ❌ Bad Practice
 ```typescript
 @NgModule({ providers: [MyService] })
@@ -32,8 +31,9 @@ The service is included in the bundle even if it is not used.
 ```
 ### 🚀 Solution
 Always use `providedIn: 'root'`. This allows the bundler to remove unused services (Tree Shaking).
-## 17. Class-based Guards
-**Context:** Routing Security
+## ⚡ 17. Class-based Guards
+> [!NOTE]
+> **Context:** Routing Security
 ### ❌ Bad Practice
 ```typescript
 @Injectable()
@@ -49,8 +49,9 @@ export const authGuard: CanActivateFn = (route, state) => {
 ```
 ### 🚀 Solution
 Use functional Guards (`CanActivateFn`). They are concise, easy to test, and composable.
-## 18. Class-based Interceptors
-**Context:** HTTP Requests
+## ⚡ 18. Class-based Interceptors
+> [!NOTE]
+> **Context:** HTTP Requests
 ### ❌ Bad Practice
 ```typescript
 @Injectable()
@@ -67,8 +68,9 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
 ```
 ### 🚀 Solution
 Use functional Interceptors (`HttpInterceptorFn`) with `provideHttpClient(withInterceptors([...]))`.
-## 19. State Mutation in Services
-**Context:** Data Integrity
+## ⚡ 19. State Mutation in Services
+> [!NOTE]
+> **Context:** Data Integrity
 ### ❌ Bad Practice
 ```typescript
 updateUser(user: User) {
@@ -86,8 +88,9 @@ updateUser(user: User) {
 ```
 ### 🚀 Solution
 Use Signals for state management. They guarantee reactivity and atomicity of updates.
-## 20. Calling functions inside `@for` tracking
-**Context:** Rendering Performance
+## ⚡ 20. Calling functions inside `@for` tracking
+> [!NOTE]
+> **Context:** Rendering Performance
 ### ❌ Bad Practice
 ```html
 @for (item of items; track getItemId(item))
@@ -100,8 +103,9 @@ The tracking function is called for each element during every re-render.
 ```
 ### 🚀 Solution
 Use an object property (ID or a unique key) directly. If a function is needed, it must be as simple and pure as possible.
-## 21. `host` property vs `@HostListener`
-**Context:** Component Metadata
+## ⚡ 21. `host` property vs `@HostListener`
+> [!NOTE]
+> **Context:** Component Metadata
 ### ❌ Bad Practice
 ```typescript
 @HostListener('click') onClick() { ... }
@@ -120,8 +124,9 @@ Decorators increase class size and scatter host configuration across the file.
 ```
 ### 🚀 Solution
 Use the `host` property in component metadata. This centralizes all host element settings.
-## 22. Dynamic Components with `ComponentFactoryResolver`
-**Context:** Dynamic Rendering
+## ⚡ 22. Dynamic Components with `ComponentFactoryResolver`
+> [!NOTE]
+> **Context:** Dynamic Rendering
 ### ❌ Bad Practice
 ```typescript
 const factory = this.resolver.resolveComponentFactory(MyComponent);
@@ -137,8 +142,9 @@ this.container.createComponent(MyComponent);
 ```
 ### 🚀 Solution
 Use `ViewContainerRef.createComponent` directly with the component class or the `ngComponentOutlet` directive.
-## 23. Shared Modules (The "Dump" Module)
-**Context:** Modular Architecture
+## ⚡ 23. Shared Modules (The "Dump" Module)
+> [!NOTE]
+> **Context:** Modular Architecture
 ### ❌ Bad Practice
 `SharedModule` imports and exports *all* UI components, pipes, and directives.
 ### ⚠️ Problem
@@ -147,8 +153,9 @@ If a component needs a single button, it is forced to pull the entire `SharedMod
 Import only what is needed directly into the `imports` of the Standalone component.
 ### 🚀 Solution
 Abandon `SharedModule` in favor of granular imports of Standalone entities.
-## 24. Circular Dependencies in DI
-**Context:** Architecture
+## ⚡ 24. Circular Dependencies in DI
+> [!NOTE]
+> **Context:** Architecture
 ### ❌ Bad Practice
 Service A injects Service B, which injects Service A.
 ### ⚠️ Problem
@@ -157,8 +164,9 @@ Leads to runtime errors ("Cannot instantiate cyclic dependency"). Indicates poor
 Use `forwardRef()` as a crutch, but it's better to extract the shared logic into a third Service C.
 ### 🚀 Solution
 Refactoring: break services into smaller ones following SRP (Single Responsibility Principle).
-## 25. Logic in Pipes
-**Context:** Separation of Concerns
+## ⚡ 25. Logic in Pipes
+> [!NOTE]
+> **Context:** Separation of Concerns
 ### ❌ Bad Practice
 A Pipe performs HTTP requests or complex business logic.
 ### ⚠️ Problem
@@ -167,8 +175,9 @@ Pipes are intended for data transformation in the template. Side effects in pipe
 Pipes should be "Pure" (without side effects) and fast.
 ### 🚀 Solution
 Extract logic into services/signals. Leave only formatting to pipes.
-## 26. `any` in Services
-**Context:** TypeScript Safety
+## ⚡ 26. `any` in Services
+> [!NOTE]
+> **Context:** TypeScript Safety
 ### ❌ Bad Practice
 ```typescript
 getData(): Observable<unknown> { ... }
@@ -181,8 +190,9 @@ getData(): Observable<UserDto> { ... }
 ```
 ### 🚀 Solution
 Use DTO interfaces (generate them from Swagger/OpenAPI) and Zod for API response validation.
-## 27. Multiple `async` pipes for same stream
-**Context:** RxJS Subscriptions
+## ⚡ 27. Multiple `async` pipes for same stream
+> [!NOTE]
+> **Context:** RxJS Subscriptions
 ### ❌ Bad Practice
 ```html
 <div *ngIf="user$ | async as user">{{ (user$ | async).name }}</div>
@@ -197,8 +207,9 @@ Each `async` pipe creates a new subscription. This can lead to duplicated HTTP r
 ```
 ### 🚀 Solution
 Use aliases in the template (`as varName`) or convert the stream to a signal (`toSignal`).
-## 28. ProvidedIn 'any'
-**Context:** DI Scopes
+## ⚡ 28. ProvidedIn 'any'
+> [!NOTE]
+> **Context:** DI Scopes
 ### ❌ Bad Practice
 ```typescript
 @Injectable({ providedIn: 'unknown' })
@@ -209,8 +220,9 @@ Creates a new service instance for each lazy-loaded module. This is often unexpe
 `providedIn: 'root'` or providing at the level of a specific component (`providers: []`).
 ### 🚀 Solution
 Avoid `any`. Explicitly control the scope: either global (`root`) or local.
-## 29. Imperative Routing
-**Context:** Navigation
+## ⚡ 29. Imperative Routing
+> [!NOTE]
+> **Context:** Navigation
 ### ❌ Bad Practice
 ```typescript
 this.router.navigateByUrl('/users/' + id);
@@ -223,8 +235,9 @@ this.router.navigate(['users', id]);
 ```
 ### 🚀 Solution
 Use an array of segments. It is safer (automatic encoding of URL parameters) and cleaner.
-## 30. Ignoring `OnPush` Strategy
-**Context:** Change Detection Strategy
+## ⚡ 30. Ignoring `OnPush` Strategy
+> [!NOTE]
+> **Context:** Change Detection Strategy
 ### ❌ Bad Practice
 Default components (`ChangeDetectionStrategy.Default`).
 ### ⚠️ Problem

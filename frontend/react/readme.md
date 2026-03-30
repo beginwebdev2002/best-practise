@@ -1,12 +1,12 @@
 ---
-description: Vibe coding guidelines and architectural constraints for React within the frontend domain.
 technology: React
 domain: frontend
 level: Senior/Architect
 version: "19+"
 tags: [react, best-practices, architecture, clean-code, scalable-code, modern-react, server-components]
 ai_role: Senior React Expert
-last_updated: 2026-03-22---
+last_updated: 2026-03-22
+---
 
 # ⚛️ React Production-Ready Best Practices
 # 📖 Context & Scope
@@ -22,8 +22,9 @@ last_updated: 2026-03-22---
 - Strongly prefer **Feature Sliced Design (FSD)** for applications scaling across multiple teams.
 ## 🚀 I. Basics & Popular
 
-### 1. Direct DOM Manipulation
-**Context:** Updating elements in a React component.
+### 🔹 1. Direct DOM Manipulation
+> [!NOTE]
+> **Context:** Updating elements in a React component.
 #### ❌ Bad Practice
 ```tsx
 function Component() {
@@ -54,8 +55,9 @@ Always use state and props to drive the UI. React uses a virtual DOM to efficien
 - **Performance Note:** React's virtual DOM diffing algorithm is highly optimized. Bypassing it can lead to forced synchronous layouts and jank.
 - **Security Note:** Direct DOM manipulation can open up Cross-Site Scripting (XSS) vulnerabilities if user input is not properly sanitized before being inserted into the DOM.
 
-### 2. Large Component Files
-**Context:** Managing component complexity.
+### 🔹 2. Large Component Files
+> [!NOTE]
+> **Context:** Managing component complexity.
 #### ❌ Bad Practice
 A single 2000-line file containing the entire page's logic and UI.
 #### ⚠️ Problem

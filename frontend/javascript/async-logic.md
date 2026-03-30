@@ -1,5 +1,4 @@
 ---
-description: Vibe coding guidelines and architectural constraints for JavaScript Asynchronous Logic within the frontend domain.
 technology: JavaScript
 domain: frontend
 level: Senior/Architect
@@ -7,19 +6,19 @@ version: "ES2024+"
 tags: [javascript, async, promises, best-practices, clean-code, scalable-code]
 ai_role: Senior JavaScript Asynchronous Expert
 last_updated: 2026-03-22
-topic: JavaScript
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true---
+---
 
 # ⏳ JavaScript Asynchronous & Logic Best Practices
+
+[⬆️ Back to Top](#)
 # 📖 Context & Scope
 - **Primary Goal:** Implement correct and robust asynchronous logic in JavaScript applications.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** ES2024+
-## III. Asynchronous & Logic
-## 21. Callback Hell vs Promises
-**Context:** Managing asynchronous execution flow.
+## ⚡ III. Asynchronous & Logic
+## ⚡ 21. Callback Hell vs Promises
+> [!NOTE]
+> **Context:** Managing asynchronous execution flow.
 ### ❌ Bad Practice
 ```javascript
 getData(url, (err, res) => {
@@ -41,8 +40,9 @@ fetchData(url)
 ```
 ### 🚀 Solution
 Use Promises to flatten the structure and centralize error handling with `.catch()`.
-## 22. Promise.then() nesting vs Async/Await
-**Context:** Modern syntax for asynchronous code.
+## ⚡ 22. Promise.then() nesting vs Async/Await
+> [!NOTE]
+> **Context:** Modern syntax for asynchronous code.
 ### ❌ Bad Practice
 ```javascript
 function load() {
@@ -65,8 +65,9 @@ async function load() {
 ```
 ### 🚀 Solution
 Use `async/await`. It allows asynchronous code to be written and read like synchronous code, improving maintainability.
-## 23. Sequential `await` in loops vs `Promise.all`
-**Context:** Parallelizing independent asynchronous operations.
+## ⚡ 23. Sequential `await` in loops vs `Promise.all`
+> [!NOTE]
+> **Context:** Parallelizing independent asynchronous operations.
 ### ❌ Bad Practice
 ```javascript
 for (const id of ids) {
@@ -82,8 +83,9 @@ await Promise.all(promises);
 ```
 ### 🚀 Solution
 Use `Promise.all` to execute independent promises in parallel. This utilizes the full network/IO bandwidth.
-## 24. Missing `try/catch` in async
-**Context:** Handling failures in async functions.
+## ⚡ 24. Missing `try/catch` in async
+> [!NOTE]
+> **Context:** Handling failures in async functions.
 ### ❌ Bad Practice
 ```javascript
 async function getData() {
@@ -106,8 +108,9 @@ async function getData() {
 ```
 ### 🚀 Solution
 Wrap `await` calls in `try/catch` blocks or use a higher-order function to catch errors.
-## 25. Floating point math errors (`0.1 + 0.2`)
-**Context:** Precision issues in IEEE 754 arithmetic.
+## ⚡ 25. Floating point math errors (`0.1 + 0.2`)
+> [!NOTE]
+> **Context:** Precision issues in IEEE 754 arithmetic.
 ### ❌ Bad Practice
 ```javascript
 if (0.1 + 0.2 === 0.3) { /* False! */ }
@@ -124,8 +127,9 @@ const totalCents = (10 + 20); // 30 cents
 ```
 ### 🚀 Solution
 Use `Number.EPSILON` for comparisons or represent decimals as integers (e.g., cents instead of dollars) to avoid floating point drift.
-## 26. Multiple Boolean flags vs State Machine
-**Context:** Managing complex component logic.
+## ⚡ 26. Multiple Boolean flags vs State Machine
+> [!NOTE]
+> **Context:** Managing complex component logic.
 ### ❌ Bad Practice
 ```javascript
 const [isLoading, setIsLoading] = useState(false);
@@ -140,8 +144,9 @@ const [status, setStatus] = useState('IDLE'); // IDLE, LOADING, ERROR, SUCCESS
 ```
 ### 🚀 Solution
 Use a single state variable or a state machine. This ensures only one state is active at a time and simplifies transitions.
-## 27. Sync logic in Event Loop
-**Context:** Keeping the UI responsive.
+## ⚡ 27. Sync logic in Event Loop
+> [!NOTE]
+> **Context:** Keeping the UI responsive.
 ### ❌ Bad Practice
 ```javascript
 function processLargeArray(arr) {
@@ -163,8 +168,9 @@ function processInChunks(arr) {
 ```
 ### 🚀 Solution
 Offload heavy tasks to Web Workers or use `requestIdleCallback`/`setTimeout` to break long tasks into smaller chunks, allowing the browser to render between frames.
-## 28. Overusing `classes` where functions suffice
-**Context:** Paradigm choice (OOP vs FP).
+## ⚡ 28. Overusing `classes` where functions suffice
+> [!NOTE]
+> **Context:** Paradigm choice (OOP vs FP).
 ### ❌ Bad Practice
 ```javascript
 class Calculator {
@@ -180,8 +186,9 @@ export const add = (a, b) => a + b;
 ```
 ### 🚀 Solution
 Use simple functions and modules for logic. Use classes only when you need to manage complex stateful instances with shared behavior.
-## 29. Hard-coded Error messages vs Error Classes
-**Context:** Robust error handling and debugging.
+## ⚡ 29. Hard-coded Error messages vs Error Classes
+> [!NOTE]
+> **Context:** Robust error handling and debugging.
 ### ❌ Bad Practice
 ```javascript
 throw new Error('User not found');
@@ -200,8 +207,9 @@ class UserNotFoundError extends Error {
 ```
 ### 🚀 Solution
 Extend the `Error` class to create custom error types. Use `instanceof` check in catch blocks to handle specific errors differently.
-## 30. Unhandled Rejections
-**Context:** Reliability of asynchronous flows.
+## ⚡ 30. Unhandled Rejections
+> [!NOTE]
+> **Context:** Reliability of asynchronous flows.
 ### ❌ Bad Practice
 ```javascript
 // No .catch() or try/catch
