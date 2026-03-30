@@ -2,10 +2,19 @@
 trigger: glob
 description: Rules for making changes to system Markdown files in 2 languages (English/Russian).
 globs: "{README.md,.github/CONTRIBUTING.md,.github/SECURITY.md,.github/CODE_OF_CONDUCT.md}"
----
+technology: Vibe Coding
+domain: Documentation
+level: Senior/Architect
+version: Latest
+tags: [vibe-coding, documentation, best-practices, architecture]
+ai_role: Senior Vibe Coding Expert
+last_updated: 2026-03-29
+topic: Vibe Coding
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # System Markdown Files Formatting
-
 ## Applicability
 These rules apply STRICTLY and EXCLUSIVELY to the following files:
 - `README.md`
@@ -14,7 +23,6 @@ These rules apply STRICTLY and EXCLUSIVELY to the following files:
 - `.github/CODE_OF_CONDUCT.md`
 
 The glob pattern is configured so that it does not affect any other Markdown files in the project.
-
 ## Core Editing Rules
 
 1. **Bilingual Requirement**:

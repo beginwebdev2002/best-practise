@@ -5,18 +5,16 @@ domain: backend
 level: Senior/Architect
 complexity: Advanced
 topic: MongoDB Database Optimization
+vibe_coding_ready: true
 version: "7.0+"
 tags: [database-optimization, mongodb, nosql, indexing, aggregation-pipeline, system-design, production-ready, scalable-code]
 ai_role: Senior MongoDB Database Architect
 last_updated: 2026-03-28
-last_evolution: 2026-03-29
-vibe_coding_ready: true
----
+last_evolution: 2026-03-28---
 
 # ⚡ MongoDB Database Optimization Best Practices
 
 This document outlines indexing strategies (ESR Rule), aggregation pipeline optimization, and query tuning for enterprise-grade MongoDB environments.
-
 ## 🎯 1. The ESR (Equality, Sort, Range) Rule
 
 When designing indexes, always follow the ESR rule to maximize efficiency.
@@ -33,9 +31,6 @@ Creating indexes randomly without understanding the query patterns.
 db.orders.createIndex({ status: 1, amount: 1, date: 1 })
 ```
 
-### ⚠️ Problem
-Directly interpolating user input into queries leads to SQL/NoSQL injection vulnerabilities, compromising data integrity and security.
-
 ### ✅ Best Practice
 
 Create indexes following the ESR rule:
@@ -50,8 +45,10 @@ Create indexes following the ESR rule:
 db.orders.createIndex({ status: 1, date: 1, amount: 1 })
 ```
 
----
 
+### ⚠️ Problem
+[Analysis of the risks]
+---
 ## 🏗️ 2. Aggregation Pipeline Optimization
 
 Pipelines process documents in stages. Optimizing the order of these stages dramatically improves performance.
@@ -68,9 +65,6 @@ db.users.aggregate([
 ])
 ```
 
-### ⚠️ Problem
-This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
-
 ### ✅ Best Practice
 
 Always use `$match` and `$sort` as early as possible in the pipeline to reduce the working set and take advantage of indexes. Use `$project` later.
@@ -85,8 +79,10 @@ db.users.aggregate([
 ])
 ```
 
----
 
+### ⚠️ Problem
+[Analysis of the risks]
+---
 ## 📉 3. Covered Queries
 
 A covered query is a query that can be satisfied entirely using an index, without having to examine the actual documents.
@@ -103,6 +99,17 @@ db.orders.find(
 )
 ```
 
+
+### ❌ Bad Practice
+[Need to fill in example of non-optimal code]
+
+
+### ⚠️ Problem
+[Analysis of the risks]
+
+
+### ✅ Best Practice
+[Reference deterministic implementation]
 ---
 
 [⬆ Back to Top](#-mongodb-database-optimization-best-practices)

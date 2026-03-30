@@ -1,10 +1,18 @@
 ---
 description: Instructions for Jules on the daily generation of new, relevant, and highly-discussed articles and technical documentation.
 tags: [AI Agents documentation, trending tech docs, daily technical writing, software engineering trends, vibe coding, developer experience]
----
+technology: React
+domain: Documentation
+level: Senior/Architect
+version: Latest
+ai_role: Senior React Expert
+last_updated: 2026-03-29
+topic: React
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # 📅 Daily Technical Writing & Trend Generation for Jules
-
 ## 1. Context & Scope
 - **Primary Goal:** Ensure a daily stream of new, relevant **trending tech docs** covering interesting topics such as Frontend, Backend, Architecture, and AI Agents.
 - **Target Tooling:** Autonomous operation mode for the Jules AI agent.
@@ -14,9 +22,7 @@ tags: [AI Agents documentation, trending tech docs, daily technical writing, sof
   
   **Generative content creation for leadership in the Software Engineering field.**
 </div>
-
 ---
-
 ## 2. Daily Research Instructions (Daily Routine)
 
 > [!IMPORTANT]
@@ -31,7 +37,7 @@ graph LR
     C --> D[Apply SEO Optimization]
     D --> E[Add to /docs/ folder]
     
-    style C fill:#ff9800,stroke:#f57c00,stroke-width:2px,color:#fff
+    class C auto_style_C
     %% Added Design Token Styles for Mermaid Diagrams
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
     classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
@@ -41,6 +47,9 @@ graph LR
     class E component;
     class D component;
 
+
+    %% Auto-generated Design Tokens
+    classDef auto_style_C fill:#ff9800,stroke:#f57c00,stroke-width:2px,color:#fff
 ```
 
 ### Interest Areas for Generation
@@ -53,9 +62,7 @@ Every day, select **one** of the following categories and write a deep, engaging
 | **Backend** | Database scaling, Serverless configuration techniques, Rust in Backend | "Deep Dive into Vercel Edge", "Prisma Database Optimization" |
 | **Architecture** | System fault tolerance, Event-Driven Patterns, System Design | "Saga Pattern in Node.js", "Mastering Apache Kafka" |
 | **AI Agents** | AI integration in coding, Optimizing Context Window size | "Windsurf advanced usage hints", "Cursor memory structures" |
-
 ---
-
 ## 3. Criteria for a Successful Article (SEO Optimization and Visuals)
 
 - [ ] **High-Value Headings (H1/H2):** Section titles must attract attention and contain relevant Latent Semantic Indexing (LSI) keywords (associated search terms).

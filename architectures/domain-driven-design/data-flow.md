@@ -1,20 +1,16 @@
 ---
-technology: Domain-driven-design
-domain: architecture
+description: Vibe coding guidelines and architectural constraints for DDD within the Architecture domain.
+tags: [ddd, architecture, best-practices, architecture]
+topic: DDD
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true
+technology: DDD
+domain: Architecture
 level: Senior/Architect
 version: Latest
-tags: [architecture, best-practices]
-ai_role: System Architect
-last_updated: 2026-03-22
-description: AI agent blueprint constraint
-topic: Domain-driven-design
-complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
----
-
-# Domain-Driven Design - Data Flow
-
+ai_role: Senior DDD Expert
+last_updated: 2026-03-29---# Domain-Driven Design - Data Flow
 ## Request and Event Lifecycle
 
 ```mermaid

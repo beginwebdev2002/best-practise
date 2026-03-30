@@ -7,21 +7,17 @@ version: "ES2024+"
 tags: [javascript, es6, functional-programming, best-practices, clean-code, scalable-code]
 ai_role: Senior JavaScript Expert
 last_updated: 2026-03-22
-topic: Javascript
+topic: JavaScript
 complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
----
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # ✨ Modern JavaScript Syntax & Functional Programming Best Practices
-
 # 📖 Context & Scope
 - **Primary Goal:** Enforce strict adherence to modern ES6+ syntax and functional programming patterns.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** ES2024+
-
 ## II. Modern Syntax & FP (ES6-ES2024)
-
 ## 11. Manual object property assignment vs Shorthand
 **Context:** Reducing boilerplate in object creation.
 ### ❌ Bad Practice
@@ -41,7 +37,6 @@ const user = { name, age };
 ```
 ### 🚀 Solution
 Use Property Shorthand. When the key and variable name match, omit the value.
-
 ## 12. Using `arguments` vs Rest parameters
 **Context:** Handling variable numbers of arguments.
 ### ❌ Bad Practice
@@ -59,7 +54,6 @@ const sum = (...args) => args.reduce((a, b) => a + b);
 ```
 ### 🚀 Solution
 Use Rest Parameters (`...args`). They create a real array and are more explicit about the function's intent.
-
 ## 13. Manual array copying vs Spread
 **Context:** Immutability and array manipulation.
 ### ❌ Bad Practice
@@ -79,7 +73,6 @@ const copy = [...original];
 ```
 ### 🚀 Solution
 Use the Spread Operator (`...`). It is concise, declarative, and highly optimized by modern engines.
-
 ## 14. Nested Destructuring
 **Context:** Extracting data from complex objects.
 ### ❌ Bad Practice
@@ -95,7 +88,6 @@ const { location: { address: { city, zip } } } = user;
 ```
 ### 🚀 Solution
 Use nested destructuring to extract deeply nested values in a single statement. (Note: Combine with optional chaining if path existence isn't guaranteed).
-
 ## 15. Default Parameters
 **Context:** Handling missing arguments.
 ### ❌ Bad Practice
@@ -115,7 +107,6 @@ function setRole(role = 'guest') {
 ```
 ### 🚀 Solution
 Use ES6 Default Parameters. They only apply if the argument is `undefined`.
-
 ## 16. `forEach` for data transformation vs `map/filter`
 **Context:** Declarative vs Imperative programming.
 ### ❌ Bad Practice
@@ -133,7 +124,6 @@ const double = numbers.map(n => n * 2);
 ```
 ### 🚀 Solution
 Use `map`, `filter`, and `reduce` for data transformations. They return new arrays and promote immutability.
-
 ## 17. Object mutation vs Immutability
 **Context:** State management and predictability.
 ### ❌ Bad Practice
@@ -151,7 +141,6 @@ const updateAge = (user) => ({ ...user, age: 30 });
 ```
 ### 🚀 Solution
 Treat objects as immutable. Use the spread operator to create copies with updated properties.
-
 ## 18. Switch statements vs Object Literals
 **Context:** Simplifying conditional branching.
 ### ❌ Bad Practice
@@ -174,7 +163,6 @@ return (actions[action] || doNothing)();
 ```
 ### 🚀 Solution
 Use an Object Literal (or Map) as a lookup table. It is cleaner, faster, and more extensible.
-
 ## 19. Not using Optional Chaining `?.`
 **Context:** Safe property access in nested objects.
 ### ❌ Bad Practice
@@ -189,7 +177,6 @@ const street = user?.address?.street;
 ```
 ### 🚀 Solution
 Use Optional Chaining (`?.`). It short-circuits to `undefined` if any part of the chain is nullish.
-
 ## 20. Not using Nullish Coalescing `??`
 **Context:** Providing fallback values safely.
 ### ❌ Bad Practice
@@ -204,5 +191,4 @@ const timeout = config.timeout ?? 5000;
 ```
 ### 🚀 Solution
 Use Nullish Coalescing (`??`). It only falls back if the value is `null` or `undefined`, allowing `0`, `false`, and `''` to be valid.
-
 ---

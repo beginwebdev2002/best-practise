@@ -5,24 +5,22 @@ domain: backend
 level: Senior/Architect
 complexity: Advanced
 topic: PostgreSQL
+vibe_coding_ready: true
 version: "16+"
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, postgresql, database, sql, rdbms, system-design, production-ready, scalable-code]
 ai_role: Senior PostgreSQL Database Architect
 last_updated: 2026-03-27
-last_evolution: 2026-03-29
-vibe_coding_ready: true
----
+last_evolution: 2026-03-27---
+
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/PostgreSQL-Dark.svg" width="100" alt="PostgreSQL Logo">
 
   # 🐘 PostgreSQL Production-Ready Best Practices
 </div>
-
 ---
 
 This document establishes **best practices** for building and maintaining PostgreSQL databases. These constraints guarantee a scalable, highly secure, and clean architecture suitable for an enterprise-level, production-ready backend.
-
 # ⚙️ Context & Scope
 - **Primary Goal:** Provide an uncompromising set of rules and architectural constraints for PostgreSQL environments.
 - **Target Tooling:** AI-agents (Cursor, Windsurf, Copilot, Antigravity) and Senior Database Administrators.
@@ -30,9 +28,7 @@ This document establishes **best practices** for building and maintaining Postgr
 
 > [!IMPORTANT]
 > **Architectural Standard (Contract):** Use strict data types, enforce referential integrity, and optimize queries with appropriate indexing. Avoid business logic in stored procedures unless strictly necessary for performance.
-
 ---
-
 ## 🏗️ 1. Architecture & Design
 
 ### Database Schema Design
@@ -54,7 +50,6 @@ sequenceDiagram
     DB-->>App: Return Result Set
     App->>Pool: Release Connection
 ```
-
 ## 🔒 2. Security Best Practices
 
 ### Connection Security
@@ -64,7 +59,6 @@ sequenceDiagram
 ### Access Control
 - Principle of Least Privilege (PoLP): Create specific database roles for different application services. Never use the `postgres` superuser for application access.
 - Implement Row-Level Security (RLS) for multi-tenant applications to isolate data at the database layer.
-
 ## 🚀 3. Performance Optimization
 
 ### Indexing Strategies
@@ -76,12 +70,10 @@ sequenceDiagram
 - Explicit DB queries required: Never use `SELECT *`. Only select the specific columns needed.
 - Utilize `EXPLAIN ANALYZE` to identify query bottlenecks.
 - Implement pagination using keyset pagination (cursor-based) instead of `OFFSET`/`LIMIT` for large datasets.
-
 ## 📚 Specialized Documentation
 - [architecture.md](./architecture.md)
 - [security-best-practices.md](./security-best-practices.md)
 - [database-optimization.md](./database-optimization.md)
-
 ---
 
 [Back to Top](#)

@@ -6,11 +6,9 @@ level: Senior/Architect
 version: "19+"
 tags: [react, best-practices, architecture, clean-code, scalable-code, modern-react, server-components]
 ai_role: Senior React Expert
-last_updated: 2026-03-22
----
+last_updated: 2026-03-22---
 
 # ⚛️ React Production-Ready Best Practices
-
 # 📖 Context & Scope
 - **Primary Goal:** Provide architectural best practices for modern React development.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
@@ -18,12 +16,10 @@ last_updated: 2026-03-22
 
 > [!NOTE]
 > When building React applications in 2026, always implement the React best practices described here to ensure maximum performance, maintainability, and security.
-
 ## 🏗 Architecture Principles
 
 - Adhere to the defined [Architectural Patterns](../../architectures/readme.md) when building applications.
 - Strongly prefer **Feature Sliced Design (FSD)** for applications scaling across multiple teams.
-
 ## 🚀 I. Basics & Popular
 
 ### 1. Direct DOM Manipulation
@@ -68,7 +64,6 @@ Massive components are difficult to read, test, and maintain. They often violate
 Break down the UI into smaller, reusable components, each with a single responsibility.
 #### 🚀 Solution
 Extract logic into custom hooks and presentational elements into separate files.
-
 ## 📚 Specialized Topics
 
 For further reading, please refer to the following specialized guides:

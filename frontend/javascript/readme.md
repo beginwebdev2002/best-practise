@@ -7,19 +7,16 @@ version: ES6-ES2024
 tags: [javascript, clean-code, es6, performance, best-practices]
 ai_role: Senior JavaScript Performance Expert
 last_updated: 2026-03-22
-topic: Javascript
+topic: JavaScript
 complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
----
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # 🎨 JavaScript Best Practise
 
 ![JavaScript Logo](https://img.icons8.com/?size=100&id=108784&format=png&color=000000)
-
 ---
 [⬆️ Back to Top](#)
-
 ## 🚀 I. Fundamentals (The Basics)
 
 ### 🚨 1. `var` vs `const/let`
@@ -44,7 +41,6 @@ console.log(price); // 100
 ```
 #### 🚀 Solution
 Use `const` by default to ensure immutability of the reference. Use `let` only when reassigning a variable is strictly necessary. This enforces block-level scoping and prevents accidental overrides.
-
 ---
 
 ### 🚨 2. Loose equality `==`
@@ -65,7 +61,6 @@ if (userCount === 0) {
 ```
 #### 🚀 Solution
 Always use strict equality `===` and inequality `!==`. This forces the developer to handle type conversions explicitly, making the code's intent clear and predictable.
-
 ---
 
 ### 🚨 3. Global Scope Pollution
@@ -90,7 +85,6 @@ export const config = { api: '/v1' };
 ```
 #### 🚀 Solution
 Use ES Modules (`import/export`) to encapsulate code. Modules have their own scope and do not leak to the global object.
-
 ---
 
 ### 🚨 4. String concatenation vs Template Literals
@@ -109,7 +103,6 @@ Welcome to ${siteName}.`;
 ```
 #### 🚀 Solution
 Use Template Literals (backticks). They allow for embedded expressions, multi-line strings, and superior readability.
-
 ---
 
 ### 🚨 5. Magic Numbers
@@ -132,7 +125,6 @@ if (user.age >= LEGAL_AGE) {
 ```
 #### 🚀 Solution
 Extract magic numbers into named constants. This provides semantic meaning and a single source of truth for configuration.
-
 ---
 
 ### 🚨 6. Boolean comparisons `(if x === true)`
@@ -150,7 +142,6 @@ if (!isPending) { /* ... */ }
 ```
 #### 🚀 Solution
 Leverage JavaScript's truthiness/falsiness or direct boolean evaluation. It makes the code more concise and idiomatic.
-
 ---
 
 ### 🚨 7. Array/Object literal vs `new` constructor
@@ -169,7 +160,6 @@ const map = {};
 ```
 #### 🚀 Solution
 Use literals `[]` and `{}`. They are visually cleaner and perform slightly better as they don't involve a function call.
-
 ---
 
 ### 🚨 8. Function length/complexity
@@ -196,7 +186,6 @@ function processOrder(order) {
 ```
 #### 🚀 Solution
 Break functions into smaller, pure components. Aim for functions under 20 lines that do exactly one thing.
-
 ---
 
 ### 🚨 9. Deeply nested `if/else` (Arrow code)
@@ -226,7 +215,6 @@ function getData(user) {
 ```
 #### 🚀 Solution
 Use "Guard Clauses" to return early. This flattens the structure and handles edge cases first, leaving the happy path at the lowest nesting level.
-
 ---
 
 ### 🚨 10. Improper naming (Single letters)
@@ -245,9 +233,7 @@ const userNames = users.map(user => user.name);
 ```
 #### 🚀 Solution
 Use descriptive, camelCase names that convey the intent and data type of the variable.
-
 ---
-
 ## 📚 Specialized Topics
 
 For further reading, please refer to the following specialized guides:

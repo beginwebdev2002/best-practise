@@ -7,14 +7,12 @@ version: Agnostic
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior Frontend Architect
 last_updated: 2026-03-22
-topic: Readme.md
+topic: TypeScript
 complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
----
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # 🎨 Frontend Best Practices & Production-Ready Patterns
-
 # 📖 Context & Scope
 - **Primary Goal:** Outline the overarching philosophy and standards for Frontend development inside the ecosystem.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
@@ -25,14 +23,11 @@ vibe_coding_ready: true
   
   **The overarching philosophy and foundations for all internal Frontend technologies.**
 </div>
-
 ---
-
 ## 🏗 Architecture Principles
 
 - Adhere to the defined [Architectural Patterns](../../architectures/readme.md) when building applications.
 - Strongly prefer **Feature Sliced Design (FSD)** for applications scaling across multiple teams.
-
 ## 🤖 Technical Requirements for AI Generation
 
 > [!IMPORTANT]
@@ -41,7 +36,6 @@ vibe_coding_ready: true
 - **Isolation:** Each component must define its boundaries clearly. Avoid CSS leakage.
 - **TypeScript Strictness:** Exploit TypeScript. `any` is strictly prohibited. Use explicit return types for all public methods.
 - **State Management:** Abstract global state logically depending on the specific framework rules, but never tightly couple presentation layers directly to store calls.
-
 ## 💻 Technologies Included
 
 This folder acts as a container for documentation around the following technologies:

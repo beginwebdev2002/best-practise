@@ -1,10 +1,18 @@
 ---
 description: Instructions for the Jules AI agent regarding backend code. Contains rules for server architecture, DTO standards, and SEO metadata.
 tags: [backend architecture, clean APIs, scalable server, typescript best practices, production-ready, enterprise-grade, node-js, nestjs, expressjs]
----
+technology: TypeScript
+domain: Documentation
+level: Senior/Architect
+version: Latest
+ai_role: Senior TypeScript Expert
+last_updated: 2026-03-29
+topic: TypeScript
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # 🛡️ Backend Architecture & Clean APIs Rules for Jules
-
 ## 1. Context & Scope
 - **Primary Goal:** Ensure the implementation of best practices for the backend part of the project. Establish standards for **scalable server** deployments, **clean APIs**, and **enterprise-grade** solutions.
 - **Target Tooling:** Jules AI agent (Vibe Coding, AI-Driven Development).
@@ -16,9 +24,7 @@ tags: [backend architecture, clean APIs, scalable server, typescript best practi
   
   **Standards for creating production-ready backend systems.**
 </div>
-
 ---
-
 ## 2. Key Architecture Rules (Backend Architecture)
 
 > [!CAUTION]
@@ -51,9 +57,7 @@ sequenceDiagram
     Service-->>Controller: DTO returned
     Controller-->>Client: HTTP Response sent
 ```
-
 ---
-
 ## 3. Code Writing Requirements for Jules
 
 - [ ] **Isolation:** Every feature must have its own separate Module, Controller, Service, and DTO.

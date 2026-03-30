@@ -1,20 +1,16 @@
 ---
-technology: Model-view-controller
-domain: architecture
+description: Vibe coding guidelines and architectural constraints for MVC within the Architecture domain.
+tags: [mvc, architecture, best-practices, architecture]
+topic: MVC
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true
+technology: MVC
+domain: Architecture
 level: Senior/Architect
 version: Latest
-tags: [architecture, best-practices]
-ai_role: System Architect
-last_updated: 2026-03-22
-description: AI agent blueprint constraint
-topic: Model-view-controller
-complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
----
-
-# Model-View-Controller (MVC) - Implementation Guide
-
+ai_role: Senior MVC Expert
+last_updated: 2026-03-29---# Model-View-Controller (MVC) - Implementation Guide
 ## Code patterns and Anti-patterns
 
 ### Entity Relationships

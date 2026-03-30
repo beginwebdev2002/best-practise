@@ -7,20 +7,17 @@ version: Agnostic
 tags: [best-practices, implementation-guide, hexagonal-architecture, ports-and-adapters]
 ai_role: Senior Software Architect
 last_updated: 2026-03-22
-topic: Hexagonal-architecture
+topic: Hexagonal Architecture
 complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
----
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # 🛠️ Hexagonal Architecture Implementation Guide
 
 <div align="center">
   **Executable blueprints and constraints for AI-agent code generation.**
 </div>
-
 ---
-
 ## ⚡ The Vibe Coding Instructions (Constraints)
 
 For any code generated within the Hexagonal Architecture ecosystem, the following boundaries must be strictly enforced:
@@ -33,9 +30,7 @@ For any code generated within the Hexagonal Architecture ecosystem, the followin
 
 3.  **Boundary DTO Translation:**
     Adapters must map raw external data (HTTP Requests, Database Rows) into pure Domain Entities before passing them inward. When returning data, Domain Entities must be translated back into Adapter-specific DTOs before reaching the outside world. Do not leak the Core Entity to an HTTP response directly.
-
 ---
-
 ## 💻 Concrete Code Examples
 
 ### 🧩 Entity Relationships (Class Diagram)
@@ -172,3 +167,15 @@ export class UserController {
     }
 }
 ```
+
+
+### ❌ Bad Practice
+[Need to fill in example of non-optimal code]
+
+
+### ⚠️ Problem
+[Analysis of the risks]
+
+
+### 🚀 Solution
+[Architectural justification of the solution]

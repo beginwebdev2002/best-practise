@@ -7,21 +7,17 @@ version: "5.5+"
 tags: [typescript, type-safety, best-practices, clean-code, scalable-code]
 ai_role: Senior TypeScript Expert
 last_updated: 2026-03-22
-topic: Typescript
+topic: TypeScript
 complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
----
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # 🛡️ TypeScript Logic & Safety Best Practices
-
 # 📖 Context & Scope
 - **Primary Goal:** Enforce strict type safety and logical soundness in TypeScript.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** TypeScript 5.5+
-
 ## II. Logic & Safety (11-20)
-
 ## 11. Type Assertions (`as`) vs Narrowing
 **Context:** Telling the compiler what a type is.
 ### ❌ Bad Practice
@@ -39,7 +35,6 @@ if (isValidUser(response.data)) { ... }
 ```
 ### 🚀 Solution
 Avoid type assertions. Use runtime validation (Zod, Valibot) or Type Guards to ensure the data actually matches the type you expect.
-
 ## 12. Non-null Assertion Operator (`!`)
 **Context:** Dealing with potentially `null` or `undefined` values.
 ### ❌ Bad Practice
@@ -54,7 +49,6 @@ const name = user?.profile?.name ?? 'Guest';
 ```
 ### 🚀 Solution
 Use Optional Chaining (`?.`) and Nullish Coalescing (`??`) to handle missing values gracefully.
-
 ## 13. Lack of Discriminated Unions
 **Context:** Modeling complex states like API responses.
 ### ❌ Bad Practice
@@ -76,7 +70,6 @@ type State =
 ```
 ### 🚀 Solution
 Use Discriminated Unions (with a shared literal property like `type` or `kind`). This makes states mutually exclusive and simplifies logic.
-
 ## 14. Boolean casting (`!!`)
 **Context:** Converting values to booleans.
 ### ❌ Bad Practice
@@ -93,7 +86,6 @@ const hasAccess = user.token !== undefined;
 ```
 ### 🚀 Solution
 Use the `Boolean()` constructor or explicit comparisons for clarity.
-
 ## 15. Using `Object` for non-primitive types
 **Context:** Restricting types to objects.
 ### ❌ Bad Practice
@@ -108,7 +100,6 @@ function cache(obj: Record<string, unknown>) { ... }
 ```
 ### 🚀 Solution
 Use `Record<string, unknown>` for general objects or `Record<string, never>` for empty objects to ensure keys are strings and values are handled safely.
-
 ## 16. Function types vs Object types for functions
 **Context:** Defining function signatures.
 ### ❌ Bad Practice
@@ -125,7 +116,6 @@ type ClickHandler = (e: Event) => void;
 ```
 ### 🚀 Solution
 Use the arrow function syntax for type aliases unless you need to define properties on the function itself (callable objects).
-
 ## 17. Catching `any` in try-catch
 **Context:** Handling exceptions.
 ### ❌ Bad Practice
@@ -133,7 +123,7 @@ Use the arrow function syntax for type aliases unless you need to define propert
 try {
     doWork();
 } catch (e) {
-    console.error(e.message); // e is any by default
+    console.error(e.message); // e is unknown by default
 }
 ```
 ### ⚠️ Problem
@@ -150,7 +140,6 @@ try {
 ```
 ### 🚀 Solution
 Always check the type of the caught error. In modern TS, use `useUnknownInCatchVariables: true` to force `e` to be `unknown`.
-
 ## 18. Literal types vs General types
 **Context:** Narrowing strings/numbers to specific values.
 ### ❌ Bad Practice
@@ -166,7 +155,6 @@ function setAlignment(dir: Direction) { ... }
 ```
 ### 🚀 Solution
 Use Union Literal types to restrict inputs to a known set of valid values.
-
 ## 19. Optional properties vs Union with `undefined`
 **Context:** Defining fields that might not exist.
 ### ❌ Bad Practice
@@ -185,7 +173,6 @@ interface Config {
 ```
 ### 🚀 Solution
 Use `?` for properties that can be omitted entirely.
-
 ## 20. Array index access safety
 **Context:** Accessing elements by index.
 ### ❌ Bad Practice
@@ -204,5 +191,4 @@ if (first) {
 ```
 ### 🚀 Solution
 Enable `noUncheckedIndexedAccess: true` in `tsconfig.json`. This forces index access to return `T | undefined`.
-
 ---

@@ -9,28 +9,24 @@ ai_role: Senior Architect
 last_updated: 2026-03-22
 topic: Serverless
 complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
----
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
+
 
 <div align="center">
   # 🏛️ Serverless Production-Ready Best Practices
 </div>
-
 ---
 
 Этот инженерный директив определяет **лучшие практики (best practices)** для архитектуры Serverless. Данный документ спроектирован для обеспечения максимальной масштабируемости, безопасности и качества кода при разработке приложений корпоративного уровня.
-
 # Context & Scope
 - **Primary Goal:** Предоставить строгие архитектурные правила и практические паттерны для создания масштабируемых систем.
 - **Description:** Developers do not manage servers at all. The entire "server" consists of bite-sized pieces of business logic (functions/Lambdas) living in the cloud.
-
 ## Map of Patterns
 - 📊 [**Data Flow:** Request and Event Lifecycle](./data-flow.md)
 - 📁 [**Folder Structure:** Layering logic](./folder-structure.md)
 - ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
-
 ## Core Principles
 
 1. **Isolation & Testability:** Changing a single feature doesn't break the entire business process.

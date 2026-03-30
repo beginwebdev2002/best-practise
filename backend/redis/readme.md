@@ -5,24 +5,22 @@ domain: backend
 level: Senior/Architect
 complexity: Advanced
 topic: Redis
+vibe_coding_ready: true
 version: "7+"
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, redis, in-memory, nosql, system-design, production-ready, scalable-code]
 ai_role: Senior Redis Architecture Expert
 last_updated: 2026-03-27
-last_evolution: 2026-03-29
-vibe_coding_ready: true
----
+last_evolution: 2026-03-27---
+
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Redis-Dark.svg" width="100" alt="Redis Logo">
 
   # 🟥 Redis Production-Ready Best Practices
 </div>
-
 ---
 
 This document establishes **best practices** for building and maintaining Redis data stores. These constraints guarantee a scalable, highly secure, and clean architecture suitable for an enterprise-level, production-ready backend.
-
 # ⚙️ Context & Scope
 - **Primary Goal:** Provide an uncompromising set of rules and architectural constraints for Redis environments.
 - **Target Tooling:** AI-agents (Cursor, Windsurf, Copilot, Antigravity) and Senior Backend Developers.
@@ -30,9 +28,7 @@ This document establishes **best practices** for building and maintaining Redis 
 
 > [!IMPORTANT]
 > **Architectural Standard (Contract):** Utilize Redis primarily as a caching layer, session store, or message broker, not as a primary persistence database. Never use `KEYS *` in production.
-
 ---
-
 ## 🏗️ 1. Architecture & Design
 
 ### Cache Design
@@ -62,7 +58,6 @@ sequenceDiagram
         App-->>Client: Respond with Data
     end
 ```
-
 ## 🔒 2. Security Best Practices
 
 ### Connection Security
@@ -72,7 +67,6 @@ sequenceDiagram
 
 ### Network Architecture
 - Utilize TLS (Transport Layer Security) for encrypting data in transit.
-
 ## 🚀 3. Performance Optimization
 
 ### Command Usage
@@ -82,12 +76,10 @@ sequenceDiagram
 ### Data Types
 - Optimize data structure usage. Employ Hashes for objects to save memory, and Sorted Sets for leaderboards or rate limiting.
 - Avoid large keys or values (keep them under 512MB, but ideally much smaller) to minimize network transfer and memory overhead.
-
 ## 📚 Specialized Documentation
 - [architecture.md](./architecture.md)
 - [security-best-practices.md](./security-best-practices.md)
 - [api-design.md](./api-design.md)
-
 ---
 
 [Back to Top](#)

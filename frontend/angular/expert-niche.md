@@ -9,19 +9,15 @@ ai_role: Senior Angular Expert
 last_updated: 2026-03-22
 topic: Angular
 complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
----
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # 🧠 Angular Expert/Niche Best Practices
-
 # 📖 Context & Scope
 - **Primary Goal:** Deep-dive into expert and niche topics in Angular.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** Angular 20
-
 ## V. Expert/Niche (56-60)
-
 ## 56. `untracked()` usage
 **Context:** Fine-grained Reactivity
 ### ❌ Bad Practice
@@ -38,7 +34,6 @@ computed(() => {
 ```
 ### 🚀 Solution
 Use `untracked()` for side effects or reads that shouldn't affect recalculation.
-
 ## 57. V8 Hidden Classes Optimization
 **Context:** Micro-optimization
 ### ❌ Bad Practice
@@ -56,7 +51,6 @@ user = signal<User>({ name: null, age: null });
 ```
 ### 🚀 Solution
 Always initialize signals with the full object shape (even with null) to preserve property access monomorphism.
-
 ## 58. Signal Glitch Freedom abuse
 **Context:** Reactivity Theory
 ### ❌ Bad Practice
@@ -66,6 +60,9 @@ Signals guarantee "Glitch Freedom" (absence of intermediate inconsistent states)
 ### ✅ Best Practice
 Do not use effects to synchronize local state. Use `computed`.
 
+
+### 🚀 Solution
+[Architectural justification of the solution]
 ## 59. Memory leaks in `root` Effects
 **Context:** Application Lifecycle
 ### ❌ Bad Practice
@@ -75,6 +72,9 @@ Effects in `root` services live forever. If they subscribe to something global, 
 ### ✅ Best Practice
 Usually fine, but if the service is destroyed (rare lazy loading case), the effect must be cleaned up with `effectRef.destroy()`.
 
+
+### 🚀 Solution
+[Architectural justification of the solution]
 ## 60. `runInInjectionContext`
 **Context:** Advanced DI
 ### ❌ Bad Practice

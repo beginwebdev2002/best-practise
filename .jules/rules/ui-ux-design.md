@@ -1,19 +1,20 @@
 ---
 description: "UI/UX Design and Styling Rules for Jules AI agent, covering responsive design, accessibility (a11y), design systems, and UI component architecture."
 tags:
-  - ui
-  - ux
-  - design
-  - styling
-  - accessibility
-  - responsive
-  - jules
----
+technology: Vibe Coding
+domain: Documentation
+level: Senior/Architect
+version: Latest
+ai_role: Senior Vibe Coding Expert
+last_updated: 2026-03-29
+topic: Vibe Coding
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # 🎨 UI/UX Design Production-Ready Best Practices
 
 This document outlines the production-ready best practices for UI/UX Design and styling, specifically tailored for the Jules AI agent. It ensures consistent, accessible, and responsive user interfaces.
-
 ## 1. Context & Scope
 - **Primary Goal:** Maintain a consistent, **accessible (a11y)**, and visually appealing user interface across all applications through strict **responsive design** practices.
 - **Target Tooling:** Jules AI agent (UI Generation & CSS Audits).
@@ -22,9 +23,7 @@ This document outlines the production-ready best practices for UI/UX Design and 
 <div align="center">
   <img src="https://img.icons8.com/?size=100&id=65664&format=png&color=000000" width="100" alt="Design Overview">
 </div>
-
 ---
-
 ## 2. Design System & Styling Rules
 
 > [!CAUTION]
@@ -65,9 +64,7 @@ graph TD
     class Components component;
     class Layouts component;
 ```
-
 ---
-
 ## 3. Checklist for Jules Agent
 
 When generating UI components or modifying styles:

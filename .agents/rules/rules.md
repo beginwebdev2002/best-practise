@@ -1,18 +1,26 @@
 ---
 trigger: glob
 globs: (frontend|backend|architectures)/**/*.md
----
+technology: TypeScript
+domain: Documentation
+level: Senior/Architect
+version: Latest
+tags: [typescript, documentation, best-practices, architecture]
+ai_role: Senior TypeScript Expert
+last_updated: 2026-03-29
+description: Vibe coding guidelines and architectural constraints for TypeScript within the Documentation domain.
+topic: TypeScript
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 ---
-
 ## 🌟 Our Pledge
 
 In the interest of fostering an open, welcoming, and safe environment, we as contributors and maintainers of the **best-practise** project pledge to make participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual orientation.
 
 We pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.
-
 ---
-
 ## ⚖️ Our Standards
 
 In our repository dedicated to *Vibe Coding* and architectural AI instructions, we value constructive dialogue and professionalism.
@@ -24,9 +32,7 @@ In our repository dedicated to *Vibe Coding* and architectural AI instructions, 
 | 💡 Gracefully accepting constructive criticism on code or rules. | 🛑 Public or private harassment of project members. |
 | 🌍 Focusing on what is best for the community and accommodating for programming beginners. | 📢 Publishing others' private information without explicit permission. |
 | 🧠 Sharing knowledge and experience in development and AI architecture. | 🚫 Other conduct which could reasonably be considered inappropriate in a professional setting. |
-
 ---
-
 ##  Interaction Lifecycle
 
 Interaction within the **best-practise** project is built on mutual respect and continuous improvement of AI instructions. This visual graph demonstrates the stages of healthy communication in the project:
@@ -59,32 +65,28 @@ graph TD
     class B component;
 
 ```
-
 ---
-
 ## 📝 How to Write Instructions (Best Practices)
 
 In our repository, we adhere to a unified standard for writing instructions. You can study the `frontend/typescript/readme.md` file as a reference example.
 
 Each instruction must begin with the following metadata block (YAML frontmatter):
 
-```yaml
----
+```yaml---
 technology: [Inferred Tech]
 domain: [Inferred Domain]
 level: Senior/Architect
 version: [Inferred Version]
 tags: [tag1, tag2, tag3]
 ai_role: [Specific Persona]
-last_updated: YYYY-MM-DD
----
+last_updated: YYYY-MM-DD---
 ```
 
 Next, to describe each rule or pattern, you should use the following structure. **This structure is repeated as many times as necessary** to fully cover the topic. Here is one of the clearest and most popular examples:
 
 ### ❌ Bad Practice
 ```typescript
-function process(data: any) {
+function process(data: unknown) {
     console.log(data.name); // No error, but can fail at runtime
 }
 ```
@@ -103,25 +105,19 @@ function process(data: unknown) {
 
 ### 🚀 Solution
 Use `unknown` for values whose type is not yet determined. This obliges the developer to perform a type check before use, ensuring the safety of the data structure.
-
 ---
-
 ## 🛡️ Our Responsibilities
 
 Project maintainers, including the project founder **Jamoliddin Qodirov**, are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
 
 Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions (including AI instructions) that are not aligned with this Code of Conduct. Maintainers are also expected to explain the reasons for their moderation decisions when removing content or issuing bans.
-
 ---
-
 ## 🌐 Scope
 
 This Code of Conduct applies in the following scenarios:
 1. Within all **best-practise** project spaces (including the GitHub repository, branches, issue discussions, and pull request comments).
 2. In public spaces when an individual is representing the project or its community. Examples include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event.
-
 ---
-
 ## 🚨 Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project maintainers:
@@ -138,15 +134,12 @@ Project maintainers will follow these Community Impact Guidelines in determining
 2. **Warning:** A warning with consequences, such as a temporary suspension from communicating in the project or a ban on interacting with specific individuals for a set period.
 3. **Temporary Ban:** A temporary ban from any interaction with the project, including creating issues and pull requests.
 4. **Permanent Ban:** A complete and permanent ban from any sort of public interaction within the project for systematic, intentional, or severe violations (e.g., harassment or threats).
-
 ---
-
 ## 📜 Attribution
 
 This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1, available at [https://www.contributor-covenant.org/version/2/1/code_of_conduct.html](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html).
 
 Answers to common questions about this code of conduct can be found in the official [FAQ](https://www.contributor-covenant.org/faq). Translations are available at [https://www.contributor-covenant.org/translations](https://www.contributor-covenant.org/translations).
-
 ---
 
 <a name="russian"></a>
@@ -162,5 +155,4 @@ Answers to common questions about this code of conduct can be found in the offic
 
   **Проектирование детерминированной кодовой базы для ИИ-агентов в условиях архитектурной целостности и взаимоуважения.**
 </div>
-
 ---

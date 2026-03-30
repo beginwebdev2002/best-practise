@@ -1,10 +1,18 @@
 ---
 description: Instructions for the Jules AI agent regarding frontend code. Contains rules for Feature-Sliced Design (FSD), UI component isolation, and SEO optimization.
 tags: [frontend architecture, FSD, react patterns, vibe coding, enterprise-grade, clean code, angular, type-safe ui, software design patterns]
----
+technology: TypeScript
+domain: Documentation
+level: Senior/Architect
+version: Latest
+ai_role: Senior TypeScript Expert
+last_updated: 2026-03-29
+topic: TypeScript
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # 🎨 Frontend Architecture & FSD Rules for Jules
-
 ## 1. Context & Scope
 - **Primary Goal:** Implement **clean code** and **frontend architecture** to create highly scalable and robust user interfaces.
 - **Target Tooling:** Jules AI agent (Vibe Coding).
@@ -17,9 +25,7 @@ tags: [frontend architecture, FSD, react patterns, vibe coding, enterprise-grade
   
   **Creating enterprise-grade, production-ready frontend solutions.**
 </div>
-
 ---
-
 ## 2. Feature-Sliced Design (FSD)
 
 > [!IMPORTANT]
@@ -56,9 +62,7 @@ graph TD
 | **Features** | Actions that deliver direct business value to the user. | `AuthByEmail`, `AddToCart` |
 | **Entities** | Business objects and their associated state. | `User`, `Product` |
 | **Shared** | Reusable code, generic UI (User Interface) components, and utility functions. | `Button`, `apiKit`, `utils` |
-
 ---
-
 ## 3. UI and Logic Requirements for Jules
 
 When creating or refactoring **frontend architecture**:

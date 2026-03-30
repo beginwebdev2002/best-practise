@@ -9,12 +9,10 @@ ai_role: Senior Qwik Expert
 last_updated: 2026-03-22
 topic: Qwik
 complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
----
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # ⚡ Qwik Best Practices & Production-Ready Patterns
-
 # 📖 Context & Scope
 - **Primary Goal:** Enforce strict adherence to modern Qwik patterns, specifically resumability and lazy loading for optimal best practices.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
@@ -25,27 +23,24 @@ vibe_coding_ready: true
 > - **Always** use `useSignal()`, `useStore()`, and `useTask$()` for local state and effects.
 > - **Never** pass non-serializable objects (like closures, Promises, or DOM references) into generic properties.
 > - **Always** utilize the `$` suffix for closures when necessary, like `onClick$`, to indicate lazy loading points.
-
 ## 🏗 Architecture Principles
 
 - Adhere to the defined [Architectural Patterns](../../architectures/readme.md) when building applications.
 - Strongly prefer **Feature Sliced Design (FSD)** for applications scaling across multiple teams.
-
 ## 🚀 I. Basics & Popular
-
-### 1. Passing Closures as Props
+## 1. Passing Closures as Props
 **Context:** Component Props
-#### ❌ Bad Practice
+### ❌ Bad Practice
 ```tsx
 const Component = ({ onClick }) => <button onClick={onClick}>Click</button>;
 ```
-#### ⚠️ Problem
+### ⚠️ Problem
 Closures cannot be serialized natively by Qwik, breaking resumability and throwing an error.
-#### ✅ Best Practice
+### ✅ Best Practice
 ```tsx
 const Component = component$(({ onClick$ }: { onClick$: PropFunction<() => void> }) => (
   <button onClick$={onClick$}>Click</button>
 ));
 ```
-#### 🚀 Solution
+### 🚀 Solution
 Use the `$` suffix (`onClick$`) to mark the prop as a `PropFunction`, allowing Qwik to serialize the closure and load it lazily.

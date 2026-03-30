@@ -1,10 +1,22 @@
+---
+description: Vibe coding guidelines and architectural constraints for Express within the Documentation domain.
+tags: [express, documentation, best-practices, architecture]
+topic: Express
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true
+technology: Express
+domain: Documentation
+level: Senior/Architect
+version: Latest
+ai_role: Senior Express Expert
+last_updated: 2026-03-29---
 ﻿# Quick Summary (License Summary)
 
 **In Plain English:**
 - ✅ **Use and Modification:** You are free to use, modify, and distribute these instructions for any purpose.
 - 🔄 **Copyleft:** If you distribute modifications, you **MUST** do so under this same license (GPL-3.0) for free.
 - ⚠️ **Disclaimer:** All materials are provided "as is." The author assumes no liability for the use of these instructions.
-
 ---
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007

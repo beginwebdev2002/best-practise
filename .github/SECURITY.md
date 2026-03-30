@@ -1,3 +1,16 @@
+---
+description: Vibe coding guidelines and architectural constraints for NestJS within the Documentation domain.
+tags: [nestjs, documentation, best-practices, architecture]
+topic: NestJS
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true
+technology: NestJS
+domain: Documentation
+level: Senior/Architect
+version: Latest
+ai_role: Senior NestJS Expert
+last_updated: 2026-03-29---
 [ 🇺🇸 English ](#english) | [ 🇷🇺 Русский ](#russian)
 
 <a id="english"></a>
@@ -14,9 +27,7 @@
 Welcome to the official security policy for the **best-practise** project. Our goal is to ensure the maximum security and reliability of meta-instructions (Vibe Coding) for AI agents (Cursor, Windsurf, Copilot, Antigravity, Aider). 
 
 Since this repository serves as an "AI Knowledge Base," our security model differs from traditional software development projects.
-
 ---
-
 ## 📅 Supported Versions
 
 We actively support and update only the latest major versions of our architectural and technological rules.
@@ -26,9 +37,7 @@ We actively support and update only the latest major versions of our architectur
 | **`main` (Current)** | ✅ Supported | <img src="https://img.shields.io/badge/Active-success?style=flat-square"> |
 | **`v1.x`** | ❌ Unsupported | <img src="https://img.shields.io/badge/Deprecated-critical?style=flat-square"> |
 | **Legacy Branches / PRs** | ❌ Unsupported | <img src="https://img.shields.io/badge/Unsupported-lightgrey?style=flat-square"> |
-
 ---
-
 ## 🚨 Reporting a Vulnerability
 
 Please **DO NOT create public issues** if you discover a critical vulnerability or potentially dangerous AI instructions in the repository (e.g., instructions that open backdoors via agents).
@@ -40,9 +49,7 @@ Please **DO NOT create public issues** if you discover a critical vulnerability 
 4. Attach a Proof of Concept (PoC prompt) if possible, demonstrating the exploitation of the "flawed" rule in Cursor or Windsurf.
 
 We are committed to acknowledging your report within **48 hours** and providing a remediation plan.
-
 ---
-
 ## 🤖 AI Security Context
 
 This project focuses on Context Injection. Therefore, we classify threats specifically for LLMs and agentic IDEs:
@@ -59,9 +66,7 @@ This project focuses on Context Injection. Therefore, we classify threats specif
 | 🟠 **High** | Recommendations grossly violating basic security principles (e.g., `eval`, unvalidated `innerHTML` in Frontend rules). | **P1** |
 | 🟡 **Medium** | Instructions leading to the creation of logical bugs (Bad Smells, Race conditions) in the agent-generated code. | **P2** |
 | 🟢 **Low** | Typos in linters, broken or outdated minor style rules. | **P3** |
-
 ---
-
 ## 🔄 Incident Response Lifecycle
 
 Below is a visual flowchart of our standard process for handling discovered threats in meta-instructions:
@@ -97,9 +102,7 @@ graph TD
     class B component;
 
 ```
-
 ---
-
 ## 🛡️ Best Practices for Contributors
 
 If you propose new instructions or architectural standards (via PR), strictly adhere to the security rules:
@@ -112,7 +115,6 @@ If you propose new instructions or architectural standards (via PR), strictly ad
 <div align="center">
   <b>Thank you for contributing to the security and quality of AI-driven development (Vibe Coding)! 🚀</b>
 </div>
-
 ---
 <a id="russian"></a>
 
@@ -128,9 +130,7 @@ If you propose new instructions or architectural standards (via PR), strictly ad
 Добро пожаловать в официальную политику безопасности репозитория **best-practise**. Наша задача — гарантировать максимальную безопасность и стабильность мета-инструкций (Vibe Coding) для ИИ-агентов (Cursor, Windsurf, Copilot, Antigravity, Aider). 
 
 Поскольку данный репозиторий выступает «Базой знаний ИИ» (AI Knowledge Base), наша модель безопасности имеет существенные отличия от классических проектов разработки программного обеспечения.
-
 ---
-
 ## 📅 Supported Versions
 
 Мы осуществляем поддержку и апдейт исключительно последних мажорных версий архитектурных и технологических стандартов.
@@ -140,9 +140,7 @@ If you propose new instructions or architectural standards (via PR), strictly ad
 | **`main` (Current)** | ✅ Поддерживается | <img src="https://img.shields.io/badge/Active-success?style=flat-square"> |
 | **`v1.x`** | ❌ Не поддерживается | <img src="https://img.shields.io/badge/Deprecated-critical?style=flat-square"> |
 | **Legacy Branches / PRs** | ❌ Не поддерживается | <img src="https://img.shields.io/badge/Unsupported-lightgrey?style=flat-square"> |
-
 ---
-
 ## 🚨 Reporting a Vulnerability
 
 **ЗАПРЕЩАЕТСЯ создавать публичные Issue** при обнаружении критической уязвимости или деструктивных инструкций для ИИ (например, инструкций, провоцирующих внедрение бэкдоров силами агентов).
@@ -154,9 +152,7 @@ If you propose new instructions or architectural standards (via PR), strictly ad
 4. Предоставьте Proof of Concept (PoC prompt), демонстрирующий эксплуатацию дефектного правила в Cursor или Windsurf.
 
 Мы обязуемся подтвердить получение репорта в течение **48 часов** с предоставлением плана митигации.
-
 ---
-
 ## 🤖 AI Security Context
 
 Ядром проекта является AI Context Injection. В связи с этим классификация угроз адаптирована под специфику LLM и агентных IDE:
@@ -173,9 +169,7 @@ If you propose new instructions or architectural standards (via PR), strictly ad
 | 🟠 **High** | Рекомендации, критически нарушающие фундаментальные принципы безопасности (использование `eval`, отсутствие санации `innerHTML` в правилах Frontend). | **P1** |
 | 🟡 **Medium** | Инструкции, провоцирующие возникновение логических дефектов (Bad Smells, Race conditions) в коде, сгенерированном агентом. | **P2** |
 | 🟢 **Low** | Ошибки конфигурации линтеров, нерабочие или устаревшие минорные правила стилизации. | **P3** |
-
 ---
-
 ## 🔄 Incident Response Lifecycle
 
 Формализованный процесс обработки обнаруженных угроз в мета-инструкциях представлен на схеме:
@@ -211,9 +205,7 @@ graph TD
     class B component;
 
 ```
-
 ---
-
 ## 🛡️ Best Practices for Contributors
 
 При контрибьюции новых инструкций или архитектурных стандартов (через Pull Request) требуется неукоснительное следование правилам безопасности:

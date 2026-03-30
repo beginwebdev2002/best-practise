@@ -1,20 +1,16 @@
 ---
-technology: Monolithic-architecture
-domain: architecture
+description: Vibe coding guidelines and architectural constraints for Monolithic Architecture within the Architecture domain.
+tags: [monolithic-architecture, architecture, best-practices, architecture]
+topic: Monolithic Architecture
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true
+technology: Monolithic Architecture
+domain: Architecture
 level: Senior/Architect
 version: Latest
-tags: [architecture, best-practices]
-ai_role: System Architect
-last_updated: 2026-03-22
-description: AI agent blueprint constraint
-topic: Monolithic-architecture
-complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
----
-
-# Monolithic Architecture - Folder Structure
-
+ai_role: Senior Monolithic Architecture Expert
+last_updated: 2026-03-29---# Monolithic Architecture - Folder Structure
 ## Layering logic
 
 ```mermaid

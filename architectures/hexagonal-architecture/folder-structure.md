@@ -7,20 +7,17 @@ version: Agnostic
 tags: [best-practices, folder-structure, hexagonal-architecture, ports-and-adapters]
 ai_role: Senior Software Architect
 last_updated: 2026-03-22
-topic: Hexagonal-architecture
+topic: Hexagonal Architecture
 complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
----
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 
 # 📁 Folder Structure Best Practices for Hexagonal Architecture
 
 <div align="center">
   **Strict directory blueprints for zero-approval AI parsing.**
 </div>
-
 ---
-
 ## 🌳 The Root Hierarchy
 
 A properly defined Hexagonal architecture clearly separates its concerns at the file-system level. AI Agents are expected to enforce this strict separation.
@@ -47,7 +44,6 @@ graph TD
     class Ports component;
     class Domain component;
 ```
-
 ## 🏗️ Example Directory Content
 
 ```text
@@ -73,7 +69,6 @@ src/
         └── 📁 external/     # 3rd Party APIs (SendGrid, Stripe)
             └── SendGridEmailSender.ts
 ```
-
 ## ⛔ Boundary Constraints
 
 1. **Isolation in `core/`:** Code inside `core/` is forbidden from importing modules from `adapters/`.

@@ -1,20 +1,16 @@
 ---
-technology: Feature-sliced-design
-domain: architecture
+description: Vibe coding guidelines and architectural constraints for FSD within the Architecture domain.
+tags: [fsd, architecture, best-practices, architecture]
+topic: FSD
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true
+technology: FSD
+domain: Architecture
 level: Senior/Architect
 version: Latest
-tags: [architecture, best-practices]
-ai_role: System Architect
-last_updated: 2026-03-22
-description: AI agent blueprint constraint
-topic: Feature-sliced-design
-complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
----
-
-# Feature-Sliced Design (FSD) - Data Flow
-
+ai_role: Senior FSD Expert
+last_updated: 2026-03-29---# Feature-Sliced Design (FSD) - Data Flow
 ## Request and Event Lifecycle
 
 ```mermaid

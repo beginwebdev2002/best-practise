@@ -1,14 +1,17 @@
 ---
 description: System Security & Hardening Rules for the Jules AI agent. Protects application data and privacy via secure coding and preventing OWASP Top 10 vulnerabilities.
 tags:
-  - security
-  - hardening
-  - OWASP
-  - iam
-  - rules
----
+technology: Vibe Coding
+domain: Documentation
+level: Senior/Architect
+version: Latest
+ai_role: Senior Vibe Coding Expert
+last_updated: 2026-03-29
+topic: Vibe Coding
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true---
 # 🛡️ System Security & Hardening Rules for Jules
-
 ## 📝 1. Context & Scope
 - **Primary Goal:** Protect application data and user privacy by strictly enforcing **secure coding** practices and preventing common **OWASP Top 10** vulnerabilities.
 - **Target Tooling:** Jules AI agent (Security Audits, Authentication Logic Generation).
@@ -17,9 +20,7 @@ tags:
 <div align="center">
   <img src="https://img.icons8.com/?size=100&id=60655&format=png&color=000000" width="100" alt="Security Overview">
 </div>
-
 ---
-
 ## 🌍 2. Global Threat Mitigation Protocols
 
 > [!WARNING]
@@ -66,9 +67,7 @@ graph TD
 | **API Defense** | Rate Limiting | Add middleware to block brute-force and DDoS attempts per IP/User. |
 | **Headers** | Helmet.js / CSP | Set strict Content Security Policy (CSP), HSTS, and X-Content-Type-Options. |
 | **Data Privacy** | PII Masking | Never log Personally Identifiable Information (PII) like passwords or credit cards. |
-
 ---
-
 ## 📋 3. Checklist for Jules Agent
 
 When generating new backend endpoints, architectures, or frontend forms:
@@ -76,6 +75,5 @@ When generating new backend endpoints, architectures, or frontend forms:
 - [ ] Ensure authentication tokens (JWT, Session IDs) are stored securely (HttpOnly, Secure, SameSite cookies).
 - [ ] Confirm no sensitive system stack traces or error details are returned to the client in HTTP responses.
 - [ ] Verify that updating or fetching a resource confirms the requesting user actually owns that resource (Insecure Direct Object Reference prevention).
-
 ## ❓ 4. Frequently Asked Questions
 - If the file is already ready, then change it according to the repository rules.
