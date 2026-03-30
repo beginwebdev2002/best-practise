@@ -29,19 +29,19 @@ last_updated: 2026-03-22
 
 ## 🚀 I. Basics & Popular
 
-## 1. Passing Closures as Props
+### 1. Passing Closures as Props
 **Context:** Component Props
-### ❌ Bad Practice
+#### ❌ Bad Practice
 ```tsx
 const Component = ({ onClick }) => <button onClick={onClick}>Click</button>;
 ```
-### ⚠️ Problem
+#### ⚠️ Problem
 Closures cannot be serialized natively by Qwik, breaking resumability and throwing an error.
-### ✅ Best Practice
+#### ✅ Best Practice
 ```tsx
 const Component = component$(({ onClick$ }: { onClick$: PropFunction<() => void> }) => (
   <button onClick$={onClick$}>Click</button>
 ));
 ```
-### 🚀 Solution
+#### 🚀 Solution
 Use the `$` suffix (`onClick$`) to mark the prop as a `PropFunction`, allowing Qwik to serialize the closure and load it lazily.
