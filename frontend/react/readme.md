@@ -1,14 +1,10 @@
 ---
 description: Vibe coding guidelines and architectural constraints for React within the frontend domain.
-tags: [react, best-practices, architecture, clean-code, scalable-code, modern-react, server-components]
-topic: React
-complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
 technology: React
 domain: frontend
 level: Senior/Architect
 version: "19+"
+tags: [react, best-practices, architecture, clean-code, scalable-code, modern-react, server-components]
 ai_role: Senior React Expert
 last_updated: 2026-03-22---
 

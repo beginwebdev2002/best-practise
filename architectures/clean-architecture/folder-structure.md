@@ -1,4 +1,19 @@
 ---
+technology: Clean-architecture
+domain: architecture
+level: Senior/Architect
+version: Latest
+tags: [architecture, best-practices]
+ai_role: System Architect
+last_updated: 2026-03-22
+description: AI agent blueprint constraint
+topic: Clean-architecture
+complexity: Architect
+last_evolution: 2026-03-22
+vibe_coding_ready: true
+---
+
+---
 description: Vibe coding guidelines and architectural constraints for Clean Architecture within the Architecture domain.
 tags: [clean-architecture, architecture, best-practices, architecture]
 topic: Clean Architecture

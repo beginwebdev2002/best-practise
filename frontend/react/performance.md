@@ -1,14 +1,10 @@
 ---
 description: Vibe coding guidelines and architectural constraints for React Performance within the frontend domain.
-tags: [react, performance, use, react-compiler, best-practices, architecture, clean-code]
-topic: React Performance
-complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
 technology: React
 domain: frontend
 level: Senior/Architect
 version: "19+"
+tags: [react, performance, use, react-compiler, best-practices, architecture, clean-code]
 ai_role: Senior React Performance Expert
 last_updated: 2026-03-22---
 

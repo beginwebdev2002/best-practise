@@ -189,6 +189,7 @@ graph TD
   * 📄 **[docs/](./docs/)**
     * 🤖 [ai-agent-orchestration.md](./docs/ai-agent-orchestration.md)
     * 🤖 [vibe-coding-agents.md](./docs/vibe-coding-agents.md)
+    * 🤖 [vibe-coding-deterministic-patterns.md](./docs/vibe-coding-deterministic-patterns.md)
     * ⚡ [vibe-coding-zero-approval-workflows.md](./docs/vibe-coding-zero-approval-workflows.md)
   * 🖥️ **[frontend/](./frontend/)**
     * 📄 [readme.md](./frontend/readme.md)
@@ -395,6 +396,7 @@ graph TD
   * 📄 **[docs/](./docs/)**
     * 🤖 [ai-agent-orchestration.md](./docs/ai-agent-orchestration.md)
     * 🤖 [vibe-coding-agents.md](./docs/vibe-coding-agents.md)
+    * 🤖 [vibe-coding-deterministic-patterns.md](./docs/vibe-coding-deterministic-patterns.md)
     * ⚡ [vibe-coding-zero-approval-workflows.md](./docs/vibe-coding-zero-approval-workflows.md)
   * 🖥️ **[frontend/](./frontend/)**
     * 📄 [readme.md](./frontend/readme.md)
