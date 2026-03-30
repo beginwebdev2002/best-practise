@@ -5,12 +5,12 @@ domain: backend
 level: Senior/Architect
 complexity: Advanced
 topic: MongoDB Security Best Practices
-vibe_coding_ready: true
 version: "7.0+"
 tags: [security-best-practices, mongodb, nosql, database, authentication, authorization, rbac, encryption, injection-prevention, production-ready, scalable-code]
 ai_role: Senior MongoDB Database Architect
 last_updated: 2026-03-28
-last_evolution: 2026-03-28
+last_evolution: 2026-03-29
+vibe_coding_ready: true
 ---
 
 # 🔒 MongoDB Security Best Practices
@@ -29,6 +29,9 @@ Running MongoDB with authorization disabled or using powerful built-in roles (e.
 // A common mistake is using the root user for application access
 db.createUser({ user: "appUser", pwd: "secretPassword", roles: ["root"] })
 ```
+
+### ⚠️ Problem
+Using loosely typed variables defeats the purpose of TypeScript, leading to runtime errors and degrading the quality of AI-generated code.
 
 ### ✅ Best Practice
 
@@ -72,6 +75,9 @@ const user = await db.collection('users').findOne({
     password: req.body.password
 });
 ```
+
+### ⚠️ Problem
+Directly interpolating user input into queries leads to SQL/NoSQL injection vulnerabilities, compromising data integrity and security.
 
 ### ✅ Best Practice
 
