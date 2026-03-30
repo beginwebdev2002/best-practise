@@ -3,14 +3,14 @@ description: Vibe coding guidelines and architectural constraints for Microservi
 technology: Microservices
 domain: backend
 level: Architect
-complexity: Architect
 topic: Microservices Architecture
-vibe_coding_ready: true
 version: Agnostic
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, microservices, distributed-systems, system-design, solid-principles, production-ready, scalable-code]
 ai_role: Senior Microservices Architect
 last_updated: 2026-03-27
-last_evolution: 2026-03-27
+complexity: Architect
+last_evolution: 2026-03-29
+vibe_coding_ready: true
 ---
 
 # 🧩 Microservices Architecture

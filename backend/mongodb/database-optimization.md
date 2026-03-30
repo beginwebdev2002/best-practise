@@ -5,12 +5,12 @@ domain: backend
 level: Senior/Architect
 complexity: Advanced
 topic: MongoDB Database Optimization
-vibe_coding_ready: true
 version: "7.0+"
 tags: [database-optimization, mongodb, nosql, indexing, aggregation-pipeline, system-design, production-ready, scalable-code]
 ai_role: Senior MongoDB Database Architect
 last_updated: 2026-03-28
-last_evolution: 2026-03-28
+last_evolution: 2026-03-29
+vibe_coding_ready: true
 ---
 
 # ⚡ MongoDB Database Optimization Best Practices
@@ -32,6 +32,9 @@ Creating indexes randomly without understanding the query patterns.
 // Bad index - Range comes before Sort
 db.orders.createIndex({ status: 1, amount: 1, date: 1 })
 ```
+
+### ⚠️ Problem
+Directly interpolating user input into queries leads to SQL/NoSQL injection vulnerabilities, compromising data integrity and security.
 
 ### ✅ Best Practice
 
@@ -64,6 +67,9 @@ db.users.aggregate([
   { $match: { status: "active" } }
 ])
 ```
+
+### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
 
 ### ✅ Best Practice
 

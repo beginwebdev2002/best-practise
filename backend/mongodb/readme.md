@@ -5,12 +5,12 @@ domain: backend
 level: Senior/Architect
 complexity: Advanced
 topic: MongoDB
-vibe_coding_ready: true
 version: "7.0+"
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, mongodb, nosql, database, system-design, production-ready, scalable-code, document-database]
 ai_role: Senior MongoDB Database Architect
 last_updated: 2026-03-28
-last_evolution: 2026-03-28
+last_evolution: 2026-03-29
+vibe_coding_ready: true
 ---
 
 <div align="center">
@@ -51,6 +51,9 @@ For deep dives into specific topics, consult the specialized guides:
 // Inserting data without validation
 db.users.insertOne({ name: "John", age: -5, admin: true });
 ```
+#### ⚠️ Problem
+This pattern creates technical debt, increases the risk of memory leaks, introduces potential security vulnerabilities, and breaks the deterministic formatting required for AI agents (Vibe Coding).
+
 #### ✅ Best Practice
 Implement strict schema validation using JSON Schema in MongoDB.
 #### 🚀 Solution

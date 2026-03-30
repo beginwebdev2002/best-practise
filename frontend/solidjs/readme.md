@@ -33,17 +33,17 @@ vibe_coding_ready: true
 
 ## 🚀 I. Basics & Popular
 
-## 1. Using JSX Map for Lists
+### 1. Using JSX Map for Lists
 **Context:** Rendering Lists
-### ❌ Bad Practice
+#### ❌ Bad Practice
 ```tsx
 return <ul>{items().map(item => <li>{item.name}</li>)}</ul>;
 ```
-### ⚠️ Problem
+#### ⚠️ Problem
 Using `.map` creates the DOM nodes once and does not react to array changes optimally, leading to unnecessary re-renders or lost reactivity.
-### ✅ Best Practice
+#### ✅ Best Practice
 ```tsx
 return <ul><For each={items()}>{item => <li>{item.name}</li>}</For></ul>;
 ```
-### 🚀 Solution
+#### 🚀 Solution
 Use the `<For>` component. It caches DOM elements and handles granular updates when the array changes.
