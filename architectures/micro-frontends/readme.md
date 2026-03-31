@@ -19,10 +19,10 @@ last_updated: 2026-03-22
 
 ---
 
-Этот инженерный директив определяет **лучшие практики (best practices)** для архитектуры Micro-frontends. Данный документ спроектирован для обеспечения максимальной масштабируемости, безопасности и качества кода при разработке frontend-приложений корпоративного уровня.
+This engineering directive defines the **best practices** for the Micro-frontends architecture. This document is designed to ensure maximum scalability, security, and code quality when developing enterprise-level frontend applications.
 
 # Context & Scope
-- **Primary Goal:** Предоставить строгие архитектурные правила и практические паттерны для разбиения монолитного фронтенда на независимые, развертываемые микро-приложения.
+- **Primary Goal:** Provide strict architectural rules and practical patterns for breaking down a monolithic frontend into independent, deployable micro-applications.
 - **Description:** An architectural style where independently deliverable frontend applications are composed into a greater whole. This enables multiple teams to work simultaneously without stepping on each other's toes.
 
 ## Map of Patterns

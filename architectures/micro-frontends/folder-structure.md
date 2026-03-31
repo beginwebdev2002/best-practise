@@ -19,7 +19,7 @@ last_updated: 2026-03-22
 
 ---
 
-Этот документ определяет строгие правила структуры директорий и логического слоения в архитектуре Micro-frontends для обеспечения максимальной изоляции.
+This document defines strict rules for the directory structure and logical layering in the Micro-frontends architecture to ensure maximum isolation.
 
 ## Directory Layout Rules
 

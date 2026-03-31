@@ -19,7 +19,7 @@ last_updated: 2026-03-22
 
 ---
 
-Этот документ определяет практические паттерны реализации и антипаттерны в архитектуре Micro-frontends с использованием стандартов 2026 года.
+This document defines practical implementation patterns and anti-patterns in the Micro-frontends architecture using 2026 standards.
 
 ## 2026 Code Patterns & Anti-patterns
 

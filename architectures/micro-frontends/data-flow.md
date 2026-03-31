@@ -19,7 +19,7 @@ last_updated: 2026-03-22
 
 ---
 
-Этот документ определяет строгие правила жизненного цикла данных, обработки событий и потоков запросов в архитектуре Micro-frontends.
+This document defines strict rules for the data lifecycle, event handling, and request flows in the Micro-frontends architecture.
 
 ## Request and Event Lifecycle
 

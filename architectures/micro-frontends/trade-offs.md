@@ -19,7 +19,7 @@ last_updated: 2026-03-22
 
 ---
 
-Этот документ определяет плюсы, минусы и системные ограничения в архитектуре Micro-frontends.
+This document defines the pros, cons, and system constraints in the Micro-frontends architecture.
 
 ## Evaluated Pros & Cons
 
