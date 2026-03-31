@@ -1,5 +1,4 @@
 ---
-description: Vibe coding guidelines and architectural constraints for TypeScript Professional & Niche topics within the frontend domain.
 technology: TypeScript
 domain: frontend
 level: Senior/Architect
@@ -7,10 +6,7 @@ version: "5.5+"
 tags: [typescript, advanced, best-practices, clean-code, scalable-code]
 ai_role: Senior TypeScript Expert
 last_updated: 2026-03-22
-topic: TypeScript
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true---
+---
 
 # 🧠 TypeScript Professional & Niche Best Practices
 # 📖 Context & Scope

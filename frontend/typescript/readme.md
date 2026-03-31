@@ -1,5 +1,4 @@
 ---
-description: Vibe coding guidelines and architectural constraints for TypeScript within the frontend domain.
 technology: TypeScript
 domain: frontend
 level: Senior/Architect
@@ -7,10 +6,7 @@ version: "5.0+"
 tags: [typescript, type-safety, clean-code, best-practices, architecture]
 ai_role: Senior TypeScript Architecture Expert
 last_updated: 2026-03-22
-topic: TypeScript
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true---
+---
 
 # 🎨 TypeScript Best Practise
 

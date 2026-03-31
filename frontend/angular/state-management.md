@@ -1,16 +1,12 @@
 ---
-description: Vibe coding guidelines and architectural constraints for Angular State Management, focusing on Zoneless reactivity, Signals, and modern functional APIs.
 technology: Angular
 domain: frontend
 level: Senior/Architect
-complexity: Advanced
-topic: Angular State Management
-vibe_coding_ready: true
-last_evolution: 2026-03-28
 version: "20"
 tags: [state-management, signals, zoneless, angular, best-practices, clean-code, scalable-code]
 ai_role: Senior Angular State Management Expert
-last_updated: 2026-03-29---
+last_updated: 2026-03-29
+---
 
 
 > 📦 [best-practise](../../README.md) / 🖥️ [frontend](../readme.md) / 🅰️ [angular](./readme.md)

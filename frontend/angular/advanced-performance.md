@@ -1,5 +1,4 @@
 ---
-description: Vibe coding guidelines and architectural constraints for Angular Advanced Performance within the frontend domain.
 technology: Angular
 domain: frontend
 level: Senior/Architect
@@ -7,10 +6,7 @@ version: "20"
 tags: [performance, advanced, angular, best-practices, clean-code, scalable-code]
 ai_role: Senior Angular Performance Expert
 last_updated: 2026-03-22
-topic: Angular
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true---
+---
 
 # 🚀 Angular Advanced Performance Best Practices & Expert Patterns
 # 📖 Context & Scope
