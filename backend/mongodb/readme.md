@@ -1,16 +1,12 @@
 ---
-description: Vibe coding guidelines and architectural constraints for MongoDB within the backend domain.
 technology: MongoDB
 domain: backend
 level: Senior/Architect
-complexity: Advanced
-topic: MongoDB
-vibe_coding_ready: true
 version: "7.0+"
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, mongodb, nosql, database, system-design, production-ready, scalable-code, document-database]
 ai_role: Senior MongoDB Database Architect
 last_updated: 2026-03-28
-last_evolution: 2026-03-28---
+---
 
 
 <div align="center">
@@ -77,7 +73,7 @@ db.createCollection("users", {
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ---
 
 [⬆ Back to Top](#-mongodb-production-ready-best-practices)
