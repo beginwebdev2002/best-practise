@@ -47,7 +47,8 @@ graph TD
 ## 🚀 I. Local State Management
 
 ### 🚨 1. Managing Component State with Signals
-**Context:** Synchronous local state.
+> [!NOTE]
+> **Context:** Synchronous local state.
 #### ❌ Bad Practice
 ```typescript
 isLoading: boolean = false;
@@ -82,7 +83,8 @@ Use `signal()`. It forces the developer to explicitly use `.set()` or `.update()
 ## ⚙️ II. Derived State
 
 ### 🚨 2. Computing Values
-**Context:** Creating derived state based on other state values.
+> [!NOTE]
+> **Context:** Creating derived state based on other state values.
 #### ❌ Bad Practice
 ```typescript
 items = signal([1, 2, 3]);
@@ -105,7 +107,8 @@ Use `computed()`. The calculated value is memoized and only re-evaluates when it
 ## ⚡ III. Side Effects
 
 ### 🚨 3. Handling Side Effects Safely
-**Context:** Executing logic when a signal changes.
+> [!NOTE]
+> **Context:** Executing logic when a signal changes.
 #### ❌ Bad Practice
 Using getters or Angular lifecycle hooks like `ngDoCheck` to monitor value changes and trigger side effects like logging or generic HTTP calls.
 #### ⚠️ Problem
@@ -125,7 +128,8 @@ Use `effect()`. Effects track dependencies automatically and ensure the side eff
 ## 🔗 IV. Component Communication
 
 ### 🚨 4. Modern Data Passing
-**Context:** Passing data between parent and child components.
+> [!NOTE]
+> **Context:** Passing data between parent and child components.
 #### ❌ Bad Practice
 ```typescript
 @Input() user: User;

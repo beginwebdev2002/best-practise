@@ -9,6 +9,8 @@ last_updated: 2026-03-22
 ---
 
 # ⚡ Qwik Best Practices & Production-Ready Patterns
+
+[⬆️ Back to Top](#)
 # 📖 Context & Scope
 - **Primary Goal:** Enforce strict adherence to modern Qwik patterns, specifically resumability and lazy loading for optimal best practices.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
@@ -24,8 +26,9 @@ last_updated: 2026-03-22
 - Adhere to the defined [Architectural Patterns](../../architectures/readme.md) when building applications.
 - Strongly prefer **Feature Sliced Design (FSD)** for applications scaling across multiple teams.
 ## 🚀 I. Basics & Popular
-## 1. Passing Closures as Props
-**Context:** Component Props
+## ⚡ 1. Passing Closures as Props
+> [!NOTE]
+> **Context:** Component Props
 ### ❌ Bad Practice
 ```tsx
 const Component = ({ onClick }) => <button onClick={onClick}>Click</button>;

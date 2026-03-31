@@ -9,13 +9,16 @@ last_updated: 2026-03-22
 ---
 
 # 🛡️ TypeScript Logic & Safety Best Practices
+
+[⬆️ Back to Top](#)
 # 📖 Context & Scope
 - **Primary Goal:** Enforce strict type safety and logical soundness in TypeScript.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** TypeScript 5.5+
-## II. Logic & Safety (11-20)
-## 11. Type Assertions (`as`) vs Narrowing
-**Context:** Telling the compiler what a type is.
+## ⚡ II. Logic & Safety (11-20)
+## ⚡ 11. Type Assertions (`as`) vs Narrowing
+> [!NOTE]
+> **Context:** Telling the compiler what a type is.
 ### ❌ Bad Practice
 ```typescript
 const user = response.data as User;
@@ -31,8 +34,9 @@ if (isValidUser(response.data)) { ... }
 ```
 ### 🚀 Solution
 Avoid type assertions. Use runtime validation (Zod, Valibot) or Type Guards to ensure the data actually matches the type you expect.
-## 12. Non-null Assertion Operator (`!`)
-**Context:** Dealing with potentially `null` or `undefined` values.
+## ⚡ 12. Non-null Assertion Operator (`!`)
+> [!NOTE]
+> **Context:** Dealing with potentially `null` or `undefined` values.
 ### ❌ Bad Practice
 ```typescript
 const name = user!.profile!.name;
@@ -45,8 +49,9 @@ const name = user?.profile?.name ?? 'Guest';
 ```
 ### 🚀 Solution
 Use Optional Chaining (`?.`) and Nullish Coalescing (`??`) to handle missing values gracefully.
-## 13. Lack of Discriminated Unions
-**Context:** Modeling complex states like API responses.
+## ⚡ 13. Lack of Discriminated Unions
+> [!NOTE]
+> **Context:** Modeling complex states like API responses.
 ### ❌ Bad Practice
 ```typescript
 interface State {
@@ -66,8 +71,9 @@ type State =
 ```
 ### 🚀 Solution
 Use Discriminated Unions (with a shared literal property like `type` or `kind`). This makes states mutually exclusive and simplifies logic.
-## 14. Boolean casting (`!!`)
-**Context:** Converting values to booleans.
+## ⚡ 14. Boolean casting (`!!`)
+> [!NOTE]
+> **Context:** Converting values to booleans.
 ### ❌ Bad Practice
 ```typescript
 const hasAccess = !!user.token;
@@ -82,8 +88,9 @@ const hasAccess = user.token !== undefined;
 ```
 ### 🚀 Solution
 Use the `Boolean()` constructor or explicit comparisons for clarity.
-## 15. Using `Object` for non-primitive types
-**Context:** Restricting types to objects.
+## ⚡ 15. Using `Object` for non-primitive types
+> [!NOTE]
+> **Context:** Restricting types to objects.
 ### ❌ Bad Practice
 ```typescript
 function cache(obj: Object) { ... }
@@ -96,8 +103,9 @@ function cache(obj: Record<string, unknown>) { ... }
 ```
 ### 🚀 Solution
 Use `Record<string, unknown>` for general objects or `Record<string, never>` for empty objects to ensure keys are strings and values are handled safely.
-## 16. Function types vs Object types for functions
-**Context:** Defining function signatures.
+## ⚡ 16. Function types vs Object types for functions
+> [!NOTE]
+> **Context:** Defining function signatures.
 ### ❌ Bad Practice
 ```typescript
 type ClickHandler = {
@@ -112,8 +120,9 @@ type ClickHandler = (e: Event) => void;
 ```
 ### 🚀 Solution
 Use the arrow function syntax for type aliases unless you need to define properties on the function itself (callable objects).
-## 17. Catching `any` in try-catch
-**Context:** Handling exceptions.
+## ⚡ 17. Catching `any` in try-catch
+> [!NOTE]
+> **Context:** Handling exceptions.
 ### ❌ Bad Practice
 ```typescript
 try {
@@ -136,8 +145,9 @@ try {
 ```
 ### 🚀 Solution
 Always check the type of the caught error. In modern TS, use `useUnknownInCatchVariables: true` to force `e` to be `unknown`.
-## 18. Literal types vs General types
-**Context:** Narrowing strings/numbers to specific values.
+## ⚡ 18. Literal types vs General types
+> [!NOTE]
+> **Context:** Narrowing strings/numbers to specific values.
 ### ❌ Bad Practice
 ```typescript
 function setAlignment(dir: string) { ... }
@@ -151,8 +161,9 @@ function setAlignment(dir: Direction) { ... }
 ```
 ### 🚀 Solution
 Use Union Literal types to restrict inputs to a known set of valid values.
-## 19. Optional properties vs Union with `undefined`
-**Context:** Defining fields that might not exist.
+## ⚡ 19. Optional properties vs Union with `undefined`
+> [!NOTE]
+> **Context:** Defining fields that might not exist.
 ### ❌ Bad Practice
 ```typescript
 interface Config {
@@ -169,8 +180,9 @@ interface Config {
 ```
 ### 🚀 Solution
 Use `?` for properties that can be omitted entirely.
-## 20. Array index access safety
-**Context:** Accessing elements by index.
+## ⚡ 20. Array index access safety
+> [!NOTE]
+> **Context:** Accessing elements by index.
 ### ❌ Bad Practice
 ```typescript
 const first = users[0];

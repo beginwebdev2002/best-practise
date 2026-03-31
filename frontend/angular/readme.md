@@ -22,7 +22,8 @@ last_updated: 2026-03-22
 ## 🚀 I. Basics & Popular (1-15)
 
 ### 🚨 1. Using `@Input()` Decorator
-**Context:** Component Inputs
+> [!NOTE]
+> **Context:** Component Inputs
 #### ❌ Bad Practice
 ```typescript
 @Input() title: string = '';
@@ -38,7 +39,8 @@ Use Signal Inputs (`input()`). This allows Angular to precisely know *which* spe
 ---
 
 ### 🚨 2. Using `@Output()` Decorator
-**Context:** Component Outputs
+> [!NOTE]
+> **Context:** Component Outputs
 #### ❌ Bad Practice
 ```typescript
 @Output() save = new EventEmitter<void>();
@@ -54,7 +56,8 @@ Use the `output()` function. It provides strict typing, better performance, and 
 ---
 
 ### 🚨 3. Two-Way Binding with `@Input()` and `@Output()`
-**Context:** Model Synchronization
+> [!NOTE]
+> **Context:** Model Synchronization
 #### ❌ Bad Practice
 ```typescript
 @Input() value: string;
@@ -71,7 +74,8 @@ Use `model()`. This creates a Signal that can be both read and written to, autom
 ---
 
 ### 🚨 4. Structural Directives (`*ngIf`, `*ngFor`)
-**Context:** Template Control Flow
+> [!NOTE]
+> **Context:** Template Control Flow
 #### ❌ Bad Practice
 ```html
 <div *ngIf="isLoaded; else loading">
@@ -95,7 +99,8 @@ Use the built-in Control Flow (`@if`, `@for`). It is built into the compiler, re
 ---
 
 ### 🚨 5. Subscribing in Components (Logic in `ngOnInit`)
-**Context:** Data Fetching
+> [!NOTE]
+> **Context:** Data Fetching
 #### ❌ Bad Practice
 ```typescript
 data: unknown;
@@ -114,7 +119,8 @@ Use `toSignal()` to convert an Observable into a Signal. This automatically mana
 ---
 
 ### 🚨 6. `BehaviorSubject` for Local State
-**Context:** Component State Management
+> [!NOTE]
+> **Context:** Component State Management
 #### ❌ Bad Practice
 ```typescript
 private count$ = new BehaviorSubject(0);
@@ -133,7 +139,8 @@ Use `signal()` for local state. It is a primitive designed specifically for sync
 ---
 
 ### 🚨 7. Derived State with `ngOnChanges`
-**Context:** Reactivity
+> [!NOTE]
+> **Context:** Reactivity
 #### ❌ Bad Practice
 ```typescript
 ngOnChanges(changes: SimpleChanges) {
@@ -153,7 +160,8 @@ Use `computed()`. The signal is recalculated *only* when its dependencies change
 ---
 
 ### 🚨 8. Constructor Dependency Injection
-**Context:** DI Pattern
+> [!NOTE]
+> **Context:** DI Pattern
 #### ❌ Bad Practice
 ```typescript
 constructor(private http: HttpClient, private store: Store) {}
@@ -170,7 +178,8 @@ Use the `inject()` function. It operates in the initialization context (fields o
 ---
 
 ### 🚨 9. Modules (`NgModule`)
-**Context:** App Architecture
+> [!NOTE]
+> **Context:** App Architecture
 #### ❌ Bad Practice
 ```typescript
 @NgModule({
@@ -193,7 +202,8 @@ Use Standalone Components. This is the Angular v14+ standard that makes componen
 ---
 
 ### 🚨 10. String-based Route Loading
-**Context:** Lazy Loading Routing
+> [!NOTE]
+> **Context:** Lazy Loading Routing
 #### ❌ Bad Practice
 ```typescript
 loadChildren: () => import('./module').then(m => m.UserModule)
@@ -209,7 +219,8 @@ Use `loadComponent` for routing to Standalone components. This ensures minimal c
 ---
 
 ### 🚨 11. Heavy Logic in Templates
-**Context:** Template Performance
+> [!NOTE]
+> **Context:** Template Performance
 #### ❌ Bad Practice
 ```html
 <div>{{ calculateTotal(items) }}</div>
@@ -228,7 +239,8 @@ Extract logic into `computed()` signals or Pure Pipes. They are only executed wh
 ---
 
 ### 🚨 12. Manual Subscription Management (`takeUntil`)
-**Context:** RxJS Memory Leaks
+> [!NOTE]
+> **Context:** RxJS Memory Leaks
 #### ❌ Bad Practice
 ```typescript
 destroy$ = new Subject<void>();
@@ -246,7 +258,8 @@ Use the `takeUntilDestroyed()` operator. It automatically unsubscribes upon cont
 ---
 
 ### 🚨 13. Deeply Nested Components Passing Data
-**Context:** Prop Drilling
+> [!NOTE]
+> **Context:** Prop Drilling
 #### ❌ Bad Practice
 ```html
 <!-- Parent -->
@@ -268,7 +281,8 @@ Use Signal Stores or services for state sharing, or the new `input()` API with c
 ---
 
 ### 🚨 14. Accessing DOM directly (`ElementRef.nativeElement`)
-**Context:** Security & Abstraction
+> [!NOTE]
+> **Context:** Security & Abstraction
 #### ❌ Bad Practice
 ```typescript
 el.nativeElement.style.backgroundColor = 'red';
@@ -285,7 +299,8 @@ Use style/class bindings or `Renderer2`. For direct manipulations, consider dire
 ---
 
 ### 🚨 15. Zone.js overhead
-**Context:** Change Detection
+> [!NOTE]
+> **Context:** Change Detection
 #### ❌ Bad Practice
 The application relies on Zone.js for any asynchronous event (setTimeout, Promise, XHR).
 #### ⚠️ Problem

@@ -9,13 +9,16 @@ last_updated: 2026-03-22
 ---
 
 # 🧠 JavaScript Professional & Niche Best Practices (Senior Level)
+
+[⬆️ Back to Top](#)
 # 📖 Context & Scope
 - **Primary Goal:** Detail advanced and niche topics in JavaScript for high-performance applications.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** ES2024+
-## IV. Professional & Niche (Senior Level)
-## 31. Memory Leaks: Unremoved Event Listeners
-**Context:** Long-lived applications (SPAs).
+## ⚡ IV. Professional & Niche (Senior Level)
+## ⚡ 31. Memory Leaks: Unremoved Event Listeners
+> [!NOTE]
+> **Context:** Long-lived applications (SPAs).
 ### ❌ Bad Practice
 ```javascript
 window.addEventListener('resize', () => this.handleResize());
@@ -32,8 +35,9 @@ window.removeEventListener('resize', handler);
 ```
 ### 🚀 Solution
 Always remove event listeners in cleanup phases (e.g., `componentWillUnmount` or `useEffect` return). Use `AbortController` for an even more modern approach to listener cleanup.
-## 32. Memory Leaks: Forgotten Intervals/Timeouts
-**Context:** Managing temporal background tasks.
+## ⚡ 32. Memory Leaks: Forgotten Intervals/Timeouts
+> [!NOTE]
+> **Context:** Managing temporal background tasks.
 ### ❌ Bad Practice
 ```javascript
 setInterval(() => {
@@ -50,8 +54,9 @@ clearInterval(intervalId);
 ```
 ### 🚀 Solution
 Store the ID returned by `setTimeout` or `setInterval` and clear it when the task is no longer relevant.
-## 33. Closures inside loops (Memory/Scope issues)
-**Context:** Understanding the Event Loop and closure capture.
+## ⚡ 33. Closures inside loops (Memory/Scope issues)
+> [!NOTE]
+> **Context:** Understanding the Event Loop and closure capture.
 ### ❌ Bad Practice
 ```javascript
 for (var i = 0; i < 5; i++) {
@@ -68,8 +73,9 @@ for (let i = 0; i < 5; i++) {
 ```
 ### 🚀 Solution
 Use `let` in loop headers. It creates a new binding for each iteration, ensuring the closure captures the value of `i` at that specific moment.
-## 34. Throwing Strings instead of `new Error()`
-**Context:** Ensuring useful stack traces.
+## ⚡ 34. Throwing Strings instead of `new Error()`
+> [!NOTE]
+> **Context:** Ensuring useful stack traces.
 ### ❌ Bad Practice
 ```javascript
 throw 'Something went wrong';
@@ -82,8 +88,9 @@ throw new Error('Something went wrong');
 ```
 ### 🚀 Solution
 Always throw an instance of `Error` (or a subclass). This captures the `stack` property, which is vital for debugging.
-## 35. Modifying Built-in Prototypes
-**Context:** Ecosystem compatibility and stability.
+## ⚡ 35. Modifying Built-in Prototypes
+> [!NOTE]
+> **Context:** Ecosystem compatibility and stability.
 ### ❌ Bad Practice
 ```javascript
 Array.prototype.last = function() {
@@ -98,8 +105,9 @@ const last = (arr) => arr[arr.length - 1];
 ```
 ### 🚀 Solution
 Use utility functions or wrapper classes instead of modifying global prototypes.
-## 36. Premature Optimization (e.g., bitwise for rounding)
-**Context:** Readability vs Micro-benchmarks.
+## ⚡ 36. Premature Optimization (e.g., bitwise for rounding)
+> [!NOTE]
+> **Context:** Readability vs Micro-benchmarks.
 ### ❌ Bad Practice
 ```javascript
 const floor = ~~x; // Double bitwise NOT to floor
@@ -112,8 +120,9 @@ const floor = Math.floor(x);
 ```
 ### 🚀 Solution
 Prioritize readability. Modern JIT compilers are smart enough to optimize `Math.floor`. Only use bitwise tricks if profiling proves it's a critical bottleneck in a hot path.
-## 37. V8 Hidden Classes: Changing object shape after initialization
-**Context:** V8 JIT optimization.
+## ⚡ 37. V8 Hidden Classes: Changing object shape after initialization
+> [!NOTE]
+> **Context:** V8 JIT optimization.
 ### ❌ Bad Practice
 ```javascript
 function User(name) {
@@ -134,8 +143,9 @@ const u1 = new User('Alice', 25);
 ```
 ### 🚀 Solution
 Initialize all object properties in the constructor or a factory function. Maintain a consistent object "shape" to keep V8 in the optimized path.
-## 38. Array Hole (Sparse Arrays) performance
-**Context:** Memory allocation and JIT optimization.
+## ⚡ 38. Array Hole (Sparse Arrays) performance
+> [!NOTE]
+> **Context:** Memory allocation and JIT optimization.
 ### ❌ Bad Practice
 ```javascript
 const arr = new Array(100);
@@ -149,8 +159,9 @@ const arr = Array.from({ length: 100 }, () => null);
 ```
 ### 🚀 Solution
 Initialize arrays with default values (like `null` or `0`) instead of leaving empty slots. This keeps the array in "packed" mode.
-## 39. Using `eval()` or `new Function()`
-**Context:** Security and performance.
+## ⚡ 39. Using `eval()` or `new Function()`
+> [!NOTE]
+> **Context:** Security and performance.
 ### ❌ Bad Practice
 ```javascript
 const result = eval('2 + 2');
@@ -165,8 +176,9 @@ const operations = { '+': (a, b) => a + b };
 ```
 ### 🚀 Solution
 Avoid `eval()`. Use lookup tables, JSON parsing, or safe math libraries to handle dynamic logic.
-## 40. Micro-optimizations that hurt readability
-**Context:** Maintaining a healthy codebase.
+## ⚡ 40. Micro-optimizations that hurt readability
+> [!NOTE]
+> **Context:** Maintaining a healthy codebase.
 ### ❌ Bad Practice
 ```javascript
 for (let i = 0, len = arr.length; i < len; i++) { /* ... */ }

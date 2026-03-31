@@ -9,6 +9,8 @@ last_updated: 2026-03-22
 ---
 
 # 🎨 Frontend Best Practices & Production-Ready Patterns
+
+[⬆️ Back to Top](#)
 # 📖 Context & Scope
 - **Primary Goal:** Outline the overarching philosophy and standards for Frontend development inside the ecosystem.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.

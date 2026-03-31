@@ -9,6 +9,8 @@ last_updated: 2026-03-22
 ---
 
 # ⚡ SolidJS Best Practices & Production-Ready Patterns
+
+[⬆️ Back to Top](#)
 # 📖 Context & Scope
 - **Primary Goal:** Enforce strict adherence to modern SolidJS patterns, specifically fine-grained reactivity and functional APIs for optimal best practices.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
@@ -24,8 +26,9 @@ last_updated: 2026-03-22
 - Adhere to the defined [Architectural Patterns](../../architectures/readme.md) when building applications.
 - Strongly prefer **Feature Sliced Design (FSD)** for applications scaling across multiple teams.
 ## 🚀 I. Basics & Popular
-## 1. Using JSX Map for Lists
-**Context:** Rendering Lists
+## ⚡ 1. Using JSX Map for Lists
+> [!NOTE]
+> **Context:** Rendering Lists
 ### ❌ Bad Practice
 ```tsx
 return <ul>{items().map(item => <li>{item.name}</li>)}</ul>;

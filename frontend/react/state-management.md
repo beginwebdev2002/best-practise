@@ -17,8 +17,9 @@ last_updated: 2026-03-22
 - **Tech Stack Version:** React 19+
 ## 📚 Topics
 
-### 1. Handling Async Actions (Forms)
-**Context:** Managing state updates triggered by form submissions or asynchronous operations.
+### 🔹 1. Handling Async Actions (Forms)
+> [!NOTE]
+> **Context:** Managing state updates triggered by form submissions or asynchronous operations.
 #### ❌ Bad Practice
 ```tsx
 import { useState } from 'react';
@@ -66,8 +67,9 @@ Use the `useActionState` Hook (React 19+) for seamless action state management.
 - **Performance Note:** `useActionState` effectively handles race conditions by ensuring only the latest action state is applied to the UI, optimizing rendering cycles.
 - **Security Note:** Form actions seamlessly interact with Server Actions. Ensure that `saveAction` strictly validates input server-side to prevent malicious payloads, and use CSRF tokens if required by your framework.
 
-### 2. Using Global State Naively
-**Context:** Storing local component UI state in a global store (e.g., Redux, Zustand).
+### 🔹 2. Using Global State Naively
+> [!NOTE]
+> **Context:** Storing local component UI state in a global store (e.g., Redux, Zustand).
 #### ❌ Bad Practice
 Putting a dropdown's `isOpen` state into the global Redux store.
 #### ⚠️ Problem

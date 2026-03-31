@@ -16,7 +16,8 @@ last_updated: 2026-03-22
 ## 🚀 I. Fundamentals (The Basics)
 
 ### 🚨 1. `var` vs `const/let`
-**Context:** Scoping and hoisting mechanisms in modern JavaScript. `var` is function-scoped and hoisted, leading to unpredictable behavior and accidental global leakage.
+> [!NOTE]
+> **Context:** Scoping and hoisting mechanisms in modern JavaScript. `var` is function-scoped and hoisted, leading to unpredictable behavior and accidental global leakage.
 #### ❌ Bad Practice
 ```javascript
 var price = 100;
@@ -40,7 +41,8 @@ Use `const` by default to ensure immutability of the reference. Use `let` only w
 ---
 
 ### 🚨 2. Loose equality `==`
-**Context:** JavaScript's type coercion rules are complex and often counter-intuitive.
+> [!NOTE]
+> **Context:** JavaScript's type coercion rules are complex and often counter-intuitive.
 #### ❌ Bad Practice
 ```javascript
 if (userCount == '0') {
@@ -60,7 +62,8 @@ Always use strict equality `===` and inequality `!==`. This forces the developer
 ---
 
 ### 🚨 3. Global Scope Pollution
-**Context:** The global namespace is shared. Overwriting global properties can break third-party libraries or browser APIs.
+> [!NOTE]
+> **Context:** The global namespace is shared. Overwriting global properties can break third-party libraries or browser APIs.
 #### ❌ Bad Practice
 ```javascript
 // In a script file
@@ -84,7 +87,8 @@ Use ES Modules (`import/export`) to encapsulate code. Modules have their own sco
 ---
 
 ### 🚨 4. String concatenation vs Template Literals
-**Context:** Readability and handling of multi-line strings/expressions.
+> [!NOTE]
+> **Context:** Readability and handling of multi-line strings/expressions.
 #### ❌ Bad Practice
 ```javascript
 const greeting = 'Hello, ' + user.firstName + ' ' + user.lastName + '! ' +
@@ -102,7 +106,8 @@ Use Template Literals (backticks). They allow for embedded expressions, multi-li
 ---
 
 ### 🚨 5. Magic Numbers
-**Context:** Numbers with no context make the codebase hard to maintain.
+> [!NOTE]
+> **Context:** Numbers with no context make the codebase hard to maintain.
 #### ❌ Bad Practice
 ```javascript
 if (user.age >= 18) {
@@ -124,7 +129,8 @@ Extract magic numbers into named constants. This provides semantic meaning and a
 ---
 
 ### 🚨 6. Boolean comparisons `(if x === true)`
-**Context:** Redundancy in conditional logic.
+> [!NOTE]
+> **Context:** Redundancy in conditional logic.
 #### ❌ Bad Practice
 ```javascript
 if (isValid === true) { /* ... */ }
@@ -141,7 +147,8 @@ Leverage JavaScript's truthiness/falsiness or direct boolean evaluation. It make
 ---
 
 ### 🚨 7. Array/Object literal vs `new` constructor
-**Context:** Object and Array instantiation.
+> [!NOTE]
+> **Context:** Object and Array instantiation.
 #### ❌ Bad Practice
 ```javascript
 const list = new Array(1, 2, 3);
@@ -159,7 +166,8 @@ Use literals `[]` and `{}`. They are visually cleaner and perform slightly bette
 ---
 
 ### 🚨 8. Function length/complexity
-**Context:** The Single Responsibility Principle (SRP).
+> [!NOTE]
+> **Context:** The Single Responsibility Principle (SRP).
 #### ❌ Bad Practice
 ```javascript
 function processOrder(order) {
@@ -185,7 +193,8 @@ Break functions into smaller, pure components. Aim for functions under 20 lines 
 ---
 
 ### 🚨 9. Deeply nested `if/else` (Arrow code)
-**Context:** Cognitive load and code readability.
+> [!NOTE]
+> **Context:** Cognitive load and code readability.
 #### ❌ Bad Practice
 ```javascript
 function getData(user) {
@@ -214,7 +223,8 @@ Use "Guard Clauses" to return early. This flattens the structure and handles edg
 ---
 
 ### 🚨 10. Improper naming (Single letters)
-**Context:** Self-documenting code.
+> [!NOTE]
+> **Context:** Self-documenting code.
 #### ❌ Bad Practice
 ```javascript
 const d = new Date();

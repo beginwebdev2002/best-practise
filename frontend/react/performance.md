@@ -17,8 +17,9 @@ last_updated: 2026-03-22
 - **Tech Stack Version:** React 19+
 ## 📚 Topics
 
-### 1. Manual Memoization vs React Compiler
-**Context:** Avoiding unnecessary re-renders.
+### 🔹 1. Manual Memoization vs React Compiler
+> [!NOTE]
+> **Context:** Avoiding unnecessary re-renders.
 #### ❌ Bad Practice
 ```tsx
 import { useMemo, useCallback } from 'react';
@@ -54,8 +55,9 @@ Rely on the **React Compiler** (introduced in React 19+). The compiler automatic
 - **Performance Note:** The React Compiler analyzes your component structure and injects optimal memoization (similar to SolidJS's granular updates), eliminating the overhead of manual dependency tracking.
 - **Security Note:** While the React Compiler does not directly impact security, it ensures components render exactly when their inputs change, reducing side effects that might otherwise expose temporary or stale data to users.
 
-### 2. Resolving Promises During Render
-**Context:** Conditionally handling promises without `useEffect` or `useState`.
+### 🔹 2. Resolving Promises During Render
+> [!NOTE]
+> **Context:** Conditionally handling promises without `useEffect` or `useState`.
 #### ❌ Bad Practice
 ```tsx
 import { useEffect, useState } from 'react';

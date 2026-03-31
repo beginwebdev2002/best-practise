@@ -9,13 +9,16 @@ last_updated: 2026-03-22
 ---
 
 # 🧠 Angular Expert/Niche Best Practices
+
+[⬆️ Back to Top](#)
 # 📖 Context & Scope
 - **Primary Goal:** Deep-dive into expert and niche topics in Angular.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** Angular 20
-## V. Expert/Niche (56-60)
-## 56. `untracked()` usage
-**Context:** Fine-grained Reactivity
+## ⚡ V. Expert/Niche (56-60)
+## ⚡ 56. `untracked()` usage
+> [!NOTE]
+> **Context:** Fine-grained Reactivity
 ### ❌ Bad Practice
 Accidentally creating a cyclic dependency in `computed`.
 ### ⚠️ Problem
@@ -30,8 +33,9 @@ computed(() => {
 ```
 ### 🚀 Solution
 Use `untracked()` for side effects or reads that shouldn't affect recalculation.
-## 57. V8 Hidden Classes Optimization
-**Context:** Micro-optimization
+## ⚡ 57. V8 Hidden Classes Optimization
+> [!NOTE]
+> **Context:** Micro-optimization
 ### ❌ Bad Practice
 ```typescript
 user = signal({});
@@ -47,8 +51,9 @@ user = signal<User>({ name: null, age: null });
 ```
 ### 🚀 Solution
 Always initialize signals with the full object shape (even with null) to preserve property access monomorphism.
-## 58. Signal Glitch Freedom abuse
-**Context:** Reactivity Theory
+## ⚡ 58. Signal Glitch Freedom abuse
+> [!NOTE]
+> **Context:** Reactivity Theory
 ### ❌ Bad Practice
 Relying on `effect` to fire synchronously.
 ### ⚠️ Problem
@@ -58,9 +63,10 @@ Do not use effects to synchronize local state. Use `computed`.
 
 
 ### 🚀 Solution
-[Architectural justification of the solution]
-## 59. Memory leaks in `root` Effects
-**Context:** Application Lifecycle
+This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+## ⚡ 59. Memory leaks in `root` Effects
+> [!NOTE]
+> **Context:** Application Lifecycle
 ### ❌ Bad Practice
 Creating an effect in a service without `manualCleanup`.
 ### ⚠️ Problem
@@ -70,9 +76,10 @@ Usually fine, but if the service is destroyed (rare lazy loading case), the effe
 
 
 ### 🚀 Solution
-[Architectural justification of the solution]
-## 60. `runInInjectionContext`
-**Context:** Advanced DI
+This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+## 📖 60. `runInInjectionContext`
+> [!NOTE]
+> **Context:** Advanced DI
 ### ❌ Bad Practice
 Passing an `Injector` instance manually into functions.
 ### ⚠️ Problem

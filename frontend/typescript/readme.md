@@ -13,7 +13,8 @@ last_updated: 2026-03-22
 ![TypeScript Logo](https://img.icons8.com/?size=100&id=uJM6fQYqDaZK&format=png&color=000000)
 ## 🚀 I. Fundamentals (1-10)
 ## ⚡ 1. `any` vs `unknown`
-**Context:** Handling data of an uncertain type. `any` disables all type-checking, while `unknown` forces safety.
+> [!NOTE]
+> **Context:** Handling data of an uncertain type. `any` disables all type-checking, while `unknown` forces safety.
 ### ❌ Bad Practice
 ```typescript
 function process(data: unknown) {
@@ -34,7 +35,8 @@ function process(data: unknown) {
 Use `unknown` for values whose type is not yet determined. It requires a type check or assertion before usage, ensuring the developer acknowledges the data's structure.
 ---
 ## ⚡ 2. `null` vs `undefined` in APIs
-**Context:** Distinguishing between "value not provided" and "value is empty."
+> [!NOTE]
+> **Context:** Distinguishing between "value not provided" and "value is empty."
 ### ❌ Bad Practice
 ```typescript
 interface UserResponse {
@@ -53,7 +55,8 @@ interface UserResponse {
 Standardize: use `undefined` (optional properties) for missing keys and `null` for intentional absence of value. Avoid using both for the same field unless strictly required by a legacy API.
 ---
 ## ⚡ 3. `Array<T>` vs `T[]`
-**Context:** Visual consistency in array declarations.
+> [!NOTE]
+> **Context:** Visual consistency in array declarations.
 ### ❌ Bad Practice
 ```typescript
 const users: Array<User> = [];
@@ -70,7 +73,8 @@ const complex: (string | number)[] = [];
 Prefer the shorthand `T[]`. It is idiomatic, more readable, and clearly distinguishes arrays from other generic containers like `Record` or `Promise`.
 ---
 ## ⚡ 4. `interface` vs `type`
-**Context:** Defining object structures and aliases.
+> [!NOTE]
+> **Context:** Defining object structures and aliases.
 ### ❌ Bad Practice
 ```typescript
 interface Point { x: number; y: number; }
@@ -88,7 +92,8 @@ type Union = 'A' | 'B';
 Use `type` for almost everything (unions, primitives, intersections). Use `interface` only when you specifically need declaration merging or for public library APIs where consumers might need to extend types.
 ---
 ## ⚡ 5. Function Overloads vs Union Types
-**Context:** Handling functions with different input/output combinations.
+> [!NOTE]
+> **Context:** Handling functions with different input/output combinations.
 ### ❌ Bad Practice
 ```typescript
 function format(input: string): string;
@@ -109,7 +114,8 @@ function format(input: string | number): string {
 Prefer Union types when the implementation logic is identical for all types. Reserve overloads only for cases where the return type strictly depends on the input type and cannot be expressed via generics.
 ---
 ## 🎯 6. Global Scope Pollution (Legacy Namespaces)
-**Context:** Organizing code in the ES Module era.
+> [!NOTE]
+> **Context:** Organizing code in the ES Module era.
 ### ❌ Bad Practice
 ```typescript
 namespace Utils {
@@ -127,7 +133,8 @@ export const log = (msg: string) => console.log(msg);
 Use ES Modules (`export`/`import`). They are the industry standard, supported by all modern environments, and allow for better static analysis.
 ---
 ## ⚡ 7. `enum` vs `const object`
-**Context:** Grouping related constants.
+> [!NOTE]
+> **Context:** Grouping related constants.
 ### ❌ Bad Practice
 ```typescript
 enum Status {
@@ -150,7 +157,8 @@ type Status = typeof STATUS[keyof typeof STATUS];
 Use `const` objects with `as const` and a derived union type. This is more predictable, emits cleaner code, and is easier to iterate over.
 ---
 ## ⚡ 8. Explicit `any` in Parameters
-**Context:** Enforcing strict type safety.
+> [!NOTE]
+> **Context:** Enforcing strict type safety.
 ### ❌ Bad Practice
 ```typescript
 function save(data) { // Implicit unknown if strict: false
@@ -169,7 +177,8 @@ function save(data: UserData) {
 Enable `noImplicitAny: true` in `tsconfig.json`. Always define specific types or use `unknown` if the type is truly dynamic.
 ---
 ## ⚡ 9. Manual Type Guards vs Type Predicates
-**Context:** Narrowing types inside conditional blocks.
+> [!NOTE]
+> **Context:** Narrowing types inside conditional blocks.
 ### ❌ Bad Practice
 ```typescript
 if (typeof input === 'object' && input !== null && 'admin' in input) {
@@ -192,7 +201,8 @@ if (isAdmin(input)) {
 Use Type Predicates (`arg is Type`) to create reusable, safe narrowing functions.
 ---
 ## ⚡ 10. Triple-Slash Directives
-**Context:** Referencing types or files.
+> [!NOTE]
+> **Context:** Referencing types or files.
 ### ❌ Bad Practice
 ```typescript
 /// <reference path="./types.d.ts" />
