@@ -90,11 +90,11 @@ class PaymentEventHandler {
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Without tracking `eventId` locally, duplicate deliveries from the broker (due to consumer rebalancing, network drops, or retries) result in duplicate side effects. This leads to double-billing customers, duplicate orders, and compromised system integrity.
 
 
 ### 🚀 Solution
-[Architectural justification of the solution]
+Implementing an Idempotent Receiver pattern with a unique constraint on `eventId` ensures that duplicate events are safely ignored. Wrapping the deduplication check and the business logic within an atomic database transaction guarantees state consistency even under high concurrency.
 ---
 ## 2. The Transactional Outbox Pattern
 
@@ -143,11 +143,11 @@ class OrderService {
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+The Dual-Write Anti-Pattern occurs when an application attempts to update a database and publish a message to a broker sequentially. Without distributed transactions, a failure between the two operations leaves the system in an inconsistent state (e.g., the DB is updated, but the event is never published).
 
 
 ### 🚀 Solution
-[Architectural justification of the solution]
+The Transactional Outbox pattern guarantees atomic operations. By saving the event to a local `outbox` table within the same DB transaction as the domain change, we achieve atomicity. A separate, reliable process (like a Debezium Connector or background poller) then reads the outbox table and guarantees "at-least-once" delivery to the broker.
 ---
 ## 3. Strictly Typed Schemas (Schema Registry)
 
@@ -186,15 +186,26 @@ class OrderKafkaPublisher {
 
 
 ### ❌ Bad Practice
-[Need to fill in example of non-optimal code]
+```typescript
+class OrderKafkaPublisher {
+  async publish(event: DomainEvent) {
+    // ❌ Publishing raw, untyped JSON objects
+    // Downstream consumers might break if 'amount' is suddenly renamed to 'totalAmount'
+    await this.producer.send({
+      topic: 'orders.created',
+      messages: [{ key: event.aggregateId, value: JSON.stringify(event.payload) }]
+    });
+  }
+}
+```
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Publishing unstructured JSON couples microservices dangerously. If the upstream service changes a field name or type, downstream consumers will crash unexpectedly, causing cascading failures and data corruption across the distributed system.
 
 
 ### 🚀 Solution
-[Architectural justification of the solution]
+A Schema Registry enforces a strict, versioned contract (e.g., Avro, Protobuf, JSON Schema) between producers and consumers. It serializes data efficiently, rejects non-compliant payloads at the producer level, and ensures backward/forward compatibility rules are respected across all teams.
 ---
 
 <div align="center">

@@ -170,12 +170,31 @@ export class UserController {
 
 
 ### ❌ Bad Practice
-[Need to fill in example of non-optimal code]
+```typescript
+// ❌ Domain Entity leaking infrastructure concerns
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+
+@Entity('users')
+export class User {
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
+
+    @Column()
+    email: string;
+
+    @Column()
+    status: string;
+
+    deactivate(): void {
+        this.status = 'INACTIVE';
+    }
+}
+```
 
 
 ### ⚠️ Problem
-[Analysis of the risks]
+Mixing framework annotations (like TypeORM `@Entity` or `@Column`) with the Core Domain Entity violates the Dependency Inversion Principle. It rigidly couples the business logic to a specific database technology. This makes the domain hard to test in isolation, impossible to migrate without rewriting core logic, and vulnerable to infrastructure-driven constraints instead of business-driven design.
 
 
 ### 🚀 Solution
-[Architectural justification of the solution]
+Isolate the Core Domain from infrastructure. The `User` entity must be a pure TypeScript class devoid of external imports or decorators. The mapping between the database rows and the Domain Entity must be handled strictly by the Secondary Adapter (e.g., via a Mapper or DTO class), ensuring the Core remains clean, testable, and completely vendor-agnostic.
