@@ -188,6 +188,7 @@ graph TD
       * 📄 [readme.md](./backend/nodejs/readme.md)
   * 📄 **[docs/](./docs/)**
     * 🤖 [ai-agent-orchestration.md](./docs/ai-agent-orchestration.md)
+    * 🤖 [ai-agent-self-healing-architectures.md](./docs/ai-agent-self-healing-architectures.md)
     * 🤖 [vibe-coding-agents.md](./docs/vibe-coding-agents.md)
     * 🤖 [vibe-coding-deterministic-patterns.md](./docs/vibe-coding-deterministic-patterns.md)
     * 🤖 [vibe-coding-multi-agent-state-sync.md](./docs/vibe-coding-multi-agent-state-sync.md)
@@ -396,6 +397,7 @@ graph TD
       * 📄 [readme.md](./backend/nodejs/readme.md)
   * 📄 **[docs/](./docs/)**
     * 🤖 [ai-agent-orchestration.md](./docs/ai-agent-orchestration.md)
+    * 🤖 [ai-agent-self-healing-architectures.md](./docs/ai-agent-self-healing-architectures.md)
     * 🤖 [vibe-coding-agents.md](./docs/vibe-coding-agents.md)
     * 🤖 [vibe-coding-deterministic-patterns.md](./docs/vibe-coding-deterministic-patterns.md)
     * 🤖 [vibe-coding-multi-agent-state-sync.md](./docs/vibe-coding-multi-agent-state-sync.md)
