@@ -117,15 +117,37 @@ Always use a unique key in `track`. This allows Angular to move DOM nodes instea
 > [!NOTE]
 > **Context:** Tree Rendering
 ### ❌ Bad Practice
-Recursive component call without `OnPush` and memoization.
+```html
+<ng-template #tree let-node>
+  {{ node.name }}
+  <ng-container *ngFor="let child of node.children">
+    <ng-container *ngTemplateOutlet="tree; context: { $implicit: child }"></ng-container>
+  </ng-container>
+</ng-template>
+<ng-container *ngTemplateOutlet="tree; context: { $implicit: root }"></ng-container>
+```
 ### ⚠️ Problem
-Exponential growth in change detection checks.
+Recursive component calls without `OnPush` or memoization cause exponential growth in change detection checks, blocking the main thread during deep tree rendering.
 ### ✅ Best Practice
-Using the `Memoization` pattern or `computed()` to prepare the tree data structure.
-
-
+```typescript
+@Component({
+  selector: 'app-tree-node',
+  standalone: true,
+  imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    {{ node().name }}
+    @for (child of node().children; track child.id) {
+      <app-tree-node [node]="child" />
+    }
+  `
+})
+export class TreeNodeComponent {
+  node = input.required<TreeNode>();
+}
+```
 ### 🚀 Solution
-This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+Use standalone components with `ChangeDetectionStrategy.OnPush` and modern `@for` control flow for recursive structures. This ensures change detection only runs when inputs change, drastically improving performance for deeply nested trees.
 ## ⚡ 38. Global Styles Leakage
 > [!NOTE]
 > **Context:** CSS Encapsulation
@@ -181,54 +203,106 @@ Pay attention to template determinism with SSR.
 > [!NOTE]
 > **Context:** DI Performance
 ### ❌ Bad Practice
-Calling `inject()` inside a function that loops.
+```typescript
+processItems(items: Item[]) {
+  items.forEach(item => {
+    const logger = inject(LoggerService);
+    logger.log(item.name);
+  });
+}
+```
 ### ⚠️ Problem
-Although `inject` is fast, in hot paths these are unnecessary DI tree lookups.
+Although `inject()` is fast, calling it inside hot paths (loops) triggers unnecessary Dependency Injection tree lookups on every iteration, which degrades performance.
 ### ✅ Best Practice
-Inject dependency once at the class/file constant level.
+```typescript
+export class ItemProcessor {
+  private logger = inject(LoggerService);
 
-
+  processItems(items: Item[]) {
+    items.forEach(item => {
+      this.logger.log(item.name);
+    });
+  }
+}
+```
 ### 🚀 Solution
-This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+Inject dependencies exactly once at the class or property level. This caches the reference to the service, bypassing redundant DI resolution and keeping hot paths efficient.
 ## ⚡ 43. Unused Signal Dependencies
 > [!NOTE]
 > **Context:** Signal Graph
 ### ❌ Bad Practice
-Reading a signal inside `computed` whose value doesn't affect the result (an unexecuted logical branch).
+```typescript
+effect(() => {
+  console.log('Value changed:', this.value());
+  this.analytics.track('Change', this.user()?.id);
+});
+```
 ### ⚠️ Problem
-Angular dynamically builds the dependency graph. If you accidentally read a signal, it becomes a dependency.
+Angular dynamically builds the signal graph. If you read a signal like `this.user()` inside an effect just for analytics, any change to `user()` will unexpectedly re-trigger the effect, leading to redundant executions.
 ### ✅ Best Practice
-Use `untracked()` to read signals whose changes should not trigger a recalculation.
-
-
+```typescript
+effect(() => {
+  const currentVal = this.value();
+  untracked(() => {
+    this.analytics.track('Change', this.user()?.id);
+  });
+  console.log('Value changed:', currentVal);
+});
+```
 ### 🚀 Solution
-This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+Use `untracked()` to read signals that should not register as dependencies. This prevents unintended re-evaluations and ensures effects only run when their primary state changes.
 ## ⚡ 44. Excessive Wrappers (`div` soup)
 > [!NOTE]
 > **Context:** DOM Size
 ### ❌ Bad Practice
 ```html
-<div><div><div><app-comp></app-comp></div></div></div>
+<div *ngIf="isLoggedIn()">
+  <div class="user-panel">
+    <app-user-profile></app-user-profile>
+  </div>
+</div>
 ```
 ### ⚠️ Problem
-Increases DOM tree depth, slowing down Style Recalculation and Layout.
+Unnecessary wrapper `<div>` elements deeply nest the DOM tree ("div soup"). This exponentially slows down CSS Style Recalculation, Layout (Reflow), and Paint.
 ### ✅ Best Practice
-Use `<ng-container>` to group elements without creating extra DOM nodes.
-
-
+```html
+@if (isLoggedIn()) {
+  <ng-container>
+    <app-user-profile class="user-panel"></app-user-profile>
+  </ng-container>
+}
+```
 ### 🚀 Solution
-This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+Utilize `<ng-container>` to apply structural logic or apply classes directly to component hosts. `<ng-container>` is rendered as an invisible comment, keeping the DOM tree shallow and performant.
 ## ⚡ 45. Neglecting `runOutsideAngular` for Events
 > [!NOTE]
 > **Context:** High-frequency events
 ### ❌ Bad Practice
-`@HostListener('window:scroll')`
+```typescript
+@HostListener('window:scroll', ['$event'])
+onScroll() {
+  this.scrollPosition.set(window.scrollY);
+}
+```
 ### ⚠️ Problem
-Every scroll event triggers Change Detection.
+Every scroll, mousemove, or drag event triggers a full Angular Change Detection cycle. High-frequency events will cause immediate UI lag and frame drops.
 ### ✅ Best Practice
-Subscribe manually in `runOutsideAngular` and update the signal only when necessary.
+```typescript
+export class ScrollTracker {
+  private zone = inject(NgZone);
+  scrollPosition = signal(0);
 
-
+  constructor() {
+    this.zone.runOutsideAngular(() => {
+      window.addEventListener('scroll', () => {
+        if (Math.abs(window.scrollY - this.scrollPosition()) > 50) {
+          this.zone.run(() => this.scrollPosition.set(window.scrollY));
+        }
+      });
+    });
+  }
+}
+```
 ### 🚀 Solution
-This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+Bind high-frequency events outside the Angular Zone using `NgZone.runOutsideAngular()`. Only re-enter the Angular Zone (`zone.run()`) when a threshold is met and a UI update is strictly required.
 ---

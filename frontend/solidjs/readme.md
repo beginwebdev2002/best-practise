@@ -41,3 +41,10 @@ return <ul><For each={items()}>{item => <li>{item.name}</li>}</For></ul>;
 ```
 ### 🚀 Solution
 Use the `<For>` component. It caches DOM elements and handles granular updates when the array changes.
+
+## 📚 Specialized Topics
+
+For further reading, please refer to the following specialized guides:
+
+- [🚀 Advanced Performance](./performance.md)
+- [📦 State Management](./state-management.md)
