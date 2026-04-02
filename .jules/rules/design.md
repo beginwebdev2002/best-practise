@@ -1,17 +1,18 @@
 ---
-description: Vibe coding guidelines and architectural constraints for Vibe Coding within the Documentation domain.
-tags: [vibe-coding, documentation, best-practices, architecture]
-topic: Vibe Coding
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true
-technology: Vibe Coding
+technology: UI/UX Design
 domain: Documentation
 level: Senior/Architect
 version: Latest
+tags: [vibe-coding, documentation, best-practices, architecture, design-system, accessibility]
 ai_role: Senior Vibe Coding Expert
-last_updated: 2026-03-29---# 🎨 UI/UX Design & Styling Rules for Jules
-## 1. Context & Scope
+last_updated: 2026-03-29
+---
+
+# 🎨 UI/UX Design & Styling Rules for Jules
+
+This document outlines the core styling rules and design principles for generating UI components, emphasizing accessibility, responsive design, and component architecture.
+
+## 📖 1. Context & Scope
 - **Primary Goal:** Maintain a consistent, **accessible (a11y)**, and visually appealing user interface across all applications through strict **responsive design** practices.
 - **Target Tooling:** Jules AI agent (UI Generation & CSS Audits).
 - **Tech Stack Version:** Agnostic (CSS, SCSS, Tailwind, Material UI, etc.).
@@ -19,22 +20,81 @@ last_updated: 2026-03-29---# 🎨 UI/UX Design & Styling Rules for Jules
 <div align="center">
   <img src="https://img.icons8.com/?size=100&id=65664&format=png&color=000000" width="100" alt="Design Overview">
 </div>
+
 ---
-## 2. Design System & Styling Rules
+## 🎨 2. Design System & Styling Rules
 
 > [!CAUTION]
 > **Hardcoded Values:** Never use hardcoded colors, spacing, or typography values (`#FF0000`, `14px`). Always use established **Design Tokens** (e.g., CSS Variables or Tailwind classes like `text-primary`, `p-4`).
 
-### Responsive & Adaptive Principles
-1. **Mobile-First Approach:** Always write base CSS for mobile screens first, then progressively enhance the design for larger screens using `min-width` media queries.
-2. **Fluid Layouts:** Prefer relative units (`rem`, `em`, `vh`, `vw`, `%`) over absolute units (`px`) for layout structures and typography to allow proper scaling.
+### ❌ Bad Practice
+```css
+.card {
+  margin: 20px;
+  background-color: #ffffff;
+  color: #333333;
+}
+```
 
-### Accessibility (A11y) Standards
-1. **Semantic HTML:** Use native, meaningful HTML5 tags (`<button>`, `<nav>`, `<main>`, `<article>`) instead of generic `<div>` wrappers with click handlers.
-2. **Keyboard Navigation:** Ensure every interactive element is reachable via the `Tab` key and visually indicates focus (`:focus-visible`).
-3. **Contrast & ARIA:** Maintain a WCAG AA-compliant contrast ratio (minimum 4.5:1 for normal text). Use WAI-ARIA attributes (`aria-label`, `aria-hidden`) only when semantic HTML is insufficient.
+### ⚠️ Problem
+Using hardcoded absolute values (`20px`, hex codes) creates inconsistencies across the application. It prevents dynamic theming (e.g., Dark Mode) and breaks structural rhythm when responsive layouts scale.
 
-### UI Component Architecture
+### ✅ Best Practice
+```css
+.card {
+  margin: var(--spacing-lg);
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+}
+```
+
+### 🚀 Solution
+Strictly utilize **Design Tokens**. They establish a single source of truth for all visual properties, allowing the application to scale efficiently while maintaining a unified, easily adjustable design system.
+
+---
+## 📱 3. Responsive & Adaptive Principles
+
+### ❌ Bad Practice
+```css
+.hero-text {
+  font-size: 32px;
+}
+```
+
+### ⚠️ Problem
+Absolute units like `px` for layout and typography ignore user preference settings in the browser and do not scale fluidly across different viewport sizes.
+
+### ✅ Best Practice
+```css
+.hero-text {
+  font-size: 2rem;
+}
+```
+
+### 🚀 Solution
+Prefer relative units (`rem`, `em`, `vh`, `vw`, `%`). Always employ a **Mobile-First Approach**, defining base CSS for mobile screens and progressively enhancing the layout for larger viewports using `min-width` media queries.
+
+---
+## ♿ 4. Accessibility (A11y) Standards
+
+### ❌ Bad Practice
+```html
+<div role="button" tabindex="0" class="btn" onclick="openModal()">Click Me</div>
+```
+
+### ⚠️ Problem
+Using generic `<div>` wrappers and artificially attaching ARIA roles or keyboard handlers increases code complexity and often misses nuanced accessibility behaviors that native elements provide out-of-the-box.
+
+### ✅ Best Practice
+```html
+<button class="btn" onclick="openModal()">Click Me</button>
+```
+
+### 🚀 Solution
+Enforce **Semantic HTML**. Use native HTML5 tags (`<button>`, `<nav>`, `<main>`). Ensure interactive elements are keyboard reachable and visually indicate focus via `:focus-visible`. Maintain a minimum contrast ratio of 4.5:1 for standard text.
+
+---
+## 🏗️ 5. UI Component Architecture
 
 ```mermaid
 graph TD
@@ -42,24 +102,19 @@ graph TD
     Elements --> Components[Complex Components: Cards, Modals]
     Components --> Layouts[Page Layouts: Grids, Sections]
     
-    class Tokens auto_style_Tokens
-    class Elements auto_style_Elements
-    class Components auto_style_Components
     %% Added Design Token Styles for Mermaid Diagrams
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
     classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
     classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
 
+    class Tokens layout;
+    class Elements default;
+    class Components component;
     class Layouts component;
-
-
-    %% Auto-generated Design Tokens
-    classDef auto_style_Tokens fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
-    classDef auto_style_Elements fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000
-    classDef auto_style_Components fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000
 ```
+
 ---
-## 3. Checklist for Jules Agent
+## ✅ 6. Checklist for Jules Agent
 
 When generating UI components or modifying styles:
 - [ ] Verify that the component works properly on mobile (`320px`), tablet, and desktop viewports.
