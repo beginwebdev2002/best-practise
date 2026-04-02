@@ -1,5 +1,4 @@
 ---
-description: Hexagonal Architecture Implementation Guide rules. Defining the exact code constraints for Vibe Coding and AI.
 technology: Hexagonal Architecture
 domain: Architecture
 level: Senior/Architect
@@ -7,10 +6,7 @@ version: Agnostic
 tags: [best-practices, implementation-guide, hexagonal-architecture, ports-and-adapters]
 ai_role: Senior Software Architect
 last_updated: 2026-03-22
-topic: Hexagonal Architecture
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true---
+---
 
 # 🛠️ Hexagonal Architecture Implementation Guide
 
@@ -168,14 +164,67 @@ export class UserController {
 }
 ```
 
+---
 
 ### ❌ Bad Practice
-[Need to fill in example of non-optimal code]
+```typescript
+// BAD: Core Domain entity directly coupled to a database ORM framework
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity('users')
+export class User {
+    @PrimaryGeneratedColumn('uuid')
+    public id: string;
+
+    @Column()
+    public email: string;
+
+    @Column()
+    public status: 'ACTIVE' | 'INACTIVE';
+
+    public deactivate(): void {
+        this.status = 'INACTIVE';
+    }
+}
+```
 
 ### ⚠️ Problem
-[Analysis of the risks]
+The Core Domain entity (`User`) is polluted with database-specific decorators (`@Entity`, `@Column`) from an external library (`typeorm`). This tightly couples the business logic to a specific ORM and database technology. If you want to change the database or ORM later, you must rewrite the core business logic. Furthermore, the domain entity cannot be easily tested in isolation without setting up the ORM environment.
 
+### ✅ Best Practice
+```typescript
+// GOOD: Core Domain is purely business logic, decoupled from infrastructure
+export class User {
+    private _id: string;
+    private _email: string;
+    private _status: 'ACTIVE' | 'INACTIVE';
+
+    constructor(id: string, email: string) {
+        this._id = id;
+        this._email = email;
+        this._status = 'ACTIVE';
+    }
+
+    public deactivate(): void {
+        this._status = 'INACTIVE';
+    }
+}
+
+// Data Mapper handles translating to/from the external ORM
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+
+@Entity('users')
+export class UserOrmEntity {
+    @PrimaryGeneratedColumn('uuid')
+    public id: string;
+
+    @Column()
+    public email: string;
+
+    @Column()
+    public status: 'ACTIVE' | 'INACTIVE';
+}
+```
 
 ### 🚀 Solution
-[Architectural justification of the solution]
+Keep the Core Domain completely pure and agnostic of any external frameworks, databases, or UI. Use mapping layers (`Adapters`) to translate the pure Domain Entities to and from database-specific representations (like ORM entities or raw SQL rows). This ensures the business logic remains portable, independently testable, and strictly focused on business rules.
