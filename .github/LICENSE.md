@@ -10,7 +10,8 @@ domain: Documentation
 level: Senior/Architect
 version: Latest
 ai_role: Senior Express Expert
-last_updated: 2026-03-29---
+last_updated: 2026-03-29
+---
 ﻿# Quick Summary (License Summary)
 
 **In Plain English:**
