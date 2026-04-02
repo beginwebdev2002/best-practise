@@ -2,7 +2,7 @@
 technology: Angular
 domain: frontend
 level: Senior/Architect
-version: "20"
+version: 20+
 tags: [state-management, signals, zoneless, angular, best-practices, clean-code, scalable-code]
 ai_role: Senior Angular State Management Expert
 last_updated: 2026-03-29
@@ -49,7 +49,7 @@ graph TD
 ### 🚨 1. Managing Component State with Signals
 > [!NOTE]
 > **Context:** Synchronous local state.
-#### ❌ Bad Practice
+### ❌ Bad Practice
 ```typescript
 isLoading: boolean = false;
 data: unknown[] = [];
@@ -62,9 +62,9 @@ fetchData() {
   });
 }
 ```
-#### ⚠️ Problem
+### ⚠️ Problem
 Relying on raw primitive properties means Angular relies on `zone.js` to run Change Detection globally whenever an event completes.
-#### ✅ Best Practice
+### ✅ Best Practice
 ```typescript
 isLoading = signal(false);
 data = signal<Data[]>([]);
@@ -77,7 +77,7 @@ fetchData() {
   });
 }
 ```
-#### 🚀 Solution
+### 🚀 Solution
 Use `signal()`. It forces the developer to explicitly use `.set()` or `.update()`, signaling to the framework exactly when and where the change occurred.
 ---
 ## ⚙️ II. Derived State
@@ -85,7 +85,7 @@ Use `signal()`. It forces the developer to explicitly use `.set()` or `.update()
 ### 🚨 2. Computing Values
 > [!NOTE]
 > **Context:** Creating derived state based on other state values.
-#### ❌ Bad Practice
+### ❌ Bad Practice
 ```typescript
 items = signal([1, 2, 3]);
 total = 0;
@@ -94,14 +94,14 @@ updateTotal() {
   this.total = this.items().reduce((a, b) => a + b, 0);
 }
 ```
-#### ⚠️ Problem
+### ⚠️ Problem
 Manually syncing state variables is error-prone. If you update `items` but forget to call `updateTotal()`, the state becomes inconsistent.
-#### ✅ Best Practice
+### ✅ Best Practice
 ```typescript
 items = signal([1, 2, 3]);
 total = computed(() => this.items().reduce((a, b) => a + b, 0));
 ```
-#### 🚀 Solution
+### 🚀 Solution
 Use `computed()`. The calculated value is memoized and only re-evaluates when its specific signal dependencies (in this case, `items`) change.
 ---
 ## ⚡ III. Side Effects
@@ -109,11 +109,11 @@ Use `computed()`. The calculated value is memoized and only re-evaluates when it
 ### 🚨 3. Handling Side Effects Safely
 > [!NOTE]
 > **Context:** Executing logic when a signal changes.
-#### ❌ Bad Practice
+### ❌ Bad Practice
 Using getters or Angular lifecycle hooks like `ngDoCheck` to monitor value changes and trigger side effects like logging or generic HTTP calls.
-#### ⚠️ Problem
+### ⚠️ Problem
 This causes severe performance degradation as the logic is run on every change detection cycle, regardless of whether the specific state actually changed.
-#### ✅ Best Practice
+### ✅ Best Practice
 ```typescript
 constructor() {
   effect(() => {
@@ -122,7 +122,7 @@ constructor() {
   });
 }
 ```
-#### 🚀 Solution
+### 🚀 Solution
 Use `effect()`. Effects track dependencies automatically and ensure the side effect runs solely when required. Always define them within an injection context (like a constructor).
 ---
 ## 🔗 IV. Component Communication
@@ -130,14 +130,14 @@ Use `effect()`. Effects track dependencies automatically and ensure the side eff
 ### 🚨 4. Modern Data Passing
 > [!NOTE]
 > **Context:** Passing data between parent and child components.
-#### ❌ Bad Practice
+### ❌ Bad Practice
 ```typescript
 @Input() user: User;
 @Output() userUpdate = new EventEmitter<User>();
 ```
-#### ⚠️ Problem
+### ⚠️ Problem
 Requires boilerplate, depends on decorators which are less ideal for dynamic composition, and heavily couples the components to legacy Zone-based tracking.
-#### ✅ Best Practice
+### ✅ Best Practice
 ```typescript
 // For one-way data flow
 user = input.required<User>();
@@ -145,7 +145,7 @@ user = input.required<User>();
 // For two-way data binding synchronization
 userProfile = model<User>();
 ```
-#### 🚀 Solution
+### 🚀 Solution
 Use the `input()` and `model()` functional APIs. They return signals that can be directly used in `computed()` properties within the child component.
 ---
 
