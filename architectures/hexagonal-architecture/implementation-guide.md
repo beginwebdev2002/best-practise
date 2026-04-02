@@ -174,10 +174,19 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity('users')
 export class User {
     @PrimaryGeneratedColumn('uuid')
-    public id: string;
+    id: string;
 
     @Column()
-    public email: string;
+    email: string;
+
+    @Column()
+    status: string;
+
+    deactivate(): void {
+        this.status = 'INACTIVE';
+    }
+}
+```
 
     @Column()
     public status: 'ACTIVE' | 'INACTIVE';
@@ -227,4 +236,4 @@ export class UserOrmEntity {
 ```
 
 ### 🚀 Solution
-Keep the Core Domain completely pure and agnostic of any external frameworks, databases, or UI. Use mapping layers (`Adapters`) to translate the pure Domain Entities to and from database-specific representations (like ORM entities or raw SQL rows). This ensures the business logic remains portable, independently testable, and strictly focused on business rules.
+Isolate the Core Domain from infrastructure. The `User` entity must be a pure TypeScript class devoid of external imports or decorators. The mapping between the database rows and the Domain Entity must be handled strictly by the Secondary Adapter (e.g., via a Mapper or DTO class), ensuring the Core remains clean, testable, and completely vendor-agnostic.
