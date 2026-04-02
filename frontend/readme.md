@@ -43,3 +43,8 @@ This folder acts as a container for documentation around the following technolog
 - [React](./react/readme.md)
 - [SolidJS](./solidjs/readme.md)
 - [Qwik](./qwik/readme.md)
+
+## 🎨 UI/UX Design & Styling
+
+- [UI/UX Design Production-Ready Best Practices](../.jules/rules/ui-ux-design.md)
+- [UI/UX Design & Styling Rules for Jules](../.jules/rules/design.md)

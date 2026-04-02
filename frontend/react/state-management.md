@@ -20,7 +20,7 @@ last_updated: 2026-03-22
 ### 🔹 1. Handling Async Actions (Forms)
 > [!NOTE]
 > **Context:** Managing state updates triggered by form submissions or asynchronous operations.
-#### ❌ Bad Practice
+### ❌ Bad Practice
 ```tsx
 import { useState } from 'react';
 
@@ -44,9 +44,9 @@ function Form() {
   return <form onSubmit={handleSubmit}>...</form>;
 }
 ```
-#### ⚠️ Problem
+### ⚠️ Problem
 Manually managing `isPending` and error states is repetitive and prone to race conditions, especially when multiple requests are fired.
-#### ✅ Best Practice
+### ✅ Best Practice
 ```tsx
 import { useActionState } from 'react';
 import { saveAction } from './actions';
@@ -62,7 +62,7 @@ function Form() {
   );
 }
 ```
-#### 🚀 Solution
+### 🚀 Solution
 Use the `useActionState` Hook (React 19+) for seamless action state management.
 - **Performance Note:** `useActionState` effectively handles race conditions by ensuring only the latest action state is applied to the UI, optimizing rendering cycles.
 - **Security Note:** Form actions seamlessly interact with Server Actions. Ensure that `saveAction` strictly validates input server-side to prevent malicious payloads, and use CSRF tokens if required by your framework.
@@ -70,13 +70,13 @@ Use the `useActionState` Hook (React 19+) for seamless action state management.
 ### 🔹 2. Using Global State Naively
 > [!NOTE]
 > **Context:** Storing local component UI state in a global store (e.g., Redux, Zustand).
-#### ❌ Bad Practice
+### ❌ Bad Practice
 Putting a dropdown's `isOpen` state into the global Redux store.
-#### ⚠️ Problem
+### ⚠️ Problem
 Unnecessary global re-renders and bloated global state size.
-#### ✅ Best Practice
+### ✅ Best Practice
 Use `useState` or `useReducer` for UI state that belongs locally to a component tree.
-#### 🚀 Solution
+### 🚀 Solution
 Only elevate state to a global store when it is shared across multiple disjoint component branches.
 - **Performance Note:** Global state updates trigger broad change detection and React reconciliation. Minimizing global state keeps updates localized and fast.
 - **Security Note:** Do not store sensitive access tokens (e.g., JWT) in unencrypted global state (like localStorage/Redux state) that may persist across sessions or expose them to XSS attacks. Prefer HttpOnly cookies.
