@@ -20,15 +20,20 @@ last_updated: 2026-03-22
 > [!NOTE]
 > **Context:** Form Safety
 ### ❌ Bad Practice
-`[(ngModel)]` without strict model typing.
+```html
+<input [(ngModel)]="userAge">
+```
 ### ⚠️ Problem
-Risk of assigning a string to a numeric field.
+Using `[(ngModel)]` without strict model typing risks assigning a string to a numeric field or vice versa, causing runtime errors and confusing data flow.
 ### ✅ Best Practice
-Use Reactive Forms with `FormControl<string>` typing or new Signal-based Forms (when out of developer preview).
-
-
+```typescript
+userAge = model<number>(0);
+```
+```html
+<input type="number" [(ngModel)]="userAge">
+```
 ### 🚀 Solution
-This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+Use Signal-based `model()` inputs combined with strict HTML input types. This provides a deterministic, type-safe implementation that maintains strict architectural boundaries.
 ## ⚡ 47. Untyped `FormGroup`
 > [!NOTE]
 > **Context:** Reactive Forms
@@ -70,56 +75,87 @@ Use Flattening Operators (`switchMap`, `concatMap`, `mergeMap`).
 > [!NOTE]
 > **Context:** Network Efficiency
 ### ❌ Bad Practice
-Ignoring request cancellation when navigating away from the page.
+```typescript
+fetchData() {
+  this.http.get('/api/data').subscribe(data => this.data.set(data));
+}
+```
 ### ⚠️ Problem
-Requests continue hanging, consuming traffic.
+Ignoring request cancellation when navigating away from the page or making subsequent requests leads to hanging connections, memory leaks, and potential race conditions if old requests resolve after new ones.
 ### ✅ Best Practice
-HttpClient automatically supports cancellation upon unsubscription. With signals: ensure `rxResource` or the effect correctly cancels the request.
-
-
+```typescript
+fetchData() {
+  this.http.get('/api/data').pipe(takeUntilDestroyed()).subscribe(data => this.data.set(data));
+}
+```
 ### 🚀 Solution
-This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+Always tie HTTP requests to the component lifecycle using `takeUntilDestroyed()`. This automatically aborts pending requests when the context is destroyed, optimizing network efficiency and ensuring deterministic state.
 ## ⚡ 50. Mutating Inputs directly
 > [!NOTE]
 > **Context:** Unidirectional Data Flow
 ### ❌ Bad Practice
 ```typescript
-this.inputData.push(newItem);
+data = input<Item[]>([]);
+addItem(newItem: Item) {
+  this.data().push(newItem);
+}
 ```
 ### ⚠️ Problem
-The parent component remains unaware of the change. Violates the One-Way Data Flow principle.
+Directly mutating an array or object received via input bypasses the reactivity system and violates the One-Way Data Flow principle. The parent component remains unaware of the change.
 ### ✅ Best Practice
-Emit event (`output`) upwards; the parent changes the data and passes the new object downwards.
+```typescript
+data = input<Item[]>([]);
+dataChange = output<Item[]>();
 
-
+addItem(newItem: Item) {
+  this.dataChange.emit([...this.data(), newItem]);
+}
+```
 ### 🚀 Solution
-This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+Emit an event using the `output()` API upwards; the parent handles the mutation immutably and passes the new reference downwards. This maintains unidirectional data flow and ensures correct change detection.
 ## ⚡ 51. `ngModel` inside Reactive Form
 > [!NOTE]
 > **Context:** Form Mixing
 ### ❌ Bad Practice
-Using `formControlName` and `[(ngModel)]` on the same input.
+```html
+<form [formGroup]="form">
+  <input formControlName="name" [(ngModel)]="localName">
+</form>
+```
 ### ⚠️ Problem
-Deprecated behavior. Causes form and model synchronization conflicts.
+Mixing `formControlName` and `[(ngModel)]` is deprecated behavior. It creates two sources of truth, causing form and model synchronization conflicts and unpredictable value updates.
 ### ✅ Best Practice
-Use only one approach: either Reactive or Template-driven.
-
-
+```html
+<form [formGroup]="form">
+  <input formControlName="name">
+</form>
+```
+```typescript
+// Subscribe to value changes in component if needed
+nameValue = toSignal(this.form.get('name').valueChanges);
+```
 ### 🚀 Solution
-This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+Use only one approach strictly: Reactive Forms with `formControlName`. For reactivity, derive a signal from `valueChanges` using `toSignal()` instead of relying on two-way binding.
 ## ⚡ 52. Complex Validators in Template
 > [!NOTE]
 > **Context:** Form Logic
 ### ❌ Bad Practice
-Validation via HTML attributes for complex logic.
+```html
+<input pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
+```
 ### ⚠️ Problem
-Hard to test, no reusability.
+Placing complex regex validations directly in HTML attributes creates code that is impossible to unit test independently, provides poor error messages, and lacks reusability.
 ### ✅ Best Practice
-Custom Validator Functions or Async Validators in the component class.
+```typescript
+const passwordValidator: ValidatorFn = (control: AbstractControl) => {
+  const valid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(control.value);
+  return valid ? null : { invalidPassword: true };
+};
 
-
+password = new FormControl('', [Validators.required, passwordValidator]);
+```
 ### 🚀 Solution
-This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+Abstract complex logic into Custom Validator Functions within the TypeScript class. This ensures high testability, strong typing, and reusability across multiple forms.
 ## ⚡ 53. Forgetting `updateOn: 'blur'`
 > [!NOTE]
 > **Context:** Performance
@@ -137,26 +173,43 @@ Trigger validation/update only when the user has finished typing.
 > [!NOTE]
 > **Context:** UX
 ### ❌ Bad Practice
-`.subscribe(data => ...)` without an error callback.
+```typescript
+this.http.get<User>('/api/user').subscribe(data => {
+  this.user.set(data);
+});
+```
 ### ⚠️ Problem
-On a 500 error, the application "hangs" in a loading state.
+Failing to handle errors leads to silent failures or unhandled exceptions in the console. On a 500 error, the application may "hang" in an infinite loading state, destroying the UX.
 ### ✅ Best Practice
-Global Error Handler or `catchError` in the pipe returning a safe value.
-
-
+```typescript
+this.http.get<User>('/api/user').pipe(
+  catchError(err => {
+    this.toastService.error('Failed to load user');
+    return of(null);
+  })
+).subscribe(data => {
+  if (data) this.user.set(data);
+});
+```
 ### 🚀 Solution
-This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+Always implement a `catchError` block in the RxJS pipe to handle API failures gracefully. Return a safe fallback value and notify the user to ensure deterministic application flow.
 ## ⚡ 55. Hardcoded API URLs
 > [!NOTE]
 > **Context:** Maintainability
 ### ❌ Bad Practice
-`http.get('https://api.com/users')`
+```typescript
+this.http.get('https://api.production.com/users');
+```
 ### ⚠️ Problem
-Inability to switch environments (dev/prod).
+Hardcoding API URLs directly into service methods completely couples the code to a specific environment, making it impossible to seamlessly deploy to staging or local dev environments without manual changes.
 ### ✅ Best Practice
-Using InjectionToken `API_URL` and environment configuration.
+```typescript
+export const API_URL = new InjectionToken<string>('API_URL');
 
-
+// In service:
+private apiUrl = inject(API_URL);
+this.http.get(`${this.apiUrl}/users`);
+```
 ### 🚀 Solution
-This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+Utilize an `InjectionToken` combined with environment configurations to provide the API URL. This ensures configuration is decoupled from business logic and allows deterministic dependency injection.
 ---

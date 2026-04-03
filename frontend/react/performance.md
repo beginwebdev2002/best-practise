@@ -17,7 +17,7 @@ last_updated: 2026-03-22
 - **Tech Stack Version:** React 19+
 ## 📚 Topics
 
-### 🔹 1. Manual Memoization vs React Compiler
+### 🚨 1. Manual Memoization vs React Compiler
 > [!NOTE]
 > **Context:** Avoiding unnecessary re-renders.
 ### ❌ Bad Practice
@@ -51,11 +51,9 @@ function UserList({ users }) {
 }
 ```
 ### 🚀 Solution
-Rely on the **React Compiler** (introduced in React 19+). The compiler automatically memoizes values and functions, meaning manual hooks are largely obsolete and code becomes purely declarative.
-- **Performance Note:** The React Compiler analyzes your component structure and injects optimal memoization (similar to SolidJS's granular updates), eliminating the overhead of manual dependency tracking.
-- **Security Note:** While the React Compiler does not directly impact security, it ensures components render exactly when their inputs change, reducing side effects that might otherwise expose temporary or stale data to users.
+Rely on the **React Compiler** (introduced in React 19+). The compiler automatically memoizes values and functions, meaning manual hooks are largely obsolete and code becomes purely declarative. This optimizes components structurally and removes manual dependency tracking overhead.
 
-### 🔹 2. Resolving Promises During Render
+### 🚨 2. Resolving Promises During Render
 > [!NOTE]
 > **Context:** Conditionally handling promises without `useEffect` or `useState`.
 ### ❌ Bad Practice
@@ -90,8 +88,6 @@ function Profile({ profilePromise }) {
 // </Suspense>
 ```
 ### 🚀 Solution
-Use the `use()` API inside components combined with `<Suspense>`.
-- **Performance Note:** `use()` suspends the component rendering if the promise is not resolved. This seamlessly integrates with `<Suspense>`, providing a highly optimized rendering fallback behavior.
-- **Security Note:** `use()` can also resolve context, mitigating prop-drilling vulnerabilities and ensuring components securely consume data directly from contexts they are explicitly authorized for. Always sanitize any text coming from external APIs before rendering.
+Use the `use()` API inside components combined with `<Suspense>`. `use()` suspends the component rendering if the promise is not resolved. This seamlessly integrates with `<Suspense>`, providing a highly optimized rendering fallback behavior and ensuring safe resolution of asynchronous data.
 
 [⬆️ Back to Top](#)

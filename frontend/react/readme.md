@@ -22,7 +22,7 @@ last_updated: 2026-03-22
 - Strongly prefer **Feature Sliced Design (FSD)** for applications scaling across multiple teams.
 ## 🚀 I. Basics & Popular
 
-### 🔹 1. Direct DOM Manipulation
+### 🚨 1. Direct DOM Manipulation
 > [!NOTE]
 > **Context:** Updating elements in a React component.
 ### ❌ Bad Practice
@@ -35,7 +35,7 @@ function Component() {
 }
 ```
 ### ⚠️ Problem
-Direct DOM manipulation bypasses React's virtual DOM, causing inconsistencies between the actual DOM and React's internal state.
+Direct DOM manipulation bypasses React's virtual DOM, causing inconsistencies between the actual DOM and React's internal state, leading to forced synchronous layouts and potential XSS vulnerabilities.
 ### ✅ Best Practice
 ```tsx
 function Component() {
@@ -51,21 +51,34 @@ function Component() {
 }
 ```
 ### 🚀 Solution
-Always use state and props to drive the UI. React uses a virtual DOM to efficiently update the real DOM based on state changes.
-- **Performance Note:** React's virtual DOM diffing algorithm is highly optimized. Bypassing it can lead to forced synchronous layouts and jank.
-- **Security Note:** Direct DOM manipulation can open up Cross-Site Scripting (XSS) vulnerabilities if user input is not properly sanitized before being inserted into the DOM.
+Always use state and props to drive the UI. React uses a virtual DOM to efficiently update the real DOM based on state changes, ensuring deterministic rendering loops.
 
-### 🔹 2. Large Component Files
+### 🚨 2. Large Component Files
 > [!NOTE]
 > **Context:** Managing component complexity.
 ### ❌ Bad Practice
-A single 2000-line file containing the entire page's logic and UI.
+```tsx
+function MassiveDashboard() {
+  // 500 lines of state and hooks
+  // 1000 lines of JSX layout
+  return <div>...</div>;
+}
+```
 ### ⚠️ Problem
-Massive components are difficult to read, test, and maintain. They often violate the Single Responsibility Principle.
+Massive components are difficult to read, test, and maintain. They violate the Single Responsibility Principle and trigger overly broad re-renders when local state changes.
 ### ✅ Best Practice
-Break down the UI into smaller, reusable components, each with a single responsibility.
+```tsx
+function Dashboard() {
+  return (
+    <DashboardLayout>
+      <Sidebar />
+      <MainContent />
+    </DashboardLayout>
+  );
+}
+```
 ### 🚀 Solution
-Extract logic into custom hooks and presentational elements into separate files.
+Break down the UI into smaller, reusable components. Extract logic into custom hooks and modularize presentational elements into separate, encapsulated files.
 ## 📚 Specialized Topics
 
 For further reading, please refer to the following specialized guides:
