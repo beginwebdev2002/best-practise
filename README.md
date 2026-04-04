@@ -189,6 +189,7 @@ graph TD
       * 📄 [readme.md](./backend/nodejs/readme.md)
   * 📄 **[docs/](./docs/)**
     * 🤖 [ai-agent-context-injection-pipelines.md](./docs/ai-agent-context-injection-pipelines.md)
+    * 🤖 [ai-agent-memory-architectures.md](./docs/ai-agent-memory-architectures.md)
     * 🤖 [ai-agent-orchestration.md](./docs/ai-agent-orchestration.md)
     * 🤖 [ai-agent-self-healing-architectures.md](./docs/ai-agent-self-healing-architectures.md)
     * 🤖 [ai-agent-semantic-routing.md](./docs/ai-agent-semantic-routing.md)
@@ -400,6 +401,7 @@ graph TD
       * 📄 [readme.md](./backend/nodejs/readme.md)
   * 📄 **[docs/](./docs/)**
     * 🤖 [ai-agent-context-injection-pipelines.md](./docs/ai-agent-context-injection-pipelines.md)
+    * 🤖 [ai-agent-memory-architectures.md](./docs/ai-agent-memory-architectures.md)
     * 🤖 [ai-agent-orchestration.md](./docs/ai-agent-orchestration.md)
     * 🤖 [ai-agent-self-healing-architectures.md](./docs/ai-agent-self-healing-architectures.md)
     * 🤖 [ai-agent-semantic-routing.md](./docs/ai-agent-semantic-routing.md)
