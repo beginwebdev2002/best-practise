@@ -48,6 +48,7 @@ graph TD
     class E layout;
 ```
 ---
+
 ## 1. ⚡ Blocking the Event Loop
 ### ❌ Bad Practice
 ```javascript
@@ -57,6 +58,8 @@ app.post('/hash', (req, res) => {
   res.send(hash);
 });
 ```
+### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ### ✅ Best Practice
 ```javascript
 const crypto = require('crypto');
@@ -70,14 +73,13 @@ app.post('/hash', (req, res, next) => {
 ### 🚀 Solution
 Never use synchronous methods (`*Sync`) on the main thread for crypto, I/O, or heavy calculations. Always use asynchronous callbacks or Promises to prevent blocking the Event Loop.
 
-
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 2. 🗂️ Project Structure & Module Separation
 ### ❌ Bad Practice
 ```text
 /server.js (Contains routes, DB connections, and logic all in one 1500-line file)
 ```
+### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ### ✅ Best Practice
 ```text
 /src
@@ -90,15 +92,14 @@ Insecure or unoptimized implementation that can cause performance bottlenecks, m
 ### 🚀 Solution
 Implement a multi-layered folder architecture. Strictly separate the HTTP transport layer (Routes/Controllers) from the Business Logic (Services) and Database operations.
 
-
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 3. 🛡️ Strict Environment Configuration
 ### ❌ Bad Practice
 ```javascript
 const port = process.env.PORT || 3000;
 // Continuing application startup without validating required variables.
 ```
+### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ### ✅ Best Practice
 ```javascript
 const requiredEnv = ['DATABASE_URL', 'JWT_SECRET', 'PORT'];
@@ -112,14 +113,13 @@ requiredEnv.forEach((name) => {
 ### 🚀 Solution
 Fail fast. Validate all necessary environment variables upon application startup to prevent fatal runtime errors later in execution.
 
-
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 4. 🛑 Error Handling with Custom Classes
 ### ❌ Bad Practice
 ```javascript
 if (!user) throw new Error('User not found');
 ```
+### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ### ✅ Best Practice
 ```javascript
 class AppError extends Error {
@@ -134,12 +134,11 @@ if (!user) throw new AppError('User not found', 404);
 ### 🚀 Solution
 Extend the built-in `Error` object to create custom operational errors. This allows your global error handler to safely log and return predictable HTTP status codes without crashing the application.
 
-
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 5. 🎛️ Handling Uncaught Exceptions & Rejections
 ### ❌ Bad Practice
 // Ignoring process-level events, allowing the app to run in an unpredictable state after an error.
+### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ### ✅ Best Practice
 ```javascript
 process.on('uncaughtException', (err) => {
@@ -155,12 +154,11 @@ process.on('unhandledRejection', (err) => {
 ### 🚀 Solution
 Always capture `uncaughtException` and `unhandledRejection`. Log the fatal error immediately and shut down the process safely. Rely on a process manager (like PM2 or Kubernetes) to restart the container.
 
-
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 6. 🔒 Hiding Sensitive Headers
 ### ❌ Bad Practice
 // Sending default headers that expose the framework, like `X-Powered-By: Express`.
+### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ### ✅ Best Practice
 ```javascript
 // Example using Express + Helmet, but applies generically to HTTP responses
@@ -170,12 +168,11 @@ app.use(helmet());
 ### 🚀 Solution
 Sanitize outgoing HTTP headers to prevent information leakage about the server infrastructure.
 
-
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 7. ⏱️ Implementing Graceful Shutdown
 ### ❌ Bad Practice
 // Application crashes abruptly during deployments, interrupting active user requests and corrupting database transactions.
+### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ### ✅ Best Practice
 ```javascript
 process.on('SIGTERM', () => {
@@ -192,15 +189,14 @@ process.on('SIGTERM', () => {
 ### 🚀 Solution
 Listen for termination signals (`SIGTERM`, `SIGINT`). Finish processing ongoing HTTP requests and safely close database connections before exiting the Node.js process.
 
-
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 8. 🔍 Input Validation and Sanitization
 ### ❌ Bad Practice
 ```javascript
 // Blindly trusting user input
 const user = await db.query(`SELECT * FROM users WHERE email = '${req.body.email}'`);
 ```
+### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ### ✅ Best Practice
 ```javascript
 // Utilizing parameterized queries and a validation library like Joi or Zod
@@ -213,9 +209,6 @@ const user = await db.query('SELECT * FROM users WHERE email = $1', [value.email
 ### 🚀 Solution
 Never trust external data. Validate input strictly using schema definitions and always utilize parameterized queries or an ORM to prevent SQL/NoSQL Injection attacks.
 
-
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 9. 🚀 Utilizing Worker Threads for Heavy Tasks
 ### ❌ Bad Practice
 ```javascript
@@ -224,6 +217,8 @@ function processImage(buffer) {
   // heavy sync computation taking 500ms...
 }
 ```
+### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ### ✅ Best Practice
 ```javascript
 const { Worker } = require('worker_threads');
@@ -239,14 +234,13 @@ function processImageAsync(buffer) {
 ### 🚀 Solution
 Offload CPU-intensive operations (image processing, video encoding, heavy cryptographic tasks) to Node.js `worker_threads` to keep the primary event loop highly responsive for API requests.
 
-
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 10. 📝 Centralized and Structured Logging
 ### ❌ Bad Practice
 ```javascript
 console.log('User logged in', userId);
 ```
+### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ### ✅ Best Practice
 ```javascript
 const winston = require('winston');
@@ -266,7 +260,3 @@ Avoid `console.log`. Use a sophisticated logging library (like Pino or Winston) 
 <div align="center">
   <b>Enforce these Core Node.js constraints to ensure a highly scalable, stable, and performant backend system! 🟢</b>
 </div>
-
-
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.

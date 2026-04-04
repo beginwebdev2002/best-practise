@@ -64,6 +64,8 @@ export class UsersService {
   constructor(@InjectRepository(User) private repo: Repository<User>) {} // Жесткая привязка к TypeORM
 }
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 @Injectable()
@@ -82,6 +84,8 @@ create(@Body() dto: CreateUserDto) {
   if (!dto.email) throw new BadRequestException('Email required');
 }
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 // main.ts
@@ -96,6 +100,8 @@ app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: t
 @Post()
 create(@Body() body: unknown) {} // Потеря типизации
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 export class CreateUserDto {
@@ -117,6 +123,8 @@ async createUser(@Body() dto: CreateDto) {
   return this.db.users.create({ ...dto, hash });
 }
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 @Post()
@@ -132,6 +140,8 @@ async createUser(@Body() dto: CreateDto) {
 ```typescript
 try { ... } catch (e) { throw new HttpException('Error', 500); }
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 @Catch()
@@ -149,6 +159,8 @@ app.useGlobalFilters(new AllExceptionsFilter());
 ```typescript
 TypeOrmModule.forRoot({ url: process.env.DB_URL }) // Переменные могут быть еще не загружены
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 TypeOrmModule.forRootAsync({
@@ -165,6 +177,8 @@ TypeOrmModule.forRootAsync({
 ```typescript
 const secret = process.env.JWT_SECRET; // Прямой вызов
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 constructor(private configService: ConfigService) {}
@@ -179,6 +193,8 @@ const secret = this.configService.get<string>('JWT_SECRET');
 @Get()
 getProfile(@Req() req: Request) { return req.user; }
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 export const CurrentUser = createParamDecorator((data, ctx: ExecutionContext) => ctx.switchToHttp().getRequest().user);
@@ -195,6 +211,8 @@ getProfile(@CurrentUser() user: UserEntity) { return user; }
 @Get()
 getData(@Req() req) { if (!req.headers.auth) throw new UnauthorizedException(); }
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 @UseGuards(JwtAuthGuard)
@@ -210,6 +228,8 @@ getData() {}
 @Get()
 getAdminData(@CurrentUser() user) { if (user.role !== 'ADMIN') throw new ForbiddenException(); }
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 @Roles('ADMIN')
@@ -226,6 +246,8 @@ getAdminData() {}
 @Get(':id')
 getUser(@Param('id') id: string) { const userId = parseInt(id, 10); }
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 @Get(':id')
@@ -239,6 +261,8 @@ getUser(@Param('id', ParseIntPipe) id: number) {}
 ```typescript
 return { success: true, data: result, timestamp: new Date() }; // Дублирование везде
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 @Injectable()
@@ -255,6 +279,8 @@ export class TransformInterceptor implements NestInterceptor {
 @Get()
 getData() { console.log('Request started'); /* ... */ console.log('Done'); }
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 @Injectable()
@@ -273,6 +299,8 @@ export class LoggingInterceptor implements NestInterceptor {
 ```typescript
 await this.repo1.save(data1); await this.repo2.save(data2); // Нет транзакции
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 await this.dataSource.transaction(async manager => {
@@ -289,6 +317,8 @@ await this.dataSource.transaction(async manager => {
 // Нет никаких аннотаций DTO
 export class CreateDogDto { name: string; }
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 export class CreateDogDto {
@@ -302,6 +332,8 @@ export class CreateDogDto {
 ### 🚨 16. Rate Limiting (ThrottlerModule)
 #### ❌ Bad Practice
 // Нет защиты от DDoS и брутфорса
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 // app.module.ts
@@ -313,6 +345,8 @@ ThrottlerModule.forRoot([{ ttl: 60000, limit: 10 }])
 ### 🚨 17. Caching Results
 #### ❌ Bad Practice
 // Каждый запрос делает тяжелый расчет в БД
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 @UseInterceptors(CacheInterceptor)
@@ -329,6 +363,8 @@ getStats() {}
 await this.userService.create();
 await this.emailService.send(); // Жесткая привязка зависимостей
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 await this.userService.create();
@@ -342,6 +378,8 @@ this.eventEmitter.emit('user.created', new UserCreatedEvent(user));
 ```typescript
 setInterval(() => this.cleanupData(), 1000 * 60 * 60);
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
@@ -355,6 +393,8 @@ handleCron() { this.cleanupData(); }
 ```typescript
 @Post() // Использование HTTP для межсервисного общения
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 @MessagePattern({ cmd: 'get_user' })
@@ -368,6 +408,8 @@ getUser(data: unknown) { return this.userService.findById(data.id); }
 ```typescript
 @Get('ping') ping() { return 'pong'; }
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 @Get('health')
@@ -383,6 +425,8 @@ check() { return this.health.check([() => this.db.pingCheck('database')]); }
 // UserService -> AuthService -> UserService
 @Injectable() class UserService { constructor(private auth: AuthService) {} }
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 @Injectable() class UserService { constructor(@Inject(forwardRef(() => AuthService)) private auth: AuthService) {} }
@@ -395,6 +439,8 @@ check() { return this.health.check([() => this.db.pingCheck('database')]); }
 ```typescript
 // Модуль B импортирует Модуль А, Модуль С импортирует Модуль А...
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 @Module({ imports: [DatabaseModule], exports: [DatabaseModule] })
@@ -406,6 +452,8 @@ export class CoreModule {} // Глобальный фасад
 ### 🚨 24. Global Middleware
 #### ❌ Bad Practice
 // Определение логгера запросов в каждом месте
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 export class AppModule implements NestModule {
@@ -420,6 +468,8 @@ export class AppModule implements NestModule {
 ```typescript
 const service = new UserService(new Database()); // Реальная БД в тестах
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 const module = await Test.createTestingModule({
@@ -434,6 +484,8 @@ const module = await Test.createTestingModule({
 ```typescript
 if (!isEmailUnique(dto.email)) throw error; // Ручная логика в сервисе
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 @ValidatorConstraint({ async: true })
@@ -447,6 +499,8 @@ export class IsUniqueConstraint implements ValidatorConstraintInterface { ... }
 ### 🚨 27. File Uploading (Multer)
 #### ❌ Bad Practice
 // Обработка потоков руками
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 @Post('upload')
@@ -461,6 +515,8 @@ uploadFile(@UploadedFile() file: Express.Multer.File) {}
 ```typescript
 const { password, ...safeUser } = user; // Ручное удаление пароля
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 class UserEntity { @Exclude() password: string; }
@@ -474,6 +530,8 @@ class UserEntity { @Exclude() password: string; }
 ### 🚨 29. Fastify Integration
 #### ❌ Bad Practice
 // Вызов специфичных методов req.expressMethod
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
@@ -484,6 +542,8 @@ const app = await NestFactory.create<NestFastifyApplication>(AppModule, new Fast
 ### 🚨 30. Shutdown Hooks (Graceful Shutdown)
 #### ❌ Bad Practice
 // Приложение убивается мгновенно, прерывая активные соединения
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 ```typescript
 app.enableShutdownHooks();
@@ -493,8 +553,7 @@ app.enableShutdownHooks();
 Вызывайте `enableShutdownHooks()`, чтобы отлавливать SIGINT/SIGTERM и безопасно завершать процессы базы данных.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+
 ---
 [⬆️ Back to Top](#)
 
