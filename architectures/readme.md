@@ -1,16 +1,12 @@
 ---
-description: Vibe coding guidelines and architectural constraints for General Architecture within the architecture domain.
+
 technology: General Architecture
-domain: architecture
+domain: Architecture
 level: Senior/Architect
 version: Agnostic
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior Software Architect
-last_updated: 2026-03-22
-topic: TypeScript
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true
+last_updated: 2026-03-29
 
 # Architecture Best Practices & Production-Ready Patterns
 # Context & Scope
@@ -460,6 +456,9 @@ src/
 [![Micro-frontends](https://img.shields.io/badge/Architecture-Micro--frontends-orange?style=flat-square)](#)
 
 **Description:** An architectural style where independently deliverable frontend applications are composed into a greater whole. This enables multiple teams to work simultaneously without stepping on each other's toes, making scaling enterprise frontends deterministic.
+**📖 Map of Patterns:** [Go to Backend-For-Frontend (BFF) Guidelines](./backend-for-frontend/readme.md)
+
+
 **📖 Map of Patterns:** [Go to Micro-frontends Guidelines](./micro-frontends/readme.md)
 
 **Architecture Diagram & Folder Tree:**
