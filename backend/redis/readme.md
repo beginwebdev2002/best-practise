@@ -164,3 +164,11 @@ Optimize data structure usage. Employ Hashes for objects to save memory and allo
 ---
 
 [Back to Top](#)
+
+
+## 📚 Specialized Modules
+
+Explore advanced architectural topics for Redis:
+- [Api Design](./api-design.md)
+- [Architecture](./architecture.md)
+- [Security Best Practices](./security-best-practices.md)

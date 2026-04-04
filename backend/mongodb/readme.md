@@ -77,3 +77,11 @@ db.createCollection("users", {
 ---
 
 [⬆ Back to Top](#-mongodb-production-ready-best-practices)
+
+
+## 📚 Specialized Modules
+
+Explore advanced architectural topics for MongoDB:
+- [Architecture](./architecture.md)
+- [Database Optimization](./database-optimization.md)
+- [Security Best Practices](./security-best-practices.md)
