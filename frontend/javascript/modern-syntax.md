@@ -151,24 +151,31 @@ Treat objects as immutable. Use the spread operator to create copies with update
 > **Context:** Simplifying conditional branching.
 ### ❌ Bad Practice
 ```javascript
-switch (action) {
-    case 'CREATE': return doCreate();
-    case 'UPDATE': return doUpdate();
-    default: return doNothing();
+function executeAction(action) {
+    switch (action) {
+        case 'CREATE':
+            return doCreate();
+        case 'UPDATE':
+            return doUpdate();
+        default:
+            return doNothing();
+    }
 }
 ```
 ### ⚠️ Problem
-`switch` statements are verbose, require `break` to prevent fallthrough bugs, and have a non-standard block scope.
+`switch` statements are verbose, require `break` to prevent fallthrough bugs if not returning immediately, and have a non-standard block scope. They also violate the Open/Closed Principle making it harder to extend dynamically.
 ### ✅ Best Practice
 ```javascript
-const actions = {
-    CREATE: doCreate,
-    UPDATE: doUpdate
-};
-return (actions[action] || doNothing)();
+function executeAction(action) {
+    const actions = {
+        CREATE: doCreate,
+        UPDATE: doUpdate
+    };
+    return (actions[action] || doNothing)();
+}
 ```
 ### 🚀 Solution
-Use an Object Literal (or Map) as a lookup table. It is cleaner, faster, and more extensible.
+Use an Object Literal (or Map) as a lookup table. It provides a deterministic, type-safe execution path that is cleaner, faster, and allows for dynamic extension without modifying the core logic.
 ## ⚡ 19. Not using Optional Chaining `?.`
 > [!NOTE]
 > **Context:** Safe property access in nested objects.

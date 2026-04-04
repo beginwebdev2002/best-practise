@@ -17,7 +17,7 @@ last_updated: 2026-03-22
 - **Tech Stack Version:** React 19+
 ## 📚 Topics
 
-### 🔹 1. Handling Async Actions (Forms)
+### 🚨 1. Handling Async Actions (Forms)
 > [!NOTE]
 > **Context:** Managing state updates triggered by form submissions or asynchronous operations.
 ### ❌ Bad Practice
@@ -45,7 +45,7 @@ function Form() {
 }
 ```
 ### ⚠️ Problem
-Manually managing `isPending` and error states is repetitive and prone to race conditions, especially when multiple requests are fired.
+Manually managing `isPending` and error states is repetitive and prone to race conditions, especially when multiple requests are fired. It creates unnecessary state overhead.
 ### ✅ Best Practice
 ```tsx
 import { useActionState } from 'react';
@@ -63,22 +63,33 @@ function Form() {
 }
 ```
 ### 🚀 Solution
-Use the `useActionState` Hook (React 19+) for seamless action state management.
-- **Performance Note:** `useActionState` effectively handles race conditions by ensuring only the latest action state is applied to the UI, optimizing rendering cycles.
-- **Security Note:** Form actions seamlessly interact with Server Actions. Ensure that `saveAction` strictly validates input server-side to prevent malicious payloads, and use CSRF tokens if required by your framework.
+Use the `useActionState` Hook (React 19+) for seamless action state management. This hook natively handles loading and error states, resolves race conditions by ensuring only the latest action state is applied to the UI, and optimizes rendering cycles deterministically.
 
-### 🔹 2. Using Global State Naively
+### 🚨 2. Using Global State Naively
 > [!NOTE]
 > **Context:** Storing local component UI state in a global store (e.g., Redux, Zustand).
 ### ❌ Bad Practice
-Putting a dropdown's `isOpen` state into the global Redux store.
+```tsx
+import { useStore } from './store';
+
+function Dropdown() {
+  const isOpen = useStore(state => state.isDropdownOpen);
+  const toggle = useStore(state => state.toggleDropdown);
+  return <div onClick={toggle}>{isOpen ? 'Open' : 'Closed'}</div>;
+}
+```
 ### ⚠️ Problem
-Unnecessary global re-renders and bloated global state size.
+Putting local, ephemeral UI state (like a dropdown's `isOpen` flag) into a global store causes unnecessary global re-renders, inflates store complexity, and couples isolated UI logic to the global application state.
 ### ✅ Best Practice
-Use `useState` or `useReducer` for UI state that belongs locally to a component tree.
+```tsx
+import { useState } from 'react';
+
+function Dropdown() {
+  const [isOpen, setIsOpen] = useState(false);
+  return <div onClick={() => setIsOpen(!isOpen)}>{isOpen ? 'Open' : 'Closed'}</div>;
+}
+```
 ### 🚀 Solution
-Only elevate state to a global store when it is shared across multiple disjoint component branches.
-- **Performance Note:** Global state updates trigger broad change detection and React reconciliation. Minimizing global state keeps updates localized and fast.
-- **Security Note:** Do not store sensitive access tokens (e.g., JWT) in unencrypted global state (like localStorage/Redux state) that may persist across sessions or expose them to XSS attacks. Prefer HttpOnly cookies.
+Use `useState` or `useReducer` for UI state that belongs locally to a component tree. Only elevate state to a global store when it is shared across multiple disjoint component branches, maintaining strict state colocation for optimal rendering performance.
 
 [⬆️ Back to Top](#)

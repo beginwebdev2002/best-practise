@@ -26,7 +26,7 @@ last_updated: 2026-03-22
 - Adhere to the defined [Architectural Patterns](../../architectures/readme.md) when building applications.
 - Strongly prefer **Feature Sliced Design (FSD)** for applications scaling across multiple teams.
 ## 🚀 I. Basics & Popular
-## ⚡ 1. Passing Closures as Props
+## 🚨 1. Passing Closures as Props
 > [!NOTE]
 > **Context:** Component Props
 ### ❌ Bad Practice
