@@ -228,3 +228,4 @@ For further reading, please refer to the following specialized guides:
 - [🛡️ Logic & Safety](./logic-safety.md)
 - [📦 Objects & Functions](./objects-functions.md)
 - [🧠 Professional & Niche Topics](./professional-niche.md)
+- [🧪 Testing](./testing.md)

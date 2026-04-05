@@ -247,3 +247,4 @@ For further reading, please refer to the following specialized guides:
 - [✨ Modern Syntax & Functional Programming](./modern-syntax.md)
 - [⏳ Asynchronous & Logic](./async-logic.md)
 - [🧠 Professional & Niche Topics](./professional-niche.md)
+- [🧪 Testing](./testing.md)
