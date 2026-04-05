@@ -1,0 +1,33 @@
+---
+technology: Backend-For-Frontend (BFF)
+domain: Architecture
+level: Senior/Architect
+version: Agnostic
+tags: [architecture, trade-offs, bff, backend-for-frontend]
+ai_role: Senior Architect
+last_updated: 2026-03-29
+---
+
+<div align="center">
+  # ⚖️ Backend-For-Frontend (BFF) Trade-offs
+</div>
+
+---
+
+## Pros, Cons, and System Constraints
+
+### ✅ Advantages (Pros)
+1. **Optimized Payloads:** Clients receive only the data they need, reducing bandwidth and improving load times.
+2. **Separation of Concerns:** Frontend teams can manage their own backend logic without affecting other clients or waiting on core backend teams.
+3. **Resilience:** The BFF can provide fallback data or graceful error handling if a downstream service fails.
+4. **Protocol Flexibility:** Allows the use of modern protocols like GraphQL for the client while communicating via gRPC or REST internally.
+
+### ❌ Disadvantages (Cons)
+1. **Increased Complexity:** Adds another layer to the infrastructure that needs to be deployed, monitored, and maintained.
+2. **Code Duplication:** Multiple BFFs (e.g., one for Web, one for Mobile) might end up duplicating aggregation logic.
+3. **Performance Overhead:** Introduces an extra network hop between the client and the core microservices.
+4. **Maintenance Burden:** Requires frontend teams to have backend development and DevOps skills to maintain the BFF.
+
+### 🚧 System Constraints
+- **Team Structure:** This pattern works best when the team building the client application also owns and maintains the BFF.
+- **Network Latency:** To minimize the impact of the extra network hop, the BFF should be deployed in the same region (and ideally the same network) as the downstream microservices.
