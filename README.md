@@ -1,16 +1,11 @@
 ---
-description: The entry point for developers and AI agents to the Best-Practise AI Context Library.
-tags: [vibe coding, ai agents, context injection, architectural constraints, clean code]
 technology: TypeScript
 domain: Documentation
 level: Senior/Architect
 version: Latest
+tags: [vibe coding, ai agents, context injection, architectural constraints, clean code]
 ai_role: Senior TypeScript Expert
 last_updated: 2026-03-29
-topic: TypeScript
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true
 ---
 
 [ 🇺🇸 English ](#english) | [ 🇷🇺 Русский ](#russian)
