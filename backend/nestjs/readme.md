@@ -562,3 +562,10 @@ app.enableShutdownHooks();
 <div align="center">
   <b>Применяйте эти паттерны NestJS для создания эталонного и поддерживаемого бэкенда! 🦁</b>
 </div>
+
+
+## 📚 Specialized Modules
+
+Explore advanced architectural topics for NestJS:
+- [Architecture](./architecture.md)
+- [Security Best Practices](./security-best-practices.md)

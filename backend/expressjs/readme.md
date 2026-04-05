@@ -557,3 +557,10 @@ app.use(session({
 <div align="center">
   <b>Применяйте данные паттерны для построения максимально безопасной, быстрой и прозрачной архитектуры на Express.js! 🚂</b>
 </div>
+
+
+## 📚 Specialized Modules
+
+Explore advanced architectural topics for ExpressJS:
+- [Architecture](./architecture.md)
+- [Security Best Practices](./security-best-practices.md)
