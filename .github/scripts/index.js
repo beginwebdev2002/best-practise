@@ -20,12 +20,15 @@ async function initInstagramPhoto() {
         genPromptImage(),
         genPromptDescription()
     ]);
+
     const [generateDescription, generateImage] = await Promise.all([
         generateText(descriptionPrompt),
         generateImagen3(imagePrompt)
     ]);
+
     console.log('generateDescription', generateDescription);
     console.log('imagePrompt', imagePrompt);
+    
     const publishInstagramImage = await publishImageToInstagram(generateImage, generateDescription);
     return publishInstagramImage;
 }
@@ -35,10 +38,12 @@ async function initInstagramVideo() {
         genPromptVideo(),
         genPromptDescription()
     ]);
+
     const [generateDescription, generateVideo] = await Promise.all([
         generateText(descriptionPrompt),
         generateVeoVideo(videoPrompt)
     ]);
+
     const publishInstagramVideo = await publishVideoToInstagram(generateVideo, generateDescription);
     return publishInstagramVideo;
 }
