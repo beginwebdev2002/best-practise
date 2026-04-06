@@ -64,6 +64,8 @@ app.post('/api/users', async (req, res) => {
   /* бизнес-логика здесь */
 });
 ```
+### ⚠️ Problem
+This unoptimized implementation exposes the system to technical debt, security flaws, or performance issues. It deviates from deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ### ✅ Best Practice
 ```javascript
 router.post('/api/users', UserController.create);
@@ -76,13 +78,13 @@ class UserController {
 Роутер только описывает эндпоинты, Контроллер извлекает данные запроса и отдает ответ. Логика — в Сервисах.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 2. Async/Await Error Wrapping (Express 4)
 ### ❌ Bad Practice
 ```javascript
 router.get('/', async (req, res) => { throw new Error('Crash'); }); // Express 4 не ловит rejection
 ```
+### ⚠️ Problem
+Unhandled promise rejections in Express 4 will cause silent failures or process crashes without proper stack traces, making debugging and AI analysis almost impossible.
 ### ✅ Best Practice
 ```javascript
 const asyncHandler = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
@@ -92,13 +94,13 @@ router.get('/', asyncHandler(UserController.get));
 В Express 4 всегда оборачивайте async-маршруты в `asyncHandler`, чтобы пробрасывать ошибки в глобальный Error Handler. (В Express 5 это встроено).
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 3. Global Error Handler Middleware
 ### ❌ Bad Practice
 ```javascript
 app.use((req, res) => res.status(404).send('Not Found')); // Нет ловца ошибок 500
 ```
+### ⚠️ Problem
+Without a global error handler, errors cause inconsistent API responses (like HTML pages instead of JSON) and leak sensitive stack traces to users.
 ### ✅ Best Practice
 ```javascript
 app.use((err, req, res, next) => {
@@ -110,13 +112,13 @@ app.use((err, req, res, next) => {
 Определите единую middleware с 4 аргументами `(err, req, res, next)` в самом конце пайплайна для перехвата всех сбоев.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 4. Request Payload Validation (Joi / Zod)
 ### ❌ Bad Practice
 ```javascript
 if (!req.body.email || req.body.age < 18) return res.status(400); // Ручная проверка
 ```
+### ⚠️ Problem
+Manual validation is prone to errors, missing edge cases, and lacks type safety. It opens the door for injection attacks and data corruption.
 ### ✅ Best Practice
 ```javascript
 const validate = schema => (req, res, next) => {
@@ -130,13 +132,13 @@ router.post('/', validate(userSchema), UserController.create);
 Проверяйте тело и параметры запросов на уровне Middleware с помощью надежных библиотек валидации (Joi, Zod), не пуская мусор в контроллеры.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 5. Environment Variables separation
 ### ❌ Bad Practice
 ```javascript
 mongoose.connect('mongodb://admin:pass@host/db'); // Хардкод секретов
 ```
+### ⚠️ Problem
+Directly accessing process.env scatters configuration logic, makes mocking in tests difficult, and lacks validation, leading to runtime crashes if variables are missing.
 ### ✅ Best Practice
 ```javascript
 require('dotenv').config();
@@ -146,11 +148,11 @@ mongoose.connect(process.env.DB_URI);
 Используйте `dotenv` и конфигурационные файлы для разных окружений. Секреты хранятся только в `.env` (который добавлен в `.gitignore`).
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 6. HTTP Security Headers (Helmet)
 ### ❌ Bad Practice
 // Приложение светит 'X-Powered-By: Express'
+### ⚠️ Problem
+Missing security headers exposes the application to common vulnerabilities like clickjacking, XSS, and MIME-sniffing attacks.
 ### ✅ Best Practice
 ```javascript
 const helmet = require('helmet');
@@ -160,13 +162,13 @@ app.use(helmet());
 Используйте `helmet` для автоматической защиты от XSS, clickjacking и скрытия заголовков фреймворка из коробки.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 7. Cross-Origin Resource Sharing (CORS)
 ### ❌ Bad Practice
 ```javascript
 app.use((req, res, next) => { res.header("Access-Control-Allow-Origin", "*"); next(); });
 ```
+### ⚠️ Problem
+This unoptimized implementation exposes the system to technical debt, security flaws, or performance issues. It deviates from deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ### ✅ Best Practice
 ```javascript
 const cors = require('cors');
@@ -176,11 +178,11 @@ app.use(cors({ origin: 'https://myapp.com', credentials: true }));
 Используйте официальный модуль `cors`. Разрешайте доступ только доверенным доменам, а не всем подряд (`*`).
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 8. Rate Limiting (Защита от DDoS)
 ### ❌ Bad Practice
 // API открыт для миллиона запросов в секунду
+### ⚠️ Problem
+Without rate limiting, the API is highly vulnerable to DDoS attacks, brute-force password guessing, and resource exhaustion by malicious actors.
 ### ✅ Best Practice
 ```javascript
 const rateLimit = require('express-rate-limit');
@@ -190,13 +192,13 @@ app.use('/api/', rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 Защищайте все эндпоинты (а особенно авторизацию) встроенным лимитером запросов.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 9. Body Parsing & Payload Limits
 ### ❌ Bad Practice
 ```javascript
 app.use(express.json()); // Злоумышленник может отправить 500Мб JSON
 ```
+### ⚠️ Problem
+This unoptimized implementation exposes the system to technical debt, security flaws, or performance issues. It deviates from deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ### ✅ Best Practice
 ```javascript
 app.use(express.json({ limit: '10kb' }));
@@ -206,13 +208,13 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 Строго ограничивайте размер принимаемого JSON через опцию `limit`, чтобы предотвратить исчерпание RAM.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 10. Centralized Logging (Morgan + Winston)
 ### ❌ Bad Practice
 ```javascript
 console.log('User signed in'); 
 ```
+### ⚠️ Problem
+Relying solely on console.log makes debugging in production impossible, as logs lack timestamps, severity levels, and structured formatting needed for log aggregators.
 ### ✅ Best Practice
 ```javascript
 app.use(morgan('combined', { stream: winstonLogger.stream }));
@@ -222,13 +224,13 @@ winstonLogger.info('User signed in');
 Заменяйте `console.log` на логгеры вроде Winston (с уровнями log/warn/error) и Morgan (для фиксации HTTP-запросов).
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 11. Database Connection Management
 ### ❌ Bad Practice
 ```javascript
 // Коннект к базе делается перед каждым запросом
 ```
+### ⚠️ Problem
+This unoptimized implementation exposes the system to technical debt, security flaws, or performance issues. It deviates from deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ### ✅ Best Practice
 ```javascript
 mongoose.connect(process.env.DB_URI).then(() => {
@@ -239,13 +241,13 @@ mongoose.connect(process.env.DB_URI).then(() => {
 Открывайте единый пул подключений к БД (Connection Pool) при запуске приложения и используйте его во всех контроллерах.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 12. JWT Authentication Middleware
 ### ❌ Bad Practice
 ```javascript
 // Проверка токена встроена в контроллер профиля
 ```
+### ⚠️ Problem
+Placing authentication logic directly in route handlers duplicates code, increases the risk of overlooking a protected route, and violates the DRY principle.
 ### ✅ Best Practice
 ```javascript
 const authGuard = (req, res, next) => {
@@ -259,13 +261,13 @@ const authGuard = (req, res, next) => {
 Аутентификация должна представлять собой изолированную Middleware, которая вешается на защищенные маршруты и прикрепляет объект `req.user`.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 13. Role-Based Access Control (RBAC) Middleware
 ### ❌ Bad Practice
 ```javascript
 if (req.user.role !== 'admin') return res.status(403);
 ```
+### ⚠️ Problem
+This unoptimized implementation exposes the system to technical debt, security flaws, or performance issues. It deviates from deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ### ✅ Best Practice
 ```javascript
 const requireRole = (...roles) => (req, res, next) => {
@@ -278,13 +280,13 @@ router.delete('/:id', requireRole('admin', 'manager'), Controller.del);
 Доступ к маршрутам по ролям должен задаваться декларативно через Middleware.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 14. Standard API Response Wrapper
 ### ❌ Bad Practice
 ```javascript
 res.json({ foo: 'bar' }); // Каждый метод возвращает случайную структуру
 ```
+### ⚠️ Problem
+This unoptimized implementation exposes the system to technical debt, security flaws, or performance issues. It deviates from deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ### ✅ Best Practice
 ```javascript
 class ApiResponse {
@@ -296,13 +298,13 @@ class ApiResponse {
 Используйте единый класс-утилиту для отправки ответов, чтобы клиент всегда ожидал `success` и `data`/`error` поля.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 15. Pagination details in API
 ### ❌ Bad Practice
 ```javascript
 res.json(users); // Выбросить миллион записей
 ```
+### ⚠️ Problem
+This unoptimized implementation exposes the system to technical debt, security flaws, or performance issues. It deviates from deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ### ✅ Best Practice
 ```javascript
 const page = parseInt(req.query.page) || 1;
@@ -313,11 +315,11 @@ res.json({ data: users, meta: { total, page, limit, pages: Math.ceil(total/limit
 Любой список сущностей обязан иметь пагинацию (Offset или Cursor) и секцию `meta` в ответе.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 16. Graceful Shutdown
 ### ❌ Bad Practice
 // При получении SIGTERM сервер моментально обрывает процессы
+### ⚠️ Problem
+Abruptly killing the server interrupts ongoing requests, corrupts database transactions, and causes a poor user experience during deployments.
 ### ✅ Best Practice
 ```javascript
 process.on('SIGTERM', () => {
@@ -330,11 +332,11 @@ process.on('SIGTERM', () => {
 Корректно закрывайте активные HTTP-сессии и пулы подключений к БД перед остановкой контейнера.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 17. 404 Route Handler
 ### ❌ Bad Practice
 // Если роут не найден, возвращается пустая белая страница
+### ⚠️ Problem
+Returning default Express HTML pages for 404 errors breaks API contract consistency and confuses clients expecting JSON responses.
 ### ✅ Best Practice
 ```javascript
 app.use('*', (req, res) => {
@@ -345,14 +347,14 @@ app.use('*', (req, res) => {
 Поместите этот обработчик ПОСЛЕ всех ваших маршрутов (но ДО глобального обработчика ошибок).
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 18. Application Structure (Folder organization)
 ### ❌ Bad Practice
 ```
 /routes.js
 /app.js  // Монолит на 5000 строк
 ```
+### ⚠️ Problem
+A monolithic application structure makes the codebase unreadable, prevents modular testing, and severely confuses AI agents trying to understand context boundaries.
 ### ✅ Best Practice
 ```
 src/
@@ -366,11 +368,11 @@ src/
 Строго разделяйте проект на логические папки. Имплементируйте многослойную архитектуру.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 19. Health Check Endpoint
 ### ❌ Bad Practice
 // Нет проверки жизнеспособности подов Kubernetes
+### ⚠️ Problem
+Without a dedicated health endpoint, orchestration tools like Kubernetes cannot detect failed pods, leading to traffic being routed to dead instances.
 ### ✅ Best Practice
 ```javascript
 app.get('/health', (req, res) => {
@@ -381,13 +383,13 @@ app.get('/health', (req, res) => {
 Всегда имейте эндпоинт `/health` для систем мониторинга, балансировщиков и Health Probes.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 20. Data Sanitization (XSS / NoSQL Injection)
 ### ❌ Bad Practice
 ```javascript
 User.find({ username: req.body.username }); // body.username = { "$gt": "" }
 ```
+### ⚠️ Problem
+Failing to sanitize inputs allows NoSQL injection or XSS payloads to execute, leading to unauthorized data access or client-side compromise.
 ### ✅ Best Practice
 ```javascript
 const mongoSanitize = require('express-mongo-sanitize');
@@ -399,11 +401,11 @@ app.use(xss());
 Защищайте БД от NoSQL-инъекций и XSS скриптов, очищая `req.body` и `req.query`.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 21. Swagger / OpenAPI documentation
 ### ❌ Bad Practice
 // Документация в стороннем Word-файле
+### ⚠️ Problem
+Maintaining external, disconnected documentation leads to outdated API contracts, frustrating integrations, and AI hallucination when generating client code.
 ### ✅ Best Practice
 ```javascript
 const swaggerUi = require('swagger-ui-express');
@@ -414,13 +416,13 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 Генерируйте или обслуживайте API-документацию прямо в приложении (Swagger, OpenAPI).
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 22. Manual Dependency Injection
 ### ❌ Bad Practice
 ```javascript
 const UserService = require('./UserService'); // Прямой импорт, невозможно тестировать
 ```
+### ⚠️ Problem
+Hardcoding dependencies inside modules makes them impossible to unit test in isolation and violates the Dependency Inversion Principle.
 ### ✅ Best Practice
 ```javascript
 class UserController {
@@ -432,11 +434,11 @@ const controller = new UserController(new UserService(db));
 Если не используете IoC (Awilix), инжектируйте зависимости вручную для облегчения Unit-тестирования.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 23. File Uploads (Multer)
 ### ❌ Bad Practice
 // Парсинг бинарников руками
+### ⚠️ Problem
+Failing to limit file upload sizes or processing binaries manually can cause memory exhaustion and Denial of Service (DoS) from malicious payloads.
 ### ✅ Best Practice
 ```javascript
 const multer = require('multer');
@@ -447,14 +449,14 @@ router.post('/avatar', upload.single('file'), Controller.upload);
 Используйте `multer` с обязательным ограничением размера файла (`limits`), чтобы обезопасить сервер от переполнения диска.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 24. Event Emitters (Фоновые задачи)
 ### ❌ Bad Practice
 ```javascript
 await emailService.send(); // Блокировка респонса
 res.send('Welcome');
 ```
+### ⚠️ Problem
+Blocking the HTTP response to execute long-running side effects (like sending emails) causes unacceptable latency and ties up the server event loop.
 ### ✅ Best Practice
 ```javascript
 const EventEmitter = require('events');
@@ -468,11 +470,11 @@ res.send('Welcome');
 Снимайте длительные задачи с основного потока ответа с помощью нативных Events NodeJS.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 25. Caching (Redis Middleware)
 ### ❌ Bad Practice
 // БД обрабатывает сложные расчеты на каждый хит
+### ⚠️ Problem
+Hitting the database for frequently requested, rarely changing data creates unnecessary database load and slows down response times.
 ### ✅ Best Practice
 ```javascript
 const cacheMiddleware = (req, res, next) => {
@@ -486,13 +488,13 @@ const cacheMiddleware = (req, res, next) => {
 Используйте кэширование (Redis) для GET-запросов, результат которых меняется редко.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 26. Custom Error Classes
 ### ❌ Bad Practice
 ```javascript
 throw new Error('Not found');
 ```
+### ⚠️ Problem
+Throwing generic Error objects makes it impossible for global handlers to distinguish between expected operational errors and fatal application crashes.
 ### ✅ Best Practice
 ```javascript
 class AppError extends Error {
@@ -508,13 +510,13 @@ throw new AppError('User not found', 404);
 Создавайте кастомные классы ошибок, чтобы глобальный логгер мог отличать операционные ошибки (Operational) от фатальных крашей кода.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 27. Proxy Trust in Production
 ### ❌ Bad Practice
 ```javascript
 req.ip // Дает '127.0.0.1' через Nginx
 ```
+### ⚠️ Problem
+Failing to configure proxy trust results in incorrect client IP addresses being logged, which breaks rate limiting and security auditing.
 ### ✅ Best Practice
 ```javascript
 app.set('trust proxy', 1); // Доверяем первому прокси
@@ -523,14 +525,14 @@ app.set('trust proxy', 1); // Доверяем первому прокси
 Если Express стоит за Nginx / AWS ELB, включите `trust proxy`, чтобы получать реальные IP пользователей.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 28. Separating Server from App
 ### ❌ Bad Practice
 ```javascript
 // app.js
 app.listen(3000); // Мешает интеграционным тестам
 ```
+### ⚠️ Problem
+Coupling the server listener to the Express app definition causes port conflicts during integration testing and prevents clean modular imports.
 ### ✅ Best Practice
 ```javascript
 // app.js
@@ -544,11 +546,11 @@ app.listen(3000);
 Экспортируйте Express App отдельно от `listen`, чтобы `supertest` мог легко запускать тесты на случайных портах.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 29. UUID Request Correlation
 ### ❌ Bad Practice
 // Ошибки в логах невозможно связать с конкретным пользователем
+### ⚠️ Problem
+Without request IDs, it is impossible to trace the full lifecycle of a specific request across microservices and log files during debugging.
 ### ✅ Best Practice
 ```javascript
 const { v4: uuidv4 } = require('uuid');
@@ -562,11 +564,11 @@ app.use((req, res, next) => {
 Устанавливайте уникальный ID каждому запросу для отслеживания его пути по всем логам и микросервисам.
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ## 30. Secure Session Management
 ### ❌ Bad Practice
 // Сессия хранится в памяти (MemoryStore) с открытыми куками
+### ⚠️ Problem
+Storing sessions in memory leaks memory over time, does not scale across multiple instances, and using insecure cookies invites session hijacking.
 ### ✅ Best Practice
 ```javascript
 app.use(session({
@@ -586,5 +588,3 @@ app.use(session({
 </div>
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
