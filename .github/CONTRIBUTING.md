@@ -32,6 +32,8 @@ We engineer context. The process of contributing meta-instructions must be as ri
 ```mermaid
 stateDiagram-v2
     direction LR
+    
+    %% Состояния
     [*] --> Discovery: Search Issues
     Discovery --> Forking: Fork Origin
     Forking --> Branching: feat/* or fix/*
@@ -42,10 +44,14 @@ stateDiagram-v2
     Review --> Merge: Standards Met
     Review --> Writing: Remediation Required
     Merge --> [*]
-    %% Added Design Token Styles for Mermaid Diagrams
-    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
-    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
-    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    %% Определения стилей
+    classDef base fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+
+    %% Явное назначение базового стиля всем состояниям
+    class Discovery, Forking, Branching, Writing, AI_Verification, PR_Submission, Review, Merge base
 
 ```
 ---
@@ -153,6 +159,8 @@ Copy and paste this checklist into your PR description. Do not request an archit
 ```mermaid
 stateDiagram-v2
     direction LR
+    
+    %% Переходы и состояния
     [*] --> Discovery: Поиск Issues
     Discovery --> Forking: Форк проекта
     Forking --> Branching: feat/* или fix/*
@@ -163,10 +171,14 @@ stateDiagram-v2
     Review --> Merge: Стандарты соблюдены
     Review --> Writing: Требуются исправления
     Merge --> [*]
-    %% Added Design Token Styles for Mermaid Diagrams
-    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
-    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
-    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    %% Определение дизайн-токенов (без точек с запятой)
+    classDef base fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+
+    %% Применение базового стиля ко всем функциональным блокам
+    class Discovery, Forking, Branching, Writing, AI_Verification, PR_Submission, Review, Merge base
 
 ```
 ---

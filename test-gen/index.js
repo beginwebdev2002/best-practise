@@ -1,21 +1,36 @@
-import { test, mock } from 'node:test';
+import { describe, it } from 'node:test';
 import assert from 'node:assert';
-import { sleep } from '../.github/scripts/utils.js';
+import { parseJson } from '../.github/scripts/utils.js';
 
-test('sleep resolves after specified timeout', async (t) => {
-    mock.timers.enable({ apis: ['setTimeout'] });
-    t.after(() => mock.timers.reset());
+describe('utils.js', () => {
+    describe('parseJson', () => {
+        it('should return null for empty or non-string inputs', () => {
+            assert.strictEqual(parseJson(null), null);
+            assert.strictEqual(parseJson(undefined), null);
+            assert.strictEqual(parseJson(''), null);
+            assert.strictEqual(parseJson(123), null);
+            assert.strictEqual(parseJson({}), null);
+            assert.strictEqual(parseJson([]), null);
+        });
 
-    let resolved = false;
-    const promise = sleep(1000).then(() => { resolved = true; });
+        it('should parse valid JSON', () => {
+            const result = parseJson('{"key": "value"}');
+            assert.deepStrictEqual(result, { key: "value" });
+        });
 
-    assert.strictEqual(resolved, false);
+        it('should strip markdown formatting', () => {
+            const result = parseJson('```json\n{"key": "value"}\n```');
+            assert.deepStrictEqual(result, { key: "value" });
+        });
 
-    mock.timers.tick(500);
-    await Promise.resolve();
-    assert.strictEqual(resolved, false);
+        it('should ignore text before and after json', () => {
+            const result = parseJson('Here is the data: {"key": "value"} have a nice day.');
+            assert.deepStrictEqual(result, { key: "value" });
+        });
 
-    mock.timers.tick(500);
-    await promise;
-    assert.strictEqual(resolved, true);
+        it('should return null for invalid JSON string', () => {
+            const result = parseJson('{"key": "value"');
+            assert.strictEqual(result, null);
+        });
+    });
 });
