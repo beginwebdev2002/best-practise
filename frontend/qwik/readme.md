@@ -50,3 +50,4 @@ For further reading, please refer to the following specialized guides:
 
 - [🚀 Advanced Performance](./performance.md)
 - [📦 State Management](./state-management.md)
+- [🧪 Testing](./testing.md)
