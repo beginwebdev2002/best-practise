@@ -9,8 +9,10 @@ import { RELEASE_BODY, RELEASE_TAG, RELEASE_URL } from './config.js';
 
 async function init() {
     console.log('RELEASE_BODY', RELEASE_BODY, 'RELEASE_TAG', RELEASE_TAG, 'RELEASE_URL', RELEASE_URL);
-    await initInstagramPhoto();
-    await initInstagramVideo();
+    await Promise.all([
+        initInstagramPhoto(),
+        initInstagramVideo()
+    ]);
 }
 
 async function initInstagramPhoto() {
