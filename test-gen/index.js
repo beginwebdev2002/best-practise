@@ -1,36 +1,36 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert';
-import { convertGcsUriToPublicUrl } from '../.github/scripts/utils.js';
+import { parseJson } from '../.github/scripts/utils.js';
 
-describe('convertGcsUriToPublicUrl', () => {
-    it('should convert valid gs:// URI to public URL', () => {
-        const uri = 'gs://my-bucket/path/to/file.png';
-        const expected = 'https://storage.googleapis.com/my-bucket/path/to/file.png';
-        assert.strictEqual(convertGcsUriToPublicUrl(uri), expected);
-    });
+describe('utils.js', () => {
+    describe('parseJson', () => {
+        it('should return null for empty or non-string inputs', () => {
+            assert.strictEqual(parseJson(null), null);
+            assert.strictEqual(parseJson(undefined), null);
+            assert.strictEqual(parseJson(''), null);
+            assert.strictEqual(parseJson(123), null);
+            assert.strictEqual(parseJson({}), null);
+            assert.strictEqual(parseJson([]), null);
+        });
 
-    it('should throw Error for invalid string missing gs:// prefix', () => {
-        const uri = 'invalid-uri-no-prefix';
-        assert.throws(() => {
-            convertGcsUriToPublicUrl(uri);
-        }, Error);
-    });
+        it('should parse valid JSON', () => {
+            const result = parseJson('{"key": "value"}');
+            assert.deepStrictEqual(result, { key: "value" });
+        });
 
-    it('should throw Error when passed null', () => {
-        assert.throws(() => {
-            convertGcsUriToPublicUrl(null);
-        }, Error);
-    });
+        it('should strip markdown formatting', () => {
+            const result = parseJson('```json\n{"key": "value"}\n```');
+            assert.deepStrictEqual(result, { key: "value" });
+        });
 
-    it('should throw Error when passed undefined', () => {
-        assert.throws(() => {
-            convertGcsUriToPublicUrl(undefined);
-        }, Error);
-    });
+        it('should ignore text before and after json', () => {
+            const result = parseJson('Here is the data: {"key": "value"} have a nice day.');
+            assert.deepStrictEqual(result, { key: "value" });
+        });
 
-    it('should throw Error when passed an empty string', () => {
-        assert.throws(() => {
-            convertGcsUriToPublicUrl('');
-        }, Error);
+        it('should return null for invalid JSON string', () => {
+            const result = parseJson('{"key": "value"');
+            assert.strictEqual(result, null);
+        });
     });
 });
