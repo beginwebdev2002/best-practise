@@ -29,6 +29,9 @@ export function randomText() {
 
 
 export function convertGcsUriToPublicUrl(gcsUri) {
+    if (typeof gcsUri !== 'string' || !gcsUri.startsWith('gs://')) {
+        throw new Error('Invalid GCS URI: Must be a string starting with "gs://"');
+    }
     const publicUrl = gcsUri.split('gs://')[1];
     const url = new URL(publicUrl, 'https://storage.googleapis.com');
     return url.href;
