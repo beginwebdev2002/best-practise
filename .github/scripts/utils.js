@@ -1,3 +1,4 @@
+import { randomInt } from 'crypto';
 import 'dotenv/config';
 import { writeFile } from 'fs';
 import { join } from 'path';
@@ -19,12 +20,12 @@ export async function saveVideo(bytes, filename = randomText() + '.mp4') {
 }
 
 export function randomText() {
-    let symbols = [1, 2,3,5,6,7,8,9,0,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
-    symbols = symbols.map(() => {
-        return symbols[Math.floor(Math.random() * symbols.length)]
-    });
-
-    return symbols.join('');
+    const chars = '123567890abcdefghijklmnopqrstuvwxyz';
+    let result = '';
+    for (let i = 0; i < 35; i++) {
+        result += chars[randomInt(0, chars.length)];
+    }
+    return result;
 }
 
 
