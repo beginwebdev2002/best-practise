@@ -1,32 +1,36 @@
-import { test, mock } from 'node:test';
+import { describe, it } from 'node:test';
 import assert from 'node:assert';
-import { sleep } from '../.github/scripts/utils.js';
+import { parseJson } from '../.github/scripts/utils.js';
 
-test('sleep utility function', async (t) => {
-  mock.timers.enable({ apis: ['setTimeout'] });
+describe('utils.js', () => {
+    describe('parseJson', () => {
+        it('should return null for empty or non-string inputs', () => {
+            assert.strictEqual(parseJson(null), null);
+            assert.strictEqual(parseJson(undefined), null);
+            assert.strictEqual(parseJson(''), null);
+            assert.strictEqual(parseJson(123), null);
+            assert.strictEqual(parseJson({}), null);
+            assert.strictEqual(parseJson([]), null);
+        });
 
-  let resolved = false;
-  const sleepPromise = sleep(1000).then(() => {
-    resolved = true;
-  });
+        it('should parse valid JSON', () => {
+            const result = parseJson('{"key": "value"}');
+            assert.deepStrictEqual(result, { key: "value" });
+        });
 
-  // Verify that the promise hasn't resolved yet
-  assert.strictEqual(resolved, false);
+        it('should strip markdown formatting', () => {
+            const result = parseJson('```json\n{"key": "value"}\n```');
+            assert.deepStrictEqual(result, { key: "value" });
+        });
 
-  // Advance timers by 999ms, the promise should still be unresolved
-  mock.timers.tick(999);
-  // Yield to the event loop so promises can resolve
-  await Promise.resolve();
-  assert.strictEqual(resolved, false);
+        it('should ignore text before and after json', () => {
+            const result = parseJson('Here is the data: {"key": "value"} have a nice day.');
+            assert.deepStrictEqual(result, { key: "value" });
+        });
 
-  // Advance by 1 more ms to reach 1000ms
-  mock.timers.tick(1);
-  // Yield to the event loop
-  await Promise.resolve();
-  // Ensure that the promise does eventually resolve
-  await sleepPromise;
-
-  assert.strictEqual(resolved, true);
-
-  mock.timers.reset();
+        it('should return null for invalid JSON string', () => {
+            const result = parseJson('{"key": "value"');
+            assert.strictEqual(result, null);
+        });
+    });
 });
