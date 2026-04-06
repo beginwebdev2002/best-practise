@@ -1,4 +1,4 @@
-import { randomInt } from 'crypto';
+import crypto from 'crypto';
 import 'dotenv/config';
 import { writeFile } from 'fs';
 import { join } from 'path';
@@ -20,16 +20,15 @@ export async function saveVideo(bytes, filename = randomText() + '.mp4') {
 }
 
 export function randomText() {
-    const chars = '123567890abcdefghijklmnopqrstuvwxyz';
-    let result = '';
-    for (let i = 0; i < 35; i++) {
-        result += chars[randomInt(0, chars.length)];
-    }
-    return result;
+    const symbols = [1, 2, 3, 5, 6, 7, 8, 9, 0, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    return Array.from({ length: symbols.length }, () => symbols[crypto.randomInt(0, symbols.length)]).join('');
 }
 
 
 export function convertGcsUriToPublicUrl(gcsUri) {
+    if (typeof gcsUri !== 'string' || !gcsUri.startsWith('gs://')) {
+        throw new Error('Invalid URI format');
+    }
     const publicUrl = gcsUri.split('gs://')[1];
     const url = new URL(publicUrl, 'https://storage.googleapis.com');
     return url.href;
