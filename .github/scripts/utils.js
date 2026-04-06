@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { writeFile } from 'fs';
 import { join } from 'path';
+import crypto from 'crypto';
 
 export async function saveImage(bytes, filename = randomText() + '.png') {
     const localPath = join(process.cwd(), filename);
@@ -19,12 +20,11 @@ export async function saveVideo(bytes, filename = randomText() + '.mp4') {
 }
 
 export function randomText() {
-    let symbols = [1, 2,3,5,6,7,8,9,0,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
-    symbols = symbols.map(() => {
-        return symbols[Math.floor(Math.random() * symbols.length)]
+    const symbols = [1, 2,3,5,6,7,8,9,0,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+    const result = Array.from({ length: 35 }, () => {
+        return symbols[crypto.randomInt(0, symbols.length)];
     });
-
-    return symbols.join('');
+    return result.join('');
 }
 
 
