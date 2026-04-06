@@ -14,22 +14,34 @@ async function init() {
 }
 
 async function initInstagramPhoto() {
-    const imagePrompt = await genPromptImage();
-    const descriptionPrompt = await genPromptDescription();
-    const generateDescription = await generateText(descriptionPrompt);
+    const [imagePrompt, descriptionPrompt] = await Promise.all([
+        genPromptImage(),
+        genPromptDescription()
+    ]);
+
+    const [generateDescription, generateImage] = await Promise.all([
+        generateText(descriptionPrompt),
+        generateImagen3(imagePrompt)
+    ]);
+
     console.log('generateDescription', generateDescription);
     console.log('imagePrompt', imagePrompt);
     
-    const generateImage = await generateImagen3(imagePrompt);
     const publishInstagramImage = await publishImageToInstagram(generateImage, generateDescription);
     return publishInstagramImage;
 }
 
 async function initInstagramVideo() {
-    const videoPrompt = await genPromptVideo();
-    const descriptionPrompt = await genPromptDescription();
-    const generateDescription = await generateText(descriptionPrompt);
-    const generateVideo = await generateVeoVideo(videoPrompt);
+    const [videoPrompt, descriptionPrompt] = await Promise.all([
+        genPromptVideo(),
+        genPromptDescription()
+    ]);
+
+    const [generateDescription, generateVideo] = await Promise.all([
+        generateText(descriptionPrompt),
+        generateVeoVideo(videoPrompt)
+    ]);
+
     const publishInstagramVideo = await publishVideoToInstagram(generateVideo, generateDescription);
     return publishInstagramVideo;
 }
