@@ -1,10 +1,9 @@
 ---
-
-tags: [architecture, implementation, microservices, best-practices]
 technology: Microservices
 domain: Architecture
 level: Senior/Architect
 version: Agnostic
+tags: [architecture, implementation, microservices, best-practices]
 ai_role: Senior Architect
 last_updated: 2026-03-29
 ---

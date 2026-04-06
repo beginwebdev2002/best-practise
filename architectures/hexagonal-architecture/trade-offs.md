@@ -1,5 +1,4 @@
 ---
-description: Hexagonal Architecture Trade-offs, Pros, Cons, and Architectural constraints for modern software design.
 technology: Hexagonal Architecture
 domain: Architecture
 level: Senior/Architect
@@ -7,10 +6,7 @@ version: Agnostic
 tags: [best-practices, trade-offs, hexagonal-architecture, ports-and-adapters]
 ai_role: Senior Software Architect
 last_updated: 2026-03-22
-topic: Hexagonal Architecture
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true---
+---
 
 # ⚖️ Hexagonal Architecture Trade-offs and Constraints
 

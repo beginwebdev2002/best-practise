@@ -1,16 +1,12 @@
 ---
-description: Vibe coding guidelines and constraints for the trade-offs, pros, cons, and anti-patterns of Event-Driven Architecture (EDA).
 technology: Event-Driven Architecture
 domain: Architecture
-complexity: Architect
-last_evolution: 2026-03-27
-vibe_coding_ready: true
-tags: [eda, trade-offs, architecture, messaging, kafka]
-topic: Event-Driven Trade-offs
 level: Senior/Architect
 version: Latest
+tags: [eda, trade-offs, architecture, messaging, kafka]
 ai_role: Senior Event-Driven Architecture Expert
-last_updated: 2026-03-29---
+last_updated: 2026-03-29
+---
 
 
 <div align="center">

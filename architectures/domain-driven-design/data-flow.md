@@ -1,16 +1,14 @@
 ---
-description: Vibe coding guidelines and architectural constraints for DDD within the Architecture domain.
-tags: [ddd, architecture, best-practices, architecture]
-topic: DDD
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true
 technology: DDD
 domain: Architecture
 level: Senior/Architect
 version: Latest
+tags: [ddd, architecture, best-practices, architecture]
 ai_role: Senior DDD Expert
-last_updated: 2026-03-29---# Domain-Driven Design - Data Flow
+last_updated: 2026-03-29
+---
+
+# Domain-Driven Design - Data Flow
 ## Request and Event Lifecycle
 
 ```mermaid
