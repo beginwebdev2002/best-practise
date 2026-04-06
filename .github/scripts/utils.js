@@ -1,3 +1,4 @@
+import crypto from 'crypto';
 import 'dotenv/config';
 import { writeFile } from 'fs';
 import { join } from 'path';
@@ -19,18 +20,14 @@ export async function saveVideo(bytes, filename = randomText() + '.mp4') {
 }
 
 export function randomText() {
-    let symbols = [1, 2,3,5,6,7,8,9,0,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
-    symbols = symbols.map(() => {
-        return symbols[Math.floor(Math.random() * symbols.length)]
-    });
-
-    return symbols.join('');
+    const symbols = [1, 2, 3, 5, 6, 7, 8, 9, 0, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    return Array.from({ length: symbols.length }, () => symbols[crypto.randomInt(0, symbols.length)]).join('');
 }
 
 
 export function convertGcsUriToPublicUrl(gcsUri) {
     if (typeof gcsUri !== 'string' || !gcsUri.startsWith('gs://')) {
-        throw new Error('Invalid GCS URI: Must be a string starting with "gs://"');
+        throw new Error('Invalid URI format');
     }
     const publicUrl = gcsUri.split('gs://')[1];
     const url = new URL(publicUrl, 'https://storage.googleapis.com');

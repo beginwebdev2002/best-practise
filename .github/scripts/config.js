@@ -5,7 +5,6 @@ export const API_KEY             = process.env.GOOGLE_AI_API_KEY;           // G
 export const NANO_BANANA_API_KEY = process.env.NANO_BANANA_API_KEY;         // Reserved for Nano Banana
 export const VEO3_API_KEY        = process.env.VEO3_API_KEY;                // Reserved / Veo 3 direct
 export const GCP_SA_KEY          = process.env.GCP_SA_KEY;
-export const BUCKET_NAME         = process.env.GCS_MARKETING_BUCKET;
 
 // ── Meta Graph API ────────────────────────────────────────────
 export const META_ACCESS_TOKEN   = process.env.META_ACCESS_TOKEN;           // Long-lived page token

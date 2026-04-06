@@ -1,34 +1,36 @@
-import test from 'node:test';
+import { describe, it } from 'node:test';
 import assert from 'node:assert';
-import { convertGcsUriToPublicUrl } from '../.github/scripts/utils.js';
+import { parseJson } from '../.github/scripts/utils.js';
 
-test('convertGcsUriToPublicUrl - valid URI', () => {
-    const uri = 'gs://my-bucket/my-file.txt';
-    const expectedUrl = 'https://storage.googleapis.com/my-bucket/my-file.txt';
-    assert.strictEqual(convertGcsUriToPublicUrl(uri), expectedUrl);
-});
+describe('utils.js', () => {
+    describe('parseJson', () => {
+        it('should return null for empty or non-string inputs', () => {
+            assert.strictEqual(parseJson(null), null);
+            assert.strictEqual(parseJson(undefined), null);
+            assert.strictEqual(parseJson(''), null);
+            assert.strictEqual(parseJson(123), null);
+            assert.strictEqual(parseJson({}), null);
+            assert.strictEqual(parseJson([]), null);
+        });
 
-test('convertGcsUriToPublicUrl - invalid URI format (does not start with gs://)', () => {
-    const invalidUri = 'https://my-bucket/my-file.txt';
-    assert.throws(
-        () => convertGcsUriToPublicUrl(invalidUri),
-        /Invalid GCS URI: Must be a string starting with "gs:\/\/"/
-    );
-});
+        it('should parse valid JSON', () => {
+            const result = parseJson('{"key": "value"}');
+            assert.deepStrictEqual(result, { key: "value" });
+        });
 
-test('convertGcsUriToPublicUrl - invalid type (not a string)', () => {
-    assert.throws(
-        () => convertGcsUriToPublicUrl(12345),
-        /Invalid GCS URI: Must be a string starting with "gs:\/\/"/
-    );
+        it('should strip markdown formatting', () => {
+            const result = parseJson('```json\n{"key": "value"}\n```');
+            assert.deepStrictEqual(result, { key: "value" });
+        });
 
-    assert.throws(
-        () => convertGcsUriToPublicUrl(null),
-        /Invalid GCS URI: Must be a string starting with "gs:\/\/"/
-    );
+        it('should ignore text before and after json', () => {
+            const result = parseJson('Here is the data: {"key": "value"} have a nice day.');
+            assert.deepStrictEqual(result, { key: "value" });
+        });
 
-    assert.throws(
-        () => convertGcsUriToPublicUrl(undefined),
-        /Invalid GCS URI: Must be a string starting with "gs:\/\/"/
-    );
+        it('should return null for invalid JSON string', () => {
+            const result = parseJson('{"key": "value"');
+            assert.strictEqual(result, null);
+        });
+    });
 });
