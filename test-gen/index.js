@@ -1,21 +1,36 @@
-import test from 'node:test';
+import { describe, it } from 'node:test';
 import assert from 'node:assert';
-import { randomText } from '../.github/scripts/utils.js';
+import { parseJson } from '../.github/scripts/utils.js';
 
-test('randomText should generate a string of length 35', () => {
-    const text = randomText();
-    assert.strictEqual(typeof text, 'string', 'Generated text should be a string');
-    assert.strictEqual(text.length, 35, 'Generated string should have a length of exactly 35 characters');
-});
+describe('utils.js', () => {
+    describe('parseJson', () => {
+        it('should return null for empty or non-string inputs', () => {
+            assert.strictEqual(parseJson(null), null);
+            assert.strictEqual(parseJson(undefined), null);
+            assert.strictEqual(parseJson(''), null);
+            assert.strictEqual(parseJson(123), null);
+            assert.strictEqual(parseJson({}), null);
+            assert.strictEqual(parseJson([]), null);
+        });
 
-test('randomText should generate random strings', () => {
-    const text1 = randomText();
-    const text2 = randomText();
-    assert.notStrictEqual(text1, text2, 'Consecutive calls should generate different strings');
-});
+        it('should parse valid JSON', () => {
+            const result = parseJson('{"key": "value"}');
+            assert.deepStrictEqual(result, { key: "value" });
+        });
 
-test('randomText should only contain specified symbols', () => {
-    const text = randomText();
-    const allowedSymbols = /^[0-9a-z]{35}$/;
-    assert.match(text, allowedSymbols, 'String should only contain numbers and lowercase letters (except 4)');
+        it('should strip markdown formatting', () => {
+            const result = parseJson('```json\n{"key": "value"}\n```');
+            assert.deepStrictEqual(result, { key: "value" });
+        });
+
+        it('should ignore text before and after json', () => {
+            const result = parseJson('Here is the data: {"key": "value"} have a nice day.');
+            assert.deepStrictEqual(result, { key: "value" });
+        });
+
+        it('should return null for invalid JSON string', () => {
+            const result = parseJson('{"key": "value"');
+            assert.strictEqual(result, null);
+        });
+    });
 });
