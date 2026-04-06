@@ -2,7 +2,7 @@
 technology: Angular
 domain: frontend
 level: Senior/Architect
-version: "20"
+version: 20+
 tags: [performance, advanced, angular, best-practices, clean-code, scalable-code]
 ai_role: Senior Angular Performance Expert
 last_updated: 2026-03-22

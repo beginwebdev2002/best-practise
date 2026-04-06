@@ -2,7 +2,7 @@
 technology: Angular
 domain: frontend
 level: Senior/Architect
-version: "20"
+version: 20+
 tags: [expert, niche, angular, best-practices, clean-code, scalable-code]
 ai_role: Senior Angular Expert
 last_updated: 2026-03-22
@@ -55,28 +55,57 @@ Always initialize signals with the full object shape (even with null) to preserv
 > [!NOTE]
 > **Context:** Reactivity Theory
 ### ❌ Bad Practice
-Relying on `effect` to fire synchronously.
+```typescript
+count = signal(0);
+doubleCount = signal(0);
+
+constructor() {
+  effect(() => {
+    this.doubleCount.set(this.count() * 2);
+  });
+}
+```
 ### ⚠️ Problem
-Signals guarantee "Glitch Freedom" (absence of intermediate inconsistent states), but effects are asynchronous (microtask timing).
+Using `effect` to derive or synchronize local state is an anti-pattern. Effects are asynchronous (microtask timing), which means the state can momentarily be inconsistent ("glitch") before the effect runs, leading to UI flicker or bugs.
 ### ✅ Best Practice
-Do not use effects to synchronize local state. Use `computed`.
-
-
+```typescript
+count = signal(0);
+doubleCount = computed(() => this.count() * 2);
+```
 ### 🚀 Solution
-This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+Use `computed` for derived state. Computed signals evaluate lazily and synchronously when read, ensuring true Glitch Freedom and eliminating unnecessary change detection cycles.
 ## ⚡ 59. Memory leaks in `root` Effects
 > [!NOTE]
 > **Context:** Application Lifecycle
 ### ❌ Bad Practice
-Creating an effect in a service without `manualCleanup`.
+```typescript
+@Injectable({ providedIn: 'root' })
+export class GlobalService {
+  constructor() {
+    effect(() => {
+      // Listens to global events indefinitely
+      console.log('State changed', this.state());
+    });
+  }
+}
+```
 ### ⚠️ Problem
-Effects in `root` services live forever. If they subscribe to something global, it can leak.
+Effects created in `root` services live for the entire lifecycle of the application. If the service relies on dynamic instantiation or lazy loading and is later destroyed, the effect will continue to execute, causing memory leaks and unexpected behavior.
 ### ✅ Best Practice
-Usually fine, but if the service is destroyed (rare lazy loading case), the effect must be cleaned up with `effectRef.destroy()`.
+```typescript
+@Injectable({ providedIn: 'root' })
+export class GlobalService implements OnDestroy {
+  private effectRef = effect(() => {
+    console.log('State changed', this.state());
+  }, { manualCleanup: true });
 
-
+  ngOnDestroy() {
+    this.effectRef.destroy();
+  }
+}
+```
 ### 🚀 Solution
-This approach provides a deterministic, type-safe implementation that is resilient and Agent-Readable, maintaining strict architectural boundaries.
+When creating effects in long-lived or dynamic services, explicitly configure them with `{ manualCleanup: true }` and destroy the reference during the service's `ngOnDestroy` lifecycle hook. This ensures deterministic resource management.
 ## 📖 60. `runInInjectionContext`
 > [!NOTE]
 > **Context:** Advanced DI

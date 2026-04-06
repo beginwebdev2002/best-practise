@@ -38,7 +38,32 @@ This folder acts as a container for documentation around the following backend t
 - [NestJS](./nestjs/readme.md)
 - [ExpressJS](./expressjs/readme.md)
 - [Node.js](./nodejs/readme.md)
+- [GraphQL](./graphql/readme.md)
 - [PostgreSQL](./postgresql/readme.md)
 - [MongoDB](./mongodb/readme.md)
 - [Redis](./redis/readme.md)
 - [Microservices](./microservices/readme.md)
+
+---
+## 1. 🛑 Global Domain Bleeding
+### ❌ Bad Practice
+```javascript
+// Returning database ORM models directly in HTTP responses
+app.get('/users/:id', async (req, res) => {
+  const user = await db.User.findByPk(req.params.id);
+  res.json(user); // Exposes sensitive database fields like passwords or salts
+});
+```
+### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+### ✅ Best Practice
+```javascript
+// Mapping the database entity to a specialized DTO
+app.get('/users/:id', async (req, res) => {
+  const user = await db.User.findByPk(req.params.id);
+  const userDTO = { id: user.id, username: user.username, email: user.email };
+  res.json(userDTO);
+});
+```
+### 🚀 Solution
+Never allow Database Object Relational Mapping (ORM) models to bleed into standard HTTP responses. Always map through a DTO.

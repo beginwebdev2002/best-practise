@@ -31,9 +31,58 @@ last_updated: 2026-03-22
 > [!IMPORTANT]
 > **Constraint:** Do not mutate shared DOM properties directly unless explicitly interacting with Browser APIs outside the framework context.
 
-- **Isolation:** Each component must define its boundaries clearly. Avoid CSS leakage.
-- **TypeScript Strictness:** Exploit TypeScript. `any` is strictly prohibited. Use explicit return types for all public methods.
-- **State Management:** Abstract global state logically depending on the specific framework rules, but never tightly couple presentation layers directly to store calls.
+```mermaid
+graph TD
+    A[UI Component] -->|State Action| B(State Management)
+    B -->|Immutable Update| C{Reactivity Engine}
+    C -->|Deterministic Render| A
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef state fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+    class B state;
+```
+
+### 🚨 1. TypeScript Strictness
+> [!NOTE]
+> **Context:** Ensuring deterministic, type-safe execution.
+### ❌ Bad Practice
+```typescript
+function processEvent(event: any) {
+    console.log(event.target.value);
+}
+```
+### ⚠️ Problem
+Using `any` disables static analysis and opens the door to runtime exceptions.
+### ✅ Best Practice
+```typescript
+function processEvent(event: unknown) {
+    if (event instanceof Event && event.target instanceof HTMLInputElement) {
+        console.log(event.target.value);
+    }
+}
+```
+### 🚀 Solution
+Exploit TypeScript. Use `unknown` and Type Guards to enforce explicit return types and strict contract adherence.
+
+### 🚨 2. State Management Coupling
+> [!NOTE]
+> **Context:** Managing UI updates and reactivity.
+### ❌ Bad Practice
+```typescript
+function render() {
+    window.globalState.user = "Alice"; // Direct mutation
+}
+```
+### ⚠️ Problem
+Direct mutation or tight coupling of presentation layers to global state causes unpredictable re-renders and violates isolation.
+### ✅ Best Practice
+```typescript
+function render(userStore: UserStore) {
+    userStore.updateUser("Alice"); // Abstracted call
+}
+```
+### 🚀 Solution
+Abstract global state logically depending on the specific framework rules. Ensure immutable updates.
 ## 💻 Technologies Included
 
 This folder acts as a container for documentation around the following technologies:
@@ -43,3 +92,8 @@ This folder acts as a container for documentation around the following technolog
 - [React](./react/readme.md)
 - [SolidJS](./solidjs/readme.md)
 - [Qwik](./qwik/readme.md)
+
+## 🎨 UI/UX Design & Styling
+
+- [UI/UX Design Production-Ready Best Practices](../.jules/rules/ui-ux-design.md)
+- [UI/UX Design & Styling Rules for Jules](../.jules/rules/design.md)

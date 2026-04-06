@@ -1,16 +1,13 @@
 ---
-description: Vibe coding guidelines and architectural constraints for Microservices within the Architecture domain.
+
 technology: Microservices
 domain: Architecture
 level: Senior/Architect
 version: Agnostic
 tags: [architecture, system-design, microservices, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-22
-topic: Vibe Coding
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true---
+last_updated: 2026-03-29
+---
 
 
 <div align="center">
@@ -18,9 +15,9 @@ vibe_coding_ready: true---
 </div>
 ---
 
-Этот инженерный директив определяет **лучшие практики (best practices)** для архитектуры Microservices. Данный документ спроектирован для обеспечения максимальной масштабируемости, безопасности и качества кода при разработке приложений корпоративного уровня.
+This engineering directive defines the **best practices** for the Microservices architecture. This document is designed to ensure maximum scalability, security, and code quality when developing enterprise-level applications.
 # Context & Scope
-- **Primary Goal:** Предоставить строгие архитектурные правила и практические паттерны для создания масштабируемых систем.
+- **Primary Goal:** Provide strict architectural rules and practical patterns for creating scalable systems.
 - **Description:** Breaking down a giant monolithic system into small, independent pieces, each handling its own business capability. Each service has its own Database.
 ## Map of Patterns
 - 📊 [**Data Flow:** Request and Event Lifecycle](./data-flow.md)

@@ -1,16 +1,12 @@
 ---
-description: The entry point for developers and AI agents to the Best-Practise AI Context Library.
-tags: [vibe coding, ai agents, context injection, architectural constraints, clean code]
 technology: TypeScript
 domain: Documentation
 level: Senior/Architect
 version: Latest
+tags: [vibe coding, ai agents, context injection, architectural constraints, clean code]
 ai_role: Senior TypeScript Expert
 last_updated: 2026-03-29
-topic: TypeScript
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true---
+---
 
 [ 🇺🇸 English ](#english) | [ 🇷🇺 Русский ](#russian)
 
@@ -187,9 +183,14 @@ graph TD
     * 🟢 **[nodejs/](./backend/nodejs/)**
       * 📄 [readme.md](./backend/nodejs/readme.md)
   * 📄 **[docs/](./docs/)**
+    * 🤖 [ai-agent-context-injection-pipelines.md](./docs/ai-agent-context-injection-pipelines.md)
+    * 🤖 [ai-agent-memory-architectures.md](./docs/ai-agent-memory-architectures.md)
+    * 🤖 [ai-agent-multi-model-consensus.md](./docs/ai-agent-multi-model-consensus.md)
     * 🤖 [ai-agent-orchestration.md](./docs/ai-agent-orchestration.md)
     * 🤖 [ai-agent-self-healing-architectures.md](./docs/ai-agent-self-healing-architectures.md)
+    * 🤖 [ai-agent-semantic-routing.md](./docs/ai-agent-semantic-routing.md)
     * 🤖 [vibe-coding-agents.md](./docs/vibe-coding-agents.md)
+    * 🤖 [vibe-coding-autonomous-testing-patterns.md](./docs/vibe-coding-autonomous-testing-patterns.md)
     * 🤖 [vibe-coding-deterministic-patterns.md](./docs/vibe-coding-deterministic-patterns.md)
     * 🤖 [vibe-coding-multi-agent-state-sync.md](./docs/vibe-coding-multi-agent-state-sync.md)
     * ⚡ [vibe-coding-zero-approval-workflows.md](./docs/vibe-coding-zero-approval-workflows.md)
@@ -396,9 +397,14 @@ graph TD
     * 🟢 **[nodejs/](./backend/nodejs/)**
       * 📄 [readme.md](./backend/nodejs/readme.md)
   * 📄 **[docs/](./docs/)**
+    * 🤖 [ai-agent-context-injection-pipelines.md](./docs/ai-agent-context-injection-pipelines.md)
+    * 🤖 [ai-agent-memory-architectures.md](./docs/ai-agent-memory-architectures.md)
+    * 🤖 [ai-agent-multi-model-consensus.md](./docs/ai-agent-multi-model-consensus.md)
     * 🤖 [ai-agent-orchestration.md](./docs/ai-agent-orchestration.md)
     * 🤖 [ai-agent-self-healing-architectures.md](./docs/ai-agent-self-healing-architectures.md)
+    * 🤖 [ai-agent-semantic-routing.md](./docs/ai-agent-semantic-routing.md)
     * 🤖 [vibe-coding-agents.md](./docs/vibe-coding-agents.md)
+    * 🤖 [vibe-coding-autonomous-testing-patterns.md](./docs/vibe-coding-autonomous-testing-patterns.md)
     * 🤖 [vibe-coding-deterministic-patterns.md](./docs/vibe-coding-deterministic-patterns.md)
     * 🤖 [vibe-coding-multi-agent-state-sync.md](./docs/vibe-coding-multi-agent-state-sync.md)
     * ⚡ [vibe-coding-zero-approval-workflows.md](./docs/vibe-coding-zero-approval-workflows.md)

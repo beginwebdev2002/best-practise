@@ -1,11 +1,11 @@
 ---
 technology: TypeScript
-domain: frontend
+domain: Documentation
 level: Senior/Architect
-version: "5.0+"
+version: 5.5+
 tags: [typescript, type-safety, clean-code, best-practices, architecture]
 ai_role: Senior TypeScript Architecture Expert
-last_updated: 2026-03-22
+last_updated: 2026-03-29
 ---
 
 # 🎨 TypeScript Best Practise
@@ -161,16 +161,18 @@ Use `const` objects with `as const` and a derived union type. This is more predi
 > **Context:** Enforcing strict type safety.
 ### ❌ Bad Practice
 ```typescript
-function save(data) { // Implicit unknown if strict: false
+function save(data: any) {
     db.push(data);
 }
 ```
 ### ⚠️ Problem
-Implicit `any` bypasses the compiler's ability to verify data flow, leading to "undefined is not a function" errors that TypeScript was designed to prevent.
+Using `any` explicitly bypasses the compiler's ability to verify data flow, leading to "undefined is not a function" errors that TypeScript was designed to prevent.
 ### ✅ Best Practice
 ```typescript
-function save(data: UserData) {
-    db.push(data);
+function save(data: unknown) {
+    if (isValidUserData(data)) {
+        db.push(data);
+    }
 }
 ```
 ### 🚀 Solution
@@ -226,3 +228,4 @@ For further reading, please refer to the following specialized guides:
 - [🛡️ Logic & Safety](./logic-safety.md)
 - [📦 Objects & Functions](./objects-functions.md)
 - [🧠 Professional & Niche Topics](./professional-niche.md)
+- [🧪 Testing](./testing.md)

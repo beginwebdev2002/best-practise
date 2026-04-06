@@ -41,6 +41,8 @@ For deep dives into specific topics, consult the specialized guides:
 // Inserting data without validation
 db.users.insertOne({ name: "John", age: -5, admin: true });
 ```
+#### ⚠️ Problem
+Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 #### ✅ Best Practice
 Implement strict schema validation using JSON Schema in MongoDB.
 #### 🚀 Solution
@@ -72,8 +74,14 @@ db.createCollection("users", {
 ```
 
 
-### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
 ---
 
 [⬆ Back to Top](#-mongodb-production-ready-best-practices)
+
+
+## 📚 Specialized Modules
+
+Explore advanced architectural topics for MongoDB:
+- [Architecture](./architecture.md)
+- [Database Optimization](./database-optimization.md)
+- [Security Best Practices](./security-best-practices.md)
