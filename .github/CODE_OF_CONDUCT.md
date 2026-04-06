@@ -1,16 +1,12 @@
 ---
-description: Vibe coding guidelines and architectural constraints for TypeScript within the Documentation domain.
-tags: [typescript, documentation, best-practices, architecture]
-topic: TypeScript
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true
 technology: TypeScript
 domain: Documentation
 level: Senior/Architect
 version: Latest
+tags: [typescript, documentation, best-practices, architecture]
 ai_role: Senior TypeScript Expert
-last_updated: 2026-03-29---
+last_updated: 2026-03-29
+---
 [ 🇺🇸 English ](#english) | [ 🇷🇺 Русский ](#russian)
 
 <a id="english"></a>

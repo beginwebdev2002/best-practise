@@ -18,7 +18,7 @@ last_updated: 2026-03-22
 
 ## ⚡ II. State Management
 
-## ⚡ 1. Storing Unserializable Data
+## 🚨 1. Storing Unserializable Data
 > [!NOTE]
 > **Context:** Reactive Stores and State Object
 ### ❌ Bad Practice

@@ -191,3 +191,11 @@ Distributed Tracing is mandatory (e.g., using OpenTelemetry). All requests must 
 ---
 
 [Back to Top](#)
+
+
+## 📚 Specialized Modules
+
+Explore advanced architectural topics for Microservices:
+- [Api Design](./api-design.md)
+- [Architecture](./architecture.md)
+- [Security Best Practices](./security-best-practices.md)

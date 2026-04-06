@@ -151,3 +151,11 @@ Be explicit in queries: never use `SELECT *`. Utilize Keyset Pagination (Cursor-
 ---
 
 [Back to Top](#)
+
+
+## 📚 Specialized Modules
+
+Explore advanced architectural topics for PostgreSQL:
+- [Architecture](./architecture.md)
+- [Database Optimization](./database-optimization.md)
+- [Security Best Practices](./security-best-practices.md)

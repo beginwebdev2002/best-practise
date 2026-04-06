@@ -93,3 +93,39 @@ classDiagram
 ---
 
 [⬆ Back to Top](#-mongodb-architecture-constraints)
+
+## 1. 🛑 Schema-less Anti-pattern
+### ❌ Bad Practice
+```javascript
+// Inserting whatever object properties exist
+db.collection('users').insertOne({ anything: "goes", random: 123 });
+```
+### ⚠️ Problem
+Treating MongoDB as completely schema-less leads to data inconsistencies, corrupted application logic, and complex migrations down the line.
+### ✅ Best Practice
+```javascript
+// Using JSON Schema validation at the database level or an ODM like Mongoose
+const userSchema = new mongoose.Schema({
+  email: { type: String, required: true },
+  age: { type: Number, min: 18 }
+});
+const User = mongoose.model('User', userSchema);
+```
+### 🚀 Solution
+Enforce structural constraints either via MongoDB's native JSON Schema validation or using an Object Data Modeling (ODM) library.
+
+## 2. 🗂️ Architectural Workflow
+
+```mermaid
+graph TD
+    A[Application] --> B[Mongoose ODM]
+    B --> C[(MongoDB)]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class A layout;
+    class B component;
+    class C component;
+```

@@ -18,7 +18,7 @@ last_updated: 2026-03-22
 
 ## ⚡ II. Advanced Performance
 
-## ⚡ 1. Synchronous Closures
+## 🚨 1. Synchronous Closures
 > [!NOTE]
 > **Context:** Component Event Handlers
 ### ❌ Bad Practice

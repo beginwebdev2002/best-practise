@@ -26,7 +26,7 @@ last_updated: 2026-03-22
 - Adhere to the defined [Architectural Patterns](../../architectures/readme.md) when building applications.
 - Strongly prefer **Feature Sliced Design (FSD)** for applications scaling across multiple teams.
 ## 🚀 I. Basics & Popular
-## ⚡ 1. Using JSX Map for Lists
+## 🚨 1. Using JSX Map for Lists
 > [!NOTE]
 > **Context:** Rendering Lists
 ### ❌ Bad Practice
@@ -48,3 +48,4 @@ For further reading, please refer to the following specialized guides:
 
 - [🚀 Advanced Performance](./performance.md)
 - [📦 State Management](./state-management.md)
+- [🧪 Testing](./testing.md)
