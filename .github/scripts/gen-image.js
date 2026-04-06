@@ -28,7 +28,3 @@ export async function generateImagen3(prompt, filename = 'generated-image.png', 
     console.error(`❌ Imagen 3 error:`, err.message);
   }
 }
-
-export function generateGroupImages(imageList) {
-    
-}
