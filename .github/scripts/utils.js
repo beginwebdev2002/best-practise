@@ -1,8 +1,7 @@
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 import 'dotenv/config';
-import { writeFile } from 'fs';
-import { join } from 'path';
-import crypto from 'crypto';
+import { writeFile } from 'node:fs';
+import { join } from 'node:path';
 
 export async function saveImage(bytes, filename = randomText() + '.png') {
     const localPath = join(process.cwd(), filename);

@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MongoDB AST Validation Schema",
+  "type": "object",
+  "properties": {
+    "required_methods": {
+      "type": "array",
+      "items": { "type": "string" },
+      "contains": { "enum": ["createCollection", "validator", "$jsonSchema"] }
+    },
+    "forbidden_patterns": {
+      "type": "array",
+      "items": { "type": "string" },
+      "contains": { "enum": ["insertOne without validation"] }
+    }
+  }
+}
