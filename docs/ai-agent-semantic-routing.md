@@ -66,6 +66,19 @@ function routeQuery(query: string) {
 }
 ```
 
+```mermaid
+flowchart TD
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+
+    Start[Incoming Query] --> Condition{"query.includes('fix bug')?"}
+    Condition -- Yes --> CodeAgent[codeAgent]
+    Condition -- No --> GeneralAgent[generalAgent]
+
+    class CodeAgent component
+    class GeneralAgent component
+```
+
 ### ⚠️ Problem
 
 Hardcoded keyword matching ignores semantic intent. It results in brittle routing logic that fails to scale with the complexity of user prompts, leading to high error rates and agent hallucinations when context is misaligned.

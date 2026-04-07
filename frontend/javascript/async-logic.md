@@ -19,6 +19,14 @@ last_updated: 2026-03-22
 ## ⚡ 21. Callback Hell vs Promises
 > [!NOTE]
 > **Context:** Managing asynchronous execution flow.
+
+| Feature | Callback Hell | Promises |
+| :--- | :--- | :--- |
+| **Structure** | Deeply nested (Pyramid of Doom) | Flattened chains (`.then()`) |
+| **Error Handling** | Repetitive `if (err)` in every scope | Centralized `.catch()` block |
+| **Readability** | Low (Hard to track flow) | High (Reads sequentially) |
+| **Scalability** | Extremely difficult | Easily composable (`Promise.all`) |
+
 ### ❌ Bad Practice
 ```javascript
 getData(url, (err, res) => {
