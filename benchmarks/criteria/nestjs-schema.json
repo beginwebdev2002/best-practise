@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NestJS AST Validation Schema",
+  "type": "object",
+  "properties": {
+    "decorators": {
+      "type": "array",
+      "items": { "type": "string" },
+      "contains": { "enum": ["UseInterceptors", "CacheTTL", "Cron", "MessagePattern", "HealthCheck", "Inject", "Module", "Injectable", "ValidatorConstraint", "Validate"] }
+    },
+    "forbidden_patterns": {
+      "type": "array",
+      "items": { "type": "string" },
+      "contains": { "enum": ["setInterval", "@Post() for microservices", "@Get('ping')"] }
+    }
+  }
+}

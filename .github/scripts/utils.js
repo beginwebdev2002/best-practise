@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 import 'dotenv/config';
 import { writeFile } from 'fs';
 import { join } from 'path';

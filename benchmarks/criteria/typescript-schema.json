@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TypeScript AST Validation Schema",
+  "type": "object",
+  "properties": {
+    "forbidden_types": {
+      "type": "array",
+      "items": { "type": "string" },
+      "contains": { "enum": ["any"] }
+    },
+    "required_types": {
+      "type": "array",
+      "items": { "type": "string" },
+      "contains": { "enum": ["unknown"] }
+    }
+  }
+}
