@@ -3,10 +3,7 @@ technology: Angular
 domain: frontend
 level: Senior/Architect
 version: 20+
-tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules,
-  typescript, software-architecture, system-design, solid-principles, production-ready,
-  programming-standards, react-best-practices, node-js, design-patterns, scalable-code,
-  windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
+tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior Angular Performance Expert
 last_updated: 2026-03-22
 ---
