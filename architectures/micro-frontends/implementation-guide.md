@@ -1,14 +1,9 @@
 ---
-description: Vibe coding guidelines and architectural constraints for Micro-frontends Implementation Guide within the Architecture domain.
-tags: [micro-frontends, architecture, module-federation, frontend, implementation, guide, vibe-coding]
-topic: Micro-frontends Implementation Guide
-complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
 technology: Micro-frontends
 domain: Architecture
 level: Senior/Architect
 version: Agnostic
+tags: [micro-frontends, architecture, module-federation, frontend, implementation, guide, vibe-coding]
 ai_role: Senior Architect
 last_updated: 2026-03-22
 ---

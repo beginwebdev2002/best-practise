@@ -1,14 +1,9 @@
 ---
-description: Vibe coding guidelines and architectural constraints for Micro-frontends Data Flow within the Architecture domain.
-tags: [micro-frontends, architecture, module-federation, frontend, data-flow, sequence-diagram, vibe-coding]
-topic: Micro-frontends Data Flow
-complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
 technology: Micro-frontends
 domain: Architecture
 level: Senior/Architect
 version: Agnostic
+tags: [micro-frontends, architecture, module-federation, frontend, data-flow, sequence-diagram, vibe-coding]
 ai_role: Senior Architect
 last_updated: 2026-03-22
 ---

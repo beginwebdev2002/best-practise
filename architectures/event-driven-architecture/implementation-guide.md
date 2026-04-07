@@ -1,16 +1,12 @@
 ---
-description: Vibe coding implementation guidelines, strict rules, code patterns, and constraints for implementing Event-Driven Architecture (EDA) using 2026 standards.
 technology: Event-Driven Architecture
 domain: Architecture
-complexity: Architect
-last_evolution: 2026-03-27
-vibe_coding_ready: true
-tags: [eda, implementation-guide, kafka, microservices, typescript, nestjs, architecture-patterns]
-topic: Event-Driven Implementation Guide
 level: Senior/Architect
 version: Latest
+tags: [eda, implementation-guide, kafka, microservices, typescript, nestjs, architecture-patterns]
 ai_role: Senior Event-Driven Architecture Expert
-last_updated: 2026-03-29---
+last_updated: 2026-03-29
+---
 
 
 <div align="center">

@@ -1,5 +1,4 @@
 ---
-description: Vibe coding guidelines and architectural constraints for Model-View-Controller (MVC) within the Architecture domain.
 technology: Model-View-Controller (MVC)
 domain: Architecture
 level: Senior/Architect
@@ -7,10 +6,7 @@ version: Agnostic
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns, mvc-best-practise, angular-best-practise, expressjs-best-practise, ai-instructions, vibe-coding-instructions, mongodb, angular, nestjs, html, scss, javascript, js, typescript-best-practise, css, css3]
 ai_role: Senior Software Architect
 last_updated: 2026-03-22
-topic: MVC
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true---
+---
 
 
 <div align="center">

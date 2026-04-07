@@ -1,16 +1,12 @@
 ---
-description: Vibe coding guidelines for the asynchronous request and data flow lifecycle in an Event-Driven Architecture (EDA).
 technology: Event-Driven Architecture
 domain: Architecture
-complexity: Architect
-last_evolution: 2026-03-27
-vibe_coding_ready: true
-tags: [eda, data-flow, sequence-diagram, asynchronous, messaging, event-lifecycle]
-topic: Event-Driven Data Flow
 level: Senior/Architect
 version: Latest
+tags: [eda, data-flow, sequence-diagram, asynchronous, messaging, event-lifecycle]
 ai_role: Senior Event-Driven Architecture Expert
-last_updated: 2026-03-29---
+last_updated: 2026-03-29
+---
 
 
 <div align="center">

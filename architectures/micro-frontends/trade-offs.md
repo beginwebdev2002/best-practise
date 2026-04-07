@@ -1,14 +1,9 @@
 ---
-description: Vibe coding guidelines and architectural constraints for Micro-frontends Trade-offs within the Architecture domain.
-tags: [micro-frontends, architecture, module-federation, frontend, trade-offs, constraints, vibe-coding]
-topic: Micro-frontends Trade-offs
-complexity: Architect
-last_evolution: 2026-03-22
-vibe_coding_ready: true
 technology: Micro-frontends
 domain: Architecture
 level: Senior/Architect
 version: Agnostic
+tags: [micro-frontends, architecture, module-federation, frontend, trade-offs, constraints, vibe-coding]
 ai_role: Senior Architect
 last_updated: 2026-03-22
 ---
