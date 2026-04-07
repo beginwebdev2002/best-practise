@@ -22,7 +22,8 @@ This repository is not a codebase; it is a **Machine-Readable Intelligence Layer
 - **Vibe Coding Synchronization:** Provide a unified "Source of Truth" for any LLM-based agent (Cursor, Windsurf, Copilot) to ensure "perfect first-time" generation.
 ---
 ## 🗺️ 2. Context Mapping
-AI Agents MUST traverse this repository using the following hierarchical logic:
+> [!IMPORTANT]
+> AI Agents MUST traverse this repository using the following hierarchical logic:
 
 ```mermaid
 graph TD
@@ -90,7 +91,8 @@ Reference this repository in your `.windsurfrules` file:
 For extensions like Cloud Code or GitHub Copilot, append the contents of `AGENTS.md` to your **Settings > Custom Instructions** field to establish the "Architectural Guardrails."
 ---
 ## 🤖 4. Agent Execution Protocol
-**Any AI Agent interacting with this repository MUST follow this 4-step execution loop:**
+> [!IMPORTANT]
+> **Any AI Agent interacting with this repository MUST follow this 4-step execution loop:**
 
 1.  **Context Discovery:** Scan `AGENTS.md` to identify the project's meta-structure.
 2.  **Constraint Identification:** Locate the specific `.md` file corresponding to the user's task (e.g., if the user asks for a NestJS service, read `backend/nestjs/readme.md`).
@@ -101,7 +103,7 @@ For extensions like Cloud Code or GitHub Copilot, append the contents of `AGENTS
 <!--
 | Metadata Key | Values |
 | :--- | :--- |
-| Keywords | Vibe Coding, AI Rulesets, Clean Code Instructions, Agentic Workflows, Meta-Programming |
+| Keywords | Vibe Coding, AI Rulesets, deterministic, strictly typed code Instructions, Agentic Workflows, Meta-Programming |
 | Target Agents | GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, O1-Preview |
 | Methodology | Instruction Engineering, Prompt Chaining, Context Window Optimization |
 -->

@@ -190,4 +190,4 @@ Caching `arr.length` was necessary 15 years ago. Today, modern engines optimize 
 for (const item of arr) { /* ... */ }
 ```
 ### 🚀 Solution
-Focus on "Big O" complexity and clean code. Only micro-optimize after profiling identifies a specific performance hotspot.
+Focus on "Big O" complexity and deterministic, strictly typed code. Only micro-optimize after profiling identifies a specific performance hotspot.
