@@ -24,6 +24,19 @@ When multi-agent systems interact asynchronously, standard debugging becomes obs
 2. **Context Snapshots:** Capture immutable snapshots of the agent's context window at the time of execution.
 3. **Hallucination Detection:** Implement automated bounds-checking and record semantic deviations.
 
+```mermaid
+stateDiagram-v2
+    direction LR
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+
+    IntentLogging: Intent-Based Logging
+    ContextSnapshot: Context Snapshots
+    HallucinationCheck: Hallucination Detection
+
+    IntentLogging --> ContextSnapshot
+    ContextSnapshot --> HallucinationCheck
+```
+
 > [!IMPORTANT]
 > To maintain deterministic observability, telemetry streams must strictly serialize LLM context windows to prevent parsing exceptions downstream.
 
