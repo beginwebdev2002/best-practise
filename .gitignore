@@ -70,3 +70,4 @@ site/
 
 test.*
 tokens.*
+.github/scripts
