@@ -59,7 +59,7 @@ app.post('/hash', (req, res) => {
 });
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Synchronous operations on the main thread block the Event Loop, halting all incoming API requests. This leads to severe performance degradation, unpredictable latency, and potential denial-of-service (DoS) vulnerabilities in high-traffic environments.
 ### ✅ Best Practice
 ```javascript
 const crypto = require('crypto');
@@ -79,7 +79,7 @@ Never use synchronous methods (`*Sync`) on the main thread for crypto, I/O, or h
 /server.js (Contains routes, DB connections, and logic all in one 1500-line file)
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+A monolithic file structure tightly couples routing, business logic, and data access. This lack of architectural boundaries makes the codebase difficult to test, increases merge conflicts in team environments, and hinders the ability of AI Agents to predictably traverse the logic tree.
 ### ✅ Best Practice
 ```text
 /src
@@ -99,7 +99,7 @@ const port = process.env.PORT || 3000;
 // Continuing application startup without validating required variables.
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to validate environment variables at startup allows the application to boot into an invalid state. This can lead to cryptic runtime crashes, unintended connections to production databases during development, or silent failures in authentication mechanisms.
 ### ✅ Best Practice
 ```javascript
 const requiredEnv = ['DATABASE_URL', 'JWT_SECRET', 'PORT'];
@@ -119,7 +119,7 @@ Fail fast. Validate all necessary environment variables upon application startup
 if (!user) throw new Error('User not found');
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Throwing generic Error objects strips contextual metadata (like HTTP status codes or operational vs. programming flags). This prevents global error handlers from predictably formatting responses, potentially leaking stack traces to clients.
 ### ✅ Best Practice
 ```javascript
 class AppError extends Error {
@@ -138,7 +138,7 @@ Extend the built-in `Error` object to create custom operational errors. This all
 ### ❌ Bad Practice
 // Ignoring process-level events, allowing the app to run in an unpredictable state after an error.
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Ignoring process-level exceptions leaves the application running in an unpredictable, potentially corrupted memory state. This can cause subsequent requests to fail silently or behave erratically, requiring a full process restart to recover safety.
 ### ✅ Best Practice
 ```javascript
 process.on('uncaughtException', (err) => {
@@ -158,7 +158,7 @@ Always capture `uncaughtException` and `unhandledRejection`. Log the fatal error
 ### ❌ Bad Practice
 // Sending default headers that expose the framework, like `X-Powered-By: Express`.
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Exposing default framework headers (e.g., `X-Powered-By: Express`) provides attackers with valuable fingerprinting information. This allows automated scanners to quickly identify the technology stack and exploit known framework-specific vulnerabilities.
 ### ✅ Best Practice
 ```javascript
 // Example using Express + Helmet, but applies generically to HTTP responses
@@ -172,7 +172,7 @@ Sanitize outgoing HTTP headers to prevent information leakage about the server i
 ### ❌ Bad Practice
 // Application crashes abruptly during deployments, interrupting active user requests and corrupting database transactions.
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Terminating the process abruptly interrupts active user requests and orphans in-flight database transactions. This can lead to data corruption, inconsistent state, and degraded user experience during deployments or container scaling.
 ### ✅ Best Practice
 ```javascript
 process.on('SIGTERM', () => {
@@ -196,7 +196,7 @@ Listen for termination signals (`SIGTERM`, `SIGINT`). Finish processing ongoing 
 const user = await db.query(`SELECT * FROM users WHERE email = '${req.body.email}'`);
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Blindly trusting client input enables severe vulnerabilities like SQL/NoSQL Injection and Cross-Site Scripting (XSS). Without strict schema validation at the transport boundary, malicious payloads can compromise data integrity and system security.
 ### ✅ Best Practice
 ```javascript
 // Utilizing parameterized queries and a validation library like Joi or Zod
@@ -218,7 +218,7 @@ function processImage(buffer) {
 }
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Executing CPU-intensive tasks directly on the main thread starves the Event Loop of resources. This causes the application to become unresponsive to other concurrent API requests, drastically reducing throughput and scalability.
 ### ✅ Best Practice
 ```javascript
 const { Worker } = require('worker_threads');
@@ -240,7 +240,7 @@ Offload CPU-intensive operations (image processing, video encoding, heavy crypto
 console.log('User logged in', userId);
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Relying on standard `console.log` produces unstructured output that is impossible for monitoring systems to query or alert on efficiently. This severely degrades observability, making it difficult to trace errors across distributed systems or correlate user actions.
 ### ✅ Best Practice
 ```javascript
 const winston = require('winston');

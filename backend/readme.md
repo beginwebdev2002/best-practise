@@ -55,7 +55,7 @@ app.get('/users/:id', async (req, res) => {
 });
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Returning database ORM models directly in HTTP responses tightly couples the database schema to the API contract. This exposes sensitive internal fields (like password hashes or internal IDs) and prevents evolving the database schema without breaking API clients.
 ### ✅ Best Practice
 ```javascript
 // Mapping the database entity to a specialized DTO
