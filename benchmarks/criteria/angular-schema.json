@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Angular AST Validation Schema",
+  "type": "object",
+  "properties": {
+    "required_functions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "contains": { "enum": ["signal", "computed", "effect", "input", "output", "inject"] }
+    },
+    "forbidden_decorators": {
+      "type": "array",
+      "items": { "type": "string" },
+      "contains": { "enum": ["Input", "Output", "NgModule"] }
+    },
+    "forbidden_types": {
+      "type": "array",
+      "items": { "type": "string" },
+      "contains": { "enum": ["BehaviorSubject", "EventEmitter"] }
+    }
+  }
+}

@@ -1,5 +1,4 @@
 ---
-
 technology: CQRS (Command Query Responsibility Segregation)
 domain: Architecture
 level: Senior/Architect

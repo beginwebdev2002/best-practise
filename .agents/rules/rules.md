@@ -82,7 +82,8 @@ ai_role: [Specific Persona]
 last_updated: YYYY-MM-DD---
 ```
 
-Next, to describe each rule or pattern, you should use the following structure. **This structure is repeated as many times as necessary** to fully cover the topic. Here is one of the clearest and most popular examples:
+> [!IMPORTANT]
+> Next, to describe each rule or pattern, you MUST use the following structure. **This structure is repeated as many times as necessary** to fully cover the topic. Here is one of the clearest and most popular examples:
 
 ### ❌ Bad Practice
 ```typescript

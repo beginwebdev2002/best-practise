@@ -1,0 +1,43 @@
+name: Vibe-Check Runner
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  fidelity_verification:
+    name: Automated Fidelity Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Vibe-Check
+        env:
+          GOOGLE_AI_API_KEY: ${{ secrets.GOOGLE_AI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node vibe-check-runner.js
+
+      - name: Upload Violation Reports
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fidelity-reports
+          path: benchmarks/logs/
+          if-no-files-found: ignore

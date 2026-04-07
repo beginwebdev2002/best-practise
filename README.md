@@ -3,7 +3,7 @@ technology: TypeScript
 domain: Documentation
 level: Senior/Architect
 version: Latest
-tags: [vibe coding, ai agents, context injection, architectural constraints, clean code]
+tags: [vibe coding, ai agents, context injection, architectural constraints, deterministic, strictly typed code]
 ai_role: Senior TypeScript Expert
 last_updated: 2026-03-29
 ---
@@ -84,7 +84,8 @@ graph LR
 
 ### Folder Mapping Table
 
-For the **Deterministic Rules** to be accurately parsed and strictly followed, instructions MUST be placed in these specific hidden directories based on your AI tooling:
+> [!IMPORTANT]
+> For the **Deterministic Rules** to be accurately parsed and strictly followed, instructions MUST be placed in these specific hidden directories based on your AI tooling:
 
 | AI Tool | Instruction Directory Mapping |
 | :--- | :--- |
@@ -193,6 +194,7 @@ graph TD
     * 🤖 [vibe-coding-autonomous-testing-patterns.md](./docs/vibe-coding-autonomous-testing-patterns.md)
     * 🤖 [vibe-coding-deterministic-patterns.md](./docs/vibe-coding-deterministic-patterns.md)
     * 🤖 [vibe-coding-multi-agent-state-sync.md](./docs/vibe-coding-multi-agent-state-sync.md)
+    * 🤖 [vibe-coding-telemetry-patterns.md](./docs/vibe-coding-telemetry-patterns.md)
     * ⚡ [vibe-coding-zero-approval-workflows.md](./docs/vibe-coding-zero-approval-workflows.md)
   * 🖥️ **[frontend/](./frontend/)**
     * 📄 [readme.md](./frontend/readme.md)
@@ -407,6 +409,7 @@ graph TD
     * 🤖 [vibe-coding-autonomous-testing-patterns.md](./docs/vibe-coding-autonomous-testing-patterns.md)
     * 🤖 [vibe-coding-deterministic-patterns.md](./docs/vibe-coding-deterministic-patterns.md)
     * 🤖 [vibe-coding-multi-agent-state-sync.md](./docs/vibe-coding-multi-agent-state-sync.md)
+    * 🤖 [vibe-coding-telemetry-patterns.md](./docs/vibe-coding-telemetry-patterns.md)
     * ⚡ [vibe-coding-zero-approval-workflows.md](./docs/vibe-coding-zero-approval-workflows.md)
   * 🖥️ **[frontend/](./frontend/)**
     * 📄 [readme.md](./frontend/readme.md)

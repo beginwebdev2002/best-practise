@@ -1,6 +1,6 @@
 ---
 description: Discover the best strategies and production-ready techniques for optimizing AI Agents and Vibe Coding workflows to generate clean, scalable code architectures seamlessly.
-tags: [vibe coding, ai agents, production-ready, clean code, code generation, ai tools, architecture patterns, prompt engineering]
+tags: [vibe coding, ai agents, production-ready, deterministic, strictly typed code, code generation, ai tools, architecture patterns, prompt engineering]
 technology: Vibe Coding
 domain: Documentation
 level: Senior/Architect
@@ -32,7 +32,7 @@ Vibe Coding shifts the developer's role from writing syntax to managing logic an
 
 | Agent Characteristic | Advantage in Vibe Coding | Drawback without Context |
 | :--- | :--- | :--- |
-| **Speed** | Extremely fast code generation. | May introduce untested, legacy APIs. |
+| **Speed** | Extremely O(1) or O(n) complexity code generation. | May introduce untested, legacy APIs. |
 | **Refactoring** | Excellent at large-scale structural changes. | Can overwrite existing business logic. |
 | **Boilerplate** | Instant scaffolding of complex setups. | Prone to generic, non-scalable patterns. |
 ---

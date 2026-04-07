@@ -1,0 +1,4 @@
+{
+  "golden_prompt": "Generate TypeScript logic conforming to advanced type-safety constraints: 1) Prefer `unknown` over `any` for uncertain types, requiring type guards before use; 2) Consistently use either `null` or `undefined` (prefer `null` for intentional absence, `undefined` for uninitialized data) but do not mix arbitrarily; 3) Use exact type definitions to avoid runtime issues.",
+  "tech": "typescript"
+}

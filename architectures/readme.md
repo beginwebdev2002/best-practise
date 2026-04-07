@@ -1,5 +1,4 @@
 ---
-
 technology: General Architecture
 domain: Architecture
 level: Senior/Architect
@@ -7,6 +6,7 @@ version: Agnostic
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior Software Architect
 last_updated: 2026-03-29
+---
 
 # Architecture Best Practices & Production-Ready Patterns
 # Context & Scope
@@ -37,6 +37,21 @@ Don't know where to start? Here are a few golden rules:
 - **Match Your Team's Expertise:** Choose the approach that your team understands or is ready to learn. If everyone knows React inside out, use *FSD*. Lone wolves ruin team productivity.
 - **Embrace Change:** The perfect architecture allows you to painlessly swap your database (e.g., PostgreSQL for MongoDB) or your UI component library without rewriting the core.
 ---
+## 🗺️ Map of Patterns
+
+- [Backend-For-Frontend (BFF)](./backend-for-frontend/readme.md)
+- [Clean Architecture](./clean-architecture/readme.md)
+- [CQRS](./cqrs/readme.md)
+- [Domain-Driven Design (DDD)](./domain-driven-design/readme.md)
+- [Event-Driven Architecture (EDA)](./event-driven-architecture/readme.md)
+- [Feature-Sliced Design (FSD)](./feature-sliced-design/readme.md)
+- [Hexagonal Architecture](./hexagonal-architecture/readme.md)
+- [Micro-frontends](./micro-frontends/readme.md)
+- [Microservices](./microservices/readme.md)
+- [MVC (Model-View-Controller)](./model-view-controller/readme.md)
+- [Monolithic Architecture](./monolithic-architecture/readme.md)
+- [Serverless](./serverless/readme.md)
+
 ## 🏆 Top 10 Best Architectural Approaches
 
 Below are the most popular architectural patterns along with examples, tips, technology stacks, and their logos. A Folder Tree is provided for each to give you a deep understanding of its structure.

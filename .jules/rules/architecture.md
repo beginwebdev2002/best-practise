@@ -1,6 +1,6 @@
 ---
 description: Key instructions for Jules regarding enterprise system architectures: Clean Architecture, Microservices, MVC, CQRS.
-tags: [software architecture, system design, enterprise patterns, production-ready, scalable architecture, clean code, hexagonal-architecture, microservices]
+tags: [software architecture, system design, enterprise patterns, production-ready, scalable architecture, deterministic, strictly typed code, hexagonal-architecture, microservices]
 technology: Vibe Coding
 domain: Documentation
 level: Senior/Architect
@@ -27,7 +27,7 @@ vibe_coding_ready: true---
 When the User requests a new service or module, Jules must first rely on these **enterprise patterns**. 
 
 > [!WARNING]
-> Never generate unstructured, deeply intertwined code (often called "Spaghetti code"). Always begin by defining the clear layers and dependencies in accordance with **clean code** patterns.
+> Never generate unstructured, deeply intertwined code (often called "Spaghetti code"). Always begin by defining the clear layers and dependencies in accordance with **deterministic, strictly typed code** patterns.
 
 ### Pattern: Clean Architecture (Hexagonal / Ports & Adapters)
 

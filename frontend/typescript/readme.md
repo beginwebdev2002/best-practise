@@ -89,7 +89,7 @@ type ID = string;
 type Union = 'A' | 'B';
 ```
 ### 🚀 Solution
-Use `type` for almost everything (unions, primitives, intersections). Use `interface` only when you specifically need declaration merging or for public library APIs where consumers might need to extend types.
+prefer 'interface' for structure, 'type' for unions.
 ---
 ## ⚡ 5. Function Overloads vs Union Types
 > [!NOTE]

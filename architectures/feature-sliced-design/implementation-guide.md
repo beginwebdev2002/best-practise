@@ -1,16 +1,14 @@
 ---
-description: Vibe coding guidelines and architectural constraints for FSD within the Architecture domain.
-tags: [fsd, architecture, best-practices, architecture]
-topic: FSD
-complexity: Architect
-last_evolution: 2026-03-29
-vibe_coding_ready: true
 technology: FSD
 domain: Architecture
 level: Senior/Architect
 version: Latest
+tags: [fsd, architecture, best-practices, architecture]
 ai_role: Senior FSD Expert
-last_updated: 2026-03-29---# Feature-Sliced Design (FSD) - Implementation Guide
+last_updated: 2026-03-29
+---
+
+# Feature-Sliced Design (FSD) - Implementation Guide
 ## Code patterns and Anti-patterns
 
 ### Entity Relationships

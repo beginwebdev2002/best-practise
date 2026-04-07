@@ -1,5 +1,4 @@
 ---
-
 technology: Microservices
 domain: Architecture
 level: Senior/Architect

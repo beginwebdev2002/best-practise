@@ -1,0 +1,4 @@
+{
+  "golden_prompt": "Generate an Angular v20+ component or service adhering strictly to Zoneless reactivity constraints: 1) ALWAYS use signal(), computed(), and effect() instead of RxJS BehaviorSubject; 2) NEVER use @Input() or @Output() decorators, use input() and output() functional APIs instead; 3) ALWAYS use built-in control flow (@if, @for) instead of structural directives (*ngIf, *ngFor); 4) Avoid Heavy Logic in Templates; 5) Use inject() for DI; 6) Use Standalone Components instead of NgModules.",
+  "tech": "angular"
+}

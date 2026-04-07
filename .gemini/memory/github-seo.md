@@ -26,7 +26,7 @@ To ensure the repository ranks at the top of GitHub search results and search en
 | **H3** | Problem-Solution or Constraints | `Error Handling Patterns`, `Performance Optimization` |
 
 ### Semantic Density Requirements
-- **LSI Keywords:** Naturally integrate terms like *production-ready*, *enterprise-grade*, *scalable architecture*, *clean code*, and *software design patterns*.
+- **LSI Keywords:** Naturally integrate terms like *production-ready*, *enterprise-grade*, *scalable architecture*, *deterministic, strictly typed code*, and *software design patterns*.
 - **Initial Context:** The first 200 characters of every file must contain the primary technology and the keyword "best practices".
 - **Density:** Maintain a 1-3% keyword density for the main topic to avoid "keyword stuffing" while remaining relevant to GitHub's search indexer.
 ---
@@ -84,7 +84,7 @@ To build a "Knowledge Graph" within the repository, files must be cross-referenc
 
 ### About Section (GitHub Sidebar)
 - **Constraint:** Max 160 characters.
-- **Template:** `🚀 The ultimate guide to Best Practices & Production-Ready Patterns. Optimized for Vibe Coding (Cursor/Windsurf). Clean Code, Scalable Architectures, and System Design.`
+- **Template:** `🚀 The ultimate guide to Best Practices & Production-Ready Patterns. Optimized for Vibe Coding (Cursor/Windsurf). deterministic, strictly typed code, Scalable Architectures, and System Design.`
 
 ### Topics (Tags)
 Always include the maximum (20) relevant tags for discoverability:

@@ -1,16 +1,12 @@
 ---
-description: Vibe coding guidelines and architectural constraints for Event-Driven Architecture (EDA) within the Architecture domain.
 technology: Event-Driven Architecture
 domain: Architecture
-complexity: Architect
-last_evolution: 2026-03-27
-vibe_coding_ready: true
-tags: [eda, event-driven, architecture, pub-sub, asynchronous, messaging, kafka, rabbitmq, system-design]
-topic: Event-Driven Architecture
 level: Senior/Architect
 version: Latest
+tags: [eda, event-driven, architecture, pub-sub, asynchronous, messaging, kafka, rabbitmq, system-design]
 ai_role: Senior Event-Driven Architecture Expert
-last_updated: 2026-03-29---
+last_updated: 2026-03-29
+---
 
 
 <div align="center">

@@ -47,7 +47,7 @@ The following files are systemic for promoting high **documentation quality** an
 - `agents.md` – The primary meta-intelligence protocol defining how AI agents operate.
 - `.agents/rules/github-seo.md` – Search Engine Optimization and metadata structures.
 - `.agents/rules/project-architecture.md` – Core architectural constraints.
-- `.agents/rules/rules.md` & `.agents/rules/system-markdown.md` – Specific constraints enforcing clean code and high documentation searchability.
+- `.agents/rules/rules.md` & `.agents/rules/system-markdown.md` – Specific constraints enforcing deterministic, strictly typed code and high documentation searchability.
 ---
 ## 3. Maintenance Protocol for Jules
 
