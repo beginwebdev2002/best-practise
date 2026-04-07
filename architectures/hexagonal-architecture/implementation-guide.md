@@ -203,8 +203,9 @@ The Core Domain entity (`User`) is polluted with database-specific decorators (`
 ### ✅ Best Practice
 ```typescript
 // GOOD: Core Domain is purely business logic, decoupled from infrastructure
+// src/core/domain/User.ts
 export class User {
-    private _id: string;
+    private readonly _id: string;
     private _email: string;
     private _status: 'ACTIVE' | 'INACTIVE';
 
@@ -214,12 +215,23 @@ export class User {
         this._status = 'ACTIVE';
     }
 
+    public get id(): string { return this._id; }
+    public get email(): string { return this._email; }
+
     public deactivate(): void {
         this._status = 'INACTIVE';
     }
 }
 
-// Data Mapper handles translating to/from the external ORM
+// src/core/ports/out/UserRepositoryPort.ts
+// Interface defined by the Domain to specify its needs from a DB
+export interface UserRepositoryPort {
+    findById(id: string): Promise<User | null>;
+    save(user: User): Promise<void>;
+}
+
+// src/adapters/secondary/database/PostgresUserRepository.ts
+// Adapter implementing the Port using an ORM (e.g., TypeORM)
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('users')
@@ -232,6 +244,47 @@ export class UserOrmEntity {
 
     @Column()
     public status: 'ACTIVE' | 'INACTIVE';
+}
+
+export class PostgresUserRepository implements UserRepositoryPort {
+    async findById(id: string): Promise<User | null> {
+        // Find using ORM...
+        return null;
+    }
+
+    async save(user: User): Promise<void> {
+        // Save using ORM...
+    }
+}
+
+// src/core/ports/in/DeactivateUserUseCase.ts
+export class DeactivateUserUseCase {
+    constructor(private readonly userRepository: UserRepositoryPort) {}
+
+    async execute(userId: string): Promise<void> {
+        const user = await this.userRepository.findById(userId);
+        if (!user) throw new Error('User not found');
+
+        user.deactivate(); // Business Rule application
+        await this.userRepository.save(user); // Persist state
+    }
+}
+
+// src/adapters/primary/http/UserController.ts
+// HTTP Controller invoking the Use Case
+import { Request, Response } from 'express';
+
+export class UserController {
+    constructor(private readonly deactivateUserUseCase: DeactivateUserUseCase) {}
+
+    async deactivate(req: Request, res: Response) {
+        try {
+            await this.deactivateUserUseCase.execute(req.params.id);
+            res.status(200).send({ message: 'User deactivated successfully' });
+        } catch (error) {
+            res.status(400).send({ error: (error as Error).message });
+        }
+    }
 }
 ```
 
