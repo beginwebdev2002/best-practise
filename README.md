@@ -194,6 +194,7 @@ graph TD
     * 🤖 [vibe-coding-autonomous-testing-patterns.md](./docs/vibe-coding-autonomous-testing-patterns.md)
     * 🤖 [vibe-coding-deterministic-patterns.md](./docs/vibe-coding-deterministic-patterns.md)
     * 🤖 [vibe-coding-multi-agent-state-sync.md](./docs/vibe-coding-multi-agent-state-sync.md)
+    * 🤖 [vibe-coding-swarm-intelligence-patterns.md](./docs/vibe-coding-swarm-intelligence-patterns.md)
     * 🤖 [vibe-coding-telemetry-patterns.md](./docs/vibe-coding-telemetry-patterns.md)
     * ⚡ [vibe-coding-zero-approval-workflows.md](./docs/vibe-coding-zero-approval-workflows.md)
   * 🖥️ **[frontend/](./frontend/)**
@@ -409,6 +410,7 @@ graph TD
     * 🤖 [vibe-coding-autonomous-testing-patterns.md](./docs/vibe-coding-autonomous-testing-patterns.md)
     * 🤖 [vibe-coding-deterministic-patterns.md](./docs/vibe-coding-deterministic-patterns.md)
     * 🤖 [vibe-coding-multi-agent-state-sync.md](./docs/vibe-coding-multi-agent-state-sync.md)
+    * 🤖 [vibe-coding-swarm-intelligence-patterns.md](./docs/vibe-coding-swarm-intelligence-patterns.md)
     * 🤖 [vibe-coding-telemetry-patterns.md](./docs/vibe-coding-telemetry-patterns.md)
     * ⚡ [vibe-coding-zero-approval-workflows.md](./docs/vibe-coding-zero-approval-workflows.md)
   * 🖥️ **[frontend/](./frontend/)**
