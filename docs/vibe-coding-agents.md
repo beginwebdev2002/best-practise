@@ -68,3 +68,20 @@ Before deploying AI Agents for production tasks, verify the following:
 - [ ] Restrict the agent's context window to prevent hallucination.
 - [ ] Review the generated code specifically for memory leaks or unhandled exceptions.
 - [ ] Always write a failing test before instructing the AI to implement the solution.
+
+```mermaid
+graph LR
+    A[Explicitly reference files/functions] --> B[Confirm rules are active]
+    B --> C[Restrict context window]
+    C --> D[Review for memory leaks]
+    D --> E[Write a failing test]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+
+    class A component;
+    class B component;
+    class C component;
+    class D component;
+    class E component;
+```
