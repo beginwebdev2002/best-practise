@@ -16,7 +16,12 @@
     "forbidden_types": {
       "type": "array",
       "items": { "type": "string" },
-      "contains": { "enum": ["BehaviorSubject", "EventEmitter"] }
+      "contains": { "enum": ["BehaviorSubject", "EventEmitter", "any"] }
+    },
+    "required_imports": {
+      "type": "array",
+      "items": { "type": "string" },
+      "contains": { "enum": ["@features", "@entities", "@shared", "@domain"] }
     }
   }
 }

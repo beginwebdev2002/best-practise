@@ -12,6 +12,16 @@
       "type": "array",
       "items": { "type": "string" },
       "contains": { "enum": ["setInterval", "@Post() for microservices", "@Get('ping')"] }
+    },
+    "forbidden_types": {
+      "type": "array",
+      "items": { "type": "string" },
+      "contains": { "enum": ["any"] }
+    },
+    "required_imports": {
+      "type": "array",
+      "items": { "type": "string" },
+      "contains": { "enum": ["@features", "@entities", "@shared", "@domain"] }
     }
   }
 }

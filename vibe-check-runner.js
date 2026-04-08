@@ -32,6 +32,33 @@ function getModifiedFiles() {
   }
 }
 
+async function syncBenchmarks(tech, mdContent) {
+  try {
+    const prompt = `Analyze the following documentation for ${tech}:\n\n${mdContent}\n\n1) Generate a "Golden Prompt" (a stringent instruction to an AI) reflecting these rules, ensuring strict typing and DDD/FSD layers.\n2) Generate JSON Schema defining AST validation rules. MUST USE NESTED JSON SCHEMA FORMAT: {"properties": {"forbidden_types": {"contains": {"enum": ["any"]}}, "required_imports": {"contains": {"enum": ["@features", "@entities", "@shared", "@domain"]}}}}.\nOutput as a strict JSON object with two keys: "golden_prompt" (string) and "schema" (object). No markdown formatting, no explanations.`;
+    const response = await ai.models.generateContent({
+        model: 'gemini-2.5-pro',
+        contents: prompt
+    });
+    let text = response.text || '{}';
+    text = text.replace(/^```[a-z]*\n/gm, '').replace(/```$/gm, '').trim();
+    const result = JSON.parse(text);
+
+    if (result.golden_prompt) {
+      const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
+      fs.writeFileSync(suitePath, JSON.stringify({ golden_prompt: result.golden_prompt, tech }, null, 2));
+      console.log(`Synchronized suite: ${suitePath}`);
+    }
+
+    if (result.schema) {
+      const criteriaPath = path.join('benchmarks', 'criteria', `${tech}-schema.json`);
+      fs.writeFileSync(criteriaPath, JSON.stringify(result.schema, null, 2));
+      console.log(`Synchronized criteria: ${criteriaPath}`);
+    }
+  } catch (err) {
+    console.error(`Error syncing benchmarks for ${tech}:`, err.message);
+  }
+}
+
 async function simulateAIGeneration(goldenPrompt, tech, mdContent) {
   try {
     const prompt = `${goldenPrompt}\n\nConstraints and instructions from the following documentation:\n\n${mdContent}\n\nGenerate ONLY raw code. No markdown formatting, no explanations.`;
@@ -94,15 +121,36 @@ function analyzeAST(sourceFile, tech) {
   // Check if string contains imports that hint at FSD like '@features', '@entities', '@shared' etc.
   const imports = sourceFile.getImportDeclarations();
   const moduleSpecifiers = imports.map(imp => imp.getModuleSpecifierValue());
-  const hasFSD = moduleSpecifiers.some(spec => spec.includes('features/') || spec.includes('entities/') || spec.includes('shared/') || spec.includes('domain/'));
-  // Not strictly enforcing this to be 10 point penalty if small snippet, but we reduce if completely monolithic (no imports)
-  if (moduleSpecifiers.length === 0 && sourceFile.getClasses().length > 1) {
+
+  // Use schema if available to enforce imports
+  // Unified schema loading to avoid multiple I/O reads
+  let requiredImports = ['@features', '@entities', '@shared', '@domain'];
+  let forbiddenTypes = ['any'];
+  const criteriaPath = path.join('benchmarks', 'criteria', `${tech}-schema.json`);
+  if (fs.existsSync(criteriaPath)) {
+      try {
+          const criteria = JSON.parse(fs.readFileSync(criteriaPath, 'utf8'));
+          if (criteria.properties?.required_imports?.contains?.enum) {
+              requiredImports = criteria.properties.required_imports.contains.enum;
+          }
+          if (criteria.properties?.forbidden_types?.contains?.enum) {
+              forbiddenTypes = criteria.properties.forbidden_types.contains.enum;
+          }
+      } catch (e) {}
+  }
+
+  const hasFSD = moduleSpecifiers.some(spec =>
+      requiredImports.some(ri => spec.includes(ri.replace('@', ''))) ||
+      requiredImports.some(ri => spec.includes(ri))
+  );
+
+  if (!hasFSD) {
      score.arch -= 10;
   }
 
   // 2. Type Safety (30)
   const anyKeywords = sourceFile.getDescendantsOfKind(SyntaxKind.AnyKeyword);
-  if (anyKeywords.length > 0) {
+  if (forbiddenTypes.includes('any') && anyKeywords.length > 0) {
     score.type -= 15 * anyKeywords.length;
   }
 
@@ -193,7 +241,18 @@ async function runVibeCheck() {
     const suiteConfig = JSON.parse(fs.readFileSync(suitePath, 'utf-8'));
     const mdContent = fs.readFileSync(file, 'utf-8');
 
-    const generatedCode = await simulateAIGeneration(suiteConfig.golden_prompt, tech, mdContent);
+    // Autonomously synchronize benchmarks based on new documentation constraints
+    await syncBenchmarks(tech, mdContent);
+
+    // Reload the newly synced suite config
+    let syncedSuiteConfig;
+    if (fs.existsSync(suitePath)) {
+       syncedSuiteConfig = JSON.parse(fs.readFileSync(suitePath, 'utf-8'));
+    } else {
+       syncedSuiteConfig = suiteConfig;
+    }
+
+    const generatedCode = await simulateAIGeneration(syncedSuiteConfig.golden_prompt || suiteConfig.golden_prompt, tech, mdContent);
 
     if (!generatedCode) {
       console.error(`Failed to generate code for ${tech}.`);
@@ -217,13 +276,20 @@ async function runVibeCheck() {
 
       try {
         execSync(`git add ${file}`);
-        // Only commit if there are changes (badge might already be there)
+        execSync(`git add benchmarks/suites/${tech}.json || true`);
+        execSync(`git add benchmarks/criteria/${tech}-schema.json || true`);
+
+        // Only commit if there are any staged changes for this file or its benchmarks
         const status = execSync('git status --porcelain', { encoding: 'utf-8' });
-        if (status.includes(file)) {
-           execSync(`git commit -m "chore: fidelity-pass for ${file}"`);
+        const hasChanges = status.includes(file) ||
+                           status.includes(`benchmarks/suites/${tech}.json`) ||
+                           status.includes(`benchmarks/criteria/${tech}-schema.json`);
+
+        if (hasChanges) {
+           execSync(`git commit -m "[chore: benchmark-sync]"`);
            execSync(`git push origin HEAD:main`);
         } else {
-           console.log(`Badge already present in ${file}, skipping commit.`);
+           console.log(`No changes needed for ${file} or its benchmarks, skipping commit.`);
         }
       } catch (err) {
          console.error('Failed to commit or push:', err.message);
@@ -242,8 +308,8 @@ async function runVibeCheck() {
       console.log(`Generated violation report: ${reportPath}`);
 
       try {
-        execSync(`gh issue create --title "Fidelity Gap: ${file}" --body-file ${reportPath}`);
-        console.log(`Created GitHub Issue for ${file}`);
+        execSync(`gh issue create --title "Critical Issue: Fidelity Gap in ${file}" --body-file ${reportPath} --label "critical,bug"`);
+        console.log(`Created Critical GitHub Issue for ${file}`);
       } catch (err) {
         console.error('Failed to create GitHub Issue (gh cli might not be installed or authenticated):', err.message);
       }

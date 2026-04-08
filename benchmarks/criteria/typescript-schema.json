@@ -12,6 +12,11 @@
       "type": "array",
       "items": { "type": "string" },
       "contains": { "enum": ["unknown"] }
+    },
+    "required_imports": {
+      "type": "array",
+      "items": { "type": "string" },
+      "contains": { "enum": ["@features", "@entities", "@shared", "@domain"] }
     }
   }
 }
