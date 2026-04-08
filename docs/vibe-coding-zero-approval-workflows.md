@@ -91,4 +91,21 @@ Allowing agents to operate autonomously requires strict guardrails.
 - [ ] Implement an autonomous retry mechanism for the AI agent to handle test failures.
 - [ ] Start by enabling zero-approval for low-risk domains like documentation updates (`feat(docs)`).
 
+```mermaid
+graph LR
+    A[Define explicit constraints] --> B[Ensure comprehensive tests]
+    B --> C[Configure pre-commit hooks]
+    C --> D[Implement autonomous retry mechanism]
+    D --> E[Start with low-risk domains]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+
+    class A component;
+    class B component;
+    class C component;
+    class D component;
+    class E component;
+```
+
 [Back to Top](#-vibe-coding-zero-approval-workflows)
