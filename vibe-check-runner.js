@@ -217,10 +217,11 @@ async function runVibeCheck() {
 
       try {
         execSync(`git add ${file}`);
+        execSync('git add benchmarks/suites/*.json benchmarks/criteria/*.json 2>/dev/null || true');
         // Only commit if there are changes (badge might already be there)
         const status = execSync('git status --porcelain', { encoding: 'utf-8' });
-        if (status.includes(file)) {
-           execSync(`git commit -m "chore: fidelity-pass for ${file}"`);
+        if (status.includes(file) || status.includes('benchmarks/')) {
+           execSync(`git commit -m "[chore: fidelity-pass]"`);
            execSync(`git push origin HEAD:main`);
         } else {
            console.log(`Badge already present in ${file}, skipping commit.`);
@@ -236,13 +237,13 @@ async function runVibeCheck() {
       if (!fs.existsSync(reportDir)) fs.mkdirSync(reportDir, { recursive: true });
 
       const reportPath = path.join(reportDir, `violation-${tech}-${Date.now()}.md`);
-      const reportContent = `# Critical Violation Report\n\nFile: ${file}\nFidelity Score: ${score}%\nThreshold: 95%\nBreakdown: ${JSON.stringify(breakdown)}\n\nGenerated Code:\n\`\`\`typescript\n${generatedCode}\n\`\`\`\n\nReview the AST rules.`;
+      const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n\`\`\`typescript\n${generatedCode}\n\`\`\`\n\nReview the AST rules.`;
 
       fs.writeFileSync(reportPath, reportContent);
       console.log(`Generated violation report: ${reportPath}`);
 
       try {
-        execSync(`gh issue create --title "Fidelity Gap: ${file}" --body-file ${reportPath}`);
+        execSync(`gh issue create --title "Critical Issue: Fidelity Gap for ${file}" --label "critical,bug" --body-file ${reportPath}`);
         console.log(`Created GitHub Issue for ${file}`);
       } catch (err) {
         console.error('Failed to create GitHub Issue (gh cli might not be installed or authenticated):', err.message);
