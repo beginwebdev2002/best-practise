@@ -65,7 +65,7 @@ app.post('/api/users', async (req, res) => {
 });
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Placing database connections, routing, and business logic into a single monolithic file tightly couples dependencies and violates the Single Responsibility Principle. This makes the codebase impossible to scale, unit test, or safely extend.
 ### ✅ Best Practice
 ```javascript
 router.post('/api/users', UserController.create);
@@ -83,7 +83,7 @@ class UserController {
 router.get('/', async (req, res) => { throw new Error('Crash'); }); // Express 4 не ловит rejection
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Uncaught promise rejections in Express 4 route handlers bypass the global error middleware, causing the request to hang indefinitely. This leads to connection timeouts, memory leaks, and poor client experience.
 ### ✅ Best Practice
 ```javascript
 const asyncHandler = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
@@ -98,7 +98,7 @@ router.get('/', asyncHandler(UserController.get));
 app.use((req, res) => res.status(404).send('Not Found')); // Нет ловца ошибок 500
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Handling errors locally in every controller duplicates logic and leads to inconsistent API responses. It also risks exposing sensitive internal error details (like stack traces) to the client if not caught properly.
 ### ✅ Best Practice
 ```javascript
 app.use((err, req, res, next) => {
@@ -115,7 +115,7 @@ app.use((err, req, res, next) => {
 if (!req.body.email || req.body.age < 18) return res.status(400); // Ручная проверка
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Lack of strict payload validation allows malformed data to penetrate the business logic and database layers. This causes runtime exceptions, data corruption, and potential injection attacks.
 ### ✅ Best Practice
 ```javascript
 const validate = schema => (req, res, next) => {
@@ -134,7 +134,7 @@ router.post('/', validate(userSchema), UserController.create);
 mongoose.connect('mongodb://admin:pass@host/db'); // Хардкод секретов
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Hardcoding configuration values or scattering `process.env` access throughout the codebase tightly couples the app to its environment. This makes testing difficult and increases the risk of deploying with incorrect configurations.
 ### ✅ Best Practice
 ```javascript
 require('dotenv').config();
@@ -147,7 +147,7 @@ mongoose.connect(process.env.DB_URI);
 ### ❌ Bad Practice
 // Приложение светит 'X-Powered-By: Express'
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Omitting security headers leaves the application vulnerable to common web exploits like Cross-Site Scripting (XSS), Clickjacking, and MIME-type sniffing, compromising client-side security.
 ### ✅ Best Practice
 ```javascript
 const helmet = require('helmet');
@@ -162,7 +162,7 @@ app.use(helmet());
 app.use((req, res, next) => { res.header("Access-Control-Allow-Origin", "*"); next(); });
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Using a wildcard (`*`) for CORS allows any domain to make authenticated requests to the API. This exposes the application to Cross-Site Request Forgery (CSRF) and unauthorized data access.
 ### ✅ Best Practice
 ```javascript
 const cors = require('cors');
@@ -175,7 +175,7 @@ app.use(cors({ origin: 'https://myapp.com', credentials: true }));
 ### ❌ Bad Practice
 // API открыт для миллиона запросов в секунду
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Lacking rate limiting exposes the API to Brute Force and Denial-of-Service (DDoS) attacks. Attackers can easily exhaust server resources, take down the application, or brute-force authentication endpoints.
 ### ✅ Best Practice
 ```javascript
 const rateLimit = require('express-rate-limit');
@@ -190,7 +190,7 @@ app.use('/api/', rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 app.use(express.json()); // Злоумышленник может отправить 500Мб JSON
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Allowing infinitely large request bodies makes the server susceptible to memory exhaustion and Denial-of-Service (DoS) attacks, as attackers can send massive payloads that crash the process.
 ### ✅ Best Practice
 ```javascript
 app.use(express.json({ limit: '10kb' }));
@@ -205,7 +205,7 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 console.log('User signed in'); 
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to centralize logging leaves critical audit trails scattered across isolated console outputs. This drastically impairs incident response and distributed tracing across microservices.
 ### ✅ Best Practice
 ```javascript
 app.use(morgan('combined', { stream: winstonLogger.stream }));
@@ -220,7 +220,7 @@ winstonLogger.info('User signed in');
 // Коннект к базе делается перед каждым запросом
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Re-establishing database connections on every request adds massive latency and quickly exhausts connection pools. This causes the database server to refuse new connections, bringing down the entire application.
 ### ✅ Best Practice
 ```javascript
 mongoose.connect(process.env.DB_URI).then(() => {
@@ -236,7 +236,7 @@ mongoose.connect(process.env.DB_URI).then(() => {
 // Проверка токена встроена в контроллер профиля
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Embedding authentication logic directly within business controllers violates the Single Responsibility Principle. This makes the logic difficult to test, reuse, and maintain, increasing the risk of bypassing security checks.
 ### ✅ Best Practice
 ```javascript
 const authGuard = (req, res, next) => {
@@ -255,7 +255,7 @@ const authGuard = (req, res, next) => {
 if (req.user.role !== 'admin') return res.status(403);
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Hardcoding role checks inside route handlers creates a fragile and inflexible authorization model. This approach is prone to errors, hard to audit, and difficult to scale as new roles are introduced.
 ### ✅ Best Practice
 ```javascript
 const requireRole = (...roles) => (req, res, next) => {
@@ -273,7 +273,7 @@ router.delete('/:id', requireRole('admin', 'manager'), Controller.del);
 res.json({ foo: 'bar' }); // Каждый метод возвращает случайную структуру
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Inconsistent API response formats force clients to implement complex, error-prone parsing logic. It breaks the contract between client and server, leading to frustrating integration experiences.
 ### ✅ Best Practice
 ```javascript
 class ApiResponse {
@@ -290,7 +290,7 @@ class ApiResponse {
 res.json(users); // Выбросить миллион записей
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Returning massive, unpaginated datasets consumes excessive memory and network bandwidth. This leads to severe performance bottlenecks, sluggish API response times, and potential out-of-memory crashes.
 ### ✅ Best Practice
 ```javascript
 const page = parseInt(req.query.page) || 1;
@@ -304,7 +304,7 @@ res.json({ data: users, meta: { total, page, limit, pages: Math.ceil(total/limit
 ### ❌ Bad Practice
 // При получении SIGTERM сервер моментально обрывает процессы
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Immediate process termination severs active connections and leaves database operations in an unknown state. This causes data corruption and forces clients to experience unhandled connection drops.
 ### ✅ Best Practice
 ```javascript
 process.on('SIGTERM', () => {
@@ -320,7 +320,7 @@ process.on('SIGTERM', () => {
 ### ❌ Bad Practice
 // Если роут не найден, возвращается пустая белая страница
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to explicitly handle unmatched routes results in inconsistent default framework responses (e.g., HTML error pages). This breaks API contracts for clients expecting structured JSON responses.
 ### ✅ Best Practice
 ```javascript
 app.use('*', (req, res) => {
@@ -337,7 +337,7 @@ app.use('*', (req, res) => {
 /app.js  // Монолит на 5000 строк
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+A monolithic, unstructured codebase prevents clear separation of concerns, making the system difficult to navigate, test, and scale. This drastically slows down development velocity and increases technical debt.
 ### ✅ Best Practice
 ```
 src/
@@ -354,7 +354,7 @@ src/
 ### ❌ Bad Practice
 // Нет проверки жизнеспособности подов Kubernetes
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Without a dedicated health endpoint, container orchestrators (like Kubernetes) cannot accurately determine the pod's status. This leads to traffic being routed to dead containers or premature termination of healthy ones.
 ### ✅ Best Practice
 ```javascript
 app.get('/health', (req, res) => {
@@ -370,7 +370,7 @@ app.get('/health', (req, res) => {
 User.find({ username: req.body.username }); // body.username = { "$gt": "" }
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to sanitize inputs against MongoDB operators allows attackers to manipulate query logic (NoSQL Injection). This can lead to unauthorized data access, authentication bypass, or data destruction.
 ### ✅ Best Practice
 ```javascript
 const mongoSanitize = require('express-mongo-sanitize');
@@ -385,7 +385,7 @@ app.use(xss());
 ### ❌ Bad Practice
 // Документация в стороннем Word-файле
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Maintaining API documentation manually outside the codebase guarantees it will become outdated and inaccurate. This severely degrades the developer experience for frontend teams and third-party integrators.
 ### ✅ Best Practice
 ```javascript
 const swaggerUi = require('swagger-ui-express');
@@ -401,7 +401,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 const UserService = require('./UserService'); // Прямой импорт, невозможно тестировать
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Hardcoding module dependencies using `require()` creates tight coupling and makes unit testing nearly impossible. It prevents swapping out real implementations with mocks, hindering test-driven development.
 ### ✅ Best Practice
 ```javascript
 class UserController {
@@ -416,7 +416,7 @@ const controller = new UserController(new UserService(db));
 ### ❌ Bad Practice
 // Парсинг бинарников руками
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Processing multipart/form-data manually is error-prone and inefficient. It risks memory bloat, incomplete file parsing, and exposes the server to vulnerabilities related to improperly handled binary streams.
 ### ✅ Best Practice
 ```javascript
 const multer = require('multer');
@@ -433,7 +433,7 @@ await emailService.send(); // Блокировка респонса
 res.send('Welcome');
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Awaiting slow, non-critical tasks (like sending emails) directly in the request handler blocks the HTTP response. This unnecessarily increases API latency and degrades the user experience.
 ### ✅ Best Practice
 ```javascript
 const EventEmitter = require('events');
@@ -450,7 +450,7 @@ res.send('Welcome');
 ### ❌ Bad Practice
 // БД обрабатывает сложные расчеты на каждый хит
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Recalculating expensive computations or querying the database for static data on every request creates severe performance bottlenecks. This overwhelms backend resources and limits the application's scalability.
 ### ✅ Best Practice
 ```javascript
 const cacheMiddleware = (req, res, next) => {
@@ -469,7 +469,7 @@ const cacheMiddleware = (req, res, next) => {
 throw new Error('Not found');
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Using standard `Error` objects limits the ability to programmatically categorize exceptions. It forces reliance on string matching for error handling, which is brittle and non-deterministic.
 ### ✅ Best Practice
 ```javascript
 class AppError extends Error {
@@ -490,7 +490,7 @@ throw new AppError('User not found', 404);
 req.ip // Дает '127.0.0.1' через Nginx
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to configure `trust proxy` behind a reverse proxy (like Nginx) results in the application seeing the proxy's IP instead of the client's. This breaks rate limiting, logging, and geolocation logic.
 ### ✅ Best Practice
 ```javascript
 app.set('trust proxy', 1); // Доверяем первому прокси
@@ -505,7 +505,7 @@ app.set('trust proxy', 1); // Доверяем первому прокси
 app.listen(3000); // Мешает интеграционным тестам
 ```
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Starting the server within the same file that defines the Express application hinders integration testing. It prevents test runners (like Supertest) from dynamically binding to ephemeral ports without conflicting with the running server.
 ### ✅ Best Practice
 ```javascript
 // app.js
@@ -522,7 +522,7 @@ app.listen(3000);
 ### ❌ Bad Practice
 // Ошибки в логах невозможно связать с конкретным пользователем
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Without a unique request ID, tracing a specific user's journey through application logs is impossible. This severely complicates debugging and incident response in distributed or high-traffic systems.
 ### ✅ Best Practice
 ```javascript
 const { v4: uuidv4 } = require('uuid');
@@ -539,7 +539,7 @@ app.use((req, res, next) => {
 ### ❌ Bad Practice
 // Сессия хранится в памяти (MemoryStore) с открытыми куками
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Storing sessions in memory causes memory leaks and prevents horizontal scaling, as sessions are not shared across instances. Additionally, exposing unencrypted cookies allows session hijacking.
 ### ✅ Best Practice
 ```javascript
 app.use(session({

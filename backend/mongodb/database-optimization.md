@@ -43,7 +43,7 @@ db.orders.createIndex({ status: 1, date: 1, amount: 1 })
 
 
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `the architectural pattern` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ---
 ## 🏗️ 2. Aggregation Pipeline Optimization
 
@@ -77,7 +77,7 @@ db.users.aggregate([
 
 
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `the architectural pattern` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ---
 ## 📉 3. Covered Queries
 
@@ -101,7 +101,7 @@ db.orders.find(
 
 
 ### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `the architectural pattern` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 
 
 ### ✅ Best Practice

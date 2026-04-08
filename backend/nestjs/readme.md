@@ -65,7 +65,7 @@ export class UsersService {
 }
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `clean architecture modules (изоляция логики)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 @Injectable()
@@ -85,7 +85,7 @@ create(@Body() dto: CreateUserDto) {
 }
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `global validationpipe` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 // main.ts
@@ -101,7 +101,7 @@ app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: t
 create(@Body() body: unknown) {} // Потеря типизации
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `data transfer objects (dto)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 export class CreateUserDto {
@@ -124,7 +124,7 @@ async createUser(@Body() dto: CreateDto) {
 }
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `fat controllers vs thin controllers` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 @Post()
@@ -141,7 +141,7 @@ async createUser(@Body() dto: CreateDto) {
 try { ... } catch (e) { throw new HttpException('Error', 500); }
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `global exception filter` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 @Catch()
@@ -160,7 +160,7 @@ app.useGlobalFilters(new AllExceptionsFilter());
 TypeOrmModule.forRoot({ url: process.env.DB_URL }) // Переменные могут быть еще не загружены
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `async module configuration` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 TypeOrmModule.forRootAsync({
@@ -178,7 +178,7 @@ TypeOrmModule.forRootAsync({
 const secret = process.env.JWT_SECRET; // Прямой вызов
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `configuration management` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 constructor(private configService: ConfigService) {}
@@ -194,7 +194,7 @@ const secret = this.configService.get<string>('JWT_SECRET');
 getProfile(@Req() req: Request) { return req.user; }
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `custom decorators (извлечение user)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 export const CurrentUser = createParamDecorator((data, ctx: ExecutionContext) => ctx.switchToHttp().getRequest().user);
@@ -212,7 +212,7 @@ getProfile(@CurrentUser() user: UserEntity) { return user; }
 getData(@Req() req) { if (!req.headers.auth) throw new UnauthorizedException(); }
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `jwt guards (защита роутов)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 @UseGuards(JwtAuthGuard)
@@ -229,7 +229,7 @@ getData() {}
 getAdminData(@CurrentUser() user) { if (user.role !== 'ADMIN') throw new ForbiddenException(); }
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `role-based access control (rbac)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 @Roles('ADMIN')
@@ -247,7 +247,7 @@ getAdminData() {}
 getUser(@Param('id') id: string) { const userId = parseInt(id, 10); }
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `built-in pipes for transformation` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 @Get(':id')
@@ -262,7 +262,7 @@ getUser(@Param('id', ParseIntPipe) id: number) {}
 return { success: true, data: result, timestamp: new Date() }; // Дублирование везде
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `response interceptors (трансформация ответа)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 @Injectable()
@@ -280,7 +280,7 @@ export class TransformInterceptor implements NestInterceptor {
 getData() { console.log('Request started'); /* ... */ console.log('Done'); }
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `logging interceptors` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 @Injectable()
@@ -300,7 +300,7 @@ export class LoggingInterceptor implements NestInterceptor {
 await this.repo1.save(data1); await this.repo2.save(data2); // Нет транзакции
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `transaction handling (typeorm)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 await this.dataSource.transaction(async manager => {
@@ -318,7 +318,7 @@ await this.dataSource.transaction(async manager => {
 export class CreateDogDto { name: string; }
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Maintaining API documentation manually outside the codebase guarantees it will become outdated and inaccurate. This severely degrades the developer experience for frontend teams and third-party integrators.
 #### ✅ Best Practice
 ```typescript
 export class CreateDogDto {
@@ -333,7 +333,7 @@ export class CreateDogDto {
 #### ❌ Bad Practice
 // Нет защиты от DDoS и брутфорса
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Failing to follow best practices for `rate limiting (throttlermodule)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 // app.module.ts
@@ -346,7 +346,7 @@ ThrottlerModule.forRoot([{ ttl: 60000, limit: 10 }])
 #### ❌ Bad Practice
 // Каждый запрос делает тяжелый расчет в БД
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Executing computationally expensive operations or querying the database for static data on every request creates severe performance bottlenecks. It needlessly wastes database resources and degrades overall system throughput.
 #### ✅ Best Practice
 ```typescript
 @UseInterceptors(CacheInterceptor)
@@ -364,7 +364,7 @@ await this.userService.create();
 await this.emailService.send(); // Жесткая привязка зависимостей
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Synchronously calling unrelated services (e.g., sending an email after user creation) creates tight coupling and increases request latency. This violates event-driven architecture principles, making the system less resilient to partial failures.
 #### ✅ Best Practice
 ```typescript
 await this.userService.create();
@@ -379,7 +379,7 @@ this.eventEmitter.emit('user.created', new UserCreatedEvent(user));
 setInterval(() => this.cleanupData(), 1000 * 60 * 60);
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Using standard `setInterval` for background tasks outside of the NestJS lifecycle prevents proper tracking and memory management. It can lead to memory leaks, duplicate task execution in clustered environments, and difficult testing.
 #### ✅ Best Practice
 ```typescript
 @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
@@ -394,7 +394,7 @@ handleCron() { this.cleanupData(); }
 @Post() // Использование HTTP для межсервисного общения
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Using standard HTTP requests for internal microservice-to-microservice communication introduces significant network latency and point-to-point coupling. It prevents utilizing asynchronous, resilient message brokers like RabbitMQ or Kafka.
 #### ✅ Best Practice
 ```typescript
 @MessagePattern({ cmd: 'get_user' })
@@ -409,7 +409,7 @@ getUser(data: unknown) { return this.userService.findById(data.id); }
 @Get('ping') ping() { return 'pong'; }
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Using a simple 'ping' endpoint that always returns 200 OK does not verify the actual health of the application's dependencies (e.g., database connection). Orchestrators may mistakenly keep a broken container in the load balancer pool.
 #### ✅ Best Practice
 ```typescript
 @Get('health')
@@ -426,7 +426,7 @@ check() { return this.health.check([() => this.db.pingCheck('database')]); }
 @Injectable() class UserService { constructor(private auth: AuthService) {} }
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Circular dependencies (Module A imports Module B, which imports Module A) cause resolution failures during application bootstrap. They are a strong indicator of architectural design flaws and tightly coupled domain boundaries.
 #### ✅ Best Practice
 ```typescript
 @Injectable() class UserService { constructor(@Inject(forwardRef(() => AuthService)) private auth: AuthService) {} }
@@ -440,7 +440,7 @@ Insecure or unoptimized implementation that can cause performance bottlenecks, m
 // Модуль B импортирует Модуль А, Модуль С импортирует Модуль А...
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Duplicating module imports across the application instead of utilizing a structured Shared or Core module leads to excessive boilerplate and potential circular dependency issues. It makes the dependency graph unnecessarily complex.
 #### ✅ Best Practice
 ```typescript
 @Module({ imports: [DatabaseModule], exports: [DatabaseModule] })
@@ -453,7 +453,7 @@ export class CoreModule {} // Глобальный фасад
 #### ❌ Bad Practice
 // Определение логгера запросов в каждом месте
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Defining repetitive middleware logic (like request logging) locally in multiple controllers violates the DRY principle. It leads to inconsistent implementation and makes it difficult to enforce global policies.
 #### ✅ Best Practice
 ```typescript
 export class AppModule implements NestModule {
@@ -469,7 +469,7 @@ export class AppModule implements NestModule {
 const service = new UserService(new Database()); // Реальная БД в тестах
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Connecting to a real database in unit tests makes tests slow, flaky, and dependent on external state. It violates the core principle of isolated unit testing, which should rely on mocked dependencies.
 #### ✅ Best Practice
 ```typescript
 const module = await Test.createTestingModule({
@@ -485,7 +485,7 @@ const module = await Test.createTestingModule({
 if (!isEmailUnique(dto.email)) throw error; // Ручная логика в сервисе
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Implementing validation logic inside business services rather than utilizing `class-validator` constraints tightly couples validation to execution. It bypasses the global validation pipe, leading to inconsistent error formatting.
 #### ✅ Best Practice
 ```typescript
 @ValidatorConstraint({ async: true })
@@ -500,7 +500,7 @@ export class IsUniqueConstraint implements ValidatorConstraintInterface { ... }
 #### ❌ Bad Practice
 // Обработка потоков руками
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Handling binary file streams manually without the built-in Multer interceptors is highly error-prone. It drastically increases the risk of memory exhaustion, incomplete uploads, and unhandled boundary parsing exceptions.
 #### ✅ Best Practice
 ```typescript
 @Post('upload')
@@ -516,7 +516,7 @@ uploadFile(@UploadedFile() file: Express.Multer.File) {}
 const { password, ...safeUser } = user; // Ручное удаление пароля
 ```
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Manually deleting sensitive fields (like passwords) from response objects before returning them is error-prone. Forgetting to do this in even one place exposes sensitive data to the client, creating a critical security vulnerability.
 #### ✅ Best Practice
 ```typescript
 class UserEntity { @Exclude() password: string; }
@@ -531,7 +531,7 @@ class UserEntity { @Exclude() password: string; }
 #### ❌ Bad Practice
 // Вызов специфичных методов req.expressMethod
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Directly accessing platform-specific request/response objects (like Express's `req.ip`) tightly couples the application to the underlying HTTP framework. This prevents easy migration to higher-performance engines like Fastify.
 #### ✅ Best Practice
 ```typescript
 const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
@@ -543,7 +543,7 @@ const app = await NestFactory.create<NestFastifyApplication>(AppModule, new Fast
 #### ❌ Bad Practice
 // Приложение убивается мгновенно, прерывая активные соединения
 #### ⚠️ Problem
-Insecure or unoptimized implementation that can cause performance bottlenecks, maintainability issues, or security vulnerabilities. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Immediate process termination severs active connections and leaves database operations in an unknown state. This causes data corruption and forces clients to experience unhandled connection drops.
 #### ✅ Best Practice
 ```typescript
 app.enableShutdownHooks();
