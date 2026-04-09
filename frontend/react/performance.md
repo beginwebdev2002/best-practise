@@ -50,6 +50,16 @@ function UserList({ users }) {
   );
 }
 ```
+
+### Structural Comparison: Manual Memoization vs React Compiler
+
+| Feature | Manual Memoization (`useMemo`, `useCallback`) | React Compiler |
+| :--- | :--- | :--- |
+| **Developer Experience** | High cognitive load (dependency arrays) | Zero config (automatic) |
+| **Code Clarity** | Cluttered with hooks | Clean and declarative |
+| **Bug Risk** | High (stale closures, missing deps) | Low (compiler-verified) |
+| **Optimization** | Component-level only | Structural and deep |
+
 ### 🚀 Solution
 Rely on the **React Compiler** (introduced in React 19+). The compiler automatically memoizes values and functions, meaning manual hooks are largely obsolete and code becomes purely declarative. This optimizes components structurally and removes manual dependency tracking overhead.
 

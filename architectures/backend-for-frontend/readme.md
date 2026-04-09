@@ -26,6 +26,16 @@ This engineering directive defines the **best practices** for the Backend-For-Fr
 - ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
 
+
+### Structural Comparison: Backend-for-Frontend (BFF) vs API Gateway
+
+| Feature | Backend-for-Frontend (BFF) | API Gateway |
+| :--- | :--- | :--- |
+| **Scope** | One per specific client type (Web, Mobile, Desktop) | Single entry point for all clients |
+| **Ownership** | Owned by the Frontend team | Owned by a dedicated API or Platform team |
+| **Customization** | Highly tailored to client UI needs | Generic, serving broad needs |
+| **Complexity** | Multiple BFFs to manage | Single point of failure/bottleneck |
+
 ## Core Principles
 
 1. **Client Focus:** Each BFF is built and maintained by the same team that builds the frontend client.

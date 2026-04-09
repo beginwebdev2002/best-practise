@@ -23,6 +23,16 @@ This engineering directive defines the **best practices** for the Microservices 
 - 📁 [**Folder Structure:** Layering logic](./folder-structure.md)
 - ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
+
+### Structural Comparison: Microservices vs SOA (Service-Oriented Architecture)
+
+| Feature | Microservices | SOA |
+| :--- | :--- | :--- |
+| **Component Size** | Small, single-purpose | Larger, enterprise-wide services |
+| **Communication** | Dumb pipes (REST, lightweight messaging) | Smart pipes (Enterprise Service Bus - ESB) |
+| **Data Storage** | Database per service (Strict isolation) | Often shares data storage |
+| **Coupling** | Loosely coupled | Moderately to tightly coupled |
+
 ## Core Principles
 
 1. **Isolation & Testability:** Changing a single feature doesn't break the entire business process.

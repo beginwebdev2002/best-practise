@@ -55,6 +55,19 @@ it('should render incremented counter on click', async () => {
   expect(text).toContain('1');
 });
 ```
+
+```mermaid
+flowchart TD
+    A[Component Rendered] --> B{Action Triggered}
+    B --> C[Execute Component Logic]
+    C --> D{Evaluate State/Signal}
+    D --> E[DOM Update via Change Detection]
+    E --> F[Assert DOM or Component State]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class A,B,C,D,E,F default;
+```
+
 ### 🚀 Solution
 Always use `TestBed` to create the component. Simulate user interactions via the DOM, run `detectChanges()`, and assert against the rendered output to ensure both the signal and the template are synchronized correctly.
 
