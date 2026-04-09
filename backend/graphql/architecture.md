@@ -22,7 +22,7 @@ type Query {
 }
 ```
 ### ⚠️ Problem
-Exposing internal database models directly through the GraphQL schema couples the API tightly to the storage layer, breaking encapsulation and complicating future migrations. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Exposing internal database models directly through the GraphQL schema couples the API tightly to the storage layer, breaking encapsulation and complicating future migrations.
 ### ✅ Best Practice
 ```graphql
 # Domain-Driven Schema Design (Federated or Modular)
