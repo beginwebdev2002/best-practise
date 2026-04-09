@@ -180,7 +180,7 @@ Extract logic into services/signals. Leave only formatting to pipes.
 > **Context:** TypeScript Safety
 ### ❌ Bad Practice
 ```typescript
-getData(): Observable<unknown> { ... }
+getData(): Observable<any> { ... }
 ```
 ### ⚠️ Problem
 `any` disables type checking, nullifying the benefits of TypeScript. Errors only surface at runtime.
@@ -212,7 +212,7 @@ Use aliases in the template (`as varName`) or convert the stream to a signal (`t
 > **Context:** DI Scopes
 ### ❌ Bad Practice
 ```typescript
-@Injectable({ providedIn: 'unknown' })
+@Injectable({ providedIn: 'any' })
 ```
 ### ⚠️ Problem
 Creates a new service instance for each lazy-loaded module. This is often unexpected behavior, leading to state desynchronization (different singleton instances).
