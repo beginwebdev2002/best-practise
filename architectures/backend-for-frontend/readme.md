@@ -26,6 +26,29 @@ This engineering directive defines the **best practices** for the Backend-For-Fr
 - ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
 
+
+## Architecture Diagram
+
+```mermaid
+graph TD
+    Web[Web Client] --> BFF_Web[BFF Web]
+    Mobile[Mobile Client] --> BFF_Mobile[BFF Mobile]
+    BFF_Web --> MS1[Microservice 1]
+    BFF_Web --> MS2[Microservice 2]
+    BFF_Mobile --> MS1
+    BFF_Mobile --> MS2
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Web component;
+    class Mobile component;
+    class BFF_Web component;
+    class BFF_Mobile component;
+```
+
 ## Core Principles
 
 1. **Client Focus:** Each BFF is built and maintained by the same team that builds the frontend client.

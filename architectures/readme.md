@@ -44,6 +44,7 @@ Don't know where to start? Here are a few golden rules:
 - [CQRS](./cqrs/readme.md)
 - [Domain-Driven Design (DDD)](./domain-driven-design/readme.md)
 - [Event-Driven Architecture (EDA)](./event-driven-architecture/readme.md)
+- [Event Sourcing](./event-sourcing/readme.md)
 - [Feature-Sliced Design (FSD)](./feature-sliced-design/readme.md)
 - [Hexagonal Architecture](./hexagonal-architecture/readme.md)
 - [Micro-frontends](./micro-frontends/readme.md)
