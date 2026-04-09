@@ -32,6 +32,39 @@ function getModifiedFiles() {
   }
 }
 
+async function syncBenchmarks(tech, mdContent) {
+  try {
+    const prompt = `Based on the following documentation:\n\n${mdContent}\n\n1. Generate a "Golden Prompt" (a comprehensive instruction for generating a typical module using this technology) in JSON format: {"golden_prompt": "...", "tech": "${tech}"}\n2. Generate a JSON Schema for TS-Morph AST validation rules enforcing DDD/FSD layers and strict typing for this technology. Format: {"$schema": "...", "type": "object", "properties": {"forbidden_patterns": {"type": "array", "contains": {"enum": [...]}}}}.\n\nRespond strictly with ONLY a JSON array containing these two objects in order. No markdown wrappers.`;
+    const response = await ai.models.generateContent({
+        model: 'gemini-2.5-pro',
+        contents: prompt
+    });
+    let text = response.text || '';
+    text = text.replace(/^```[a-z]*\n/gm, '').replace(/```$/gm, '').trim();
+
+    let parsed;
+    try {
+      parsed = JSON.parse(text);
+    } catch (e) {
+      console.warn(`Failed to parse AI response for benchmarks/schema for ${tech}. Using existing if available.`);
+      return;
+    }
+
+    if (Array.isArray(parsed) && parsed.length >= 2) {
+      const suiteDir = path.join('benchmarks', 'suites');
+      const criteriaDir = path.join('benchmarks', 'criteria');
+      if (!fs.existsSync(suiteDir)) fs.mkdirSync(suiteDir, { recursive: true });
+      if (!fs.existsSync(criteriaDir)) fs.mkdirSync(criteriaDir, { recursive: true });
+
+      fs.writeFileSync(path.join(suiteDir, `${tech}.json`), JSON.stringify(parsed[0], null, 2));
+      fs.writeFileSync(path.join(criteriaDir, `${tech}-schema.json`), JSON.stringify(parsed[1], null, 2));
+      console.log(`Autonomously generated benchmark suites and criteria for ${tech}.`);
+    }
+  } catch (err) {
+    console.error(`Error syncing benchmarks for ${tech}:`, err);
+  }
+}
+
 async function simulateAIGeneration(goldenPrompt, tech, mdContent) {
   try {
     const prompt = `${goldenPrompt}\n\nConstraints and instructions from the following documentation:\n\n${mdContent}\n\nGenerate ONLY raw code. No markdown formatting, no explanations.`;
@@ -95,12 +128,22 @@ function analyzeAST(sourceFile, tech) {
   const imports = sourceFile.getImportDeclarations();
   const moduleSpecifiers = imports.map(imp => imp.getModuleSpecifierValue());
   const hasFSD = moduleSpecifiers.some(spec => spec.includes('features/') || spec.includes('entities/') || spec.includes('shared/') || spec.includes('domain/'));
-  // Not strictly enforcing this to be 10 point penalty if small snippet, but we reduce if completely monolithic (no imports)
-  if (moduleSpecifiers.length === 0 && sourceFile.getClasses().length > 1) {
+  if (!hasFSD && sourceFile.getClasses().length > 0) {
      score.arch -= 10;
   }
 
   // 2. Type Safety (30)
+  const parameters = sourceFile.getDescendantsOfKind(SyntaxKind.Parameter);
+  let missingTypes = 0;
+  for (const param of parameters) {
+      if (!param.getTypeNode()) {
+          missingTypes++;
+      }
+  }
+  if (missingTypes > 0) {
+      score.type -= 10;
+  }
+
   const anyKeywords = sourceFile.getDescendantsOfKind(SyntaxKind.AnyKeyword);
   if (anyKeywords.length > 0) {
     score.type -= 15 * anyKeywords.length;
@@ -184,6 +227,10 @@ async function runVibeCheck() {
       }
     }
 
+    const mdContent = fs.readFileSync(file, 'utf-8');
+
+    await syncBenchmarks(tech, mdContent);
+
     const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
     if (!fs.existsSync(suitePath)) {
       console.log(`No benchmark suite found for ${tech}. Skipping.`);
@@ -191,7 +238,6 @@ async function runVibeCheck() {
     }
 
     const suiteConfig = JSON.parse(fs.readFileSync(suitePath, 'utf-8'));
-    const mdContent = fs.readFileSync(file, 'utf-8');
 
     const generatedCode = await simulateAIGeneration(suiteConfig.golden_prompt, tech, mdContent);
 
@@ -222,7 +268,7 @@ async function runVibeCheck() {
         const status = execSync('git status --porcelain', { encoding: 'utf-8' });
         if (status.includes(file) || status.includes('benchmarks/')) {
            execSync(`git commit -m "[chore: fidelity-pass]"`);
-           execSync(`git push origin HEAD:main`);
+           execSync(`git push origin HEAD:main 2>/dev/null || true`);
         } else {
            console.log(`Badge already present in ${file}, skipping commit.`);
         }
