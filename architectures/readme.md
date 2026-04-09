@@ -471,9 +471,6 @@ src/
 [![Micro-frontends](https://img.shields.io/badge/Architecture-Micro--frontends-orange?style=flat-square)](#)
 
 **Description:** An architectural style where independently deliverable frontend applications are composed into a greater whole. This enables multiple teams to work simultaneously without stepping on each other's toes, making scaling enterprise frontends deterministic.
-**📖 Map of Patterns:** [Go to Backend-For-Frontend (BFF) Guidelines](./backend-for-frontend/readme.md)
-
-
 **📖 Map of Patterns:** [Go to Micro-frontends Guidelines](./micro-frontends/readme.md)
 
 **Architecture Diagram & Folder Tree:**
@@ -510,3 +507,45 @@ workspace/
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript.
 - **Patterns / Principles:** Module Federation, Event-Driven Communication.
 - **Tools:** Webpack 5, Vite.
+
+---
+
+### 12. Backend-For-Frontend (BFF)
+[![Backend-For-Frontend](https://img.shields.io/badge/Architecture-BFF-blue?style=flat-square)](#)
+
+**Description:** A pattern where a separate backend service is created for each specific frontend application or interface type, rather than having a single general-purpose API backend for all clients. This allows the backend to be optimized for the specific needs of the frontend.
+**📖 Map of Patterns:** [Go to Backend-For-Frontend (BFF) Guidelines](./backend-for-frontend/readme.md)
+
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    Web[Web Client] --> BFF_Web[BFF Web]
+    Mobile[Mobile Client] --> BFF_Mobile[BFF Mobile]
+    BFF_Web --> MS1[Microservice 1]
+    BFF_Web --> MS2[Microservice 2]
+    BFF_Mobile --> MS1
+    BFF_Mobile --> MS2
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Web component;
+    class Mobile component;
+    class BFF_Web component;
+    class BFF_Mobile component;
+```
+
+```text
+src/
+├── 📁 routes/           # Route definitions mapped to controllers
+├── 📁 controllers/      # Handles incoming requests from specific clients
+├── 📁 services/         # Aggregates data from multiple downstream APIs
+└── 📁 clients/          # Logic to call downstream Microservices
+```
+
+**Best Compatibility:**
+- **Frameworks:** NestJS, Express.js.
+- **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript, Node.js.
+- **Patterns / Principles:** API Gateway, Microservices, API Composition.

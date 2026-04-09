@@ -188,15 +188,6 @@ export class User {
 }
 ```
 
-    @Column()
-    public status: 'ACTIVE' | 'INACTIVE';
-
-    public deactivate(): void {
-        this.status = 'INACTIVE';
-    }
-}
-```
-
 ### ⚠️ Problem
 The Core Domain entity (`User`) is polluted with database-specific decorators (`@Entity`, `@Column`) from an external library (`typeorm`). This tightly couples the business logic to a specific ORM and database technology. If you want to change the database or ORM later, you must rewrite the core business logic. Furthermore, the domain entity cannot be easily tested in isolation without setting up the ORM environment.
 
