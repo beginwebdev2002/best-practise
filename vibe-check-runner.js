@@ -221,7 +221,7 @@ async function runVibeCheck() {
         // Only commit if there are changes (badge might already be there)
         const status = execSync('git status --porcelain', { encoding: 'utf-8' });
         if (status.includes(file) || status.includes('benchmarks/')) {
-           execSync(`git commit -m "[chore: fidelity-pass]"`);
+           execSync(`git commit -m "[chore: benchmark-sync]"`);
            execSync(`git push origin HEAD:main`);
         } else {
            console.log(`Badge already present in ${file}, skipping commit.`);
