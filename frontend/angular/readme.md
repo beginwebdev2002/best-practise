@@ -34,6 +34,16 @@ The `@Input()` decorator operates outside the Signals reactivity system. Changes
 ```typescript
 title = input<string>('');
 ```
+
+### Structural Comparison: Signals vs RxJS
+
+| Feature | Signals (`signal`, `computed`) | RxJS (`BehaviorSubject`, `Observable`) |
+| :--- | :--- | :--- |
+| **Execution** | Synchronous | Asynchronous (typically) |
+| **State Tracking** | Automatic (granular dependency tracking) | Manual (subscriptions required) |
+| **Complexity** | Low (simple getter/setter) | High (complex operator chains) |
+| **Best For** | Synchronous UI state | Asynchronous events, complex streams |
+
 ### 🚀 Solution
 Use Signal Inputs (`input()`). This allows Angular to precisely know *which* specific component requires an update, paving the way for Zoneless applications.
 ---

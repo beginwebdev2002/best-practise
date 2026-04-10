@@ -44,5 +44,16 @@ workspace/
 │   └── event-bus/ (Agnostic communication contract types)
 ```
 
+
+
+### Structural Comparison: Monorepo vs Polyrepo for MFEs
+
+| Feature | Monorepo (Workspace) | Polyrepo (Independent Repos) |
+| :--- | :--- | :--- |
+| **Code Sharing** | Easy (via local packages) | Hard (requires publishing to npm) |
+| **Dependency Management** | Centralized (Single source of truth) | Decentralized (Version conflicts likely) |
+| **CI/CD Complexity** | High (Requires smart build tools like Nx/Turborepo) | Low (Standard pipelines per repo) |
+| **Autonomy** | Medium (Shared tooling constraints) | High (Total independence) |
+
 #### 🚀 Solution
 Structure your repository (whether mono or polyrepo) to ensure each application folder (`mfe-*`) operates as a completely standalone entity. Shared libraries must be restricted strictly to agnostic utilities and purely visual design system components. Ensure zero business logic crossover.

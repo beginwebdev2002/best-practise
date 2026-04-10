@@ -28,6 +28,18 @@ This pattern documentation has been decomposed into specialized modules for zero
 - 📁 **[Folder Structure](./folder-structure.md):** The strict directory blueprints.
 - ⚖️ **[Trade-offs](./trade-offs.md):** Pros, cons, and architectural constraints.
 - 🛠️ **[Implementation Guide](./implementation-guide.md):** Step-by-step rules and code constraints for Vibe Coding.
+
+```mermaid
+flowchart TD
+    A[External System/User] -->|Calls Port| B(Adapter)
+    B -->|Implements Port| C{Domain Logic}
+    C -->|Requires Port| D(Adapter)
+    D -->|Talks to| E[Database/External API]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class A,B,C,D,E default;
+```
+
 ## 🚀 The Core Philosophy
 
 Hexagonal Architecture (Ports & Adapters) ensures the core business logic is isolated from specific external technologies.
