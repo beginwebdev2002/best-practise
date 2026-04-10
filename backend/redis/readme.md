@@ -34,7 +34,7 @@ This document establishes **best practices** for building and maintaining Redis 
 await redisClient.set('user:123', JSON.stringify(user));
 ```
 #### ⚠️ Problem
-Storing keys without a TTL leads to severe memory exhaustion, out-of-memory (OOM) crashes, and serving stale data to clients, breaking cache consistency. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Storing keys without a TTL leads to severe memory exhaustion, out-of-memory (OOM) crashes, and serving stale data to clients, breaking cache consistency.
 #### ✅ Best Practice
 ```javascript
 // Cache-Aside Pattern with strict TTL enforcement
@@ -82,7 +82,7 @@ sequenceDiagram
 const redisClient = redis.createClient({ url: 'redis://127.0.0.1:6379' });
 ```
 #### ⚠️ Problem
-Exposing Redis without a password or on a public network invites unauthorized access, catastrophic data breaches, and accidental data loss via command injection (e.g., executing FLUSHALL). It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Exposing Redis without a password or on a public network invites unauthorized access, catastrophic data breaches, and accidental data loss via command injection (e.g., executing FLUSHALL).
 #### ✅ Best Practice
 ```javascript
 // Connecting via TLS with strict authentication using environment variables
@@ -101,7 +101,7 @@ Never expose Redis to the public internet. Isolate it within a private VPC, enfo
 const redisClient = redis.createClient({ url: 'redis://redis.internal.net:6379' });
 ```
 #### ⚠️ Problem
-Transmitting data in plaintext allows attackers to intercept sensitive information (like session tokens or cached user data) via packet sniffing, leading to severe data breaches. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Transmitting data in plaintext allows attackers to intercept sensitive information (like session tokens or cached user data) via packet sniffing, leading to severe data breaches.
 #### ✅ Best Practice
 ```javascript
 // Enforcing TLS for all connections
@@ -121,7 +121,7 @@ Mandate TLS (Transport Layer Security) for encrypting all data in transit, ensur
 const keys = await redisClient.keys('session:*');
 ```
 #### ⚠️ Problem
-The `KEYS *` command is a blocking operation. Executing it on a production database with millions of keys halts all other operations, causing massive latency spikes and application timeouts. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+The `KEYS *` command is a blocking operation. Executing it on a production database with millions of keys halts all other operations, causing massive latency spikes and application timeouts.
 #### ✅ Best Practice
 ```javascript
 // Non-blocking iteration using SCAN
@@ -143,7 +143,7 @@ Strictly avoid blocking commands (`KEYS *`, `SMEMBERS`). Use iterative commands 
 await redisClient.set('user:profile:123', JSON.stringify(massiveProfileObject));
 ```
 #### ⚠️ Problem
-Storing massive objects as single strings requires fetching and deserializing the entire object even if only one field is needed. This wastes network bandwidth and memory, reducing overall cache performance. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Storing massive objects as single strings requires fetching and deserializing the entire object even if only one field is needed. This wastes network bandwidth and memory, reducing overall cache performance.
 #### ✅ Best Practice
 ```javascript
 // Utilizing Redis Hashes for efficient field-level access
