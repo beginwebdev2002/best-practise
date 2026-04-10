@@ -47,3 +47,13 @@ sequenceDiagram
 1. **Aggregation:** The BFF aggregates responses from multiple services to reduce the number of client-side requests.
 2. **Formatting:** The BFF formats data precisely according to what the client needs, stripping out unnecessary fields to save bandwidth.
 3. **Protocol Translation:** The BFF can translate between client-friendly protocols (e.g., HTTP/REST, GraphQL) and internal service protocols (e.g., gRPC, AMQP).
+
+
+
+```mermaid
+graph LR
+    A[Aggregation] --> B[Formatting]
+    B --> C[Protocol Translation]
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class A,B,C default;
+```

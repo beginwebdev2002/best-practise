@@ -38,3 +38,13 @@ This engineering directive defines the **best practices** for the Microservices 
 1. **Isolation & Testability:** Changing a single feature doesn't break the entire business process.
 2. **Strict Boundaries:** Enforce rigid structural barriers between business logic and infrastructure.
 3. **Decoupling:** Decouple how data is stored from how it is queried and displayed.
+
+
+
+```mermaid
+graph LR
+    A[Isolation & Testability] --> B[Strict Boundaries]
+    B --> C[Decoupling]
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class A,B,C default;
+```

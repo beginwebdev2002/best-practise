@@ -81,6 +81,31 @@ src/
 2. **`infrastructure/messaging/publishers/`**: This directory contains implementations of your output ports. It serializes the internal domain event into a payload (JSON/Avro) and publishes it to the external topic.
 3. **`infrastructure/messaging/subscribers/`**: This directory acts exactly like HTTP Controllers. A consumer listens to a Kafka topic, deserializes the message, and hands it off to a `core/application/handlers/` class to perform the actual business logic.
 4. **`infrastructure/messaging/schemas/`**: Strongly-typed schemas (like Protobuf or Avro) defining the contract for events passing through the broker.
+
+
+```mermaid
+classDiagram
+    class CoreDomainEvents {
+        +OrderPlacedDomainEvent
+    }
+    class InfrastructureMessagingPublishers {
+        +serializePayload()
+        +publishToTopic()
+    }
+    class InfrastructureMessagingSubscribers {
+        +listenToTopic()
+        +deserializeMessage()
+        +delegateToHandlers()
+    }
+    class InfrastructureMessagingSchemas {
+        +protobufAvroContracts()
+    }
+
+    CoreDomainEvents <.. InfrastructureMessagingPublishers : Uses
+    InfrastructureMessagingSchemas <.. InfrastructureMessagingPublishers : Enforces
+    InfrastructureMessagingSchemas <.. InfrastructureMessagingSubscribers : Enforces
+```
+
 ---
 
 <div align="center">
