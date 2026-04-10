@@ -16,14 +16,14 @@ last_updated: 2026-03-23
 </div>
 ---
 
-Этот документ определяет **лучшие практики (best practices)** для фреймворка NestJS. Руководство создано для обеспечения масштабируемости, безопасности и качества Enterprise-приложений.
+This document defines the **best practices** for the NestJS framework. The guide is designed to ensure scalability, security, and the quality of Enterprise applications.
 ## 🎯 Context & Scope
-- **Primary Goal:** Предоставить строгие архитектурные правила и 30 паттернов разработки на NestJS.
-- **Target Tooling:** AI-агенты (Cursor, Windsurf, Copilot) и Senior-разработчики.
+- **Primary Goal:** Provide strict architectural rules and 30 development patterns for NestJS.
+- **Target Tooling:** AI agents (Cursor, Windsurf, Copilot) and Senior Developers.
 - **Tech Stack Version:** NestJS 11+
 
 > [!IMPORTANT]
-> **Архитектурный стандарт (Contract):** Используйте строгую типизацию TypeScript, DI (Dependency Injection) и модульную структуру. Бизнес-логика должна быть изолирована от деталей HTTP-уровня и баз данных.
+> **Architectural Contract:** Use strict TypeScript typing, DI (Dependency Injection), and a modular structure. Business logic must be isolated from HTTP layer details and databases.
 ---
 
 ## 🔄 Architecture Data Flow
@@ -56,25 +56,25 @@ sequenceDiagram
 - [architecture.md](./architecture.md)
 - [security-best-practices.md](./security-best-practices.md)
 ---
-### 🚨 1. Clean Architecture Modules (Изоляция логики)
+### 🚨 1. Clean Architecture Modules (Logic Isolation)
 #### ❌ Bad Practice
 ```typescript
 @Injectable()
 export class UsersService {
-  constructor(@InjectRepository(User) private repo: Repository<User>) {} // Жесткая привязка к TypeORM
+  constructor(@InjectRepository(User) private repo: Repository<User>) {} // Tight coupling to TypeORM
 }
 ```
 #### ⚠️ Problem
-Failing to follow best practices for `clean architecture modules (изоляция логики)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
+Failing to follow best practices for `clean architecture modules` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 @Injectable()
 export class UsersService {
-  constructor(@Inject('IUserRepository') private repo: IUserRepository) {} // Интерфейс порта
+  constructor(@Inject('IUserRepository') private repo: IUserRepository) {} // Port interface
 }
 ```
 #### 🚀 Solution
-Применяйте инверсию зависимостей (Dependency Inversion). Бизнес-логика зависит от абстракций (интерфейсов), а не от конкретных ORM.
+Apply Dependency Inversion. Business logic MUST depend on abstractions (interfaces), not on specific ORMs.
 
 ### 🚨 2. Global ValidationPipe
 #### ❌ Bad Practice
@@ -92,13 +92,13 @@ Failing to follow best practices for `global validationpipe` tightly couples dep
 app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }));
 ```
 #### 🚀 Solution
-Включите глобальную валидацию на основе `class-validator` и `whitelist`, чтобы автоматически отсекать неизвестные поля.
+Enable global validation based on `class-validator` and `whitelist` to automatically strip unknown fields.
 
 ### 🚨 3. Data Transfer Objects (DTO)
 #### ❌ Bad Practice
 ```typescript
 @Post()
-create(@Body() body: unknown) {} // Потеря типизации
+create(@Body() body: unknown) {} // Loss of typing
 ```
 #### ⚠️ Problem
 Failing to follow best practices for `data transfer objects (dto)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
@@ -112,7 +112,7 @@ export class CreateUserDto {
 create(@Body() dto: CreateUserDto) {}
 ```
 #### 🚀 Solution
-Все данные от клиента должны строго описываться через DTO с декораторами валидации.
+All client data MUST be strictly described using DTOs with validation decorators.
 
 ### 🚨 4. Fat Controllers vs Thin Controllers
 #### ❌ Bad Practice
@@ -133,7 +133,7 @@ async createUser(@Body() dto: CreateDto) {
 }
 ```
 #### 🚀 Solution
-Контроллеры только маршрутизируют запросы. Вся логика — в Service Layer.
+Controllers ONLY route requests. All business logic MUST reside in the Service Layer.
 
 ### 🚨 5. Global Exception Filter
 #### ❌ Bad Practice
@@ -146,18 +146,18 @@ Failing to follow best practices for `global exception filter` tightly couples d
 ```typescript
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
-  catch(exception: unknown, host: ArgumentsHost) { /* Единый формат ошибки */ }
+  catch(exception: unknown, host: ArgumentsHost) { /* Unified error format */ }
 }
 // main.ts
 app.useGlobalFilters(new AllExceptionsFilter());
 ```
 #### 🚀 Solution
-Используйте фильтры исключений для стандартизации формата всех HTTP-ошибок API.
+Use Exception Filters to standardize the format of all HTTP API errors.
 
 ### 🚨 6. Async Module Configuration
 #### ❌ Bad Practice
 ```typescript
-TypeOrmModule.forRoot({ url: process.env.DB_URL }) // Переменные могут быть еще не загружены
+TypeOrmModule.forRoot({ url: process.env.DB_URL }) // Variables might not be loaded yet
 ```
 #### ⚠️ Problem
 Failing to follow best practices for `async module configuration` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
@@ -170,12 +170,12 @@ TypeOrmModule.forRootAsync({
 })
 ```
 #### 🚀 Solution
-Для сторонних модулей всегда используйте `forRootAsync` / `registerAsync`, чтобы безопасно внедрять конфигурации.
+For third-party modules, always use `forRootAsync` / `registerAsync` to safely inject configurations.
 
 ### 🚨 7. Configuration Management
 #### ❌ Bad Practice
 ```typescript
-const secret = process.env.JWT_SECRET; // Прямой вызов
+const secret = process.env.JWT_SECRET; // Direct access
 ```
 #### ⚠️ Problem
 Failing to follow best practices for `configuration management` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
@@ -185,16 +185,16 @@ constructor(private configService: ConfigService) {}
 const secret = this.configService.get<string>('JWT_SECRET');
 ```
 #### 🚀 Solution
-Используйте `@nestjs/config` для безопасного извлечения переменных с типизацией.
+Use `@nestjs/config` for safe, strongly-typed extraction of environment variables.
 
-### 🚨 8. Custom Decorators (Извлечение User)
+### 🚨 8. Custom Decorators (User Extraction)
 #### ❌ Bad Practice
 ```typescript
 @Get()
 getProfile(@Req() req: Request) { return req.user; }
 ```
 #### ⚠️ Problem
-Failing to follow best practices for `custom decorators (извлечение user)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
+Failing to follow best practices for `custom decorators` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 export const CurrentUser = createParamDecorator((data, ctx: ExecutionContext) => ctx.switchToHttp().getRequest().user);
@@ -203,16 +203,16 @@ export const CurrentUser = createParamDecorator((data, ctx: ExecutionContext) =>
 getProfile(@CurrentUser() user: UserEntity) { return user; }
 ```
 #### 🚀 Solution
-Создавайте кастомные декораторы для чистой экстракции данных из Request (например, текущего пользователя).
+Create custom decorators for clean data extraction from the Request (e.g., the current user).
 
-### 🚨 9. JWT Guards (Защита роутов)
+### 🚨 9. JWT Guards (Route Protection)
 #### ❌ Bad Practice
 ```typescript
 @Get()
 getData(@Req() req) { if (!req.headers.auth) throw new UnauthorizedException(); }
 ```
 #### ⚠️ Problem
-Failing to follow best practices for `jwt guards (защита роутов)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
+Failing to follow best practices for `jwt guards` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 @UseGuards(JwtAuthGuard)
@@ -220,7 +220,7 @@ Failing to follow best practices for `jwt guards (защита роутов)` ti
 getData() {}
 ```
 #### 🚀 Solution
-Авторизация должна происходить до контроллера через Guards (например, стратегия Passport JWT).
+Authorization MUST occur before the controller via Guards (e.g., Passport JWT strategy).
 
 ### 🚨 10. Role-Based Access Control (RBAC)
 #### ❌ Bad Practice
@@ -238,7 +238,7 @@ Failing to follow best practices for `role-based access control (rbac)` tightly 
 getAdminData() {}
 ```
 #### 🚀 Solution
-Используйте кастомные декораторы ролей (`@Roles`) и `RolesGuard` для декларативного контроля доступа.
+Use custom role decorators (`@Roles`) and `RolesGuard` for declarative access control.
 
 ### 🚨 11. Built-in Pipes for Transformation
 #### ❌ Bad Practice
@@ -254,15 +254,15 @@ Failing to follow best practices for `built-in pipes for transformation` tightly
 getUser(@Param('id', ParseIntPipe) id: number) {}
 ```
 #### 🚀 Solution
-Используйте встроенные Pipes (`ParseIntPipe`, `ParseUUIDPipe`) для автоматической конвертации и валидации параметров.
+Use built-in Pipes (`ParseIntPipe`, `ParseUUIDPipe`) for automatic parameter conversion and validation.
 
-### 🚨 12. Response Interceptors (Трансформация ответа)
+### 🚨 12. Response Interceptors (Response Transformation)
 #### ❌ Bad Practice
 ```typescript
-return { success: true, data: result, timestamp: new Date() }; // Дублирование везде
+return { success: true, data: result, timestamp: new Date() }; // Duplication everywhere
 ```
 #### ⚠️ Problem
-Failing to follow best practices for `response interceptors (трансформация ответа)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
+Failing to follow best practices for `response interceptors` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
 ```typescript
 @Injectable()
@@ -271,7 +271,7 @@ export class TransformInterceptor implements NestInterceptor {
 }
 ```
 #### 🚀 Solution
-Стандартизируйте структуру успешного ответа глобально через Interceptor.
+Standardize the successful response structure globally using an Interceptor.
 
 ### 🚨 13. Logging Interceptors
 #### ❌ Bad Practice
@@ -292,12 +292,12 @@ export class LoggingInterceptor implements NestInterceptor {
 }
 ```
 #### 🚀 Solution
-Логируйте время выполнения и детали запроса абстрактно через Interceptors.
+Log execution time and request details abstractly using Interceptors.
 
 ### 🚨 14. Transaction Handling (TypeORM)
 #### ❌ Bad Practice
 ```typescript
-await this.repo1.save(data1); await this.repo2.save(data2); // Нет транзакции
+await this.repo1.save(data1); await this.repo2.save(data2); // No transaction
 ```
 #### ⚠️ Problem
 Failing to follow best practices for `transaction handling (typeorm)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
@@ -309,12 +309,12 @@ await this.dataSource.transaction(async manager => {
 });
 ```
 #### 🚀 Solution
-Критические мутации нескольких таблиц должны оборачиваться в транзакции через `DataSource.transaction`.
+Critical mutations across multiple tables MUST be wrapped in transactions using `DataSource.transaction`.
 
 ### 🚨 15. Swagger / OpenAPI Documentation
 #### ❌ Bad Practice
 ```typescript
-// Нет никаких аннотаций DTO
+// Missing DTO annotations
 export class CreateDogDto { name: string; }
 ```
 #### ⚠️ Problem
@@ -327,11 +327,11 @@ export class CreateDogDto {
 }
 ```
 #### 🚀 Solution
-Документируйте все свойства DTO через `@ApiProperty()`. Swagger автоматически сгенерирует схему.
+Document all DTO properties using `@ApiProperty()`. Swagger will automatically generate the schema.
 
 ### 🚨 16. Rate Limiting (ThrottlerModule)
 #### ❌ Bad Practice
-// Нет защиты от DDoS и брутфорса
+// No protection against DDoS and brute force
 #### ⚠️ Problem
 Failing to follow best practices for `rate limiting (throttlermodule)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 #### ✅ Best Practice
@@ -340,28 +340,28 @@ Failing to follow best practices for `rate limiting (throttlermodule)` tightly c
 ThrottlerModule.forRoot([{ ttl: 60000, limit: 10 }])
 ```
 #### 🚀 Solution
-Обязательно подключайте `@nestjs/throttler` для защиты API от перегрузок.
+Always integrate `@nestjs/throttler` to protect the API from overload.
 
 ### 🚨 17. Caching Results
 #### ❌ Bad Practice
-// Каждый запрос делает тяжелый расчет в БД
+// Every request performs heavy DB calculations
 #### ⚠️ Problem
 Executing computationally expensive operations or querying the database for static data on every request creates severe performance bottlenecks. It needlessly wastes database resources and degrades overall system throughput.
 #### ✅ Best Practice
 ```typescript
 @UseInterceptors(CacheInterceptor)
-@CacheTTL(30) // 30 секунд
+@CacheTTL(30) // 30 seconds
 @Get('stats')
 getStats() {}
 ```
 #### 🚀 Solution
-Кешируйте тяжелые запросы через `CacheModule` (в памяти или Redis), чтобы разгрузить БД.
+Cache heavy requests using `CacheModule` (in-memory or Redis) to offload the DB.
 
-### 🚨 18. Event Emitter (Слабая связность)
+### 🚨 18. Event Emitter (Loose Coupling)
 #### ❌ Bad Practice
 ```typescript
 await this.userService.create();
-await this.emailService.send(); // Жесткая привязка зависимостей
+await this.emailService.send(); // Tight dependency coupling
 ```
 #### ⚠️ Problem
 Synchronously calling unrelated services (e.g., sending an email after user creation) creates tight coupling and increases request latency. This violates event-driven architecture principles, making the system less resilient to partial failures.
@@ -371,7 +371,7 @@ await this.userService.create();
 this.eventEmitter.emit('user.created', new UserCreatedEvent(user));
 ```
 #### 🚀 Solution
-Используйте `@nestjs/event-emitter`. Сервис не должен ждать отправки письма, а просто публикует событие.
+Use `@nestjs/event-emitter`. Services should not await email dispatch; they should simply publish an event.
 
 ### 🚨 19. Task Scheduling (Cron)
 #### ❌ Bad Practice
@@ -386,12 +386,12 @@ Using standard `setInterval` for background tasks outside of the NestJS lifecycl
 handleCron() { this.cleanupData(); }
 ```
 #### 🚀 Solution
-Для фоновых задач используйте `@nestjs/schedule` с декларативными декораторами.
+Use `@nestjs/schedule` with declarative decorators for background tasks.
 
 ### 🚨 20. Microservices: Message Patterns
 #### ❌ Bad Practice
 ```typescript
-@Post() // Использование HTTP для межсервисного общения
+@Post() // Using HTTP for inter-service communication
 ```
 #### ⚠️ Problem
 Using standard HTTP requests for internal microservice-to-microservice communication introduces significant network latency and point-to-point coupling. It prevents utilizing asynchronous, resilient message brokers like RabbitMQ or Kafka.
@@ -401,7 +401,7 @@ Using standard HTTP requests for internal microservice-to-microservice communica
 getUser(data: unknown) { return this.userService.findById(data.id); }
 ```
 #### 🚀 Solution
-Для общения микросервисов внутри кластера используйте TCP, Redis или RabbitMQ через `@MessagePattern`.
+Use TCP, Redis, or RabbitMQ via `@MessagePattern` for microservice communication within the cluster.
 
 ### 🚨 21. Health Checks (Terminus)
 #### ❌ Bad Practice
@@ -417,7 +417,7 @@ Using a simple 'ping' endpoint that always returns 200 OK does not verify the ac
 check() { return this.health.check([() => this.db.pingCheck('database')]); }
 ```
 #### 🚀 Solution
-Используйте `@nestjs/terminus` для глубоких проверок (БД, память) для Kubernetes Liveness Probes.
+Use `@nestjs/terminus` for deep health checks (DB, memory) for Kubernetes Liveness Probes.
 
 ### 🚨 22. Avoiding Circular Dependencies
 #### ❌ Bad Practice
@@ -432,26 +432,26 @@ Circular dependencies (Module A imports Module B, which imports Module A) cause 
 @Injectable() class UserService { constructor(@Inject(forwardRef(() => AuthService)) private auth: AuthService) {} }
 ```
 #### 🚀 Solution
-Если архитектура вынуждает циклическую зависимость, используйте `forwardRef()`, однако лучше отрефакторить код.
+If the architecture forces a circular dependency, use `forwardRef()`; however, it is highly recommended to refactor the code.
 
 ### 🚨 23. Module Re-exporting
 #### ❌ Bad Practice
 ```typescript
-// Модуль B импортирует Модуль А, Модуль С импортирует Модуль А...
+// Module B imports Module A, Module C imports Module A...
 ```
 #### ⚠️ Problem
 Duplicating module imports across the application instead of utilizing a structured Shared or Core module leads to excessive boilerplate and potential circular dependency issues. It makes the dependency graph unnecessarily complex.
 #### ✅ Best Practice
 ```typescript
 @Module({ imports: [DatabaseModule], exports: [DatabaseModule] })
-export class CoreModule {} // Глобальный фасад
+export class CoreModule {} // Global facade
 ```
 #### 🚀 Solution
-Используйте экспорт модулей для создания общих Core/Shared модулей, инкапсулирующих общую логику.
+Use module exports to create shared Core/Shared modules that encapsulate common logic.
 
 ### 🚨 24. Global Middleware
 #### ❌ Bad Practice
-// Определение логгера запросов в каждом месте
+// Defining request logger everywhere
 #### ⚠️ Problem
 Defining repetitive middleware logic (like request logging) locally in multiple controllers violates the DRY principle. It leads to inconsistent implementation and makes it difficult to enforce global policies.
 #### ✅ Best Practice
@@ -461,12 +461,12 @@ export class AppModule implements NestModule {
 }
 ```
 #### 🚀 Solution
-Глобальные операции до попадания в Guards (например, Request ID) делайте через `NestMiddleware`.
+Perform global operations prior to Guards (e.g., injecting Request IDs) via `NestMiddleware`.
 
 ### 🚨 25. Unit Testing Providers
 #### ❌ Bad Practice
 ```typescript
-const service = new UserService(new Database()); // Реальная БД в тестах
+const service = new UserService(new Database()); // Real DB in tests
 ```
 #### ⚠️ Problem
 Connecting to a real database in unit tests makes tests slow, flaky, and dependent on external state. It violates the core principle of isolated unit testing, which should rely on mocked dependencies.
@@ -477,12 +477,12 @@ const module = await Test.createTestingModule({
 }).compile();
 ```
 #### 🚀 Solution
-Все юнит-тесты должны использовать инъекцию моков (Mocks) через `Test.createTestingModule`.
+All unit tests MUST use mock injection via `Test.createTestingModule`.
 
 ### 🚨 26. Custom Validation Constraints
 #### ❌ Bad Practice
 ```typescript
-if (!isEmailUnique(dto.email)) throw error; // Ручная логика в сервисе
+if (!isEmailUnique(dto.email)) throw error; // Manual logic in service
 ```
 #### ⚠️ Problem
 Implementing validation logic inside business services rather than utilizing `class-validator` constraints tightly couples validation to execution. It bypasses the global validation pipe, leading to inconsistent error formatting.
@@ -494,11 +494,11 @@ export class IsUniqueConstraint implements ValidatorConstraintInterface { ... }
 @Validate(IsUniqueConstraint) email: string;
 ```
 #### 🚀 Solution
-Создавайте кастомные правила для `class-validator`, в том числе асинхронные проверки (проверка БД).
+Create custom rules for `class-validator`, including asynchronous checks (e.g., DB validation).
 
 ### 🚨 27. File Uploading (Multer)
 #### ❌ Bad Practice
-// Обработка потоков руками
+// Manual stream handling
 #### ⚠️ Problem
 Handling binary file streams manually without the built-in Multer interceptors is highly error-prone. It drastically increases the risk of memory exhaustion, incomplete uploads, and unhandled boundary parsing exceptions.
 #### ✅ Best Practice
@@ -508,12 +508,12 @@ Handling binary file streams manually without the built-in Multer interceptors i
 uploadFile(@UploadedFile() file: Express.Multer.File) {}
 ```
 #### 🚀 Solution
-Для приема файлов стандартом является встроенный `FileInterceptor` на базе Multer.
+The built-in `FileInterceptor` based on Multer is the standard for handling file uploads.
 
 ### 🚨 28. Serialization (ClassSerializerInterceptor)
 #### ❌ Bad Practice
 ```typescript
-const { password, ...safeUser } = user; // Ручное удаление пароля
+const { password, ...safeUser } = user; // Manual password removal
 ```
 #### ⚠️ Problem
 Manually deleting sensitive fields (like passwords) from response objects before returning them is error-prone. Forgetting to do this in even one place exposes sensitive data to the client, creating a critical security vulnerability.
@@ -521,15 +521,15 @@ Manually deleting sensitive fields (like passwords) from response objects before
 ```typescript
 class UserEntity { @Exclude() password: string; }
 
-@UseInterceptors(ClassSerializerInterceptor) // Авто-очистка
+@UseInterceptors(ClassSerializerInterceptor) // Auto-cleanup
 @Get() getUser() { return new UserEntity(data); }
 ```
 #### 🚀 Solution
-Используйте `@Exclude()` из `class-transformer` вместе с `ClassSerializerInterceptor` для скрытия полей.
+Use `@Exclude()` from `class-transformer` along with `ClassSerializerInterceptor` to hide sensitive fields.
 
 ### 🚨 29. Fastify Integration
 #### ❌ Bad Practice
-// Вызов специфичных методов req.expressMethod
+// Calling specific methods req.expressMethod
 #### ⚠️ Problem
 Directly accessing platform-specific request/response objects (like Express's `req.ip`) tightly couples the application to the underlying HTTP framework. This prevents easy migration to higher-performance engines like Fastify.
 #### ✅ Best Practice
@@ -537,20 +537,20 @@ Directly accessing platform-specific request/response objects (like Express's `r
 const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
 ```
 #### 🚀 Solution
-Пишите платформо-независимый код. Если нужна экстремальная производительность, Nest легко переключается с Express на Fastify.
+Write platform-agnostic code. Nest easily switches from Express to Fastify for extreme performance if needed.
 
 ### 🚨 30. Shutdown Hooks (Graceful Shutdown)
 #### ❌ Bad Practice
-// Приложение убивается мгновенно, прерывая активные соединения
+// Application is killed instantly, dropping active connections
 #### ⚠️ Problem
 Immediate process termination severs active connections and leaves database operations in an unknown state. This causes data corruption and forces clients to experience unhandled connection drops.
 #### ✅ Best Practice
 ```typescript
 app.enableShutdownHooks();
-@Injectable() class MyService implements OnApplicationShutdown { onApplicationShutdown() { /* Закрыть соединения */ } }
+@Injectable() class MyService implements OnApplicationShutdown { onApplicationShutdown() { /* Close connections */ } }
 ```
 #### 🚀 Solution
-Вызывайте `enableShutdownHooks()`, чтобы отлавливать SIGINT/SIGTERM и безопасно завершать процессы базы данных.
+Call `enableShutdownHooks()` to catch SIGINT/SIGTERM and safely terminate database processes.
 
 
 
@@ -560,7 +560,7 @@ app.enableShutdownHooks();
 <br>
 
 <div align="center">
-  <b>Применяйте эти паттерны NestJS для создания эталонного и поддерживаемого бэкенда! 🦁</b>
+  <b>Apply these NestJS patterns to build an exemplary and maintainable backend! 🦁</b>
 </div>
 
 
