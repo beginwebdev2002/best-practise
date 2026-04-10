@@ -43,7 +43,8 @@ function navigateToCart() {
 ```
 
 #### 🚀 Solution
-Routing should be fully managed by the App Shell (the Host). Micro-frontends should dispatch "intent" events when they need the user to navigate across MFE boundaries. The App Shell listens, resolves the intent to a physical URL path, and executes the router change safely.
+> [!IMPORTANT]
+> Routing MUST be fully managed by the App Shell (the Host). Micro-frontends MUST dispatch "intent" events when they need the user to navigate across MFE boundaries. The App Shell listens, resolves the intent to a physical URL path, and executes the router change safely.
 
 ---
 

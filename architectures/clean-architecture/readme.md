@@ -17,7 +17,8 @@ last_updated: 2026-03-29
 
 # Context & Scope
 - **Primary Goal:** Предоставить строгие архитектурные правила и практические паттерны для создания масштабируемых систем.
-- **Description:** A concept created by Robert C. Martin (Uncle Bob). It separates a project into concentric rings. The main rule is the Dependency Rule: dependencies can only point inward.
+- > [!IMPORTANT]
+  > **Description:** A concept created by Robert C. Martin (Uncle Bob). It separates a project into concentric rings. The main rule is the Dependency Rule: dependencies MUST STRICTLY only point inward.
 
 ## Map of Patterns
 - 📊 [**Data Flow:** Request and Event Lifecycle](./data-flow.md)
@@ -188,4 +189,5 @@ class UserController {
 ```
 
 ### 🚀 Solution
-Controllers should be entirely "dumb". Their only responsibility is to parse incoming requests, pass standard DTOs to the corresponding Use Case, and format the output. All branching business logic and validation must reside inside the independent Use Case interactor.
+> [!IMPORTANT]
+> Controllers MUST be entirely "dumb". Their only responsibility is to parse incoming requests, pass standard DTOs to the corresponding Use Case, and format the output. All branching business logic and validation must reside inside the independent Use Case interactor.

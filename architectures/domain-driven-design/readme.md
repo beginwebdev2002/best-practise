@@ -114,4 +114,5 @@ class OrderApplicationService {
 ```
 
 ### 🚀 Solution
-MANDATORY: Always implement Rich Domain Models. Entities and Aggregates MUST encapsulate both state and the business rules that mutate that state. Services should be relegated to application orchestration (fetching data, calling entity methods, and saving data), ensuring that invariant business logic is securely locked inside the Domain layer.
+> [!IMPORTANT]
+> MANDATORY: Always implement Rich Domain Models. Entities and Aggregates MUST encapsulate both state and the business rules that mutate that state. Services MUST be relegated to application orchestration (fetching data, calling entity methods, and saving data), ensuring that invariant business logic is securely locked inside the Domain layer.

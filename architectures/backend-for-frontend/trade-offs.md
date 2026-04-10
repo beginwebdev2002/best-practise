@@ -30,4 +30,5 @@ last_updated: 2026-03-29
 
 ### 🚧 System Constraints
 - **Team Structure:** This pattern works best when the team building the client application also owns and maintains the BFF.
-- **Network Latency:** To minimize the impact of the extra network hop, the BFF should be deployed in the same region (and ideally the same network) as the downstream microservices.
+- > [!IMPORTANT]
+  > **Network Latency:** To minimize the impact of the extra network hop, the BFF MUST be deployed in the same region (and ideally the same network) as the downstream microservices.

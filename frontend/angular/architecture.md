@@ -172,7 +172,8 @@ A Pipe performs HTTP requests or complex business logic.
 ### ⚠️ Problem
 Pipes are intended for data transformation in the template. Side effects in pipes violate function purity and kill CD performance.
 ### ✅ Best Practice
-Pipes should be "Pure" (without side effects) and fast.
+> [!IMPORTANT]
+> Pipes MUST be "Pure" (without side effects) and performant (O(1) or O(n)).
 ### 🚀 Solution
 Extract logic into services/signals. Leave only formatting to pipes.
 ## ⚡ 26. `any` in Services

@@ -80,4 +80,5 @@ class Order {
 ```
 
 ### 🚀 Solution
-Create rich domain models. Business logic and rules that belong to an entity should be encapsulated within the entity itself. The entity should protect its invariants and expose business-meaningful methods (like `applyDiscount`) instead of public setters.
+> [!IMPORTANT]
+> Create rich domain models. Business logic and rules that belong to an entity MUST be encapsulated within the entity itself. The entity MUST protect its invariants and expose business-meaningful methods (like `applyDiscount`) instead of public setters.

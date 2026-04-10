@@ -78,4 +78,5 @@ class OrderService {
 ```
 
 ### 🚀 Solution
-Build a "Modular Monolith". Even though the code runs in a single process, strictly isolate the data and state of different business domains. Modules should communicate with each other through explicit interfaces or an in-memory event bus, rather than sharing global variables or databases.
+> [!IMPORTANT]
+> Build a "Modular Monolith". Even though the code runs in a single process, strictly isolate the data and state of different business domains. Modules MUST communicate with each other through explicit interfaces or an in-memory event bus, rather than sharing global variables or databases.

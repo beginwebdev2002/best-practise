@@ -77,19 +77,19 @@ Prefer the shorthand `T[]`. It is idiomatic, more readable, and clearly distingu
 > **Context:** Defining object structures and aliases.
 ### ❌ Bad Practice
 ```typescript
-interface Point { x: number; y: number; }
-interface ID extends string {} // Error: Interface can only extend objects
+type Point = { x: number; y: number; }; // Bad: Using type for object structure
+interface Status { status: "active" | "inactive"; } // Bad: Trying to use interface for a union-like structure
 ```
 ### ⚠️ Problem
-`interface` is limited to objects and allows "declaration merging," which can lead to accidental property overrides in global scopes.
+Using `type` for object structures prevents declaration merging and reduces performance in TS compiler caching. Using `interface` for unions is impossible or leads to awkward wrapper objects.
 ### ✅ Best Practice
 ```typescript
-type Point = { x: number; y: number; };
-type ID = string;
-type Union = 'A' | 'B';
+interface Point { x: number; y: number; }
+type Status = "active" | "inactive";
 ```
 ### 🚀 Solution
-prefer 'interface' for structure, 'type' for unions.
+> [!IMPORTANT]
+> Prefer `interface` for structure, `type` for unions. Interfaces provide better error messages and performance for structural types in TypeScript 5.x.
 ---
 ## ⚡ 5. Function Overloads vs Union Types
 > [!NOTE]
