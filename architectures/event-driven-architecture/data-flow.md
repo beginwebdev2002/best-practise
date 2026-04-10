@@ -73,6 +73,22 @@ To ensure dual-write safety (saving state in the local DB and publishing the eve
 3. The service inserts an event record in an `outbox` table in the SAME transaction.
 4. The service commits the transaction.
 5. A background process (e.g., Debezium, CDC) reads the `outbox` table and publishes the messages to Kafka, ensuring "at-least-once" delivery.
+
+
+```mermaid
+graph LR
+    A[Begin DB Transaction] --> B[Save Business Entity]
+    B --> C[Insert Outbox Event]
+    C --> D[Commit Transaction]
+    D --> E[Background CDC Process]
+    E --> F[Publish to Kafka]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class A,B,C,D default;
+    class E,F component;
+```
+
 ---
 
 <div align="center">
