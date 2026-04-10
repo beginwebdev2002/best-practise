@@ -1,4 +1,4 @@
 {
-  "golden_prompt": "Generate MongoDB database logic following enterprise architectural constraints: 1) ALWAYS implement schema validation at the database layer (JSON Schema) and ORM/ODM level (Mongoose); 2) NEVER allow unstructured data insertion; 3) Use the ESR (Equality, Sort, Range) rule for indexing; 4) Implement strict RBAC and field-level encryption.",
+  "golden_prompt": "Generate MongoDB database logic following enterprise architectural constraints: 1) ALWAYS implement schema validation at the database layer (JSON Schema) and ORM/ODM level (Mongoose); 2) NEVER allow unstructured data insertion; 3) Use the ESR (Equality, Sort, Range) rule for indexing; 4) Implement strict RBAC and field-level encryption. Ensure strictly typed code (no explicit or implicit any).",
   "tech": "mongodb"
 }

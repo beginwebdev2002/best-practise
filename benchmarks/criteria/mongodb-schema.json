@@ -5,13 +5,38 @@
   "properties": {
     "required_methods": {
       "type": "array",
-      "items": { "type": "string" },
-      "contains": { "enum": ["createCollection", "validator", "$jsonSchema"] }
+      "items": {
+        "type": "string"
+      },
+      "contains": {
+        "enum": [
+          "createCollection",
+          "validator",
+          "$jsonSchema"
+        ]
+      }
     },
     "forbidden_patterns": {
       "type": "array",
-      "items": { "type": "string" },
-      "contains": { "enum": ["insertOne without validation"] }
+      "items": {
+        "type": "string"
+      },
+      "contains": {
+        "enum": [
+          "insertOne without validation"
+        ]
+      }
+    },
+    "forbidden_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "contains": {
+        "enum": [
+          "any"
+        ]
+      }
     }
   }
 }

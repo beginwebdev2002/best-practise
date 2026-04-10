@@ -21,7 +21,7 @@ const server = new ApolloServer({
 });
 ```
 ### ⚠️ Problem
-Without depth or complexity limits, an attacker can craft a deeply nested query (e.g., requesting `user -> friends -> user -> friends` recursively) causing catastrophic Resource Exhaustion (DoS) on the server and database. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Without depth or complexity limits, an attacker can craft a deeply nested query (e.g., requesting `user -> friends -> user -> friends` recursively) causing catastrophic Resource Exhaustion (DoS) on the server and database.
 ### ✅ Best Practice
 ```javascript
 // Implementing Query Depth Limit

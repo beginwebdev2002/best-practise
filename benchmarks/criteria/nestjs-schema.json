@@ -5,13 +5,60 @@
   "properties": {
     "decorators": {
       "type": "array",
-      "items": { "type": "string" },
-      "contains": { "enum": ["UseInterceptors", "CacheTTL", "Cron", "MessagePattern", "HealthCheck", "Inject", "Module", "Injectable", "ValidatorConstraint", "Validate"] }
+      "items": {
+        "type": "string"
+      },
+      "contains": {
+        "enum": [
+          "UseInterceptors",
+          "CacheTTL",
+          "Cron",
+          "MessagePattern",
+          "HealthCheck",
+          "Inject",
+          "Module",
+          "Injectable",
+          "ValidatorConstraint",
+          "Validate"
+        ]
+      }
     },
     "forbidden_patterns": {
       "type": "array",
-      "items": { "type": "string" },
-      "contains": { "enum": ["setInterval", "@Post() for microservices", "@Get('ping')"] }
+      "items": {
+        "type": "string"
+      },
+      "contains": {
+        "enum": [
+          "setInterval",
+          "@Post() for microservices",
+          "@Get('ping')"
+        ]
+      }
+    },
+    "forbidden_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "contains": {
+        "enum": [
+          "any"
+        ]
+      }
+    },
+    "required_imports": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "contains": {
+        "enum": [
+          "features/",
+          "entities/",
+          "shared/"
+        ]
+      }
     }
   }
 }

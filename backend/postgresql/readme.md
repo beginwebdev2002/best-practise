@@ -37,7 +37,7 @@ CREATE TABLE users (
 );
 ```
 #### ⚠️ Problem
-Using sequential `SERIAL` IDs makes data enumeration trivial (e.g., exposing total user count via user ID `1054`), complicating distributed system integration and data migrations. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Using sequential `SERIAL` IDs makes data enumeration trivial (e.g., exposing total user count via user ID `1054`), complicating distributed system integration and data migrations.
 #### ✅ Best Practice
 ```sql
 -- Using UUIDv7 for time-sorted uniqueness
@@ -72,7 +72,7 @@ sequenceDiagram
 DB_URL=postgres://app_user:pass@db:5432/app_db?sslmode=disable
 ```
 #### ⚠️ Problem
-Using unencrypted connections over internal networks enables MITM (Man-in-the-Middle) attacks, compromising credentials and sensitive client data. Connecting directly without a pooler can lead to application crashes from connection exhaustion during high load. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Using unencrypted connections over internal networks enables MITM (Man-in-the-Middle) attacks, compromising credentials and sensitive client data. Connecting directly without a pooler can lead to application crashes from connection exhaustion during high load.
 #### ✅ Best Practice
 ```yaml
 # Encrypted connection via PgBouncer
@@ -88,7 +88,7 @@ Enforce SSL/TLS for all database connections (`sslmode=verify-full` in productio
 DB_URL=postgres://postgres:password@db:5432/app_db
 ```
 #### ⚠️ Problem
-Using the `postgres` superuser for the application grants it the ability to drop tables, modify configurations, and access other databases. A single SQL injection vulnerability can compromise the entire cluster. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Using the `postgres` superuser for the application grants it the ability to drop tables, modify configurations, and access other databases. A single SQL injection vulnerability can compromise the entire cluster.
 #### ✅ Best Practice
 ```sql
 -- Creating a dedicated role with least privilege
@@ -112,7 +112,7 @@ CREATE INDEX idx_last_name ON users(last_name);
 CREATE INDEX idx_age ON users(age);
 ```
 #### ⚠️ Problem
-Over-indexing forces the database to update multiple B-Trees on every `INSERT`, `UPDATE`, or `DELETE`, severely degrading write performance and bloating storage size. Unused indexes consume RAM and slow down table maintenance. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Over-indexing forces the database to update multiple B-Trees on every `INSERT`, `UPDATE`, or `DELETE`, severely degrading write performance and bloating storage size. Unused indexes consume RAM and slow down table maintenance.
 #### ✅ Best Practice
 ```sql
 -- Creating composite indexes for specific access patterns
@@ -132,7 +132,7 @@ Apply indexes strategically based on query access patterns. Use B-Tree indexes f
 SELECT * FROM orders ORDER BY created_at DESC OFFSET 100000 LIMIT 50;
 ```
 #### ⚠️ Problem
-Using `SELECT *` forces the database to fetch and transfer unnecessary data, consuming network bandwidth and memory. Using `OFFSET/LIMIT` for deep pagination requires the database to scan and discard rows before returning results, resulting in exponential performance degradation. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Using `SELECT *` forces the database to fetch and transfer unnecessary data, consuming network bandwidth and memory. Using `OFFSET/LIMIT` for deep pagination requires the database to scan and discard rows before returning results, resulting in exponential performance degradation.
 #### ✅ Best Practice
 ```sql
 -- Selecting only necessary columns and using Keyset (Cursor) Pagination
