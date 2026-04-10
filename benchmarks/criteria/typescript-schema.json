@@ -5,13 +5,25 @@
   "properties": {
     "forbidden_types": {
       "type": "array",
-      "items": { "type": "string" },
-      "contains": { "enum": ["any"] }
+      "items": {
+        "type": "string"
+      },
+      "contains": {
+        "enum": [
+          "any"
+        ]
+      }
     },
     "required_types": {
       "type": "array",
-      "items": { "type": "string" },
-      "contains": { "enum": ["unknown"] }
+      "items": {
+        "type": "string"
+      },
+      "contains": {
+        "enum": [
+          "unknown"
+        ]
+      }
     }
   }
 }

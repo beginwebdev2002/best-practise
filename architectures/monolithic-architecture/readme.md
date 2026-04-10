@@ -23,6 +23,17 @@ last_updated: 2026-03-22
 - 📁 [**Folder Structure:** Layering logic](./folder-structure.md)
 - ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
+
+### Structural Comparison: Monolithic Architecture vs Microservices
+
+| Feature | Monolithic Architecture | Microservices |
+| :--- | :--- | :--- |
+| **Deployment** | Single unit (all or nothing) | Independent per service |
+| **Scalability** | Scale the whole application | Scale specific components |
+| **Technology Stack** | Uniform (hard to change) | Diverse (easy to adopt new tech) |
+| **Complexity** | Lower initially, higher as it grows | Higher initially, manageable at scale |
+| **Data Management** | Shared database | Database per service |
+
 ## Core Principles
 
 1. **Isolation & Testability:** Changing a single feature doesn't break the entire business process.

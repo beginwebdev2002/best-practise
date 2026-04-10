@@ -58,6 +58,16 @@ test('update user', () => {
   expect(user.name).toBe('Bob');
 });
 ```
+
+### Structural Comparison: Unit Testing vs Integration Testing vs E2E
+
+| Feature | Unit Testing | Integration Testing | End-to-End (E2E) Testing |
+| :--- | :--- | :--- | :--- |
+| **Scope** | Single isolated function/component | Multiple connected units | Full application workflow |
+| **Speed** | Extremely Fast (<1ms) | Fast to Medium | Slow (seconds to minutes) |
+| **Cost to Write/Maintain**| Low | Medium | High |
+| **Confidence Level** | Low (doesn't catch contract issues) | Medium | High (simulates real user) |
+
 ### 🚀 Solution
 Ensure every test is fully isolated. Use `beforeEach` or setup functions to instantiate fresh state for every individual test case.
 

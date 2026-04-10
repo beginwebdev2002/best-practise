@@ -143,6 +143,16 @@ abstract class BaseService {
     log(msg: string) { console.log(msg); }
 }
 ```
+
+### Structural Comparison: Abstract Classes vs Interfaces
+
+| Feature | Abstract Classes | Interfaces |
+| :--- | :--- | :--- |
+| **Implementation Logic** | Can provide default/shared implementation | Cannot provide implementation |
+| **Multiple Inheritance** | No (Single inheritance only) | Yes (Can implement multiple) |
+| **Runtime Presence** | Yes (Compiles to JS class) | No (Erased at compile time) |
+| **Access Modifiers** | Supports public, protected, private | All members are public |
+
 ### 🚀 Solution
 Utilize `abstract` classes when requiring shared implementation logic combined with strict contractual enforcement of specific methods by subclasses.
 ## 🚨 28. Private vs `#private`

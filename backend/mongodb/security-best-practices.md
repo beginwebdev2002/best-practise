@@ -28,6 +28,16 @@ db.createUser({ user: "appUser", pwd: "secretPassword", roles: ["root"] })
 
 Enable authorization in `mongod.conf` (`security.authorization: enabled`) and create custom roles or use the principle of least privilege.
 
+
+### Structural Comparison: Role-Based Access Control (RBAC) vs Built-in Roles
+
+| Feature | Custom RBAC (Principle of Least Privilege) | Built-in Root/Admin Roles |
+| :--- | :--- | :--- |
+| **Security Risk** | Low (Access restricted to specific tasks) | Critical (Full system compromise possible) |
+| **Granularity** | Collection and Action level | Database or System level |
+| **Auditability** | High (Clear mapping of who did what) | Low (Generic roles obscure intent) |
+| **Complexity** | High (Requires planning and maintenance) | Low (Easy but dangerous) |
+
 ### 🚀 Solution
 
 ```javascript

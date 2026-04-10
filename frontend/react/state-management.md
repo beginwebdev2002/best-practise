@@ -62,6 +62,20 @@ function Form() {
   );
 }
 ```
+
+```mermaid
+flowchart TD
+    A[Form Submitted] --> B{Action isPending?}
+    B -->|Yes| C[Disable Submit Button]
+    B -->|No| D[Process saveAction]
+    D --> E{Error occurred?}
+    E -->|Yes| F[Update Error State]
+    E -->|No| G[Action Successful]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class A,B,C,D,E,F,G default;
+```
+
 ### 🚀 Solution
 Use the `useActionState` Hook (React 19+) for seamless action state management. This hook natively handles loading and error states, resolves race conditions by ensuring only the latest action state is applied to the UI, and optimizes rendering cycles deterministically.
 

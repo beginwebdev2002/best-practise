@@ -41,7 +41,7 @@ export class UserService {
 }
 ```
 #### ⚠️ Problem
-Directly accessing another service's database or internal modules breaks Bounded Contexts. It creates a tightly coupled monolithic architecture under the guise of microservices, making independent deployments impossible and cascading failures common. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Directly accessing another service's database or internal modules breaks Bounded Contexts. It creates a tightly coupled monolithic architecture under the guise of microservices, making independent deployments impossible and cascading failures common.
 #### ✅ Best Practice
 ```typescript
 // Event-driven decoupled architecture using a Message Broker
@@ -89,7 +89,7 @@ sequenceDiagram
 const response = await axios.post(`http://order-service/orders`, orderData);
 ```
 #### ⚠️ Problem
-Implicit trust within internal networks enables a compromised container to move laterally and attack other services, leading to catastrophic privilege escalation. Hardcoded credentials compound this vulnerability. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Implicit trust within internal networks enables a compromised container to move laterally and attack other services, leading to catastrophic privilege escalation. Hardcoded credentials compound this vulnerability.
 #### ✅ Best Practice
 ```typescript
 // Using short-lived signed JWTs or mTLS for service communication
@@ -114,7 +114,7 @@ services:
       - DB_URL=postgres://shared-db:5432/monolith_db # Shared database anti-pattern
 ```
 #### ⚠️ Problem
-Sharing a single database across multiple microservices leads to schema coupling. If the User Service alters a table, the Order Service crashes. It defeats the purpose of independent scaling and creates a single point of failure (SPOF). It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Sharing a single database across multiple microservices leads to schema coupling. If the User Service alters a table, the Order Service crashes. It defeats the purpose of independent scaling and creates a single point of failure (SPOF).
 #### ✅ Best Practice
 ```yaml
 # docker-compose.yml
@@ -141,7 +141,7 @@ async function getUserData(userId: string) {
 }
 ```
 #### ⚠️ Problem
-Relying on direct synchronous HTTP calls between microservices without fallbacks creates a fragile system. If one service experiences a delay, it consumes threads on the caller, eventually leading to a cascading failure across the entire cluster. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+Relying on direct synchronous HTTP calls between microservices without fallbacks creates a fragile system. If one service experiences a delay, it consumes threads on the caller, eventually leading to a cascading failure across the entire cluster.
 #### ✅ Best Practice
 ```typescript
 // Resilience4j or similar Circuit Breaker implementation
@@ -169,7 +169,7 @@ Implement Circuit Breakers to fail fast and prevent resource exhaustion. Use ret
 console.log('Order processed successfully');
 ```
 #### ⚠️ Problem
-When an error spans multiple services, isolated logs lacking a unique identifier make tracing the original request path nearly impossible, drastically increasing debugging time during critical outages. It deviates from modern deterministic standards, making the code harder for AI Agents and Senior Developers to parse and safely extend.
+When an error spans multiple services, isolated logs lacking a unique identifier make tracing the original request path nearly impossible, drastically increasing debugging time during critical outages.
 #### ✅ Best Practice
 ```typescript
 // Implementing OpenTelemetry and passing a Correlation ID

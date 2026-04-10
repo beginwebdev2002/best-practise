@@ -34,6 +34,15 @@ Create indexes following the ESR rule:
 2.  **S**ort fields next.
 3.  **R**ange fields last.
 
+```mermaid
+graph LR
+    A[Equality Fields] --> B[Sort Fields]
+    B --> C[Range Fields]
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class A,B,C default;
+```
+
+
 ### 🚀 Solution
 
 ```javascript

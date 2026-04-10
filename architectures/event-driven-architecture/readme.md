@@ -32,6 +32,17 @@ To deeply understand the nuances of EDA, consult the following specialized modul
 - ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
 ---
+
+### Structural Comparison: Event-Driven vs Request-Response
+
+| Feature | Event-Driven Architecture | Request-Response (REST/RPC) |
+| :--- | :--- | :--- |
+| **Coupling** | Loose (Producers don't know consumers) | Tight (Client knows server address) |
+| **Communication** | Asynchronous | Synchronous (usually) |
+| **Resilience** | High (Messages can be queued if consumer is down) | Lower (Fails if server is down) |
+| **Scalability** | Excellent (Easy to add new consumers) | Good (Requires load balancing) |
+| **Complexity** | High (Eventual consistency, tracking flows) | Low (Straightforward flows) |
+
 ## Core Principles
 
 1. **Asynchronous by Default:** Synchronous RPC (REST/gRPC) is restricted only to immediate read-queries or initial gateway ingress. All inter-service state mutations must occur asynchronously.
