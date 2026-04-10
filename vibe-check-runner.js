@@ -32,7 +32,7 @@ function getModifiedFiles() {
   }
 }
 
-async function simulateAIGeneration(goldenPrompt, tech, mdContent, retries = 3, delay = 5000) {
+async function simulateAIGeneration(goldenPrompt, tech, mdContent, retries = 3, delay = 2000) {
   try {
     const prompt = `${goldenPrompt}\n\nConstraints and instructions from the following documentation:\n\n${mdContent}\n\nGenerate ONLY raw code. No markdown formatting, no explanations.`;
     const response = await ai.models.generateContent({
@@ -43,10 +43,14 @@ async function simulateAIGeneration(goldenPrompt, tech, mdContent, retries = 3, 
     text = text.replace(/^```[a-z]*\n/gm, '').replace(/```$/gm, '').trim();
     return text;
   } catch (err) {
-    if (err.status === 429 && retries > 0) {
-      console.warn(`Rate limit hit. Retrying in ${delay}ms...`);
-      await new Promise(resolve => setTimeout(resolve, delay));
-      return simulateAIGeneration(goldenPrompt, tech, mdContent, retries - 1, delay * 2);
+    if (err.status === 429 || err.message?.includes('429') || err.message?.includes('RESOURCE_EXHAUSTED')) {
+      if (retries > 0) {
+        console.warn(`Rate limited. Retrying in ${delay}ms... (${retries} retries left)`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+        return simulateAIGeneration(goldenPrompt, tech, mdContent, retries - 1, delay * 2);
+      } else {
+        console.error('Max retries reached for AI generation.');
+      }
     }
     console.error('Error generating AI code:', err);
     return '';
@@ -99,8 +103,8 @@ function analyzeAST(sourceFile, tech) {
   const imports = sourceFile.getImportDeclarations();
   const moduleSpecifiers = imports.map(imp => imp.getModuleSpecifierValue());
   const hasFSD = moduleSpecifiers.some(spec => spec.includes('features/') || spec.includes('entities/') || spec.includes('shared/') || spec.includes('domain/'));
-  // Not strictly enforcing this to be 10 point penalty if small snippet, but we reduce if completely monolithic (no imports)
-  if (moduleSpecifiers.length === 0 && sourceFile.getClasses().length > 1) {
+
+  if (!hasFSD) {
      score.arch -= 10;
   }
 
@@ -108,6 +112,14 @@ function analyzeAST(sourceFile, tech) {
   const anyKeywords = sourceFile.getDescendantsOfKind(SyntaxKind.AnyKeyword);
   if (anyKeywords.length > 0) {
     score.type -= 15 * anyKeywords.length;
+  }
+
+  // Enforce explicit parameter types
+  const parameters = sourceFile.getDescendantsOfKind(SyntaxKind.Parameter);
+  for (const param of parameters) {
+    if (!param.getTypeNode()) {
+      score.type -= 5;
+    }
   }
 
   // Error handling pattern check
@@ -240,7 +252,7 @@ async function runVibeCheck() {
       const reportDir = path.join('benchmarks', 'logs');
       if (!fs.existsSync(reportDir)) fs.mkdirSync(reportDir, { recursive: true });
 
-      const reportPath = path.join(reportDir, 'violation-report.md');
+      const reportPath = path.join(reportDir, `violation-report.md`);
       const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n\`\`\`typescript\n${generatedCode}\n\`\`\`\n\nReview the AST rules.`;
 
       fs.writeFileSync(reportPath, reportContent);
