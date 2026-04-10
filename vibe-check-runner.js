@@ -32,7 +32,7 @@ function getModifiedFiles() {
   }
 }
 
-async function simulateAIGeneration(goldenPrompt, tech, mdContent) {
+async function simulateAIGeneration(goldenPrompt, tech, mdContent, retries = 3, delay = 5000) {
   try {
     const prompt = `${goldenPrompt}\n\nConstraints and instructions from the following documentation:\n\n${mdContent}\n\nGenerate ONLY raw code. No markdown formatting, no explanations.`;
     const response = await ai.models.generateContent({
@@ -40,10 +40,14 @@ async function simulateAIGeneration(goldenPrompt, tech, mdContent) {
         contents: prompt
     });
     let text = response.text || '';
-    // Strip markdown code block wrappers if any
     text = text.replace(/^```[a-z]*\n/gm, '').replace(/```$/gm, '').trim();
     return text;
   } catch (err) {
+    if (err.status === 429 && retries > 0) {
+      console.warn(`Rate limit hit. Retrying in ${delay}ms...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+      return simulateAIGeneration(goldenPrompt, tech, mdContent, retries - 1, delay * 2);
+    }
     console.error('Error generating AI code:', err);
     return '';
   }
@@ -221,7 +225,7 @@ async function runVibeCheck() {
         // Only commit if there are changes (badge might already be there)
         const status = execSync('git status --porcelain', { encoding: 'utf-8' });
         if (status.includes(file) || status.includes('benchmarks/')) {
-           execSync(`git commit -m "[chore: fidelity-pass]"`);
+           execSync(`git commit -m "[chore: benchmark-sync]"`);
            execSync(`git push origin HEAD:main`);
         } else {
            console.log(`Badge already present in ${file}, skipping commit.`);
@@ -236,7 +240,7 @@ async function runVibeCheck() {
       const reportDir = path.join('benchmarks', 'logs');
       if (!fs.existsSync(reportDir)) fs.mkdirSync(reportDir, { recursive: true });
 
-      const reportPath = path.join(reportDir, `violation-${tech}-${Date.now()}.md`);
+      const reportPath = path.join(reportDir, 'violation-report.md');
       const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n\`\`\`typescript\n${generatedCode}\n\`\`\`\n\nReview the AST rules.`;
 
       fs.writeFileSync(reportPath, reportContent);
