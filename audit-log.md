@@ -1,3 +1,3 @@
-# Anti-Hallucination Audit Log
+# Audit Log
 
-Total ambiguous phrases replaced: 18
+Replaced 14 ambiguous phrases with hard constraints and quantified terms.

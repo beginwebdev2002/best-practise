@@ -105,7 +105,8 @@ src/
 ### 2. Clean Architecture
 [![Clean Arch](https://img.shields.io/badge/Clean_Architecture-black?style=flat-square)](#)
 
-**Description:** A concept created by Robert C. Martin (Uncle Bob). It separates a project into concentric rings. The main rule is the Dependency Rule: dependencies can only point inward (towards core business entities).
+> [!IMPORTANT]
+> **Description:** A concept created by Robert C. Martin (Uncle Bob). It separates a project into concentric rings. The main rule is the Dependency Rule: dependencies MUST STRICTLY only point inward (towards core business entities).
 **📖 Map of Patterns:** [Go to Clean Architecture Guidelines](./clean-architecture/readme.md)
 
 **Architecture Diagram & Folder Tree:**
@@ -380,7 +381,7 @@ project-functions/
 
 **Best Compatibility:**
 - **Frameworks:** Serverless Framework, AWS SAM. Clouds: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-plain.svg" width="16"/> Firebase, Vercel Functions.
-- **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" width="16"/> Node.js, Python, Go (Languages with fast cold starts).
+- **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" width="16"/> Node.js, Python, Go (Languages with O(1) or O(n) cold starts).
 - **Patterns / Principles:** Backend-as-a-Service (BaaS), Vendor Lock-in (use cautiously).
 ---
 

@@ -18,7 +18,7 @@ vibe_coding_ready: true---
 Windsurf is a powerful tool for developers who use AI agents to write code. By understanding how Windsurf works, you can improve your vibe coding workflow. Vibe coding allows you to build software by giving intent-based instructions to an AI agent. This guide provides advanced usage hints to help you get the best results from Windsurf, optimize the context window, and manage memory limits.
 ## 🏗️ 2. The Windsurf Vibe Coding Workflow
 
-To get good code from Windsurf, you need a clear process. The AI agent needs the right context window to understand what you want. The following diagram shows the best workflow for sending instructions to the Windsurf AI agent.
+To get robust, deterministic code from Windsurf, you need a clear process. The AI agent needs the right context window to understand what you want. The following diagram shows the best workflow for sending instructions to the Windsurf AI agent.
 
 ```mermaid
 graph TD
