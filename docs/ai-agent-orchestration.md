@@ -10,8 +10,8 @@ domain: Documentation
 level: Senior/Architect
 version: Latest
 ai_role: Senior TypeScript Expert
-last_updated: 2026-03-29---
-
+last_updated: 2026-03-29
+---
 
 > 📦 [best-practise](../README.md) / 📄 [docs](./)
 # 🤖 AI Agent Orchestration + Production-Ready Best Practices
