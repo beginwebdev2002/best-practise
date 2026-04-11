@@ -51,6 +51,7 @@ Don't know where to start? Here are a few golden rules:
 - [Microservices](./microservices/readme.md)
 - [MVC (Model-View-Controller)](./model-view-controller/readme.md)
 - [Monolithic Architecture](./monolithic-architecture/readme.md)
+- [Space-Based Architecture](./space-based-architecture/readme.md)
 - [Serverless](./serverless/readme.md)
 
 ## 🏆 Top 10 Best Architectural Approaches
