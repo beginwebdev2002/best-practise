@@ -16,14 +16,14 @@ last_updated: 2026-03-23
 </div>
 ---
 
-Этот документ описывает **лучшие практики (best practices)** для архитектуры Express.js. Фреймворк крайне нетребователен к структуре (unopinionated), поэтому соблюдение этих 30 строгих правил критично для поддержания чистоты и безопасности энтерпрайз-кода.
+This document outlines the **best practices** for Express.js architecture. The framework is highly unopinionated, meaning strict adherence to these 30 rules is critical for maintaining the cleanliness and security of enterprise code.
 # Context & Scope
-- **Primary Goal:** Предоставить жесткий архитектурный каркас MVC и 30 паттернов для создания безопасных Express.js API.
-- **Target Tooling:** AI-агенты (Cursor, Windsurf, Copilot) и Senior-разработчики.
+- **Primary Goal:** Provide a strict MVC architectural framework and 30 patterns for creating secure Express.js APIs.
+- **Target Tooling:** AI agents (Cursor, Windsurf, Copilot) and Senior Developers.
 - **Tech Stack Version:** Express 4.x / 5.x
 
 > [!IMPORTANT]
-> **Архитектурный стандарт (Contract):** Никогда не пишите бизнес-логику в роутерах. Строго разделяйте ответственности на `Router`, `Controller` и `Service`.
+> **Architectural Contract:** Never write business logic in routers. Strictly separate responsibilities into `Router`, `Controller`, and `Service`.
 ---
 
 ## 🔄 Architecture Data Flow
@@ -61,7 +61,7 @@ sequenceDiagram
 ### ❌ Bad Practice
 ```javascript
 app.post('/api/users', async (req, res) => {
-  /* бизнес-логика здесь */
+  /* business logic here */
 });
 ```
 ### ⚠️ Problem
@@ -71,16 +71,16 @@ Placing database connections, routing, and business logic into a single monolith
 router.post('/api/users', UserController.create);
 
 class UserController {
-  static async create(req, res, next) { /* делегация в сервис */ }
+  static async create(req, res, next) { /* delegation to service */ }
 }
 ```
 ### 🚀 Solution
-Роутер только описывает эндпоинты, Контроллер извлекает данные запроса и отдает ответ. Логика — в Сервисах.
+The Router only describes the endpoints; the Controller extracts request data and returns the response. Logic belongs in the Services.
 
 ## 2. Async/Await Error Wrapping (Express 4)
 ### ❌ Bad Practice
 ```javascript
-router.get('/', async (req, res) => { throw new Error('Crash'); }); // Express 4 не ловит rejection
+router.get('/', async (req, res) => { throw new Error('Crash'); }); // Express 4 does not catch rejections
 ```
 ### ⚠️ Problem
 Uncaught promise rejections in Express 4 route handlers bypass the global error middleware, causing the request to hang indefinitely. This leads to connection timeouts, memory leaks, and poor client experience.
@@ -90,12 +90,12 @@ const asyncHandler = fn => (req, res, next) => Promise.resolve(fn(req, res, next
 router.get('/', asyncHandler(UserController.get));
 ```
 ### 🚀 Solution
-В Express 4 всегда оборачивайте async-маршруты в `asyncHandler`, чтобы пробрасывать ошибки в глобальный Error Handler. (В Express 5 это встроено).
+In Express 4, always wrap async routes in `asyncHandler` to propagate errors to the global Error Handler. (This is built-in for Express 5).
 
 ## 3. Global Error Handler Middleware
 ### ❌ Bad Practice
 ```javascript
-app.use((req, res) => res.status(404).send('Not Found')); // Нет ловца ошибок 500
+app.use((req, res) => res.status(404).send('Not Found')); // Missing 500 error catcher
 ```
 ### ⚠️ Problem
 Handling errors locally in every controller duplicates logic and leads to inconsistent API responses. It also risks exposing sensitive internal error details (like stack traces) to the client if not caught properly.
@@ -107,12 +107,12 @@ app.use((err, req, res, next) => {
 });
 ```
 ### 🚀 Solution
-Определите единую middleware с 4 аргументами `(err, req, res, next)` в самом конце пайплайна для перехвата всех сбоев.
+Define a single middleware with 4 arguments `(err, req, res, next)` at the very end of the pipeline to intercept all failures.
 
 ## 4. Request Payload Validation (Joi / Zod)
 ### ❌ Bad Practice
 ```javascript
-if (!req.body.email || req.body.age < 18) return res.status(400); // Ручная проверка
+if (!req.body.email || req.body.age < 18) return res.status(400); // Manual validation
 ```
 ### ⚠️ Problem
 Lack of strict payload validation allows malformed data to penetrate the business logic and database layers. This causes runtime exceptions, data corruption, and potential injection attacks.
@@ -126,12 +126,12 @@ const validate = schema => (req, res, next) => {
 router.post('/', validate(userSchema), UserController.create);
 ```
 ### 🚀 Solution
-Проверяйте тело и параметры запросов на уровне Middleware с помощью надежных библиотек валидации (Joi, Zod), не пуская мусор в контроллеры.
+Validate the body and query parameters at the Middleware level using robust validation libraries (Joi, Zod) to prevent invalid data from reaching controllers.
 
 ## 5. Environment Variables separation
 ### ❌ Bad Practice
 ```javascript
-mongoose.connect('mongodb://admin:pass@host/db'); // Хардкод секретов
+mongoose.connect('mongodb://admin:pass@host/db'); // Hardcoded secrets
 ```
 ### ⚠️ Problem
 Hardcoding configuration values or scattering `process.env` access throughout the codebase tightly couples the app to its environment. This makes testing difficult and increases the risk of deploying with incorrect configurations.
@@ -141,11 +141,11 @@ require('dotenv').config();
 mongoose.connect(process.env.DB_URI);
 ```
 ### 🚀 Solution
-Используйте `dotenv` и конфигурационные файлы для разных окружений. Секреты хранятся только в `.env` (который добавлен в `.gitignore`).
+Use `dotenv` and configuration files for different environments. Secrets MUST strictly be stored only in `.env` (which must be added to `.gitignore`).
 
 ## 6. HTTP Security Headers (Helmet)
 ### ❌ Bad Practice
-// Приложение светит 'X-Powered-By: Express'
+// Application exposes 'X-Powered-By: Express'
 ### ⚠️ Problem
 Omitting security headers leaves the application vulnerable to common web exploits like Cross-Site Scripting (XSS), Clickjacking, and MIME-type sniffing, compromising client-side security.
 ### ✅ Best Practice
@@ -154,7 +154,7 @@ const helmet = require('helmet');
 app.use(helmet());
 ```
 ### 🚀 Solution
-Используйте `helmet` для автоматической защиты от XSS, clickjacking и скрытия заголовков фреймворка из коробки.
+Use `helmet` for automatic protection against XSS, clickjacking, and to hide framework headers out of the box.
 
 ## 7. Cross-Origin Resource Sharing (CORS)
 ### ❌ Bad Practice
@@ -169,11 +169,11 @@ const cors = require('cors');
 app.use(cors({ origin: 'https://myapp.com', credentials: true }));
 ```
 ### 🚀 Solution
-Используйте официальный модуль `cors`. Разрешайте доступ только доверенным доменам, а не всем подряд (`*`).
+Use the official `cors` module. Allow access ONLY to trusted domains, not universally (`*`).
 
-## 8. Rate Limiting (Защита от DDoS)
+## 8. Rate Limiting (DDoS Protection)
 ### ❌ Bad Practice
-// API открыт для миллиона запросов в секунду
+// API is open to a million requests per second
 ### ⚠️ Problem
 Lacking rate limiting exposes the API to Brute Force and Denial-of-Service (DDoS) attacks. Attackers can easily exhaust server resources, take down the application, or brute-force authentication endpoints.
 ### ✅ Best Practice
@@ -182,12 +182,12 @@ const rateLimit = require('express-rate-limit');
 app.use('/api/', rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 ```
 ### 🚀 Solution
-Защищайте все эндпоинты (а особенно авторизацию) встроенным лимитером запросов.
+Protect all endpoints (especially authentication) with a built-in request rate limiter.
 
 ## 9. Body Parsing & Payload Limits
 ### ❌ Bad Practice
 ```javascript
-app.use(express.json()); // Злоумышленник может отправить 500Мб JSON
+app.use(express.json()); // Attacker can send 500MB JSON payload
 ```
 ### ⚠️ Problem
 Allowing infinitely large request bodies makes the server susceptible to memory exhaustion and Denial-of-Service (DoS) attacks, as attackers can send massive payloads that crash the process.
@@ -197,7 +197,7 @@ app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 ```
 ### 🚀 Solution
-Строго ограничивайте размер принимаемого JSON через опцию `limit`, чтобы предотвратить исчерпание RAM.
+Strictly limit the size of incoming JSON payloads using the `limit` option to prevent RAM exhaustion.
 
 ## 10. Centralized Logging (Morgan + Winston)
 ### ❌ Bad Practice
@@ -212,12 +212,12 @@ app.use(morgan('combined', { stream: winstonLogger.stream }));
 winstonLogger.info('User signed in');
 ```
 ### 🚀 Solution
-Заменяйте `console.log` на логгеры вроде Winston (с уровнями log/warn/error) и Morgan (для фиксации HTTP-запросов).
+Replace `console.log` with robust loggers like Winston (with log/warn/error levels) and Morgan (for logging HTTP requests).
 
 ## 11. Database Connection Management
 ### ❌ Bad Practice
 ```javascript
-// Коннект к базе делается перед каждым запросом
+// Database connection is established before every request
 ```
 ### ⚠️ Problem
 Re-establishing database connections on every request adds massive latency and quickly exhausts connection pools. This causes the database server to refuse new connections, bringing down the entire application.
@@ -228,12 +228,12 @@ mongoose.connect(process.env.DB_URI).then(() => {
 });
 ```
 ### 🚀 Solution
-Открывайте единый пул подключений к БД (Connection Pool) при запуске приложения и используйте его во всех контроллерах.
+Open a single database Connection Pool at application startup and reuse it across all controllers.
 
 ## 12. JWT Authentication Middleware
 ### ❌ Bad Practice
 ```javascript
-// Проверка токена встроена в контроллер профиля
+// Token validation is embedded within the profile controller
 ```
 ### ⚠️ Problem
 Embedding authentication logic directly within business controllers violates the Single Responsibility Principle. This makes the logic difficult to test, reuse, and maintain, increasing the risk of bypassing security checks.
@@ -247,7 +247,7 @@ const authGuard = (req, res, next) => {
 };
 ```
 ### 🚀 Solution
-Аутентификация должна представлять собой изолированную Middleware, которая вешается на защищенные маршруты и прикрепляет объект `req.user`.
+Authentication MUST be implemented as an isolated Middleware applied to protected routes, which attaches the `req.user` object.
 
 ## 13. Role-Based Access Control (RBAC) Middleware
 ### ❌ Bad Practice
@@ -265,12 +265,12 @@ const requireRole = (...roles) => (req, res, next) => {
 router.delete('/:id', requireRole('admin', 'manager'), Controller.del);
 ```
 ### 🚀 Solution
-Доступ к маршрутам по ролям должен задаваться декларативно через Middleware.
+Role-based access to routes MUST strictly be defined declaratively via Middleware.
 
 ## 14. Standard API Response Wrapper
 ### ❌ Bad Practice
 ```javascript
-res.json({ foo: 'bar' }); // Каждый метод возвращает случайную структуру
+res.json({ foo: 'bar' }); // Every method returns a random structure
 ```
 ### ⚠️ Problem
 Inconsistent API response formats force clients to implement complex, error-prone parsing logic. It breaks the contract between client and server, leading to frustrating integration experiences.
@@ -282,12 +282,12 @@ class ApiResponse {
 }
 ```
 ### 🚀 Solution
-Используйте единый класс-утилиту для отправки ответов, чтобы клиент всегда ожидал `success` и `data`/`error` поля.
+Use a standardized utility class for sending responses to ensure the client deterministically expects `success` and `data`/`error` fields.
 
 ## 15. Pagination details in API
 ### ❌ Bad Practice
 ```javascript
-res.json(users); // Выбросить миллион записей
+res.json(users); // Dumps a million records
 ```
 ### ⚠️ Problem
 Returning massive, unpaginated datasets consumes excessive memory and network bandwidth. This leads to severe performance bottlenecks, sluggish API response times, and potential out-of-memory crashes.
@@ -298,11 +298,11 @@ const limit = parseInt(req.query.limit) || 10;
 res.json({ data: users, meta: { total, page, limit, pages: Math.ceil(total/limit) } });
 ```
 ### 🚀 Solution
-Любой список сущностей обязан иметь пагинацию (Offset или Cursor) и секцию `meta` в ответе.
+Any list of entities MUST implement pagination (Offset or Cursor) and include a `meta` section in the response.
 
 ## 16. Graceful Shutdown
 ### ❌ Bad Practice
-// При получении SIGTERM сервер моментально обрывает процессы
+// Upon receiving SIGTERM, the server abruptly terminates processes
 ### ⚠️ Problem
 Immediate process termination severs active connections and leaves database operations in an unknown state. This causes data corruption and forces clients to experience unhandled connection drops.
 ### ✅ Best Practice
@@ -314,11 +314,11 @@ process.on('SIGTERM', () => {
 });
 ```
 ### 🚀 Solution
-Корректно закрывайте активные HTTP-сессии и пулы подключений к БД перед остановкой контейнера.
+Gracefully close active HTTP sessions and database connection pools before stopping the container.
 
 ## 17. 404 Route Handler
 ### ❌ Bad Practice
-// Если роут не найден, возвращается пустая белая страница
+// If the route is not found, an empty white page is returned
 ### ⚠️ Problem
 Failing to explicitly handle unmatched routes results in inconsistent default framework responses (e.g., HTML error pages). This breaks API contracts for clients expecting structured JSON responses.
 ### ✅ Best Practice
@@ -328,13 +328,13 @@ app.use('*', (req, res) => {
 });
 ```
 ### 🚀 Solution
-Поместите этот обработчик ПОСЛЕ всех ваших маршрутов (но ДО глобального обработчика ошибок).
+Place this 404 handler AFTER all defined routes (but BEFORE the global error handler).
 
 ## 18. Application Structure (Folder organization)
 ### ❌ Bad Practice
 ```
 /routes.js
-/app.js  // Монолит на 5000 строк
+/app.js  // Monolith of 5000 lines
 ```
 ### ⚠️ Problem
 A monolithic, unstructured codebase prevents clear separation of concerns, making the system difficult to navigate, test, and scale. This drastically slows down development velocity and increases technical debt.
@@ -348,11 +348,11 @@ src/
   ├── routes/
 ```
 ### 🚀 Solution
-Строго разделяйте проект на логические папки. Имплементируйте многослойную архитектуру.
+Strictly organize the project into logical directories. Implement a multi-layered architecture.
 
 ## 19. Health Check Endpoint
 ### ❌ Bad Practice
-// Нет проверки жизнеспособности подов Kubernetes
+// Missing Kubernetes pod liveness checks
 ### ⚠️ Problem
 Without a dedicated health endpoint, container orchestrators (like Kubernetes) cannot accurately determine the pod's status. This leads to traffic being routed to dead containers or premature termination of healthy ones.
 ### ✅ Best Practice
@@ -362,7 +362,7 @@ app.get('/health', (req, res) => {
 });
 ```
 ### 🚀 Solution
-Всегда имейте эндпоинт `/health` для систем мониторинга, балансировщиков и Health Probes.
+MANDATORY: Implement a `/health` endpoint for monitoring systems, load balancers, and Health Probes.
 
 ## 20. Data Sanitization (XSS / NoSQL Injection)
 ### ❌ Bad Practice
@@ -379,11 +379,11 @@ app.use(mongoSanitize());
 app.use(xss());
 ```
 ### 🚀 Solution
-Защищайте БД от NoSQL-инъекций и XSS скриптов, очищая `req.body` и `req.query`.
+Protect the database from NoSQL injections and XSS scripts by sanitizing `req.body` and `req.query`.
 
 ## 21. Swagger / OpenAPI documentation
 ### ❌ Bad Practice
-// Документация в стороннем Word-файле
+// Documentation stored in an external Word document
 ### ⚠️ Problem
 Maintaining API documentation manually outside the codebase guarantees it will become outdated and inaccurate. This severely degrades the developer experience for frontend teams and third-party integrators.
 ### ✅ Best Practice
@@ -393,12 +393,12 @@ const swaggerDocument = require('./swagger.json');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 ```
 ### 🚀 Solution
-Генерируйте или обслуживайте API-документацию прямо в приложении (Swagger, OpenAPI).
+Generate or serve API documentation directly within the application (e.g., Swagger, OpenAPI).
 
 ## 22. Manual Dependency Injection
 ### ❌ Bad Practice
 ```javascript
-const UserService = require('./UserService'); // Прямой импорт, невозможно тестировать
+const UserService = require('./UserService'); // Direct import makes unit testing impossible
 ```
 ### ⚠️ Problem
 Hardcoding module dependencies using `require()` creates tight coupling and makes unit testing nearly impossible. It prevents swapping out real implementations with mocks, hindering test-driven development.
@@ -410,11 +410,11 @@ class UserController {
 const controller = new UserController(new UserService(db));
 ```
 ### 🚀 Solution
-Если не используете IoC (Awilix), инжектируйте зависимости вручную для облегчения Unit-тестирования.
+If an IoC container (like Awilix) is not used, manually inject dependencies to facilitate Unit Testing.
 
 ## 23. File Uploads (Multer)
 ### ❌ Bad Practice
-// Парсинг бинарников руками
+// Parsing binaries manually
 ### ⚠️ Problem
 Processing multipart/form-data manually is error-prone and inefficient. It risks memory bloat, incomplete file parsing, and exposes the server to vulnerabilities related to improperly handled binary streams.
 ### ✅ Best Practice
@@ -424,12 +424,12 @@ const upload = multer({ dest: 'uploads/', limits: { fileSize: 5 * 1024 * 1024 } 
 router.post('/avatar', upload.single('file'), Controller.upload);
 ```
 ### 🚀 Solution
-Используйте `multer` с обязательным ограничением размера файла (`limits`), чтобы обезопасить сервер от переполнения диска.
+Use `multer` with strict file size limitations (`limits`) to protect the server from disk overflow.
 
-## 24. Event Emitters (Фоновые задачи)
+## 24. Event Emitters (Background Tasks)
 ### ❌ Bad Practice
 ```javascript
-await emailService.send(); // Блокировка респонса
+await emailService.send(); // Blocks the response
 res.send('Welcome');
 ```
 ### ⚠️ Problem
@@ -444,11 +444,11 @@ myEmitter.emit('user_registered', user);
 res.send('Welcome');
 ```
 ### 🚀 Solution
-Снимайте длительные задачи с основного потока ответа с помощью нативных Events NodeJS.
+Offload long-running tasks from the main response thread using native Node.js Events.
 
 ## 25. Caching (Redis Middleware)
 ### ❌ Bad Practice
-// БД обрабатывает сложные расчеты на каждый хит
+// Database processes complex calculations on every hit
 ### ⚠️ Problem
 Recalculating expensive computations or querying the database for static data on every request creates severe performance bottlenecks. This overwhelms backend resources and limits the application's scalability.
 ### ✅ Best Practice
@@ -461,7 +461,7 @@ const cacheMiddleware = (req, res, next) => {
 }
 ```
 ### 🚀 Solution
-Используйте кэширование (Redis) для GET-запросов, результат которых меняется редко.
+Implement caching (e.g., Redis) for GET requests whose results change infrequently.
 
 ## 26. Custom Error Classes
 ### ❌ Bad Practice
@@ -482,27 +482,27 @@ class AppError extends Error {
 throw new AppError('User not found', 404);
 ```
 ### 🚀 Solution
-Создавайте кастомные классы ошибок, чтобы глобальный логгер мог отличать операционные ошибки (Operational) от фатальных крашей кода.
+Create custom error classes so the global logger can distinguish operational errors from fatal code crashes.
 
 ## 27. Proxy Trust in Production
 ### ❌ Bad Practice
 ```javascript
-req.ip // Дает '127.0.0.1' через Nginx
+req.ip // Returns '127.0.0.1' via Nginx
 ```
 ### ⚠️ Problem
 Failing to configure `trust proxy` behind a reverse proxy (like Nginx) results in the application seeing the proxy's IP instead of the client's. This breaks rate limiting, logging, and geolocation logic.
 ### ✅ Best Practice
 ```javascript
-app.set('trust proxy', 1); // Доверяем первому прокси
+app.set('trust proxy', 1); // Trust the first proxy
 ```
 ### 🚀 Solution
-Если Express стоит за Nginx / AWS ELB, включите `trust proxy`, чтобы получать реальные IP пользователей.
+If Express is running behind Nginx or AWS ELB, enable `trust proxy` to retrieve the actual IP addresses of users.
 
 ## 28. Separating Server from App
 ### ❌ Bad Practice
 ```javascript
 // app.js
-app.listen(3000); // Мешает интеграционным тестам
+app.listen(3000); // Interferes with integration tests
 ```
 ### ⚠️ Problem
 Starting the server within the same file that defines the Express application hinders integration testing. It prevents test runners (like Supertest) from dynamically binding to ephemeral ports without conflicting with the running server.
@@ -516,11 +516,11 @@ const app = require('./app');
 app.listen(3000);
 ```
 ### 🚀 Solution
-Экспортируйте Express App отдельно от `listen`, чтобы `supertest` мог легко запускать тесты на случайных портах.
+Export the Express App separately from `listen` to enable `supertest` to run tests on random ports without conflicts.
 
 ## 29. UUID Request Correlation
 ### ❌ Bad Practice
-// Ошибки в логах невозможно связать с конкретным пользователем
+// Log errors cannot be traced back to a specific user
 ### ⚠️ Problem
 Without a unique request ID, tracing a specific user's journey through application logs is impossible. This severely complicates debugging and incident response in distributed or high-traffic systems.
 ### ✅ Best Practice
@@ -533,11 +533,11 @@ app.use((req, res, next) => {
 });
 ```
 ### 🚀 Solution
-Устанавливайте уникальный ID каждому запросу для отслеживания его пути по всем логам и микросервисам.
+Assign a unique ID to each request to trace its journey across all logs and microservices.
 
 ## 30. Secure Session Management
 ### ❌ Bad Practice
-// Сессия хранится в памяти (MemoryStore) с открытыми куками
+// Sessions are stored in memory (MemoryStore) with exposed cookies
 ### ⚠️ Problem
 Storing sessions in memory causes memory leaks and prevents horizontal scaling, as sessions are not shared across instances. Additionally, exposing unencrypted cookies allows session hijacking.
 ### ✅ Best Practice
@@ -550,12 +550,12 @@ app.use(session({
 }));
 ```
 ### 🚀 Solution
-Настраивайте сессии с `httpOnly`, `secure` флагами и храните их в Redis/БД, а не в памяти Node.js.
+Configure sessions with `httpOnly` and `secure` flags, and store them in Redis or a database rather than Node.js memory.
 
 <br>
 
 <div align="center">
-  <b>Применяйте данные паттерны для построения максимально безопасной, быстрой и прозрачной архитектуры на Express.js! 🚂</b>
+  <b>Apply these patterns to build the most secure, fast, and transparent Express.js architecture! 🚂</b>
 </div>
 
 
