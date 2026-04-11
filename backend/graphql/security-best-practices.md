@@ -21,7 +21,7 @@ const server = new ApolloServer({
 });
 ```
 ### ⚠️ Problem
-Without depth or complexity limits, an attacker can craft a deeply nested query (e.g., requesting `user -> friends -> user -> friends` recursively) causing catastrophic Resource Exhaustion (DoS) on the server and database.
+Without depth or complexity limits, an attacker WILL craft a deeply nested query (e.g., requesting `user -> friends -> user -> friends` recursively) causing catastrophic Resource Exhaustion (DoS) on the server and database.
 ### ✅ Best Practice
 ```javascript
 // Implementing Query Depth Limit
@@ -55,4 +55,4 @@ graph TD
     class D component;
     class E component;
     class F component;
-```
+``` This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.

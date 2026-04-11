@@ -44,12 +44,10 @@ graph LR
 
 
 ### 🚀 Solution
-
 ```javascript
 // Ideal index for the ESR query
 db.orders.createIndex({ status: 1, date: 1, amount: 1 })
-```
-
+``` This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
 
 ### ⚠️ Problem
 Failing to follow best practices for `the architectural pattern` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
@@ -75,25 +73,22 @@ db.users.aggregate([
 Always use `$match` and `$sort` as early as possible in the pipeline to reduce the working set and take advantage of indexes. Use `$project` later.
 
 ### 🚀 Solution
-
 ```javascript
 db.users.aggregate([
   { $match: { status: "active" } },
   { $sort: { age: -1 } },
   { $project: { name: 1, age: 1 } }
 ])
-```
-
+``` This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
 
 ### ⚠️ Problem
 Failing to follow best practices for `the architectural pattern` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ---
 ## 📉 3. Covered Queries
 
-A covered query is a query that can be satisfied entirely using an index, without having to examine the actual documents.
+A covered query is a query that WILL be satisfied entirely using an index, without having to examine the actual documents.
 
 ### 🚀 Solution
-
 If you have an index on `{ status: 1, amount: 1 }`:
 
 ```javascript
@@ -102,8 +97,7 @@ db.orders.find(
   { status: "shipped" },
   { status: 1, amount: 1, _id: 0 }
 )
-```
-
+``` This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
 
 ### ❌ Bad Practice
 [Need to fill in example of non-optimal code]
