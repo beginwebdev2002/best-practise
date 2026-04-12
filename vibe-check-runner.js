@@ -32,7 +32,7 @@ function getModifiedFiles() {
   }
 }
 
-async function syncBenchmarks(tech, mdContent) {
+async function syncBenchmarks(tech, mdContent, retries = 3, delay = 2000) {
   try {
     const prompt = `Based on the following documentation:\n\n${mdContent}\n\n1. Generate a "Golden Prompt" (a comprehensive instruction for generating a typical module using this technology) in JSON format: {"golden_prompt": "...", "tech": "${tech}"}\n2. Generate a JSON Schema for TS-Morph AST validation rules enforcing DDD/FSD layers and strict typing for this technology. Format: {"$schema": "...", "type": "object", "properties": {"forbidden_patterns": {"type": "array", "contains": {"enum": [...]}}}}.\n\nRespond strictly with ONLY a JSON array containing these two objects in order. No markdown wrappers.`;
     const response = await ai.models.generateContent({
@@ -40,7 +40,7 @@ async function syncBenchmarks(tech, mdContent) {
         contents: prompt
     });
     let text = response.text || '';
-    text = text.replace(/^```[a-z]*\n/gm, '').replace(/```$/gm, '').trim();
+    text = text.replace(/^\`\`\`[a-z]*\n/gm, '').replace(/\`\`\`$/gm, '').trim();
 
     let parsed;
     try {
@@ -61,6 +61,15 @@ async function syncBenchmarks(tech, mdContent) {
       console.log(`Autonomously generated benchmark suites and criteria for ${tech}.`);
     }
   } catch (err) {
+    if (err.status === 429 || err.message?.includes('429') || err.message?.includes('RESOURCE_EXHAUSTED')) {
+      if (retries > 0) {
+        console.warn(`Rate limited in syncBenchmarks. Retrying in ${delay}ms... (${retries} retries left)`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+        return syncBenchmarks(tech, mdContent, retries - 1, delay * 2);
+      } else {
+        console.error('Max retries reached for AI generation in syncBenchmarks.');
+      }
+    }
     console.error(`Error syncing benchmarks for ${tech}:`, err);
   }
 }
@@ -147,6 +156,7 @@ function analyzeAST(sourceFile, tech) {
   for (const param of parameters) {
       if (!param.getTypeNode()) {
           missingTypes++;
+          score.type -= 5;
       }
   }
   if (missingTypes > 0) {
@@ -159,12 +169,7 @@ function analyzeAST(sourceFile, tech) {
   }
 
   // Enforce explicit parameter types
-  const parameters = sourceFile.getDescendantsOfKind(SyntaxKind.Parameter);
-  for (const param of parameters) {
-    if (!param.getTypeNode()) {
-      score.type -= 5;
-    }
-  }
+
 
   // Error handling pattern check
   const tryStatements = sourceFile.getDescendantsOfKind(SyntaxKind.TryStatement);
