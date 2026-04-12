@@ -144,18 +144,15 @@ LIMIT 50;
 ```
 #### 🚀 Solution
 Be explicit in queries: never use `SELECT *`. Utilize Keyset Pagination (Cursor-based) for handling large datasets to maintain O(1) performance during deep fetching. Always use `EXPLAIN ANALYZE` to pinpoint missing indexes or sequence scans.
-## 📚 Specialized Documentation
-- [architecture.md](./architecture.md)
-- [security-best-practices.md](./security-best-practices.md)
-- [database-optimization.md](./database-optimization.md)
 ---
 
 [Back to Top](#)
 
 
-## 📚 Specialized Modules
 
-Explore advanced architectural topics for PostgreSQL:
-- [Architecture](./architecture.md)
+
+## 📑 Specialized Documentation
+
 - [Database Optimization](./database-optimization.md)
 - [Security Best Practices](./security-best-practices.md)
+- [Architecture](./architecture.md)

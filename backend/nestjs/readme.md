@@ -26,6 +26,11 @@ This document defines the **best practices** for the NestJS framework. The guide
 > **Architectural Contract:** Use strict TypeScript typing, DI (Dependency Injection), and a modular structure. Business logic must be isolated from HTTP layer details and databases.
 ---
 
+## 📑 Specialized Documentation
+
+- [Security Best Practices](./security-best-practices.md)
+- [Architecture](./architecture.md)
+
 ## 🔄 Architecture Data Flow
 
 ```mermaid
@@ -52,9 +57,6 @@ sequenceDiagram
     Controller-->>Client: HTTP Response
 ```
 
-## 📚 Specialized Documentation
-- [architecture.md](./architecture.md)
-- [security-best-practices.md](./security-best-practices.md)
 ---
 ### 🚨 1. Clean Architecture Modules (Logic Isolation)
 #### ❌ Bad Practice
@@ -564,8 +566,5 @@ Call `enableShutdownHooks()` to catch SIGINT/SIGTERM and safely terminate databa
 </div>
 
 
-## 📚 Specialized Modules
 
 Explore advanced architectural topics for NestJS:
-- [Architecture](./architecture.md)
-- [Security Best Practices](./security-best-practices.md)
