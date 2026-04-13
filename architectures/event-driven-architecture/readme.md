@@ -54,3 +54,42 @@ To deeply understand the nuances of EDA, consult the following specialized modul
   [Back to Architecture Map](../readme.md) <br><br>
   <b>Adhere to these EDA principles to establish a relentlessly scalable, highly-decoupled system ecosystem! 🚀</b>
 </div>
+
+## 1. Synchronous Blocking on Events
+
+### ❌ Bad Practice
+```typescript
+class OrderService {
+  async createOrder(data: OrderData) {
+    const order = await this.db.orders.save(data);
+
+    // BAD: Synchronously waiting for another service's event bus
+    // If the payment service is slow or down, this entire request fails
+    const paymentResult = await this.eventBus.publishAndWait('OrderCreated', order);
+
+    return { order, paymentStatus: paymentResult };
+  }
+}
+```
+
+### ⚠️ Problem
+Treating an event bus like an RPC (Remote Procedure Call) mechanism defeats the purpose of EDA. Synchronous waiting re-introduces tight temporal coupling. If the consumer is slow, it blocks the producer, leading to cascading failures and timeouts across the system.
+
+### ✅ Best Practice
+```typescript
+class OrderService {
+  async createOrder(data: OrderData) {
+    // 1. Save local state
+    const order = await this.db.orders.save({ ...data, status: 'PENDING' });
+
+    // 2. Fire and forget the event (Asynchronous)
+    await this.eventBus.publish('OrderCreated', { orderId: order.id });
+
+    // 3. Immediately return success to the client
+    return { orderId: order.id, status: 'PROCESSING_PAYMENT' };
+  }
+}
+```
+
+### 🚀 Solution
+Strictly enforce asynchronous "fire-and-forget" behavior for events. The producer MUST NOT wait for a response from the consumer. Use eventual consistency and asynchronous workflows (e.g., WebSockets, polling, or client-side subscriptions) to handle the outcome of the event processing.
