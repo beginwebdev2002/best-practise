@@ -64,3 +64,12 @@ graph TD
 1. **Client Focus:** Each BFF is built and maintained by the same team that builds the frontend client.
 2. **Aggregation:** The BFF orchestrates and aggregates calls to various downstream microservices.
 3. **Resilience:** The BFF must gracefully handle failures from downstream services, ensuring a seamless user experience.
+
+```mermaid
+graph LR
+    Focus[Client Focus] --- Agg[Aggregation]
+    Agg --- Resilience[Resilience]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class Focus,Agg,Resilience default;
+```

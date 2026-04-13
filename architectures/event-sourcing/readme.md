@@ -56,3 +56,12 @@ graph TD
 1. **Immutable Log:** Events are facts that happened in the past. They cannot be changed or deleted, only appended.
 2. **Replayable State:** Any entity's current state can be fully reconstructed by replaying all its past events from the beginning.
 3. **Decoupled Read/Write:** Often combined with CQRS, Event Sourcing naturally decouples the write model (Event Store) from the read models (Projections).
+
+```mermaid
+graph LR
+    Immutable[Immutable Log] --- Replayable[Replayable State]
+    Replayable --- Decoupled[Decoupled Read/Write]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class Immutable,Replayable,Decoupled default;
+```
