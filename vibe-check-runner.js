@@ -1,8 +1,8 @@
 import { Project, SyntaxKind } from 'ts-morph';
-import fs from 'node:fs/promises';
-import fsSync from 'node:fs';
+import fs from 'node:fs';
+import fsPromises from 'node:fs/promises';
 import path from 'node:path';
-import { execSync } from 'node:child_process';
+import { execSync, execFileSync } from 'node:child_process';
 import { GoogleGenAI } from '@google/genai';
 
 const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_AI_API_KEY });
@@ -54,11 +54,11 @@ async function syncBenchmarks(tech, mdContent, retries = 5, delay = 10000) {
     if (Array.isArray(parsed) && parsed.length >= 2) {
       const suiteDir = path.join('benchmarks', 'suites');
       const criteriaDir = path.join('benchmarks', 'criteria');
-      await fs.mkdir(suiteDir, { recursive: true });
-      await fs.mkdir(criteriaDir, { recursive: true });
+      if (!fs.existsSync(suiteDir)) await fsPromises.mkdir(suiteDir, { recursive: true });
+      if (!fs.existsSync(criteriaDir)) await fsPromises.mkdir(criteriaDir, { recursive: true });
 
-      await fs.writeFile(path.join(suiteDir, `${tech}.json`), JSON.stringify(parsed[0], null, 2));
-      await fs.writeFile(path.join(criteriaDir, `${tech}-schema.json`), JSON.stringify(parsed[1], null, 2));
+      await fsPromises.writeFile(path.join(suiteDir, `${tech}.json`), JSON.stringify(parsed[0], null, 2));
+      await fsPromises.writeFile(path.join(criteriaDir, `${tech}-schema.json`), JSON.stringify(parsed[1], null, 2));
       console.log(`Autonomously generated benchmark suites and criteria for ${tech}.`);
     }
   } catch (err) {
@@ -169,7 +169,8 @@ function analyzeAST(sourceFile, tech) {
   }
 
   // Enforce explicit parameter types
-  for (const param of sourceFile.getDescendantsOfKind(SyntaxKind.Parameter)) {
+  const explicitParameters = sourceFile.getDescendantsOfKind(SyntaxKind.Parameter);
+  for (const param of explicitParameters) {
     if (!param.getTypeNode()) {
       score.type -= 5;
     }
@@ -253,7 +254,7 @@ async function runVibeCheck() {
       }
     }
 
-    const mdContent = await fs.readFile(file, 'utf-8');
+    const mdContent = await fsPromises.readFile(file, 'utf-8');
 
     await syncBenchmarks(tech, mdContent);
 
@@ -263,7 +264,7 @@ async function runVibeCheck() {
       continue;
     }
 
-    const suiteConfig = JSON.parse(await fs.readFile(suitePath, 'utf-8'));
+    const suiteConfig = JSON.parse(await fsPromises.readFile(suitePath, 'utf-8'));
 
     const generatedCode = await simulateAIGeneration(suiteConfig.golden_prompt, tech, mdContent);
 
@@ -281,19 +282,19 @@ async function runVibeCheck() {
     if (score >= 95) {
       console.log(`✅ Validation passed for ${file}. Updating badge and auto-committing.`);
 
-      let content = await fs.readFile(file, 'utf-8');
+      let content = await fsPromises.readFile(file, 'utf-8');
       if (!content.includes('[![Vibe-Coding Verified]')) {
          content = content.replace(/^# /, '[![Vibe-Coding Verified](https://img.shields.io/badge/Vibe--Coding-Verified-brightgreen?style=for-the-badge)](#)\n\n# ');
-         await fs.writeFile(file, content);
+         await fsPromises.writeFile(file, content);
       }
 
       try {
-        execSync(`git add ${file}`);
+        execFileSync('git', ['add', file]);
         execSync('git add benchmarks/suites/*.json benchmarks/criteria/*.json 2>/dev/null || true');
         // Only commit if there are changes (badge might already be there)
         const status = execSync('git status --porcelain', { encoding: 'utf-8' });
         if (status.includes(file) || status.includes('benchmarks/')) {
-           execSync(`git commit -m "[chore: benchmark-sync]"`);
+           execSync(`git commit -m "[chore: fidelity-pass]"`);
            execSync(`git push origin HEAD:main`);
         } else {
            console.log(`Badge already present in ${file}, skipping commit.`);
@@ -306,16 +307,16 @@ async function runVibeCheck() {
       console.error(`❌ Validation failed for ${file}. Score below 95%.`);
 
       const reportDir = path.join('benchmarks', 'logs');
-      await fs.mkdir(reportDir, { recursive: true });
+      if (!fs.existsSync(reportDir)) await fsPromises.mkdir(reportDir, { recursive: true });
 
       const reportPath = path.join(reportDir, `violation-report.md`);
       const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n\`\`\`typescript\n${generatedCode}\n\`\`\`\n\nReview the AST rules.`;
 
-      await fs.writeFile(reportPath, reportContent);
+      await fsPromises.writeFile(reportPath, reportContent);
       console.log(`Generated violation report: ${reportPath}`);
 
       try {
-        execSync(`gh issue create --title "Critical Issue: Fidelity Gap for ${file}" --label "critical,bug" --body-file ${reportPath}`);
+        execFileSync('gh', ['issue', 'create', '--title', `Critical Issue: Fidelity Gap for ${file}`, '--label', 'critical,bug', '--body-file', reportPath]);
         console.log(`Created GitHub Issue for ${file}`);
       } catch (err) {
         console.error('Failed to create GitHub Issue (gh cli might not be installed or authenticated):', err.message);

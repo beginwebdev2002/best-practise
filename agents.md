@@ -10,7 +10,8 @@ last_updated: 2026-03-29
 topic: TypeScript
 complexity: Architect
 last_evolution: 2026-03-29
-vibe_coding_ready: true---
+vibe_coding_ready: true
+---
 
 # AGENTS.md: The Meta-Intelligence & Vibe Coding Protocol
 ## 🌍 1. Global Vision
