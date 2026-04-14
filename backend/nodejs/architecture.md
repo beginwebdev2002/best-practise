@@ -63,7 +63,8 @@ app.post('/api/users', async (req, res, next) => {
 ### 🚀 Solution
 Controllers MUST ONLY handle HTTP payload parsing and response formatting. Core business operations MUST be delegated to isolated Service classes.
 
-## 2. 🗂️ Dependency Inversion
+## 2. 🗂️ Dependency Inversion This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 // Hardcoding a database dependency directly into a service
@@ -94,6 +95,7 @@ class UserService {
 STRICTLY apply Dependency Injection. Services MUST receive infrastructural dependencies via their constructor, enabling decoupled layers and testability.
 
 ## 3. 🌐 Global State Mutation
+
 ### ❌ Bad Practice
 ```javascript
 // Mutating global process.env during runtime
@@ -112,4 +114,4 @@ const config = Object.freeze({
 });
 ```
 ### 🚀 Solution
-Configuration objects MUST be locked and immutable after initialization. FORBID any runtime mutations to the global execution environment.
+Configuration objects MUST be locked and immutable after initialization. FORBID any runtime mutations to the global execution environment. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.

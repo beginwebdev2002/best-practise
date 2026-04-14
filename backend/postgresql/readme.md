@@ -47,7 +47,7 @@ CREATE TABLE users (
 );
 ```
 #### 🚀 Solution
-Start with 3NF to minimize redundancy. Use `UUIDv7` for primary keys instead of `SERIAL` to ensure globally unique identifiers that also retain time-based sorting advantages for indexing. Selectively denormalize using Materialized Views where read-heavy workloads require optimization.
+Start with 3NF to minimize redundancy. Use `UUIDv7` for primary keys instead of `SERIAL` to ensure globally unique identifiers that also retain time-based sorting advantages for indexing. Selectively denormalize using Materialized Views where read-heavy workloads require optimization. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
 
 ### 🔄 Data Flow Lifecycle
 
@@ -72,7 +72,7 @@ sequenceDiagram
 DB_URL=postgres://app_user:pass@db:5432/app_db?sslmode=disable
 ```
 #### ⚠️ Problem
-Using unencrypted connections over internal networks enables MITM (Man-in-the-Middle) attacks, compromising credentials and sensitive client data. Connecting directly without a pooler can lead to application crashes from connection exhaustion during high load.
+Using unencrypted connections over internal networks enables MITM (Man-in-the-Middle) attacks, compromising credentials and sensitive client data. Connecting directly without a pooler WILL lead to application crashes from connection exhaustion during high load.
 #### ✅ Best Practice
 ```yaml
 # Encrypted connection via PgBouncer
@@ -88,7 +88,7 @@ Enforce SSL/TLS for all database connections (`sslmode=verify-full` in productio
 DB_URL=postgres://postgres:password@db:5432/app_db
 ```
 #### ⚠️ Problem
-Using the `postgres` superuser for the application grants it the ability to drop tables, modify configurations, and access other databases. A single SQL injection vulnerability can compromise the entire cluster.
+Using the `postgres` superuser for the application grants it the ability to drop tables, modify configurations, and access other databases. A single SQL injection vulnerability WILL compromise the entire cluster.
 #### ✅ Best Practice
 ```sql
 -- Creating a dedicated role with least privilege
@@ -123,7 +123,7 @@ SELECT indexrelid::regclass as index, pg_size_pretty(pg_relation_size(indexrelid
 FROM pg_stat_user_indexes WHERE idx_scan = 0;
 ```
 #### 🚀 Solution
-Apply indexes strategically based on query access patterns. Use B-Tree indexes for equality/ranges, and GIN/GiST indexes for Full-Text Search or JSONB. Regularly monitor and drop unused indexes (e.g., via `pg_stat_user_indexes`).
+Apply indexes strategically based on query access patterns. Use B-Tree indexes for equality/ranges, and GIN/GiST indexes for Full-Text Search or JSONB. Regularly monitor and drop unused indexes (e.g., via `pg_stat_user_indexes`). This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
 
 ### Query Optimization
 #### ❌ Bad Practice
