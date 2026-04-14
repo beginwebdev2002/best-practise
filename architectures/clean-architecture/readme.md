@@ -32,6 +32,15 @@ last_updated: 2026-03-29
 2. **Strict Boundaries:** Enforce rigid structural barriers between business logic and infrastructure.
 3. **Decoupling:** Decouple how data is stored from how it is queried and displayed.
 
+```mermaid
+graph LR
+    Isolation[Isolation & Testability] --- Boundaries[Strict Boundaries]
+    Boundaries --- Decoupling[Decoupling]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class Isolation,Boundaries,Decoupling default;
+```
+
 ## Architecture Diagram
 
 ```mermaid
