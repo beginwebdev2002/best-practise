@@ -41,7 +41,7 @@ async function syncBenchmarks(tech, mdContent, retries = 5, delay = 10000) {
         contents: prompt
     });
     let text = response.text || '';
-    text = text.replace(/^```[a-z]*\n/gm, '').replace(/```$/gm, '').trim();
+    text = text.replace(/^\`\`\`[a-z]*\n/gm, '').replace(/\`\`\`$/gm, '').trim();
 
     let parsed;
     try {
@@ -157,6 +157,7 @@ function analyzeAST(sourceFile, tech) {
   for (const param of parameters) {
       if (!param.getTypeNode()) {
           missingTypes++;
+          score.type -= 5;
       }
   }
   if (missingTypes > 0) {
