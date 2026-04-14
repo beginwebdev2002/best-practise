@@ -33,6 +33,16 @@ This engineering directive defines the **best practices** for the Micro-frontend
 3. **Isolated State:** Micro-frontends should not share global state directly; communication must be handled via established protocols (e.g., Custom Events, Window, Event Bus).
 4. **Resilience:** Failure in one micro-frontend should not crash the entire application (graceful degradation).
 
+```mermaid
+graph LR
+    Deploy[Independent Deployments] --- TechAgnostic[Technology Agnostic]
+    TechAgnostic --- State[Isolated State]
+    State --- Resilience[Resilience & Graceful Degradation]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class Deploy,TechAgnostic,State,Resilience default;
+```
+
 ---
 
 ## 1. Global State Coupling

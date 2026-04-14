@@ -25,15 +25,16 @@ This document establishes **best practices** for building and maintaining MongoD
 > [!IMPORTANT]
 > **Architectural Contract:** MongoDB is schema-less by nature, but production applications require strict schema validation at the database level and through ORM/ODMs like Mongoose. Never allow unstructured data to enter the persistence layer without validation.
 ---
-## 📚 Specialized Documentation
 
-For deep dives into specific topics, consult the specialized guides:
 
-- 🏛️ [**Architecture & Design**](./architecture.md): Boundary definitions, entity relationships, and structural constraints.
-- ⚡ [**Database Optimization**](./database-optimization.md): Indexing strategies (ESR Rule) and aggregation pipelines.
-- 🔒 [**Security Best Practices**](./security-best-practices.md): RBAC, field-level encryption, and NoSQL injection prevention.
 ---
 ## 🏗️ Core Principles
+
+## 📑 Specialized Documentation
+
+- [Database Optimization](./database-optimization.md)
+- [Security Best Practices](./security-best-practices.md)
+- [Architecture](./architecture.md)
 
 ### 🚨 1. Schema Validation
 #### ❌ Bad Practice
@@ -79,9 +80,5 @@ db.createCollection("users", {
 [⬆ Back to Top](#-mongodb-production-ready-best-practices)
 
 
-## 📚 Specialized Modules
 
 Explore advanced architectural topics for MongoDB:
-- [Architecture](./architecture.md)
-- [Database Optimization](./database-optimization.md)
-- [Security Best Practices](./security-best-practices.md)
