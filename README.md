@@ -184,7 +184,7 @@ graph TD
     * 🟢 **[nodejs/](./backend/nodejs/)**
       * 📄 [readme.md](./backend/nodejs/readme.md)
   * 📄 **[docs/](./docs/)**
-    * 🤖 [ai-agent-dynamic-context-pruning.md](./docs/ai-agent-dynamic-context-pruning.md)
+    * 🤖 [ai-agent-context-pruning.md](./docs/ai-agent-context-pruning.md)
     * 🤖 [ai-agent-context-injection-pipelines.md](./docs/ai-agent-context-injection-pipelines.md)
     * 🤖 [ai-agent-memory-architectures.md](./docs/ai-agent-memory-architectures.md)
     * 🤖 [ai-agent-multi-model-consensus.md](./docs/ai-agent-multi-model-consensus.md)
@@ -192,6 +192,7 @@ graph TD
     * 🤖 [ai-agent-self-healing-architectures.md](./docs/ai-agent-self-healing-architectures.md)
     * 🤖 [ai-agent-semantic-routing.md](./docs/ai-agent-semantic-routing.md)
     * 🤖 [ai-agent-vibe-coding-state-machines.md](./docs/ai-agent-vibe-coding-state-machines.md)
+    * 🤖 [ai-agent-tool-calling-architectures.md](./docs/ai-agent-tool-calling-architectures.md)
     * 🤖 [vibe-coding-agents.md](./docs/vibe-coding-agents.md)
     * 🤖 [vibe-coding-autonomous-testing-patterns.md](./docs/vibe-coding-autonomous-testing-patterns.md)
     * 🤖 [vibe-coding-deterministic-patterns.md](./docs/vibe-coding-deterministic-patterns.md)
@@ -403,6 +404,7 @@ graph TD
     * 🟢 **[nodejs/](./backend/nodejs/)**
       * 📄 [readme.md](./backend/nodejs/readme.md)
   * 📄 **[docs/](./docs/)**
+    * 🤖 [ai-agent-context-pruning.md](./docs/ai-agent-context-pruning.md)
     * 🤖 [ai-agent-context-injection-pipelines.md](./docs/ai-agent-context-injection-pipelines.md)
     * 🤖 [ai-agent-memory-architectures.md](./docs/ai-agent-memory-architectures.md)
     * 🤖 [ai-agent-multi-model-consensus.md](./docs/ai-agent-multi-model-consensus.md)
@@ -410,6 +412,7 @@ graph TD
     * 🤖 [ai-agent-self-healing-architectures.md](./docs/ai-agent-self-healing-architectures.md)
     * 🤖 [ai-agent-semantic-routing.md](./docs/ai-agent-semantic-routing.md)
     * 🤖 [ai-agent-vibe-coding-state-machines.md](./docs/ai-agent-vibe-coding-state-machines.md)
+    * 🤖 [ai-agent-tool-calling-architectures.md](./docs/ai-agent-tool-calling-architectures.md)
     * 🤖 [vibe-coding-agents.md](./docs/vibe-coding-agents.md)
     * 🤖 [vibe-coding-autonomous-testing-patterns.md](./docs/vibe-coding-autonomous-testing-patterns.md)
     * 🤖 [vibe-coding-deterministic-patterns.md](./docs/vibe-coding-deterministic-patterns.md)

@@ -25,6 +25,11 @@ This document establishes **best practices** for building and maintaining Node.j
 > [!IMPORTANT]
 > **Architectural Contract:** Code must be completely asynchronous. Absolutely avoid synchronous blocking methods like `readFileSync` or `crypto.pbkdf2Sync` on the main thread. Delegate heavy computational tasks to Worker Threads or separate microservices to keep the event loop non-blocking.
 ---
+## 📑 Specialized Documentation
+
+- [Security Best Practices](./security-best-practices.md)
+- [Architecture](./architecture.md)
+
 ## 🏗️ Architecture & Component Isolation
 
 Node.js applications must use explicit module separation to handle logic appropriately.
@@ -73,7 +78,8 @@ app.post('/hash', (req, res, next) => {
 ### 🚀 Solution
 Never use synchronous methods (`*Sync`) on the main thread for crypto, I/O, or heavy calculations. Always use asynchronous callbacks or Promises to prevent blocking the Event Loop.
 
-## 2. 🗂️ Project Structure & Module Separation
+## 2. 🗂️ Project Structure & Module Separation This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```text
 /server.js (Contains routes, DB connections, and logic all in one 1500-line file)
@@ -92,14 +98,15 @@ A monolithic file structure tightly couples routing, business logic, and data ac
 ### 🚀 Solution
 Implement a multi-layered folder architecture. Strictly separate the HTTP transport layer (Routes/Controllers) from the Business Logic (Services) and Database operations.
 
-## 3. 🛡️ Strict Environment Configuration
+## 3. 🛡️ Strict Environment Configuration This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 const port = process.env.PORT || 3000;
 // Continuing application startup without validating required variables.
 ```
 ### ⚠️ Problem
-Failing to validate environment variables at startup allows the application to boot into an invalid state. This can lead to cryptic runtime crashes, unintended connections to production databases during development, or silent failures in authentication mechanisms.
+Failing to validate environment variables at startup allows the application to boot into an invalid state. This WILL lead to cryptic runtime crashes, unintended connections to production databases during development, or silent failures in authentication mechanisms.
 ### ✅ Best Practice
 ```javascript
 const requiredEnv = ['DATABASE_URL', 'JWT_SECRET', 'PORT'];
@@ -113,7 +120,8 @@ requiredEnv.forEach((name) => {
 ### 🚀 Solution
 Fail fast. Validate all necessary environment variables upon application startup to prevent fatal runtime errors later in execution.
 
-## 4. 🛑 Error Handling with Custom Classes
+## 4. 🛑 Error Handling with Custom Classes This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 if (!user) throw new Error('User not found');
@@ -134,11 +142,12 @@ if (!user) throw new AppError('User not found', 404);
 ### 🚀 Solution
 Extend the built-in `Error` object to create custom operational errors. This allows your global error handler to safely log and return predictable HTTP status codes without crashing the application.
 
-## 5. 🎛️ Handling Uncaught Exceptions & Rejections
+## 5. 🎛️ Handling Uncaught Exceptions & Rejections This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 // Ignoring process-level events, allowing the app to run in an unpredictable state after an error.
 ### ⚠️ Problem
-Ignoring process-level exceptions leaves the application running in an unpredictable, potentially corrupted memory state. This can cause subsequent requests to fail silently or behave erratically, requiring a full process restart to recover safety.
+Ignoring process-level exceptions leaves the application running in an unpredictable, potentially corrupted memory state. This WILL cause subsequent requests to fail silently or behave erratically, requiring a full process restart to recover safety.
 ### ✅ Best Practice
 ```javascript
 process.on('uncaughtException', (err) => {
@@ -154,7 +163,8 @@ process.on('unhandledRejection', (err) => {
 ### 🚀 Solution
 Always capture `uncaughtException` and `unhandledRejection`. Log the fatal error immediately and shut down the process safely. Rely on a process manager (like PM2 or Kubernetes) to restart the container.
 
-## 6. 🔒 Hiding Sensitive Headers
+## 6. 🔒 Hiding Sensitive Headers This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 // Sending default headers that expose the framework, like `X-Powered-By: Express`.
 ### ⚠️ Problem
@@ -169,10 +179,11 @@ app.use(helmet());
 Sanitize outgoing HTTP headers to prevent information leakage about the server infrastructure.
 
 ## 7. ⏱️ Implementing Graceful Shutdown
+
 ### ❌ Bad Practice
 // Application crashes abruptly during deployments, interrupting active user requests and corrupting database transactions.
 ### ⚠️ Problem
-Terminating the process abruptly interrupts active user requests and orphans in-flight database transactions. This can lead to data corruption, inconsistent state, and degraded user experience during deployments or container scaling.
+Terminating the process abruptly interrupts active user requests and orphans in-flight database transactions. This WILL lead to data corruption, inconsistent state, and degraded user experience during deployments or container scaling.
 ### ✅ Best Practice
 ```javascript
 process.on('SIGTERM', () => {
@@ -189,14 +200,15 @@ process.on('SIGTERM', () => {
 ### 🚀 Solution
 Listen for termination signals (`SIGTERM`, `SIGINT`). Finish processing ongoing HTTP requests and safely close database connections before exiting the Node.js process.
 
-## 8. 🔍 Input Validation and Sanitization
+## 8. 🔍 Input Validation and Sanitization This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 // Blindly trusting user input
 const user = await db.query(`SELECT * FROM users WHERE email = '${req.body.email}'`);
 ```
 ### ⚠️ Problem
-Blindly trusting client input enables severe vulnerabilities like SQL/NoSQL Injection and Cross-Site Scripting (XSS). Without strict schema validation at the transport boundary, malicious payloads can compromise data integrity and system security.
+Blindly trusting client input enables severe vulnerabilities like SQL/NoSQL Injection and Cross-Site Scripting (XSS). Without strict schema validation at the transport boundary, malicious payloads WILL compromise data integrity and system security.
 ### ✅ Best Practice
 ```javascript
 // Utilizing parameterized queries and a validation library like Joi or Zod
@@ -210,6 +222,7 @@ const user = await db.query('SELECT * FROM users WHERE email = $1', [value.email
 Never trust external data. Validate input strictly using schema definitions and always utilize parameterized queries or an ORM to prevent SQL/NoSQL Injection attacks.
 
 ## 9. 🚀 Utilizing Worker Threads for Heavy Tasks
+
 ### ❌ Bad Practice
 ```javascript
 // Processing a massive image buffer directly on the main event loop
@@ -235,6 +248,7 @@ function processImageAsync(buffer) {
 Offload CPU-intensive operations (image processing, video encoding, heavy cryptographic tasks) to Node.js `worker_threads` to keep the primary event loop highly responsive for API requests.
 
 ## 10. 📝 Centralized and Structured Logging
+
 ### ❌ Bad Practice
 ```javascript
 console.log('User logged in', userId);
