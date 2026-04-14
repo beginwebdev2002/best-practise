@@ -513,7 +513,50 @@ workspace/
 
 ---
 
-### 12. Backend-For-Frontend (BFF)
+### 12. Event Sourcing
+[![Event Sourcing](https://img.shields.io/badge/Architecture-Event_Sourcing-darkgreen?style=flat-square)](#)
+
+**Description:** A pattern where all changes to application state are stored as a sequence of events. Instead of storing just the current state of the data in a domain, use an append-only store to record the full series of actions taken on that data.
+**📖 Map of Patterns:** [Go to Event Sourcing Guidelines](./event-sourcing/readme.md)
+
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    Command[Command] --> Aggregate[Aggregate]
+    Aggregate --> EventStore[(Event Store)]
+    EventStore --> EventBus[Event Bus]
+    EventBus --> ReadModelUpdater[Read Model Updater]
+    ReadModelUpdater --> ReadDB[(Read DB)]
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Command component;
+    class Aggregate component;
+    class EventStore component;
+    class EventBus component;
+    class ReadModelUpdater component;
+    class ReadDB component;
+```
+
+```text
+src/
+├── commands/
+├── aggregates/
+├── events/
+├── projections/
+└── infrastructure/
+    └── event-store/
+```
+
+- **When to use:** When you need a complete audit log, temporal queries, or when decoupling read and write models is critical.
+- **Patterns / Principles:** Event Log, CQRS, Projections, Snapshots.
+
+---
+
+### 13. Backend-For-Frontend (BFF)
 [![Backend-For-Frontend](https://img.shields.io/badge/Architecture-BFF-blue?style=flat-square)](#)
 
 **Description:** A pattern where a separate backend service is created for each specific frontend application or interface type, rather than having a single general-purpose API backend for all clients. This allows the backend to be optimized for the specific needs of the frontend.
