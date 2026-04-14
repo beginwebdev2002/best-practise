@@ -160,8 +160,8 @@ function analyzeAST(sourceFile, tech) {
   }
 
   // Enforce explicit parameter types
-  const parameters = sourceFile.getDescendantsOfKind(SyntaxKind.Parameter);
-  for (const param of parameters) {
+  const explicitParameters = sourceFile.getDescendantsOfKind(SyntaxKind.Parameter);
+  for (const param of explicitParameters) {
     if (!param.getTypeNode()) {
       score.type -= 5;
     }
