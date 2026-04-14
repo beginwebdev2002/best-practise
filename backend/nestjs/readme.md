@@ -58,7 +58,7 @@ sequenceDiagram
 ```
 
 ---
-### 🚨 1. Clean Architecture Modules (Logic Isolation)
+## 🚨 1. Clean Architecture Modules (Logic Isolation)
 #### ❌ Bad Practice
 ```typescript
 @Injectable()
@@ -76,9 +76,9 @@ export class UsersService {
 }
 ```
 #### 🚀 Solution
-Apply Dependency Inversion. Business logic MUST depend on abstractions (interfaces), not on specific ORMs. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Apply Dependency Inversion. Business logic MUST depend on abstractions (interfaces), not on specific ORMs.
 
-### 🚨 2. Global ValidationPipe
+## 🚨 2. Global ValidationPipe
 #### ❌ Bad Practice
 ```typescript
 @Post()
@@ -94,9 +94,9 @@ Failing to follow best practices for `global validationpipe` tightly couples dep
 app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }));
 ```
 #### 🚀 Solution
-Enable global validation based on `class-validator` and `whitelist` to automatically strip unknown fields. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Enable global validation based on `class-validator` and `whitelist` to automatically strip unknown fields.
 
-### 🚨 3. Data Transfer Objects (DTO)
+## 🚨 3. Data Transfer Objects (DTO)
 #### ❌ Bad Practice
 ```typescript
 @Post()
@@ -114,9 +114,9 @@ export class CreateUserDto {
 create(@Body() dto: CreateUserDto) {}
 ```
 #### 🚀 Solution
-All client data MUST be strictly described using DTOs with validation decorators. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+All client data MUST be strictly described using DTOs with validation decorators.
 
-### 🚨 4. Fat Controllers vs Thin Controllers
+## 🚨 4. Fat Controllers vs Thin Controllers
 #### ❌ Bad Practice
 ```typescript
 @Post()
@@ -135,9 +135,9 @@ async createUser(@Body() dto: CreateDto) {
 }
 ```
 #### 🚀 Solution
-Controllers ONLY route requests. All business logic MUST reside in the Service Layer. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Controllers ONLY route requests. All business logic MUST reside in the Service Layer.
 
-### 🚨 5. Global Exception Filter
+## 🚨 5. Global Exception Filter
 #### ❌ Bad Practice
 ```typescript
 try { ... } catch (e) { throw new HttpException('Error', 500); }
@@ -154,9 +154,9 @@ export class AllExceptionsFilter implements ExceptionFilter {
 app.useGlobalFilters(new AllExceptionsFilter());
 ```
 #### 🚀 Solution
-Use Exception Filters to standardize the format of all HTTP API errors. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Use Exception Filters to standardize the format of all HTTP API errors.
 
-### 🚨 6. Async Module Configuration
+## 🚨 6. Async Module Configuration
 #### ❌ Bad Practice
 ```typescript
 TypeOrmModule.forRoot({ url: process.env.DB_URL }) // Variables ARE NOT loaded yet
@@ -172,9 +172,9 @@ TypeOrmModule.forRootAsync({
 })
 ```
 #### 🚀 Solution
-For third-party modules, always use `forRootAsync` / `registerAsync` to safely inject configurations. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+For third-party modules, always use `forRootAsync` / `registerAsync` to safely inject configurations.
 
-### 🚨 7. Configuration Management
+## 🚨 7. Configuration Management
 #### ❌ Bad Practice
 ```typescript
 const secret = process.env.JWT_SECRET; // Direct access
@@ -187,9 +187,9 @@ constructor(private configService: ConfigService) {}
 const secret = this.configService.get<string>('JWT_SECRET');
 ```
 #### 🚀 Solution
-Use `@nestjs/config` for safe, strongly-typed extraction of environment variables. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Use `@nestjs/config` for safe, strongly-typed extraction of environment variables.
 
-### 🚨 8. Custom Decorators (User Extraction)
+## 🚨 8. Custom Decorators (User Extraction)
 #### ❌ Bad Practice
 ```typescript
 @Get()
@@ -205,9 +205,9 @@ export const CurrentUser = createParamDecorator((data, ctx: ExecutionContext) =>
 getProfile(@CurrentUser() user: UserEntity) { return user; }
 ```
 #### 🚀 Solution
-Create custom decorators for clean data extraction from the Request (e.g., the current user). This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Create custom decorators for clean data extraction from the Request (e.g., the current user).
 
-### 🚨 9. JWT Guards (Route Protection)
+## 🚨 9. JWT Guards (Route Protection)
 #### ❌ Bad Practice
 ```typescript
 @Get()
@@ -222,9 +222,9 @@ Failing to follow best practices for `jwt guards` tightly couples dependencies a
 getData() {}
 ```
 #### 🚀 Solution
-Authorization MUST occur before the controller via Guards (e.g., Passport JWT strategy). This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Authorization MUST occur before the controller via Guards (e.g., Passport JWT strategy).
 
-### 🚨 10. Role-Based Access Control (RBAC)
+## 🚨 10. Role-Based Access Control (RBAC)
 #### ❌ Bad Practice
 ```typescript
 @Get()
@@ -240,9 +240,9 @@ Failing to follow best practices for `role-based access control (rbac)` tightly 
 getAdminData() {}
 ```
 #### 🚀 Solution
-Use custom role decorators (`@Roles`) and `RolesGuard` for declarative access control. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Use custom role decorators (`@Roles`) and `RolesGuard` for declarative access control.
 
-### 🚨 11. Built-in Pipes for Transformation
+## 🚨 11. Built-in Pipes for Transformation
 #### ❌ Bad Practice
 ```typescript
 @Get(':id')
@@ -256,9 +256,9 @@ Failing to follow best practices for `built-in pipes for transformation` tightly
 getUser(@Param('id', ParseIntPipe) id: number) {}
 ```
 #### 🚀 Solution
-Use built-in Pipes (`ParseIntPipe`, `ParseUUIDPipe`) for automatic parameter conversion and validation. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Use built-in Pipes (`ParseIntPipe`, `ParseUUIDPipe`) for automatic parameter conversion and validation.
 
-### 🚨 12. Response Interceptors (Response Transformation)
+## 🚨 12. Response Interceptors (Response Transformation)
 #### ❌ Bad Practice
 ```typescript
 return { success: true, data: result, timestamp: new Date() }; // Duplication everywhere
@@ -273,9 +273,9 @@ export class TransformInterceptor implements NestInterceptor {
 }
 ```
 #### 🚀 Solution
-Standardize the successful response structure globally using an Interceptor. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Standardize the successful response structure globally using an Interceptor.
 
-### 🚨 13. Logging Interceptors
+## 🚨 13. Logging Interceptors
 #### ❌ Bad Practice
 ```typescript
 @Get()
@@ -294,9 +294,9 @@ export class LoggingInterceptor implements NestInterceptor {
 }
 ```
 #### 🚀 Solution
-Log execution time and request details abstractly using Interceptors. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Log execution time and request details abstractly using Interceptors.
 
-### 🚨 14. Transaction Handling (TypeORM)
+## 🚨 14. Transaction Handling (TypeORM)
 #### ❌ Bad Practice
 ```typescript
 await this.repo1.save(data1); await this.repo2.save(data2); // No transaction
@@ -311,9 +311,9 @@ await this.dataSource.transaction(async manager => {
 });
 ```
 #### 🚀 Solution
-Critical mutations across multiple tables MUST be wrapped in transactions using `DataSource.transaction`. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Critical mutations across multiple tables MUST be wrapped in transactions using `DataSource.transaction`.
 
-### 🚨 15. Swagger / OpenAPI Documentation
+## 🚨 15. Swagger / OpenAPI Documentation
 #### ❌ Bad Practice
 ```typescript
 // Missing DTO annotations
@@ -329,9 +329,9 @@ export class CreateDogDto {
 }
 ```
 #### 🚀 Solution
-Document all DTO properties using `@ApiProperty()`. Swagger will automatically generate the schema. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Document all DTO properties using `@ApiProperty()`. Swagger will automatically generate the schema.
 
-### 🚨 16. Rate Limiting (ThrottlerModule)
+## 🚨 16. Rate Limiting (ThrottlerModule)
 #### ❌ Bad Practice
 // No protection against DDoS and brute force
 #### ⚠️ Problem
@@ -342,9 +342,9 @@ Failing to follow best practices for `rate limiting (throttlermodule)` tightly c
 ThrottlerModule.forRoot([{ ttl: 60000, limit: 10 }])
 ```
 #### 🚀 Solution
-Always integrate `@nestjs/throttler` to protect the API from overload. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Always integrate `@nestjs/throttler` to protect the API from overload.
 
-### 🚨 17. Caching Results
+## 🚨 17. Caching Results
 #### ❌ Bad Practice
 // Every request performs heavy DB calculations
 #### ⚠️ Problem
@@ -359,7 +359,7 @@ getStats() {}
 #### 🚀 Solution
 Cache heavy requests using `CacheModule` (in-memory or Redis) to offload the DB.
 
-### 🚨 18. Event Emitter (Loose Coupling)
+## 🚨 18. Event Emitter (Loose Coupling)
 #### ❌ Bad Practice
 ```typescript
 await this.userService.create();
@@ -373,9 +373,9 @@ await this.userService.create();
 this.eventEmitter.emit('user.created', new UserCreatedEvent(user));
 ```
 #### 🚀 Solution
-Use `@nestjs/event-emitter`. Services MUST NOT await email dispatch; they MUST simply publish an event. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Use `@nestjs/event-emitter`. Services MUST NOT await email dispatch; they MUST simply publish an event.
 
-### 🚨 19. Task Scheduling (Cron)
+## 🚨 19. Task Scheduling (Cron)
 #### ❌ Bad Practice
 ```typescript
 setInterval(() => this.cleanupData(), 1000 * 60 * 60);
@@ -388,9 +388,9 @@ Using standard `setInterval` for background tasks outside of the NestJS lifecycl
 handleCron() { this.cleanupData(); }
 ```
 #### 🚀 Solution
-Use `@nestjs/schedule` with declarative decorators for background tasks. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Use `@nestjs/schedule` with declarative decorators for background tasks.
 
-### 🚨 20. Microservices: Message Patterns
+## 🚨 20. Microservices: Message Patterns
 #### ❌ Bad Practice
 ```typescript
 @Post() // Using HTTP for inter-service communication
@@ -403,9 +403,9 @@ Using standard HTTP requests for internal microservice-to-microservice communica
 getUser(data: unknown) { return this.userService.findById(data.id); }
 ```
 #### 🚀 Solution
-Use TCP, Redis, or RabbitMQ via `@MessagePattern` for microservice communication within the cluster. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Use TCP, Redis, or RabbitMQ via `@MessagePattern` for microservice communication within the cluster.
 
-### 🚨 21. Health Checks (Terminus)
+## 🚨 21. Health Checks (Terminus)
 #### ❌ Bad Practice
 ```typescript
 @Get('ping') ping() { return 'pong'; }
@@ -421,7 +421,7 @@ check() { return this.health.check([() => this.db.pingCheck('database')]); }
 #### 🚀 Solution
 Use `@nestjs/terminus` for deep health checks (DB, memory) for Kubernetes Liveness Probes.
 
-### 🚨 22. Avoiding Circular Dependencies
+## 🚨 22. Avoiding Circular Dependencies
 #### ❌ Bad Practice
 ```typescript
 // UserService -> AuthService -> UserService
@@ -434,9 +434,9 @@ Circular dependencies (Module A imports Module B, which imports Module A) cause 
 @Injectable() class UserService { constructor(@Inject(forwardRef(() => AuthService)) private auth: AuthService) {} }
 ```
 #### 🚀 Solution
-If the architecture forces a circular dependency, use `forwardRef()`; however, it is highly recommended to refactor the code. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+If the architecture forces a circular dependency, use `forwardRef()`; however, it is highly recommended to refactor the code.
 
-### 🚨 23. Module Re-exporting
+## 🚨 23. Module Re-exporting
 #### ❌ Bad Practice
 ```typescript
 // Module B imports Module A, Module C imports Module A...
@@ -449,9 +449,9 @@ Duplicating module imports across the application instead of utilizing a structu
 export class CoreModule {} // Global facade
 ```
 #### 🚀 Solution
-Use module exports to create shared Core/Shared modules that encapsulate common logic. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Use module exports to create shared Core/Shared modules that encapsulate common logic.
 
-### 🚨 24. Global Middleware
+## 🚨 24. Global Middleware
 #### ❌ Bad Practice
 // Defining request logger everywhere
 #### ⚠️ Problem
@@ -463,9 +463,9 @@ export class AppModule implements NestModule {
 }
 ```
 #### 🚀 Solution
-Perform global operations prior to Guards (e.g., injecting Request IDs) via `NestMiddleware`. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Perform global operations prior to Guards (e.g., injecting Request IDs) via `NestMiddleware`.
 
-### 🚨 25. Unit Testing Providers
+## 🚨 25. Unit Testing Providers
 #### ❌ Bad Practice
 ```typescript
 const service = new UserService(new Database()); // Real DB in tests
@@ -481,7 +481,7 @@ const module = await Test.createTestingModule({
 #### 🚀 Solution
 All unit tests MUST use mock injection via `Test.createTestingModule`.
 
-### 🚨 26. Custom Validation Constraints
+## 🚨 26. Custom Validation Constraints
 #### ❌ Bad Practice
 ```typescript
 if (!isEmailUnique(dto.email)) throw error; // Manual logic in service
@@ -496,9 +496,9 @@ export class IsUniqueConstraint implements ValidatorConstraintInterface { ... }
 @Validate(IsUniqueConstraint) email: string;
 ```
 #### 🚀 Solution
-Create custom rules for `class-validator`, including asynchronous checks (e.g., DB validation). This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Create custom rules for `class-validator`, including asynchronous checks (e.g., DB validation).
 
-### 🚨 27. File Uploading (Multer)
+## 🚨 27. File Uploading (Multer)
 #### ❌ Bad Practice
 // Manual stream handling
 #### ⚠️ Problem
@@ -510,9 +510,9 @@ Handling binary file streams manually without the built-in Multer interceptors i
 uploadFile(@UploadedFile() file: Express.Multer.File) {}
 ```
 #### 🚀 Solution
-The built-in `FileInterceptor` based on Multer is the standard for handling file uploads. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+The built-in `FileInterceptor` based on Multer is the standard for handling file uploads.
 
-### 🚨 28. Serialization (ClassSerializerInterceptor)
+## 🚨 28. Serialization (ClassSerializerInterceptor)
 #### ❌ Bad Practice
 ```typescript
 const { password, ...safeUser } = user; // Manual password removal
@@ -527,9 +527,9 @@ class UserEntity { @Exclude() password: string; }
 @Get() getUser() { return new UserEntity(data); }
 ```
 #### 🚀 Solution
-Use `@Exclude()` from `class-transformer` along with `ClassSerializerInterceptor` to hide sensitive fields. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Use `@Exclude()` from `class-transformer` along with `ClassSerializerInterceptor` to hide sensitive fields.
 
-### 🚨 29. Fastify Integration
+## 🚨 29. Fastify Integration
 #### ❌ Bad Practice
 // Calling specific methods req.expressMethod
 #### ⚠️ Problem
@@ -541,7 +541,7 @@ const app = await NestFactory.create<NestFastifyApplication>(AppModule, new Fast
 #### 🚀 Solution
 Write platform-agnostic code. Nest easily switches from Express to Fastify for extreme performance if needed.
 
-### 🚨 30. Shutdown Hooks (Graceful Shutdown)
+## 🚨 30. Shutdown Hooks (Graceful Shutdown)
 #### ❌ Bad Practice
 // Application is killed instantly, dropping active connections
 #### ⚠️ Problem

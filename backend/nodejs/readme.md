@@ -78,7 +78,7 @@ app.post('/hash', (req, res, next) => {
 ### 🚀 Solution
 Never use synchronous methods (`*Sync`) on the main thread for crypto, I/O, or heavy calculations. Always use asynchronous callbacks or Promises to prevent blocking the Event Loop.
 
-## 2. 🗂️ Project Structure & Module Separation This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 2. 🗂️ Project Structure & Module Separation
 
 ### ❌ Bad Practice
 ```text
@@ -98,7 +98,7 @@ A monolithic file structure tightly couples routing, business logic, and data ac
 ### 🚀 Solution
 Implement a multi-layered folder architecture. Strictly separate the HTTP transport layer (Routes/Controllers) from the Business Logic (Services) and Database operations.
 
-## 3. 🛡️ Strict Environment Configuration This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 3. 🛡️ Strict Environment Configuration
 
 ### ❌ Bad Practice
 ```javascript
@@ -120,7 +120,7 @@ requiredEnv.forEach((name) => {
 ### 🚀 Solution
 Fail fast. Validate all necessary environment variables upon application startup to prevent fatal runtime errors later in execution.
 
-## 4. 🛑 Error Handling with Custom Classes This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 4. 🛑 Error Handling with Custom Classes
 
 ### ❌ Bad Practice
 ```javascript
@@ -142,7 +142,7 @@ if (!user) throw new AppError('User not found', 404);
 ### 🚀 Solution
 Extend the built-in `Error` object to create custom operational errors. This allows your global error handler to safely log and return predictable HTTP status codes without crashing the application.
 
-## 5. 🎛️ Handling Uncaught Exceptions & Rejections This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 5. 🎛️ Handling Uncaught Exceptions & Rejections
 
 ### ❌ Bad Practice
 // Ignoring process-level events, allowing the app to run in an unpredictable state after an error.
@@ -163,7 +163,7 @@ process.on('unhandledRejection', (err) => {
 ### 🚀 Solution
 Always capture `uncaughtException` and `unhandledRejection`. Log the fatal error immediately and shut down the process safely. Rely on a process manager (like PM2 or Kubernetes) to restart the container.
 
-## 6. 🔒 Hiding Sensitive Headers This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 6. 🔒 Hiding Sensitive Headers
 
 ### ❌ Bad Practice
 // Sending default headers that expose the framework, like `X-Powered-By: Express`.
@@ -200,7 +200,7 @@ process.on('SIGTERM', () => {
 ### 🚀 Solution
 Listen for termination signals (`SIGTERM`, `SIGINT`). Finish processing ongoing HTTP requests and safely close database connections before exiting the Node.js process.
 
-## 8. 🔍 Input Validation and Sanitization This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 8. 🔍 Input Validation and Sanitization
 
 ### ❌ Bad Practice
 ```javascript

@@ -79,7 +79,7 @@ class UserController {
 ### 🚀 Solution
 The Router only describes the endpoints; the Controller extracts request data and returns the response. Logic belongs in the Services.
 
-## 2. Async/Await Error Wrapping (Express 4) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 2. Async/Await Error Wrapping (Express 4)
 
 ### ❌ Bad Practice
 ```javascript
@@ -95,7 +95,7 @@ router.get('/', asyncHandler(UserController.get));
 ### 🚀 Solution
 In Express 4, always wrap async routes in `asyncHandler` to propagate errors to the global Error Handler. (This is built-in for Express 5).
 
-## 3. Global Error Handler Middleware This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 3. Global Error Handler Middleware
 
 ### ❌ Bad Practice
 ```javascript
@@ -113,7 +113,7 @@ app.use((err, req, res, next) => {
 ### 🚀 Solution
 Define a single middleware with 4 arguments `(err, req, res, next)` at the very end of the pipeline to intercept all failures.
 
-## 4. Request Payload Validation (Joi / Zod) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 4. Request Payload Validation (Joi / Zod)
 
 ### ❌ Bad Practice
 ```javascript
@@ -133,7 +133,7 @@ router.post('/', validate(userSchema), UserController.create);
 ### 🚀 Solution
 Validate the body and query parameters at the Middleware level using robust validation libraries (Joi, Zod) to prevent invalid data from reaching controllers.
 
-## 5. Environment Variables separation This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 5. Environment Variables separation
 
 ### ❌ Bad Practice
 ```javascript
@@ -163,7 +163,7 @@ app.use(helmet());
 ### 🚀 Solution
 Use `helmet` for automatic protection against XSS, clickjacking, and to hide framework headers out of the box.
 
-## 7. Cross-Origin Resource Sharing (CORS) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 7. Cross-Origin Resource Sharing (CORS)
 
 ### ❌ Bad Practice
 ```javascript
@@ -179,7 +179,7 @@ app.use(cors({ origin: 'https://myapp.com', credentials: true }));
 ### 🚀 Solution
 Use the official `cors` module. Allow access ONLY to trusted domains, not universally (`*`).
 
-## 8. Rate Limiting (DDoS Protection) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 8. Rate Limiting (DDoS Protection)
 
 ### ❌ Bad Practice
 // API is open to a million requests per second
@@ -193,7 +193,7 @@ app.use('/api/', rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 ### 🚀 Solution
 Protect all endpoints (especially authentication) with a built-in request rate limiter.
 
-## 9. Body Parsing & Payload Limits This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 9. Body Parsing & Payload Limits
 
 ### ❌ Bad Practice
 ```javascript
@@ -209,7 +209,7 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 ### 🚀 Solution
 Strictly limit the size of incoming JSON payloads using the `limit` option to prevent RAM exhaustion.
 
-## 10. Centralized Logging (Morgan + Winston) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 10. Centralized Logging (Morgan + Winston)
 
 ### ❌ Bad Practice
 ```javascript
@@ -225,7 +225,7 @@ winstonLogger.info('User signed in');
 ### 🚀 Solution
 Replace `console.log` with robust loggers like Winston (with log/warn/error levels) and Morgan (for logging HTTP requests).
 
-## 11. Database Connection Management This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 11. Database Connection Management
 
 ### ❌ Bad Practice
 ```javascript
@@ -242,7 +242,7 @@ mongoose.connect(process.env.DB_URI).then(() => {
 ### 🚀 Solution
 Open a single database Connection Pool at application startup and reuse it across all controllers.
 
-## 12. JWT Authentication Middleware This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 12. JWT Authentication Middleware
 
 ### ❌ Bad Practice
 ```javascript
@@ -262,7 +262,7 @@ const authGuard = (req, res, next) => {
 ### 🚀 Solution
 Authentication MUST be implemented as an isolated Middleware applied to protected routes, which attaches the `req.user` object.
 
-## 13. Role-Based Access Control (RBAC) Middleware This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 13. Role-Based Access Control (RBAC) Middleware
 
 ### ❌ Bad Practice
 ```javascript
@@ -281,7 +281,7 @@ router.delete('/:id', requireRole('admin', 'manager'), Controller.del);
 ### 🚀 Solution
 Role-based access to routes MUST strictly be defined declaratively via Middleware.
 
-## 14. Standard API Response Wrapper This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 14. Standard API Response Wrapper
 
 ### ❌ Bad Practice
 ```javascript
@@ -299,7 +299,7 @@ class ApiResponse {
 ### 🚀 Solution
 Use a standardized utility class for sending responses to ensure the client deterministically expects `success` and `data`/`error` fields.
 
-## 15. Pagination details in API This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 15. Pagination details in API
 
 ### ❌ Bad Practice
 ```javascript
@@ -316,7 +316,7 @@ res.json({ data: users, meta: { total, page, limit, pages: Math.ceil(total/limit
 ### 🚀 Solution
 Any list of entities MUST implement pagination (Offset or Cursor) and include a `meta` section in the response.
 
-## 16. Graceful Shutdown This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 16. Graceful Shutdown
 
 ### ❌ Bad Practice
 // Upon receiving SIGTERM, the server abruptly terminates processes
@@ -333,7 +333,7 @@ process.on('SIGTERM', () => {
 ### 🚀 Solution
 Gracefully close active HTTP sessions and database connection pools before stopping the container.
 
-## 17. 404 Route Handler This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 17. 404 Route Handler
 
 ### ❌ Bad Practice
 // If the route is not found, an empty white page is returned
@@ -348,7 +348,7 @@ app.use('*', (req, res) => {
 ### 🚀 Solution
 Place this 404 handler AFTER all defined routes (but BEFORE the global error handler).
 
-## 18. Application Structure (Folder organization) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 18. Application Structure (Folder organization)
 
 ### ❌ Bad Practice
 ```
@@ -369,7 +369,7 @@ src/
 ### 🚀 Solution
 Strictly organize the project into logical directories. Implement a multi-layered architecture.
 
-## 19. Health Check Endpoint This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 19. Health Check Endpoint
 
 ### ❌ Bad Practice
 // Missing Kubernetes pod liveness checks
@@ -435,7 +435,7 @@ const controller = new UserController(new UserService(db));
 ### 🚀 Solution
 If an IoC container (like Awilix) is not used, manually inject dependencies to facilitate Unit Testing.
 
-## 23. File Uploads (Multer) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 23. File Uploads (Multer)
 
 ### ❌ Bad Practice
 // Parsing binaries manually
@@ -450,7 +450,7 @@ router.post('/avatar', upload.single('file'), Controller.upload);
 ### 🚀 Solution
 Use `multer` with strict file size limitations (`limits`) to protect the server from disk overflow.
 
-## 24. Event Emitters (Background Tasks) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 24. Event Emitters (Background Tasks)
 
 ### ❌ Bad Practice
 ```javascript
@@ -471,7 +471,7 @@ res.send('Welcome');
 ### 🚀 Solution
 Offload long-running tasks from the main response thread using native Node.js Events.
 
-## 25. Caching (Redis Middleware) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 25. Caching (Redis Middleware)
 
 ### ❌ Bad Practice
 // Database processes complex calculations on every hit
@@ -489,7 +489,7 @@ const cacheMiddleware = (req, res, next) => {
 ### 🚀 Solution
 Implement caching (e.g., Redis) for GET requests whose results change infrequently.
 
-## 26. Custom Error Classes This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 26. Custom Error Classes
 
 ### ❌ Bad Practice
 ```javascript
@@ -511,7 +511,7 @@ throw new AppError('User not found', 404);
 ### 🚀 Solution
 Create custom error classes so the global logger WILL distinguish operational errors from fatal code crashes.
 
-## 27. Proxy Trust in Production This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 27. Proxy Trust in Production
 
 ### ❌ Bad Practice
 ```javascript
@@ -526,7 +526,7 @@ app.set('trust proxy', 1); // Trust the first proxy
 ### 🚀 Solution
 If Express is running behind Nginx or AWS ELB, enable `trust proxy` to retrieve the actual IP addresses of users.
 
-## 28. Separating Server from App This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 28. Separating Server from App
 
 ### ❌ Bad Practice
 ```javascript
@@ -547,7 +547,7 @@ app.listen(3000);
 ### 🚀 Solution
 Export the Express App separately from `listen` to enable `supertest` to run tests on random ports without conflicts.
 
-## 29. UUID Request Correlation This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 29. UUID Request Correlation
 
 ### ❌ Bad Practice
 // Log errors cannot be traced back to a specific user
@@ -565,7 +565,7 @@ app.use((req, res, next) => {
 ### 🚀 Solution
 Assign a unique ID to each request to trace its journey across all logs and microservices.
 
-## 30. Secure Session Management This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 30. Secure Session Management
 
 ### ❌ Bad Practice
 // Sessions are stored in memory (MemoryStore) with exposed cookies

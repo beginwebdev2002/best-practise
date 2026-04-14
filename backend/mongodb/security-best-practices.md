@@ -55,7 +55,7 @@ db.createUser({
    pwd: "secretPassword",
    roles: [ { role: "appRole", db: "appDB" } ]
 });
-``` This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+```
 
 ### ⚠️ Problem
 Failing to follow best practices for `the architectural pattern` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
@@ -94,7 +94,7 @@ const user = await db.collection('users').findOne({
     username: String(req.body.username),
     password: String(req.body.password)
 });
-``` This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+```
 
 ### ⚠️ Problem
 Failing to follow best practices for `the architectural pattern` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.

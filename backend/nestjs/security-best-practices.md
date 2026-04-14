@@ -47,4 +47,4 @@ graph TD
     class B component;
     class C component;
     class D component;
-``` This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+```
