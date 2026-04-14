@@ -10,7 +10,10 @@ domain: Documentation
 level: Senior/Architect
 version: Latest
 ai_role: Senior Vibe Coding Expert
-last_updated: 2026-03-29---# 🤖 Autonomous Marketing Engine: README
+last_updated: 2026-03-29
+---
+
+# 🤖 Autonomous Marketing Engine: README
 ## Overview
 This repository utilizes a fully autonomous pipeline to generate professional marketing assets upon every new release. The engine leverages **Google Cloud Vertex AI** and **Cloud Storage** to create high-fidelity content, visuals, and motion teasers.
 ## Core Stack

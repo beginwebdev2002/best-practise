@@ -52,7 +52,8 @@ function safeMerge(target, source) {
 ### 🚀 Solution
 STRICTLY filter reserved prototype keys (`__proto__`, `constructor`, `prototype`) during deep clone or merge operations. Alternatively, use robust, community-vetted libraries (like lodash.merge) that have built-in pollution defenses.
 
-## 2. 🔏 Hardcoded Secrets
+## 2. 🔏 Hardcoded Secrets This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 // Exposing secrets in code
@@ -72,6 +73,7 @@ const dbClient = new Database(dbUrl);
 MANDATORY injection of secrets via environment variables or secret management vaults (e.g., AWS Secrets Manager, HashiCorp Vault). NEVER commit sensitive material to version control.
 
 ## 3. 🛡️ Regular Expression Denial of Service (ReDoS)
+
 ### ❌ Bad Practice
 ```javascript
 // A vulnerable regex pattern evaluated on user input
@@ -95,4 +97,4 @@ app.post('/validate', (req, res) => {
 });
 ```
 ### 🚀 Solution
-FORBID the use of complex, custom regular expressions on unconstrained user input. STRICTLY utilize established validation libraries and apply input length constraints before regex execution.
+FORBID the use of complex, custom regular expressions on unconstrained user input. STRICTLY utilize established validation libraries and apply input length constraints before regex execution. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.

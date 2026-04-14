@@ -28,6 +28,21 @@ last_updated: 2026-03-29
 3. **Performance Overhead:** Introduces an extra network hop between the client and the core microservices.
 4. **Maintenance Burden:** Requires frontend teams to have backend development and DevOps skills to maintain the BFF.
 
+
+### Structural Comparison: Pros vs Cons
+
+| Category | Factor | Description |
+| :--- | :--- | :--- |
+| ✅ **Advantage** | Optimized Payloads | Clients receive only the data they need, reducing bandwidth. |
+| ✅ **Advantage** | Separation of Concerns | Frontend teams manage their own backend logic independently. |
+| ✅ **Advantage** | Resilience | Provides fallback data or graceful error handling on failure. |
+| ✅ **Advantage** | Protocol Flexibility | Client can use GraphQL while internal services use gRPC/REST. |
+| ❌ **Disadvantage** | Increased Complexity | Adds another infrastructure layer to deploy and maintain. |
+| ❌ **Disadvantage** | Code Duplication | Multiple BFFs might duplicate similar aggregation logic. |
+| ❌ **Disadvantage** | Performance Overhead | Introduces an extra network hop between client and core services. |
+| ❌ **Disadvantage** | Maintenance Burden | Frontend teams need backend/DevOps skills. |
+
+
 ### 🚧 System Constraints
 - **Team Structure:** This pattern works best when the team building the client application also owns and maintains the BFF.
 - > [!IMPORTANT]

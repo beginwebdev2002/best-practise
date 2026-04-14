@@ -66,4 +66,4 @@ app.get('/users/:id', async (req, res) => {
 });
 ```
 ### 🚀 Solution
-Never allow Database Object Relational Mapping (ORM) models to bleed into standard HTTP responses. Always map through a DTO.
+Never allow Database Object Relational Mapping (ORM) models to bleed into standard HTTP responses. Always map through a DTO. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
