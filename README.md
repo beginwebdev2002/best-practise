@@ -161,7 +161,8 @@ graph TD
     class C3 component;
     class B component;
 
-```## 🌴 Folder Tree
+```
+## 🌴 Folder Tree
 
 * 📦 **[best-practise](./)**
   * 📄 [agents.md](./agents.md)
