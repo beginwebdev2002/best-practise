@@ -10,6 +10,8 @@ domain: Documentation
 level: Senior/Architect
 version: Latest
 ai_role: Senior Vibe Coding Expert
-last_updated: 2026-03-29---
+last_updated: 2026-03-29
+---
+
 @./.gemini/memory/github-seo.md
 @./.agents/rules/project-architecture.md

@@ -10,8 +10,8 @@ last_updated: 2026-03-29
 topic: Vibe Coding
 complexity: Architect
 last_evolution: 2026-03-29
-vibe_coding_ready: true---
-
+vibe_coding_ready: true
+---
 
 > 📦 [best-practise](../README.md) / 📄 [docs](./)
 # 🤖 Vibe Coding Agents: Production-Ready Automation

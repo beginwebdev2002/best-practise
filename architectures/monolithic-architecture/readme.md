@@ -40,11 +40,49 @@ last_updated: 2026-03-22
 2. **Strict Boundaries:** Enforce rigid structural barriers between business logic and infrastructure.
 3. **Decoupling:** Decouple how data is stored from how it is queried and displayed.
 
-```mermaid
-graph LR
-    Isolation[Isolation & Testability] --- Boundaries[Strict Boundaries]
-    Boundaries --- Decoupling[Decoupling]
+## 1. Tightly Coupled Internal Modules (Spaghetti Code)
 
-    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
-    class Isolation,Boundaries,Decoupling default;
+### ❌ Bad Practice
+```typescript
+// PaymentModule directly accessing Database tables of UserModule
+import { db } from '../database';
+
+export class PaymentProcessor {
+  async chargeUser(userId: string, amount: number) {
+    // Reaching across boundaries to read foreign tables directly
+    const user = await db.query(`SELECT * FROM users WHERE id = '${userId}'`);
+
+    if (user.balance >= amount) {
+      // Direct mutation of foreign state
+      await db.query(`UPDATE users SET balance = balance - ${amount}`);
+      await db.query(`INSERT INTO payments ...`);
+    }
+  }
+}
 ```
+
+### ⚠️ Problem
+Directly accessing tables or internal state of other modules within a monolith creates a "Big Ball of Mud". Changing the `users` table schema will silently break the `PaymentModule`. This prevents the monolith from ever being safely split into microservices in the future.
+
+### ✅ Best Practice
+```typescript
+// PaymentModule interacting with UserModule via an explicit Interface/Facade
+import { UserService } from '../users/user.service';
+
+export class PaymentProcessor {
+  constructor(private readonly userService: UserService) {}
+
+  async chargeUser(userId: string, amount: number) {
+    // Calling the defined contract API, unaware of underlying tables
+    const user = await this.userService.getUserById(userId);
+
+    if (user.canAfford(amount)) {
+      await this.userService.deductBalance(userId, amount);
+      await this.savePaymentRecord(userId, amount);
+    }
+  }
+}
+```
+
+### 🚀 Solution
+Treat logical modules inside the monolith as if they were independent microservices. Enforce strict boundaries. Modules must only communicate with each other through explicit public interfaces (Facades or Services). Never share database queries or raw internal state across domain boundaries. This creates a "Modular Monolith" that is clean and ready for future extraction.

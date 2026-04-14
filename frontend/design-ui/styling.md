@@ -1,6 +1,6 @@
 ---
 technology: UI/UX Design
-domain: Documentation
+domain: Frontend
 level: Senior/Architect
 version: Latest
 tags: [vibe-coding, documentation, best-practices, architecture, design-system, accessibility]
@@ -9,6 +9,8 @@ last_updated: 2026-03-29
 ---
 
 # 🎨 UI/UX Design & Styling Rules for Jules
+
+[⬆️ Back to UI/UX Design](./readme.md)
 
 This document outlines the core styling rules and design principles for generating UI components, emphasizing accessibility, responsive design, and component architecture.
 

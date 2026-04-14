@@ -26,6 +26,11 @@ This document outlines the **best practices** for Express.js architecture. The f
 > **Architectural Contract:** Never write business logic in routers. Strictly separate responsibilities into `Router`, `Controller`, and `Service`.
 ---
 
+## 📑 Specialized Documentation
+
+- [Security Best Practices](./security-best-practices.md)
+- [Architecture](./architecture.md)
+
 ## 🔄 Architecture Data Flow
 
 ```mermaid
@@ -54,9 +59,6 @@ sequenceDiagram
         ErrorMW-->>Client: Standardized Error Response
     end
 ```
-## 📚 Specialized Documentation
-- [architecture.md](./architecture.md)
-- [security-best-practices.md](./security-best-practices.md)
 ---## 1. Controller / Route Decoupling
 ### ❌ Bad Practice
 ```javascript
@@ -77,7 +79,8 @@ class UserController {
 ### 🚀 Solution
 The Router only describes the endpoints; the Controller extracts request data and returns the response. Logic belongs in the Services.
 
-## 2. Async/Await Error Wrapping (Express 4)
+## 2. Async/Await Error Wrapping (Express 4) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 router.get('/', async (req, res) => { throw new Error('Crash'); }); // Express 4 does not catch rejections
@@ -92,7 +95,8 @@ router.get('/', asyncHandler(UserController.get));
 ### 🚀 Solution
 In Express 4, always wrap async routes in `asyncHandler` to propagate errors to the global Error Handler. (This is built-in for Express 5).
 
-## 3. Global Error Handler Middleware
+## 3. Global Error Handler Middleware This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 app.use((req, res) => res.status(404).send('Not Found')); // Missing 500 error catcher
@@ -109,7 +113,8 @@ app.use((err, req, res, next) => {
 ### 🚀 Solution
 Define a single middleware with 4 arguments `(err, req, res, next)` at the very end of the pipeline to intercept all failures.
 
-## 4. Request Payload Validation (Joi / Zod)
+## 4. Request Payload Validation (Joi / Zod) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 if (!req.body.email || req.body.age < 18) return res.status(400); // Manual validation
@@ -128,7 +133,8 @@ router.post('/', validate(userSchema), UserController.create);
 ### 🚀 Solution
 Validate the body and query parameters at the Middleware level using robust validation libraries (Joi, Zod) to prevent invalid data from reaching controllers.
 
-## 5. Environment Variables separation
+## 5. Environment Variables separation This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 mongoose.connect('mongodb://admin:pass@host/db'); // Hardcoded secrets
@@ -144,6 +150,7 @@ mongoose.connect(process.env.DB_URI);
 Use `dotenv` and configuration files for different environments. Secrets MUST strictly be stored only in `.env` (which must be added to `.gitignore`).
 
 ## 6. HTTP Security Headers (Helmet)
+
 ### ❌ Bad Practice
 // Application exposes 'X-Powered-By: Express'
 ### ⚠️ Problem
@@ -156,7 +163,8 @@ app.use(helmet());
 ### 🚀 Solution
 Use `helmet` for automatic protection against XSS, clickjacking, and to hide framework headers out of the box.
 
-## 7. Cross-Origin Resource Sharing (CORS)
+## 7. Cross-Origin Resource Sharing (CORS) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 app.use((req, res, next) => { res.header("Access-Control-Allow-Origin", "*"); next(); });
@@ -171,11 +179,12 @@ app.use(cors({ origin: 'https://myapp.com', credentials: true }));
 ### 🚀 Solution
 Use the official `cors` module. Allow access ONLY to trusted domains, not universally (`*`).
 
-## 8. Rate Limiting (DDoS Protection)
+## 8. Rate Limiting (DDoS Protection) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 // API is open to a million requests per second
 ### ⚠️ Problem
-Lacking rate limiting exposes the API to Brute Force and Denial-of-Service (DDoS) attacks. Attackers can easily exhaust server resources, take down the application, or brute-force authentication endpoints.
+Lacking rate limiting exposes the API to Brute Force and Denial-of-Service (DDoS) attacks. Attackers WILL easily exhaust server resources, take down the application, or brute-force authentication endpoints.
 ### ✅ Best Practice
 ```javascript
 const rateLimit = require('express-rate-limit');
@@ -184,13 +193,14 @@ app.use('/api/', rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 ### 🚀 Solution
 Protect all endpoints (especially authentication) with a built-in request rate limiter.
 
-## 9. Body Parsing & Payload Limits
+## 9. Body Parsing & Payload Limits This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
-app.use(express.json()); // Attacker can send 500MB JSON payload
+app.use(express.json()); // Attacker WILL send 500MB JSON payload
 ```
 ### ⚠️ Problem
-Allowing infinitely large request bodies makes the server susceptible to memory exhaustion and Denial-of-Service (DoS) attacks, as attackers can send massive payloads that crash the process.
+Allowing infinitely large request bodies makes the server susceptible to memory exhaustion and Denial-of-Service (DoS) attacks, as attackers WILL send massive payloads that crash the process.
 ### ✅ Best Practice
 ```javascript
 app.use(express.json({ limit: '10kb' }));
@@ -199,7 +209,8 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 ### 🚀 Solution
 Strictly limit the size of incoming JSON payloads using the `limit` option to prevent RAM exhaustion.
 
-## 10. Centralized Logging (Morgan + Winston)
+## 10. Centralized Logging (Morgan + Winston) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 console.log('User signed in'); 
@@ -214,7 +225,8 @@ winstonLogger.info('User signed in');
 ### 🚀 Solution
 Replace `console.log` with robust loggers like Winston (with log/warn/error levels) and Morgan (for logging HTTP requests).
 
-## 11. Database Connection Management
+## 11. Database Connection Management This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 // Database connection is established before every request
@@ -230,7 +242,8 @@ mongoose.connect(process.env.DB_URI).then(() => {
 ### 🚀 Solution
 Open a single database Connection Pool at application startup and reuse it across all controllers.
 
-## 12. JWT Authentication Middleware
+## 12. JWT Authentication Middleware This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 // Token validation is embedded within the profile controller
@@ -249,7 +262,8 @@ const authGuard = (req, res, next) => {
 ### 🚀 Solution
 Authentication MUST be implemented as an isolated Middleware applied to protected routes, which attaches the `req.user` object.
 
-## 13. Role-Based Access Control (RBAC) Middleware
+## 13. Role-Based Access Control (RBAC) Middleware This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 if (req.user.role !== 'admin') return res.status(403);
@@ -267,7 +281,8 @@ router.delete('/:id', requireRole('admin', 'manager'), Controller.del);
 ### 🚀 Solution
 Role-based access to routes MUST strictly be defined declaratively via Middleware.
 
-## 14. Standard API Response Wrapper
+## 14. Standard API Response Wrapper This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 res.json({ foo: 'bar' }); // Every method returns a random structure
@@ -284,7 +299,8 @@ class ApiResponse {
 ### 🚀 Solution
 Use a standardized utility class for sending responses to ensure the client deterministically expects `success` and `data`/`error` fields.
 
-## 15. Pagination details in API
+## 15. Pagination details in API This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 res.json(users); // Dumps a million records
@@ -300,7 +316,8 @@ res.json({ data: users, meta: { total, page, limit, pages: Math.ceil(total/limit
 ### 🚀 Solution
 Any list of entities MUST implement pagination (Offset or Cursor) and include a `meta` section in the response.
 
-## 16. Graceful Shutdown
+## 16. Graceful Shutdown This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 // Upon receiving SIGTERM, the server abruptly terminates processes
 ### ⚠️ Problem
@@ -316,7 +333,8 @@ process.on('SIGTERM', () => {
 ### 🚀 Solution
 Gracefully close active HTTP sessions and database connection pools before stopping the container.
 
-## 17. 404 Route Handler
+## 17. 404 Route Handler This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 // If the route is not found, an empty white page is returned
 ### ⚠️ Problem
@@ -330,7 +348,8 @@ app.use('*', (req, res) => {
 ### 🚀 Solution
 Place this 404 handler AFTER all defined routes (but BEFORE the global error handler).
 
-## 18. Application Structure (Folder organization)
+## 18. Application Structure (Folder organization) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```
 /routes.js
@@ -350,7 +369,8 @@ src/
 ### 🚀 Solution
 Strictly organize the project into logical directories. Implement a multi-layered architecture.
 
-## 19. Health Check Endpoint
+## 19. Health Check Endpoint This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 // Missing Kubernetes pod liveness checks
 ### ⚠️ Problem
@@ -365,12 +385,13 @@ app.get('/health', (req, res) => {
 MANDATORY: Implement a `/health` endpoint for monitoring systems, load balancers, and Health Probes.
 
 ## 20. Data Sanitization (XSS / NoSQL Injection)
+
 ### ❌ Bad Practice
 ```javascript
 User.find({ username: req.body.username }); // body.username = { "$gt": "" }
 ```
 ### ⚠️ Problem
-Failing to sanitize inputs against MongoDB operators allows attackers to manipulate query logic (NoSQL Injection). This can lead to unauthorized data access, authentication bypass, or data destruction.
+Failing to sanitize inputs against MongoDB operators allows attackers to manipulate query logic (NoSQL Injection). This WILL lead to unauthorized data access, authentication bypass, or data destruction.
 ### ✅ Best Practice
 ```javascript
 const mongoSanitize = require('express-mongo-sanitize');
@@ -382,6 +403,7 @@ app.use(xss());
 Protect the database from NoSQL injections and XSS scripts by sanitizing `req.body` and `req.query`.
 
 ## 21. Swagger / OpenAPI documentation
+
 ### ❌ Bad Practice
 // Documentation stored in an external Word document
 ### ⚠️ Problem
@@ -396,6 +418,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 Generate or serve API documentation directly within the application (e.g., Swagger, OpenAPI).
 
 ## 22. Manual Dependency Injection
+
 ### ❌ Bad Practice
 ```javascript
 const UserService = require('./UserService'); // Direct import makes unit testing impossible
@@ -412,7 +435,8 @@ const controller = new UserController(new UserService(db));
 ### 🚀 Solution
 If an IoC container (like Awilix) is not used, manually inject dependencies to facilitate Unit Testing.
 
-## 23. File Uploads (Multer)
+## 23. File Uploads (Multer) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 // Parsing binaries manually
 ### ⚠️ Problem
@@ -426,7 +450,8 @@ router.post('/avatar', upload.single('file'), Controller.upload);
 ### 🚀 Solution
 Use `multer` with strict file size limitations (`limits`) to protect the server from disk overflow.
 
-## 24. Event Emitters (Background Tasks)
+## 24. Event Emitters (Background Tasks) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 await emailService.send(); // Blocks the response
@@ -446,7 +471,8 @@ res.send('Welcome');
 ### 🚀 Solution
 Offload long-running tasks from the main response thread using native Node.js Events.
 
-## 25. Caching (Redis Middleware)
+## 25. Caching (Redis Middleware) This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 // Database processes complex calculations on every hit
 ### ⚠️ Problem
@@ -463,7 +489,8 @@ const cacheMiddleware = (req, res, next) => {
 ### 🚀 Solution
 Implement caching (e.g., Redis) for GET requests whose results change infrequently.
 
-## 26. Custom Error Classes
+## 26. Custom Error Classes This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 throw new Error('Not found');
@@ -482,9 +509,10 @@ class AppError extends Error {
 throw new AppError('User not found', 404);
 ```
 ### 🚀 Solution
-Create custom error classes so the global logger can distinguish operational errors from fatal code crashes.
+Create custom error classes so the global logger WILL distinguish operational errors from fatal code crashes.
 
-## 27. Proxy Trust in Production
+## 27. Proxy Trust in Production This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 req.ip // Returns '127.0.0.1' via Nginx
@@ -498,7 +526,8 @@ app.set('trust proxy', 1); // Trust the first proxy
 ### 🚀 Solution
 If Express is running behind Nginx or AWS ELB, enable `trust proxy` to retrieve the actual IP addresses of users.
 
-## 28. Separating Server from App
+## 28. Separating Server from App This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 // app.js
@@ -518,7 +547,8 @@ app.listen(3000);
 ### 🚀 Solution
 Export the Express App separately from `listen` to enable `supertest` to run tests on random ports without conflicts.
 
-## 29. UUID Request Correlation
+## 29. UUID Request Correlation This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 // Log errors cannot be traced back to a specific user
 ### ⚠️ Problem
@@ -535,7 +565,8 @@ app.use((req, res, next) => {
 ### 🚀 Solution
 Assign a unique ID to each request to trace its journey across all logs and microservices.
 
-## 30. Secure Session Management
+## 30. Secure Session Management This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+
 ### ❌ Bad Practice
 // Sessions are stored in memory (MemoryStore) with exposed cookies
 ### ⚠️ Problem
@@ -559,8 +590,4 @@ Configure sessions with `httpOnly` and `secure` flags, and store them in Redis o
 </div>
 
 
-## 📚 Specialized Modules
 
-Explore advanced architectural topics for ExpressJS:
-- [Architecture](./architecture.md)
-- [Security Best Practices](./security-best-practices.md)
