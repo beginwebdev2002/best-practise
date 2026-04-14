@@ -94,6 +94,10 @@ This folder acts as a container for documentation around the following technolog
 - [Qwik](./qwik/readme.md)
 
 ## 🎨 UI/UX Design & Styling
+- [Styling Rules](./design-ui/styling.md)
+- [Responsive Design](./design-ui/responsive-design.md)
+- [Accessibility](./design-ui/accessibility.md)
+- [Component Architecture](./design-ui/component-architecture.md)
 
-- [UI/UX Design Production-Ready Best Practices](../.jules/rules/ui-ux-design.md)
-- [UI/UX Design & Styling Rules for Jules](../.jules/rules/design.md)
+- [UI/UX Design Index](./design-ui/readme.md)
+
