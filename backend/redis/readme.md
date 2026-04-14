@@ -157,18 +157,16 @@ const role = await redisClient.hGet('user:profile:123', 'role');
 ```
 #### 🚀 Solution
 Optimize data structure usage. Employ Hashes for objects to save memory and allow granular updates, and Sorted Sets for leaderboards or rate limiting. Avoid large keys or values (keep them well under 512MB) to minimize overhead.
-## 📚 Specialized Documentation
-- [architecture.md](./architecture.md)
-- [security-best-practices.md](./security-best-practices.md)
-- [api-design.md](./api-design.md)
 ---
 
 [Back to Top](#)
 
 
-## 📚 Specialized Modules
 
 Explore advanced architectural topics for Redis:
-- [Api Design](./api-design.md)
-- [Architecture](./architecture.md)
+
+## 📑 Specialized Documentation
+
 - [Security Best Practices](./security-best-practices.md)
+- [Architecture](./architecture.md)
+- [Api Design](./api-design.md)

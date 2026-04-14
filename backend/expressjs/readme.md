@@ -26,6 +26,11 @@ This document outlines the **best practices** for Express.js architecture. The f
 > **Architectural Contract:** Never write business logic in routers. Strictly separate responsibilities into `Router`, `Controller`, and `Service`.
 ---
 
+## 📑 Specialized Documentation
+
+- [Security Best Practices](./security-best-practices.md)
+- [Architecture](./architecture.md)
+
 ## 🔄 Architecture Data Flow
 
 ```mermaid
@@ -54,9 +59,6 @@ sequenceDiagram
         ErrorMW-->>Client: Standardized Error Response
     end
 ```
-## 📚 Specialized Documentation
-- [architecture.md](./architecture.md)
-- [security-best-practices.md](./security-best-practices.md)
 ---## 1. Controller / Route Decoupling
 ### ❌ Bad Practice
 ```javascript
@@ -588,8 +590,4 @@ Configure sessions with `httpOnly` and `secure` flags, and store them in Redis o
 </div>
 
 
-## 📚 Specialized Modules
 
-Explore advanced architectural topics for ExpressJS:
-- [Architecture](./architecture.md)
-- [Security Best Practices](./security-best-practices.md)

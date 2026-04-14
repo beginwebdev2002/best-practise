@@ -25,6 +25,11 @@ This document establishes **best practices** for building and maintaining Node.j
 > [!IMPORTANT]
 > **Architectural Contract:** Code must be completely asynchronous. Absolutely avoid synchronous blocking methods like `readFileSync` or `crypto.pbkdf2Sync` on the main thread. Delegate heavy computational tasks to Worker Threads or separate microservices to keep the event loop non-blocking.
 ---
+## 📑 Specialized Documentation
+
+- [Security Best Practices](./security-best-practices.md)
+- [Architecture](./architecture.md)
+
 ## 🏗️ Architecture & Component Isolation
 
 Node.js applications must use explicit module separation to handle logic appropriately.

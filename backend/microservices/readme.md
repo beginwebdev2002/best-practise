@@ -184,18 +184,16 @@ span.end();
 ```
 #### 🚀 Solution
 Distributed Tracing is mandatory (e.g., using OpenTelemetry). All requests must pass a Correlation ID (Trace ID) across service boundaries. Centralized Logging (ELK, Datadog) is required for correlating complex distributed issues.
-## 📚 Specialized Documentation
-- [architecture.md](./architecture.md)
-- [security-best-practices.md](./security-best-practices.md)
-- [api-design.md](./api-design.md)
 ---
 
 [Back to Top](#)
 
 
-## 📚 Specialized Modules
 
 Explore advanced architectural topics for Microservices:
-- [Api Design](./api-design.md)
-- [Architecture](./architecture.md)
+
+## 📑 Specialized Documentation
+
 - [Security Best Practices](./security-best-practices.md)
+- [Architecture](./architecture.md)
+- [Api Design](./api-design.md)
