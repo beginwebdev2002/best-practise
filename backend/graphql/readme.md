@@ -25,6 +25,11 @@ This document establishes **best practices** for building and maintaining GraphQ
 > [!IMPORTANT]
 > **Architectural Contract:** Implement robust query depth limiting, strict input validation, and use DataLoader for mitigating N+1 query problems. Never expose unstructured data directly from resolvers.
 ---
+## 📑 Specialized Documentation
+
+- [Security Best Practices](./security-best-practices.md)
+- [Architecture](./architecture.md)
+
 ## 🏗️ Architecture & Component Isolation
 
 ### 🚨 1. Resolving the N+1 Query Problem
@@ -57,16 +62,10 @@ const resolvers = {
 #### 🚀 Solution
 Strictly utilize a batching utility like `DataLoader` for resolving all one-to-many or many-to-many relationships. This guarantees that deep GraphQL queries are translated into optimized, batched SQL/NoSQL queries.
 
-## 📚 Specialized Documentation
-- [architecture.md](./architecture.md)
-- [security-best-practices.md](./security-best-practices.md)
 ---
 
 [Back to Top](#)
 
 
-## 📚 Specialized Modules
 
 Explore advanced architectural topics for GraphQL:
-- [Architecture](./architecture.md)
-- [Security Best Practices](./security-best-practices.md)
