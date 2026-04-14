@@ -48,3 +48,39 @@ graph LR
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
     class A,B,C default;
 ```
+
+## 1. Shared Database Across Services
+
+### ❌ Bad Practice
+```yaml
+# docker-compose.yml
+services:
+  order-service:
+    environment:
+      - DB_URL=postgresql://shared-db:5432/ecommerce
+
+  inventory-service:
+    environment:
+      # Both services connect to the exact same physical database instance
+      - DB_URL=postgresql://shared-db:5432/ecommerce
+```
+
+### ⚠️ Problem
+Sharing a single database among multiple microservices completely violates the core principle of microservices (independence). If `order-service` performs a heavy migration or drops a table, `inventory-service` crashes. Database schemas cannot evolve independently, recreating monolithic tight coupling at the data layer.
+
+### ✅ Best Practice
+```yaml
+# docker-compose.yml
+services:
+  order-service:
+    environment:
+      - DB_URL=postgresql://order-db:5432/orders
+
+  inventory-service:
+    environment:
+      # Complete data isolation: each service owns its database
+      - DB_URL=postgresql://inventory-db:5432/inventory
+```
+
+### 🚀 Solution
+Strictly enforce the "Database-per-Service" pattern. A microservice's persistent data must be private and accessible only via its API. If `order-service` needs inventory data, it must call the `inventory-service` API asynchronously or subscribe to its data replication events, rather than running cross-database SQL JOINs.
