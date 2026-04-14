@@ -1,6 +1,6 @@
 ---
 technology: UI/UX Design
-domain: Documentation
+domain: Frontend
 level: Senior/Architect
 version: Latest
 tags: [vibe-coding, documentation, best-practices, architecture, design-system, accessibility]
@@ -9,6 +9,8 @@ last_updated: 2026-03-29
 ---
 
 # 🎨 UI/UX Design Production-Ready Best Practices
+
+[⬆️ Back to Frontend Architecture](../readme.md)
 
 This document outlines the production-ready best practices for UI/UX Design and styling, specifically tailored for the Jules AI agent. It ensures consistent, accessible, and responsive user interfaces.
 
