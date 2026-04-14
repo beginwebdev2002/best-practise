@@ -68,11 +68,13 @@ class UserService {
 class OrderService {
   constructor(private readonly eventBus: EventBus) {}
 
-  processOrder(order: any) {
+    processOrder(order: unknown) {
+    if (!order || typeof order !== 'object' || !('userId' in order)) return;
+
     // Process order...
 
     // Emit an event instead of mutating other domains' state
-    this.eventBus.publish('OrderProcessed', { userId: order.userId, timestamp: Date.now() });
+    this.eventBus.publish('OrderProcessed', { userId: (order as { userId: string }).userId, timestamp: Date.now() });
   }
 }
 ```
