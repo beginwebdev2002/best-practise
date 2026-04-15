@@ -8,6 +8,16 @@ import { GoogleGenAI } from '@google/genai';
 const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_AI_API_KEY });
 
 // Constants for scoring
+
+async function fileOrDirExists(filePath) {
+  try {
+    await fsPromises.stat(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 const SCORES = {
   ARCH: 40,
   TYPE: 30,
@@ -54,8 +64,8 @@ async function syncBenchmarks(tech, mdContent, retries = 5, delay = 10000) {
     if (Array.isArray(parsed) && parsed.length >= 2) {
       const suiteDir = path.join('benchmarks', 'suites');
       const criteriaDir = path.join('benchmarks', 'criteria');
-      if (!fs.existsSync(suiteDir)) await fsPromises.mkdir(suiteDir, { recursive: true });
-      if (!fs.existsSync(criteriaDir)) await fsPromises.mkdir(criteriaDir, { recursive: true });
+      if (!await fileOrDirExists(suiteDir)) await fsPromises.mkdir(suiteDir, { recursive: true });
+      if (!await fileOrDirExists(criteriaDir)) await fsPromises.mkdir(criteriaDir, { recursive: true });
 
       await fsPromises.writeFile(path.join(suiteDir, `${tech}.json`), JSON.stringify(parsed[0], null, 2));
       await fsPromises.writeFile(path.join(criteriaDir, `${tech}-schema.json`), JSON.stringify(parsed[1], null, 2));
@@ -234,7 +244,7 @@ async function runVibeCheck() {
   for (const file of modifiedFiles) {
     console.log(`Processing ${file}...`);
 
-    if (!fsSync.existsSync(file)) {
+    if (!await fileOrDirExists(file)) {
       console.log(`File ${file} does not exist. Skipping.`);
       continue;
     }
@@ -260,7 +270,7 @@ async function runVibeCheck() {
     await syncBenchmarks(tech, mdContent);
 
     const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
-    if (!fsSync.existsSync(suitePath)) {
+    if (!await fileOrDirExists(suitePath)) {
       console.log(`No benchmark suite found for ${tech}. Skipping.`);
       continue;
     }
@@ -295,7 +305,7 @@ async function runVibeCheck() {
         // Only commit if there are changes (badge might already be there)
         const status = execSync('git status --porcelain', { encoding: 'utf-8' });
         if (status.includes(file) || status.includes('benchmarks/')) {
-           execSync(`git commit -m "[chore: fidelity-pass]"`);
+           execSync(`git commit -m "[chore: benchmark-sync]"`);
            execSync(`git push origin HEAD:main`);
         } else {
            console.log(`Badge already present in ${file}, skipping commit.`);
@@ -308,7 +318,7 @@ async function runVibeCheck() {
       console.error(`❌ Validation failed for ${file}. Score below 95%.`);
 
       const reportDir = path.join('benchmarks', 'logs');
-      if (!fs.existsSync(reportDir)) await fsPromises.mkdir(reportDir, { recursive: true });
+      if (!await fileOrDirExists(reportDir)) await fsPromises.mkdir(reportDir, { recursive: true });
 
       const reportPath = path.join(reportDir, `violation-report.md`);
       const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n\`\`\`typescript\n${generatedCode}\n\`\`\`\n\nReview the AST rules.`;
