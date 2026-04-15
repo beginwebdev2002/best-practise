@@ -32,7 +32,7 @@ This document establishes **best practices** for building and maintaining GraphQ
 
 ## 🏗️ Architecture & Component Isolation
 
-### 🚨 1. Resolving the N+1 Query Problem
+## 🚨 1. Resolving the N+1 Query Problem
 #### ❌ Bad Practice
 ```javascript
 // A resolver fetching a related entity synchronously inside a loop

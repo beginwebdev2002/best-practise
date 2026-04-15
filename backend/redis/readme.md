@@ -92,7 +92,7 @@ const redisClient = redis.createClient({
 });
 ```
 #### 🚀 Solution
-Never expose Redis to the public internet. Isolate it within a private VPC, enforce strong password authentication (`requirepass`), rename dangerous commands (like `FLUSHALL`), and mandate TLS encryption for all data in transit. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Never expose Redis to the public internet. Isolate it within a private VPC, enforce strong password authentication (`requirepass`), rename dangerous commands (like `FLUSHALL`), and mandate TLS encryption for all data in transit.
 
 ### Network Architecture
 #### ❌ Bad Practice
@@ -134,7 +134,7 @@ do {
 } while (cursor !== 0);
 ```
 #### 🚀 Solution
-Strictly avoid blocking commands (`KEYS *`, `SMEMBERS`). Use iterative commands like `SCAN` or `SSCAN` to process large datasets without locking the single-threaded Redis event loop. Utilize pipelining for batch operations. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+Strictly avoid blocking commands (`KEYS *`, `SMEMBERS`). Use iterative commands like `SCAN` or `SSCAN` to process large datasets without locking the single-threaded Redis event loop. Utilize pipelining for batch operations.
 
 ### Data Types
 #### ❌ Bad Practice

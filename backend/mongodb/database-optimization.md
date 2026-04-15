@@ -47,7 +47,7 @@ graph LR
 ```javascript
 // Ideal index for the ESR query
 db.orders.createIndex({ status: 1, date: 1, amount: 1 })
-``` This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+```
 
 ### ⚠️ Problem
 Failing to follow best practices for `the architectural pattern` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
@@ -79,7 +79,7 @@ db.users.aggregate([
   { $sort: { age: -1 } },
   { $project: { name: 1, age: 1 } }
 ])
-``` This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+```
 
 ### ⚠️ Problem
 Failing to follow best practices for `the architectural pattern` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
@@ -97,7 +97,7 @@ db.orders.find(
   { status: "shipped" },
   { status: 1, amount: 1, _id: 0 }
 )
-``` This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+```
 
 ### ❌ Bad Practice
 [Need to fill in example of non-optimal code]

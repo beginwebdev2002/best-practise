@@ -36,7 +36,7 @@ This document establishes **best practices** for building and maintaining MongoD
 - [Security Best Practices](./security-best-practices.md)
 - [Architecture](./architecture.md)
 
-### 🚨 1. Schema Validation
+## 🚨 1. Schema Validation
 #### ❌ Bad Practice
 ```javascript
 // Inserting data without validation

@@ -52,7 +52,7 @@ function safeMerge(target, source) {
 ### 🚀 Solution
 STRICTLY filter reserved prototype keys (`__proto__`, `constructor`, `prototype`) during deep clone or merge operations. Alternatively, use robust, community-vetted libraries (like lodash.merge) that have built-in pollution defenses.
 
-## 2. 🔏 Hardcoded Secrets This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+## 2. 🔏 Hardcoded Secrets
 
 ### ❌ Bad Practice
 ```javascript
@@ -97,4 +97,4 @@ app.post('/validate', (req, res) => {
 });
 ```
 ### 🚀 Solution
-FORBID the use of complex, custom regular expressions on unconstrained user input. STRICTLY utilize established validation libraries and apply input length constraints before regex execution. This architecture is strictly enforced because it drastically improves performance, ensures deterministic memory management, and mitigates critical security vulnerabilities compared to the anti-pattern.
+FORBID the use of complex, custom regular expressions on unconstrained user input. STRICTLY utilize established validation libraries and apply input length constraints before regex execution.
