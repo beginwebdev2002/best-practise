@@ -12,7 +12,7 @@ last_updated: 2026-03-29
 
 <a id="english"></a>
 <div align="center">
-  <img src="https://cdn.simpleicons.org/probot" width="100" alt="Probot Logo">
+  <img src="https://cdn.simpleicons.org/probot" width="100" alt="Probot Logo"> <br>
   
   # Best-Practise: AI Agent Context
 
@@ -231,7 +231,7 @@ This is a living repository. Even if you're building alone, the AI ecosystem thr
 
 <a id="russian"></a>
 <div align="center">
-  <img src="https://cdn.simpleicons.org/probot" width="100" alt="Probot Logo">
+  <img src="https://cdn.simpleicons.org/probot" width="100" alt="Probot Logo"> <br>
   
   # Best-Practise: Контекст агента ИИ
 
@@ -383,7 +383,8 @@ graph TD
     class C3 component;
     class B component;
 
-```## 🌴 Folder Tree
+```
+## 🌴 Folder Tree
 
 * 📦 **[best-practise](./)**
   * 📄 [agents.md](./agents.md)

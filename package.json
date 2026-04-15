@@ -3,7 +3,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon .github/scripts/index.js",
-    "test": "nodemon ./test-gen/index.js"
+    "test": "nodemon ./test-gen/index.js",
+    "docs": "npx docsify-cli serve ."
   },
   "devDependencies": {
     "dotenv": "^17.3.1",

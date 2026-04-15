@@ -9,6 +9,9 @@ last_updated: 2026-03-22
 ---
 
 # Backend Best Practices & Production-Ready Patterns
+
+[🏠 На главную](../README.md)
+
 # Context & Scope
 - **Primary Goal:** Outline the overarching philosophy and standards for Backend and system development inside the ecosystem.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.

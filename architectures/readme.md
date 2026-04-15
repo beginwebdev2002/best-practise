@@ -9,6 +9,9 @@ last_updated: 2026-03-29
 ---
 
 # Architecture Best Practices & Production-Ready Patterns
+
+[🏠 На главную](../README.md)
+
 # Context & Scope
 - **Primary Goal:** Establish definitive rules and best practices for system design and architecture.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
