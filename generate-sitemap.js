@@ -1,32 +1,95 @@
 import { statSync, readdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
+
 const __dirname = import.meta.dirname;
 
+const BASE_URL = 'https://beginwebdev2002.github.io/best-practise/';
+const ROOT_DIR = __dirname;
 
-const BASE_URL = 'https://beginwebdev2002.github.io/best-practise/#/';
-const docsDir = join(__dirname, 'docs'); // или '.', если файлы в корне
+// Directories to scan for markdown content
+const SCAN_DIRS = ['docs', 'architectures', 'frontend', 'backend', 'benchmarks'];
+
+// Patterns to exclude
+const EXCLUDE_PATTERNS = [
+  /^_/,          // _sidebar.md, _coverpage.md, etc.
+  /^readme\.md$/i,
+  /node_modules/,
+  /\.git/,
+];
+
+function shouldExclude(filePath) {
+  const basename = filePath.split(/[\\/]/).pop();
+  return EXCLUDE_PATTERNS.some(pattern => pattern.test(basename));
+}
+
+function getLastMod(filePath) {
+  try {
+    return statSync(filePath).mtime.toISOString().split('T')[0];
+  } catch {
+    return new Date().toISOString().split('T')[0];
+  }
+}
+
+function getPriority(urlPath) {
+  const segments = urlPath.split('/').filter(Boolean).length;
+  if (segments <= 1) return '1.0';
+  if (segments === 2) return '0.8';
+  return '0.6';
+}
 
 function getFiles(dir, fileList = []) {
+  if (!statSync(dir).isDirectory()) return fileList;
   const files = readdirSync(dir);
   files.forEach(file => {
-    if (statSync(join(dir, file)).isDirectory()) {
-      getFiles(join(dir, file), fileList);
-    } else if (file.endsWith('.md') && !file.startsWith('_')) {
-      const urlPath = join(dir, file)
-        .replace(__dirname, '')
+    const fullPath = join(dir, file);
+    const stat = statSync(fullPath);
+    if (shouldExclude(fullPath)) return;
+    if (stat.isDirectory()) {
+      getFiles(fullPath, fileList);
+    } else if (file.endsWith('.md')) {
+      const relativePath = fullPath
+        .replace(ROOT_DIR, '')
         .replace(/\\/g, '/')
-        .replace('.md', '');
-      fileList.push(BASE_URL + urlPath.replace(/^\//, ''));
+        .replace(/^\//, '')
+        .replace(/\.md$/, '');
+      fileList.push({
+        url: `${BASE_URL}#/${relativePath}`,
+        lastmod: getLastMod(fullPath),
+        priority: getPriority(relativePath),
+      });
     }
   });
   return fileList;
 }
 
-const urls = getFiles(docsDir);
+const today = new Date().toISOString().split('T')[0];
+const entries = [
+  { url: BASE_URL, lastmod: today, priority: '1.0', changefreq: 'daily' },
+];
+
+for (const dir of SCAN_DIRS) {
+  const fullDir = join(ROOT_DIR, dir);
+  try {
+    getFiles(fullDir, entries);
+  } catch {
+    console.warn(`Skipping ${dir} — directory not found`);
+  }
+}
+
+const urlsXml = entries
+  .map(
+    ({ url, lastmod, priority, changefreq = 'weekly' }) =>
+      `  <url>\n    <loc>${url}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`
+  )
+  .join('\n');
+
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${urls.map(url => `<url><loc>${url}</loc><changefreq>weekly</changefreq></url>`).join('\n  ')}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+          http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+${urlsXml}
 </urlset>`;
 
-writeFileSync('sitemap.xml', sitemap);
-console.log('Sitemap generated!');
+writeFileSync('sitemap.xml', sitemap, 'utf-8');
+console.log(`✅ Sitemap generated with ${entries.length} URLs → sitemap.xml`);

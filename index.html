@@ -2,13 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Best Practise Documentation</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Best Practise Guidelines">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       PRIMARY SEO META TAGS
+  ═══════════════════════════════════════════════════════════════ -->
+  <title>Best Practise — Production-Ready Best Practices & Architecture Patterns</title>
+  <meta name="description" content="The ultimate guide to production-ready best practices, clean architecture patterns, and vibe coding workflows. TypeScript, Angular, NestJS, DDD, CQRS, Hexagonal Architecture — optimized for AI coding tools (Cursor, Windsurf, Antigravity).">
+  <meta name="keywords" content="best practices, clean architecture, TypeScript, Angular, NestJS, DDD, CQRS, hexagonal architecture, vibe coding, AI agent, production-ready, design patterns, software architecture, solid principles, feature sliced design">
+  <meta name="author" content="beginwebdev2002">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#42b983">
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       CANONICAL & SITEMAP
+  ═══════════════════════════════════════════════════════════════ -->
+  <link rel="canonical" href="https://beginwebdev2002.github.io/best-practise/" />
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       OPEN GRAPH (Facebook / LinkedIn / Telegram)
+  ═══════════════════════════════════════════════════════════════ -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://beginwebdev2002.github.io/best-practise/">
+  <meta property="og:title" content="Best Practise — Production-Ready Best Practices & Architecture Patterns">
+  <meta property="og:description" content="The ultimate guide to production-ready best practices, clean architecture patterns, and vibe coding workflows. Optimized for AI coding tools (Cursor, Windsurf, Antigravity).">
+  <meta property="og:image" content="https://beginwebdev2002.github.io/best-practise/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Best Practise Documentation Portal">
+  <meta property="og:site_name" content="Best Practise">
+  <meta property="og:locale" content="en_US">
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       TWITTER / X CARD
+  ═══════════════════════════════════════════════════════════════ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://beginwebdev2002.github.io/best-practise/">
+  <meta name="twitter:title" content="Best Practise — Production-Ready Best Practices & Architecture Patterns">
+  <meta name="twitter:description" content="The ultimate guide to production-ready best practices, clean architecture patterns, and vibe coding workflows. Optimized for AI coding tools.">
+  <meta name="twitter:image" content="https://beginwebdev2002.github.io/best-practise/assets/og-image.png">
+  <meta name="twitter:image:alt" content="Best Practise Documentation Portal">
+  <meta name="twitter:creator" content="@beginwebdev2002">
+  <meta name="twitter:site" content="@beginwebdev2002">
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       STRUCTURED DATA (JSON-LD)
+  ═══════════════════════════════════════════════════════════════ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "name": "Best Practise — Production-Ready Best Practices & Architecture Patterns",
+    "description": "The ultimate guide to production-ready best practices, clean architecture patterns, and vibe coding workflows for TypeScript, Angular, NestJS, and AI-driven development.",
+    "url": "https://beginwebdev2002.github.io/best-practise/",
+    "author": {
+      "@type": "Person",
+      "name": "beginwebdev2002",
+      "url": "https://github.com/beginwebdev2002"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Best Practise",
+      "url": "https://beginwebdev2002.github.io/best-practise/"
+    },
+    "keywords": "best practices, clean architecture, TypeScript, Angular, NestJS, vibe coding, AI agent, DDD, CQRS",
+    "inLanguage": ["en", "ru"],
+    "isAccessibleForFree": true,
+    "license": "https://github.com/beginwebdev2002/best-practise/blob/main/LICENSE"
+  }
+  </script>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       PERFORMANCE: PRECONNECT TO CDN ORIGINS
+  ═══════════════════════════════════════════════════════════════ -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://cdn.simpleicons.org" crossorigin>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       STYLES
+  ═══════════════════════════════════════════════════════════════ -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" />
-  <link rel="canonical" href="https://beginwebdev2002.github.io/best-practise/" />
 </head>
 <body>
   <div id="app"></div>
@@ -25,6 +101,8 @@
       sidebarDisplayLevel: 1,
       autoHeader: true,
       auto2top: true,
+      // SEO: update page <title> dynamically as user navigates
+      formatUpdated: '{YYYY}/{MM}/{DD}',
       search: {
         maxSuggestions: 10,
         placeholder: 'Search Docs...',
@@ -43,12 +121,35 @@
             return this.origin.code.apply(this, arguments);
           }
         }
-      }
+      },
+      // Dynamic title & meta description per page
+      plugins: [
+        function(hook, vm) {
+          hook.doneEach(function() {
+            var title = vm.route.file
+              ? document.title
+              : 'Best Practise — Production-Ready Best Practices & Architecture Patterns';
+
+            // Update OG/Twitter meta dynamically on navigation
+            var ogTitle = document.querySelector('meta[property="og:title"]');
+            var ogUrl   = document.querySelector('meta[property="og:url"]');
+            var twTitle = document.querySelector('meta[name="twitter:title"]');
+            var canonical = document.querySelector('link[rel="canonical"]');
+            var currentUrl = window.location.href;
+
+            if (ogTitle)   ogTitle.setAttribute('content', document.title);
+            if (ogUrl)     ogUrl.setAttribute('content', currentUrl);
+            if (twTitle)   twTitle.setAttribute('content', document.title);
+            if (canonical) canonical.setAttribute('href', currentUrl);
+          });
+        }
+      ]
     }
   </script>
+
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  
+
   <!-- Plugins -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>

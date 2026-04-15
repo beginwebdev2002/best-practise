@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://beginwebdev2002.github.io/best-practise/sitemap.xml

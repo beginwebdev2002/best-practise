@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "nodemon .github/scripts/index.js",
     "test": "nodemon ./test-gen/index.js",
-    "docs": "npx docsify-cli serve ."
+    "docs": "npx docsify-cli serve .",
+    "sitemap": "node generate-sitemap.js"
   },
   "devDependencies": {
     "dotenv": "^17.3.1",
