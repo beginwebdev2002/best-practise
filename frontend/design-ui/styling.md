@@ -21,6 +21,14 @@ This document enforces the strict styling rules and constraints regarding design
 
 ---
 
+---
+## ⚖️ Structural Comparison: Styling Paradigms
+
+| Paradigm | Value Definition | Reusability | AI Agent Preference | Risk |
+|:---|:---|:---|:---:|:---|
+| **Hardcoded Values (Anti-Pattern)** | Inline hex codes (e.g., `#FFF`) | None | ❌ Avoid | Fragments visual consistency; impossible to theme globally. |
+| **Design Tokens (Best Practice)** | CSS Custom Properties (e.g., `var(--color-bg)`) | High | ✅ Optimal | Single source of truth; supports dark mode and safe refactoring. |
+
 > [!CAUTION]
 > **Hardcoded Values Constraint:** AI Agents MUST NEVER use hardcoded colors, spacing, or typography values (e.g., `#FF0000`, `14px`). AI Agents MUST ALWAYS use established **Design Tokens** (e.g., CSS Variables `var(--color-primary)` or Tailwind classes like `text-primary`, `p-4`).
 

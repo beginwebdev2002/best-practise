@@ -38,7 +38,7 @@ last_updated: 2026-03-29
 
 | Domain | Technology | Status |
 |:---|:---|:---:|
-| **Frontend** | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" width="20"/> [Angular 20+](frontend/angular/) <br> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" width="20"/> [JavaScript (ES6+)](frontend/javascript/) <br> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="20"/> [TypeScript](frontend/typescript/) | ✅ |
+| **Frontend** | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" width="20"/> [Angular 20+](frontend/angular/) <br> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" width="20"/> [JavaScript (ES6+)](frontend/javascript/) <br> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="20"/> [TypeScript](frontend/typescript/) <br> 🎨 [UI/UX Design](frontend/design-ui/) | ✅ |
 | **Backend** | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" width="20"/> [NestJS](backend/nestjs/) <br> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" width="20"/> [Express.js](backend/express/) <br> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" width="20"/> [Node.js](backend/nodejs/) | ✅ |
 | **Architecture** | 📐 [Feature-Sliced Design (FSD)](architecture/fsd/) <br> 🏗️ [MVC](architecture/mvc/) | 🛠️ |
 ---
