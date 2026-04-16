@@ -1,8 +1,7 @@
 import { Project, SyntaxKind } from 'ts-morph';
-import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
 import path from 'node:path';
-import { execSync, execFileSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { GoogleGenAI } from '@google/genai';
 
 const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_AI_API_KEY });
@@ -19,7 +18,7 @@ function getModifiedFiles() {
   try {
     // In CI (daily run), check files modified in the last 24 hours.
     // We filter for non-empty lines that end in .md and are in frontend/ or backend/
-    const output = execSync('git log --since="24 hours ago" --name-only --pretty=format: | sort | uniq', { encoding: 'utf-8' });
+    const output = execFileSync('sh', ['-c', 'git log --since="24 hours ago" --name-only --pretty=format: | sort | uniq'], { encoding: 'utf-8' });
     const allFiles = output.split('\n')
       .map(f => f.trim())
       .filter(f => f.length > 0)
@@ -54,8 +53,16 @@ async function syncBenchmarks(tech, mdContent, retries = 5, delay = 10000) {
     if (Array.isArray(parsed) && parsed.length >= 2) {
       const suiteDir = path.join('benchmarks', 'suites');
       const criteriaDir = path.join('benchmarks', 'criteria');
-      if (!fs.existsSync(suiteDir)) await fsPromises.mkdir(suiteDir, { recursive: true });
-      if (!fs.existsSync(criteriaDir)) await fsPromises.mkdir(criteriaDir, { recursive: true });
+      try {
+        await fsPromises.access(suiteDir);
+      } catch {
+        await fsPromises.mkdir(suiteDir, { recursive: true });
+      }
+      try {
+        await fsPromises.access(criteriaDir);
+      } catch {
+        await fsPromises.mkdir(criteriaDir, { recursive: true });
+      }
 
       await fsPromises.writeFile(path.join(suiteDir, `${tech}.json`), JSON.stringify(parsed[0], null, 2));
       await fsPromises.writeFile(path.join(criteriaDir, `${tech}-schema.json`), JSON.stringify(parsed[1], null, 2));
@@ -225,8 +232,8 @@ async function runVibeCheck() {
 
   // Configure git user for commits
   try {
-    execSync('git config --global user.name "github-actions[bot]"');
-    execSync('git config --global user.email "github-actions[bot]@users.noreply.github.com"');
+    execFileSync('git', ['config', '--global', 'user.name', 'github-actions[bot]']);
+    execFileSync('git', ['config', '--global', 'user.email', 'github-actions[bot]@users.noreply.github.com']);
   } catch (e) {
     console.warn('Failed to configure git user. If running locally, this is expected.');
   }
@@ -234,7 +241,9 @@ async function runVibeCheck() {
   for (const file of modifiedFiles) {
     console.log(`Processing ${file}...`);
 
-    if (!fsSync.existsSync(file)) {
+    try {
+      await fsPromises.access(file);
+    } catch {
       console.log(`File ${file} does not exist. Skipping.`);
       continue;
     }
@@ -260,7 +269,9 @@ async function runVibeCheck() {
     await syncBenchmarks(tech, mdContent);
 
     const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
-    if (!fsSync.existsSync(suitePath)) {
+    try {
+      await fsPromises.access(suitePath);
+    } catch {
       console.log(`No benchmark suite found for ${tech}. Skipping.`);
       continue;
     }
@@ -291,12 +302,17 @@ async function runVibeCheck() {
 
       try {
         execFileSync('git', ['add', file]);
-        execSync('git add benchmarks/suites/*.json benchmarks/criteria/*.json 2>/dev/null || true');
+        try {
+          execFileSync('git', ['add', 'benchmarks/suites']);
+          execFileSync('git', ['add', 'benchmarks/criteria']);
+        } catch (e) {
+          // Ignore failures if directory does not exist
+        }
         // Only commit if there are changes (badge might already be there)
-        const status = execSync('git status --porcelain', { encoding: 'utf-8' });
+        const status = execFileSync('git', ['status', '--porcelain'], { encoding: 'utf-8' });
         if (status.includes(file) || status.includes('benchmarks/')) {
-           execSync(`git commit -m "[chore: fidelity-pass]"`);
-           execSync(`git push origin HEAD:main`);
+           execFileSync('git', ['commit', '-m', '[chore: fidelity-pass]']);
+           execFileSync('git', ['push', 'origin', 'HEAD:main']);
         } else {
            console.log(`Badge already present in ${file}, skipping commit.`);
         }
@@ -308,7 +324,11 @@ async function runVibeCheck() {
       console.error(`❌ Validation failed for ${file}. Score below 95%.`);
 
       const reportDir = path.join('benchmarks', 'logs');
-      if (!fs.existsSync(reportDir)) await fsPromises.mkdir(reportDir, { recursive: true });
+      try {
+        await fsPromises.access(reportDir);
+      } catch {
+        await fsPromises.mkdir(reportDir, { recursive: true });
+      }
 
       const reportPath = path.join(reportDir, `violation-report.md`);
       const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n\`\`\`typescript\n${generatedCode}\n\`\`\`\n\nReview the AST rules.`;
