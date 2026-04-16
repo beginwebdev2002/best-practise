@@ -84,4 +84,5 @@ export class CreateUserCommandHandler {
 ```
 
 ### 🚀 Solution
-Strictly separate Commands and Queries. A Command Handler should only return a success acknowledgment or the unique identifier of the newly created resource. If the client needs the full entity data, it should subsequently issue a separate Query (e.g., `GetUserQuery`) using the returned ID. This ensures independent scaling and maintainability of the read and write models.
+> [!IMPORTANT]
+> Strictly separate Commands and Queries. A Command Handler MUST only return a success acknowledgment or the unique identifier of the newly created resource. If the client needs the full entity data, it MUST subsequently issue a separate Query (e.g., `GetUserQuery`) using the returned ID. This ensures independent scaling and maintainability of the read and write models.

@@ -135,7 +135,8 @@ async function generateComponent(prompt: string, contextId: string): Promise<str
 
 1. **Structured Tracing:** Utilizing OpenTelemetry allows AI Agents and orchestration platforms to systematically query the execution graph and understand exactly where a logic branch failed.
 2. **Type-Safe Error Handling:** By utilizing `unknown` and an explicit `instanceof Error` check, we guarantee runtime safety and prevent secondary crashes during error handling.
-3. **Contextual Immutability:** Recording the `contextSnapshotId` ensures we can perfectly recreate the agent's exact state at the time of execution for deterministic debugging.
+> [!IMPORTANT]
+> 3. **Contextual Immutability:** Recording the `contextSnapshotId` ensures we MUST perfectly recreate the agent's exact state at the time of execution for deterministic debugging.
 
 > [!NOTE]
 > Ensure that your OpenTelemetry collector is configured to accept custom metrics related to token consumption and hallucination scores.

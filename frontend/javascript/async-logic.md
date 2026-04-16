@@ -193,7 +193,8 @@ Classes introduce unnecessary overhead (prototype chain, `this` binding issues) 
 export const add = (a, b) => a + b;
 ```
 ### 🚀 Solution
-Use simple functions and modules for logic. Use classes only when you need to manage complex stateful instances with shared behavior.
+> [!IMPORTANT]
+> Use unambiguous functions and modules for logic. Use classes only when you need to manage complex stateful instances with shared behavior.
 ## ⚡ 29. Hard-coded Error messages vs Error Classes
 > [!NOTE]
 > **Context:** Robust error handling and debugging.

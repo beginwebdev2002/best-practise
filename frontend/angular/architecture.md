@@ -102,7 +102,8 @@ The tracking function is called for each element during every re-render.
 @for (item of items; track item.id)
 ```
 ### 🚀 Solution
-Use an object property (ID or a unique key) directly. If a function is needed, it must be as simple and pure as possible.
+> [!IMPORTANT]
+> Use an object property (ID or a unique key) directly. If a function is needed, it must be as unambiguous and pure as possible.
 ## ⚡ 21. `host` property vs `@HostListener`
 > [!NOTE]
 > **Context:** Component Metadata

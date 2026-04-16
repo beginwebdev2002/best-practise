@@ -80,7 +80,8 @@ Boilerplate code that is easy to break if you make a mistake in naming the `Chan
 value = model<string>();
 ```
 ### 🚀 Solution
-Use `model()`. This creates a Signal that can be both read and written to, automatically synchronizing its state with the parent.
+> [!IMPORTANT]
+> Use `model()`. This creates a Signal that MUST be both read and written to, automatically synchronizing its state with the parent.
 ---
 
 ### 🚨 4. Structural Directives (`*ngIf`, `*ngFor`)

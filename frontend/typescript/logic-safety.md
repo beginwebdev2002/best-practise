@@ -198,7 +198,8 @@ interface Config {
 const cfg: Config = {};
 ```
 ### 🚀 Solution
-Use the optional modifier (`?`) for object properties that can be legally omitted.
+> [!IMPORTANT]
+> Use the optional modifier (`?`) for object properties that MUST be legally omitted.
 ## 🚨 20. Array index access safety
 > [!NOTE]
 > **Context:** Accessing elements by index.

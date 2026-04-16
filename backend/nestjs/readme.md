@@ -205,7 +205,8 @@ export const CurrentUser = createParamDecorator((data, ctx: ExecutionContext) =>
 getProfile(@CurrentUser() user: UserEntity) { return user; }
 ```
 #### 🚀 Solution
-Create custom decorators for clean data extraction from the Request (e.g., the current user).
+> [!IMPORTANT]
+> Create custom decorators for deterministic data extraction from the Request (e.g., the current user).
 
 ## 🚨 9. JWT Guards (Route Protection)
 #### ❌ Bad Practice

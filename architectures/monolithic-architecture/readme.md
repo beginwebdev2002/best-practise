@@ -85,4 +85,5 @@ export class PaymentProcessor {
 ```
 
 ### 🚀 Solution
-Treat logical modules inside the monolith as if they were independent microservices. Enforce strict boundaries. Modules must only communicate with each other through explicit public interfaces (Facades or Services). Never share database queries or raw internal state across domain boundaries. This creates a "Modular Monolith" that is clean and ready for future extraction.
+> [!IMPORTANT]
+> Treat logical modules inside the monolith as if they were independent microservices. Enforce strict boundaries. Modules must only communicate with each other through explicit public interfaces (Facades or Services). Never share database queries or raw internal state across domain boundaries. This creates a "Modular Monolith" that is deterministic and ready for future extraction.
