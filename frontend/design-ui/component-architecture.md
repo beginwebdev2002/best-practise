@@ -48,7 +48,7 @@ graph TD
 ---
 
 ### ❌ Bad Practice
-```javascript
+```tsx
 // A massive monolithic component rendering the entire layout, fetching data, and styling inner elements manually.
 function MonolithicDashboard() {
   return (
@@ -69,12 +69,17 @@ function MonolithicDashboard() {
 Creating "God components" tightly couples layout, logic, and styling. This creates an unmaintainable codebase, reduces code reuse, complicates testing, and dramatically increases the context size, degrading an AI Agent's deterministic generation capabilities.
 
 ### ✅ Best Practice
-```javascript
+```tsx
 // Highly cohesive, isolated components following Atomic Design
+import { ReactNode } from 'react';
 import { Header } from './components/Header';
 import { Card } from './components/Card';
 
-function DashboardLayout({ children }) {
+interface DashboardLayoutProps {
+  children: ReactNode;
+}
+
+function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <div className="layout-dashboard">
       <Header title="Dashboard" />
