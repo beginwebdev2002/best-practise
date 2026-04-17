@@ -20,7 +20,8 @@ This document specifies the architectural constraints for creating robust Contex
 
 ## 🏗️ Systemic Injection Hierarchy
 
-Context should never be a monolithic blob. High-performance agent operations require progressive, context-aware drilling where an agent is only injected with the context it strictly requires to complete its bounded task.
+> [!IMPORTANT]
+> Context MUST never be a monolithic blob. High-performance agent operations require progressive, context-aware drilling where an agent is only injected with the context it strictly requires to complete its bounded task.
 
 ### The Injection Layers
 

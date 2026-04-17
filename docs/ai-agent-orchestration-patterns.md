@@ -69,10 +69,12 @@ flowchart TD
 ---
 ## ⚡ Performance Optimization for Vibe Coding
 
-When orchestrating agents for "Vibe Coding," performance is critical. Agents should not block each other synchronously.
+> [!IMPORTANT]
+> When orchestrating agents for "Vibe Coding," performance is critical. Agents MUST not block each other synchronously.
 
 - **Asynchronous Execution:** Ensure worker agents run concurrently using Promises or background queues.
-- **Context Pruning:** Agents should only receive relevant context to minimize token usage and latency.
+- > [!IMPORTANT]
+  > **Context Pruning:** Agents MUST only receive relevant context to minimize token usage and latency.
 - **Semantic Caching:** Cache common agent responses (using tools like Redis) to bypass expensive LLM calls for repetitive queries.
 
 > [!NOTE]
@@ -82,7 +84,8 @@ When orchestrating agents for "Vibe Coding," performance is critical. Agents sho
 
 Agents with execution capabilities must be sandboxed.
 
-- **Zero-Trust Memory:** Agents should authenticate when reading/writing to the shared memory bus.
+- > [!IMPORTANT]
+  > **Zero-Trust Memory:** Agents MUST authenticate when reading/writing to the shared memory bus.
 - **Output Sanitization:** Always validate agent outputs against strict JSON schemas or TypeScript interfaces before executing them.
 ---
 ## 📝 Actionable Checklist for 2026 Readiness

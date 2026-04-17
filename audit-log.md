@@ -10,4 +10,4 @@ last_updated: 2026-03-29
 
 # Audit Log
 
-Replaced 14 ambiguous phrases with hard constraints and quantified terms.
+Replaced 17 ambiguous phrases with hard constraints and quantified terms.

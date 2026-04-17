@@ -78,7 +78,8 @@ To build a "Knowledge Graph" within the repository, files must be cross-referenc
 
 - **Dependency Linking:** If a TypeScript guide is used, it must link to the `Architecture` guide (e.g., `[View Architecture Standards](../../architectures/fsd.md)`).
 - **Pattern Inheritance:** Link specialized patterns (e.g., Factory) to general programming principles (e.g., SOLID).
-- **Navigation:** Every sub-folder should have a `readme.md` that maps out the local files and their relationship to the repository root.
+- > [!IMPORTANT]
+  > **Navigation:** Every sub-folder MUST have a `readme.md` that maps out the local files and their relationship to the repository root.
 ---
 ## 5. Repository Metadata
 
