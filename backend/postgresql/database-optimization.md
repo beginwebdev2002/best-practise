@@ -10,6 +10,8 @@ last_updated: 2026-03-27
 
 # 🐘 PostgreSQL Database Optimization
 
+[⬅️ Back to Parent](./readme.md)
+
 
 ## 1. 🛑 Missing Indexes on Foreign Keys
 ### ❌ Bad Practice

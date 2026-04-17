@@ -10,6 +10,8 @@ last_updated: 2026-03-27
 
 # 🟥 Redis API Design
 
+[⬅️ Back to Parent](./readme.md)
+
 
 ## 1. 🛑 API Design: Blocking Commands
 ### ❌ Bad Practice

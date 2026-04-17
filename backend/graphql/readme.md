@@ -16,7 +16,7 @@ last_updated: 2026-03-29
 </div>
 ---
 
-This document establishes **best practices** for building and maintaining GraphQL APIs. These constraints guarantee a scalable, highly secure, and clean architecture suitable for an enterprise-level, production-ready backend.
+This document establishes **best practices** for building and maintaining GraphQL APIs. These constraints guarantee a scalable, highly secure, and deterministic architecture suitable for an enterprise-level, production-ready backend.
 # ⚙️ Context & Scope
 - **Primary Goal:** Provide an uncompromising set of rules and architectural constraints for GraphQL API environments.
 - **Target Tooling:** AI-agents (Cursor, Windsurf, Copilot, Antigravity) and Senior Developers.
@@ -33,7 +33,7 @@ This document establishes **best practices** for building and maintaining GraphQ
 ## 🏗️ Architecture & Component Isolation
 
 ## 🚨 1. Resolving the N+1 Query Problem
-#### ❌ Bad Practice
+### ❌ Bad Practice
 ```javascript
 // A resolver fetching a related entity synchronously inside a loop
 const resolvers = {
@@ -45,9 +45,9 @@ const resolvers = {
   }
 };
 ```
-#### ⚠️ Problem
+### ⚠️ Problem
 Fetching associated records one by one within a list resolver results in the N+1 problem, overwhelming the database with redundant queries, leading to severe performance degradation.
-#### ✅ Best Practice
+### ✅ Best Practice
 ```javascript
 // Utilizing DataLoader to batch and cache database requests
 const resolvers = {
@@ -59,7 +59,7 @@ const resolvers = {
   }
 };
 ```
-#### 🚀 Solution
+### 🚀 Solution
 Strictly utilize a batching utility like `DataLoader` for resolving all one-to-many or many-to-many relationships. This guarantees that deep GraphQL queries are translated into optimized, batched SQL/NoSQL queries.
 
 ---

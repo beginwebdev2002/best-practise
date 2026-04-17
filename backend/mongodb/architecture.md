@@ -10,6 +10,8 @@ last_updated: 2026-03-28
 
 # 🏛️ MongoDB Architecture Constraints
 
+[⬅️ Back to Parent](./readme.md)
+
 This document provides the "executable blueprints" for MongoDB architecture, outlining folder hierarchies, request/data flows, and entity relationships to ensure AI-agent readiness.
 ## 📂 Folder Hierarchy Constraints
 
@@ -34,6 +36,9 @@ graph TD
 
   class domains,user,order,schemas,models,repositories domain;
   class core,database,connection,config core;
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
 ```
 ## 🔄 Request / Data Flow
 

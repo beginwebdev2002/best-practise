@@ -10,6 +10,8 @@ last_updated: 2026-03-27
 
 # 🧩 Microservices Architecture
 
+[⬅️ Back to Parent](./readme.md)
+
 
 ## 1. 🛑 Synchronous Communication Bottlenecks
 ### ❌ Bad Practice

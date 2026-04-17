@@ -10,6 +10,8 @@ last_updated: 2026-03-29
 
 # 🏗️ GraphQL Architecture Best Practices
 
+[⬅️ Back to Parent](./readme.md)
+
 
 ## 1. 🛑 Schema Design & Bounded Contexts
 ### ❌ Bad Practice

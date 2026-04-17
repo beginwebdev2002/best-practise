@@ -16,7 +16,7 @@ last_updated: 2026-03-23
 </div>
 ---
 
-This document establishes **best practices** for building and maintaining Node.js applications. These constraints guarantee a scalable, highly secure, and clean architecture suitable for an enterprise-level, production-ready backend.
+This document establishes **best practices** for building and maintaining Node.js applications. These constraints guarantee a scalable, highly secure, and deterministic architecture suitable for an enterprise-level, production-ready backend.
 # ⚙️ Context & Scope
 - **Primary Goal:** Provide an uncompromising set of rules and architectural constraints for pure Node.js environments.
 - **Target Tooling:** AI-agents (Cursor, Windsurf, Copilot, Antigravity) and Senior Developers.
@@ -118,7 +118,7 @@ requiredEnv.forEach((name) => {
 });
 ```
 ### 🚀 Solution
-Fail fast. Validate all necessary environment variables upon application startup to prevent fatal runtime errors later in execution.
+fail fast. Validate all necessary environment variables upon application startup to prevent fatal runtime errors later in execution.
 
 ## 4. 🛑 Error Handling with Custom Classes
 
