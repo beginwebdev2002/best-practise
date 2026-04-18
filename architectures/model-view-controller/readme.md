@@ -14,14 +14,14 @@ last_updated: 2026-03-22
 </div>
 ---
 
-Этот инженерный директив определяет **лучшие практики (best practices)** для архитектуры MVC. Данный документ спроектирован для обеспечения максимальной масштабируемости, безопасности и качества кода при разработке приложений корпоративного уровня.
+This engineering directive defines the **best practices** for the MVC architecture. This document is designed to ensure maximum scalability, security, and code quality when developing enterprise-level applications.
 # Context & Scope
-- **Primary Goal:** Предоставить строгие архитектурные правила и 20 практических паттернов для создания масштабируемых и детерминированных MVC-приложений.
-- **Target Tooling:** AI-агенты (Cursor, Windsurf, Copilot, Antigravity) и Senior-разработчики.
-- **Tech Stack Version:** Agnostic (Применимо к Node.js, NestJS, Express, Spring Boot, Django, ASP.NET и др.).
+- **Primary Goal:** Provide strict architectural rules and 20 practical patterns for creating scalable and deterministic MVC applications.
+- **Target Tooling:** AI Agents (Cursor, Windsurf, Copilot, Antigravity) and Senior Developers.
+- **Tech Stack Version:** Agnostic (Applicable to Node.js, NestJS, Express, Spring Boot, Django, ASP.NET, etc.).
 
 > [!IMPORTANT]
-> **Архитектурный стандарт (Contract):** Контроллер принимает HTTP-запрос и маршрутизирует команды, Сервисы (или Доменная Модель) содержат бизнес-логику, Представление (View) отвечает исключительно за рендеринг абстрактных Data Transfer Objects (DTO).
+> **Architectural Contract:** The Controller receives the HTTP request and routes commands, Services (or Domain Model) contain the business logic, and the View is strictly responsible for rendering abstract Data Transfer Objects (DTOs).
 ## Architecture Flow (Mental Model)
 
 ```mermaid
@@ -81,7 +81,7 @@ class UserController {
 ```
 
 ### ⚠️ Problem
-Контроллер перегружен низкоуровневыми деталями реализации (SQL, хеширование, работа почты). Это грубо нарушает принцип единственной ответственности (SRP) и делает код монолитным и нетестируемым.
+The Controller is overloaded with low-level implementation details (SQL, hashing, email processing). This grossly violates the Single Responsibility Principle (SRP) and makes the code monolithic and untestable.
 
 ### ✅ Best Practice
 ```typescript
@@ -97,9 +97,9 @@ class UserController {
 ```
 
 ### 🚀 Solution
-Придерживайтесь парадигмы «Тонкие контроллеры» (Thin Controllers). Делегируйте все бизнес-сценарии в выделенный сервисный слой (Service Layer) или агрегатные доменные модели.
+Adhere to the 'Thin Controllers' paradigm. Delegate all business scenarios to a dedicated Service Layer or aggregate domain models.
 ---
-## 2. Anemic Domain Model (Анемичная модель)
+## 2. Anemic Domain Model
 
 ### ❌ Bad Practice
 ```typescript
@@ -119,7 +119,7 @@ class OrderService {
 ```
 
 ### ⚠️ Problem
-Доменные модели лишены поведения, а бизнес-логика процедурно размыта по сервисным функциям. Подобный антипаттерн ведет к дублированию валидации состояний.
+Domain models lack behavior, and business logic is procedurally scattered across service functions. This anti-pattern leads to duplicated state validation.
 
 ### ✅ Best Practice
 ```typescript
@@ -135,9 +135,9 @@ class Order {
 ```
 
 ### 🚀 Solution
-Инкапсулируйте изменение внутреннего состояния (мутации) внутри самой Модели (Rich Model). Сторонние сервисы обязаны вызывать методы-действия модели через подготовленные контракты, а не переопределять её данные.
+Encapsulate internal state mutations within the Model itself (Rich Model). External services must invoke the model's action methods via established contracts rather than overriding its data directly.
 ---
-## 3. Direct Model Exposure to View (Утечка схемы базы данных)
+## 3. Direct Model Exposure to View
 
 ### ❌ Bad Practice
 ```typescript
@@ -151,7 +151,7 @@ class UserController {
 ```
 
 ### ⚠️ Problem
-Абсолютная утечка конфиденциальных данных и жесткая привязка структуры ответов API к организации колонок в базе данных.
+Absolute leakage of sensitive data and tight coupling of the API response structure to the database column organization.
 
 ### ✅ Best Practice
 ```typescript
@@ -165,9 +165,9 @@ class UserController {
 ```
 
 ### 🚀 Solution
-Архитектурно необходимо применять классы DTO (Data Transfer Objects) или ViewModels для изолированной трансформации доменной модели в структуру, безопасную для клиента (View / API).
+Architecturally, it is mandatory to use DTO (Data Transfer Object) or ViewModel classes to isolate the transformation of the domain model into a client-safe structure (View / API).
 ---
-## 4. Complex Logic within Views (Шаблонизация бизнес-правил)
+## 4. Complex Logic within Views
 
 ### ❌ Bad Practice
 ```html
@@ -180,7 +180,7 @@ class UserController {
 ```
 
 ### ⚠️ Problem
-Слой View заражается бизнес-вычислениями (вычисление прав доступа). Это делает фронтенд-логику сверххрупкой.
+The View layer gets infected with business computations (calculating access rights). This makes the frontend logic extremely fragile.
 
 ### ✅ Best Practice
 ```html
@@ -193,7 +193,7 @@ class UserController {
 ```
 
 ### 🚀 Solution
-Экспортируйте агрегированные состояния для представления (View) в слое Презентера (ViewModel). View обязан оставаться «Глупым» (Dumb View), способным лишь на рендеринг булевых флагов и массивов из DTO.
+Export aggregated states for the presentation layer (View) via a Presenter (ViewModel). The View must remain 'Dumb', capable only of rendering boolean flags and arrays of DTOs.
 ---
 ## 5. View Layer Initiating Database Transactions
 
@@ -205,7 +205,7 @@ renderList(users);
 ```
 
 ### ⚠️ Problem
-Представление (View) совершает обход Контроллера и уходит на прямую связь с уровнем Persistance. Разрушается изоляция и контроль транзакций MVC.
+The View bypasses the Controller and communicates directly with the Persistence layer. This breaks the isolation and transaction control of MVC.
 
 ### ✅ Best Practice
 ```typescript
@@ -219,7 +219,7 @@ class UserController {
 ```
 
 ### 🚀 Solution
-Вектор зависимости слоя View строго однонаправлен «Сверху вниз» на данные, инжектированные Контроллером. Представление не должно осознавать факт существования Хранилищ (Repositories/DBs).
+The dependency vector of the View layer is strictly unidirectional 'Top-Down', relying on data injected by the Controller. The View must not be aware of the existence of any Storage (Repositories/DBs).
 ---
 ## 6. Global State and Singletons Bound to Models
 
@@ -235,7 +235,7 @@ class Invoice {
 ```
 
 ### ⚠️ Problem
-Скрытые глобальные зависимости превращают Domain-модели в объекты, которые категорически невозможно покрыть Isolated Unit-тестами.
+Hidden global dependencies turn Domain models into objects that are absolutely impossible to cover with Isolated Unit tests.
 
 ### ✅ Best Practice
 ```typescript
@@ -248,7 +248,7 @@ class Invoice {
 ```
 
 ### 🚀 Solution
-Исключите использование глобальных Синглтонов в доменной зоне. Все внешние параметры или конфигурационное окружение передаются в модели прозрачно (explicit dependencies) через конструкторы или аргументы методов.
+Eliminate the use of global Singletons within the domain area. All external parameters or environment configurations must be passed to models transparently (explicit dependencies) via constructors or method arguments.
 ---
 ## 7. Mixing Low-Level Routing with Controller Logic
 
@@ -267,7 +267,7 @@ class RouterController {
 ```
 
 ### ⚠️ Problem
-Синтаксический разбор HTTP-заголовков, URI и бизнес-вызов смешаны в одном файле.
+Syntax parsing of HTTP headers, URIs, and the business call are mixed together in a single file.
 
 ### ✅ Best Practice
 ```typescript
@@ -277,7 +277,7 @@ router.get('/settings', userController.showSettings);
 ```
 
 ### 🚀 Solution
-Оставьте маршутизацию (Routing) фреймворку или выделенному слою Router. Задача Контроллера — реагировать на уже сформированный вызов метода с готовым payload.
+Leave routing to the framework or a dedicated Router layer. The Controller's job is to respond to an already formed method call with a prepared payload.
 ---
 ## 8. Validation Rules Leaking into the Domain Layers
 
@@ -294,7 +294,7 @@ class UserService {
 ```
 
 ### ⚠️ Problem
-Слой бизнес-логики загрязняется валидацией формата HTTP, что является прерогативой инфраструктурного Контроллера (Middleware / Validators).
+The business logic layer is polluted with HTTP format validation, which is the prerogative of the infrastructural Controller (Middleware / Validators).
 
 ### ✅ Best Practice
 ```typescript
@@ -308,7 +308,7 @@ class UserController {
 ```
 
 ### 🚀 Solution
-Валидация синтаксиса и форматов (JSON Schema, DTO Validation) обязана выполняться на слое обработки запросов (Gateways / Controllers). В Сервисы должны поступать исключительно детерминированные форматы данных.
+Syntax and format validation (JSON Schema, DTO Validation) must be performed at the request processing layer (Gateways / Controllers). Services must receive strictly deterministic data formats.
 ---
 ## 9. Lack of Dependency Injection in Controllers
 
@@ -323,7 +323,7 @@ class OrderController {
 ```
 
 ### ⚠️ Problem
-Абсолютно жесткое связывание (Tight Coupling). Невозможно замокать (Mock) `OrderService` при тестировании `OrderController`.
+Absolute tight coupling. It is impossible to mock the `OrderService` when testing the `OrderController`.
 
 ### ✅ Best Practice
 ```typescript
@@ -334,7 +334,7 @@ class OrderController {
 ```
 
 ### 🚀 Solution
-Утилизируйте паттерн Dependency Injection (DI). Контроллеры запрашивают нужные сервисы или репозитории через интерфейсы (IoC Containers), что гарантирует возможность горячей подмены абстракций.
+Utilize the Dependency Injection (DI) pattern. Controllers request required services or repositories via interfaces (IoC Containers), guaranteeing the ability to hot-swap abstractions.
 ---
 ## 10. Generating Raw HTML Strings Inside Controllers
 
@@ -349,7 +349,7 @@ class WelcomeController {
 ```
 
 ### ⚠️ Problem
-Уничтожение слоя Представления (View). Кардинальные изменения в UI-дизайне потребуют вмешательства в скомпилированную бизнес-логику сервера.
+Destroying the View layer. Drastic changes in UI design will require modifying the compiled server business logic.
 
 ### ✅ Best Practice
 ```typescript
@@ -362,7 +362,7 @@ class WelcomeController {
 ```
 
 ### 🚀 Solution
-Контроллер НИКОГДА не генерирует разметку напрямую. Его функциональная гарантия — передать структуру данных (ViewModel / JSON) стандартизированному движку шаблонизации (Handlebars, React Server, EJS).
+The Controller NEVER generates markup directly. Its functional contract is to pass data structures (ViewModel / JSON) to a standardized templating engine (Handlebars, React Server, EJS).
 ---
 ## 11. God Models (Monolithic Bounded Contexts)
 
@@ -377,7 +377,7 @@ class StandardAppModel {
 ```
 
 ### ⚠️ Problem
-Катастрофическое нарушение SRP и принципов чистого проектирования. Монолитная модель становится узким "бутылочным горлышком", генерируя тысячи конфликтов слияния (Merge Conflicts).
+A catastrophic violation of SRP and clean design principles. The monolithic model becomes a major bottleneck, generating thousands of merge conflicts.
 
 ### ✅ Best Practice
 ```typescript
@@ -388,7 +388,7 @@ class PdfGeneratorService { ... }
 ```
 
 ### 🚀 Solution
-Декомпозируйте супер-модели на узконаправленные агрегаты (Aggregates) в рамках строгих контекстов предметной области (Bounded Contexts).
+Decompose god models into focused aggregates within strict Bounded Contexts.
 ---
 ## 12. View Layer Mutating Upstream State
 
@@ -399,7 +399,7 @@ class PdfGeneratorService { ... }
 ```
 
 ### ⚠️ Problem
-Представление меняет состояние Модели, обходя контроллер и не уведомляя внешние системы (базы данных или серверное состояние).
+The View mutates the Model's state, bypassing the Controller and failing to notify external systems (databases or server state).
 
 ### ✅ Best Practice
 ```typescript
@@ -410,7 +410,7 @@ class PdfGeneratorService { ... }
 ```
 
 ### 🚀 Solution
-Паттерн MVC предполагает, что View является лишь отражением (Read-only Projection) текущих данных. Для мутаций View должен отправить инструкцию для Контроллера (HTTP Request, Event), который санкционирует процесс.
+The MVC pattern dictates that the View is merely a Read-only Projection of the current data. For mutations, the View must send an instruction to the Controller (HTTP Request, Event), which then authorizes the process.
 ---
 ## 13. Hardwired Environment Secrets within Logic Code
 
@@ -425,7 +425,7 @@ class BillingService {
 ```
 
 ### ⚠️ Problem
-Критическая уязвимость базы кода (Data Leak). Привязка сервиса к единственному окружению (Невозможно тестировать на Stage серверах).
+A critical codebase vulnerability (Data Leak). Coupling the service to a single environment (Impossible to test on Staging servers).
 
 ### ✅ Best Practice
 ```typescript
@@ -438,7 +438,7 @@ class BillingService {
 ```
 
 ### 🚀 Solution
-Запрещен хардкод любых параметров окружения (Passwords, URLs, Tokens) в Контроллерах и Моделях. Вся инфраструктура загружается из специализированного провайдера конфигураций.
+Hardcoding any environment variables (Passwords, URLs, Tokens) in Controllers and Models is forbidden. All infrastructure configuration must be loaded from a specialized configuration provider.
 ---
 ## 14. Blocking Main Thread in Standard Controllers
 
@@ -454,7 +454,7 @@ class ReportController {
 ```
 
 ### ⚠️ Problem
-Синхронная процессорная блокировка вешает всё приложение. Пользователи на других маршрутах получат тайм-ауты (Timeouts).
+A synchronous CPU block freezes the entire application. Users on other routes will experience Timeouts.
 
 ### ✅ Best Practice
 ```typescript
@@ -468,7 +468,7 @@ class ReportController {
 ```
 
 ### 🚀 Solution
-Интегрируйте Job-системы (RabbitMQ, Redis Queues). Контроллер должен делегировать ресурсоемкие задачи воркеру в фоне и мгновенно возвращать HTTP 202 (Accepted).
+Integrate Job systems (RabbitMQ, Redis Queues). The Controller must delegate resource-intensive tasks to background workers and immediately return HTTP 202 (Accepted).
 ---
 ## 15. The "Repository" Abstraction Leak to View/Controller
 
@@ -484,7 +484,7 @@ class DashboardController {
 ```
 
 ### ⚠️ Problem
-Стирание абстракций СУБД. Контроллер осведомлен о диалекте SQL/GraphQL. При смене БД потребуется переписывать весь серверный роутинг.
+Erasing DBMS abstractions. The Controller is aware of the SQL/GraphQL dialect. Changing the database will require rewriting all server routing.
 
 ### ✅ Best Practice
 ```typescript
@@ -498,7 +498,7 @@ class DashboardController {
 ```
 
 ### 🚀 Solution
-Ограждайте слой Представлений и Контроллеров от низкоуровневых операций I/O. Интегрируйте паттерны Repository / Data Access Object (DAO).
+Shield the View and Controller layers from low-level I/O operations. Integrate Repository / Data Access Object (DAO) patterns.
 ---
 ## 16. Exposing Sequent Database Identifiers (IDOR Threat)
 
@@ -511,7 +511,7 @@ class TransactionResponse {
 ```
 
 ### ⚠️ Problem
-Инъекция уязвимости Insecure Direct Object Reference (IDOR). Злоумышленник может энумерировать идентификаторы соседних сущностей в URL-запросах.
+Injecting an Insecure Direct Object Reference (IDOR) vulnerability. An attacker can enumerate the identifiers of neighboring entities in URL requests.
 
 ### ✅ Best Practice
 ```typescript
@@ -521,7 +521,7 @@ class TransactionResponse {
 ```
 
 ### 🚀 Solution
-Транслируйте внутренние физические идентификаторы БД (Integers) во внешние строковые UUID или хэши прежде чем Контроллер перебросит их на View.
+Translate internal physical database identifiers (Integers) into external string UUIDs or hashes before the Controller passes them to the View.
 ---
 ## 17. Duplicating Core Invariants Inside Templates
 
@@ -535,7 +535,7 @@ class Package { isFragile() { return this.weight > 50; } }
 ```
 
 ### ⚠️ Problem
-Дублирование доменных инвариантов бизнес-системы. В случае изменения порога веса до 40 кг, программистам придется проводить ручной аудит всех фронтенд-шаблонов.
+Duplicating business system domain invariants. If the weight threshold changes to 40 kg, programmers will have to manually audit all frontend templates.
 
 ### ✅ Best Practice
 ```typescript
@@ -544,7 +544,7 @@ class Package { isFragile() { return this.weight > 50; } }
 ```
 
 ### 🚀 Solution
-Доменная Модель — единственный "Источник Правды" (Source of Truth). View должно читать готовое вычисленное полиморфное состояние, предоставленное системой.
+The Domain Model is the single "Source of Truth". The View should read pre-computed polymorphic state provided by the system.
 ---
 ## 18. Side-Effects Orchestration Inside Controller Scope
 
@@ -563,7 +563,7 @@ class SubscriptionController {
 ```
 
 ### ⚠️ Problem
-Контроллер вытягивает на себя роль Бога-Оркестратора. Любые новые сайд-эффекты будут увеличивать его размер экспоненциально и замедлять HTTP-канал.
+The Controller assumes the role of an Orchestrator God. Any new side-effects will increase its size exponentially and slow down the HTTP channel.
 
 ### ✅ Best Practice
 ```typescript
@@ -577,7 +577,7 @@ class SubscriptionController {
 ```
 
 ### 🚀 Solution
-Внедряйте Domain Events Architectures (Pub/Sub брокеры). Контроллер отвечает сугубо за инициирование бизнес-события "Оплата совершена", логики рассылки не должны блокировать канал ответа клиенту.
+Implement Domain Events Architectures (Pub/Sub brokers). The Controller is strictly responsible for initiating the "Payment complete" business event; dispatch logic should not block the response channel to the client.
 ---
 ## 19. Fractured Exception Logging (Try-Catch Hell)
 
@@ -596,7 +596,7 @@ class ItemController {
 ```
 
 ### ⚠️ Problem
-Возникновение тысяч бесполезных блоков `try/catch` по всей кодовой базе MVC. Клиентские приложения получают ошибки разного формата от разных эндоинтов.
+The proliferation of thousands of useless `try/catch` blocks throughout the MVC codebase. Client applications receive differently formatted errors from different endpoints.
 
 ### ✅ Best Practice
 ```typescript
@@ -609,7 +609,7 @@ class ItemController {
 ```
 
 ### 🚀 Solution
-Абстрагируйте процедуру захвата ошибок (Error Handling) в Глобальные Фильтры Исключений (Global Exception Handlers) фреймворка, стандартизировав формат возврата HTTP 4XX / 5XX ошибок для View.
+Abstract the Error Handling procedure into framework-level Global Exception Handlers, standardizing the format of HTTP 4XX / 5XX error responses for the View.
 ---
 ## 20. Overusing the Model Segment for Hardware Infrastructure (AWS, FS)
 
@@ -625,7 +625,7 @@ class CompanyLogo {
 ```
 
 ### ⚠️ Problem
-Модель влита в инфраструктуру S3 SDK. Эта интеграция обрезает "Чистоту Архитектуры" и лишает модуль портативности на другие площадки хостинга.
+The Model is fused with the S3 SDK infrastructure. This integration breaks the "Clean Architecture" and strips the module of portability to other hosting platforms.
 
 ### ✅ Best Practice
 ```typescript
@@ -644,12 +644,12 @@ class AssetUploaderService {
 ```
 
 ### 🚀 Solution
-Соблюдайте границу Ports and Adapters. Переносите интеграцию с аппаратным вводом (Файловые системы, AWS, Redis) на плечи внешних Infrastructure Services, оставляя MVC Модели концептуально абстрактными сущностями.
+Observe the boundaries of Ports and Adapters. Delegate integration with hardware input (File Systems, AWS, Redis) to external Infrastructure Services, keeping MVC Models conceptually abstract.
 ---
 
 <br>
 
 <div align="center">
-  [В архитектуру FSD](../../architectures/feature-sliced-design/readme.md) <br><br>
-  <b>Жестко соблюдайте границы паттерна Model-View-Controller для построения надежного, адаптивного программного обеспечения! 🏛️🚀</b>
+  [Go to FSD Architecture](../../architectures/feature-sliced-design/readme.md) <br><br>
+  <b>Strictly observe the boundaries of the Model-View-Controller pattern to build reliable, adaptive software! 🏛️🚀</b>
 </div>

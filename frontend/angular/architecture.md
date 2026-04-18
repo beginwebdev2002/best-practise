@@ -249,4 +249,105 @@ changeDetection: ChangeDetectionStrategy.OnPush
 ```
 ### 🚀 Solution
 Always set `OnPush`. With signals, this becomes the de facto standard, as updates occur precisely.
+
+### 🚨 11. Heavy Logic in Templates
+> [!NOTE]
+> **Context:** Template Performance
+### ❌ Bad Practice
+```html
+<div>{{ calculateTotal(items) }}</div>
+```
+### ⚠️ Problem
+The `calculateTotal` function is called during *every* Change Detection (CD) cycle, even if `items` have not changed. This kills UI performance.
+### ✅ Best Practice
+```typescript
+total = computed(() => this.calculateTotal(this.items()));
+```
+```html
+<div>{{ total() }}</div>
+```
+### 🚀 Solution
+Extract logic into `computed()` signals or Pure Pipes. They are only executed when input data changes.
 ---
+
+
+### 🚨 12. Manual Subscription Management (`takeUntil`)
+> [!NOTE]
+> **Context:** RxJS Memory Leaks
+### ❌ Bad Practice
+```typescript
+destroy$ = new Subject<void>();
+ngOnDestroy() { this.destroy$.next(); }
+stream$.pipe(takeUntil(this.destroy$)).subscribe();
+```
+### ⚠️ Problem
+It's easy to forget `takeUntil` or `unsubscribe`. Requires a lot of boilerplate code in every component.
+### ✅ Best Practice
+```typescript
+stream$.pipe(takeUntilDestroyed()).subscribe();
+```
+### 🚀 Solution
+Use the `takeUntilDestroyed()` operator. It automatically unsubscribes upon context destruction (component, directive, service).
+---
+
+
+### 🚨 13. Deeply Nested Components Passing Data
+> [!NOTE]
+> **Context:** Prop Drilling
+### ❌ Bad Practice
+```html
+<!-- Parent -->
+<app-child [theme]="theme"></app-child>
+<!-- Child -->
+<app-grandchild [theme]="theme"></app-grandchild>
+```
+### ⚠️ Problem
+"Prop drilling" heavily couples intermediate components to data they don't need, just for the sake of passing it deeper.
+### ✅ Best Practice
+```typescript
+// Service
+theme = signal('dark');
+// Grandchild
+theme = inject(ThemeService).theme;
+```
+### 🚀 Solution
+Use Signal Stores or services for state sharing, or the new `input()` API with context inheritance (in the future).
+---
+
+
+### 🚨 14. Accessing DOM directly (`ElementRef.nativeElement`)
+> [!NOTE]
+> **Context:** Security & Abstraction
+### ❌ Bad Practice
+```typescript
+el.nativeElement.style.backgroundColor = 'red';
+```
+### ⚠️ Problem
+Direct DOM access breaks abstraction (doesn't work in SSR/Web Workers) and opens up XSS vulnerabilities. It bypasses Angular Sanitization mechanisms.
+### ✅ Best Practice
+```typescript
+// Use Renderer2 or bindings
+<div [style.background-color]="color()"></div>
+```
+### 🚀 Solution
+Use style/class bindings or `Renderer2`. For direct manipulations, consider directives.
+---
+
+
+### 🚨 15. Zone.js overhead
+> [!NOTE]
+> **Context:** Change Detection
+### ❌ Bad Practice
+The application relies on Zone.js for any asynchronous event (setTimeout, Promise, XHR).
+### ⚠️ Problem
+Zone.js patches all browser APIs, adding overhead and increasing bundle size. CD triggers more often than necessary.
+### ✅ Best Practice
+```typescript
+bootstrapApplication(App, {
+  providers: [provideExperimentalZonelessChangeDetection()]
+});
+```
+### 🚀 Solution
+Migrate to Zoneless mode. Use Signals to notify Angular when a re-render is needed.
+---
+[⬆️ Back to Top](#)

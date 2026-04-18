@@ -23,6 +23,21 @@ This document outlines the overarching philosophy and serves as an index for pro
   <img src="https://img.icons8.com/?size=100&id=65664&format=png&color=000000" width="100" alt="Design Overview">
 </div>
 
+## 🧠 Core Visual Architecture
+
+```mermaid
+graph LR
+    A([🎨 Styling]) --> B([📱 Responsive Design])
+    B --> C([♿ Accessibility])
+    C --> D([🏗️ Component Architecture])
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class A default;
+    class B default;
+    class C default;
+    class D default;
+```
+
 ---
 ## 📚 Design Sub-Modules
 
@@ -42,3 +57,33 @@ When generating UI components or modifying styles:
 - [ ] Check if the element handles long text variations without breaking the layout (overflow control).
 - [ ] Ensure all images have descriptive `alt` attributes, or empty `alt=""` if strictly decorative.
 - [ ] Validate that interactive state changes (hover, active, disabled) are clearly visible to the user.
+
+---
+## 🛡️ Foundational Rules
+
+> [!IMPORTANT]
+> **Constraint:** AI Agents MUST adhere to the overarching standard of isolating design tokens from application logic.
+
+### ❌ Bad Practice
+```css
+/* Hardcoding values directly in the application code */
+.btn-primary {
+  background-color: #3b82f6;
+  padding: 12px 24px;
+}
+```
+
+### ⚠️ Problem
+Scattering hardcoded visual values across the codebase eliminates the ability to deterministically theme applications or maintain global visual consistency, leading to structural divergence and unmanageable CSS.
+
+### ✅ Best Practice
+```css
+/* Relying strictly on deterministic Design Tokens */
+.btn-primary {
+  background-color: var(--color-primary);
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+```
+
+### 🚀 Solution
+Extracting visual properties into centrally managed Design Tokens ensures a **single source of truth**, enabling deterministic visual scaling and fully automated UI refactoring by AI agents.
