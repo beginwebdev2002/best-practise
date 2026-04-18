@@ -1,6 +1,6 @@
 ---
 technology: UI/UX Design
-domain: Frontend
+domain: frontend
 level: Senior/Architect
 version: Latest
 tags: [vibe-coding, documentation, best-practices, architecture, design-system, accessibility]

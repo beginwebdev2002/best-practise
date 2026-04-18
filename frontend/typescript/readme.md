@@ -1,6 +1,6 @@
 ---
 technology: TypeScript
-domain: Documentation
+domain: frontend
 level: Senior/Architect
 version: 5.5+
 tags: [typescript, type-safety, clean-code, best-practices, architecture]
@@ -152,6 +152,11 @@ const STATUS = {
     ACTIVE: 'active',
     INACTIVE: 'inactive'
 } as const;
+type Status = typeof STATUS[keyof typeof STATUS];
+```
+### 🚀 Solution
+Use `const` objects with `as const` and a derived union type. This is more predictable, emits cleaner code, and is easier to iterate over.
+---
 
 Please refer to the specialized guides for detailed best practices:
 

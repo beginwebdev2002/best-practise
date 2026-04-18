@@ -27,6 +27,19 @@ Please refer to the specialized guides for detailed best practices:
 - [🧩 Components & Signals](./components-signals.md)
 - [⚡ Reactivity & RxJS](./reactivity.md)
 
+### 🚨 1. Using `@Input()` Decorator
+> [!NOTE]
+> **Context:** Component Inputs
+### ❌ Bad Practice
+```typescript
+@Input() title: string;
+```
+### ⚠️ Problem
+Using the `@Input()` decorator breaks the functional reactivity of Zoneless applications.
+### ✅ Best Practice
+```typescript
+title = input<string>();
+```
 ### 🚀 Solution
 Use Signal Inputs (`input()`). This allows Angular to precisely know *which* specific component requires an update, paving the way for Zoneless applications.
 ---
