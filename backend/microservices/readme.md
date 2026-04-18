@@ -16,7 +16,8 @@ last_updated: 2026-03-27
 </div>
 ---
 
-This document establishes **best practices** for designing and maintaining a Microservices architecture. These constraints guarantee a scalable, highly secure, and clean system suitable for an enterprise-level, production-ready backend.
+> [!IMPORTANT]
+> This document establishes **best practices** for designing and maintaining a Microservices architecture. These constraints guarantee a scalable, highly secure, and deterministic system suitable for an enterprise-level, production-ready backend.
 # ⚙️ Context & Scope
 - **Primary Goal:** Provide an uncompromising set of rules and architectural constraints for distributed system environments.
 - **Target Tooling:** AI-agents (Cursor, Windsurf, Copilot, Antigravity) and System Architects.
@@ -28,7 +29,7 @@ This document establishes **best practices** for designing and maintaining a Mic
 ## 🏗️ 1. Architecture & Design
 
 ### Domain-Driven Design (DDD)
-#### ❌ Bad Practice
+### ❌ Bad Practice
 ```typescript
 // Spaghetti dependencies: User Service directly importing Database Context of Order Service
 import { OrderRepository } from '@services/orders/repository';
@@ -40,9 +41,9 @@ export class UserService {
   }
 }
 ```
-#### ⚠️ Problem
+### ⚠️ Problem
 Directly accessing another service's database or internal modules breaks Bounded Contexts. It creates a tightly coupled monolithic architecture under the guise of microservices, making independent deployments impossible and cascading failures common.
-#### ✅ Best Practice
+### ✅ Best Practice
 ```typescript
 // Event-driven decoupled architecture using a Message Broker
 export class UserService {
@@ -54,7 +55,7 @@ export class UserService {
   }
 }
 ```
-#### 🚀 Solution
+### 🚀 Solution
 Define clear Bounded Contexts. Services must own their data and logic. Use asynchronous events to communicate state changes across domains. Implement the API Gateway pattern to handle cross-cutting concerns (auth, routing).
 
 ### 🔄 Data Flow Lifecycle
@@ -83,14 +84,14 @@ sequenceDiagram
 ## 🔒 2. Security Best Practices
 
 ### Service-to-Service Authentication
-#### ❌ Bad Practice
+### ❌ Bad Practice
 ```typescript
 // Assuming internal network is secure and sending requests unauthenticated
 const response = await axios.post(`http://order-service/orders`, orderData);
 ```
-#### ⚠️ Problem
+### ⚠️ Problem
 Implicit trust within internal networks enables a compromised container to move laterally and attack other services, leading to catastrophic privilege escalation. Hardcoded credentials compound this vulnerability.
-#### ✅ Best Practice
+### ✅ Best Practice
 ```typescript
 // Using short-lived signed JWTs or mTLS for service communication
 const token = await authService.generateServiceToken('order-service');
@@ -98,11 +99,11 @@ const response = await axios.post(`https://order-service/orders`, orderData, {
   headers: { Authorization: `Bearer ${token}` }
 });
 ```
-#### 🚀 Solution
+### 🚀 Solution
 Implement Zero Trust architecture. Internal services must authenticate each other using mTLS (Mutual TLS) or cryptographically signed JWTs. Never hardcode secrets; instead, utilize a secret manager (e.g., HashiCorp Vault, AWS Secrets Manager).
 
 ### Data Isolation
-#### ❌ Bad Practice
+### ❌ Bad Practice
 ```yaml
 # docker-compose.yml
 services:
@@ -113,9 +114,9 @@ services:
     environment:
       - DB_URL=postgres://shared-db:5432/monolith_db # Shared database anti-pattern
 ```
-#### ⚠️ Problem
+### ⚠️ Problem
 Sharing a single database across multiple microservices leads to schema coupling. If the User Service alters a table, the Order Service crashes. It defeats the purpose of independent scaling and creates a single point of failure (SPOF).
-#### ✅ Best Practice
+### ✅ Best Practice
 ```yaml
 # docker-compose.yml
 services:
@@ -126,12 +127,12 @@ services:
     environment:
       - DB_URL=postgres://order-db:5432/orders # Independent database
 ```
-#### 🚀 Solution
+### 🚀 Solution
 Enforce the "Database per Service" pattern. Services must never share a single database or directly query another service's tables. Ensure independent scaling, deployment, and technology choices per domain.
 ## 🚀 3. Reliability Optimization
 
 ### Resilience Patterns
-#### ❌ Bad Practice
+### ❌ Bad Practice
 ```typescript
 // Synchronous HTTP call without timeout or fallback
 async function getUserData(userId: string) {
@@ -140,9 +141,9 @@ async function getUserData(userId: string) {
   return response.data;
 }
 ```
-#### ⚠️ Problem
+### ⚠️ Problem
 Relying on direct synchronous HTTP calls between microservices without fallbacks creates a fragile system. If one service experiences a delay, it consumes threads on the caller, eventually leading to a cascading failure across the entire cluster.
-#### ✅ Best Practice
+### ✅ Best Practice
 ```typescript
 // Resilience4j or similar Circuit Breaker implementation
 const circuitBreaker = new CircuitBreaker(getUserData, {
@@ -160,17 +161,18 @@ async function safeGetUserData(userId: string) {
 }
 ```
 #### 🚀 Solution
-Implement Circuit Breakers to fail fast and prevent resource exhaustion. Use retries with exponential backoff for transient errors, and ensure idempotency for critical API endpoints to handle duplicated requests safely.
+> [!IMPORTANT]
+> Implement Circuit Breakers to fail O(1) or O(n) complexity and prevent resource exhaustion. Use retries with exponential backoff for transient errors, and ensure idempotency for critical API endpoints to handle duplicated requests safely.
 
 ### Observability
-#### ❌ Bad Practice
+### ❌ Bad Practice
 ```typescript
 // Logging without correlation context
 console.log('Order processed successfully');
 ```
-#### ⚠️ Problem
+### ⚠️ Problem
 When an error spans multiple services, isolated logs lacking a unique identifier make tracing the original request path nearly impossible, drastically increasing debugging time during critical outages.
-#### ✅ Best Practice
+### ✅ Best Practice
 ```typescript
 // Implementing OpenTelemetry and passing a Correlation ID
 import { context, trace } from '@opentelemetry/api';
@@ -182,7 +184,7 @@ logger.info('Order processed successfully', {
 });
 span.end();
 ```
-#### 🚀 Solution
+### 🚀 Solution
 Distributed Tracing is mandatory (e.g., using OpenTelemetry). All requests must pass a Correlation ID (Trace ID) across service boundaries. Centralized Logging (ELK, Datadog) is required for correlating complex distributed issues.
 ---
 

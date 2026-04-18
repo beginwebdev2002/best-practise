@@ -28,14 +28,14 @@ This document establishes **best practices** for building and maintaining Redis 
 ## 🏗️ 1. Architecture & Design
 
 ### Cache Design
-#### ❌ Bad Practice
+### ❌ Bad Practice
 ```javascript
 // Setting a cache key without an expiration (TTL)
 await redisClient.set('user:123', JSON.stringify(user));
 ```
-#### ⚠️ Problem
+### ⚠️ Problem
 Storing keys without a TTL leads to severe memory exhaustion, out-of-memory (OOM) crashes, and serving stale data to clients, breaking cache consistency.
-#### ✅ Best Practice
+### ✅ Best Practice
 ```javascript
 // Cache-Aside Pattern with strict TTL enforcement
 const cacheKey = 'user:123';
@@ -47,7 +47,7 @@ if (!user) {
     await redisClient.setEx(cacheKey, 3600, JSON.stringify(user));
 }
 ```
-#### 🚀 Solution
+### 🚀 Solution
 Implement the Cache-Aside pattern. Always read from the cache first; on a miss, query the database, populate the cache, and set an explicit Time-To-Live (TTL) to guarantee memory rotation and data freshness.
 
 ### 🔄 Data Flow Lifecycle
@@ -76,14 +76,14 @@ sequenceDiagram
 ## 🔒 2. Security Best Practices
 
 ### Connection Security
-#### ❌ Bad Practice
+### ❌ Bad Practice
 ```javascript
 // Connecting to Redis on the default port without authentication
 const redisClient = redis.createClient({ url: 'redis://127.0.0.1:6379' });
 ```
-#### ⚠️ Problem
+### ⚠️ Problem
 Exposing Redis without a password or on a public network invites unauthorized access, catastrophic data breaches, and accidental data loss via command injection (e.g., executing FLUSHALL).
-#### ✅ Best Practice
+### ✅ Best Practice
 ```javascript
 // Connecting via TLS with strict authentication using environment variables
 const redisClient = redis.createClient({
@@ -91,18 +91,18 @@ const redisClient = redis.createClient({
   socket: { tls: true, rejectUnauthorized: true }
 });
 ```
-#### 🚀 Solution
+### 🚀 Solution
 Never expose Redis to the public internet. Isolate it within a private VPC, enforce strong password authentication (`requirepass`), rename dangerous commands (like `FLUSHALL`), and mandate TLS encryption for all data in transit.
 
 ### Network Architecture
-#### ❌ Bad Practice
+### ❌ Bad Practice
 ```javascript
 // Plaintext communication over the network
 const redisClient = redis.createClient({ url: 'redis://redis.internal.net:6379' });
 ```
-#### ⚠️ Problem
+### ⚠️ Problem
 Transmitting data in plaintext allows attackers to intercept sensitive information (like session tokens or cached user data) via packet sniffing, leading to severe data breaches.
-#### ✅ Best Practice
+### ✅ Best Practice
 ```javascript
 // Enforcing TLS for all connections
 const redisClient = redis.createClient({
@@ -110,19 +110,19 @@ const redisClient = redis.createClient({
   socket: { tls: true, rejectUnauthorized: true }
 });
 ```
-#### 🚀 Solution
+### 🚀 Solution
 Mandate TLS (Transport Layer Security) for encrypting all data in transit, ensuring that even if the internal network is compromised, the Redis traffic remains secure.
 ## 🚀 3. Performance Optimization
 
 ### Command Usage
-#### ❌ Bad Practice
+### ❌ Bad Practice
 ```javascript
 // Blocking the entire Redis server to find keys
 const keys = await redisClient.keys('session:*');
 ```
-#### ⚠️ Problem
+### ⚠️ Problem
 The `KEYS *` command is a blocking operation. Executing it on a production database with millions of keys halts all other operations, causing massive latency spikes and application timeouts.
-#### ✅ Best Practice
+### ✅ Best Practice
 ```javascript
 // Non-blocking iteration using SCAN
 let cursor = 0;
@@ -133,18 +133,18 @@ do {
     keys.push(...reply.keys);
 } while (cursor !== 0);
 ```
-#### 🚀 Solution
+### 🚀 Solution
 Strictly avoid blocking commands (`KEYS *`, `SMEMBERS`). Use iterative commands like `SCAN` or `SSCAN` to process large datasets without locking the single-threaded Redis event loop. Utilize pipelining for batch operations.
 
 ### Data Types
-#### ❌ Bad Practice
+### ❌ Bad Practice
 ```javascript
 // Storing a massive, monolithic JSON object as a single string
 await redisClient.set('user:profile:123', JSON.stringify(massiveProfileObject));
 ```
-#### ⚠️ Problem
+### ⚠️ Problem
 Storing massive objects as single strings requires fetching and deserializing the entire object even if only one field is needed. This wastes network bandwidth and memory, reducing overall cache performance.
-#### ✅ Best Practice
+### ✅ Best Practice
 ```javascript
 // Utilizing Redis Hashes for efficient field-level access
 await redisClient.hSet('user:profile:123', {
@@ -155,7 +155,7 @@ await redisClient.hSet('user:profile:123', {
 // Fetching only what is needed
 const role = await redisClient.hGet('user:profile:123', 'role');
 ```
-#### 🚀 Solution
+### 🚀 Solution
 Optimize data structure usage. Employ Hashes for objects to save memory and allow granular updates, and Sorted Sets for leaderboards or rate limiting. Avoid large keys or values (keep them well under 512MB) to minimize overhead.
 ---
 
