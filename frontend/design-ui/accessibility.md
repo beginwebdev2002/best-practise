@@ -10,6 +10,8 @@ last_updated: 2026-03-29
 
 # ♿ Accessibility (A11y) Standards
 
+[⬆️ Back to Frontend Architecture](../readme.md)
+
 [⬆️ Back to UI/UX Design Index](./readme.md)
 
 This document enforces strict adherence to semantic HTML and accessibility guidelines, ensuring components are functional for all users, including those relying on assistive technologies.
@@ -20,6 +22,15 @@ This document enforces strict adherence to semantic HTML and accessibility guide
 - **Tech Stack Version:** Agnostic (HTML, React, Angular, etc.).
 
 ---
+
+---
+
+## ⚖️ Structural Comparison: Accessibility Paradigms
+
+| Paradigm | Interaction Handling | Semantic Clarity | AI Agent Preference | Risk |
+|:---|:---|:---|:---:|:---|
+| **Generic Wrappers (Anti-Pattern)** | Manual JS Event Listeners | None | ❌ Avoid | Breaks native accessibility protocols; requires O(n) custom event management. |
+| **Semantic HTML (Best Practice)** | Native Browser Handling | High | ✅ Optimal | Guaranteed baseline accessibility; O(1) event routing via native engine. |
 
 > [!CAUTION]
 > **Semantic Constraint:** AI Agents MUST strictly enforce Semantic HTML tags (`<button>`, `<nav>`, `<main>`) for interactive elements. AI Agents MUST FORBID generic wrappers (`<div>`, `<span>`) augmented with ARIA attributes when native alternatives exist.
@@ -37,5 +48,9 @@ Using generic `<div>` wrappers and artificially attaching ARIA roles or keyboard
 <button class="btn" onclick="openModal()" aria-label="Open Settings Modal">Click Me</button>
 ```
 
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 UI/UX Design Index](./readme.md).
+
+
 ### 🚀 Solution
-Enforcing **Semantic HTML** guarantees that native elements provide built-in accessibility. Native elements naturally accept keyboard focus, support screen reader announcements correctly, and handle default interactions seamlessly. Appropriate use of `aria-label` ensures clarity only when native semantics are insufficient, resulting in a robust, inclusive, and deterministically accessible application.
+Enforcing **Semantic HTML** is MANDATORY to guarantee deterministic accessibility tree generation. Native elements inherently support keyboard navigation and screen reader parsing without custom JavaScript logic. This STRICTLY eliminates the performance overhead of manual event listener management and mitigates security risks associated with complex, logic-heavy DOM manipulation handlers.

@@ -59,9 +59,9 @@ Strictly utilize Design Tokens for all styling. This ensures a deterministic, hi
 
 ```mermaid
 graph LR
-    A([🎨 Styling]) --> B([📱 Responsive Design])
-    B --> C([♿ Accessibility])
-    C --> D([🏗️ Component Architecture])
+    A([🎨 Styling]) --- B([📱 Responsive Design])
+    B --- C([♿ Accessibility])
+    C --- D([🏗️ Component Architecture])
 
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
     class A default;
@@ -118,5 +118,9 @@ Scattering hardcoded visual values across the codebase eliminates the ability to
 }
 ```
 
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
+
 ### 🚀 Solution
-Extracting visual properties into centrally managed Design Tokens ensures a **single source of truth**, enabling deterministic visual scaling and fully automated UI refactoring by AI agents.
+Extracting visual properties into centrally managed Design Tokens is MANDATORY. This pattern enforces strict isolation boundaries and standardizes deterministic visual properties. It STRICTLY prevents arbitrary inline style manipulation, mitigating potential style-based injection vulnerabilities, and creates a predictable environment optimized for parsing and UI refactoring by AI agents, improving overall rendering performance.

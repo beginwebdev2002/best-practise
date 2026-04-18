@@ -10,6 +10,8 @@ last_updated: 2026-03-29
 
 # 🎨 UI/UX Styling & Design Tokens Rules
 
+[⬆️ Back to Frontend Architecture](../readme.md)
+
 [⬆️ Back to UI/UX Design Index](./readme.md)
 
 This document enforces the strict styling rules and constraints regarding design tokens and deterministic styling implementations.
@@ -53,5 +55,9 @@ Using hardcoded absolute values (`20px`, hex codes) creates inconsistencies acro
 }
 ```
 
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 UI/UX Design Index](./readme.md).
+
+
 ### 🚀 Solution
-Strictly utilizing **Design Tokens** establishes a single source of truth for all visual properties. By referencing variables (e.g., CSS Custom Properties or Utility Classes), the application scales efficiently while maintaining a unified, easily adjustable design system that guarantees deterministic parsing.
+Strictly utilizing **Design Tokens** is MANDATORY to establish deterministic visual contracts. Constraining styles strictly to these centrally-managed tokens ensures a single source of truth, reducing CSS payload size and standardizing rendering performance. This pattern STRICTLY prevents arbitrary style manipulation, mitigating style-based injection vulnerabilities and enforcing uncompromised environmental immutability for safe AI Agent parsing.
