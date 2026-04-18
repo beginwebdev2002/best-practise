@@ -51,6 +51,10 @@ Hardcoded values create an inflexible system. They make dark-mode implementation
 }
 ```
 
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
+
 ### 🚀 Solution
 Strictly utilize Design Tokens for all styling. This ensures a deterministic, highly cohesive design system. By relying on CSS variables or framework tokens, updates propagate instantly across the app, allowing agents to reliably structure layouts without guessing aesthetic intent.
 
