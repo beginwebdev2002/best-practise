@@ -35,7 +35,8 @@ Without strict architecture, even the most modern frameworks (Angular, React, Vu
 ## 💡 Best Tips for Choosing an Architecture
 
 Don't know where to start? Here are a few golden rules:
-- **Consider Project Scope:** For simple MVPs and pet projects, a classic *MVC* or *Monolith* is perfect. Don't overengineer your project with *Microservices* right from the start.
+- > [!IMPORTANT]
+  > **Consider Project Scope:** For unambiguous MVPs and pet projects, a classic *MVC* or *Monolith* is perfect. Don't overengineer your project with *Microservices* right from the start.
 - **Separation of Concerns:** Whichever architecture you choose, always decouple how data is stored (DB) from how it is displayed (UI).
 - **Match Your Team's Expertise:** Choose the approach that your team understands or is ready to learn. If everyone knows React inside out, use *FSD*. Lone wolves ruin team productivity.
 - **Embrace Change:** The perfect architecture allows you to painlessly swap your database (e.g., PostgreSQL for MongoDB) or your UI component library without rewriting the core.

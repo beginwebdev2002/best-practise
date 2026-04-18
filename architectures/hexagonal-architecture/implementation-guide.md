@@ -280,4 +280,5 @@ export class UserController {
 ```
 
 ### 🚀 Solution
-Isolate the Core Domain from infrastructure. The `User` entity must be a pure TypeScript class devoid of external imports or decorators. The mapping between the database rows and the Domain Entity must be handled strictly by the Secondary Adapter (e.g., via a Mapper or DTO class), ensuring the Core remains clean, testable, and completely vendor-agnostic.
+> [!IMPORTANT]
+> Isolate the Core Domain from infrastructure. The `User` entity must be a pure TypeScript class devoid of external imports or decorators. The mapping between the database rows and the Domain Entity must be handled strictly by the Secondary Adapter (e.g., via a Mapper or DTO class), ensuring the Core remains deterministic, testable, and completely vendor-agnostic.

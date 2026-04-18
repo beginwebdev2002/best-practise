@@ -15,7 +15,8 @@ vibe_coding_ready: true
 
 # Antigravity IDE Vibe Coding Best Practices
 
-When using the Antigravity IDE, applying the best practices is essential for efficient vibe coding. By understanding how AI Agents interact with this standalone environment, developers can generate highly optimized, production-ready code.
+> [!IMPORTANT]
+> When using the Antigravity IDE, applying the best practices is essential for efficient vibe coding. By understanding how AI Agents interact with this standalone environment, developers MUST generate highly optimized, production-ready code.
 ## Context and Scope
 
 - **Primary Goal:** Provide an actionable guide for using AI Agents within the Antigravity IDE.
