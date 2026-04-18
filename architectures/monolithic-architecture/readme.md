@@ -34,6 +34,25 @@ last_updated: 2026-03-22
 | **Complexity** | Lower initially, higher as it grows | Higher initially, manageable at scale |
 | **Data Management** | Shared database | Database per service |
 
+## Architecture Diagram
+
+```mermaid
+graph TD
+    Project[Monolithic App] --> UI[Public / UI]
+    Project --> Logic[Business Logic]
+    Project --> Data[Database]
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Logic component;
+    class Data component;
+    class UI component;
+    class Project layout;
+```
+
 ## Core Principles
 
 1. **Isolation & Testability:** Changing a single feature doesn't break the entire business process.

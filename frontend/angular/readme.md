@@ -21,28 +21,11 @@ last_updated: 2026-03-22
 > - **Always** utilize the built-in control flow (`@if`, `@for`, `@switch`) instead of structural directives (`*ngIf`, `*ngFor`).
 ## 🚀 I. Basics & Popular (1-15)
 
-### 🚨 1. Using `@Input()` Decorator
-> [!NOTE]
-> **Context:** Component Inputs
-### ❌ Bad Practice
-```typescript
-@Input() title: string = '';
-```
-### ⚠️ Problem
-The `@Input()` decorator operates outside the Signals reactivity system. Changes are not tracked granularly, requiring checks of the entire component tree (Dirty Checking) via Zone.js.
-### ✅ Best Practice
-```typescript
-title = input<string>('');
-```
 
-### Structural Comparison: Signals vs RxJS
+Please refer to the specialized guides for detailed best practices:
 
-| Feature | Signals (`signal`, `computed`) | RxJS (`BehaviorSubject`, `Observable`) |
-| :--- | :--- | :--- |
-| **Execution** | Synchronous | Asynchronous (typically) |
-| **State Tracking** | Automatic (granular dependency tracking) | Manual (subscriptions required) |
-| **Complexity** | Low (simple getter/setter) | High (complex operator chains) |
-| **Best For** | Synchronous UI state | Asynchronous events, complex streams |
+- [🧩 Components & Signals](./components-signals.md)
+- [⚡ Reactivity & RxJS](./reactivity.md)
 
 ### 🚀 Solution
 Use Signal Inputs (`input()`). This allows Angular to precisely know *which* specific component requires an update, paving the way for Zoneless applications.

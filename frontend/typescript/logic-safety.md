@@ -220,4 +220,116 @@ if (first) {
 ```
 ### 🚀 Solution
 Enforce `noUncheckedIndexedAccess: true` in `tsconfig.json`. This strict compiler flag forces all array index access to resolve to `T | undefined`, mandating explicit nil-checks before usage.
+
+## 🎯 6. Global Scope Pollution (Legacy Namespaces)
+> [!NOTE]
+> **Context:** Organizing code in the ES Module era.
+### ❌ Bad Practice
+```typescript
+namespace Utils {
+    export const log = (msg: string) => console.log(msg);
+}
+```
+### ⚠️ Problem
+Namespaces are a legacy TypeScript feature. They don't play well with modern bundlers (Tree Shaking), are harder to test, and can lead to naming collisions in the global scope.
+### ✅ Best Practice
+```typescript
+// utils.ts
+export const log = (msg: string) => console.log(msg);
+```
+### 🚀 Solution
+Use ES Modules (`export`/`import`). They are the industry standard, supported by all modern environments, and allow for better static analysis.
 ---
+
+## ⚡ 7. `enum` vs `const object`
+> [!NOTE]
+> **Context:** Grouping related constants.
+### ❌ Bad Practice
+```typescript
+enum Status {
+    Active,
+    Inactive
+}
+```
+### ⚠️ Problem
+Enums generate extra runtime code and have "reverse mapping" behavior that can lead to bugs (e.g., `Status[0]` returns "Active"). They also don't align with "TypeScript as a type-only layer."
+### ✅ Best Practice
+```typescript
+const STATUS = {
+    ACTIVE: 'active',
+    INACTIVE: 'inactive'
+} as const;
+
+type Status = typeof STATUS[keyof typeof STATUS];
+```
+### 🚀 Solution
+Use `const` objects with `as const` and a derived union type. This is more predictable, emits cleaner code, and is easier to iterate over.
+---
+
+## ⚡ 8. Explicit `any` in Parameters
+> [!NOTE]
+> **Context:** Enforcing strict type safety.
+### ❌ Bad Practice
+```typescript
+function save(data: any) {
+    db.push(data);
+}
+```
+### ⚠️ Problem
+Using `any` explicitly bypasses the compiler's ability to verify data flow, leading to "undefined is not a function" errors that TypeScript was designed to prevent.
+### ✅ Best Practice
+```typescript
+function save(data: unknown) {
+    if (isValidUserData(data)) {
+        db.push(data);
+    }
+}
+```
+### 🚀 Solution
+Enable `noImplicitAny: true` in `tsconfig.json`. Always define specific types or use `unknown` if the type is truly dynamic.
+---
+
+## ⚡ 9. Manual Type Guards vs Type Predicates
+> [!NOTE]
+> **Context:** Narrowing types inside conditional blocks.
+### ❌ Bad Practice
+```typescript
+if (typeof input === 'object' && input !== null && 'admin' in input) {
+    const isAdmin = (input as unknown).admin;
+}
+```
+### ⚠️ Problem
+Repeating complex checks is error-prone and requires manual casting (`as any`) which breaks safety.
+### ✅ Best Practice
+```typescript
+function isAdmin(user: unknown): user is Admin {
+    return !!user && typeof user === 'object' && 'admin' in user;
+}
+
+if (isAdmin(input)) {
+    console.log(input.admin); // input is automatically narrowed to Admin
+}
+```
+### 🚀 Solution
+Use Type Predicates (`arg is Type`) to create reusable, safe narrowing functions.
+---
+
+## ⚡ 10. Triple-Slash Directives
+> [!NOTE]
+> **Context:** Referencing types or files.
+### ❌ Bad Practice
+```typescript
+/// <reference path="./types.d.ts" />
+```
+### ⚠️ Problem
+Triple-slash directives are legacy syntax. They make dependencies implicit and can lead to compilation order issues.
+### ✅ Best Practice
+```typescript
+import { MyType } from './types';
+```
+### 🚀 Solution
+Use standard ES `import` statements. Manage global types via `tsconfig.json` `types` array if necessary.
+---
+
+---
+[⬆️ Back to Top](#)

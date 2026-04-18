@@ -21,6 +21,14 @@ This document enforces the strict standards for building fluid, universally adap
 
 ---
 
+---
+## ⚖️ Structural Comparison: Responsive Paradigms
+
+| Paradigm | Default Viewport | Scaling Mechanism | AI Agent Preference | Risk |
+|:---|:---|:---|:---:|:---|
+| **Desktop-First (Anti-Pattern)** | Desktop (`> 1024px`) | `max-width` constraints down to mobile. | ❌ Avoid | Breaks mobile layouts; complex media queries. |
+| **Mobile-First (Best Practice)** | Mobile (`< 768px`) | `min-width` progressive enhancements. | ✅ Optimal | Deterministic scaling; highly predictable CSS context. |
+
 > [!IMPORTANT]
 > **Mobile-First Constraint:** AI Agents MUST strictly apply a mobile-first approach. Define base CSS for mobile screens and progressively enhance the layout for larger viewports using `min-width` media queries. Always prefer relative units (`rem`, `%`) over absolute units (`px`).
 

@@ -28,6 +28,29 @@ This engineering directive contains strict architectural guidelines and 20 pract
 | **Learning Curve** | High (Strict structural rules) | High (Abstract concepts) |
 | **Scalability** | Excellent for large frontend teams | Excellent for complex enterprise backends |
 
+## Architecture Diagram
+
+```mermaid
+graph TD
+    App[app] --> Pages[pages]
+    Pages --> Widgets[widgets]
+    Widgets --> Features[features]
+    Features --> Entities[entities]
+    Entities --> Shared[shared]
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Shared component;
+    class Features component;
+    class Pages component;
+    class App layout;
+    class Entities component;
+    class Widgets component;
+```
+
 ## Map of Patterns
 - 📊 [**Data Flow:** Request and Event Lifecycle](./data-flow.md)
 - 📁 [**Folder Structure:** Layering publisher/subscriber logic](./folder-structure.md)

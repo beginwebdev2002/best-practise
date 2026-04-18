@@ -43,6 +43,25 @@ To deeply understand the nuances of EDA, consult the following specialized modul
 | **Scalability** | Excellent (Easy to add new consumers) | Good (Requires load balancing) |
 | **Complexity** | High (Eventual consistency, tracking flows) | Low (Straightforward flows) |
 
+## Architecture Diagram
+
+```mermaid
+graph LR
+    Pub[Publisher] --> Broker[Message Broker]
+    Broker --> Sub1[Subscriber 1]
+    Broker --> Sub2[Subscriber 2]
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Sub1 component;
+    class Sub2 component;
+    class Broker layout;
+    class Pub component;
+```
+
 ## Core Principles
 
 1. **Asynchronous by Default:** Synchronous RPC (REST/gRPC) is restricted only to immediate read-queries or initial gateway ingress. All inter-service state mutations must occur asynchronously.
