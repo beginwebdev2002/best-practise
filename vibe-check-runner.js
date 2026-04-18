@@ -1,5 +1,4 @@
 import { Project, SyntaxKind } from 'ts-morph';
-import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
@@ -244,7 +243,7 @@ async function runVibeCheck() {
   for (const file of modifiedFiles) {
     console.log(`Processing ${file}...`);
 
-    if (!fs.existsSync(file)) {
+    if (!(await fileOrDirExists(file))) {
       console.log(`File ${file} does not exist. Skipping.`);
       continue;
     }
@@ -270,7 +269,7 @@ async function runVibeCheck() {
     await syncBenchmarks(tech, mdContent);
 
     const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
-    if (!fs.existsSync(suitePath)) {
+    if (!(await fileOrDirExists(suitePath))) {
       console.log(`No benchmark suite found for ${tech}. Skipping.`);
       continue;
     }
@@ -305,7 +304,7 @@ async function runVibeCheck() {
         // Only commit if there are changes (badge might already be there)
         const status = execFileSync('git', ['status', '--porcelain'], { encoding: 'utf-8' });
         if (status.includes(file) || status.includes('benchmarks/')) {
-           execFileSync('git', ['commit', '-m', '[chore: benchmark-sync]']);
+           execFileSync('git', ['commit', '-m', '[chore: fidelity-pass]']);
            execFileSync('git', ['push', 'origin', 'HEAD:main']);
         } else {
            console.log(`Badge already present in ${file}, skipping commit.`);
