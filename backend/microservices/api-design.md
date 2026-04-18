@@ -10,6 +10,8 @@ last_updated: 2026-03-27
 
 # 🧩 Microservices API Design
 
+[⬅️ Back to Parent](./readme.md)
+
 
 ## 1. 🛑 Direct Service-to-Client Exposure
 ### ❌ Bad Practice

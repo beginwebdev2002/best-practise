@@ -10,6 +10,8 @@ last_updated: 2026-03-27
 
 # 🔒 NestJS 11+ Security Best Practices
 
+[⬅️ Back to Parent](./readme.md)
+
 
 ## 1. 🛑 Missing Input Validation
 ### ❌ Bad Practice

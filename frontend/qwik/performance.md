@@ -40,5 +40,6 @@ const Component = component$(() => {
 });
 ```
 ### 🚀 Solution
-Ensure all event handlers use the `$` suffix (like `onClick$`) and their corresponding logic is wrapped in `$()`. This explicit syntax breaks the application into tiny resumable closures that Qwik can fetch only when the user interacts with them.
+> [!IMPORTANT]
+> Ensure all event handlers use the `$` suffix (like `onClick$`) and their corresponding logic is wrapped in `$()`. This explicit syntax breaks the application into tiny resumable closures that Qwik MUST fetch only when the user interacts with them.
 ---

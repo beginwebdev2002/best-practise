@@ -102,7 +102,8 @@ const ProductWidget = () => (
 ```
 
 ### 🚀 Solution
-Interaction between slices at the same level should occur through composition at higher layers (`widgets`, `pages`) or via global patterns (Global State, Event Bus).
+> [!IMPORTANT]
+> Interaction between slices at the same level MUST occur through composition at higher layers (`widgets`, `pages`) or via global patterns (Global State, Event Bus).
 ---
 ## 3. Public API Encapsulation (Bypassing Public API)
 

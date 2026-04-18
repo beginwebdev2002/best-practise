@@ -10,6 +10,8 @@ last_updated: 2026-03-27
 
 # 🧩 Microservices Security Best Practices
 
+[⬅️ Back to Parent](./readme.md)
+
 
 ## 1. 🛑 Implicit Trust Between Services
 ### ❌ Bad Practice

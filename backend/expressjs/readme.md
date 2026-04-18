@@ -586,7 +586,7 @@ Configure sessions with `httpOnly` and `secure` flags, and store them in Redis o
 <br>
 
 <div align="center">
-  <b>Apply these patterns to build the most secure, fast, and transparent Express.js architecture! 🚂</b>
+  <b>Apply these patterns to build the most secure, optimized, and transparent Express.js architecture! 🚂</b>
 </div>
 
 

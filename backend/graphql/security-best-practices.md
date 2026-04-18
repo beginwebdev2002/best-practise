@@ -10,6 +10,8 @@ last_updated: 2026-03-29
 
 # 🔒 GraphQL Security Best Practices
 
+[⬅️ Back to Parent](./readme.md)
+
 
 ## 1. 🛑 Query Depth & Complexity Limiting
 ### ❌ Bad Practice

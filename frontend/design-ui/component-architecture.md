@@ -10,6 +10,8 @@ last_updated: 2026-03-29
 
 # 🏗️ UI Component Architecture
 
+[⬆️ Back to Frontend Architecture](../readme.md)
+
 [⬆️ Back to UI/UX Design Index](./readme.md)
 
 This document enforces the structural principles for composing robust, maintainable UI components using deterministic architectural patterns (such as Atomic Design).
@@ -20,6 +22,15 @@ This document enforces the structural principles for composing robust, maintaina
 - **Tech Stack Version:** Agnostic.
 
 ---
+
+---
+
+## ⚖️ Structural Comparison: Composition Paradigms
+
+| Paradigm | Cohesion | Scalability | AI Agent Preference | Risk |
+|:---|:---|:---|:---:|:---|
+| **God Components (Anti-Pattern)** | Low | Low | ❌ Avoid | Exponential logic coupling (O(n²) refactor complexity); high blast radius for bugs. |
+| **Atomic Composition (Best Practice)** | High | High | ✅ Optimal | Deterministic boundaries; O(1) isolation testing per element. |
 
 > [!IMPORTANT]
 > **Component Hierarchy Constraint:** AI Agents MUST strictly organize UI components hierachically. Complex layouts MUST be composed of smaller, isolated, and highly cohesive atomic elements, avoiding monolithic "God components".
@@ -37,9 +48,7 @@ graph TD
     %% Added Design Token Styles for Mermaid Diagrams
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
     classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
-    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
-
-    class Tokens layout;
+    class Tokens default;
     class Elements default;
     class Components component;
     class Layouts component;
@@ -101,5 +110,9 @@ function UserDashboard() {
 }
 ```
 
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 UI/UX Design Index](./readme.md).
+
+
 ### 🚀 Solution
-Strictly enforcing **Component Hierarchy** and composition isolates responsibilities. Granular, decoupled components scale reliably, permit extensive reuse, and provide deterministically predictable architectural contexts, heavily optimizing an AI Agent's capacity to safely audit and refactor the interface.
+Strictly enforcing **Component Hierarchy** is MANDATORY to establish deterministic boundaries. Decoupled components map to independent rendering lifecycles, enabling focused isolation testing and STRICTLY reducing framework reconciliation overhead compared to monolithic structures. This predictable architecture minimizes the blast radius for performance regressions and mitigates Cross-Site Scripting (XSS) risks by isolating state and rendering contexts.

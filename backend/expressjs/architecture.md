@@ -10,6 +10,8 @@ last_updated: 2026-03-27
 
 # 🏗️ Express.js Architecture Best Practices
 
+[⬅️ Back to Parent](./readme.md)
+
 
 ## 1. 🛑 God Controllers
 ### ❌ Bad Practice

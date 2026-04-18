@@ -16,7 +16,7 @@ last_updated: 2026-03-28
 </div>
 ---
 
-This document establishes **best practices** for building and maintaining MongoDB databases. These constraints guarantee a scalable, highly secure, and clean architecture suitable for an enterprise-level, production-ready backend.
+This document establishes **best practices** for building and maintaining MongoDB databases. These constraints guarantee a scalable, highly secure, and deterministic architecture suitable for an enterprise-level, production-ready backend.
 # ⚙️ Context & Scope
 - **Primary Goal:** Provide an uncompromising set of rules and architectural constraints for MongoDB environments.
 - **Target Tooling:** AI-agents (Cursor, Windsurf, Copilot, Antigravity) and Senior Database Administrators.
@@ -30,6 +30,27 @@ This document establishes **best practices** for building and maintaining MongoD
 ---
 ## 🏗️ Core Principles
 
+### 📊 Schema Validation Lifecycle
+
+```mermaid
+sequenceDiagram
+    participant App as Node.js Application
+    participant Mongo as MongoDB
+    participant Validation as Schema Validator
+    participant Storage as Persistence Layer
+
+    App->>Mongo: insertOne({ name: "Alice", age: -5 })
+    Mongo->>Validation: Process $jsonSchema constraints
+    Validation-->>Mongo: Reject (age < 0)
+    Mongo-->>App: Throw DocumentValidationFailure
+
+    App->>Mongo: insertOne({ name: "Bob", email: "bob@bob.com", age: 30 })
+    Mongo->>Validation: Process $jsonSchema constraints
+    Validation-->>Storage: Write document
+    Storage-->>App: Return success
+```
+
+
 ## 📑 Specialized Documentation
 
 - [Database Optimization](./database-optimization.md)
@@ -37,16 +58,16 @@ This document establishes **best practices** for building and maintaining MongoD
 - [Architecture](./architecture.md)
 
 ## 🚨 1. Schema Validation
-#### ❌ Bad Practice
+### ❌ Bad Practice
 ```javascript
 // Inserting data without validation
 db.users.insertOne({ name: "John", age: -5, admin: true });
 ```
-#### ⚠️ Problem
+### ⚠️ Problem
 Failing to follow best practices for `schema validation` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
-#### ✅ Best Practice
+### ✅ Best Practice
 Implement strict schema validation using JSON Schema in MongoDB.
-#### 🚀 Solution
+### 🚀 Solution
 ```javascript
 db.createCollection("users", {
   validator: {
