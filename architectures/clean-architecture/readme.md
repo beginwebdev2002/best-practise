@@ -149,7 +149,8 @@ export class UploadAvatarUseCase {
 ```
 
 ### 🚀 Solution
-Apply the Dependency Inversion Principle. The Application layer should define abstract interfaces (`Ports`) that dictate what it needs from the outside world. The Infrastructure layer implements these interfaces (`Adapters`). This guarantees true architectural decouple.
+> [!IMPORTANT]
+> Apply the Dependency Inversion Principle. The Application layer MUST define abstract interfaces (`Ports`) that dictate what it needs from the outside world. The Infrastructure layer implements these interfaces (`Adapters`). This guarantees true architectural decouple.
 
 ---
 

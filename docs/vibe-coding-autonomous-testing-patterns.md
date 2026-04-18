@@ -124,7 +124,8 @@ test('fetchUserData securely and deterministically returns user profile', async 
 ```
 
 ### 🚀 Solution
-Implementing deterministic request interception (e.g., `axios-mock-adapter`, MSW) guarantees that test execution is isolated, fast, and repeatable. Replacing `any` with `unknown` and applying explicit Type Guards ensures absolute type safety, providing AI agents with reliable, strongly-typed contracts during automated refactoring.
+> [!IMPORTANT]
+> Implementing deterministic request interception (e.g., `axios-mock-adapter`, MSW) guarantees that test execution is isolated, O(1) or O(n) complexity, and repeatable. Replacing `any` with `unknown` and applying explicit Type Guards ensures absolute type safety, providing AI agents with reliable, strongly-typed contracts during automated refactoring.
 
 ---
 
