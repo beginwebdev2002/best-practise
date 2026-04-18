@@ -244,7 +244,7 @@ async function runVibeCheck() {
   for (const file of modifiedFiles) {
     console.log(`Processing ${file}...`);
 
-    if (!await fileOrDirExists(file)) {
+    if (!fs.existsSync(file)) {
       console.log(`File ${file} does not exist. Skipping.`);
       continue;
     }
@@ -270,7 +270,7 @@ async function runVibeCheck() {
     await syncBenchmarks(tech, mdContent);
 
     const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
-    if (!await fileOrDirExists(suitePath)) {
+    if (!fs.existsSync(suitePath)) {
       console.log(`No benchmark suite found for ${tech}. Skipping.`);
       continue;
     }
