@@ -3,7 +3,7 @@ technology: GraphQL
 domain: backend
 level: Senior/Architect
 version: Agnostic
-tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, graphql, software-architecture, system-design, solid-principles, production-ready, programming-standards, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, enterprise-patterns]
+tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, cursor-rules, graphql, software-architecture, system-design, solid-principles, production-ready, programming-standards, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, enterprise-patterns]
 ai_role: Senior GraphQL Architecture Expert
 last_updated: 2026-03-29
 ---
@@ -78,6 +78,10 @@ const resolvers = {
   }
 };
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Backend Index](../readme.md).
+
 ### 🚀 Solution
 Strictly utilize a batching utility like `DataLoader` for resolving all one-to-many or many-to-many relationships. This guarantees that deep GraphQL queries are translated into optimized, batched SQL/NoSQL queries.
 

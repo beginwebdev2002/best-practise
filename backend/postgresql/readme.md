@@ -3,7 +3,7 @@ technology: PostgreSQL
 domain: backend
 level: Senior/Architect
 version: "16+"
-tags: [best-practices, clean-code, architecture-patterns, vibe-coding, postgresql, database, sql, rdbms, system-design, production-ready, scalable-code]
+tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, postgresql, database, sql, rdbms, system-design, production-ready, scalable-code]
 ai_role: Senior PostgreSQL Database Architect
 last_updated: 2026-03-27
 ---
@@ -46,6 +46,10 @@ CREATE TABLE users (
     username VARCHAR(50)
 );
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Backend Index](../readme.md).
+
 ### 🚀 Solution
 Start with 3NF to minimize redundancy. Use `UUIDv7` for primary keys instead of `SERIAL` to ensure globally unique identifiers that also retain time-based sorting advantages for indexing. Selectively denormalize using Materialized Views where read-heavy workloads require optimization.
 

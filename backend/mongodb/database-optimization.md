@@ -49,6 +49,9 @@ graph LR
     class A,B,C default;
 ```
 
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Mongodb Index](./readme.md).
+
 ### 🚀 Solution
 
 ```javascript

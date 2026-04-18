@@ -3,7 +3,7 @@ technology: Microservices
 domain: backend
 level: Senior/Architect
 version: Agnostic
-tags: [best-practices, clean-code, architecture-patterns, vibe-coding, microservices, distributed-systems, system-design, solid-principles, production-ready, scalable-code]
+tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, microservices, distributed-systems, system-design, solid-principles, production-ready, scalable-code]
 ai_role: Senior Microservices Architect
 last_updated: 2026-03-27
 ---
@@ -55,6 +55,10 @@ export class UserService {
   }
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Backend Index](../readme.md).
+
 ### 🚀 Solution
 Define clear Bounded Contexts. Services must own their data and logic. Use asynchronous events to communicate state changes across domains. Implement the API Gateway pattern to handle cross-cutting concerns (auth, routing).
 

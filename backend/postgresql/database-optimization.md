@@ -3,7 +3,7 @@ technology: PostgreSQL
 domain: backend
 level: Senior/Architect
 version: "16+"
-tags: [best-practices, clean-code, architecture-patterns, vibe-coding, postgresql, database, sql, rdbms, system-design, production-ready, scalable-code]
+tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, postgresql, database, sql, rdbms, system-design, production-ready, scalable-code]
 ai_role: Senior PostgreSQL Database Architect
 last_updated: 2026-03-27
 ---
@@ -34,6 +34,10 @@ CREATE TABLE orders (
 );
 CREATE INDEX idx_orders_user_id ON orders(user_id);
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Postgresql Index](./readme.md).
+
 ### 🚀 Solution
 Always create explicit indexes on foreign key columns and frequently queried fields to ensure deterministic query execution times (O(log n) vs O(n)).
 

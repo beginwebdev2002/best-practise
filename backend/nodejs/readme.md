@@ -3,7 +3,7 @@ technology: Node.js
 domain: backend
 level: Senior/Architect
 version: "24+"
-tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, javascript, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
+tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, cursor-rules, javascript, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior Node.js Architecture Expert
 last_updated: 2026-03-23
 ---
@@ -75,6 +75,10 @@ app.post('/hash', (req, res, next) => {
   });
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Backend Index](../readme.md).
+
 ### 🚀 Solution
 Never use synchronous methods (`*Sync`) on the main thread for crypto, I/O, or heavy calculations. Always use asynchronous callbacks or Promises to prevent blocking the Event Loop.
 

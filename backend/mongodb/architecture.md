@@ -116,6 +116,10 @@ const userSchema = new mongoose.Schema({
 });
 const User = mongoose.model('User', userSchema);
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Mongodb Index](./readme.md).
+
 ### 🚀 Solution
 Enforce structural constraints either via MongoDB's native JSON Schema validation or using an Object Data Modeling (ODM) library.
 

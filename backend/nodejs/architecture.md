@@ -3,7 +3,7 @@ technology: Node.js
 domain: backend
 level: Senior/Architect
 version: "24+"
-tags: [best-practices, nodejs, architecture, design-patterns, clean-code, scalable-code, system-design]
+tags: [best-practices, nodejs, architecture, design-patterns, deterministic-code, scalable-code, system-design]
 ai_role: Senior Node.js Architecture Expert
 last_updated: 2026-03-24
 ---
@@ -62,6 +62,10 @@ app.post('/api/users', async (req, res, next) => {
   }
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Nodejs Index](./readme.md).
+
 ### 🚀 Solution
 Controllers MUST ONLY handle HTTP payload parsing and response formatting. Core business operations MUST be delegated to isolated Service classes.
 

@@ -3,7 +3,7 @@ technology: NestJS
 domain: backend
 level: Senior/Architect
 version: "11+"
-tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
+tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior NestJS Architecture Expert
 last_updated: 2026-03-23
 ---
@@ -67,7 +67,7 @@ export class UsersService {
 }
 ```
 ### ⚠️ Problem
-Failing to follow best practices for `clean architecture modules` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
+Failing to follow best practices for `deterministic architecture modules` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 ```typescript
 @Injectable()
@@ -75,6 +75,10 @@ export class UsersService {
   constructor(@Inject('IUserRepository') private repo: IUserRepository) {} // Port interface
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Backend Index](../readme.md).
+
 ### 🚀 Solution
 Apply Dependency Inversion. Business logic MUST depend on abstractions (interfaces), not on specific ORMs.
 

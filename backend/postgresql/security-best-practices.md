@@ -3,7 +3,7 @@ technology: PostgreSQL
 domain: backend
 level: Senior/Architect
 version: "16+"
-tags: [best-practices, clean-code, architecture-patterns, vibe-coding, postgresql, database, sql, rdbms, system-design, production-ready, scalable-code]
+tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, postgresql, database, sql, rdbms, system-design, production-ready, scalable-code]
 ai_role: Senior PostgreSQL Database Architect
 last_updated: 2026-03-27
 ---
@@ -27,6 +27,10 @@ Storing plaintext passwords is a catastrophic security failure. If the database 
 const hashedPassword = await bcrypt.hash(plaintextPassword, 10);
 await pool.query(`INSERT INTO users (email, password_hash) VALUES ($1, $2)`, [email, hashedPassword]);
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Postgresql Index](./readme.md).
+
 ### 🚀 Solution
 Always salt and hash passwords using strong cryptographic algorithms (like Argon2id or bcrypt) before storing them in PostgreSQL. Never store sensitive PII in plaintext.
 

@@ -3,7 +3,7 @@ technology: PostgreSQL
 domain: backend
 level: Senior/Architect
 version: "16+"
-tags: [best-practices, clean-code, architecture-patterns, vibe-coding, postgresql, database, sql, rdbms, system-design, production-ready, scalable-code]
+tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, postgresql, database, sql, rdbms, system-design, production-ready, scalable-code]
 ai_role: Senior PostgreSQL Database Architect
 last_updated: 2026-03-27
 ---
@@ -34,6 +34,10 @@ app.get('/users', async (req, res) => {
   // ...
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Postgresql Index](./readme.md).
+
 ### 🚀 Solution
 Always use connection pooling (e.g., PgBouncer or application-level pooling) to reuse existing connections and cap the maximum number of concurrent database connections.
 
