@@ -99,7 +99,8 @@ async function resolveTaskConsensus(prompt: string, constraints: string[]) {
 
 ### 🚀 Solution
 
-By enforcing `Promise.all` parallelization across isolated models, the Orchestrator can triangulate the optimal, safest response. The strict validation against architectural constraints ensures that even if one model hallucinates, the consensus algorithm rejects the anomalous output, ensuring deterministic, stable execution in production.
+> [!IMPORTANT]
+> By enforcing `Promise.all` parallelization across isolated models, the Orchestrator MUST triangulate the optimal, safest response. The strict validation against architectural constraints ensures that even if one model hallucinates, the consensus algorithm rejects the anomalous output, ensuring deterministic, stable execution in production.
 
 ---
 

@@ -250,7 +250,8 @@ effect(() => {
 });
 ```
 ### 🚀 Solution
-Use `untracked()` to read signals that should not register as dependencies. This prevents unintended re-evaluations and ensures effects only run when their primary state changes.
+> [!IMPORTANT]
+> Use `untracked()` to read signals that MUST not register as dependencies. This prevents unintended re-evaluations and ensures effects only run when their primary state changes.
 ## ⚡ 44. Excessive Wrappers (`div` soup)
 > [!NOTE]
 > **Context:** DOM Size

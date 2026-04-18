@@ -13,10 +13,10 @@ last_updated: 2026-03-29
 </div>
 ---
 
-Этот инженерный директив определяет **лучшие практики (best practices)** для архитектуры Clean Architecture. Данный документ спроектирован для обеспечения максимальной масштабируемости, безопасности и качества кода при разработке приложений корпоративного уровня.
+This engineering directive defines the **best practices** for Clean Architecture. This document is designed to ensure maximum scalability, security, and code quality when developing enterprise-level applications.
 
 # Context & Scope
-- **Primary Goal:** Предоставить строгие архитектурные правила и практические паттерны для создания масштабируемых систем.
+- **Primary Goal:** Provide strict architectural rules and practical patterns for creating scalable systems.
 - > [!IMPORTANT]
   > **Description:** A concept created by Robert C. Martin (Uncle Bob). It separates a project into concentric rings. The main rule is the Dependency Rule: dependencies MUST STRICTLY only point inward.
 
@@ -149,7 +149,8 @@ export class UploadAvatarUseCase {
 ```
 
 ### 🚀 Solution
-Apply the Dependency Inversion Principle. The Application layer should define abstract interfaces (`Ports`) that dictate what it needs from the outside world. The Infrastructure layer implements these interfaces (`Adapters`). This guarantees true architectural decouple.
+> [!IMPORTANT]
+> Apply the Dependency Inversion Principle. The Application layer MUST define abstract interfaces (`Ports`) that dictate what it needs from the outside world. The Infrastructure layer implements these interfaces (`Adapters`). This guarantees true architectural decouple.
 
 ---
 

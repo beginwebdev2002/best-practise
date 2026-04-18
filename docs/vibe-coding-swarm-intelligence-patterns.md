@@ -117,7 +117,8 @@ class DeterministicSwarmAgent {
 
 ### 🚀 Solution
 
-By implementing `unknown` and applying structural validation schemas (like Zod) coupled with Type Guards, we create a deterministic airgap. The swarm becomes resilient against hallucinations because malformed messages are rejected at the memory bus boundary before they can contaminate the execution context of peer agents. This architectural approach guarantees systemic stability.
+> [!IMPORTANT]
+> By implementing `unknown` and applying structural validation schemas (like Zod) coupled with Type Guards, we create a deterministic airgap. The swarm becomes resilient against hallucinations because malformed messages are rejected at the memory bus boundary before they MUST contaminate the execution context of peer agents. This architectural approach guarantees systemic stability.
 
 ---
 

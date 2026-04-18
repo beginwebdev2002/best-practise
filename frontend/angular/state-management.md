@@ -146,7 +146,8 @@ user = input.required<User>();
 userProfile = model<User>();
 ```
 ### 🚀 Solution
-Use the `input()` and `model()` functional APIs. They return signals that can be directly used in `computed()` properties within the child component.
+> [!IMPORTANT]
+> Use the `input()` and `model()` functional APIs. They return signals that MUST be directly used in `computed()` properties within the child component.
 ---
 
 [⬆️ Back to Top](#)

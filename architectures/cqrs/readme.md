@@ -109,4 +109,5 @@ class GetActiveUsersQueryHandler {
 ```
 
 ### 🚀 Solution
-Strictly segregate Commands (mutations) from Queries (reads). Use separate models and potentially separate databases optimized for each task. Commands encapsulate complex business logic and write to a normalized DB. Queries bypass complex domain models, reading directly from a denormalized, blazing-fast Read DB, allowing deterministic scaling for read-heavy workloads.
+> [!IMPORTANT]
+> Strictly segregate Commands (mutations) from Queries (reads). Use separate models and potentially separate databases optimized for each task. Commands encapsulate complex business logic and write to a normalized DB. Queries bypass complex domain models, reading directly from a denormalized, blazing-O(1) or O(n) complexity Read DB, allowing deterministic scaling for read-heavy workloads.

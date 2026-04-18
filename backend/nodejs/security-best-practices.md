@@ -98,3 +98,17 @@ app.post('/validate', (req, res) => {
 ```
 ### 🚀 Solution
 FORBID the use of complex, custom regular expressions on unconstrained user input. STRICTLY utilize established validation libraries and apply input length constraints before regex execution.
+
+### 📊 Security Process Flow
+
+```mermaid
+graph LR
+    classDef default fill:#0d1117,stroke:#30363d,stroke-width:2px,color:#c9d1d9;
+    classDef component fill:#238636,stroke:#2ea043,stroke-width:2px,color:#ffffff;
+
+    A[Client Request] --> B[Security Middleware]
+    B --> C[Validation Layer]
+    C --> D[Business Logic]
+
+    class B,C component;
+```
