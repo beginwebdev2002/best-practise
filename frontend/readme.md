@@ -10,7 +10,7 @@ last_updated: 2026-03-22
 
 # 🎨 Frontend Best Practices & Production-Ready Patterns
 
-[🏠 На главную](../README.md)
+[🏠 Back to Main](../README.md)
 
 # 📖 Context & Scope
 - **Primary Goal:** Outline the overarching philosophy and standards for Frontend development inside the ecosystem.
