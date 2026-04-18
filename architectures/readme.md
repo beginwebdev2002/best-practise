@@ -57,8 +57,9 @@ Don't know where to start? Here are a few golden rules:
 - [Monolithic Architecture](./monolithic-architecture/readme.md)
 - [Space-Based Architecture](./space-based-architecture/readme.md)
 - [Serverless](./serverless/readme.md)
+- [Agentic Architecture (AI Agent Orchestration)](./agentic-architecture/readme.md)
 
-## 🏆 Top 10 Best Architectural Approaches
+## 🏆 Top 15 Best Architectural Approaches
 
 Below are the most popular architectural patterns along with examples, tips, technology stacks, and their logos. A Folder Tree is provided for each to give you a deep understanding of its structure.
 ---
@@ -599,3 +600,94 @@ src/
 - **Frameworks:** NestJS, Express.js.
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript, Node.js.
 - **Patterns / Principles:** API Gateway, Microservices, API Composition.
+
+
+---
+
+### 14. Space-Based Architecture
+[![Space-Based Architecture](https://img.shields.io/badge/Architecture-Space--Based-indigo?style=flat-square)](#)
+
+**Description:** A pattern designed to minimize the constraints of a central database by keeping state in an in-memory data grid. The architecture relies on "processing units" that independently execute logic and communicate with each other or the grid.
+**📖 Map of Patterns:** [Go to Space-Based Architecture Guidelines](./space-based-architecture/readme.md)
+
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    Client[Client / Web UI] --> API[API Gateway]
+    API --> VirtualizedMiddleware[Virtualized Middleware]
+    VirtualizedMiddleware --> PU1[Processing Unit 1]
+    VirtualizedMiddleware --> PU2[Processing Unit 2]
+    PU1 -.-> IMDG[(In-Memory Data Grid)]
+    PU2 -.-> IMDG
+    IMDG -. Async Sync .-> DB[(Persistent Storage)]
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Client component;
+    class API component;
+    class VirtualizedMiddleware layout;
+    class PU1 component;
+    class PU2 component;
+    class IMDG default;
+    class DB default;
+```
+
+```text
+src/
+├── 📁 processing-units/ # Independent logic components
+├── 📁 virtual-middleware/ # Handles messaging and grid routing
+└── 📁 grid-storage/     # In-Memory Data Grid operations
+```
+
+**Best Compatibility:**
+- **Frameworks:** Hazelcast, Apache Ignite, GigaSpaces.
+- **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" width="16"/> C#, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original.svg" width="16"/> Go.
+- **Patterns / Principles:** High-performance caching, Distributed systems.
+
+---
+
+### 15. Agentic Architecture (AI Agent Orchestration)
+[![Agentic Architecture](https://img.shields.io/badge/Architecture-Agentic-black?style=flat-square)](#)
+
+**Description:** An architecture that orchestrates multiple specialized AI agents, distributing complex workloads to optimize token efficiency, reduce context window overflow, and ensure deterministic, resilient outcomes.
+**📖 Map of Patterns:** [Go to Agentic Architecture Guidelines](./agentic-architecture/readme.md)
+
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    User[User Request] --> Orchestrator[Orchestrator Agent]
+    Orchestrator --> |Decomposes task| Planner[Planner Agent]
+    Planner -.-> |Plan| Orchestrator
+    Orchestrator --> |Delegates| Coder[Coder Agent]
+    Orchestrator --> |Delegates| Reviewer[Reviewer Agent]
+    Coder -.-> |Code output| Reviewer
+    Reviewer -.-> |Verification| Orchestrator
+    Orchestrator --> DB[(Shared Context / Memory)]
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class User component;
+    class Orchestrator layout;
+    class Planner component;
+    class Coder component;
+    class Reviewer component;
+    class DB default;
+```
+
+```text
+src/
+├── 📁 orchestrator/     # Main coordinator agent
+├── 📁 workers/          # Specialized worker agents (Planner, Coder, Reviewer)
+└── 📁 memory/           # Shared context and validation schemas
+```
+
+**Best Compatibility:**
+- **Frameworks:** LangChain, AutoGen, CrewAI.
+- **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="16"/> Python, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript.
+- **Patterns / Principles:** Orchestrator-Worker, Map-Reduce, Multi-Agent Systems.
