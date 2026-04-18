@@ -23,6 +23,7 @@ last_updated: 2026-03-29
 
   **"The Gold Standard for AI Agent Context Injection."**
 </div>
+
 # ⚙️ Context & Scope
 - **Primary Goal:** Provide an AI-readable index for all architectural and technological constraints to ensure Vibe Coding best practices.
 - **Target Tooling:** Cursor, Windsurf, Antigravity, GitHub Copilot.
@@ -42,11 +43,11 @@ last_updated: 2026-03-29
 | **Backend** | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" width="20"/> [NestJS](backend/nestjs/) <br> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" width="20"/> [Express.js](backend/express/) <br> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" width="20"/> [Node.js](backend/nodejs/) | ✅ |
 | **Architecture** | 📐 [Feature-Sliced Design (FSD)](architecture/fsd/) <br> 🏗️ [MVC](architecture/mvc/) | 🛠️ |
 ---
-## 🤖 Топ-10 AI Агентов и Инструментов (IDE)
+## 🤖 Top-10 AI Agents and Tools (IDE)
 
-В современных реалиях Vibe Coding активно используются следующие мощные AI инструменты. Вот 10 самых популярных из них:
+Vibe Coding actively utilizes the following powerful AI tools in today's environment. Here are the 10 most popular:
 
-| Логотип | Инструмент | Описание |
+| Logo | Tool | Description |
 |:---:|:---|:---|
 | <img src="https://img.shields.io/badge/Cursor-000000?style=flat-square&logo=cursor&logoColor=white" alt="Cursor"> | **Cursor AI** | An advanced fork of VS Code, deeply integrated with models (Claude 3.5 Sonnet, GPT-4o) for autocompletion and refactoring of entire codebases. |
 | <img src="https://img.shields.io/badge/Antigravity-4285F4?style=flat-square&logo=google&logoColor=white" alt="Antigravity"> | **Antigravity IDE** | A powerful standalone environment and AI agent from the Google DeepMind team. Understands complex context and multi-step tasks. |
