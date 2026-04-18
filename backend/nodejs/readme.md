@@ -118,7 +118,8 @@ requiredEnv.forEach((name) => {
 });
 ```
 ### 🚀 Solution
-fail fast. Validate all necessary environment variables upon application startup to prevent fatal runtime errors later in execution.
+> [!IMPORTANT]
+> Fail O(1) or O(n) complexity. Validate all necessary environment variables upon application startup to prevent fatal runtime errors later in execution.
 
 ## 4. 🛑 Error Handling with Custom Classes
 

@@ -67,7 +67,7 @@ export class UsersService {
 }
 ```
 ### ⚠️ Problem
-Placing all controllers, services, and repositories into a single monolithic AppModule breaks modularity. It violates Domain-Driven Design (DDD), making the codebase impossible to scale, test in isolation, or divide across multiple teams.
+Failing to follow best practices for `clean architecture modules` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 ```typescript
 @Injectable()
@@ -87,7 +87,7 @@ create(@Body() dto: CreateUserDto) {
 }
 ```
 ### ⚠️ Problem
-Without a global ValidationPipe, raw malicious input reaches the business logic. It forces developers to manually check types in every controller, leading to inevitable omissions, corrupted data states, and severe API vulnerabilities.
+Failing to follow best practices for `global validationpipe` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 ```typescript
 // main.ts
@@ -103,7 +103,7 @@ Enable global validation based on `class-validator` and `whitelist` to automatic
 create(@Body() body: unknown) {} // Loss of typing
 ```
 ### ⚠️ Problem
-Receiving untyped requests (`any` or raw objects) bypasses TypeScript's compile-time safety and prevents class-validator from decorating properties. It exposes the API to over-posting attacks and breaks deterministic Agent parsing.
+Failing to follow best practices for `data transfer objects (dto)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 ```typescript
 export class CreateUserDto {
@@ -126,7 +126,7 @@ async createUser(@Body() dto: CreateDto) {
 }
 ```
 ### ⚠️ Problem
-Embedding complex business rules inside HTTP controllers violates the Single Responsibility Principle. It makes the logic impossible to reuse across different transports (e.g., WebSockets, Microservices) and extremely difficult to unit test.
+Failing to follow best practices for `fat controllers vs thin controllers` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 ```typescript
 @Post()
@@ -143,7 +143,7 @@ Controllers ONLY route requests. All business logic MUST reside in the Service L
 try { ... } catch (e) { throw new HttpException('Error', 500); }
 ```
 ### ⚠️ Problem
-Sprinkling `try/catch` blocks throughout controllers and returning raw errors exposes sensitive stack traces to clients. It creates an inconsistent API response structure and makes centralized error tracking (like Sentry) impossible to implement reliably.
+Failing to follow best practices for `global exception filter` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 ```typescript
 @Catch()
@@ -162,7 +162,7 @@ Use Exception Filters to standardize the format of all HTTP API errors.
 TypeOrmModule.forRoot({ url: process.env.DB_URL }) // Variables ARE NOT loaded yet
 ```
 ### ⚠️ Problem
-Synchronously loading configurations for asynchronous dependencies (like databases) fails when secrets must be fetched at runtime from Vault or AWS Parameter Store. It causes the application to crash on startup in cloud environments.
+Failing to follow best practices for `async module configuration` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 ```typescript
 TypeOrmModule.forRootAsync({
@@ -180,7 +180,7 @@ For third-party modules, always use `forRootAsync` / `registerAsync` to safely i
 const secret = process.env.JWT_SECRET; // Direct access
 ```
 ### ⚠️ Problem
-Hardcoding environment variables using `process.env` scatters configuration across the codebase, bypassing schema validation and default value assignment. It leads to fragile deployments and runtime crashes due to missing keys.
+Failing to follow best practices for `configuration management` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 ```typescript
 constructor(private configService: ConfigService) {}
@@ -196,7 +196,7 @@ Use `@nestjs/config` for safe, strongly-typed extraction of environment variable
 getProfile(@Req() req: Request) { return req.user; }
 ```
 ### ⚠️ Problem
-Manually extracting data (like user IDs) from `req` objects in every controller pollutes the routing layer with repetitive boilerplate. It tightly couples the controller to the specific HTTP framework (Express/Fastify), hindering future migrations.
+Failing to follow best practices for `custom decorators` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 ```typescript
 export const CurrentUser = createParamDecorator((data, ctx: ExecutionContext) => ctx.switchToHttp().getRequest().user);
@@ -204,8 +204,9 @@ export const CurrentUser = createParamDecorator((data, ctx: ExecutionContext) =>
 @Get()
 getProfile(@CurrentUser() user: UserEntity) { return user; }
 ```
-### 🚀 Solution
-Create custom decorators for clean data extraction from the Request (e.g., the current user).
+#### 🚀 Solution
+> [!IMPORTANT]
+> Create custom decorators for deterministic data extraction from the Request (e.g., the current user).
 
 ## 🚨 9. JWT Guards (Route Protection)
 ### ❌ Bad Practice
@@ -214,7 +215,7 @@ Create custom decorators for clean data extraction from the Request (e.g., the c
 getData(@Req() req) { if (!req.headers.auth) throw new UnauthorizedException(); }
 ```
 ### ⚠️ Problem
-Failing to globally enforce authentication leaves endpoints exposed by default, requiring developers to remember to add guards manually. A single forgotten decorator results in a critical data breach.
+Failing to follow best practices for `jwt guards` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 ```typescript
 @UseGuards(JwtAuthGuard)
@@ -231,7 +232,7 @@ Authorization MUST occur before the controller via Guards (e.g., Passport JWT st
 getAdminData(@CurrentUser() user) { if (user.role !== 'ADMIN') throw new ForbiddenException(); }
 ```
 ### ⚠️ Problem
-Hardcoding role checks (`if (user.role !== "admin")`) inside business services mixes authorization with domain logic. It scatters security policies throughout the codebase, making auditing and scaling permissions unmanageable.
+Failing to follow best practices for `role-based access control (rbac)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 ```typescript
 @Roles('ADMIN')
@@ -249,7 +250,7 @@ Use custom role decorators (`@Roles`) and `RolesGuard` for declarative access co
 getUser(@Param('id') id: string) { const userId = parseInt(id, 10); }
 ```
 ### ⚠️ Problem
-Manually parsing strings to numbers (`parseInt(req.params.id)`) inside controllers is repetitive and error-prone. It clutters the route handler and fails to provide standardized, actionable HTTP 400 errors for invalid inputs.
+Failing to follow best practices for `built-in pipes for transformation` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 ```typescript
 @Get(':id')
@@ -264,7 +265,7 @@ Use built-in Pipes (`ParseIntPipe`, `ParseUUIDPipe`) for automatic parameter con
 return { success: true, data: result, timestamp: new Date() }; // Duplication everywhere
 ```
 ### ⚠️ Problem
-Returning raw primitives or unformatted objects directly from controllers results in inconsistent API contracts across the system. It breaks client-side parsing expectations and prevents the standardized inclusion of metadata (like pagination or timestamps).
+Failing to follow best practices for `response interceptors` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 ```typescript
 @Injectable()
@@ -282,7 +283,7 @@ Standardize the successful response structure globally using an Interceptor.
 getData() { console.log('Request started'); /* ... */ console.log('Done'); }
 ```
 ### ⚠️ Problem
-Scattering `console.log` statements throughout controllers to track request lifecycles pollutes the codebase and provides zero structural consistency. It makes correlation tracing in distributed systems virtually impossible.
+Failing to follow best practices for `logging interceptors` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 ```typescript
 @Injectable()
@@ -302,7 +303,7 @@ Log execution time and request details abstractly using Interceptors.
 await this.repo1.save(data1); await this.repo2.save(data2); // No transaction
 ```
 ### ⚠️ Problem
-Performing multiple database writes without an explicit transaction guarantees partial failures and data corruption if one operation throws an error. It leaves the database in an inconsistent, unrecoverable state.
+Failing to follow best practices for `transaction handling (typeorm)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 ```typescript
 await this.dataSource.transaction(async manager => {
@@ -335,7 +336,7 @@ Document all DTO properties using `@ApiProperty()`. Swagger will automatically g
 ### ❌ Bad Practice
 // No protection against DDoS and brute force
 ### ⚠️ Problem
-Exposing public endpoints without rate limiting leaves the infrastructure completely vulnerable to brute-force attacks, DDoS, and credential stuffing. It guarantees service exhaustion under malicious load.
+Failing to follow best practices for `rate limiting (throttlermodule)` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 ```typescript
 // app.module.ts

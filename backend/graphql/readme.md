@@ -32,6 +32,25 @@ This document establishes **best practices** for building and maintaining GraphQ
 
 ## 🏗️ Architecture & Component Isolation
 
+### 📊 DataLoader Orchestration Process
+
+```mermaid
+sequenceDiagram
+    participant C as Client Query
+    participant R as Resolvers
+    participant L as DataLoader
+    participant D as Database
+
+    C->>R: Request list of 100 Users + their Posts
+    R->>L: queue load(user.id) x 100
+    Note over L: Event Loop Tick...
+    L->>D: Batch execute single query: WHERE authorId IN (...)
+    D-->>L: Return flat result set
+    L-->>R: Map results to specific users
+    R-->>C: Return JSON response
+```
+
+
 ## 🚨 1. Resolving the N+1 Query Problem
 ### ❌ Bad Practice
 ```javascript

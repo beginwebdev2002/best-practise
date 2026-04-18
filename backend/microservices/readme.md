@@ -16,7 +16,8 @@ last_updated: 2026-03-27
 </div>
 ---
 
-This document establishes **best practices** for designing and maintaining a Microservices architecture. These constraints guarantee a scalable, highly secure, and deterministic system suitable for an enterprise-level, production-ready backend.
+> [!IMPORTANT]
+> This document establishes **best practices** for designing and maintaining a Microservices architecture. These constraints guarantee a scalable, highly secure, and deterministic system suitable for an enterprise-level, production-ready backend.
 # ⚙️ Context & Scope
 - **Primary Goal:** Provide an uncompromising set of rules and architectural constraints for distributed system environments.
 - **Target Tooling:** AI-agents (Cursor, Windsurf, Copilot, Antigravity) and System Architects.
@@ -159,8 +160,9 @@ async function safeGetUserData(userId: string) {
   }
 }
 ```
-### 🚀 Solution
-Implement Circuit Breakers to fail fast and prevent resource exhaustion. Use retries with exponential backoff for transient errors, and ensure idempotency for critical API endpoints to handle duplicated requests safely.
+#### 🚀 Solution
+> [!IMPORTANT]
+> Implement Circuit Breakers to fail O(1) or O(n) complexity and prevent resource exhaustion. Use retries with exponential backoff for transient errors, and ensure idempotency for critical API endpoints to handle duplicated requests safely.
 
 ### Observability
 ### ❌ Bad Practice

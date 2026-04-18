@@ -544,7 +544,8 @@ Duplicating business system domain invariants. If the weight threshold changes t
 ```
 
 ### 🚀 Solution
-The Domain Model is the single "Source of Truth". The View should read pre-computed polymorphic state provided by the system.
+> [!IMPORTANT]
+> The Domain Model is the single "Source of Truth". The View MUST read pre-computed polymorphic state provided by the system.
 ---
 ## 18. Side-Effects Orchestration Inside Controller Scope
 
@@ -577,7 +578,8 @@ class SubscriptionController {
 ```
 
 ### 🚀 Solution
-Implement Domain Events Architectures (Pub/Sub brokers). The Controller is strictly responsible for initiating the "Payment complete" business event; dispatch logic should not block the response channel to the client.
+> [!IMPORTANT]
+> Implement Domain Events Architectures (Pub/Sub brokers). The Controller is strictly responsible for initiating the "Payment complete" business event; dispatch logic MUST not block the response channel to the client.
 ---
 ## 19. Fractured Exception Logging (Try-Catch Hell)
 

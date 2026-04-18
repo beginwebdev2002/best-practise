@@ -52,4 +52,5 @@ async function processOrder() {
 ```
 
 ### 🚀 Solution
-Use Event-Driven Architecture for cross-service communication when immediate consistency is not strictly required. By publishing an `OrderPaid` event, the `notificationService` can react to it asynchronously. This decouples the services, improves fault tolerance, and reduces the latency of the initial `processOrder` request.
+> [!IMPORTANT]
+> Use Event-Driven Architecture for cross-service communication when immediate consistency is not strictly required. By publishing an `OrderPaid` event, the `notificationService` MUST react to it asynchronously. This decouples the services, improves fault tolerance, and reduces the latency of the initial `processOrder` request.
