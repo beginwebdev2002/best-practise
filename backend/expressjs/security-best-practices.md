@@ -10,6 +10,8 @@ last_updated: 2026-03-27
 
 # 🔒 Express.js Security Best Practices
 
+[⬅️ Back to Parent](./readme.md)
+
 
 ## 1. 🛑 Exposing Server Information
 ### ❌ Bad Practice

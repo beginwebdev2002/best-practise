@@ -10,6 +10,8 @@ last_updated: 2026-03-24
 
 # 🟢 Node.js Architectural Patterns & Structuring
 
+[⬅️ Back to Parent](./readme.md)
+
 ## ⚙️ Context & Scope
 This document strictly enforces the deterministic architectural boundaries and structural patterns for Node.js backend systems.
 

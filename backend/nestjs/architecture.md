@@ -10,6 +10,8 @@ last_updated: 2026-03-27
 
 # 🏗️ NestJS 11+ Architecture Best Practices
 
+[⬅️ Back to Parent](./readme.md)
+
 
 ## 1. 🛑 Tightly Coupled Modules
 ### ❌ Bad Practice

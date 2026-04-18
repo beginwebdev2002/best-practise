@@ -10,6 +10,8 @@ last_updated: 2026-03-27
 
 # 🐘 PostgreSQL Architecture
 
+[⬅️ Back to Parent](./readme.md)
+
 
 ## 1. 🛑 Unbounded Connection Pools
 ### ❌ Bad Practice

@@ -10,6 +10,8 @@ last_updated: 2026-03-27
 
 # 🐘 PostgreSQL Security Best Practices
 
+[⬅️ Back to Parent](./readme.md)
+
 
 ## 1. 🛑 Plaintext Password Storage
 ### ❌ Bad Practice

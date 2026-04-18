@@ -10,6 +10,8 @@ last_updated: 2026-03-24
 
 # 🟢 Node.js Security Best Practices
 
+[⬅️ Back to Parent](./readme.md)
+
 ## ⚙️ Context & Scope
 This document outlines the strict security configurations and anti-patterns that must be mitigated in a production Node.js environment.
 
