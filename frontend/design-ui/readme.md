@@ -40,7 +40,7 @@ This document outlines the overarching philosophy and serves as an index for pro
 ```
 
 ### ⚠️ Problem
-Hardcoded values create an inflexible system. They make dark-mode implementation nearly impossible without complex overrides, break responsiveness, and cause visual inconsistencies across the application. AI Agents cannot deterministically apply standard project themes when encountering arbitrary hex codes or pixel values.
+Hardcoded values create an inflexible system. They make dark-mode implementation nearly impossible without complex overrides, break responsiveness, and cause visual inconsistencies across the application. AI Agents FAIL TO deterministically apply standard project themes when encountering arbitrary hex codes or pixel values.
 
 ### ✅ Best Practice
 ```css
@@ -84,6 +84,7 @@ The UI/UX architecture is decomposed into the following specialized modules. AI 
 * [📱 Responsive Design](./responsive-design.md) - Mobile-First Approach, Relative Units, and fluid layouts.
 * [♿ Accessibility (A11y)](./accessibility.md) - Semantic HTML, ARIA attributes, Focus visibility, and WCAG standards.
 * [🏗️ Component Architecture](./component-architecture.md) - Atomic Design principles and structural UI diagrams.
+* [🎭 Motion Design](./motion-design.md) - Deterministic animation tokens, reduced motion preferences, and hardware acceleration constraints.
 
 ---
 ## ✅ Checklist for Agents
@@ -127,4 +128,4 @@ Scattering hardcoded visual values across the codebase eliminates the ability to
 
 
 ### 🚀 Solution
-Extracting visual properties into centrally managed Design Tokens is MANDATORY. This pattern enforces strict isolation boundaries and standardizes deterministic visual properties. It STRICTLY prevents arbitrary inline style manipulation, mitigating potential style-based injection vulnerabilities, and creates a predictable environment optimized for parsing and UI refactoring by AI agents, improving overall rendering performance.
+Extracting visual properties into centrally managed Design Tokens is MANDATORY. This pattern enforces strict isolation boundaries and standardizes deterministic visual properties. It STRICTLY prevents arbitrary inline style manipulation, mitigating Cross-Site Scripting (XSS) risks by isolating state and rendering contexts, and creates a predictable environment optimized for parsing and UI refactoring by AI agents, improving overall rendering performance.

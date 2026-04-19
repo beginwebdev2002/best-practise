@@ -99,6 +99,7 @@ This folder acts as a container for documentation around the following technolog
 - [Responsive Design](./design-ui/responsive-design.md)
 - [Accessibility](./design-ui/accessibility.md)
 - [Component Architecture](./design-ui/component-architecture.md)
+- [Motion Design](./design-ui/motion-design.md)
 
 - [UI/UX Design Index](./design-ui/readme.md)
 
