@@ -3,7 +3,7 @@ technology: Node.js
 domain: backend
 level: Senior/Architect
 version: "24+"
-tags: [security, best-practices, nodejs, clean-code, scalable-code, system-design]
+tags: [security, best-practices, nodejs, deterministic-code, scalable-code, system-design]
 ai_role: Senior Node.js Security Expert
 last_updated: 2026-03-24
 ---
@@ -51,6 +51,10 @@ function safeMerge(target, source) {
   return target;
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Nodejs Index](./readme.md).
+
 ### 🚀 Solution
 STRICTLY filter reserved prototype keys (`__proto__`, `constructor`, `prototype`) during deep clone or merge operations. Alternatively, use robust, community-vetted libraries (like lodash.merge) that have built-in pollution defenses.
 

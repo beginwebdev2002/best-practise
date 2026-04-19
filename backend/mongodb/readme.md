@@ -3,7 +3,7 @@ technology: MongoDB
 domain: backend
 level: Senior/Architect
 version: "7.0+"
-tags: [best-practices, clean-code, architecture-patterns, vibe-coding, mongodb, nosql, database, system-design, production-ready, scalable-code, document-database]
+tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, mongodb, nosql, database, system-design, production-ready, scalable-code, document-database]
 ai_role: Senior MongoDB Database Architect
 last_updated: 2026-03-28
 ---
@@ -67,6 +67,10 @@ db.users.insertOne({ name: "John", age: -5, admin: true });
 Failing to follow best practices for `schema validation` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 Implement strict schema validation using JSON Schema in MongoDB.
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Backend Index](../readme.md).
+
 ### 🚀 Solution
 ```javascript
 db.createCollection("users", {

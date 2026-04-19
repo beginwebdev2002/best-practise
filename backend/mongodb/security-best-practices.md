@@ -44,6 +44,9 @@ Enable authorization in `mongod.conf` (`security.authorization: enabled`) and cr
 | **Auditability** | High (Clear mapping of who did what) | Low (Generic roles obscure intent) |
 | **Complexity** | High (Requires planning and maintenance) | Low (Easy but dangerous) |
 
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Mongodb Index](./readme.md).
+
 ### 🚀 Solution
 
 ```javascript

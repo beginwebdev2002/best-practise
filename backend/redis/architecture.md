@@ -3,7 +3,7 @@ technology: Redis
 domain: backend
 level: Senior/Architect
 version: "7+"
-tags: [best-practices, clean-code, architecture-patterns, vibe-coding, redis, in-memory, nosql, system-design, production-ready, scalable-code]
+tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, redis, in-memory, nosql, system-design, production-ready, scalable-code]
 ai_role: Senior Redis Architecture Expert
 last_updated: 2026-03-27
 ---
@@ -34,6 +34,10 @@ services:
   redis-sentinel:
     image: redis:latest
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Redis Index](./readme.md).
+
 ### 🚀 Solution
 Deploy Redis in a Cluster or Sentinel topology to ensure high availability, automatic failover, and data redundancy.
 

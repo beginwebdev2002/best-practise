@@ -3,7 +3,7 @@ technology: GraphQL
 domain: backend
 level: Senior/Architect
 version: Agnostic
-tags: [best-practices, clean-code, security-patterns, vibe-coding, cursor-rules, graphql, software-architecture, system-design, solid-principles, production-ready, programming-standards, node-js, security, scalable-code, windsurf-rules, ai-coding, enterprise-patterns]
+tags: [best-practices, deterministic-code, security-patterns, vibe-coding, cursor-rules, graphql, software-architecture, system-design, solid-principles, production-ready, programming-standards, node-js, security, scalable-code, windsurf-rules, ai-coding, enterprise-patterns]
 ai_role: Senior GraphQL Security Expert
 last_updated: 2026-03-29
 ---
@@ -34,6 +34,10 @@ const server = new ApolloServer({
   validationRules: [depthLimit(5)], // Restrict nesting to 5 levels
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Graphql Index](./readme.md).
+
 ### 🚀 Solution
 Strictly enforce a Query Depth Limit. Additionally, implement Query Complexity Analysis (assigning weights to specific fields) to reject overly expensive queries before they are executed.
 
