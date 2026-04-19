@@ -1,6 +1,6 @@
 ---
 technology: Responsive Design
-domain: Frontend
+domain: frontend
 level: Senior/Architect
 version: Agnostic
 tags: [vibe-coding, responsive, adaptive, css, best-practices]

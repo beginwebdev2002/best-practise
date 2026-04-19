@@ -1,6 +1,6 @@
 ---
 technology: Component Architecture
-domain: Frontend
+domain: frontend
 level: Senior/Architect
 version: Agnostic
 tags: [vibe-coding, atomic-design, architecture, ui-components]

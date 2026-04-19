@@ -1,6 +1,6 @@
 ---
 technology: Accessibility
-domain: Frontend
+domain: frontend
 level: Senior/Architect
 version: Agnostic
 tags: [vibe-coding, a11y, html, w3c, wcag, best-practices]

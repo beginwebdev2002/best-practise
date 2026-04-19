@@ -1,6 +1,6 @@
 ---
 technology: UI/UX Styling
-domain: Frontend
+domain: frontend
 level: Senior/Architect
 version: Agnostic
 tags: [vibe-coding, design-tokens, css, styling, best-practices]
