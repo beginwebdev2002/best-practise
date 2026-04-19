@@ -35,6 +35,22 @@ console.log(price); // 100
 ```
 ### 🚀 Solution
 Use `const` by default to ensure immutability of the reference. Use `let` only when reassigning a variable is strictly necessary. This enforces block-level scoping and prevents accidental overrides.
+
+```mermaid
+flowchart TD
+    A[Variable Declaration Required] --> B{Reassignment needed?}
+    B -->|Yes| C[Use let]
+    B -->|No| D[Use const]
+    C --> E[Block Scoped Variable]
+    D --> E
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+
+    class A,C,D default;
+    class B,E component;
+```
+
 ---
 
 
