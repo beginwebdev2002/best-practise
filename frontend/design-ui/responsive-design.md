@@ -51,6 +51,9 @@ This document enforces the strict standards for building fluid, universally adap
 A desktop-first approach with absolute units (`px`) often leads to horizontal scrolling on mobile devices and rigid layouts that break unpredictably on intermediate screen sizes.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Design-ui Index](./readme.md).
+
 ```css
 .container {
   width: 100%;

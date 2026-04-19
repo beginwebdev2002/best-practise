@@ -38,6 +38,9 @@ function Article({ content }: { content: string }) {
 ### ⚠️ Problem
 Using `dangerouslySetInnerHTML` bypasses React's automatic string escaping. If the input is not sanitized, malicious scripts can execute within the user's browser, leading to session hijacking or data theft.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [React Index](./readme.md).
+
 ```tsx
 import DOMPurify from 'dompurify';
 
@@ -53,6 +56,8 @@ If you must render raw HTML, strictly sanitize it using a robust library like `D
 
 ## 🔒 II. Data Exposure & Server Components
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### 🚨 2. Leaking Secrets to the Client
 > [!NOTE]
 > **Context:** Accessing environment variables and sensitive configuration.
@@ -67,6 +72,9 @@ export function PaymentGateway() {
 ### ⚠️ Problem
 Exposing secret keys or database credentials to the client bundle allows attackers to easily extract them, compromising the entire infrastructure.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [React Index](./readme.md).
+
 ```tsx
 // Server Action (actions.ts)
 'use server';
@@ -90,3 +98,5 @@ Leverage React Server Components and Server Actions (`'use server'`) to keep sen
 
 ---
 [⬆️ Back to Top](#)
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

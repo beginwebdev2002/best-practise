@@ -24,6 +24,9 @@ function process(data: unknown) {
 ### ⚠️ Problem
 `any` is a "get out of jail free" card that propagates through the codebase, effectively turning off TypeScript's benefits and hiding potential runtime exceptions.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 function process(data: unknown) {
     if (data && typeof data === 'object' && 'name' in data) {
@@ -37,6 +40,9 @@ Use `unknown` for values whose type is not yet determined. It requires a type ch
 ## ⚡ 2. `null` vs `undefined` in APIs
 > [!NOTE]
 > **Context:** Distinguishing between "value not provided" and "value is empty."
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 interface UserResponse {
@@ -46,6 +52,9 @@ interface UserResponse {
 ### ⚠️ Problem
 Using both creates ambiguity. In JSON, `undefined` properties are often stripped, while `null` is preserved. Mixing them increases complexity in conditional checks.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 interface UserResponse {
     bio?: string | null; // Optional if missing, null if explicitly empty
@@ -57,6 +66,9 @@ Standardize: use `undefined` (optional properties) for missing keys and `null` f
 ## ⚡ 3. `Array<T>` vs `T[]`
 > [!NOTE]
 > **Context:** Visual consistency in array declarations.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 const users: Array<User> = [];
@@ -65,6 +77,9 @@ const complex: Array<string | number> = [];
 ### ⚠️ Problem
 `Array<T>` is more verbose and can be confused with other generic types. It is harder to scan in complex signatures.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 const users: User[] = [];
 const complex: (string | number)[] = [];
@@ -75,6 +90,9 @@ Prefer the shorthand `T[]`. It is idiomatic, more readable, and clearly distingu
 ## ⚡ 4. `interface` vs `type`
 > [!NOTE]
 > **Context:** Defining object structures and aliases.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 type Point = { x: number; y: number; }; // Bad: Using type for object structure
@@ -83,6 +101,9 @@ interface Status { status: "active" | "inactive"; } // Bad: Trying to use interf
 ### ⚠️ Problem
 Using `type` for object structures prevents declaration merging and reduces performance in TS compiler caching. Using `interface` for unions is impossible or leads to awkward wrapper objects.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 interface Point { x: number; y: number; }
 type Status = "active" | "inactive";
@@ -107,6 +128,9 @@ function format(input: unknown): string {
 ### ⚠️ Problem
 Overloads are verbose and can be harder to implement correctly. They often require `any` or complex type-casting in the implementation body.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 function format(input: string | number): string {
     return String(input);
@@ -118,6 +142,9 @@ Prefer Union types when the implementation logic is identical for all types. Res
 ## 🎯 6. Global Scope Pollution (Legacy Namespaces)
 > [!NOTE]
 > **Context:** Organizing code in the ES Module era.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 namespace Utils {
@@ -127,6 +154,9 @@ namespace Utils {
 ### ⚠️ Problem
 Namespaces are a legacy TypeScript feature. They don't play well with modern bundlers (Tree Shaking), are harder to test, and can lead to naming collisions in the global scope.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 // utils.ts
 export const log = (msg: string) => console.log(msg);
@@ -137,6 +167,9 @@ Use ES Modules (`export`/`import`). They are the industry standard, supported by
 ## ⚡ 7. `enum` vs `const object`
 > [!NOTE]
 > **Context:** Grouping related constants.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 enum Status {
@@ -147,6 +180,9 @@ enum Status {
 ### ⚠️ Problem
 Enums generate extra runtime code and have "reverse mapping" behavior that can lead to bugs (e.g., `Status[0]` returns "Active"). They also don't align with "TypeScript as a type-only layer."
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 const STATUS = {
     ACTIVE: 'active',
@@ -171,3 +207,5 @@ For further reading, please refer to the following specialized guides:
 - [📦 Objects & Functions](./objects-functions.md)
 - [🧠 Professional & Niche Topics](./professional-niche.md)
 - [🧪 Testing](./testing.md)
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

@@ -31,6 +31,9 @@ const Component = component$(() => {
 ### ⚠️ Problem
 If you define synchronous functions and bind them to events, Qwik must bundle all that javascript code eagerly, undermining resumability and slowing down the initial page load time.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Qwik Index](./readme.md).
+
 ```tsx
 import { component$, $ } from '@builder.io/qwik';
 
@@ -43,3 +46,5 @@ const Component = component$(() => {
 > [!IMPORTANT]
 > Ensure all event handlers use the `$` suffix (like `onClick$`) and their corresponding logic is wrapped in `$()`. This explicit syntax breaks the application into tiny resumable closures that Qwik MUST fetch only when the user interacts with them.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

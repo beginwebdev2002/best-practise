@@ -22,6 +22,9 @@ if (isValid === true) { /* ... */ }
 ### ⚠️ Problem
 Comparing a boolean to `true` or `false` is redundant. It adds visual noise without increasing safety.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 if (isValid) { /* ... */ }
 if (!isPending) { /* ... */ }
@@ -30,6 +33,7 @@ if (!isPending) { /* ... */ }
 Leverage JavaScript's truthiness/falsiness or direct boolean evaluation. It makes the code more concise and idiomatic.
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 7. Array/Object literal vs `new` constructor
 > [!NOTE]
@@ -42,6 +46,9 @@ const map = new Object();
 ### ⚠️ Problem
 The `Array` constructor is inconsistent: `new Array(3)` creates an empty array of length 3, while `new Array(3, 4)` creates `[3, 4]`. Literals are faster and more readable.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const list = [1, 2, 3];
 const map = {};
@@ -50,6 +57,7 @@ const map = {};
 Use literals `[]` and `{}`. They are visually cleaner and perform slightly better as they don't involve a function call.
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 8. Function length/complexity
 > [!NOTE]
@@ -63,6 +71,9 @@ function processOrder(order) {
 ### ⚠️ Problem
 Large functions are hard to test, debug, and reuse. High cyclomatic complexity makes it difficult for the JIT compiler to optimize the function.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 function validateOrder(order) { /* ... */ }
 function saveToDatabase(order) { /* ... */ }
@@ -78,6 +89,7 @@ function processOrder(order) {
 Break functions into smaller, pure components. Aim for functions under 20 lines that do exactly one thing.
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 9. Deeply nested `if/else` (Arrow code)
 > [!NOTE]
@@ -97,6 +109,9 @@ function getData(user) {
 ### ⚠️ Problem
 "Arrow code" (code that expands horizontally) is hard to follow. It forces the reader to keep track of multiple nesting levels in their mental stack.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 function getData(user) {
     if (!user || !user.isActive || !user.hasPermission) {
@@ -109,6 +124,7 @@ function getData(user) {
 Use "Guard Clauses" to return early. This flattens the structure and handles edge cases first, leaving the happy path at the lowest nesting level.
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 10. Improper naming (Single letters)
 > [!NOTE]
@@ -121,6 +137,9 @@ const u = users.map(i => i.n);
 ### ⚠️ Problem
 Single-letter variables (except for standard loop indices like `i` or `j`) provide no context. They make the code unsearchable and confusing for other developers.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const today = new Date();
 const userNames = users.map(user => user.name);
@@ -128,3 +147,5 @@ const userNames = users.map(user => user.name);
 ### 🚀 Solution
 Use descriptive, camelCase names that convey the intent and data type of the variable.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

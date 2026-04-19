@@ -40,6 +40,9 @@ test('clicks button', () => {
 ### ⚠️ Problem
 Qwik does not hydrate. It resumes execution based on serialized state embedded in the HTML. Testing it like a traditional SPA ignores its core architecture.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Qwik Index](./readme.md).
+
 ```tsx
 import { createDOM } from '@builder.io/qwik/testing';
 
@@ -58,3 +61,5 @@ Use Qwik's specialized testing utilities that simulate the resumability framewor
 
 ---
 [⬆️ Back to Top](#)
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

@@ -26,6 +26,9 @@ last_updated: 2026-03-22
 ### ⚠️ Problem
 Using `[(ngModel)]` without strict model typing risks assigning a string to a numeric field or vice versa, causing runtime errors and confusing data flow.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 userAge = model<number>(0);
 ```
@@ -37,6 +40,9 @@ Use Signal-based `model()` inputs combined with strict HTML input types. This pr
 ## ⚡ 47. Untyped `FormGroup`
 > [!NOTE]
 > **Context:** Reactive Forms
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 const form = new FormGroup({ ... }); // Untyped
@@ -44,6 +50,9 @@ const form = new FormGroup({ ... }); // Untyped
 ### ⚠️ Problem
 `form.value` returns `any`.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 const form = new FormGroup<LoginForm>({
   email: new FormControl('', { nonNullable: true }),
@@ -55,6 +64,9 @@ Always type forms. Use `nonNullable: true` to avoid `string | undefined` hell.
 ## ⚡ 48. Subscribe inside Subscribe
 > [!NOTE]
 > **Context:** RxJS Patterns
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 this.route.params.subscribe(params => {
@@ -64,6 +76,9 @@ this.route.params.subscribe(params => {
 ### ⚠️ Problem
 Classic Race Condition. If parameters change rapidly, response order is not guaranteed.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 this.route.params.pipe(
   switchMap(params => this.api.getUser(params.id))
@@ -74,6 +89,9 @@ Use Flattening Operators (`switchMap`, `concatMap`, `mergeMap`).
 ## ⚡ 49. Ignoring `AbortSignal` in HTTP
 > [!NOTE]
 > **Context:** Network Efficiency
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 fetchData() {
@@ -83,6 +101,9 @@ fetchData() {
 ### ⚠️ Problem
 Ignoring request cancellation when navigating away from the page or making subsequent requests leads to hanging connections, memory leaks, and potential race conditions if old requests resolve after new ones.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 fetchData() {
   this.http.get('/api/data').pipe(takeUntilDestroyed()).subscribe(data => this.data.set(data));
@@ -93,6 +114,9 @@ Always tie HTTP requests to the component lifecycle using `takeUntilDestroyed()`
 ## ⚡ 50. Mutating Inputs directly
 > [!NOTE]
 > **Context:** Unidirectional Data Flow
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 data = input<Item[]>([]);
@@ -103,6 +127,9 @@ addItem(newItem: Item) {
 ### ⚠️ Problem
 Directly mutating an array or object received via input bypasses the reactivity system and violates the One-Way Data Flow principle. The parent component remains unaware of the change.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 data = input<Item[]>([]);
 dataChange = output<Item[]>();
@@ -116,6 +143,9 @@ Emit an event using the `output()` API upwards; the parent handles the mutation 
 ## ⚡ 51. `ngModel` inside Reactive Form
 > [!NOTE]
 > **Context:** Form Mixing
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```html
 <form [formGroup]="form">
@@ -125,6 +155,9 @@ Emit an event using the `output()` API upwards; the parent handles the mutation 
 ### ⚠️ Problem
 Mixing `formControlName` and `[(ngModel)]` is deprecated behavior. It creates two sources of truth, causing form and model synchronization conflicts and unpredictable value updates.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```html
 <form [formGroup]="form">
   <input formControlName="name">
@@ -139,6 +172,9 @@ Use only one approach strictly: Reactive Forms with `formControlName`. For react
 ## ⚡ 52. Complex Validators in Template
 > [!NOTE]
 > **Context:** Form Logic
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```html
 <input pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
@@ -146,6 +182,9 @@ Use only one approach strictly: Reactive Forms with `formControlName`. For react
 ### ⚠️ Problem
 Placing complex regex validations directly in HTML attributes creates code that is impossible to unit test independently, provides poor error messages, and lacks reusability.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 const passwordValidator: ValidatorFn = (control: AbstractControl) => {
   const valid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(control.value);
@@ -164,6 +203,9 @@ Validating a complex field on every keystroke (`change`).
 ### ⚠️ Problem
 Slows down user input.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 new FormControl('', { updateOn: 'blur' });
 ```
@@ -172,6 +214,9 @@ Trigger validation/update only when the user has finished typing.
 ## ⚡ 54. Not handling API Errors
 > [!NOTE]
 > **Context:** UX
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 this.http.get<User>('/api/user').subscribe(data => {
@@ -181,6 +226,9 @@ this.http.get<User>('/api/user').subscribe(data => {
 ### ⚠️ Problem
 Failing to handle errors leads to silent failures or unhandled exceptions in the console. On a 500 error, the application may "hang" in an infinite loading state, destroying the UX.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 this.http.get<User>('/api/user').pipe(
   catchError(err => {
@@ -196,6 +244,9 @@ Always implement a `catchError` block in the RxJS pipe to handle API failures gr
 ## ⚡ 55. Hardcoded API URLs
 > [!NOTE]
 > **Context:** Maintainability
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 this.http.get('https://api.production.com/users');
@@ -203,6 +254,9 @@ this.http.get('https://api.production.com/users');
 ### ⚠️ Problem
 Hardcoding API URLs directly into service methods completely couples the code to a specific environment, making it impossible to seamlessly deploy to staging or local dev environments without manual changes.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 export const API_URL = new InjectionToken<string>('API_URL');
 
@@ -213,3 +267,5 @@ this.http.get(`${this.apiUrl}/users`);
 ### 🚀 Solution
 Utilize an `InjectionToken` combined with environment configurations to provide the API URL. This ensures configuration is decoupled from business logic and allows deterministic dependency injection.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

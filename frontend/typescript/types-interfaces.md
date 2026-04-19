@@ -24,6 +24,9 @@ function process(data: unknown) {
 ### ⚠️ Problem
 `any` is a "get out of jail free" card that propagates through the codebase, effectively turning off TypeScript's benefits and hiding potential runtime exceptions.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 function process(data: unknown) {
     if (data && typeof data === 'object' && 'name' in data) {
@@ -38,6 +41,9 @@ Use `unknown` for values whose type is not yet determined. It requires a type ch
 ## ⚡ 2. `null` vs `undefined` in APIs
 > [!NOTE]
 > **Context:** Distinguishing between "value not provided" and "value is empty."
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 interface UserResponse {
@@ -47,6 +53,9 @@ interface UserResponse {
 ### ⚠️ Problem
 Using both creates ambiguity. In JSON, `undefined` properties are often stripped, while `null` is preserved. Mixing them increases complexity in conditional checks.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 interface UserResponse {
     bio?: string | null; // Optional if missing, null if explicitly empty
@@ -59,6 +68,9 @@ Standardize: use `undefined` (optional properties) for missing keys and `null` f
 ## ⚡ 3. `Array<T>` vs `T[]`
 > [!NOTE]
 > **Context:** Visual consistency in array declarations.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 const users: Array<User> = [];
@@ -67,6 +79,9 @@ const complex: Array<string | number> = [];
 ### ⚠️ Problem
 `Array<T>` is more verbose and can be confused with other generic types. It is harder to scan in complex signatures.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 const users: User[] = [];
 const complex: (string | number)[] = [];
@@ -78,6 +93,9 @@ Prefer the shorthand `T[]`. It is idiomatic, more readable, and clearly distingu
 ## ⚡ 4. `interface` vs `type`
 > [!NOTE]
 > **Context:** Defining object structures and aliases.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 type Point = { x: number; y: number; }; // Bad: Using type for object structure
@@ -86,6 +104,9 @@ interface Status { status: "active" | "inactive"; } // Bad: Trying to use interf
 ### ⚠️ Problem
 Using `type` for object structures prevents declaration merging and reduces performance in TS compiler caching. Using `interface` for unions is impossible or leads to awkward wrapper objects.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 interface Point { x: number; y: number; }
 type Status = "active" | "inactive";
@@ -109,6 +130,9 @@ function format(input: unknown): string {
 ### ⚠️ Problem
 Overloads are verbose and can be harder to implement correctly. They often require `any` or complex type-casting in the implementation body.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 function format(input: string | number): string {
     return String(input);
@@ -117,3 +141,5 @@ function format(input: string | number): string {
 ### 🚀 Solution
 Prefer Union types when the implementation logic is identical for all types. Reserve overloads only for cases where the return type strictly depends on the input type and cannot be expressed via generics.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

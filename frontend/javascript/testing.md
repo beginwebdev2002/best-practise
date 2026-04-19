@@ -46,6 +46,9 @@ test('update user', () => {
 ### ⚠️ Problem
 Tests that depend on global variables or execution order are brittle. If the test runner executes them in parallel or out of order, they will fail unpredictably, leading to flaky test suites.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 test('create user', () => {
   const user = { id: 1, name: 'Alice' };
@@ -75,6 +78,8 @@ Ensure every test is fully isolated. Use `beforeEach` or setup functions to inst
 
 ## ⚙️ II. Asynchronous Code
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### 🚨 2. Unhandled Promise Rejections
 > [!NOTE]
 > **Context:** Testing asynchronous functions.
@@ -89,6 +94,9 @@ test('fetches data', () => {
 ### ⚠️ Problem
 If `fetchData` takes time, the test function will complete synchronously before the Promise resolves. The assertion is never executed, and the test passes falsely.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 test('fetches data', async () => {
   const data = await fetchData();
@@ -100,3 +108,5 @@ Always use `async/await` when testing asynchronous code. This ensures the test r
 
 ---
 [⬆️ Back to Top](#)
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

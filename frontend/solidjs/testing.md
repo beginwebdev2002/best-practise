@@ -39,6 +39,9 @@ test('signal updates', () => {
 ### ⚠️ Problem
 Creating signals outside of a reactive root (like a component or `createRoot`) can lead to memory leaks in complex test suites, as effects and computations aren't properly disposed of.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Solidjs Index](./readme.md).
+
 ```javascript
 import { createRoot, createSignal } from 'solid-js';
 
@@ -56,3 +59,5 @@ Wrap reactive primitives in `createRoot` and invoke the `dispose` function at th
 
 ---
 [⬆️ Back to Top](#)
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

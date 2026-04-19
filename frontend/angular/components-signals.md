@@ -22,6 +22,9 @@ last_updated: 2026-04-05
 ### ⚠️ Problem
 The `@Input()` decorator operates outside the Signals reactivity system. Changes are not tracked granularly, requiring checks of the entire component tree (Dirty Checking) via Zone.js.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 title = input<string>('');
 ```
@@ -39,6 +42,7 @@ title = input<string>('');
 Use Signal Inputs (`input()`). This allows Angular to precisely know *which* specific component requires an update, paving the way for Zoneless applications.
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 2. Using `@Output()` Decorator
 > [!NOTE]
@@ -50,6 +54,9 @@ Use Signal Inputs (`input()`). This allows Angular to precisely know *which* spe
 ### ⚠️ Problem
 The classic `EventEmitter` adds an unnecessary layer of abstraction over RxJS Subject and does not integrate with the Angular functional API.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 save = output<void>();
 ```
@@ -69,6 +76,9 @@ Use the `output()` function. It provides strict typing, better performance, and 
 ### ⚠️ Problem
 Boilerplate code that is easy to break if you make a mistake in naming the `Change` event.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 value = model<string>();
 ```
@@ -76,6 +86,7 @@ value = model<string>();
 Use `model()`. This creates a Signal that can be both read and written to, automatically synchronizing its state with the parent.
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 4. Structural Directives (`*ngIf`, `*ngFor`)
 > [!NOTE]
@@ -89,6 +100,9 @@ Use `model()`. This creates a Signal that can be both read and written to, autom
 ### ⚠️ Problem
 Directives require importing `CommonModule` or `NgIf/NgFor`, increasing bundle size. Micro-template syntax is complex for static analysis and type-checking.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```html
 @if (isLoaded()) {
   @for (item of items(); track item.id) {
@@ -102,6 +116,7 @@ Directives require importing `CommonModule` or `NgIf/NgFor`, increasing bundle s
 Use the built-in Control Flow (`@if`, `@for`). It is built into the compiler, requires no imports, supports improved type-narrowing, and runs faster.
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 5. Subscribing in Components (Logic in `ngOnInit`)
 > [!NOTE]
@@ -116,9 +131,14 @@ ngOnInit() {
 ### ⚠️ Problem
 Imperative subscriptions lead to memory leaks (if you forget to `unsubscribe`), "Callback Hell", and state desynchronization. Requires manual subscription management.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 data = toSignal(this.service.getData());
 ```
 ### 🚀 Solution
 Use `toSignal()` to convert an Observable into a Signal. This automatically manages the subscription and integrates the data stream into the reactivity system.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

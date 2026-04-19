@@ -44,6 +44,9 @@ This document enforces strict adherence to semantic HTML and accessibility guide
 Using generic `<div>` wrappers and artificially attaching ARIA roles or keyboard handlers increases code complexity and misses nuanced accessibility behaviors (like native keyboard focus management and space/enter activation) that semantic elements provide out-of-the-box. This exclusion breaks the application for users relying on assistive technologies.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Design-ui Index](./readme.md).
+
 ```html
 <button class="btn" onclick="openModal()" aria-label="Open Settings Modal">Click Me</button>
 ```

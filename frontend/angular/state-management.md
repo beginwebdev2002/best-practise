@@ -65,6 +65,9 @@ fetchData() {
 ### ⚠️ Problem
 Relying on raw primitive properties means Angular relies on `zone.js` to run Change Detection globally whenever an event completes.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 isLoading = signal(false);
 data = signal<Data[]>([]);
@@ -82,6 +85,8 @@ Use `signal()`. It forces the developer to explicitly use `.set()` or `.update()
 ---
 ## ⚙️ II. Derived State
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### 🚨 2. Computing Values
 > [!NOTE]
 > **Context:** Creating derived state based on other state values.
@@ -97,6 +102,9 @@ updateTotal() {
 ### ⚠️ Problem
 Manually syncing state variables is error-prone. If you update `items` but forget to call `updateTotal()`, the state becomes inconsistent.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 items = signal([1, 2, 3]);
 total = computed(() => this.items().reduce((a, b) => a + b, 0));
@@ -106,6 +114,8 @@ Use `computed()`. The calculated value is memoized and only re-evaluates when it
 ---
 ## ⚡ III. Side Effects
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### 🚨 3. Handling Side Effects Safely
 > [!NOTE]
 > **Context:** Executing logic when a signal changes.
@@ -114,6 +124,9 @@ Using getters or Angular lifecycle hooks like `ngDoCheck` to monitor value chang
 ### ⚠️ Problem
 This causes severe performance degradation as the logic is run on every change detection cycle, regardless of whether the specific state actually changed.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 constructor() {
   effect(() => {
@@ -127,6 +140,8 @@ Use `effect()`. Effects track dependencies automatically and ensure the side eff
 ---
 ## 🔗 IV. Component Communication
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### 🚨 4. Modern Data Passing
 > [!NOTE]
 > **Context:** Passing data between parent and child components.
@@ -138,6 +153,9 @@ Use `effect()`. Effects track dependencies automatically and ensure the side eff
 ### ⚠️ Problem
 Requires boilerplate, depends on decorators which are less ideal for dynamic composition, and heavily couples the components to legacy Zone-based tracking.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 // For one-way data flow
 user = input.required<User>();
@@ -151,3 +169,5 @@ userProfile = model<User>();
 ---
 
 [⬆️ Back to Top](#)
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

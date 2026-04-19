@@ -47,6 +47,9 @@ This document enforces the strict styling rules and constraints regarding design
 Using hardcoded absolute values (`20px`, hex codes) creates inconsistencies across the application. It prevents dynamic theming (e.g., Dark Mode), breaks structural rhythm when responsive layouts scale, and complicates global design system updates.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Design-ui Index](./readme.md).
+
 ```css
 .card {
   margin: var(--spacing-lg);

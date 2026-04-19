@@ -27,6 +27,9 @@ console.log(user.id);
 ### ⚠️ Problem
 `as` forces the compiler to trust you. If the runtime data doesn't match the interface, the app will crash or produce undefined behavior at runtime.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 // Using Zod for runtime validation
 const user = UserSchema.parse(response.data);
@@ -40,6 +43,9 @@ Avoid type assertions. Use runtime validation (Zod, Valibot) or explicit Type Gu
 ## 🚨 12. Non-null Assertion Operator (`!`)
 > [!NOTE]
 > **Context:** Dealing with potentially `null` or `undefined` values.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 const name = user!.profile!.name;
@@ -47,6 +53,9 @@ const name = user!.profile!.name;
 ### ⚠️ Problem
 The `!` operator suppresses the compiler warning but doesn't handle the runtime reality. If `user` is null, this throws a `TypeError` and crashes the application.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 const name = user?.profile?.name ?? 'Guest';
 ```
@@ -55,6 +64,9 @@ Use Optional Chaining (`?.`) and Nullish Coalescing (`??`) to handle missing val
 ## 🚨 13. Lack of Discriminated Unions
 > [!NOTE]
 > **Context:** Modeling complex states like API responses.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 interface State {
@@ -66,6 +78,9 @@ interface State {
 ### ⚠️ Problem
 This allows "impossible states" (e.g., `isLoading: true` AND `data: '...'`). It requires awkward optional checking and fails to enforce a deterministic state machine.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 type State =
     | { type: 'LOADING' }
@@ -77,6 +92,9 @@ Use Discriminated Unions (with a shared literal property like `type` or `kind`).
 ## 🚨 14. Boolean casting (`!!`)
 > [!NOTE]
 > **Context:** Converting values to booleans.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 const hasAccess = !!user.token;
@@ -84,6 +102,9 @@ const hasAccess = !!user.token;
 ### ⚠️ Problem
 `!!` is cryptic and less readable. It also doesn't provide strict type safety if the underlying value could be unexpectedly complex or result in unintended truthy evaluation.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 const hasAccess = Boolean(user.token);
 // OR
@@ -94,6 +115,9 @@ Use the `Boolean()` constructor or explicit strict comparisons (`!== undefined`)
 ## 🚨 15. Using `Object` for non-primitive types
 > [!NOTE]
 > **Context:** Restricting types to objects.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 function cache(obj: Object) {
@@ -103,6 +127,9 @@ function cache(obj: Object) {
 ### ⚠️ Problem
 The `Object` type (capital O) incorrectly matches primitives like `string` or `number` because they have boxed methods. `object` (lowercase) is similarly vague and offers poor intellisense.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 function cache(obj: Record<string, unknown>) {
     // Safe object access
@@ -113,6 +140,9 @@ Use `Record<string, unknown>` for generic key-value maps, or `Record<string, nev
 ## 🚨 16. Function types vs Object types for functions
 > [!NOTE]
 > **Context:** Defining function signatures.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 type ClickHandler = {
@@ -122,6 +152,9 @@ type ClickHandler = {
 ### ⚠️ Problem
 Using the object literal syntax for single functions is unnecessarily complex, less intuitive, and introduces noise when reading the codebase.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 type ClickHandler = (e: Event) => void;
 ```
@@ -130,6 +163,9 @@ Use the arrow function signature for type aliases. Reserve the object-literal ca
 ## 🚨 17. Catching `any` in try-catch
 > [!NOTE]
 > **Context:** Handling exceptions.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 try {
@@ -141,6 +177,9 @@ try {
 ### ⚠️ Problem
 In JavaScript, anything can be thrown (`throw "error"`). Accessing `.message` blindly will throw a new exception if the caught element is a primitive string or null.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 try {
     doWork();
@@ -157,6 +196,9 @@ Ensure `useUnknownInCatchVariables: true` is configured in `tsconfig.json`. Expl
 ## 🚨 18. Literal types vs General types
 > [!NOTE]
 > **Context:** Narrowing strings/numbers to specific values.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 function setAlignment(dir: string) {
@@ -166,6 +208,9 @@ function setAlignment(dir: string) {
 ### ⚠️ Problem
 Accepting any generic `string` allows invalid inputs like `"center-left"` which the function won't properly handle, shifting responsibility to runtime validation.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 type Direction = 'left' | 'right' | 'center';
 function setAlignment(dir: Direction) {
@@ -177,6 +222,9 @@ Leverage Union Literal types to constrain inputs to a closed set of known valid 
 ## 🚨 19. Optional properties vs Union with `undefined`
 > [!NOTE]
 > **Context:** Defining fields that might not exist.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 interface Config {
@@ -189,6 +237,9 @@ const cfg: Config = { port: undefined };
 ### ⚠️ Problem
 Declaring a union with `undefined` still requires the key `port` to be declared explicitly by the caller, creating needless boilerplate.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 interface Config {
     port?: number;
@@ -203,6 +254,9 @@ const cfg: Config = {};
 ## 🚨 20. Array index access safety
 > [!NOTE]
 > **Context:** Accessing elements by index.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 const first = users[0];
@@ -211,6 +265,9 @@ console.log(first.id); // Potential crash if array is empty
 ### ⚠️ Problem
 By default, TypeScript assumes any indexed access like `users[0]` perfectly resolves to the array element type, which leads to `Cannot read property 'id' of undefined` if the array is actually empty.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 // Assumes noUncheckedIndexedAccess is true
 const first = users[0];
@@ -224,6 +281,9 @@ Enforce `noUncheckedIndexedAccess: true` in `tsconfig.json`. This strict compile
 ## 🎯 6. Global Scope Pollution (Legacy Namespaces)
 > [!NOTE]
 > **Context:** Organizing code in the ES Module era.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 namespace Utils {
@@ -233,6 +293,9 @@ namespace Utils {
 ### ⚠️ Problem
 Namespaces are a legacy TypeScript feature. They don't play well with modern bundlers (Tree Shaking), are harder to test, and can lead to naming collisions in the global scope.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 // utils.ts
 export const log = (msg: string) => console.log(msg);
@@ -244,6 +307,9 @@ Use ES Modules (`export`/`import`). They are the industry standard, supported by
 ## ⚡ 7. `enum` vs `const object`
 > [!NOTE]
 > **Context:** Grouping related constants.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 enum Status {
@@ -254,6 +320,9 @@ enum Status {
 ### ⚠️ Problem
 Enums generate extra runtime code and have "reverse mapping" behavior that can lead to bugs (e.g., `Status[0]` returns "Active"). They also don't align with "TypeScript as a type-only layer."
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 const STATUS = {
     ACTIVE: 'active',
@@ -269,6 +338,9 @@ Use `const` objects with `as const` and a derived union type. This is more predi
 ## ⚡ 8. Explicit `any` in Parameters
 > [!NOTE]
 > **Context:** Enforcing strict type safety.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 function save(data: any) {
@@ -278,6 +350,9 @@ function save(data: any) {
 ### ⚠️ Problem
 Using `any` explicitly bypasses the compiler's ability to verify data flow, leading to "undefined is not a function" errors that TypeScript was designed to prevent.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 function save(data: unknown) {
     if (isValidUserData(data)) {
@@ -292,6 +367,9 @@ Enable `noImplicitAny: true` in `tsconfig.json`. Always define specific types or
 ## ⚡ 9. Manual Type Guards vs Type Predicates
 > [!NOTE]
 > **Context:** Narrowing types inside conditional blocks.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 if (typeof input === 'object' && input !== null && 'admin' in input) {
@@ -301,6 +379,9 @@ if (typeof input === 'object' && input !== null && 'admin' in input) {
 ### ⚠️ Problem
 Repeating complex checks is error-prone and requires manual casting (`as any`) which breaks safety.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 function isAdmin(user: unknown): user is Admin {
     return !!user && typeof user === 'object' && 'admin' in user;
@@ -317,6 +398,9 @@ Use Type Predicates (`arg is Type`) to create reusable, safe narrowing functions
 ## ⚡ 10. Triple-Slash Directives
 > [!NOTE]
 > **Context:** Referencing types or files.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 /// <reference path="./types.d.ts" />
@@ -324,6 +408,9 @@ Use Type Predicates (`arg is Type`) to create reusable, safe narrowing functions
 ### ⚠️ Problem
 Triple-slash directives are legacy syntax. They make dependencies implicit and can lead to compilation order issues.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 import { MyType } from './types';
 ```
@@ -333,3 +420,5 @@ Use standard ES `import` statements. Manage global types via `tsconfig.json` `ty
 
 ---
 [⬆️ Back to Top](#)
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

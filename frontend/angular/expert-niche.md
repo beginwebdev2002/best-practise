@@ -24,6 +24,9 @@ Accidentally creating a cyclic dependency in `computed`.
 ### ⚠️ Problem
 `Error: Detected cycle in computations`.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 computed(() => {
   const user = this.user();
@@ -36,6 +39,9 @@ Use `untracked()` for side effects or reads that shouldn't affect recalculation.
 ## ⚡ 57. V8 Hidden Classes Optimization
 > [!NOTE]
 > **Context:** Micro-optimization
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 user = signal({});
@@ -45,6 +51,9 @@ user.set({ name: 'A', age: 10 }); // Shape change
 ### ⚠️ Problem
 Initializing with an empty object and later adding fields changes the object "shape" (Hidden Class), breaking V8 JIT compiler optimization.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 interface User { name: string | null; age: number | null; }
 user = signal<User>({ name: null, age: null });
@@ -54,6 +63,9 @@ Always initialize signals with the full object shape (even with null) to preserv
 ## ⚡ 58. Signal Glitch Freedom abuse
 > [!NOTE]
 > **Context:** Reactivity Theory
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 count = signal(0);
@@ -68,6 +80,9 @@ constructor() {
 ### ⚠️ Problem
 Using `effect` to derive or synchronize local state is an anti-pattern. Effects are asynchronous (microtask timing), which means the state can momentarily be inconsistent ("glitch") before the effect runs, leading to UI flicker or bugs.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 count = signal(0);
 doubleCount = computed(() => this.count() * 2);
@@ -77,6 +92,9 @@ Use `computed` for derived state. Computed signals evaluate lazily and synchrono
 ## ⚡ 59. Memory leaks in `root` Effects
 > [!NOTE]
 > **Context:** Application Lifecycle
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 @Injectable({ providedIn: 'root' })
@@ -92,6 +110,9 @@ export class GlobalService {
 ### ⚠️ Problem
 Effects created in `root` services live for the entire lifecycle of the application. If the service relies on dynamic instantiation or lazy loading and is later destroyed, the effect will continue to execute, causing memory leaks and unexpected behavior.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 @Injectable({ providedIn: 'root' })
 export class GlobalService implements OnDestroy {
@@ -109,11 +130,17 @@ When creating effects in long-lived or dynamic services, explicitly configure th
 ## 📖 60. `runInInjectionContext`
 > [!NOTE]
 > **Context:** Advanced DI
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 Passing an `Injector` instance manually into functions.
 ### ⚠️ Problem
 Bulky code.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 runInInjectionContext(this.injector, () => {
   // can use inject() here dynamically
@@ -122,3 +149,5 @@ runInInjectionContext(this.injector, () => {
 ```
 ### 🚀 Solution
 Use this helper to execute functions requiring a DI context outside the constructor/initialization.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

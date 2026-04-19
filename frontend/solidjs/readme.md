@@ -36,6 +36,9 @@ return <ul>{items().map(item => <li>{item.name}</li>)}</ul>;
 ### ⚠️ Problem
 Using `.map` creates the DOM nodes once and does not react to array changes optimally, leading to unnecessary re-renders or lost reactivity.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```tsx
 return <ul><For each={items()}>{item => <li>{item.name}</li>}</For></ul>;
 ```

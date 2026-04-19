@@ -26,6 +26,9 @@ last_updated: 2026-03-22
 ### ⚠️ Problem
 A charting library (e.g., ECharts) loads immediately, blocking TTI (Time to Interactive), even if the chart is below the "fold".
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```html
 @defer (on viewport) {
   <app-chart [data]="data" />
@@ -38,17 +41,26 @@ Use `@defer`. This defers component code loading until a trigger occurs (viewpor
 ## ⚡ 32. Heavy Computation in Main Thread
 > [!NOTE]
 > **Context:** Event Loop Blocking
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 Sorting an array of 100k elements directly in the component.
 ### ⚠️ Problem
 Freezes the UI.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 Offload computations to a Web Worker.
 ### 🚀 Solution
 Use Angular Web Workers. In v20, this is easily configured via the CLI.
 ## ⚡ 33. Memory Leaks in `effect()`
 > [!NOTE]
 > **Context:** Signal Effects
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 effect(() => {
@@ -59,6 +71,9 @@ effect(() => {
 ### ⚠️ Problem
 Effects restart when dependencies change. If you don't clean up timers/subscriptions inside an effect, they accumulate.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 effect((onCleanup) => {
   const timer = setInterval(() => ..., 1000);
@@ -70,11 +85,17 @@ Always use the `onCleanup` callback to release resources.
 ## ⚡ 34. Excessive Change Detection with `NgZone.run()`
 > [!NOTE]
 > **Context:** Zone Integration
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 Wrapping third-party libraries in `ngZone.run()` unnecessarily.
 ### ⚠️ Problem
 Forces redundant checks of the entire component tree.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 ngZone.runOutsideAngular(() => {
   // Heavy chart rendering or canvas animation
@@ -92,6 +113,9 @@ data = signal({ id: 1 }, { equal: undefined }); // Default checks reference
 ### ⚠️ Problem
 If you create a new object with the same data `{ id: 1 }`, the signal triggers an update, even though the data hasn't fundamentally changed.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 import { isEqual } from 'lodash-es';
 data = signal(obj, { equal: isEqual });
@@ -101,6 +125,9 @@ Use a custom comparison function for complex objects to avoid redundant re-rende
 ## ⚡ 36. Lacking `trackBy` in iterables
 > [!NOTE]
 > **Context:** Re-rendering Lists
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```html
 <li *ngFor="let item of items">{{ item }}</li>
@@ -108,6 +135,9 @@ Use a custom comparison function for complex objects to avoid redundant re-rende
 ### ⚠️ Problem
 Without tracking, any array change leads to the recreation of all DOM nodes in the list. $O(n)$ DOM operations.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```html
 @for (item of items; track item.id)
 ```
@@ -116,6 +146,9 @@ Always use a unique key in `track`. This allows Angular to move DOM nodes instea
 ## ⚡ 37. Recursive Template without Caching
 > [!NOTE]
 > **Context:** Tree Rendering
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```html
 <ng-template #tree let-node>
@@ -129,6 +162,9 @@ Always use a unique key in `track`. This allows Angular to move DOM nodes instea
 ### ⚠️ Problem
 Recursive component calls without `OnPush` or memoization cause exponential growth in change detection checks, blocking the main thread during deep tree rendering.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 @Component({
   selector: 'app-tree-node',
@@ -159,23 +195,35 @@ button { padding: 10px; }
 ### ⚠️ Problem
 Global styles unpredictably affect components.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 Use `ViewEncapsulation.Emulated` (default) and specific selectors.
 ### 🚀 Solution
 Keep styles locally within components.
 ## ⚡ 39. Large Component Bundle
 > [!NOTE]
 > **Context:** Split Chunks
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 A single huge component of 3000 lines.
 ### ⚠️ Problem
 Poor readability, rendering lazy loading of UI parts impossible.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 Decompose into "dumb" (UI) and "smart" components.
 ### 🚀 Solution
 Break down the UI into small, reusable blocks.
 ## ⚡ 40. Image Optimization Ignorance
 > [!NOTE]
 > **Context:** Core Web Vitals (LCP)
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```html
 <img src="large-hero.jpg" />
@@ -183,6 +231,9 @@ Break down the UI into small, reusable blocks.
 ### ⚠️ Problem
 The browser loads the full image, shifting the layout (CLS).
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```html
 <img ngSrc="hero.jpg" width="800" height="600" priority />
 ```
@@ -191,11 +242,17 @@ Use the `NgOptimizedImage` directive. It automatically handles lazy loading, pre
 ## ⚡ 41. Hydration Mismatch
 > [!NOTE]
 > **Context:** SSR / SSG
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 Rendering `Date.now()` or random numbers (`Math.random()`) directly in the template.
 ### ⚠️ Problem
 The server generates one number, the client another. This causes "flickering" and a hydration error; Angular discards the server DOM and renders from scratch.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 Use stable data or defer random generation until `afterNextRender`.
 ### 🚀 Solution
 Pay attention to template determinism with SSR.
@@ -214,6 +271,9 @@ processItems(items: Item[]) {
 ### ⚠️ Problem
 Although `inject()` is fast, calling it inside hot paths (loops) triggers unnecessary Dependency Injection tree lookups on every iteration, which degrades performance.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 export class ItemProcessor {
   private logger = inject(LoggerService);
@@ -230,6 +290,9 @@ Inject dependencies exactly once at the class or property level. This caches the
 ## ⚡ 43. Unused Signal Dependencies
 > [!NOTE]
 > **Context:** Signal Graph
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 effect(() => {
@@ -240,6 +303,9 @@ effect(() => {
 ### ⚠️ Problem
 Angular dynamically builds the signal graph. If you read a signal like `this.user()` inside an effect just for analytics, any change to `user()` will unexpectedly re-trigger the effect, leading to redundant executions.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 effect(() => {
   const currentVal = this.value();
@@ -255,6 +321,9 @@ effect(() => {
 ## ⚡ 44. Excessive Wrappers (`div` soup)
 > [!NOTE]
 > **Context:** DOM Size
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```html
 <div *ngIf="isLoggedIn()">
@@ -266,6 +335,9 @@ effect(() => {
 ### ⚠️ Problem
 Unnecessary wrapper `<div>` elements deeply nest the DOM tree ("div soup"). This exponentially slows down CSS Style Recalculation, Layout (Reflow), and Paint.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```html
 @if (isLoggedIn()) {
   <ng-container>
@@ -278,6 +350,9 @@ Utilize `<ng-container>` to apply structural logic or apply classes directly to 
 ## ⚡ 45. Neglecting `runOutsideAngular` for Events
 > [!NOTE]
 > **Context:** High-frequency events
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 @HostListener('window:scroll', ['$event'])
@@ -288,6 +363,9 @@ onScroll() {
 ### ⚠️ Problem
 Every scroll, mousemove, or drag event triggers a full Angular Change Detection cycle. High-frequency events will cause immediate UI lag and frame drops.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 export class ScrollTracker {
   private zone = inject(NgZone);
@@ -307,3 +385,5 @@ export class ScrollTracker {
 ### 🚀 Solution
 Bind high-frequency events outside the Angular Zone using `NgZone.runOutsideAngular()`. Only re-enter the Angular Zone (`zone.run()`) when a threshold is met and a UI update is strictly required.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

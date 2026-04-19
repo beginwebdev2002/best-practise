@@ -23,6 +23,9 @@ getCount() { return this.count$.value; }
 ### ⚠️ Problem
 RxJS is overkill for simple synchronous state. `BehaviorSubject` requires `.value` for access and `.next()` for writes, increasing cognitive load.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 count = signal(0);
 // Access: count()
@@ -32,6 +35,7 @@ count = signal(0);
 Use `signal()` for local state. It is a primitive designed specifically for synchronizing UI and data.
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 7. Derived State with `ngOnChanges`
 > [!NOTE]
@@ -47,6 +51,9 @@ ngOnChanges(changes: SimpleChanges) {
 ### ⚠️ Problem
 `ngOnChanges` is triggered only when Inputs change, has complex typing, and runs before View initialization.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 fullName = computed(() => `${this.firstName()} ${this.lastName()}`);
 ```
@@ -54,6 +61,7 @@ fullName = computed(() => `${this.firstName()} ${this.lastName()}`);
 Use `computed()`. The signal is recalculated *only* when its dependencies change, and the result is memoized (cached).
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 8. Constructor Dependency Injection
 > [!NOTE]
@@ -65,6 +73,9 @@ constructor(private http: HttpClient, private store: Store) {}
 ### ⚠️ Problem
 Constructors become cluttered with many dependencies. When inheriting classes, dependencies must be passed through `super()`.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 private http = inject(HttpClient);
 private store = inject(Store);
@@ -73,6 +84,7 @@ private store = inject(Store);
 Use the `inject()` function. It operates in the initialization context (fields or constructor), is type-safe, and does not require `super()` during inheritance.
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 9. Modules (`NgModule`)
 > [!NOTE]
@@ -88,6 +100,9 @@ export class AppModule {}
 ### ⚠️ Problem
 Modules create an unnecessary level of indirection. Components become dependent on the module context, complicating Lazy Loading and testing.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 @Component({
   standalone: true,
@@ -98,6 +113,7 @@ Modules create an unnecessary level of indirection. Components become dependent 
 Use Standalone Components. This is the Angular v14+ standard that makes components self-sufficient and tree-shakable.
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 10. String-based Route Loading
 > [!NOTE]
@@ -109,9 +125,14 @@ loadChildren: () => import('./module').then(m => m.UserModule)
 ### ⚠️ Problem
 Loading modules pulls in transitive dependencies that might not be needed.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 loadComponent: () => import('./user.component').then(c => c.UserComponent)
 ```
 ### 🚀 Solution
 Use `loadComponent` for routing to Standalone components. This ensures minimal chunk size.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

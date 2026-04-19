@@ -26,6 +26,9 @@ console.log(price); // 200
 ### ⚠️ Problem
 `var` does not respect block scope. Its hoisting behavior allows variables to be accessed before declaration (as `undefined`), which bypasses the Temporal Dead Zone (TDZ) safety mechanism, increasing cognitive load and bug density.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const price = 100;
 if (true) {
@@ -53,6 +56,7 @@ flowchart TD
 
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 2. Loose equality `==`
 > [!NOTE]
@@ -66,6 +70,9 @@ if (userCount == '0') {
 ### ⚠️ Problem
 The Abstract Equality Comparison Algorithm (`==`) performs implicit type conversion. This leads to edge cases like `[] == ![]` being `true` or `0 == ''` being `true`, which can cause silent logic failures.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 if (userCount === 0) {
     // Strict comparison
@@ -75,6 +82,7 @@ if (userCount === 0) {
 Always use strict equality `===` and inequality `!==`. This forces the developer to handle type conversions explicitly, making the code's intent clear and predictable.
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 3. Global Scope Pollution
 > [!NOTE]
@@ -88,6 +96,9 @@ function init() { /* ... */ }
 ### ⚠️ Problem
 Variables declared in the top-level scope of a non-module script are attached to `window` (in browsers) or `global` (in Node). This increases the risk of name collisions and memory leaks.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 // use modules
 export const config = { api: '/v1' };
@@ -101,6 +112,7 @@ export const config = { api: '/v1' };
 Use ES Modules (`import/export`) to encapsulate code. Modules have their own scope and do not leak to the global object.
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 4. String concatenation vs Template Literals
 > [!NOTE]
@@ -113,6 +125,9 @@ const greeting = 'Hello, ' + user.firstName + ' ' + user.lastName + '! ' +
 ### ⚠️ Problem
 Concatenation with `+` is error-prone, hard to read, and difficult to maintain for multi-line strings. It often leads to missing spaces and poor visual structure.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const greeting = `Hello, ${user.firstName} ${user.lastName}!
 Welcome to ${siteName}.`;
@@ -121,6 +136,7 @@ Welcome to ${siteName}.`;
 Use Template Literals (backticks). They allow for embedded expressions, multi-line strings, and superior readability.
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 5. Magic Numbers
 > [!NOTE]
@@ -134,6 +150,9 @@ if (user.age >= 18) {
 ### ⚠️ Problem
 "18" is a magic number. If the legal age changes, you must find and replace every instance, risking errors if the same number is used for different contexts elsewhere.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const LEGAL_AGE = 18;
 
@@ -144,3 +163,5 @@ if (user.age >= LEGAL_AGE) {
 ### 🚀 Solution
 Extract magic numbers into named constants. This provides semantic meaning and a single source of truth for configuration.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

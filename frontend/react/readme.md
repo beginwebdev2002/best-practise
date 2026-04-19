@@ -37,6 +37,9 @@ function Component() {
 ### ⚠️ Problem
 Direct DOM manipulation bypasses React's virtual DOM, causing inconsistencies between the actual DOM and React's internal state, leading to forced synchronous layouts and potential XSS vulnerabilities.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```tsx
 function Component() {
   const [isActive, setIsActive] = useState(false);
@@ -53,6 +56,8 @@ function Component() {
 ### 🚀 Solution
 Always use state and props to drive the UI. React uses a virtual DOM to efficiently update the real DOM based on state changes, ensuring deterministic rendering loops.
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### 🚨 2. Large Component Files
 > [!NOTE]
 > **Context:** Managing component complexity.
@@ -67,6 +72,9 @@ function MassiveDashboard() {
 ### ⚠️ Problem
 Massive components are difficult to read, test, and maintain. They violate the Single Responsibility Principle and trigger overly broad re-renders when local state changes.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```tsx
 function Dashboard() {
   return (

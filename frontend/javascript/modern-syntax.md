@@ -30,6 +30,9 @@ const user = {
 ### ⚠️ Problem
 Redundant repetition of keys and values increases file size and makes the code noisier.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const name = 'Alice';
 const user = { name, age };
@@ -39,6 +42,9 @@ Use Property Shorthand. When the key and variable name match, omit the value.
 ## ⚡ 12. Using `arguments` vs Rest parameters
 > [!NOTE]
 > **Context:** Handling variable numbers of arguments.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 function sum() {
@@ -49,6 +55,9 @@ function sum() {
 ### ⚠️ Problem
 The `arguments` object is not a real array (it lacks methods like `map` or `reduce`). It is also incompatible with arrow functions and optimization in some V8 versions.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const sum = (...args) => args.reduce((a, b) => a + b);
 ```
@@ -57,6 +66,9 @@ Use Rest Parameters (`...args`). They create a real array and are more explicit 
 ## ⚡ 13. Manual array copying vs Spread
 > [!NOTE]
 > **Context:** Immutability and array manipulation.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 const original = [1, 2, 3];
@@ -68,6 +80,9 @@ for (let i = 0; i < original.length; i++) {
 ### ⚠️ Problem
 Manual loops for copying are verbose and imperative. They increase the surface area for bugs (off-by-one errors).
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const original = [1, 2, 3];
 const copy = [...original];
@@ -77,6 +92,9 @@ Use the Spread Operator (`...`). It is concise, declarative, and highly optimize
 ## ⚡ 14. Nested Destructuring
 > [!NOTE]
 > **Context:** Extracting data from complex objects.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 const city = user.location.address.city;
@@ -85,6 +103,9 @@ const zip = user.location.address.zip;
 ### ⚠️ Problem
 Repetitive property access is verbose and risks "cannot read property of undefined" errors if any parent object is missing.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const { location: { address: { city, zip } } } = user;
 ```
@@ -93,6 +114,9 @@ Use nested destructuring to extract deeply nested values in a single statement. 
 ## ⚡ 15. Default Parameters
 > [!NOTE]
 > **Context:** Handling missing arguments.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 function setRole(role) {
@@ -103,6 +127,9 @@ function setRole(role) {
 ### ⚠️ Problem
 Using `||` for defaults is dangerous if the argument is a "falsy" but valid value (like `0`, `false`, or `''`).
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 function setRole(role = 'guest') {
     // ...
@@ -113,6 +140,9 @@ Use ES6 Default Parameters. They only apply if the argument is `undefined`.
 ## ⚡ 16. `forEach` for data transformation vs `map/filter`
 > [!NOTE]
 > **Context:** Declarative vs Imperative programming.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 const double = [];
@@ -123,6 +153,9 @@ numbers.forEach(n => {
 ### ⚠️ Problem
 `forEach` relies on side effects (mutating an outer array). It is less expressive and harder to chain than functional alternatives.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const double = numbers.map(n => n * 2);
 ```
@@ -131,6 +164,9 @@ Use `map`, `filter`, and `reduce` for data transformations. They return new arra
 ## ⚡ 17. Object mutation vs Immutability
 > [!NOTE]
 > **Context:** State management and predictability.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 function updateAge(user) {
@@ -141,6 +177,9 @@ function updateAge(user) {
 ### ⚠️ Problem
 Mutating objects passed by reference can lead to side effects in other parts of the application that share the same reference, making debugging a nightmare.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const updateAge = (user) => ({ ...user, age: 30 });
 ```
@@ -149,6 +188,9 @@ Treat objects as immutable. Use the spread operator to create copies with update
 ## ⚡ 18. Switch statements vs Object Literals
 > [!NOTE]
 > **Context:** Simplifying conditional branching.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 function executeAction(action) {
@@ -165,6 +207,9 @@ function executeAction(action) {
 ### ⚠️ Problem
 `switch` statements are verbose, require `break` to prevent fallthrough bugs if not returning immediately, and have a non-standard block scope. They also violate the Open/Closed Principle making it harder to extend dynamically.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 function executeAction(action) {
     const actions = {
@@ -179,6 +224,9 @@ Use an Object Literal (or Map) as a lookup table. It provides a deterministic, t
 ## ⚡ 19. Not using Optional Chaining `?.`
 > [!NOTE]
 > **Context:** Safe property access in nested objects.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 const street = user && user.address && user.address.street;
@@ -186,6 +234,9 @@ const street = user && user.address && user.address.street;
 ### ⚠️ Problem
 The "logical AND" chain is verbose and repetitive. It quickly becomes unreadable with deeper nesting.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const street = user?.address?.street;
 ```
@@ -194,6 +245,9 @@ Use Optional Chaining (`?.`). It short-circuits to `undefined` if any part of th
 ## ⚡ 20. Not using Nullish Coalescing `??`
 > [!NOTE]
 > **Context:** Providing fallback values safely.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 const timeout = config.timeout || 5000;
@@ -201,9 +255,14 @@ const timeout = config.timeout || 5000;
 ### ⚠️ Problem
 If `config.timeout` is `0`, the code will incorrectly fall back to `5000` because `0` is falsy.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const timeout = config.timeout ?? 5000;
 ```
 ### 🚀 Solution
 Use Nullish Coalescing (`??`). It only falls back if the value is `null` or `undefined`, allowing `0`, `false`, and `''` to be valid.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

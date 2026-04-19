@@ -37,12 +37,17 @@ Please refer to the specialized guides for detailed best practices:
 ### ⚠️ Problem
 Using the `@Input()` decorator breaks the functional reactivity of Zoneless applications.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 title = input<string>();
 ```
 ### 🚀 Solution
 Use Signal Inputs (`input()`). This allows Angular to precisely know *which* specific component requires an update, paving the way for Zoneless applications.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 2. Using `@Output()` Decorator
 > [!NOTE]
@@ -54,6 +59,9 @@ Use Signal Inputs (`input()`). This allows Angular to precisely know *which* spe
 ### ⚠️ Problem
 The classic `EventEmitter` adds an unnecessary layer of abstraction over RxJS Subject and does not integrate with the Angular functional API.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 save = output<void>();
 ```
@@ -72,6 +80,9 @@ Use the `output()` function. It provides strict typing, better performance, and 
 ### ⚠️ Problem
 Boilerplate code that is easy to break if you make a mistake in naming the `Change` event.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 value = model<string>();
 ```
@@ -79,6 +90,8 @@ value = model<string>();
 > [!IMPORTANT]
 > Use `model()`. This creates a Signal that MUST be both read and written to, automatically synchronizing its state with the parent.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 4. Structural Directives (`*ngIf`, `*ngFor`)
 > [!NOTE]
@@ -92,6 +105,9 @@ value = model<string>();
 ### ⚠️ Problem
 Directives require importing `CommonModule` or `NgIf/NgFor`, increasing bundle size. Micro-template syntax is complex for static analysis and type-checking.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```html
 @if (isLoaded()) {
   @for (item of items(); track item.id) {
@@ -104,6 +120,8 @@ Directives require importing `CommonModule` or `NgIf/NgFor`, increasing bundle s
 ### 🚀 Solution
 Use the built-in Control Flow (`@if`, `@for`). It is built into the compiler, requires no imports, supports improved type-narrowing, and runs faster.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 5. Subscribing in Components (Logic in `ngOnInit`)
 > [!NOTE]
@@ -118,12 +136,17 @@ ngOnInit() {
 ### ⚠️ Problem
 Imperative subscriptions lead to memory leaks (if you forget to `unsubscribe`), "Callback Hell", and state desynchronization. Requires manual subscription management.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 data = toSignal(this.service.getData());
 ```
 ### 🚀 Solution
 Use `toSignal()` to convert an Observable into a Signal. This automatically manages the subscription and integrates the data stream into the reactivity system.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 6. `BehaviorSubject` for Local State
 > [!NOTE]
@@ -136,6 +159,9 @@ getCount() { return this.count$.value; }
 ### ⚠️ Problem
 RxJS is overkill for simple synchronous state. `BehaviorSubject` requires `.value` for access and `.next()` for writes, increasing cognitive load.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 count = signal(0);
 // Access: count()
@@ -144,6 +170,8 @@ count = signal(0);
 ### 🚀 Solution
 Use `signal()` for local state. It is a primitive designed specifically for synchronizing UI and data.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 7. Derived State with `ngOnChanges`
 > [!NOTE]
@@ -159,12 +187,17 @@ ngOnChanges(changes: SimpleChanges) {
 ### ⚠️ Problem
 `ngOnChanges` is triggered only when Inputs change, has complex typing, and runs before View initialization.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 fullName = computed(() => `${this.firstName()} ${this.lastName()}`);
 ```
 ### 🚀 Solution
 Use `computed()`. The signal is recalculated *only* when its dependencies change, and the result is memoized (cached).
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 8. Constructor Dependency Injection
 > [!NOTE]
@@ -176,6 +209,9 @@ constructor(private http: HttpClient, private store: Store) {}
 ### ⚠️ Problem
 Constructors become cluttered with many dependencies. When inheriting classes, dependencies must be passed through `super()`.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 private http = inject(HttpClient);
 private store = inject(Store);
@@ -183,6 +219,8 @@ private store = inject(Store);
 ### 🚀 Solution
 Use the `inject()` function. It operates in the initialization context (fields or constructor), is type-safe, and does not require `super()` during inheritance.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 9. Modules (`NgModule`)
 > [!NOTE]
@@ -198,6 +236,9 @@ export class AppModule {}
 ### ⚠️ Problem
 Modules create an unnecessary level of indirection. Components become dependent on the module context, complicating Lazy Loading and testing.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 @Component({
   standalone: true,
@@ -207,6 +248,8 @@ Modules create an unnecessary level of indirection. Components become dependent 
 ### 🚀 Solution
 Use Standalone Components. This is the Angular v14+ standard that makes components self-sufficient and tree-shakable.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 10. String-based Route Loading
 > [!NOTE]
@@ -218,12 +261,17 @@ loadChildren: () => import('./module').then(m => m.UserModule)
 ### ⚠️ Problem
 Loading modules pulls in transitive dependencies that might not be needed.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 loadComponent: () => import('./user.component').then(c => c.UserComponent)
 ```
 ### 🚀 Solution
 Use `loadComponent` for routing to Standalone components. This ensures minimal chunk size.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 11. Heavy Logic in Templates
 > [!NOTE]
@@ -235,6 +283,9 @@ Use `loadComponent` for routing to Standalone components. This ensures minimal c
 ### ⚠️ Problem
 The `calculateTotal` function is called during *every* Change Detection (CD) cycle, even if `items` have not changed. This kills UI performance.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 total = computed(() => this.calculateTotal(this.items()));
 ```
@@ -244,6 +295,8 @@ total = computed(() => this.calculateTotal(this.items()));
 ### 🚀 Solution
 Extract logic into `computed()` signals or Pure Pipes. They are only executed when input data changes.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 12. Manual Subscription Management (`takeUntil`)
 > [!NOTE]
@@ -257,12 +310,17 @@ stream$.pipe(takeUntil(this.destroy$)).subscribe();
 ### ⚠️ Problem
 It's easy to forget `takeUntil` or `unsubscribe`. Requires a lot of boilerplate code in every component.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 stream$.pipe(takeUntilDestroyed()).subscribe();
 ```
 ### 🚀 Solution
 Use the `takeUntilDestroyed()` operator. It automatically unsubscribes upon context destruction (component, directive, service).
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 13. Deeply Nested Components Passing Data
 > [!NOTE]
@@ -277,6 +335,9 @@ Use the `takeUntilDestroyed()` operator. It automatically unsubscribes upon cont
 ### ⚠️ Problem
 "Prop drilling" heavily couples intermediate components to data they don't need, just for the sake of passing it deeper.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 // Service
 theme = signal('dark');
@@ -286,6 +347,8 @@ theme = inject(ThemeService).theme;
 ### 🚀 Solution
 Use Signal Stores or services for state sharing, or the new `input()` API with context inheritance (in the future).
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 14. Accessing DOM directly (`ElementRef.nativeElement`)
 > [!NOTE]
@@ -297,6 +360,9 @@ el.nativeElement.style.backgroundColor = 'red';
 ### ⚠️ Problem
 Direct DOM access breaks abstraction (doesn't work in SSR/Web Workers) and opens up XSS vulnerabilities. It bypasses Angular Sanitization mechanisms.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 // Use Renderer2 or bindings
 <div [style.background-color]="color()"></div>
@@ -304,6 +370,8 @@ Direct DOM access breaks abstraction (doesn't work in SSR/Web Workers) and opens
 ### 🚀 Solution
 Use style/class bindings or `Renderer2`. For direct manipulations, consider directives.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 15. Zone.js overhead
 > [!NOTE]
@@ -313,6 +381,9 @@ The application relies on Zone.js for any asynchronous event (setTimeout, Promis
 ### ⚠️ Problem
 Zone.js patches all browser APIs, adding overhead and increasing bundle size. CD triggers more often than necessary.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```typescript
 bootstrapApplication(App, {
   providers: [provideExperimentalZonelessChangeDetection()]

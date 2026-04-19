@@ -39,6 +39,9 @@ it('should increment the counter', () => {
 ### ⚠️ Problem
 Instantiating the class directly bypasses Angular's Change Detection, dependency injection, and DOM synchronization. It verifies the class logic but guarantees nothing about whether the template actually displays the updated state.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 it('should render incremented counter on click', async () => {
   await TestBed.configureTestingModule({ imports: [CounterComponent] }).compileComponents();
@@ -75,6 +78,8 @@ Always use `TestBed` to create the component. Simulate user interactions via the
 
 ## 🔒 II. Mocking Dependencies
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### 🚨 2. Over-Mocking the Framework
 > [!NOTE]
 > **Context:** Injecting dependencies in tests.
@@ -92,6 +97,9 @@ TestBed.configureTestingModule({
 ### ⚠️ Problem
 Creating manual mocks for complex framework services like `HttpClient` is error-prone, hard to maintain, and often fails to replicate actual edge cases (e.g., HTTP errors, headers).
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
@@ -117,3 +125,5 @@ Utilize built-in testing utilities provided by Angular (`HttpTestingController`,
 
 ---
 [⬆️ Back to Top](#)
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

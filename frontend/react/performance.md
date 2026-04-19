@@ -38,6 +38,9 @@ function UserList({ users }) {
 ### ⚠️ Problem
 Adding manual `useMemo` and `useCallback` clutters the codebase, introduces dependency array bugs, and makes code harder to refactor.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [React Index](./readme.md).
+
 ```tsx
 function UserList({ users }) {
   const sortedUsers = users.sort();
@@ -63,6 +66,8 @@ function UserList({ users }) {
 ### 🚀 Solution
 Rely on the **React Compiler** (introduced in React 19+). The compiler automatically memoizes values and functions, meaning manual hooks are largely obsolete and code becomes purely declarative. This optimizes components structurally and removes manual dependency tracking overhead.
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### 🚨 2. Resolving Promises During Render
 > [!NOTE]
 > **Context:** Conditionally handling promises without `useEffect` or `useState`.
@@ -84,6 +89,9 @@ function Profile({ profilePromise }) {
 ### ⚠️ Problem
 Using `useEffect` to unwrap promises leads to "waterfalls", unnecessary rendering cycles, and race conditions.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [React Index](./readme.md).
+
 ```tsx
 import { use, Suspense } from 'react';
 
@@ -101,3 +109,5 @@ function Profile({ profilePromise }) {
 Use the `use()` API inside components combined with `<Suspense>`. `use()` suspends the component rendering if the promise is not resolved. This seamlessly integrates with `<Suspense>`, providing a highly optimized rendering fallback behavior and ensuring safe resolution of asynchronous data.
 
 [⬆️ Back to Top](#)
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
