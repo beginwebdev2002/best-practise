@@ -691,3 +691,31 @@ src/
 - **Frameworks:** LangChain, AutoGen, CrewAI.
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="16"/> Python, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript.
 - **Patterns / Principles:** Orchestrator-Worker, Map-Reduce, Multi-Agent Systems.
+---
+
+### 16. Microkernel Architecture (Plugin Architecture)
+[![Microkernel Architecture](https://img.shields.io/badge/Architecture-Microkernel-purple?style=flat-square)](#)
+
+**Description:** An architecture that strictly isolates essential business rules (the Core) from volatile, domain-specific, or external-facing logic (the Plugins). It guarantees O(1) impact on the core when adding or modifying auxiliary features.
+**📖 Map of Patterns:** [Go to Microkernel Architecture Guidelines](./microkernel-architecture/readme.md)
+
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    Core[Core System / Microkernel] --> Registry[Plugin Registry]
+    Registry --> PluginA[Payment Plugin]
+    Registry --> PluginB[Notification Plugin]
+    Registry --> PluginC[Analytics Plugin]
+```
+
+```text
+src/
+├── 📁 core/             # Core system orchestrator and registry interfaces
+├── 📁 plugins/          # Independent modules implementing core interfaces
+└── 📁 shared/           # Data types and common utilities
+```
+
+**Best Compatibility:**
+- **Frameworks:** Eclipse, VS Code, Webpack, Babel.
+- **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="16"/> Python.
+- **Patterns / Principles:** Open/Closed Principle, Dependency Inversion, Registry Pattern.
