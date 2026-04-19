@@ -26,6 +26,9 @@ last_updated: 2026-03-22
 ### ⚠️ Problem
 The service is included in the bundle even if it is not used.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 @Injectable({ providedIn: 'root' })
 ```
@@ -42,6 +45,9 @@ export class AuthGuard implements CanActivate { ... }
 ### ⚠️ Problem
 Class-based guards require more code and injections. They are less flexible for composition.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 export const authGuard: CanActivateFn = (route, state) => {
   return inject(AuthService).isLoggedIn();
@@ -52,6 +58,9 @@ Use functional Guards (`CanActivateFn`). They are concise, easy to test, and com
 ## ⚡ 18. Class-based Interceptors
 > [!NOTE]
 > **Context:** HTTP Requests
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 @Injectable()
@@ -60,6 +69,9 @@ export class TokenInterceptor implements HttpInterceptor { ... }
 ### ⚠️ Problem
 Similar to guards: lots of boilerplate, complex registration in the providers array.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   const token = inject(AuthService).token();
@@ -71,6 +83,9 @@ Use functional Interceptors (`HttpInterceptorFn`) with `provideHttpClient(withIn
 ## ⚡ 19. State Mutation in Services
 > [!NOTE]
 > **Context:** Data Integrity
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 updateUser(user: User) {
@@ -80,6 +95,9 @@ updateUser(user: User) {
 ### ⚠️ Problem
 Object mutations complicate change tracking and can lead to unpredictable behavior in components using the `OnPush` strategy.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 currentUser = signal<User | null>(null);
 updateUser(user: User) {
@@ -98,6 +116,9 @@ Use Signals for state management. They guarantee reactivity and atomicity of upd
 ### ⚠️ Problem
 The tracking function is called for each element during every re-render.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```html
 @for (item of items; track item.id)
 ```
@@ -107,6 +128,9 @@ The tracking function is called for each element during every re-render.
 ## ⚡ 21. `host` property vs `@HostListener`
 > [!NOTE]
 > **Context:** Component Metadata
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 @HostListener('click') onClick() { ... }
@@ -115,6 +139,9 @@ The tracking function is called for each element during every re-render.
 ### ⚠️ Problem
 Decorators increase class size and scatter host configuration across the file.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 @Component({
   host: {
@@ -128,6 +155,9 @@ Use the `host` property in component metadata. This centralizes all host element
 ## ⚡ 22. Dynamic Components with `ComponentFactoryResolver`
 > [!NOTE]
 > **Context:** Dynamic Rendering
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 const factory = this.resolver.resolveComponentFactory(MyComponent);
@@ -136,6 +166,9 @@ this.container.createComponent(factory);
 ### ⚠️ Problem
 `ComponentFactoryResolver` is deprecated. It is an old imperative API.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 this.container.createComponent(MyComponent);
 // Or strictly in template
@@ -146,33 +179,51 @@ Use `ViewContainerRef.createComponent` directly with the component class or the 
 ## ⚡ 23. Shared Modules (The "Dump" Module)
 > [!NOTE]
 > **Context:** Modular Architecture
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 `SharedModule` imports and exports *all* UI components, pipes, and directives.
 ### ⚠️ Problem
 If a component needs a single button, it is forced to pull the entire `SharedModule`. This breaks Tree Shaking and increases the initial bundle size.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 Import only what is needed directly into the `imports` of the Standalone component.
 ### 🚀 Solution
 Abandon `SharedModule` in favor of granular imports of Standalone entities.
 ## ⚡ 24. Circular Dependencies in DI
 > [!NOTE]
 > **Context:** Architecture
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 Service A injects Service B, which injects Service A.
 ### ⚠️ Problem
 Leads to runtime errors ("Cannot instantiate cyclic dependency"). Indicates poor architectural design.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 Use `forwardRef()` as a crutch, but it's better to extract the shared logic into a third Service C.
 ### 🚀 Solution
 Refactoring: break services into smaller ones following SRP (Single Responsibility Principle).
 ## ⚡ 25. Logic in Pipes
 > [!NOTE]
 > **Context:** Separation of Concerns
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 A Pipe performs HTTP requests or complex business logic.
 ### ⚠️ Problem
 Pipes are intended for data transformation in the template. Side effects in pipes violate function purity and kill CD performance.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 > [!IMPORTANT]
 > Pipes MUST be "Pure" (without side effects) and performant (O(1) or O(n)).
 ### 🚀 Solution
@@ -180,6 +231,9 @@ Extract logic into services/signals. Leave only formatting to pipes.
 ## ⚡ 26. `any` in Services
 > [!NOTE]
 > **Context:** TypeScript Safety
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 getData(): Observable<any> { ... }
@@ -187,6 +241,9 @@ getData(): Observable<any> { ... }
 ### ⚠️ Problem
 `any` disables type checking, nullifying the benefits of TypeScript. Errors only surface at runtime.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 getData(): Observable<UserDto> { ... }
 ```
@@ -195,6 +252,9 @@ Use DTO interfaces (generate them from Swagger/OpenAPI) and Zod for API response
 ## ⚡ 27. Multiple `async` pipes for same stream
 > [!NOTE]
 > **Context:** RxJS Subscriptions
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```html
 <div *ngIf="user$ | async as user">{{ (user$ | async).name }}</div>
@@ -202,6 +262,9 @@ Use DTO interfaces (generate them from Swagger/OpenAPI) and Zod for API response
 ### ⚠️ Problem
 Each `async` pipe creates a new subscription. This can lead to duplicated HTTP requests.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```html
 @if (user$ | async; as user) {
   <div>{{ user.name }}</div>
@@ -212,6 +275,9 @@ Use aliases in the template (`as varName`) or convert the stream to a signal (`t
 ## ⚡ 28. ProvidedIn 'any'
 > [!NOTE]
 > **Context:** DI Scopes
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 @Injectable({ providedIn: 'any' })
@@ -219,12 +285,18 @@ Use aliases in the template (`as varName`) or convert the stream to a signal (`t
 ### ⚠️ Problem
 Creates a new service instance for each lazy-loaded module. This is often unexpected behavior, leading to state desynchronization (different singleton instances).
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 `providedIn: 'root'` or providing at the level of a specific component (`providers: []`).
 ### 🚀 Solution
 Avoid `any`. Explicitly control the scope: either global (`root`) or local.
 ## ⚡ 29. Imperative Routing
 > [!NOTE]
 > **Context:** Navigation
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 this.router.navigateByUrl('/users/' + id);
@@ -232,6 +304,9 @@ this.router.navigateByUrl('/users/' + id);
 ### ⚠️ Problem
 Hardcoding route strings makes route refactoring a pain.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 this.router.navigate(['users', id]);
 ```
@@ -240,16 +315,24 @@ Use an array of segments. It is safer (automatic encoding of URL parameters) and
 ## ⚡ 30. Ignoring `OnPush` Strategy
 > [!NOTE]
 > **Context:** Change Detection Strategy
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 Default components (`ChangeDetectionStrategy.Default`).
 ### ⚠️ Problem
 Angular checks this component on *every* app event, even if the component data hasn't changed.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 changeDetection: ChangeDetectionStrategy.OnPush
 ```
 ### 🚀 Solution
 Always set `OnPush`. With signals, this becomes the de facto standard, as updates occur precisely.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 11. Heavy Logic in Templates
 > [!NOTE]
@@ -261,6 +344,9 @@ Always set `OnPush`. With signals, this becomes the de facto standard, as update
 ### ⚠️ Problem
 The `calculateTotal` function is called during *every* Change Detection (CD) cycle, even if `items` have not changed. This kills UI performance.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 total = computed(() => this.calculateTotal(this.items()));
 ```
@@ -271,6 +357,7 @@ total = computed(() => this.calculateTotal(this.items()));
 Extract logic into `computed()` signals or Pure Pipes. They are only executed when input data changes.
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 12. Manual Subscription Management (`takeUntil`)
 > [!NOTE]
@@ -284,6 +371,9 @@ stream$.pipe(takeUntil(this.destroy$)).subscribe();
 ### ⚠️ Problem
 It's easy to forget `takeUntil` or `unsubscribe`. Requires a lot of boilerplate code in every component.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 stream$.pipe(takeUntilDestroyed()).subscribe();
 ```
@@ -291,6 +381,7 @@ stream$.pipe(takeUntilDestroyed()).subscribe();
 Use the `takeUntilDestroyed()` operator. It automatically unsubscribes upon context destruction (component, directive, service).
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 13. Deeply Nested Components Passing Data
 > [!NOTE]
@@ -305,6 +396,9 @@ Use the `takeUntilDestroyed()` operator. It automatically unsubscribes upon cont
 ### ⚠️ Problem
 "Prop drilling" heavily couples intermediate components to data they don't need, just for the sake of passing it deeper.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 // Service
 theme = signal('dark');
@@ -315,6 +409,7 @@ theme = inject(ThemeService).theme;
 Use Signal Stores or services for state sharing, or the new `input()` API with context inheritance (in the future).
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 14. Accessing DOM directly (`ElementRef.nativeElement`)
 > [!NOTE]
@@ -326,6 +421,9 @@ el.nativeElement.style.backgroundColor = 'red';
 ### ⚠️ Problem
 Direct DOM access breaks abstraction (doesn't work in SSR/Web Workers) and opens up XSS vulnerabilities. It bypasses Angular Sanitization mechanisms.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 // Use Renderer2 or bindings
 <div [style.background-color]="color()"></div>
@@ -334,6 +432,7 @@ Direct DOM access breaks abstraction (doesn't work in SSR/Web Workers) and opens
 Use style/class bindings or `Renderer2`. For direct manipulations, consider directives.
 ---
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 15. Zone.js overhead
 > [!NOTE]
@@ -343,6 +442,9 @@ The application relies on Zone.js for any asynchronous event (setTimeout, Promis
 ### ⚠️ Problem
 Zone.js patches all browser APIs, adding overhead and increasing bundle size. CD triggers more often than necessary.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Index](./readme.md).
+
 ```typescript
 bootstrapApplication(App, {
   providers: [provideExperimentalZonelessChangeDetection()]
@@ -352,3 +454,5 @@ bootstrapApplication(App, {
 Migrate to Zoneless mode. Use Signals to notify Angular when a re-render is needed.
 ---
 [⬆️ Back to Top](#)
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

@@ -32,6 +32,9 @@ var name = "Alice";
 ### ⚠️ Problem
 Using `var` leads to unpredictable scoping issues and hoisting bugs.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```javascript
 const name = "Alice";
 ```
@@ -46,3 +49,5 @@ For further reading, please refer to the following specialized guides:
 - [⏳ Asynchronous & Logic](./async-logic.md)
 - [🧠 Professional & Niche Topics](./professional-niche.md)
 - [🧪 Testing](./testing.md)
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

@@ -26,6 +26,9 @@ const prices: { [key: string]: number } = { apple: 1 };
 ### ⚠️ Problem
 The index signature syntax is more verbose, harder to read, and less semantically clear when representing dictionaries or lookups compared to utility types.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 const prices: Record<string, number> = { apple: 1 };
 ```
@@ -34,6 +37,9 @@ Use the `Record<K, V>` utility type for key-value maps. It provides a determinis
 ## 🚨 22. Excess property checks and object spreading
 > [!NOTE]
 > **Context:** Passing objects to functions.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 const inputData = { id: 1, name: 'A', maliciousField: true };
@@ -43,6 +49,9 @@ saveUser(inputData); // No error! 'maliciousField' is leaked into db
 ### ⚠️ Problem
 Excess property checks only apply to inline object literals. Passing pre-defined variables bypasses this compiler check, leading to data pollution or security vulnerabilities (like Mass Assignment).
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 // Assume User type has only `id` and `name`
 const { maliciousField, ...validUser } = inputData;
@@ -53,6 +62,9 @@ Be strictly explicit about data payload boundaries. Use destructuring to strip u
 ## 🚨 23. `Readonly<T>` for Immutability
 > [!NOTE]
 > **Context:** Preventing accidental state mutation.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 function process(config: Config) {
@@ -62,6 +74,9 @@ function process(config: Config) {
 ### ⚠️ Problem
 Mutable inputs lead to unpredictable state changes, side effects, and bugs that are notoriously difficult to trace across large application boundaries.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 function process(config: Readonly<Config>) {
     // config.port = 80; // TS Error: Cannot assign to 'port' because it is a read-only property.
@@ -72,6 +87,9 @@ Use `Readonly<T>` for function parameters and `as const` for configuration objec
 ## 🚨 24. `Awaited<T>` for Promise Unwrapping
 > [!NOTE]
 > **Context:** Getting the resolved type of a Promise.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 type Result = typeof apiCall extends Promise<infer U> ? U : never;
@@ -79,6 +97,9 @@ type Result = typeof apiCall extends Promise<infer U> ? U : never;
 ### ⚠️ Problem
 Manually unwrapping promises via custom conditional types is unnecessarily complex, less readable, and fails to properly recursively unwrap nested promises natively.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 type Result = Awaited<ReturnType<typeof apiCall>>;
 ```
@@ -87,6 +108,9 @@ Always use the built-in `Awaited<T>` utility type (TS 4.5+) for deterministic an
 ## 🚨 25. `this` typing in functions
 > [!NOTE]
 > **Context:** Ensuring correct context in callback-heavy code.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 function handleClick(event: Event) {
@@ -96,6 +120,9 @@ function handleClick(event: Event) {
 ### ⚠️ Problem
 `this` defaults to `any` in unbound functions, making it trivial to access properties that don't exist on the execution context and bypassing compiler safety nets.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 function handleClick(this: HTMLElement, event: Event) {
     this.classList.add('active'); // Safe, 'this' is HTMLElement
@@ -106,6 +133,9 @@ Always type the first pseudo-parameter `this` explicitly in functions that rely 
 ## 🚨 26. Constructor Shorthand
 > [!NOTE]
 > **Context:** Defining class properties.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 class User {
@@ -118,6 +148,9 @@ class User {
 ### ⚠️ Problem
 Redundant repetition of property names in the declaration, constructor parameter, and assignment block creates unnecessary boilerplate and increases cognitive load.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 class User {
     constructor(public readonly name: string) {}
@@ -128,6 +161,9 @@ Leverage TypeScript parameter properties in constructors to declare and initiali
 ## 🚨 27. Abstract classes vs Interfaces
 > [!NOTE]
 > **Context:** Defining blueprints for classes.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 class BaseService {
@@ -137,6 +173,9 @@ class BaseService {
 ### ⚠️ Problem
 Using concrete classes as blueprints by throwing runtime errors fails to enforce implementation contracts at compile time. Interfaces alone cannot provide shared implementation logic.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 abstract class BaseService {
     abstract getData(): Promise<string>;
@@ -158,6 +197,9 @@ Utilize `abstract` classes when requiring shared implementation logic combined w
 ## 🚨 28. Private vs `#private`
 > [!NOTE]
 > **Context:** Encapsulating data in classes.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 class User {
@@ -169,6 +211,9 @@ console.log((user as any)['secret']); // Works at runtime!
 ### ⚠️ Problem
 TypeScript's `private` keyword is a compile-time illusion. At runtime, the property remains fully exposed and accessible via bracket notation or generic type stripping.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 class User {
     #secret = 123;
@@ -182,6 +227,9 @@ Implement ES2020 `#private` fields for guaranteed runtime encapsulation, specifi
 ## 🚨 29. Decorators (Legacy vs TC39)
 > [!NOTE]
 > **Context:** Meta-programming in TypeScript.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 // Requires: "experimentalDecorators": true
@@ -193,6 +241,9 @@ class MyClass {}
 ### ⚠️ Problem
 Legacy decorators rely on the deprecated `experimentalDecorators` flag, misaligning with the standardized ECMAScript proposal and risking future deprecation breakage.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 // TC39 standard (TS 5.0+)
 function Logged<Class extends new (...args: any[]) => unknown>(
@@ -208,6 +259,9 @@ Migrate to TC39 Standard Decorators supported in TypeScript 5.0+. Unless dictate
 ## 🚨 30. Utility Types (`Omit`, `Pick`, `Partial`)
 > [!NOTE]
 > **Context:** Transforming existing types.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```typescript
 interface User { name: string; age: number; role: string; }
@@ -220,6 +274,9 @@ interface UserUpdate {
 ### ⚠️ Problem
 Manual re-declaration of properties leads to critical synchronization issues when the base `User` interface architecture evolves, creating fractured type contracts.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 interface User { name: string; age: number; role: string; }
 
@@ -228,3 +285,5 @@ type UserUpdate = Partial<Pick<User, 'name' | 'age'>>;
 ### 🚀 Solution
 Always derive sub-types deterministically from the single source of truth using built-in utility types (`Pick`, `Omit`, `Partial`).
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

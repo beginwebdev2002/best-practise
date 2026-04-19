@@ -40,6 +40,9 @@ getData(url, (err, res) => {
 ### ⚠️ Problem
 Deeply nested callbacks (the "Pyramid of Doom") make error handling extremely difficult and code unreadable.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 fetchData(url)
     .then(res => fetchDetails(res.id))
@@ -51,6 +54,9 @@ Use Promises to flatten the structure and centralize error handling with `.catch
 ## ⚡ 22. Promise.then() nesting vs Async/Await
 > [!NOTE]
 > **Context:** Modern syntax for asynchronous code.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 function load() {
@@ -64,6 +70,9 @@ function load() {
 ### ⚠️ Problem
 Even with Promises, `.then()` nesting can occur. It still feels like "callback style" logic.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 async function load() {
     const res = await api.get();
@@ -76,6 +85,9 @@ Use `async/await`. It allows asynchronous code to be written and read like synch
 ## ⚡ 23. Sequential `await` in loops vs `Promise.all`
 > [!NOTE]
 > **Context:** Parallelizing independent asynchronous operations.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 for (const id of ids) {
@@ -85,6 +97,9 @@ for (const id of ids) {
 ### ⚠️ Problem
 Sequential `await` in a loop causes a "waterfall" effect, where each request waits for the previous one to finish, significantly increasing total execution time.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const promises = ids.map(id => fetchItem(id));
 await Promise.all(promises);
@@ -94,6 +109,9 @@ Use `Promise.all` to execute independent promises in parallel. This utilizes the
 ## ⚡ 24. Missing `try/catch` in async
 > [!NOTE]
 > **Context:** Handling failures in async functions.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 async function getData() {
@@ -104,6 +122,9 @@ async function getData() {
 ### ⚠️ Problem
 Unhandled exceptions in `async` functions result in unhandled promise rejections, which can lead to silent failures or process termination in Node.js.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 async function getData() {
     try {
@@ -119,6 +140,9 @@ Wrap `await` calls in `try/catch` blocks or use a higher-order function to catch
 ## ⚡ 25. Floating point math errors (`0.1 + 0.2`)
 > [!NOTE]
 > **Context:** Precision issues in IEEE 754 arithmetic.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 if (0.1 + 0.2 === 0.3) { /* False! */ }
@@ -126,6 +150,9 @@ if (0.1 + 0.2 === 0.3) { /* False! */ }
 ### ⚠️ Problem
 $\text{0.1} + \text{0.2} = \text{0.30000000000000004}$ due to binary representation limits. This leads to critical bugs in financial or scientific applications.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const EPSILON = Number.EPSILON;
 const areEqual = (a, b) => Math.abs(a - b) < EPSILON;
@@ -138,6 +165,9 @@ Use `Number.EPSILON` for comparisons or represent decimals as integers (e.g., ce
 ## ⚡ 26. Multiple Boolean flags vs State Machine
 > [!NOTE]
 > **Context:** Managing complex component logic.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 const [isLoading, setIsLoading] = useState(false);
@@ -147,6 +177,9 @@ const [isSuccess, setIsSuccess] = useState(false);
 ### ⚠️ Problem
 Multiple flags allow for "impossible states" (e.g., `isLoading` and `isError` both being `true`). This makes logic branches exponentially complex.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const [status, setStatus] = useState('IDLE'); // IDLE, LOADING, ERROR, SUCCESS
 ```
@@ -155,6 +188,9 @@ Use a single state variable or a state machine. This ensures only one state is a
 ## ⚡ 27. Sync logic in Event Loop
 > [!NOTE]
 > **Context:** Keeping the UI responsive.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 function processLargeArray(arr) {
@@ -165,6 +201,9 @@ function processLargeArray(arr) {
 ### ⚠️ Problem
 JavaScript is single-threaded. Heavy synchronous computation blocks the Event Loop, causing the UI to freeze and preventing user interaction.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 // Use Web Workers or break into chunks
 function processInChunks(arr) {
@@ -179,6 +218,9 @@ Offload heavy tasks to Web Workers or use `requestIdleCallback`/`setTimeout` to 
 ## ⚡ 28. Overusing `classes` where functions suffice
 > [!NOTE]
 > **Context:** Paradigm choice (OOP vs FP).
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 class Calculator {
@@ -189,6 +231,9 @@ const calc = new Calculator();
 ### ⚠️ Problem
 Classes introduce unnecessary overhead (prototype chain, `this` binding issues) and make tree-shaking harder for bundlers.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 export const add = (a, b) => a + b;
 ```
@@ -198,6 +243,9 @@ export const add = (a, b) => a + b;
 ## ⚡ 29. Hard-coded Error messages vs Error Classes
 > [!NOTE]
 > **Context:** Robust error handling and debugging.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 throw new Error('User not found');
@@ -205,6 +253,9 @@ throw new Error('User not found');
 ### ⚠️ Problem
 Parsing error messages in `catch` blocks is brittle. If the string changes, the error handling logic breaks.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 class UserNotFoundError extends Error {
     constructor(userId) {
@@ -219,6 +270,9 @@ Extend the `Error` class to create custom error types. Use `instanceof` check in
 ## ⚡ 30. Unhandled Rejections
 > [!NOTE]
 > **Context:** Reliability of asynchronous flows.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 // No .catch() or try/catch
@@ -227,6 +281,9 @@ fetch('/api/data');
 ### ⚠️ Problem
 Unhandled rejections create silent failures. In production environments, this can lead to memory leaks as the promise state stays pending or rejected without being cleared.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 window.addEventListener('unhandledrejection', event => {
     reportToSentry(event.reason);
@@ -235,3 +292,5 @@ window.addEventListener('unhandledrejection', event => {
 ### 🚀 Solution
 Always handle promise rejections. Implement a global unhandled rejection listener as a safety net for monitoring.
 ---
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

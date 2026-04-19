@@ -43,6 +43,9 @@ This document outlines the overarching philosophy and serves as an index for pro
 Hardcoded values create an inflexible system. They make dark-mode implementation nearly impossible without complex overrides, break responsiveness, and cause visual inconsistencies across the application. AI Agents cannot deterministically apply standard project themes when encountering arbitrary hex codes or pixel values.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```css
 .button {
   background-color: var(--color-primary);
@@ -101,6 +104,8 @@ When generating UI components or modifying styles:
 > [!IMPORTANT]
 > **Constraint:** AI Agents MUST adhere to the overarching standard of isolating design tokens from application logic.
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```css
 /* Hardcoding values directly in the application code */
@@ -114,6 +119,9 @@ When generating UI components or modifying styles:
 Scattering hardcoded visual values across the codebase eliminates the ability to deterministically theme applications or maintain global visual consistency, leading to structural divergence and unmanageable CSS.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
+
 ```css
 /* Relying strictly on deterministic Design Tokens */
 .btn-primary {

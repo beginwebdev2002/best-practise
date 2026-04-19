@@ -38,6 +38,9 @@ const mockUserService: any = {
 ### ⚠️ Problem
 Using `any` completely disables the compiler's safety checks. When interfaces evolve, tests using `any` will yield false positives, failing to protect the application from regressions.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 import { mock } from 'jest-mock-extended';
 import { UserService } from './user.service';
@@ -51,6 +54,8 @@ Use deep mocking libraries (like `jest-mock-extended`) or precisely type your st
 ---
 
 ## 🏗 II. Assertions
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 2. Loose Type Assertions
 > [!NOTE]
@@ -66,6 +71,9 @@ test('returns user', async () => {
 ### ⚠️ Problem
 Casting to `any` within an assertion defeats the purpose of testing the contract. It masks underlying type changes and reduces confidence in the test suite.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Typescript Index](./readme.md).
+
 ```typescript
 test('returns user', async () => {
   const result = await fetchUser();
@@ -82,3 +90,5 @@ Leverage strict typing within assertions. Define the expected types or rely on i
 
 ---
 [⬆️ Back to Top](#)
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.

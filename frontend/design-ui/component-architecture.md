@@ -78,6 +78,9 @@ function MonolithicDashboard() {
 Creating "God components" tightly couples layout, logic, and styling. This creates an unmaintainable codebase, reduces code reuse, complicates testing, and dramatically increases the context size, degrading an AI Agent's deterministic generation capabilities.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Design-ui Index](./readme.md).
+
 ```tsx
 // Highly cohesive, isolated components following Atomic Design
 import { ReactNode } from 'react';

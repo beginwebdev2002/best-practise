@@ -27,6 +27,9 @@ window.addEventListener('resize', () => this.handleResize());
 ### ⚠️ Problem
 The event listener keeps a reference to the component/context, preventing garbage collection even after the component is destroyed.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const handler = () => this.handleResize();
 window.addEventListener('resize', handler);
@@ -38,6 +41,9 @@ Always remove event listeners in cleanup phases (e.g., `componentWillUnmount` or
 ## ⚡ 32. Memory Leaks: Forgotten Intervals/Timeouts
 > [!NOTE]
 > **Context:** Managing temporal background tasks.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 setInterval(() => {
@@ -47,6 +53,9 @@ setInterval(() => {
 ### ⚠️ Problem
 Intervals continue to run indefinitely until the page is closed, even if the data they process is no longer needed, consuming CPU and memory.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const intervalId = setInterval(fetchStatus, 1000);
 // Later:
@@ -57,6 +66,9 @@ Store the ID returned by `setTimeout` or `setInterval` and clear it when the tas
 ## ⚡ 33. Closures inside loops (Memory/Scope issues)
 > [!NOTE]
 > **Context:** Understanding the Event Loop and closure capture.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 for (var i = 0; i < 5; i++) {
@@ -66,6 +78,9 @@ for (var i = 0; i < 5; i++) {
 ### ⚠️ Problem
 `var` is function-scoped. By the time the `setTimeout` executes, the loop has finished and `i` is 5. Each closure shares the same reference to `i`.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 for (let i = 0; i < 5; i++) {
     setTimeout(() => console.log(i), 100); // Prints 0, 1, 2, 3, 4
@@ -76,6 +91,9 @@ Use `let` in loop headers. It creates a new binding for each iteration, ensuring
 ## ⚡ 34. Throwing Strings instead of `new Error()`
 > [!NOTE]
 > **Context:** Ensuring useful stack traces.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 throw 'Something went wrong';
@@ -83,6 +101,9 @@ throw 'Something went wrong';
 ### ⚠️ Problem
 Throwing a string provides no stack trace. It makes it nearly impossible to determine where the error originated in a complex call stack.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 throw new Error('Something went wrong');
 ```
@@ -91,6 +112,9 @@ Always throw an instance of `Error` (or a subclass). This captures the `stack` p
 ## ⚡ 35. Modifying Built-in Prototypes
 > [!NOTE]
 > **Context:** Ecosystem compatibility and stability.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 Array.prototype.last = function() {
@@ -100,6 +124,9 @@ Array.prototype.last = function() {
 ### ⚠️ Problem
 "Monkey patching" built-ins can lead to collisions if a future ECMAScript version implements a method with the same name but different behavior. It also breaks for-in loops if not handled carefully.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const last = (arr) => arr[arr.length - 1];
 ```
@@ -108,6 +135,9 @@ Use utility functions or wrapper classes instead of modifying global prototypes.
 ## ⚡ 36. Premature Optimization (e.g., bitwise for rounding)
 > [!NOTE]
 > **Context:** Readability vs Micro-benchmarks.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 const floor = ~~x; // Double bitwise NOT to floor
@@ -115,6 +145,9 @@ const floor = ~~x; // Double bitwise NOT to floor
 ### ⚠️ Problem
 While `~~` is slightly faster in some engines, it makes the code cryptic. It also only works for numbers within the 32-bit integer range.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const floor = Math.floor(x);
 ```
@@ -123,6 +156,9 @@ Prioritize readability. Modern JIT compilers are smart enough to optimize `Math.
 ## ⚡ 37. V8 Hidden Classes: Changing object shape after initialization
 > [!NOTE]
 > **Context:** V8 JIT optimization.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 function User(name) {
@@ -134,6 +170,9 @@ u1.age = 25; // Dynamically adding property
 ### ⚠️ Problem
 V8 creates "Hidden Classes" to optimize object property access. Adding properties after initialization changes the "shape" of the object, causing V8 to drop to a slower "Dictionary Mode" for that object.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 function User(name, age) {
     this.name = name;
@@ -154,6 +193,9 @@ arr[50] = 'val';
 ### ⚠️ Problem
 Creating "holes" in arrays makes them "sparse". Sparse arrays are stored differently (as hash maps) which is much slower for iteration and access than "packed" arrays.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const arr = Array.from({ length: 100 }, () => null);
 ```
@@ -169,6 +211,9 @@ const result = eval('2 + 2');
 ### ⚠️ Problem
 `eval()` executes strings as code, opening a massive XSS security vulnerability if the string contains user input. It also prevents the JIT compiler from optimizing the surrounding scope.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 const result = new Function('a', 'b', 'return a + b')(2, 2); // Slightly better, but still risky
 // Better:
@@ -179,6 +224,9 @@ Avoid `eval()`. Use lookup tables, JSON parsing, or safe math libraries to handl
 ## ⚡ 40. Micro-optimizations that hurt readability
 > [!NOTE]
 > **Context:** Maintaining a healthy codebase.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### ❌ Bad Practice
 ```javascript
 for (let i = 0, len = arr.length; i < len; i++) { /* ... */ }
@@ -186,6 +234,9 @@ for (let i = 0, len = arr.length; i < len; i++) { /* ... */ }
 ### ⚠️ Problem
 Caching `arr.length` was necessary 15 years ago. Today, modern engines optimize this automatically. Adding extra variables for micro-gains makes the code harder to read.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Javascript Index](./readme.md).
+
 ```javascript
 for (const item of arr) { /* ... */ }
 ```

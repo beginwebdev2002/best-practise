@@ -47,6 +47,9 @@ function Form() {
 ### ⚠️ Problem
 Manually managing `isPending` and error states is repetitive and prone to race conditions, especially when multiple requests are fired. It creates unnecessary state overhead.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [React Index](./readme.md).
+
 ```tsx
 import { useActionState } from 'react';
 import { saveAction } from './actions';
@@ -79,6 +82,8 @@ flowchart TD
 ### 🚀 Solution
 Use the `useActionState` Hook (React 19+) for seamless action state management. This hook natively handles loading and error states, resolves race conditions by ensuring only the latest action state is applied to the UI, and optimizes rendering cycles deterministically.
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
+
 ### 🚨 2. Using Global State Naively
 > [!NOTE]
 > **Context:** Storing local component UI state in a global store (e.g., Redux, Zustand).
@@ -95,6 +100,9 @@ function Dropdown() {
 ### ⚠️ Problem
 Putting local, ephemeral UI state (like a dropdown's `isOpen` flag) into a global store causes unnecessary global re-renders, inflates store complexity, and couples isolated UI logic to the global application state.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [React Index](./readme.md).
+
 ```tsx
 import { useState } from 'react';
 

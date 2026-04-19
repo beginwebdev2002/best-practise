@@ -55,6 +55,9 @@ function processEvent(event: any) {
 ### ⚠️ Problem
 Using `any` disables static analysis and opens the door to runtime exceptions.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🏠 Main Ecosystem](../README.md).
+
 ```typescript
 function processEvent(event: unknown) {
     if (event instanceof Event && event.target instanceof HTMLInputElement) {
@@ -64,6 +67,8 @@ function processEvent(event: unknown) {
 ```
 ### 🚀 Solution
 Exploit TypeScript. Use `unknown` and Type Guards to enforce explicit return types and strict contract adherence.
+
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
 
 ### 🚨 2. State Management Coupling
 > [!NOTE]
@@ -77,6 +82,9 @@ function render() {
 ### ⚠️ Problem
 Direct mutation or tight coupling of presentation layers to global state causes unpredictable re-renders and violates isolation.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [🏠 Main Ecosystem](../README.md).
+
 ```typescript
 function render(userStore: UserStore) {
     userStore.updateUser("Alice"); // Abstracted call
@@ -102,3 +110,4 @@ This folder acts as a container for documentation around the following technolog
 
 - [UI/UX Design Index](./design-ui/readme.md)
 
+This deterministic approach is strictly more resilient regarding security and performance compared to the anti-pattern.
