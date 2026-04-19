@@ -187,6 +187,7 @@ graph TD
       * 📄 [readme.md](./backend/nodejs/readme.md)
   * 📄 **[docs/](./docs/)**
     * 🤖 [ai-agent-context-pruning.md](./docs/ai-agent-context-pruning.md)
+    * 🤖 [ai-agent-event-driven-orchestration.md](./docs/ai-agent-event-driven-orchestration.md)
     * 🤖 [ai-agent-context-injection-pipelines.md](./docs/ai-agent-context-injection-pipelines.md)
     * 🤖 [ai-agent-memory-architectures.md](./docs/ai-agent-memory-architectures.md)
     * 🤖 [ai-agent-multi-model-consensus.md](./docs/ai-agent-multi-model-consensus.md)
@@ -410,6 +411,7 @@ graph TD
       * 📄 [readme.md](./backend/nodejs/readme.md)
   * 📄 **[docs/](./docs/)**
     * 🤖 [ai-agent-context-pruning.md](./docs/ai-agent-context-pruning.md)
+    * 🤖 [ai-agent-event-driven-orchestration.md](./docs/ai-agent-event-driven-orchestration.md)
     * 🤖 [ai-agent-context-injection-pipelines.md](./docs/ai-agent-context-injection-pipelines.md)
     * 🤖 [ai-agent-memory-architectures.md](./docs/ai-agent-memory-architectures.md)
     * 🤖 [ai-agent-multi-model-consensus.md](./docs/ai-agent-multi-model-consensus.md)
