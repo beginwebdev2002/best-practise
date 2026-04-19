@@ -41,7 +41,7 @@ This document enforces strict adherence to semantic HTML and accessibility guide
 ```
 
 ### ⚠️ Problem
-Using generic `<div>` wrappers and artificially attaching ARIA roles or keyboard handlers increases code complexity and misses nuanced accessibility behaviors (like native keyboard focus management and space/enter activation) that semantic elements provide out-of-the-box. This exclusion breaks the application for users relying on assistive technologies.
+Using generic `<div>` wrappers and artificially attaching ARIA roles or keyboard handlers increases code complexity and FAILS TO PROVIDE nuanced accessibility behaviors (like native keyboard focus management and space/enter activation) that semantic elements provide out-of-the-box. This exclusion breaks the application for users relying on assistive technologies.
 
 ### ✅ Best Practice
 ```html
