@@ -125,6 +125,7 @@
     * [Architecture](backend/redis/architecture.md)
     * [Security best practices](backend/redis/security-best-practices.md)
 * **Docs**
+  * [Ai agent knowledge graph synchronization](docs/ai-agent-knowledge-graph-synchronization.md)
   * [Ai agent context injection pipelines](docs/ai-agent-context-injection-pipelines.md)
   * [Ai agent context pruning](docs/ai-agent-context-pruning.md)
   * [Ai agent dynamic context pruning](docs/ai-agent-dynamic-context-pruning.md)
