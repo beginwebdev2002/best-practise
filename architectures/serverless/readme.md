@@ -13,10 +13,10 @@ last_updated: 2026-03-29
 </div>
 ---
 
-Этот инженерный директив определяет **лучшие практики (best practices)** для архитектуры Serverless. Данный документ спроектирован для обеспечения максимальной масштабируемости, безопасности и качества кода при разработке приложений корпоративного уровня.
+This engineering directive defines the **best practices** for architecture Serverless. This document is designed to ensure maximum scalability, security, and code quality when developing enterprise-level applications.
 
 # Context & Scope
-- **Primary Goal:** Предоставить строгие архитектурные правила и практические паттерны для создания масштабируемых систем.
+- **Primary Goal:** Provide strict architectural rules and practical patterns for creating scalable systems.
 - **Description:** Developers do not manage servers at all. The entire "server" consists of bite-sized pieces of business logic (functions/Lambdas) living in the cloud.
 
 ## Map of Patterns
@@ -75,6 +75,10 @@ exports.handler = async (event) => {
 Grouping unrelated endpoints into a single function defeats the purpose of Serverless. It increases the deployment package size (slowing down cold starts), couples business domains together, complicates IAM permissions (granting excessive privileges), and makes individual function metrics/tracing impossible.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 ```javascript
 // One function strictly mapped to one specific capability
 // users-create.js

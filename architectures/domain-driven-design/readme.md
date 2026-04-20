@@ -14,9 +14,9 @@ last_updated: 2026-03-22
 </div>
 ---
 
-Этот инженерный директив определяет **лучшие практики (best practices)** для архитектуры Domain-Driven Design. Данный документ спроектирован для обеспечения максимальной масштабируемости, безопасности и качества кода при разработке приложений корпоративного уровня.
+This engineering directive defines the **best practices** for architecture Domain-Driven Design. This document is designed to ensure maximum scalability, security, and code quality when developing enterprise-level applications.
 # Context & Scope
-- **Primary Goal:** Предоставить строгие архитектурные правила и практические паттерны для создания масштабируемых систем.
+- **Primary Goal:** Provide strict architectural rules and practical patterns for creating scalable systems.
 - **Description:** A philosophy and design approach centered entirely around the business "Domain". The whole team communicates using a "Ubiquitous Language," and domains are split into Bounded Contexts.
 ## Map of Patterns
 - 📊 [**Data Flow:** Request and Event Lifecycle](./data-flow.md)
@@ -78,6 +78,10 @@ class OrderService {
 Using Anemic Domain Models breaks the core principle of Domain-Driven Design. The Entity (`Order`) is reduced to a pure data structure without behavior. The business rules ("How does an order get paid?") leak into the `OrderService`, causing logic duplication, difficult testing, and poor encapsulation. The Domain becomes passive.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 ```typescript
 // Rich Domain Entity - Encapsulates both data and behavior
 class Order {
