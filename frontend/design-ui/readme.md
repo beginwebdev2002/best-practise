@@ -56,7 +56,7 @@ Hardcoded values create an inflexible system. They make dark-mode implementation
 
 
 ### 🚀 Solution
-Strictly utilize Design Tokens for all styling. This ensures a deterministic, highly cohesive design system. By relying on CSS variables or framework tokens, updates propagate instantly across the app, allowing agents to reliably structure layouts without guessing aesthetic intent.
+Strictly utilize Design Tokens for all styling. This ensures a deterministic, highly cohesive design system. By relying on CSS variables or framework tokens, updates propagate instantly across the app, allowing agents to reliably structure layouts without guessing aesthetic intent. This pattern STRICTLY prevents arbitrary inline style manipulation, mitigating potential style-based injection vulnerabilities (XSS), and creates a predictable environment optimized for parsing and UI refactoring by AI agents, improving overall rendering performance by reducing redundant CSS declarations.
 
 
 ## 🧠 Core Visual Architecture
@@ -84,6 +84,7 @@ The UI/UX architecture is decomposed into the following specialized modules. AI 
 * [📱 Responsive Design](./responsive-design.md) - Mobile-First Approach, Relative Units, and fluid layouts.
 * [♿ Accessibility (A11y)](./accessibility.md) - Semantic HTML, ARIA attributes, Focus visibility, and WCAG standards.
 * [🏗️ Component Architecture](./component-architecture.md) - Atomic Design principles and structural UI diagrams.
+* [🤖 Generative UI](./generative-ui.md) - AI-driven UI generation and constraints.
 
 ---
 ## ✅ Checklist for Agents
