@@ -195,6 +195,7 @@ graph TD
     * 🤖 [ai-agent-self-healing-architectures.md](./docs/ai-agent-self-healing-architectures.md)
     * 🤖 [ai-agent-semantic-routing.md](./docs/ai-agent-semantic-routing.md)
     * 🤖 [ai-agent-vibe-coding-state-machines.md](./docs/ai-agent-vibe-coding-state-machines.md)
+    * 🤖 [ai-agent-knowledge-graph-synchronization.md](./docs/ai-agent-knowledge-graph-synchronization.md)
     * 🤖 [ai-agent-zero-trust-security-boundaries.md](./docs/ai-agent-zero-trust-security-boundaries.md)
     * 🤖 [ai-agent-tool-calling-architectures.md](./docs/ai-agent-tool-calling-architectures.md)
     * 🤖 [vibe-coding-agents.md](./docs/vibe-coding-agents.md)
