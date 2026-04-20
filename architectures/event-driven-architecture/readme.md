@@ -95,6 +95,10 @@ class OrderService {
 Treating an event bus like an RPC (Remote Procedure Call) mechanism defeats the purpose of EDA. Synchronous waiting re-introduces tight temporal coupling. If the consumer is slow, it blocks the producer, leading to cascading failures and timeouts across the system.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 ```typescript
 class OrderService {
   async createOrder(data: OrderData) {

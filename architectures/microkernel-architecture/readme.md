@@ -10,7 +10,7 @@ last_updated: 2026-04-18
 
 # 🧩 Microkernel Architecture (Plugin Architecture) Production-Ready Best Practices
 
-[🏠 На главную](../README.md)
+[🏠 Back to Home](../readme.md)
 
 # Context & Scope
 - **Primary Goal:** Document and strictly enforce best practices for Microkernel (Plugin) Architecture to ensure deterministic system extensibility.

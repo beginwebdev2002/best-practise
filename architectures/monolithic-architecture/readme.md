@@ -14,9 +14,9 @@ last_updated: 2026-03-22
 </div>
 ---
 
-Этот инженерный директив определяет **лучшие практики (best practices)** для архитектуры Monolithic Architecture. Данный документ спроектирован для обеспечения максимальной масштабируемости, безопасности и качества кода при разработке приложений корпоративного уровня.
+This engineering directive defines the **best practices** for architecture Monolithic Architecture. This document is designed to ensure maximum scalability, security, and code quality when developing enterprise-level applications.
 # Context & Scope
-- **Primary Goal:** Предоставить строгие архитектурные правила и практические паттерны для создания масштабируемых систем.
+- **Primary Goal:** Provide strict architectural rules and practical patterns for creating scalable systems.
 - **Description:** The entire system components (Database, Message Queues, Business Logic, APIs) are deployed and operated from a single codebase on a single server.
 ## Map of Patterns
 - 📊 [**Data Flow:** Request and Event Lifecycle](./data-flow.md)
@@ -84,6 +84,10 @@ export class PaymentProcessor {
 Directly accessing tables or internal state of other modules within a monolith creates a "Big Ball of Mud". Changing the `users` table schema will silently break the `PaymentModule`. This prevents the monolith from ever being safely split into microservices in the future.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 ```typescript
 // PaymentModule interacting with UserModule via an explicit Interface/Facade
 import { UserService } from '../users/user.service';
