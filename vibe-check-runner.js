@@ -5,11 +5,18 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { GoogleGenAI } from '@google/genai';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_AI_API_KEY });
+let ai;
+try {
+  if (process.env.GOOGLE_AI_API_KEY) {
+    ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_AI_API_KEY });
+  }
+} catch (e) {
+  console.warn('Failed to initialize GoogleGenAI:', e);
+}
 
 // Constants for scoring
 
-async function fileOrDirExists(filePath) {
+export async function fileOrDirExists(filePath) {
   try {
     await fsPromises.stat(filePath);
     return true;
@@ -25,11 +32,9 @@ const SCORES = {
   EFFICIENCY: 10,
 };
 
-function getModifiedFiles() {
+export function getModifiedFiles() {
   try {
-    // In CI (daily run), check files modified in the last 24 hours.
-    // We filter for non-empty lines that end in .md and are in frontend/ or backend/
-    const output = execFileSync('sh', ['-c', 'git log --since="24 hours ago" --name-only --pretty=format: | sort | uniq'], { encoding: 'utf-8' });
+    const output = execFileSync('git', ['log', '--since=24 hours ago', '--name-only', '--pretty=format:'], { encoding: 'utf-8' });
     const allFiles = output.split('\n')
       .map(f => f.trim())
       .filter(f => f.length > 0)
@@ -43,7 +48,8 @@ function getModifiedFiles() {
   }
 }
 
-async function syncBenchmarks(tech, mdContent, retries = 5, delay = 10000) {
+export async function syncBenchmarks(tech, mdContent, retries = 5, delay = 10000) {
+  if (!ai) return;
   try {
     const prompt = `Based on the following documentation:\n\n${mdContent}\n\n1. Generate a "Golden Prompt" (a comprehensive instruction for generating a typical module using this technology) in JSON format: {"golden_prompt": "...", "tech": "${tech}"}\n2. Generate a JSON Schema for TS-Morph AST validation rules enforcing DDD/FSD layers and strict typing for this technology. The generated JSON schema must explicitly follow a nested structure compatible with \`analyzeAST\`. Format: {"$schema": "...", "type": "object", "properties": {"forbidden_types": {"contains": {"enum": ["any"]}}}}.\n\nRespond strictly with ONLY a JSON array containing these two objects in order. No markdown wrappers.`;
     const response = await ai.models.generateContent({
@@ -85,7 +91,8 @@ async function syncBenchmarks(tech, mdContent, retries = 5, delay = 10000) {
   }
 }
 
-async function simulateAIGeneration(goldenPrompt, tech, mdContent, retries = 5, delay = 10000) {
+export async function simulateAIGeneration(goldenPrompt, tech, mdContent, retries = 5, delay = 10000) {
+  if (!ai) return '';
   try {
     const prompt = `${goldenPrompt}\n\nConstraints and instructions from the following documentation:\n\n${mdContent}\n\nGenerate ONLY raw code. No markdown formatting, no explanations.`;
     const response = await ai.models.generateContent({
@@ -110,7 +117,7 @@ async function simulateAIGeneration(goldenPrompt, tech, mdContent, retries = 5, 
   }
 }
 
-function analyzeAST(sourceFile, tech) {
+export function analyzeAST(sourceFile, tech) {
   let score = {
     arch: SCORES.ARCH,
     type: SCORES.TYPE,
@@ -118,30 +125,52 @@ function analyzeAST(sourceFile, tech) {
     efficiency: SCORES.EFFICIENCY,
   };
 
-  // 1. Arch Integrity (40)
-  const decorators = sourceFile.getDescendantsOfKind(SyntaxKind.Decorator);
-  const decoratorNames = decorators.map(d => d.getName());
+  const decoratorNames = [];
+  let hasValidation = false;
+  let missingTypes = 0;
+  let anyKeywordCount = 0;
+  let tryStatementCount = 0;
+  let awaitExpressionCount = 0;
+
+  sourceFile.forEachDescendant(node => {
+    const kind = node.getKind();
+    if (kind === SyntaxKind.Decorator) {
+      decoratorNames.push(node.getName());
+    } else if (kind === SyntaxKind.ClassDeclaration) {
+      const classDecorators = node.getProperties().flatMap(p => p.getDecorators().map(d => d.getName()));
+      if (classDecorators.some(name => name.startsWith('Is'))) {
+        hasValidation = true;
+      }
+    } else if (kind === SyntaxKind.Parameter) {
+      if (!node.getTypeNode()) {
+        missingTypes++;
+        score.type -= 5;
+      }
+    } else if (kind === SyntaxKind.AnyKeyword) {
+      anyKeywordCount++;
+    } else if (kind === SyntaxKind.TryStatement) {
+      tryStatementCount++;
+    } else if (kind === SyntaxKind.AwaitExpression) {
+      awaitExpressionCount++;
+    } else if (kind === SyntaxKind.StringLiteral) {
+      const text = node.getText();
+      if (text.includes('password') || text.includes('secret') || text.includes('token')) {
+        score.security -= 20;
+      }
+    } else if (kind === SyntaxKind.CallExpression) {
+      if (node.getText().includes('readFileSync')) {
+        score.efficiency -= 10;
+      }
+    }
+  });
 
   if (tech === 'nestjs') {
       if (!decoratorNames.includes('Injectable') && !decoratorNames.includes('Controller')) {
           score.arch -= 10;
       }
-
-      // DTO Validation check
-      const classDeclarations = sourceFile.getDescendantsOfKind(SyntaxKind.ClassDeclaration);
-      let hasValidation = false;
-      for (const classDecl of classDeclarations) {
-          const classDecorators = classDecl.getProperties().flatMap(p => p.getDecorators().map(d => d.getName()));
-          if (classDecorators.some(name => name.startsWith('Is'))) {
-             hasValidation = true;
-             break;
-          }
-      }
       if (!hasValidation && decoratorNames.length > 0) {
-          // Note: naive check, only apply if we generated classes
           score.arch -= 10;
       }
-
   } else if (tech === 'angular') {
       if (!decoratorNames.includes('Component') && !decoratorNames.includes('Injectable')) {
           score.arch -= 10;
@@ -151,8 +180,6 @@ function analyzeAST(sourceFile, tech) {
       }
   }
 
-  // FSD/DDD check (Naive representation checking for related imports or folder structure hints in string)
-  // Check if string contains imports that hint at FSD like '@features', '@entities', '@shared' etc.
   const imports = sourceFile.getImportDeclarations();
   const moduleSpecifiers = imports.map(imp => imp.getModuleSpecifierValue());
   const hasFSD = moduleSpecifiers.some(spec => spec.includes('features/') || spec.includes('entities/') || spec.includes('shared/') || spec.includes('domain/'));
@@ -161,56 +188,16 @@ function analyzeAST(sourceFile, tech) {
      score.arch -= 10;
   }
 
-  // 2. Type Safety (30)
-  const parameters = sourceFile.getDescendantsOfKind(SyntaxKind.Parameter);
-  let missingTypes = 0;
-  for (const param of parameters) {
-      if (!param.getTypeNode()) {
-          missingTypes++;
-          score.type -= 5;
-      }
-  }
   if (missingTypes > 0) {
       score.type -= 10;
   }
 
-  const anyKeywords = sourceFile.getDescendantsOfKind(SyntaxKind.AnyKeyword);
-  if (anyKeywords.length > 0) {
-    score.type -= 15 * anyKeywords.length;
+  if (anyKeywordCount > 0) {
+    score.type -= 15 * anyKeywordCount;
   }
 
-  // Enforce explicit parameter types
-  const explicitParameters = sourceFile.getDescendantsOfKind(SyntaxKind.Parameter);
-  for (const param of explicitParameters) {
-    if (!param.getTypeNode()) {
-      score.type -= 5;
-    }
-  }
-
-  // Error handling pattern check
-  const tryStatements = sourceFile.getDescendantsOfKind(SyntaxKind.TryStatement);
-  const catchClauses = sourceFile.getDescendantsOfKind(SyntaxKind.CatchClause);
-  // If we have functions that do awaiting, they probably should have try/catch
-  const awaitExpressions = sourceFile.getDescendantsOfKind(SyntaxKind.AwaitExpression);
-  if (awaitExpressions.length > 0 && tryStatements.length === 0) {
-      score.type -= 10; // Penalize lack of error handling
-  }
-
-  // 3. Security (20)
-  const stringLiterals = sourceFile.getDescendantsOfKind(SyntaxKind.StringLiteral);
-  for (const literal of stringLiterals) {
-      const text = literal.getText();
-      if (text.includes('password') || text.includes('secret') || text.includes('token')) {
-          score.security -= 20;
-      }
-  }
-
-  // 4. Efficiency (10)
-  const callExpressions = sourceFile.getDescendantsOfKind(SyntaxKind.CallExpression);
-  for(const call of callExpressions) {
-    if(call.getText().includes('readFileSync')) {
-      score.efficiency -= 10;
-    }
+  if (awaitExpressionCount > 0 && tryStatementCount === 0) {
+      score.type -= 10;
   }
 
   score.arch = Math.max(0, score.arch);
@@ -222,7 +209,7 @@ function analyzeAST(sourceFile, tech) {
   return { total, breakdown: score };
 }
 
-async function runVibeCheck() {
+export async function runVibeCheck() {
   console.log('Running Vibe-Check Runner...');
 
   const modifiedFiles = getModifiedFiles();
@@ -244,7 +231,7 @@ async function runVibeCheck() {
   for (const file of modifiedFiles) {
     console.log(`Processing ${file}...`);
 
-    if (!fs.existsSync(file)) {
+    if (!await fileOrDirExists(file)) {
       console.log(`File ${file} does not exist. Skipping.`);
       continue;
     }
@@ -270,7 +257,7 @@ async function runVibeCheck() {
     await syncBenchmarks(tech, mdContent);
 
     const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
-    if (!fs.existsSync(suitePath)) {
+    if (!await fileOrDirExists(suitePath)) {
       console.log(`No benchmark suite found for ${tech}. Skipping.`);
       continue;
     }
@@ -301,7 +288,10 @@ async function runVibeCheck() {
 
       try {
         execFileSync('git', ['add', file]);
-        try { execFileSync('sh', ['-c', 'git add benchmarks/suites/*.json benchmarks/criteria/*.json 2>/dev/null || true']); } catch (e) {}
+        try {
+          execFileSync('git', ['add', 'benchmarks/suites/']);
+          execFileSync('git', ['add', 'benchmarks/criteria/']);
+        } catch (e) {}
         // Only commit if there are changes (badge might already be there)
         const status = execFileSync('git', ['status', '--porcelain'], { encoding: 'utf-8' });
         if (status.includes(file) || status.includes('benchmarks/')) {
@@ -321,7 +311,12 @@ async function runVibeCheck() {
       if (!await fileOrDirExists(reportDir)) await fsPromises.mkdir(reportDir, { recursive: true });
 
       const reportPath = path.join(reportDir, `violation-report.md`);
-      const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n\`\`\`typescript\n${generatedCode}\n\`\`\`\n\nReview the AST rules.`;
+      const matchBackticks = generatedCode.match(/\`+/g);
+      const maxBackticks = matchBackticks ? Math.max(...matchBackticks.map(b => b.length)) : 0;
+      const fenceLength = Math.max(3, maxBackticks + 1);
+      const fence = '\`'.repeat(fenceLength);
+
+      const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n${fence}typescript\n${generatedCode}\n${fence}\n\nReview the AST rules.`;
 
       await fsPromises.writeFile(reportPath, reportContent);
       console.log(`Generated violation report: ${reportPath}`);
@@ -338,4 +333,7 @@ async function runVibeCheck() {
   }
 }
 
-runVibeCheck().catch(console.error);
+import { pathToFileURL } from 'node:url';
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  runVibeCheck().catch(console.error);
+}
