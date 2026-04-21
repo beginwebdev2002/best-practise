@@ -75,6 +75,10 @@ exports.handler = async (event) => {
 Grouping unrelated endpoints into a single function defeats the purpose of Serverless. It increases the deployment package size (slowing down cold starts), couples business domains together, complicates IAM permissions (granting excessive privileges), and makes individual function metrics/tracing impossible.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 ```javascript
 // One function strictly mapped to one specific capability
 // users-create.js

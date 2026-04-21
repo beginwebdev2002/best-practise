@@ -68,6 +68,10 @@ import { User } from 'entities/user';
 Violation of the upward dependency flow constraints. `shared` is the lowest infrastructure layer; it has no right to know anything about the business domain (`entities`), features (`features`), and widgets. This leads to circular dependencies and tight coupling.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 ```typescript
 // The Entities layer naturally depends on the infra-layer below (Shared)
 import { Button } from 'shared/ui/button';

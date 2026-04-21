@@ -45,6 +45,7 @@ graph LR
     Boundaries --- Decoupling[Decoupling]
 
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
     class Isolation,Boundaries,Decoupling default;
 ```
 
@@ -55,6 +56,7 @@ graph LR
     A[Isolation & Testability] --> B[Strict Boundaries]
     B --> C[Decoupling]
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
     class A,B,C default;
 ```
 
@@ -78,6 +80,10 @@ services:
 Sharing a single database among multiple microservices completely violates the core principle of microservices (independence). If `order-service` performs a heavy migration or drops a table, `inventory-service` crashes. Database schemas cannot evolve independently, recreating monolithic tight coupling at the data layer.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 ```yaml
 # docker-compose.yml
 services:

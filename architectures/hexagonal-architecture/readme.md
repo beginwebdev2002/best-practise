@@ -37,6 +37,7 @@ flowchart TD
     D -->|Talks to| E[Database/External API]
 
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
     class A,B,C,D,E default;
 ```
 
@@ -69,6 +70,10 @@ export class ProcessDocumentService {
 The Core Domain is directly importing and depending on a specific technical implementation (`AWS S3`). If the project migrates to Azure or GCP, the core business logic must be rewritten. Testing requires a live S3 connection or complex module mocking.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 ```typescript
 // Port (Interface defined in the Core Domain)
 export interface IFileStoragePort {

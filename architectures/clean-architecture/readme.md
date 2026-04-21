@@ -85,6 +85,10 @@ export class User extends BaseEntity {
 The Domain layer (the core of the application) is tightly coupled with a specific third-party ORM library (`TypeORM`). This violates the Dependency Rule. Changing the database technology will require rewriting core business logic.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 ```typescript
 // Pure Domain Entity completely agnostic of infrastructure
 export class User {
