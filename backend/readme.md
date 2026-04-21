@@ -74,3 +74,21 @@ app.get('/users/:id', async (req, res) => {
 
 ### 🚀 Solution
 Never allow Database Object Relational Mapping (ORM) models to bleed into standard HTTP responses. Always map through a DTO.
+
+### 🔄 Domain DTO Mapping Lifecycle
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Controller
+    participant Service
+    participant Database
+
+    Client->>Controller: GET /users/:id
+    Controller->>Service: Fetch User
+    Service->>Database: Query DB Model
+    Database-->>Service: Return ORM Model (Sensitive)
+    Service-->>Service: Map ORM to DTO
+    Service-->>Controller: Return DTO (Safe)
+    Controller-->>Client: Respond with DTO JSON
+```
