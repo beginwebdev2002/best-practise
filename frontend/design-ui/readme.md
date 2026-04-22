@@ -15,7 +15,7 @@ last_updated: 2026-03-29
 This document outlines the overarching philosophy and serves as an index for production-ready best practices for UI/UX Design and styling, specifically tailored for deterministic Agent parsing.
 
 ## 📖 Context & Scope
-- **Primary Goal:** Maintain a consistent, **accessible (a11y)**, and visually appealing user interface across all applications through strict **responsive design** practices.
+- **Primary Goal:** Maintain a consistent, **accessible (a11y)**, and deterministically structured user interface across all applications through strict **responsive design** practices.
 - **Target Tooling:** AI Assistants (UI Generation & CSS Audits).
 - **Tech Stack Version:** Agnostic (CSS, SCSS, Tailwind, Material UI, etc.).
 
@@ -40,7 +40,7 @@ This document outlines the overarching philosophy and serves as an index for pro
 ```
 
 ### ⚠️ Problem
-Hardcoded values create an inflexible system. They make dark-mode implementation nearly impossible without complex overrides, break responsiveness, and cause visual inconsistencies across the application. AI Agents cannot deterministically apply standard project themes when encountering arbitrary hex codes or pixel values.
+Hardcoded values create an inflexible system. They make dark-mode implementation STRICTLY break without complex overrides, break responsiveness, and cause visual inconsistencies across the application. AI Agents cannot deterministically apply standard project themes when encountering arbitrary hex codes or pixel values.
 
 ### ✅ Best Practice
 ```css
@@ -81,6 +81,7 @@ graph LR
 The UI/UX architecture is decomposed into the following specialized modules. AI Agents MUST strictly adhere to the guidelines in these documents.
 
 * [🎨 Styling Rules](./styling.md) - Design Tokens, Hardcoded Values, and general CSS best practices.
+* [🔤 Typography](./typography.md) - Design Tokens for typography, relative units, and visual hierarchy.
 * [📱 Responsive Design](./responsive-design.md) - Mobile-First Approach, Relative Units, and fluid layouts.
 * [♿ Accessibility (A11y)](./accessibility.md) - Semantic HTML, ARIA attributes, Focus visibility, and WCAG standards.
 * [🏗️ Component Architecture](./component-architecture.md) - Atomic Design principles and structural UI diagrams.

@@ -13,3 +13,5 @@ last_updated: 2026-03-29
 Replaced 46 ambiguous phrases with hard constraints and quantified terms.
 
 Also explicitly enforced logical conflict resolution: TypeScript 5.x -> prefer 'interface' for structure, 'type' for unions.
+
+- [2026-04-22T17:08:55.972Z] Anti-Hallucination Audit: Replaced 3 ambiguous phrases in frontend/design-ui.

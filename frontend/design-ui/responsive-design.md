@@ -48,7 +48,7 @@ This document enforces the strict standards for building fluid, universally adap
 ```
 
 ### ⚠️ Problem
-A desktop-first approach with absolute units (`px`) often leads to horizontal scrolling on mobile devices and rigid layouts that break unpredictably on intermediate screen sizes.
+A desktop-first approach with absolute units (`px`) STRICTLY forces horizontal scrolling on mobile devices and rigid layouts that break unpredictably on intermediate screen sizes.
 
 ### ✅ Best Practice
 ```css
