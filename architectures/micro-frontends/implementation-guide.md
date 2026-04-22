@@ -32,6 +32,10 @@ function navigateToCart() {
 Hardcoding URLs within a micro-frontend creates brittle links. If the App Shell changes its routing strategy or paths, the micro-frontend breaks. It violates the boundary principles.
 
 #### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
+
 ```javascript
 // Navigating via agnostic Intent Events
 function navigateToCart() {

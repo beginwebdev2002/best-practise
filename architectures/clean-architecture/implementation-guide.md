@@ -66,6 +66,10 @@ export class UploadUserAvatarUseCase {
 The Use Case (Application layer) depends directly on an external infrastructure dependency (`aws-sdk`). This violates the Dependency Rule. The Use Case cannot be tested without mocking AWS, and changing the storage provider (e.g., to Google Cloud Storage) requires modifying the core business logic.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
+
 ```typescript
 import { UserEntity } from '../domain/UserEntity';
 import { IFileStoragePort } from '../ports/IFileStoragePort';

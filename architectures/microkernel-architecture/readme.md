@@ -88,9 +88,9 @@ class MonolithicOrderProcessor {
 Hardcoding domain-specific or external integrations directly into the core processor creates a rigid dependency tree. Every new payment method or notification system requires modifying the core, violating the Open/Closed Principle. This leads to frequent merge conflicts, elevated regression risks, and unpredictable AI Agent modifications that break foundational system logic.
 
 ### ✅ Best Practice
-
 > [!NOTE]
 > **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 
 ```typescript
 // 1. Core strictly defines the Contract

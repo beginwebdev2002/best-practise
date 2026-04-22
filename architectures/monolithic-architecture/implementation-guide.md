@@ -55,6 +55,10 @@ class OrderService {
 Using a shared global state or tightly coupling modules without clear boundaries in a monolith creates a "Big Ball of Mud". Changes in one domain (like `OrderService` mutating a cache) unexpectedly break another domain (`UserService`). This makes scaling, testing, and eventual extraction into microservices nearly impossible.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
+
 ```typescript
 // Define explicit interfaces and isolated storage per module
 class UserService {

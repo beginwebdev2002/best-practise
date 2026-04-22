@@ -84,6 +84,10 @@ export class PaymentProcessor {
 Directly accessing tables or internal state of other modules within a monolith creates a "Big Ball of Mud". Changing the `users` table schema will silently break the `PaymentModule`. This prevents the monolith from ever being safely split into microservices in the future.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
+
 ```typescript
 // PaymentModule interacting with UserModule via an explicit Interface/Facade
 import { UserService } from '../users/user.service';

@@ -84,6 +84,10 @@ class UserController {
 The Controller is overloaded with low-level implementation details (SQL, hashing, email processing). This grossly violates the Single Responsibility Principle (SRP) and makes the code monolithic and untestable.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
+
 ```typescript
 class UserController {
   constructor(private userService: UserService) {}
