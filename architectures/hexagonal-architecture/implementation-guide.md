@@ -65,6 +65,10 @@ classDiagram
 ```
 
 ### ✅ Best Practice: Core Domain (`src/core/domain/User.ts`)
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
+
 
 ```typescript
 // Pure domain object - No framework annotations like @Entity or @Table

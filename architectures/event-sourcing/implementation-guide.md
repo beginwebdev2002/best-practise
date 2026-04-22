@@ -32,6 +32,10 @@ async function fixUserName(userId: string, newName: string) {
 Directly mutating an event in the Event Store violates the fundamental rule of Event Sourcing: the event log must be strictly append-only and immutable. Modifying past events corrupts the audit trail, invalidates existing read models that already processed the old event, and destroys the ability to deterministically reconstruct state.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
+
 ```typescript
 // Emitting a new compensating event to correct the state
 async function fixUserName(userId: string, newName: string) {

@@ -90,6 +90,10 @@ class MonolithicAIAgent {
 Loading a monolithic agent with unbounded context leads to "Context Explosion", resulting in non-deterministic hallucinations, excessive token costs, and security risks (like arbitrary code execution). A single LLM call attempting multiple distinct personas (Planner, Coder, Reviewer) fundamentally degrades reasoning quality.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
+
 ```typescript
 interface AgentTask {
   goal: string;

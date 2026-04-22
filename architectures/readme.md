@@ -58,6 +58,7 @@ Don't know where to start? Here are a few golden rules:
 - [Space-Based Architecture](./space-based-architecture/readme.md)
 - [Serverless](./serverless/readme.md)
 - [Agentic Architecture (AI Agent Orchestration)](./agentic-architecture/readme.md)
+- [Microkernel Architecture (Plugin Architecture)](./microkernel-architecture/readme.md)
 
 ## 🏆 Top 15 Best Architectural Approaches
 

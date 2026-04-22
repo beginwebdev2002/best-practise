@@ -63,6 +63,10 @@ class PaymentEventHandler {
 ```
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
+
 ```typescript
 class PaymentEventHandler {
   async handle(event: OrderCreatedEvent) {

@@ -31,6 +31,10 @@ This document defines the pros, cons, and system constraints in the Micro-fronte
 If every micro-frontend builds and ships its own core dependencies (like React, Angular, or Lodash), the user's browser ends up downloading the exact same libraries multiple times. This destroys frontend performance, increases Time-to-Interactive (TTI), and causes memory bloat.
 
 #### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
+
 ```javascript
 // Webpack 5 Module Federation configuration in App Shell
 plugins: [
