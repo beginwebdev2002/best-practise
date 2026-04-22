@@ -35,6 +35,8 @@ function Profile({ user, settings }) {
 ### ⚠️ Problem
 SolidJS tracks reactivity via getters. If you destructure props (e.g., `{ user }`), the component loses reactivity because the destructured variable evaluates to a static reference at the time of component execution. When the parent updates the prop, the child component will not react.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```tsx
 import { splitProps } from 'solid-js';
 

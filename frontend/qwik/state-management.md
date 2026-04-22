@@ -40,6 +40,8 @@ export const MyComponent = component$(() => {
 ### ⚠️ Problem
 Objects like WebSockets, DOM elements, Timeouts, or native Maps/Sets cannot be JSON serialized. Putting them into `useStore` breaks Qwik's core serialization engine, causing fatal errors when the server attempts to transmit state to the client for resumability.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```tsx
 import { component$, useSignal, useTask$, useVisibleTask$ } from '@builder.io/qwik';
 

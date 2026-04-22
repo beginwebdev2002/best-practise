@@ -36,6 +36,8 @@ function List(props) {
 ### ⚠️ Problem
 Using standard `.map()` for array rendering creates new DOM nodes for every element when the array changes, even if only one item is added or modified. This causes high CPU overhead and negates SolidJS's fine-grained reactivity.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```tsx
 import { For } from 'solid-js';
 

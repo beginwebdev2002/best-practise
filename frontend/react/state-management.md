@@ -47,6 +47,8 @@ function Form() {
 ### ⚠️ Problem
 Manually managing `isPending` and error states is repetitive and prone to race conditions, especially when multiple requests are fired. It creates unnecessary state overhead.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```tsx
 import { useActionState } from 'react';
 import { saveAction } from './actions';
@@ -95,6 +97,8 @@ function Dropdown() {
 ### ⚠️ Problem
 Putting local, ephemeral UI state (like a dropdown's `isOpen` flag) into a global store causes unnecessary global re-renders, inflates store complexity, and couples isolated UI logic to the global application state.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```tsx
 import { useState } from 'react';
 

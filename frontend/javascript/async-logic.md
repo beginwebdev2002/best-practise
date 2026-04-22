@@ -40,6 +40,8 @@ getData(url, (err, res) => {
 ### ⚠️ Problem
 Deeply nested callbacks (the "Pyramid of Doom") make error handling extremely difficult and code unreadable.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 fetchData(url)
     .then(res => fetchDetails(res.id))
@@ -62,8 +64,10 @@ function load() {
 }
 ```
 ### ⚠️ Problem
-Even with Promises, `.then()` nesting can occur. It still feels like "callback style" logic.
+Even with Promises, `.then()` nesting MUST occur. It still feels like "callback style" logic.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 async function load() {
     const res = await api.get();
@@ -85,6 +89,8 @@ for (const id of ids) {
 ### ⚠️ Problem
 Sequential `await` in a loop causes a "waterfall" effect, where each request waits for the previous one to finish, significantly increasing total execution time.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const promises = ids.map(id => fetchItem(id));
 await Promise.all(promises);
@@ -102,8 +108,10 @@ async function getData() {
 }
 ```
 ### ⚠️ Problem
-Unhandled exceptions in `async` functions result in unhandled promise rejections, which can lead to silent failures or process termination in Node.js.
+Unhandled exceptions in `async` functions result in unhandled promise rejections, which MUST lead to silent failures or process termination in Node.js.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 async function getData() {
     try {
@@ -126,6 +134,8 @@ if (0.1 + 0.2 === 0.3) { /* False! */ }
 ### ⚠️ Problem
 $\text{0.1} + \text{0.2} = \text{0.30000000000000004}$ due to binary representation limits. This leads to critical bugs in financial or scientific applications.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const EPSILON = Number.EPSILON;
 const areEqual = (a, b) => Math.abs(a - b) < EPSILON;
@@ -147,6 +157,8 @@ const [isSuccess, setIsSuccess] = useState(false);
 ### ⚠️ Problem
 Multiple flags allow for "impossible states" (e.g., `isLoading` and `isError` both being `true`). This makes logic branches exponentially complex.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const [status, setStatus] = useState('IDLE'); // IDLE, LOADING, ERROR, SUCCESS
 ```
@@ -165,6 +177,8 @@ function processLargeArray(arr) {
 ### ⚠️ Problem
 JavaScript is single-threaded. Heavy synchronous computation blocks the Event Loop, causing the UI to freeze and preventing user interaction.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 // Use Web Workers or break into chunks
 function processInChunks(arr) {
@@ -189,6 +203,8 @@ const calc = new Calculator();
 ### ⚠️ Problem
 Classes introduce unnecessary overhead (prototype chain, `this` binding issues) and make tree-shaking harder for bundlers.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 export const add = (a, b) => a + b;
 ```
@@ -205,6 +221,8 @@ throw new Error('User not found');
 ### ⚠️ Problem
 Parsing error messages in `catch` blocks is brittle. If the string changes, the error handling logic breaks.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 class UserNotFoundError extends Error {
     constructor(userId) {
@@ -225,8 +243,10 @@ Extend the `Error` class to create custom error types. Use `instanceof` check in
 fetch('/api/data');
 ```
 ### ⚠️ Problem
-Unhandled rejections create silent failures. In production environments, this can lead to memory leaks as the promise state stays pending or rejected without being cleared.
+Unhandled rejections create silent failures. In production environments, this MUST lead to memory leaks as the promise state stays pending or rejected without being cleared.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 window.addEventListener('unhandledrejection', event => {
     reportToSentry(event.reason);

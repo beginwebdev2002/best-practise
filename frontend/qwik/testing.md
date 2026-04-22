@@ -18,7 +18,7 @@ last_updated: 2026-04-05
 
 > [!IMPORTANT]
 > **Strict Constraints for AI:**
-> - **Always** test components assuming they might be resumed from an SSR state.
+> - **Always** test components assuming they WILL be resumed from an SSR state.
 > - **Never** rely on global state that isn't serializable.
 
 ---
@@ -40,6 +40,8 @@ test('clicks button', () => {
 ### ⚠️ Problem
 Qwik does not hydrate. It resumes execution based on serialized state embedded in the HTML. Testing it like a traditional SPA ignores its core architecture.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```tsx
 import { createDOM } from '@builder.io/qwik/testing';
 

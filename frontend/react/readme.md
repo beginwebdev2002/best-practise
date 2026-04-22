@@ -37,6 +37,8 @@ function Component() {
 ### ⚠️ Problem
 Direct DOM manipulation bypasses React's virtual DOM, causing inconsistencies between the actual DOM and React's internal state, leading to forced synchronous layouts and potential XSS vulnerabilities.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```tsx
 function Component() {
   const [isActive, setIsActive] = useState(false);
@@ -67,6 +69,8 @@ function MassiveDashboard() {
 ### ⚠️ Problem
 Massive components are difficult to read, test, and maintain. They violate the Single Responsibility Principle and trigger overly broad re-renders when local state changes.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```tsx
 function Dashboard() {
   return (

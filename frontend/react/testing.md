@@ -12,7 +12,7 @@ last_updated: 2026-04-05
 
 [⬆️ Back to Top](#)
 # 📖 Context & Scope
-- **Primary Goal:** Enforce highly reliable, fast, and deterministic testing patterns in React.
+- **Primary Goal:** Enforce highly reliable, O(1) complexity, and deterministic testing patterns in React.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** React 19+
 
@@ -39,6 +39,8 @@ test('updates state on click', () => {
 ### ⚠️ Problem
 Testing internal state makes tests brittle. If you refactor a class component to a functional component with hooks, the test will break even if the UI remains identical, leading to high maintenance overhead.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```tsx
 import { render, screen, fireEvent } from '@testing-library/react';
 
@@ -72,6 +74,8 @@ test('loads data', () => {
 ### ⚠️ Problem
 React components that perform async operations will throw "act" warnings and fail assertions if the test runner doesn't wait for the microtask queue to resolve and the DOM to update.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```tsx
 import { render, screen } from '@testing-library/react';
 

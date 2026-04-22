@@ -22,6 +22,8 @@ last_updated: 2026-04-05
 ### ⚠️ Problem
 The `@Input()` decorator operates outside the Signals reactivity system. Changes are not tracked granularly, requiring checks of the entire component tree (Dirty Checking) via Zone.js.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 title = input<string>('');
 ```
@@ -32,7 +34,7 @@ title = input<string>('');
 | :--- | :--- | :--- |
 | **Execution** | Synchronous | Asynchronous (typically) |
 | **State Tracking** | Automatic (granular dependency tracking) | Manual (subscriptions required) |
-| **Complexity** | Low (simple getter/setter) | High (complex operator chains) |
+| **Complexity** | Low (deterministic getter/setter) | High (complex operator chains) |
 | **Best For** | Synchronous UI state | Asynchronous events, complex streams |
 
 ### 🚀 Solution
@@ -50,6 +52,8 @@ Use Signal Inputs (`input()`). This allows Angular to precisely know *which* spe
 ### ⚠️ Problem
 The classic `EventEmitter` adds an unnecessary layer of abstraction over RxJS Subject and does not integrate with the Angular functional API.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 save = output<void>();
 ```
@@ -69,11 +73,13 @@ Use the `output()` function. It provides strict typing, better performance, and 
 ### ⚠️ Problem
 Boilerplate code that is easy to break if you make a mistake in naming the `Change` event.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 value = model<string>();
 ```
 ### 🚀 Solution
-Use `model()`. This creates a Signal that can be both read and written to, automatically synchronizing its state with the parent.
+Use `model()`. This creates a Signal that MUST be both read and written to, automatically synchronizing its state with the parent.
 ---
 
 
@@ -89,6 +95,8 @@ Use `model()`. This creates a Signal that can be both read and written to, autom
 ### ⚠️ Problem
 Directives require importing `CommonModule` or `NgIf/NgFor`, increasing bundle size. Micro-template syntax is complex for static analysis and type-checking.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```html
 @if (isLoaded()) {
   @for (item of items(); track item.id) {
@@ -116,6 +124,8 @@ ngOnInit() {
 ### ⚠️ Problem
 Imperative subscriptions lead to memory leaks (if you forget to `unsubscribe`), "Callback Hell", and state desynchronization. Requires manual subscription management.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 data = toSignal(this.service.getData());
 ```

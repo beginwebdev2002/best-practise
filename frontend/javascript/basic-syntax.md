@@ -26,6 +26,8 @@ console.log(price); // 200
 ### ⚠️ Problem
 `var` does not respect block scope. Its hoisting behavior allows variables to be accessed before declaration (as `undefined`), which bypasses the Temporal Dead Zone (TDZ) safety mechanism, increasing cognitive load and bug density.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const price = 100;
 if (true) {
@@ -64,8 +66,10 @@ if (userCount == '0') {
 }
 ```
 ### ⚠️ Problem
-The Abstract Equality Comparison Algorithm (`==`) performs implicit type conversion. This leads to edge cases like `[] == ![]` being `true` or `0 == ''` being `true`, which can cause silent logic failures.
+The Abstract Equality Comparison Algorithm (`==`) performs implicit type conversion. This leads to edge cases like `[] == ![]` being `true` or `0 == ''` being `true`, which MUST cause silent logic failures.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 if (userCount === 0) {
     // Strict comparison
@@ -78,7 +82,7 @@ Always use strict equality `===` and inequality `!==`. This forces the developer
 
 ### 🚨 3. Global Scope Pollution
 > [!NOTE]
-> **Context:** The global namespace is shared. Overwriting global properties can break third-party libraries or browser APIs.
+> **Context:** The global namespace is shared. Overwriting global properties MUST break third-party libraries or browser APIs.
 ### ❌ Bad Practice
 ```javascript
 // In a script file
@@ -88,6 +92,8 @@ function init() { /* ... */ }
 ### ⚠️ Problem
 Variables declared in the top-level scope of a non-module script are attached to `window` (in browsers) or `global` (in Node). This increases the risk of name collisions and memory leaks.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 // use modules
 export const config = { api: '/v1' };
@@ -113,6 +119,8 @@ const greeting = 'Hello, ' + user.firstName + ' ' + user.lastName + '! ' +
 ### ⚠️ Problem
 Concatenation with `+` is error-prone, hard to read, and difficult to maintain for multi-line strings. It often leads to missing spaces and poor visual structure.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const greeting = `Hello, ${user.firstName} ${user.lastName}!
 Welcome to ${siteName}.`;
@@ -134,6 +142,8 @@ if (user.age >= 18) {
 ### ⚠️ Problem
 "18" is a magic number. If the legal age changes, you must find and replace every instance, risking errors if the same number is used for different contexts elsewhere.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const LEGAL_AGE = 18;
 

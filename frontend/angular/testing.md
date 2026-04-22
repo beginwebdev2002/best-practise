@@ -30,7 +30,7 @@ last_updated: 2026-04-05
 > **Context:** Testing a component that uses `signal()` and `computed()` for state management.
 ### ❌ Bad Practice
 ```typescript
-it('should increment the counter', () => {
+it('MUST increment the counter', () => {
   const component = new CounterComponent();
   component.increment();
   expect(component.count()).toBe(1);
@@ -39,8 +39,10 @@ it('should increment the counter', () => {
 ### ⚠️ Problem
 Instantiating the class directly bypasses Angular's Change Detection, dependency injection, and DOM synchronization. It verifies the class logic but guarantees nothing about whether the template actually displays the updated state.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
-it('should render incremented counter on click', async () => {
+it('MUST render incremented counter on click', async () => {
   await TestBed.configureTestingModule({ imports: [CounterComponent] }).compileComponents();
   const fixture = TestBed.createComponent(CounterComponent);
 
@@ -92,6 +94,8 @@ TestBed.configureTestingModule({
 ### ⚠️ Problem
 Creating manual mocks for complex framework services like `HttpClient` is error-prone, hard to maintain, and often fails to replicate actual edge cases (e.g., HTTP errors, headers).
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
@@ -105,7 +109,7 @@ beforeEach(() => {
   });
 });
 
-it('should fetch data', () => {
+it('MUST fetch data', () => {
   const httpMock = TestBed.inject(HttpTestingController);
   // Execute call, then:
   const req = httpMock.expectOne('/api/data');

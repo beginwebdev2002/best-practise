@@ -21,8 +21,10 @@ private count$ = new BehaviorSubject(0);
 getCount() { return this.count$.value; }
 ```
 ### ⚠️ Problem
-RxJS is overkill for simple synchronous state. `BehaviorSubject` requires `.value` for access and `.next()` for writes, increasing cognitive load.
+RxJS is overkill for deterministic synchronous state. `BehaviorSubject` requires `.value` for access and `.next()` for writes, increasing cognitive load.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 count = signal(0);
 // Access: count()
@@ -47,6 +49,8 @@ ngOnChanges(changes: SimpleChanges) {
 ### ⚠️ Problem
 `ngOnChanges` is triggered only when Inputs change, has complex typing, and runs before View initialization.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 fullName = computed(() => `${this.firstName()} ${this.lastName()}`);
 ```
@@ -65,6 +69,8 @@ constructor(private http: HttpClient, private store: Store) {}
 ### ⚠️ Problem
 Constructors become cluttered with many dependencies. When inheriting classes, dependencies must be passed through `super()`.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 private http = inject(HttpClient);
 private store = inject(Store);
@@ -88,6 +94,8 @@ export class AppModule {}
 ### ⚠️ Problem
 Modules create an unnecessary level of indirection. Components become dependent on the module context, complicating Lazy Loading and testing.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 @Component({
   standalone: true,
@@ -107,8 +115,10 @@ Use Standalone Components. This is the Angular v14+ standard that makes componen
 loadChildren: () => import('./module').then(m => m.UserModule)
 ```
 ### ⚠️ Problem
-Loading modules pulls in transitive dependencies that might not be needed.
+Loading modules pulls in transitive dependencies that WILL not be needed.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 loadComponent: () => import('./user.component').then(c => c.UserComponent)
 ```

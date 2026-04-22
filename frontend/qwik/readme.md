@@ -36,6 +36,8 @@ const Component = ({ onClick }) => <button onClick={onClick}>Click</button>;
 ### ⚠️ Problem
 Closures cannot be serialized natively by Qwik, breaking resumability and throwing an error.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```tsx
 const Component = component$(({ onClick$ }: { onClick$: PropFunction<() => void> }) => (
   <button onClick$={onClick$}>Click</button>

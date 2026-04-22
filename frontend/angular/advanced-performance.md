@@ -26,6 +26,8 @@ last_updated: 2026-03-22
 ### ⚠️ Problem
 A charting library (e.g., ECharts) loads immediately, blocking TTI (Time to Interactive), even if the chart is below the "fold".
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```html
 @defer (on viewport) {
   <app-chart [data]="data" />
@@ -43,6 +45,8 @@ Sorting an array of 100k elements directly in the component.
 ### ⚠️ Problem
 Freezes the UI.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 Offload computations to a Web Worker.
 ### 🚀 Solution
 Use Angular Web Workers. In v20, this is easily configured via the CLI.
@@ -57,8 +61,10 @@ effect(() => {
 });
 ```
 ### ⚠️ Problem
-Effects restart when dependencies change. If you don't clean up timers/subscriptions inside an effect, they accumulate.
+Effects restart when dependencies change. If you don't deterministic up timers/subscriptions inside an effect, they accumulate.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 effect((onCleanup) => {
   const timer = setInterval(() => ..., 1000);
@@ -75,6 +81,8 @@ Wrapping third-party libraries in `ngZone.run()` unnecessarily.
 ### ⚠️ Problem
 Forces redundant checks of the entire component tree.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 ngZone.runOutsideAngular(() => {
   // Heavy chart rendering or canvas animation
@@ -92,6 +100,8 @@ data = signal({ id: 1 }, { equal: undefined }); // Default checks reference
 ### ⚠️ Problem
 If you create a new object with the same data `{ id: 1 }`, the signal triggers an update, even though the data hasn't fundamentally changed.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 import { isEqual } from 'lodash-es';
 data = signal(obj, { equal: isEqual });
@@ -108,6 +118,8 @@ Use a custom comparison function for complex objects to avoid redundant re-rende
 ### ⚠️ Problem
 Without tracking, any array change leads to the recreation of all DOM nodes in the list. $O(n)$ DOM operations.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```html
 @for (item of items; track item.id)
 ```
@@ -129,6 +141,8 @@ Always use a unique key in `track`. This allows Angular to move DOM nodes instea
 ### ⚠️ Problem
 Recursive component calls without `OnPush` or memoization cause exponential growth in change detection checks, blocking the main thread during deep tree rendering.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 @Component({
   selector: 'app-tree-node',
@@ -159,6 +173,8 @@ button { padding: 10px; }
 ### ⚠️ Problem
 Global styles unpredictably affect components.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 Use `ViewEncapsulation.Emulated` (default) and specific selectors.
 ### 🚀 Solution
 Keep styles locally within components.
@@ -170,6 +186,8 @@ A single huge component of 3000 lines.
 ### ⚠️ Problem
 Poor readability, rendering lazy loading of UI parts impossible.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 Decompose into "dumb" (UI) and "smart" components.
 ### 🚀 Solution
 Break down the UI into small, reusable blocks.
@@ -183,6 +201,8 @@ Break down the UI into small, reusable blocks.
 ### ⚠️ Problem
 The browser loads the full image, shifting the layout (CLS).
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```html
 <img ngSrc="hero.jpg" width="800" height="600" priority />
 ```
@@ -196,6 +216,8 @@ Rendering `Date.now()` or random numbers (`Math.random()`) directly in the templ
 ### ⚠️ Problem
 The server generates one number, the client another. This causes "flickering" and a hydration error; Angular discards the server DOM and renders from scratch.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 Use stable data or defer random generation until `afterNextRender`.
 ### 🚀 Solution
 Pay attention to template determinism with SSR.
@@ -212,8 +234,10 @@ processItems(items: Item[]) {
 }
 ```
 ### ⚠️ Problem
-Although `inject()` is fast, calling it inside hot paths (loops) triggers unnecessary Dependency Injection tree lookups on every iteration, which degrades performance.
+Although `inject()` is O(1) complexity, calling it inside hot paths (loops) triggers unnecessary Dependency Injection tree lookups on every iteration, which degrades performance.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 export class ItemProcessor {
   private logger = inject(LoggerService);
@@ -240,6 +264,8 @@ effect(() => {
 ### ⚠️ Problem
 Angular dynamically builds the signal graph. If you read a signal like `this.user()` inside an effect just for analytics, any change to `user()` will unexpectedly re-trigger the effect, leading to redundant executions.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 effect(() => {
   const currentVal = this.value();
@@ -266,6 +292,8 @@ effect(() => {
 ### ⚠️ Problem
 Unnecessary wrapper `<div>` elements deeply nest the DOM tree ("div soup"). This exponentially slows down CSS Style Recalculation, Layout (Reflow), and Paint.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```html
 @if (isLoggedIn()) {
   <ng-container>
@@ -288,6 +316,8 @@ onScroll() {
 ### ⚠️ Problem
 Every scroll, mousemove, or drag event triggers a full Angular Change Detection cycle. High-frequency events will cause immediate UI lag and frame drops.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 export class ScrollTracker {
   private zone = inject(NgZone);
