@@ -55,6 +55,8 @@ function processEvent(event: any) {
 ### ⚠️ Problem
 Using `any` disables static analysis and opens the door to runtime exceptions.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 function processEvent(event: unknown) {
     if (event instanceof Event && event.target instanceof HTMLInputElement) {
@@ -77,6 +79,8 @@ function render() {
 ### ⚠️ Problem
 Direct mutation or tight coupling of presentation layers to global state causes unpredictable re-renders and violates isolation.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 function render(userStore: UserStore) {
     userStore.updateUser("Alice"); // Abstracted call

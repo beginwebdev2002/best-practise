@@ -38,6 +38,8 @@ function UserList({ users }) {
 ### ⚠️ Problem
 Adding manual `useMemo` and `useCallback` clutters the codebase, introduces dependency array bugs, and makes code harder to refactor.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```tsx
 function UserList({ users }) {
   const sortedUsers = users.sort();
@@ -56,7 +58,7 @@ function UserList({ users }) {
 | Feature | Manual Memoization (`useMemo`, `useCallback`) | React Compiler |
 | :--- | :--- | :--- |
 | **Developer Experience** | High cognitive load (dependency arrays) | Zero config (automatic) |
-| **Code Clarity** | Cluttered with hooks | Clean and declarative |
+| **Code Clarity** | Cluttered with hooks | deterministic and declarative |
 | **Bug Risk** | High (stale closures, missing deps) | Low (compiler-verified) |
 | **Optimization** | Component-level only | Structural and deep |
 
@@ -84,6 +86,8 @@ function Profile({ profilePromise }) {
 ### ⚠️ Problem
 Using `useEffect` to unwrap promises leads to "waterfalls", unnecessary rendering cycles, and race conditions.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```tsx
 import { use, Suspense } from 'react';
 

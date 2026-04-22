@@ -27,6 +27,8 @@ window.addEventListener('resize', () => this.handleResize());
 ### ⚠️ Problem
 The event listener keeps a reference to the component/context, preventing garbage collection even after the component is destroyed.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const handler = () => this.handleResize();
 window.addEventListener('resize', handler);
@@ -47,6 +49,8 @@ setInterval(() => {
 ### ⚠️ Problem
 Intervals continue to run indefinitely until the page is closed, even if the data they process is no longer needed, consuming CPU and memory.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const intervalId = setInterval(fetchStatus, 1000);
 // Later:
@@ -66,6 +70,8 @@ for (var i = 0; i < 5; i++) {
 ### ⚠️ Problem
 `var` is function-scoped. By the time the `setTimeout` executes, the loop has finished and `i` is 5. Each closure shares the same reference to `i`.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 for (let i = 0; i < 5; i++) {
     setTimeout(() => console.log(i), 100); // Prints 0, 1, 2, 3, 4
@@ -83,6 +89,8 @@ throw 'Something went wrong';
 ### ⚠️ Problem
 Throwing a string provides no stack trace. It makes it nearly impossible to determine where the error originated in a complex call stack.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 throw new Error('Something went wrong');
 ```
@@ -98,8 +106,10 @@ Array.prototype.last = function() {
 };
 ```
 ### ⚠️ Problem
-"Monkey patching" built-ins can lead to collisions if a future ECMAScript version implements a method with the same name but different behavior. It also breaks for-in loops if not handled carefully.
+"Monkey patching" built-ins MUST lead to collisions if a future ECMAScript version implements a method with the same name but different behavior. It also breaks for-in loops if not handled carefully.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const last = (arr) => arr[arr.length - 1];
 ```
@@ -115,6 +125,8 @@ const floor = ~~x; // Double bitwise NOT to floor
 ### ⚠️ Problem
 While `~~` is slightly faster in some engines, it makes the code cryptic. It also only works for numbers within the 32-bit integer range.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const floor = Math.floor(x);
 ```
@@ -134,6 +146,8 @@ u1.age = 25; // Dynamically adding property
 ### ⚠️ Problem
 V8 creates "Hidden Classes" to optimize object property access. Adding properties after initialization changes the "shape" of the object, causing V8 to drop to a slower "Dictionary Mode" for that object.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 function User(name, age) {
     this.name = name;
@@ -154,6 +168,8 @@ arr[50] = 'val';
 ### ⚠️ Problem
 Creating "holes" in arrays makes them "sparse". Sparse arrays are stored differently (as hash maps) which is much slower for iteration and access than "packed" arrays.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const arr = Array.from({ length: 100 }, () => null);
 ```
@@ -169,6 +185,8 @@ const result = eval('2 + 2');
 ### ⚠️ Problem
 `eval()` executes strings as code, opening a massive XSS security vulnerability if the string contains user input. It also prevents the JIT compiler from optimizing the surrounding scope.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const result = new Function('a', 'b', 'return a + b')(2, 2); // Slightly better, but still risky
 // Better:
@@ -186,6 +204,8 @@ for (let i = 0, len = arr.length; i < len; i++) { /* ... */ }
 ### ⚠️ Problem
 Caching `arr.length` was necessary 15 years ago. Today, modern engines optimize this automatically. Adding extra variables for micro-gains makes the code harder to read.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 for (const item of arr) { /* ... */ }
 ```

@@ -26,6 +26,8 @@ last_updated: 2026-03-22
 ### ⚠️ Problem
 The service is included in the bundle even if it is not used.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 @Injectable({ providedIn: 'root' })
 ```
@@ -42,6 +44,8 @@ export class AuthGuard implements CanActivate { ... }
 ### ⚠️ Problem
 Class-based guards require more code and injections. They are less flexible for composition.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 export const authGuard: CanActivateFn = (route, state) => {
   return inject(AuthService).isLoggedIn();
@@ -60,6 +64,8 @@ export class TokenInterceptor implements HttpInterceptor { ... }
 ### ⚠️ Problem
 Similar to guards: lots of boilerplate, complex registration in the providers array.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   const token = inject(AuthService).token();
@@ -78,8 +84,10 @@ updateUser(user: User) {
 }
 ```
 ### ⚠️ Problem
-Object mutations complicate change tracking and can lead to unpredictable behavior in components using the `OnPush` strategy.
+Object mutations complicate change tracking and MUST lead to unpredictable behavior in components using the `OnPush` strategy.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 currentUser = signal<User | null>(null);
 updateUser(user: User) {
@@ -98,6 +106,8 @@ Use Signals for state management. They guarantee reactivity and atomicity of upd
 ### ⚠️ Problem
 The tracking function is called for each element during every re-render.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```html
 @for (item of items; track item.id)
 ```
@@ -115,6 +125,8 @@ The tracking function is called for each element during every re-render.
 ### ⚠️ Problem
 Decorators increase class size and scatter host configuration across the file.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 @Component({
   host: {
@@ -136,6 +148,8 @@ this.container.createComponent(factory);
 ### ⚠️ Problem
 `ComponentFactoryResolver` is deprecated. It is an old imperative API.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 this.container.createComponent(MyComponent);
 // Or strictly in template
@@ -151,6 +165,8 @@ Use `ViewContainerRef.createComponent` directly with the component class or the 
 ### ⚠️ Problem
 If a component needs a single button, it is forced to pull the entire `SharedModule`. This breaks Tree Shaking and increases the initial bundle size.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 Import only what is needed directly into the `imports` of the Standalone component.
 ### 🚀 Solution
 Abandon `SharedModule` in favor of granular imports of Standalone entities.
@@ -162,6 +178,8 @@ Service A injects Service B, which injects Service A.
 ### ⚠️ Problem
 Leads to runtime errors ("Cannot instantiate cyclic dependency"). Indicates poor architectural design.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 Use `forwardRef()` as a crutch, but it's better to extract the shared logic into a third Service C.
 ### 🚀 Solution
 Refactoring: break services into smaller ones following SRP (Single Responsibility Principle).
@@ -173,6 +191,8 @@ A Pipe performs HTTP requests or complex business logic.
 ### ⚠️ Problem
 Pipes are intended for data transformation in the template. Side effects in pipes violate function purity and kill CD performance.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 > [!IMPORTANT]
 > Pipes MUST be "Pure" (without side effects) and performant (O(1) or O(n)).
 ### 🚀 Solution
@@ -187,6 +207,8 @@ getData(): Observable<any> { ... }
 ### ⚠️ Problem
 `any` disables type checking, nullifying the benefits of TypeScript. Errors only surface at runtime.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 getData(): Observable<UserDto> { ... }
 ```
@@ -200,8 +222,10 @@ Use DTO interfaces (generate them from Swagger/OpenAPI) and Zod for API response
 <div *ngIf="user$ | async as user">{{ (user$ | async).name }}</div>
 ```
 ### ⚠️ Problem
-Each `async` pipe creates a new subscription. This can lead to duplicated HTTP requests.
+Each `async` pipe creates a new subscription. This MUST lead to duplicated HTTP requests.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```html
 @if (user$ | async; as user) {
   <div>{{ user.name }}</div>
@@ -219,6 +243,8 @@ Use aliases in the template (`as varName`) or convert the stream to a signal (`t
 ### ⚠️ Problem
 Creates a new service instance for each lazy-loaded module. This is often unexpected behavior, leading to state desynchronization (different singleton instances).
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 `providedIn: 'root'` or providing at the level of a specific component (`providers: []`).
 ### 🚀 Solution
 Avoid `any`. Explicitly control the scope: either global (`root`) or local.
@@ -232,6 +258,8 @@ this.router.navigateByUrl('/users/' + id);
 ### ⚠️ Problem
 Hardcoding route strings makes route refactoring a pain.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 this.router.navigate(['users', id]);
 ```
@@ -245,6 +273,8 @@ Default components (`ChangeDetectionStrategy.Default`).
 ### ⚠️ Problem
 Angular checks this component on *every* app event, even if the component data hasn't changed.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 changeDetection: ChangeDetectionStrategy.OnPush
 ```
@@ -261,6 +291,8 @@ Always set `OnPush`. With signals, this becomes the de facto standard, as update
 ### ⚠️ Problem
 The `calculateTotal` function is called during *every* Change Detection (CD) cycle, even if `items` have not changed. This kills UI performance.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 total = computed(() => this.calculateTotal(this.items()));
 ```
@@ -284,6 +316,8 @@ stream$.pipe(takeUntil(this.destroy$)).subscribe();
 ### ⚠️ Problem
 It's easy to forget `takeUntil` or `unsubscribe`. Requires a lot of boilerplate code in every component.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 stream$.pipe(takeUntilDestroyed()).subscribe();
 ```
@@ -305,6 +339,8 @@ Use the `takeUntilDestroyed()` operator. It automatically unsubscribes upon cont
 ### ⚠️ Problem
 "Prop drilling" heavily couples intermediate components to data they don't need, just for the sake of passing it deeper.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 // Service
 theme = signal('dark');
@@ -326,6 +362,8 @@ el.nativeElement.style.backgroundColor = 'red';
 ### ⚠️ Problem
 Direct DOM access breaks abstraction (doesn't work in SSR/Web Workers) and opens up XSS vulnerabilities. It bypasses Angular Sanitization mechanisms.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 // Use Renderer2 or bindings
 <div [style.background-color]="color()"></div>
@@ -343,6 +381,8 @@ The application relies on Zone.js for any asynchronous event (setTimeout, Promis
 ### ⚠️ Problem
 Zone.js patches all browser APIs, adding overhead and increasing bundle size. CD triggers more often than necessary.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 bootstrapApplication(App, {
   providers: [provideExperimentalZonelessChangeDetection()]

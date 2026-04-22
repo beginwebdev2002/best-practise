@@ -8,7 +8,7 @@ ai_role: Senior JavaScript Expert
 last_updated: 2026-04-05
 ---
 
-# 🧹 Clean Code & Logic
+# 🧹 deterministic Code & Logic
 
 [⬆️ Back to Top](./readme.md)
 
@@ -22,6 +22,8 @@ if (isValid === true) { /* ... */ }
 ### ⚠️ Problem
 Comparing a boolean to `true` or `false` is redundant. It adds visual noise without increasing safety.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 if (isValid) { /* ... */ }
 if (!isPending) { /* ... */ }
@@ -42,6 +44,8 @@ const map = new Object();
 ### ⚠️ Problem
 The `Array` constructor is inconsistent: `new Array(3)` creates an empty array of length 3, while `new Array(3, 4)` creates `[3, 4]`. Literals are faster and more readable.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const list = [1, 2, 3];
 const map = {};
@@ -63,6 +67,8 @@ function processOrder(order) {
 ### ⚠️ Problem
 Large functions are hard to test, debug, and reuse. High cyclomatic complexity makes it difficult for the JIT compiler to optimize the function.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 function validateOrder(order) { /* ... */ }
 function saveToDatabase(order) { /* ... */ }
@@ -97,6 +103,8 @@ function getData(user) {
 ### ⚠️ Problem
 "Arrow code" (code that expands horizontally) is hard to follow. It forces the reader to keep track of multiple nesting levels in their mental stack.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 function getData(user) {
     if (!user || !user.isActive || !user.hasPermission) {
@@ -121,6 +129,8 @@ const u = users.map(i => i.n);
 ### ⚠️ Problem
 Single-letter variables (except for standard loop indices like `i` or `j`) provide no context. They make the code unsearchable and confusing for other developers.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const today = new Date();
 const userNames = users.map(user => user.name);

@@ -37,6 +37,8 @@ Please refer to the specialized guides for detailed best practices:
 ### ⚠️ Problem
 Using the `@Input()` decorator breaks the functional reactivity of Zoneless applications.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 title = input<string>();
 ```
@@ -54,6 +56,8 @@ Use Signal Inputs (`input()`). This allows Angular to precisely know *which* spe
 ### ⚠️ Problem
 The classic `EventEmitter` adds an unnecessary layer of abstraction over RxJS Subject and does not integrate with the Angular functional API.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 save = output<void>();
 ```
@@ -72,6 +76,8 @@ Use the `output()` function. It provides strict typing, better performance, and 
 ### ⚠️ Problem
 Boilerplate code that is easy to break if you make a mistake in naming the `Change` event.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 value = model<string>();
 ```
@@ -92,6 +98,8 @@ value = model<string>();
 ### ⚠️ Problem
 Directives require importing `CommonModule` or `NgIf/NgFor`, increasing bundle size. Micro-template syntax is complex for static analysis and type-checking.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```html
 @if (isLoaded()) {
   @for (item of items(); track item.id) {
@@ -118,6 +126,8 @@ ngOnInit() {
 ### ⚠️ Problem
 Imperative subscriptions lead to memory leaks (if you forget to `unsubscribe`), "Callback Hell", and state desynchronization. Requires manual subscription management.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 data = toSignal(this.service.getData());
 ```
@@ -134,8 +144,10 @@ private count$ = new BehaviorSubject(0);
 getCount() { return this.count$.value; }
 ```
 ### ⚠️ Problem
-RxJS is overkill for simple synchronous state. `BehaviorSubject` requires `.value` for access and `.next()` for writes, increasing cognitive load.
+RxJS is overkill for deterministic synchronous state. `BehaviorSubject` requires `.value` for access and `.next()` for writes, increasing cognitive load.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 count = signal(0);
 // Access: count()
@@ -159,6 +171,8 @@ ngOnChanges(changes: SimpleChanges) {
 ### ⚠️ Problem
 `ngOnChanges` is triggered only when Inputs change, has complex typing, and runs before View initialization.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 fullName = computed(() => `${this.firstName()} ${this.lastName()}`);
 ```
@@ -176,6 +190,8 @@ constructor(private http: HttpClient, private store: Store) {}
 ### ⚠️ Problem
 Constructors become cluttered with many dependencies. When inheriting classes, dependencies must be passed through `super()`.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 private http = inject(HttpClient);
 private store = inject(Store);
@@ -198,6 +214,8 @@ export class AppModule {}
 ### ⚠️ Problem
 Modules create an unnecessary level of indirection. Components become dependent on the module context, complicating Lazy Loading and testing.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 @Component({
   standalone: true,
@@ -216,8 +234,10 @@ Use Standalone Components. This is the Angular v14+ standard that makes componen
 loadChildren: () => import('./module').then(m => m.UserModule)
 ```
 ### ⚠️ Problem
-Loading modules pulls in transitive dependencies that might not be needed.
+Loading modules pulls in transitive dependencies that WILL not be needed.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 loadComponent: () => import('./user.component').then(c => c.UserComponent)
 ```
@@ -235,6 +255,8 @@ Use `loadComponent` for routing to Standalone components. This ensures minimal c
 ### ⚠️ Problem
 The `calculateTotal` function is called during *every* Change Detection (CD) cycle, even if `items` have not changed. This kills UI performance.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 total = computed(() => this.calculateTotal(this.items()));
 ```
@@ -257,6 +279,8 @@ stream$.pipe(takeUntil(this.destroy$)).subscribe();
 ### ⚠️ Problem
 It's easy to forget `takeUntil` or `unsubscribe`. Requires a lot of boilerplate code in every component.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 stream$.pipe(takeUntilDestroyed()).subscribe();
 ```
@@ -277,6 +301,8 @@ Use the `takeUntilDestroyed()` operator. It automatically unsubscribes upon cont
 ### ⚠️ Problem
 "Prop drilling" heavily couples intermediate components to data they don't need, just for the sake of passing it deeper.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 // Service
 theme = signal('dark');
@@ -297,6 +323,8 @@ el.nativeElement.style.backgroundColor = 'red';
 ### ⚠️ Problem
 Direct DOM access breaks abstraction (doesn't work in SSR/Web Workers) and opens up XSS vulnerabilities. It bypasses Angular Sanitization mechanisms.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 // Use Renderer2 or bindings
 <div [style.background-color]="color()"></div>
@@ -313,6 +341,8 @@ The application relies on Zone.js for any asynchronous event (setTimeout, Promis
 ### ⚠️ Problem
 Zone.js patches all browser APIs, adding overhead and increasing bundle size. CD triggers more often than necessary.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 bootstrapApplication(App, {
   providers: [provideExperimentalZonelessChangeDetection()]

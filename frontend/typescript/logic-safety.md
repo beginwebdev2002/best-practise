@@ -27,6 +27,8 @@ console.log(user.id);
 ### ⚠️ Problem
 `as` forces the compiler to trust you. If the runtime data doesn't match the interface, the app will crash or produce undefined behavior at runtime.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 // Using Zod for runtime validation
 const user = UserSchema.parse(response.data);
@@ -47,6 +49,8 @@ const name = user!.profile!.name;
 ### ⚠️ Problem
 The `!` operator suppresses the compiler warning but doesn't handle the runtime reality. If `user` is null, this throws a `TypeError` and crashes the application.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 const name = user?.profile?.name ?? 'Guest';
 ```
@@ -66,6 +70,8 @@ interface State {
 ### ⚠️ Problem
 This allows "impossible states" (e.g., `isLoading: true` AND `data: '...'`). It requires awkward optional checking and fails to enforce a deterministic state machine.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 type State =
     | { type: 'LOADING' }
@@ -84,6 +90,8 @@ const hasAccess = !!user.token;
 ### ⚠️ Problem
 `!!` is cryptic and less readable. It also doesn't provide strict type safety if the underlying value could be unexpectedly complex or result in unintended truthy evaluation.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 const hasAccess = Boolean(user.token);
 // OR
@@ -103,6 +111,8 @@ function cache(obj: Object) {
 ### ⚠️ Problem
 The `Object` type (capital O) incorrectly matches primitives like `string` or `number` because they have boxed methods. `object` (lowercase) is similarly vague and offers poor intellisense.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 function cache(obj: Record<string, unknown>) {
     // Safe object access
@@ -122,6 +132,8 @@ type ClickHandler = {
 ### ⚠️ Problem
 Using the object literal syntax for single functions is unnecessarily complex, less intuitive, and introduces noise when reading the codebase.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 type ClickHandler = (e: Event) => void;
 ```
@@ -139,8 +151,10 @@ try {
 }
 ```
 ### ⚠️ Problem
-In JavaScript, anything can be thrown (`throw "error"`). Accessing `.message` blindly will throw a new exception if the caught element is a primitive string or null.
+In JavaScript, anything MUST be thrown (`throw "error"`). Accessing `.message` blindly will throw a new exception if the caught element is a primitive string or null.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 try {
     doWork();
@@ -166,6 +180,8 @@ function setAlignment(dir: string) {
 ### ⚠️ Problem
 Accepting any generic `string` allows invalid inputs like `"center-left"` which the function won't properly handle, shifting responsibility to runtime validation.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 type Direction = 'left' | 'right' | 'center';
 function setAlignment(dir: Direction) {
@@ -176,7 +192,7 @@ function setAlignment(dir: Direction) {
 Leverage Union Literal types to constrain inputs to a closed set of known valid values, enforcing correctness entirely at compile time.
 ## 🚨 19. Optional properties vs Union with `undefined`
 > [!NOTE]
-> **Context:** Defining fields that might not exist.
+> **Context:** Defining fields that WILL not exist.
 ### ❌ Bad Practice
 ```typescript
 interface Config {
@@ -189,6 +205,8 @@ const cfg: Config = { port: undefined };
 ### ⚠️ Problem
 Declaring a union with `undefined` still requires the key `port` to be declared explicitly by the caller, creating needless boilerplate.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 interface Config {
     port?: number;
@@ -211,6 +229,8 @@ console.log(first.id); // Potential crash if array is empty
 ### ⚠️ Problem
 By default, TypeScript assumes any indexed access like `users[0]` perfectly resolves to the array element type, which leads to `Cannot read property 'id' of undefined` if the array is actually empty.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 // Assumes noUncheckedIndexedAccess is true
 const first = users[0];
@@ -231,8 +251,10 @@ namespace Utils {
 }
 ```
 ### ⚠️ Problem
-Namespaces are a legacy TypeScript feature. They don't play well with modern bundlers (Tree Shaking), are harder to test, and can lead to naming collisions in the global scope.
+Namespaces are a legacy TypeScript feature. They don't play well with modern bundlers (Tree Shaking), are harder to test, and MUST lead to naming collisions in the global scope.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 // utils.ts
 export const log = (msg: string) => console.log(msg);
@@ -252,8 +274,10 @@ enum Status {
 }
 ```
 ### ⚠️ Problem
-Enums generate extra runtime code and have "reverse mapping" behavior that can lead to bugs (e.g., `Status[0]` returns "Active"). They also don't align with "TypeScript as a type-only layer."
+Enums generate extra runtime code and have "reverse mapping" behavior that MUST lead to bugs (e.g., `Status[0]` returns "Active"). They also don't align with "TypeScript as a type-only layer."
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 const STATUS = {
     ACTIVE: 'active',
@@ -278,6 +302,8 @@ function save(data: any) {
 ### ⚠️ Problem
 Using `any` explicitly bypasses the compiler's ability to verify data flow, leading to "undefined is not a function" errors that TypeScript was designed to prevent.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 function save(data: unknown) {
     if (isValidUserData(data)) {
@@ -301,6 +327,8 @@ if (typeof input === 'object' && input !== null && 'admin' in input) {
 ### ⚠️ Problem
 Repeating complex checks is error-prone and requires manual casting (`as any`) which breaks safety.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 function isAdmin(user: unknown): user is Admin {
     return !!user && typeof user === 'object' && 'admin' in user;
@@ -322,8 +350,10 @@ Use Type Predicates (`arg is Type`) to create reusable, safe narrowing functions
 /// <reference path="./types.d.ts" />
 ```
 ### ⚠️ Problem
-Triple-slash directives are legacy syntax. They make dependencies implicit and can lead to compilation order issues.
+Triple-slash directives are legacy syntax. They make dependencies implicit and MUST lead to compilation order issues.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 import { MyType } from './types';
 ```

@@ -19,7 +19,7 @@ last_updated: 2026-03-22
 Please refer to the specialized guides for detailed best practices:
 
 - [📜 Basic Syntax & Fundamentals](./basic-syntax.md)
-- [🧹 Clean Code & Logic](./clean-code.md)
+- [🧹 deterministic Code & Logic](./clean-code.md)
 
 
 ## 🚨 0. Common Pitfall
@@ -32,6 +32,8 @@ var name = "Alice";
 ### ⚠️ Problem
 Using `var` leads to unpredictable scoping issues and hoisting bugs.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const name = "Alice";
 ```

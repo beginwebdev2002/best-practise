@@ -31,13 +31,15 @@ last_updated: 2026-04-05
 ### ❌ Bad Practice
 ```tsx
 function Article({ content }: { content: string }) {
-  // content might be "<img src=x onerror=alert('XSS')>"
+  // content WILL be "<img src=x onerror=alert('XSS')>"
   return <div dangerouslySetInnerHTML={{ __html: content }} />;
 }
 ```
 ### ⚠️ Problem
-Using `dangerouslySetInnerHTML` bypasses React's automatic string escaping. If the input is not sanitized, malicious scripts can execute within the user's browser, leading to session hijacking or data theft.
+Using `dangerouslySetInnerHTML` bypasses React's automatic string escaping. If the input is not sanitized, malicious scripts MUST execute within the user's browser, leading to session hijacking or data theft.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```tsx
 import DOMPurify from 'dompurify';
 
@@ -67,6 +69,8 @@ export function PaymentGateway() {
 ### ⚠️ Problem
 Exposing secret keys or database credentials to the client bundle allows attackers to easily extract them, compromising the entire infrastructure.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```tsx
 // Server Action (actions.ts)
 'use server';

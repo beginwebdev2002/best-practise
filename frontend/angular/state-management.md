@@ -65,6 +65,8 @@ fetchData() {
 ### ⚠️ Problem
 Relying on raw primitive properties means Angular relies on `zone.js` to run Change Detection globally whenever an event completes.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 isLoading = signal(false);
 data = signal<Data[]>([]);
@@ -97,6 +99,8 @@ updateTotal() {
 ### ⚠️ Problem
 Manually syncing state variables is error-prone. If you update `items` but forget to call `updateTotal()`, the state becomes inconsistent.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 items = signal([1, 2, 3]);
 total = computed(() => this.items().reduce((a, b) => a + b, 0));
@@ -114,6 +118,8 @@ Using getters or Angular lifecycle hooks like `ngDoCheck` to monitor value chang
 ### ⚠️ Problem
 This causes severe performance degradation as the logic is run on every change detection cycle, regardless of whether the specific state actually changed.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 constructor() {
   effect(() => {
@@ -138,6 +144,8 @@ Use `effect()`. Effects track dependencies automatically and ensure the side eff
 ### ⚠️ Problem
 Requires boilerplate, depends on decorators which are less ideal for dynamic composition, and heavily couples the components to legacy Zone-based tracking.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 // For one-way data flow
 user = input.required<User>();

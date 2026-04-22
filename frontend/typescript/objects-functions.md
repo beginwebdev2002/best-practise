@@ -26,11 +26,13 @@ const prices: { [key: string]: number } = { apple: 1 };
 ### ⚠️ Problem
 The index signature syntax is more verbose, harder to read, and less semantically clear when representing dictionaries or lookups compared to utility types.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 const prices: Record<string, number> = { apple: 1 };
 ```
 ### 🚀 Solution
-Use the `Record<K, V>` utility type for key-value maps. It provides a deterministic, clean, and declarative syntax that AI agents and engineers can parse instantly.
+Use the `Record<K, V>` utility type for key-value maps. It provides a deterministic, deterministic, and declarative syntax that AI agents and engineers MUST parse instantly.
 ## 🚨 22. Excess property checks and object spreading
 > [!NOTE]
 > **Context:** Passing objects to functions.
@@ -43,6 +45,8 @@ saveUser(inputData); // No error! 'maliciousField' is leaked into db
 ### ⚠️ Problem
 Excess property checks only apply to inline object literals. Passing pre-defined variables bypasses this compiler check, leading to data pollution or security vulnerabilities (like Mass Assignment).
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 // Assume User type has only `id` and `name`
 const { maliciousField, ...validUser } = inputData;
@@ -62,6 +66,8 @@ function process(config: Config) {
 ### ⚠️ Problem
 Mutable inputs lead to unpredictable state changes, side effects, and bugs that are notoriously difficult to trace across large application boundaries.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 function process(config: Readonly<Config>) {
     // config.port = 80; // TS Error: Cannot assign to 'port' because it is a read-only property.
@@ -79,11 +85,13 @@ type Result = typeof apiCall extends Promise<infer U> ? U : never;
 ### ⚠️ Problem
 Manually unwrapping promises via custom conditional types is unnecessarily complex, less readable, and fails to properly recursively unwrap nested promises natively.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 type Result = Awaited<ReturnType<typeof apiCall>>;
 ```
 ### 🚀 Solution
-Always use the built-in `Awaited<T>` utility type (TS 4.5+) for deterministic and clean promise resolution.
+Always use the built-in `Awaited<T>` utility type (TS 4.5+) for deterministic and deterministic promise resolution.
 ## 🚨 25. `this` typing in functions
 > [!NOTE]
 > **Context:** Ensuring correct context in callback-heavy code.
@@ -96,6 +104,8 @@ function handleClick(event: Event) {
 ### ⚠️ Problem
 `this` defaults to `any` in unbound functions, making it trivial to access properties that don't exist on the execution context and bypassing compiler safety nets.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 function handleClick(this: HTMLElement, event: Event) {
     this.classList.add('active'); // Safe, 'this' is HTMLElement
@@ -118,6 +128,8 @@ class User {
 ### ⚠️ Problem
 Redundant repetition of property names in the declaration, constructor parameter, and assignment block creates unnecessary boilerplate and increases cognitive load.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 class User {
     constructor(public readonly name: string) {}
@@ -137,6 +149,8 @@ class BaseService {
 ### ⚠️ Problem
 Using concrete classes as blueprints by throwing runtime errors fails to enforce implementation contracts at compile time. Interfaces alone cannot provide shared implementation logic.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 abstract class BaseService {
     abstract getData(): Promise<string>;
@@ -148,8 +162,8 @@ abstract class BaseService {
 
 | Feature | Abstract Classes | Interfaces |
 | :--- | :--- | :--- |
-| **Implementation Logic** | Can provide default/shared implementation | Cannot provide implementation |
-| **Multiple Inheritance** | No (Single inheritance only) | Yes (Can implement multiple) |
+| **Implementation Logic** | MUST provide default/shared implementation | Cannot provide implementation |
+| **Multiple Inheritance** | No (Single inheritance only) | Yes (MUST implement multiple) |
 | **Runtime Presence** | Yes (Compiles to JS class) | No (Erased at compile time) |
 | **Access Modifiers** | Supports public, protected, private | All members are public |
 
@@ -169,6 +183,8 @@ console.log((user as any)['secret']); // Works at runtime!
 ### ⚠️ Problem
 TypeScript's `private` keyword is a compile-time illusion. At runtime, the property remains fully exposed and accessible via bracket notation or generic type stripping.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 class User {
     #secret = 123;
@@ -193,9 +209,11 @@ class MyClass {}
 ### ⚠️ Problem
 Legacy decorators rely on the deprecated `experimentalDecorators` flag, misaligning with the standardized ECMAScript proposal and risking future deprecation breakage.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 // TC39 standard (TS 5.0+)
-function Logged<Class extends new (...args: any[]) => unknown>(
+function Logged<Class extends new (...args: unknown[]) => unknown>(
   value: Class,
   context: ClassDecoratorContext
 ) { /* ... */ }
@@ -220,6 +238,8 @@ interface UserUpdate {
 ### ⚠️ Problem
 Manual re-declaration of properties leads to critical synchronization issues when the base `User` interface architecture evolves, creating fractured type contracts.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 interface User { name: string; age: number; role: string; }
 

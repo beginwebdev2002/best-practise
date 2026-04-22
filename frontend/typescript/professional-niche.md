@@ -29,6 +29,8 @@ const config: Record<string, string> = {
 ### ⚠️ Problem
 Direct type annotation widens properties to the most general type defined by the interface, losing specific literal information needed for precise inference downstream.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 const config = {
     host: 'localhost'
@@ -48,6 +50,8 @@ route(['/home', '/about']); // T is widened to string[]
 ### ⚠️ Problem
 Generic inference widens string arrays to `string[]` by default, forcing the caller to remember to append `as const` to retain literal type safety.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 function route<const T extends string[]>(paths: T) { /* ... */ }
 route(['/home', '/about']); // T is automatically inferred as readonly ['/home', '/about']
@@ -68,6 +72,8 @@ ship('order_123', 'user_456'); // Compiles successfully, but business logic fail
 ### ⚠️ Problem
 TypeScript utilizes structural typing. Two distinct type aliases resolving to `string` are evaluated identically and are interchangeable, risking silent logical data corruption.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 type Brand<K, T> = K & { __brand: T };
 type UserId = Brand<string, 'UserId'>;
@@ -90,6 +96,8 @@ interface Logger {
 ### ⚠️ Problem
 Function properties declared via arrow syntax are checked **bivariantly**. This leniency permits assigning functions with overly specialized arguments, creating unsafe runtime conditions.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 interface Logger {
     log(msg: string): void; // Defined as a method
@@ -111,6 +119,8 @@ interface API {
 ### ⚠️ Problem
 Manually maintaining properties on massive generic interfaces is highly repetitive, scales poorly, and is prone to human error when synchronization is required.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 type Resource = 'User' | 'Post' | 'Comment';
 type API = {
@@ -130,6 +140,8 @@ setPadding("10"); // Accepts invalid CSS string without a unit!
 ### ⚠️ Problem
 Accepting raw `string` types for structured domains (like CSS properties or UUIDs) fails to capture semantic patterns, pushing formatting errors into the runtime environment.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 type CssValue = `${number}${'px' | 'em' | 'rem'}`;
 function setPadding(value: CssValue) { /* ... */ }
@@ -151,6 +163,8 @@ function handle(action: 'START' | 'STOP') {
 ### ⚠️ Problem
 If the union is expanded (e.g., adding `'PAUSE'`), the compiler will not natively warn that the `switch` statement is missing logic to handle the new case, causing unhandled runtime paths.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 function handle(action: 'START' | 'STOP' | 'PAUSE') {
     switch (action) {
@@ -178,6 +192,8 @@ interface JsonObject { [key: string]: Json; }
 ### ⚠️ Problem
 Older paradigms required bridging type aliases with interfaces to achieve recursion, cluttering the domain space with artificial helper types.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 type JSONValue =
     | string
@@ -201,6 +217,8 @@ type GetArrayType<T> = T extends string[] ? string :
 ### ⚠️ Problem
 Hardcoding type extractions via chained conditionals lacks scalability, violates DRY principles, and becomes impossible to maintain for complex or infinite generic permutations.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 type GetArrayType<T> = T extends (infer U)[] ? U : never;
 ```
@@ -217,6 +235,8 @@ const [x, y, z] = point; // 'z' resolves to 'number', but is actually undefined 
 ### ⚠️ Problem
 Standard array types (`T[]`) fail to enforce length or sequence, exposing downstream destructuring logic to critical out-of-bounds runtime errors.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```typescript
 const point: [number, number] = [10, 20];
 // const [x, y, z] = point; // TS Error: Tuple type '[number, number]' of length '2' has no element at index '2'.

@@ -46,6 +46,8 @@ test('update user', () => {
 ### ⚠️ Problem
 Tests that depend on global variables or execution order are brittle. If the test runner executes them in parallel or out of order, they will fail unpredictably, leading to flaky test suites.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 test('create user', () => {
   const user = { id: 1, name: 'Alice' };
@@ -64,7 +66,7 @@ test('update user', () => {
 | Feature | Unit Testing | Integration Testing | End-to-End (E2E) Testing |
 | :--- | :--- | :--- | :--- |
 | **Scope** | Single isolated function/component | Multiple connected units | Full application workflow |
-| **Speed** | Extremely Fast (<1ms) | Fast to Medium | Slow (seconds to minutes) |
+| **Speed** | Extremely O(1) complexity (<1ms) | O(1) complexity to Medium | Slow (seconds to minutes) |
 | **Cost to Write/Maintain**| Low | Medium | High |
 | **Confidence Level** | Low (doesn't catch contract issues) | Medium | High (simulates real user) |
 
@@ -89,6 +91,8 @@ test('fetches data', () => {
 ### ⚠️ Problem
 If `fetchData` takes time, the test function will complete synchronously before the Promise resolves. The assertion is never executed, and the test passes falsely.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 test('fetches data', async () => {
   const data = await fetchData();

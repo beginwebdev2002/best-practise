@@ -30,6 +30,8 @@ const user = {
 ### ⚠️ Problem
 Redundant repetition of keys and values increases file size and makes the code noisier.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const name = 'Alice';
 const user = { name, age };
@@ -49,6 +51,8 @@ function sum() {
 ### ⚠️ Problem
 The `arguments` object is not a real array (it lacks methods like `map` or `reduce`). It is also incompatible with arrow functions and optimization in some V8 versions.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const sum = (...args) => args.reduce((a, b) => a + b);
 ```
@@ -68,6 +72,8 @@ for (let i = 0; i < original.length; i++) {
 ### ⚠️ Problem
 Manual loops for copying are verbose and imperative. They increase the surface area for bugs (off-by-one errors).
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const original = [1, 2, 3];
 const copy = [...original];
@@ -85,6 +91,8 @@ const zip = user.location.address.zip;
 ### ⚠️ Problem
 Repetitive property access is verbose and risks "cannot read property of undefined" errors if any parent object is missing.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const { location: { address: { city, zip } } } = user;
 ```
@@ -103,6 +111,8 @@ function setRole(role) {
 ### ⚠️ Problem
 Using `||` for defaults is dangerous if the argument is a "falsy" but valid value (like `0`, `false`, or `''`).
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 function setRole(role = 'guest') {
     // ...
@@ -123,6 +133,8 @@ numbers.forEach(n => {
 ### ⚠️ Problem
 `forEach` relies on side effects (mutating an outer array). It is less expressive and harder to chain than functional alternatives.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const double = numbers.map(n => n * 2);
 ```
@@ -139,8 +151,10 @@ function updateAge(user) {
 }
 ```
 ### ⚠️ Problem
-Mutating objects passed by reference can lead to side effects in other parts of the application that share the same reference, making debugging a nightmare.
+Mutating objects passed by reference MUST lead to side effects in other parts of the application that share the same reference, making debugging a nightmare.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const updateAge = (user) => ({ ...user, age: 30 });
 ```
@@ -165,6 +179,8 @@ function executeAction(action) {
 ### ⚠️ Problem
 `switch` statements are verbose, require `break` to prevent fallthrough bugs if not returning immediately, and have a non-standard block scope. They also violate the Open/Closed Principle making it harder to extend dynamically.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 function executeAction(action) {
     const actions = {
@@ -186,6 +202,8 @@ const street = user && user.address && user.address.street;
 ### ⚠️ Problem
 The "logical AND" chain is verbose and repetitive. It quickly becomes unreadable with deeper nesting.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const street = user?.address?.street;
 ```
@@ -201,6 +219,8 @@ const timeout = config.timeout || 5000;
 ### ⚠️ Problem
 If `config.timeout` is `0`, the code will incorrectly fall back to `5000` because `0` is falsy.
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [parent directory/readme](./readme.md).
 ```javascript
 const timeout = config.timeout ?? 5000;
 ```
