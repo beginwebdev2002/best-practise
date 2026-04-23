@@ -719,3 +719,44 @@ src/
 - **Frameworks:** Eclipse, VS Code, Webpack, Babel.
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="16"/> Python.
 - **Patterns / Principles:** Open/Closed Principle, Dependency Inversion, Registry Pattern.
+
+---
+
+### 17. Vibe Coding Patterns
+[![Vibe Coding Patterns](https://img.shields.io/badge/Architecture-Vibe_Coding-orange?style=flat-square)](#)
+
+**Description:** An architecture that enforces deterministic constraints for zero-hallucination AI coding. It explicitly replaces conversational code generation with deterministic, strictly validated pipelines.
+**📖 Map of Patterns:** [Go to Vibe Coding Patterns Guidelines](./vibe-coding/readme.md)
+
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph LR
+    User[Human Orchestrator] --> Prompt[Deterministic Prompt]
+    Prompt --> Agent[AI Agent]
+    Agent --> AST[AST Validation]
+    AST --> Test[Unit Test Guard]
+    Test --> Commit[Zero-Approval Commit]
+
+    %% Design Token Styles
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+
+    class User component;
+    class Prompt default;
+    class Agent component;
+    class AST default;
+    class Test default;
+    class Commit component;
+```
+
+```text
+src/
+├── 📁 agents/           # Specialized worker agents
+├── 📁 schemas/          # Strict validation schemas
+└── 📁 orchestrator/     # Pipeline orchestrator
+```
+
+**Best Compatibility:**
+- **Frameworks:** LangChain, AutoGen, CrewAI.
+- **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="16"/> Python, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript.
+- **Patterns / Principles:** Deterministic code generation, AST Validation, Runtime Type Checking.
