@@ -135,6 +135,7 @@
   * [Ai agent self healing architectures](docs/ai-agent-self-healing-architectures.md)
   * [Ai agent semantic routing](docs/ai-agent-semantic-routing.md)
   * [Ai agent tool calling architectures](docs/ai-agent-tool-calling-architectures.md)
+  * [Ai agent vibe coding graph orchestration](docs/ai-agent-vibe-coding-graph-orchestration.md)
   * [Ai agent vibe coding state machines](docs/ai-agent-vibe-coding-state-machines.md)
   * [Antigravity ide vibe coding](docs/antigravity-ide-vibe-coding.md)
   * [Cursor memory structures](docs/cursor-memory-structures.md)
