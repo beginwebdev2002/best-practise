@@ -53,6 +53,10 @@ test('clicks button', async () => {
   expect(btn.textContent).toBe('1');
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Qwik Architecture](./readme.md).
+
 ### 🚀 Solution
 Use Qwik's specialized testing utilities that simulate the resumability framework accurately, ensuring DOM events trigger the lazy-loaded closures as they would in production.
 

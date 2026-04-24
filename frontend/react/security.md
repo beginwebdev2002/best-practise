@@ -46,6 +46,10 @@ function Article({ content }: { content: string }) {
   return <div dangerouslySetInnerHTML={{ __html: sanitizedContent }} />;
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [React Architecture](./readme.md).
+
 ### 🚀 Solution
 If you must render raw HTML, strictly sanitize it using a robust library like `DOMPurify` before injecting it into the DOM. Whenever possible, rely on React's default text rendering, which automatically escapes embedded data.
 
@@ -85,6 +89,10 @@ export function PaymentGateway() {
   return <button onClick={() => processPaymentAction()}>Pay Now</button>;
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [React Architecture](./readme.md).
+
 ### 🚀 Solution
 Leverage React Server Components and Server Actions (`'use server'`) to keep sensitive logic, secrets, and database connections entirely on the server. The client only receives the safe, computed result.
 

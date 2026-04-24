@@ -35,6 +35,10 @@ if (isValidUser(response.data)) {
     console.log(response.data.id);
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Avoid type assertions. Use runtime validation (Zod, Valibot) or explicit Type Guards to deterministically ensure the data matches the expected type before processing.
 ## 🚨 12. Non-null Assertion Operator (`!`)
@@ -50,6 +54,10 @@ The `!` operator suppresses the compiler warning but doesn't handle the runtime 
 ```typescript
 const name = user?.profile?.name ?? 'Guest';
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use Optional Chaining (`?.`) and Nullish Coalescing (`??`) to handle missing values gracefully, preventing runtime crashes and ensuring a deterministic UI state.
 ## 🚨 13. Lack of Discriminated Unions
@@ -72,6 +80,10 @@ type State =
     | { type: 'SUCCESS'; data: string }
     | { type: 'ERROR'; error: string };
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use Discriminated Unions (with a shared literal property like `type` or `kind`). This ensures mutually exclusive states, simplifying logic and providing full compiler support for exhaustive type narrowing.
 ## 🚨 14. Boolean casting (`!!`)
@@ -89,6 +101,10 @@ const hasAccess = Boolean(user.token);
 // OR
 const hasAccess = user.token !== undefined;
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use the `Boolean()` constructor or explicit strict comparisons (`!== undefined`). This enforces explicit casting and declarative, agent-readable intent.
 ## 🚨 15. Using `Object` for non-primitive types
@@ -108,6 +124,10 @@ function cache(obj: Record<string, unknown>) {
     // Safe object access
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use `Record<string, unknown>` for generic key-value maps, or `Record<string, never>` for explicitly empty objects. This enforces structured object shapes strictly without matching arbitrary primitives.
 ## 🚨 16. Function types vs Object types for functions
@@ -125,6 +145,10 @@ Using the object literal syntax for single functions is unnecessarily complex, l
 ```typescript
 type ClickHandler = (e: Event) => void;
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use the arrow function signature for type aliases. Reserve the object-literal callable signature exclusively for functions that contain static properties attached to the function reference itself.
 ## 🚨 17. Catching `any` in try-catch
@@ -152,6 +176,10 @@ try {
     }
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Ensure `useUnknownInCatchVariables: true` is configured in `tsconfig.json`. Explicitly annotate catch variables as `unknown` and implement type guards (like `instanceof Error`) to safely process the error payload.
 ## 🚨 18. Literal types vs General types
@@ -172,6 +200,10 @@ function setAlignment(dir: Direction) {
     // Safely execute alignment logic
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Leverage Union Literal types to constrain inputs to a closed set of known valid values, enforcing correctness entirely at compile time.
 ## 🚨 19. Optional properties vs Union with `undefined`
@@ -197,6 +229,10 @@ interface Config {
 // Caller can just do:
 const cfg: Config = {};
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 > [!IMPORTANT]
 > Use the optional modifier (`?`) for object properties that MUST be legally omitted.
@@ -218,6 +254,10 @@ if (first) {
     console.log(first.id);
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Enforce `noUncheckedIndexedAccess: true` in `tsconfig.json`. This strict compiler flag forces all array index access to resolve to `T | undefined`, mandating explicit nil-checks before usage.
 
@@ -237,6 +277,10 @@ Namespaces are a legacy TypeScript feature. They don't play well with modern bun
 // utils.ts
 export const log = (msg: string) => console.log(msg);
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use ES Modules (`export`/`import`). They are the industry standard, supported by all modern environments, and allow for better static analysis.
 ---
@@ -262,6 +306,10 @@ const STATUS = {
 
 type Status = typeof STATUS[keyof typeof STATUS];
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use `const` objects with `as const` and a derived union type. This is more predictable, emits cleaner code, and is easier to iterate over.
 ---
@@ -285,6 +333,10 @@ function save(data: unknown) {
     }
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Enable `noImplicitAny: true` in `tsconfig.json`. Always define specific types or use `unknown` if the type is truly dynamic.
 ---
@@ -310,6 +362,10 @@ if (isAdmin(input)) {
     console.log(input.admin); // input is automatically narrowed to Admin
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use Type Predicates (`arg is Type`) to create reusable, safe narrowing functions.
 ---
@@ -327,6 +383,10 @@ Triple-slash directives are legacy syntax. They make dependencies implicit and c
 ```typescript
 import { MyType } from './types';
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use standard ES `import` statements. Manage global types via `tsconfig.json` `types` array if necessary.
 ---

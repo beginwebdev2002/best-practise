@@ -56,6 +56,10 @@ export const MyComponent = component$(() => {
   return <div>Connecting...</div>;
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Qwik Architecture](./readme.md).
+
 ### 🚀 Solution
 Do not put instances like WebSockets or DOM references into `useStore`. Use `useSignal()` when you need isolated references that initialize lazily on the client using `useVisibleTask$()`, or handle them outside the reactive serialization boundaries.
 ---

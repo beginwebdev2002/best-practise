@@ -49,6 +49,10 @@ function List(props) {
   );
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [SolidJS Architecture](./readme.md).
+
 ### 🚀 Solution
 Always utilize the built-in `<For>` component. It caches DOM elements and handles granular updates when the array changes, reusing nodes instead of discarding and recreating them.
 ---

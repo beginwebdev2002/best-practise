@@ -35,6 +35,10 @@ const config = {
 } satisfies Record<string, string>;
 // config.host is precisely type 'localhost'
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Leverage the `satisfies` operator (TS 4.9+). It deterministically validates the object structure against a type while preserving the narrowest possible literal types for its properties.
 ## 🚨 32. `const` type parameters (TS 5.0)
@@ -52,6 +56,10 @@ Generic inference widens string arrays to `string[]` by default, forcing the cal
 function route<const T extends string[]>(paths: T) { /* ... */ }
 route(['/home', '/about']); // T is automatically inferred as readonly ['/home', '/about']
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Inject the `const` modifier before generic type parameters. This instructs the compiler to evaluate the input deterministically as a constant, preserving narrow literal types and shifting the burden of safety from the caller to the architecture.
 ## 🚨 33. Branding/Tagging for Nominal Typing
@@ -76,6 +84,10 @@ type OrderId = Brand<string, 'OrderId'>;
 // Instantiation requires explicit casting, but downstream usage is strictly protected
 const uid = 'user_1' as UserId;
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Implement "Branding" (injecting a phantom, non-existent property via intersection) to simulate nominal typing for critical identifiers. This guarantees distinct domains for identical primitives.
 ## 🚨 34. Covariance/Contravariance in callbacks
@@ -95,6 +107,10 @@ interface Logger {
     log(msg: string): void; // Defined as a method
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Always use method syntax in interfaces for callbacks and methods. This enforces strict **contravariant** checking of parameters, maintaining a deterministic architectural boundary.
 ## 🚨 35. Avoiding "God Objects" through Mapped Types
@@ -117,6 +133,10 @@ type API = {
     [K in Resource as `get${K}`]: () => void;
 };
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Leverage Mapped Types combined with Key Remapping (`as`) to programmatically generate interface structures from a single source of truth, establishing an autonomous scaling pattern.
 ## 🚨 36. Template Literal Types for string-based APIs
@@ -134,6 +154,10 @@ Accepting raw `string` types for structured domains (like CSS properties or UUID
 type CssValue = `${number}${'px' | 'em' | 'rem'}`;
 function setPadding(value: CssValue) { /* ... */ }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Utilize Template Literal types to explicitly map and enforce semantic string patterns at compile time, eliminating an entire class of runtime parsing errors.
 ## 🚨 37. Exhaustiveness checking with `never`
@@ -164,6 +188,10 @@ function handle(action: 'START' | 'STOP' | 'PAUSE') {
     }
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Assign the unhandled `default` case to a variable strictly typed as `never`. This enforces deterministic exhaustiveness checking, immediately triggering a compile error if a union member is omitted.
 ## 🚨 38. Recursive Type Aliases
@@ -187,6 +215,10 @@ type JSONValue =
     | { [key: string]: JSONValue }
     | JSONValue[];
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Implement self-referential recursive type aliases directly. This drastically streamlines the definition of infinitely nested data structures like JSON trees or file system graphs.
 ## 🚨 39. `infer` keyword in conditional types
@@ -204,6 +236,10 @@ Hardcoding type extractions via chained conditionals lacks scalability, violates
 ```typescript
 type GetArrayType<T> = T extends (infer U)[] ? U : never;
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Utilize the `infer` keyword within conditional types. This commands the TypeScript compiler to dynamically unwrap, capture, and expose internal type structures autonomously.
 ## 🚨 40. Tuple types for fixed-length data
@@ -221,5 +257,9 @@ Standard array types (`T[]`) fail to enforce length or sequence, exposing downst
 const point: [number, number] = [10, 20];
 // const [x, y, z] = point; // TS Error: Tuple type '[number, number]' of length '2' has no element at index '2'.
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Apply Tuple types (e.g., `[T, U]`) for array structures where exact length and positional semantics are deterministic boundaries.

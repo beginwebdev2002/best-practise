@@ -29,6 +29,10 @@ The service is included in the bundle even if it is not used.
 ```typescript
 @Injectable({ providedIn: 'root' })
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Always use `providedIn: 'root'`. This allows the bundler to remove unused services (Tree Shaking).
 ## ⚡ 17. Class-based Guards
@@ -47,6 +51,10 @@ export const authGuard: CanActivateFn = (route, state) => {
   return inject(AuthService).isLoggedIn();
 };
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use functional Guards (`CanActivateFn`). They are concise, easy to test, and composable.
 ## ⚡ 18. Class-based Interceptors
@@ -66,6 +74,10 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req.clone({ setHeaders: { Authorization: token } }));
 };
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use functional Interceptors (`HttpInterceptorFn`) with `provideHttpClient(withInterceptors([...]))`.
 ## ⚡ 19. State Mutation in Services
@@ -86,6 +98,10 @@ updateUser(user: User) {
   this.currentUser.set({ ...user }); // Immutable update
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use Signals for state management. They guarantee reactivity and atomicity of updates.
 ## ⚡ 20. Calling functions inside `@for` tracking
@@ -101,6 +117,10 @@ The tracking function is called for each element during every re-render.
 ```html
 @for (item of items; track item.id)
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 > [!IMPORTANT]
 > Use an object property (ID or a unique key) directly. If a function is needed, it must be as unambiguous and pure as possible.
@@ -123,6 +143,10 @@ Decorators increase class size and scatter host configuration across the file.
   }
 })
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use the `host` property in component metadata. This centralizes all host element settings.
 ## ⚡ 22. Dynamic Components with `ComponentFactoryResolver`
@@ -141,6 +165,10 @@ this.container.createComponent(MyComponent);
 // Or strictly in template
 <ng-container *ngComponentOutlet="componentSignal()" />
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use `ViewContainerRef.createComponent` directly with the component class or the `ngComponentOutlet` directive.
 ## ⚡ 23. Shared Modules (The "Dump" Module)
@@ -152,6 +180,10 @@ Use `ViewContainerRef.createComponent` directly with the component class or the 
 If a component needs a single button, it is forced to pull the entire `SharedModule`. This breaks Tree Shaking and increases the initial bundle size.
 ### ✅ Best Practice
 Import only what is needed directly into the `imports` of the Standalone component.
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Abandon `SharedModule` in favor of granular imports of Standalone entities.
 ## ⚡ 24. Circular Dependencies in DI
@@ -163,6 +195,10 @@ Service A injects Service B, which injects Service A.
 Leads to runtime errors ("Cannot instantiate cyclic dependency"). Indicates poor architectural design.
 ### ✅ Best Practice
 Use `forwardRef()` as a crutch, but it's better to extract the shared logic into a third Service C.
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Refactoring: break services into smaller ones following SRP (Single Responsibility Principle).
 ## ⚡ 25. Logic in Pipes
@@ -175,6 +211,10 @@ Pipes are intended for data transformation in the template. Side effects in pipe
 ### ✅ Best Practice
 > [!IMPORTANT]
 > Pipes MUST be "Pure" (without side effects) and performant (O(1) or O(n)).
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Extract logic into services/signals. Leave only formatting to pipes.
 ## ⚡ 26. `any` in Services
@@ -190,6 +230,10 @@ getData(): Observable<any> { ... }
 ```typescript
 getData(): Observable<UserDto> { ... }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use DTO interfaces (generate them from Swagger/OpenAPI) and Zod for API response validation.
 ## ⚡ 27. Multiple `async` pipes for same stream
@@ -207,6 +251,10 @@ Each `async` pipe creates a new subscription. This can lead to duplicated HTTP r
   <div>{{ user.name }}</div>
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use aliases in the template (`as varName`) or convert the stream to a signal (`toSignal`).
 ## ⚡ 28. ProvidedIn 'any'
@@ -220,6 +268,10 @@ Use aliases in the template (`as varName`) or convert the stream to a signal (`t
 Creates a new service instance for each lazy-loaded module. This is often unexpected behavior, leading to state desynchronization (different singleton instances).
 ### ✅ Best Practice
 `providedIn: 'root'` or providing at the level of a specific component (`providers: []`).
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Avoid `any`. Explicitly control the scope: either global (`root`) or local.
 ## ⚡ 29. Imperative Routing
@@ -235,6 +287,10 @@ Hardcoding route strings makes route refactoring a pain.
 ```typescript
 this.router.navigate(['users', id]);
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use an array of segments. It is safer (automatic encoding of URL parameters) and cleaner.
 ## ⚡ 30. Ignoring `OnPush` Strategy
@@ -248,6 +304,10 @@ Angular checks this component on *every* app event, even if the component data h
 ```typescript
 changeDetection: ChangeDetectionStrategy.OnPush
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Always set `OnPush`. With signals, this becomes the de facto standard, as updates occur precisely.
 
@@ -267,6 +327,10 @@ total = computed(() => this.calculateTotal(this.items()));
 ```html
 <div>{{ total() }}</div>
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Extract logic into `computed()` signals or Pure Pipes. They are only executed when input data changes.
 ---
@@ -287,6 +351,10 @@ It's easy to forget `takeUntil` or `unsubscribe`. Requires a lot of boilerplate 
 ```typescript
 stream$.pipe(takeUntilDestroyed()).subscribe();
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use the `takeUntilDestroyed()` operator. It automatically unsubscribes upon context destruction (component, directive, service).
 ---
@@ -311,6 +379,10 @@ theme = signal('dark');
 // Grandchild
 theme = inject(ThemeService).theme;
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use Signal Stores or services for state sharing, or the new `input()` API with context inheritance (in the future).
 ---
@@ -330,6 +402,10 @@ Direct DOM access breaks abstraction (doesn't work in SSR/Web Workers) and opens
 // Use Renderer2 or bindings
 <div [style.background-color]="color()"></div>
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use style/class bindings or `Renderer2`. For direct manipulations, consider directives.
 ---
@@ -348,6 +424,10 @@ bootstrapApplication(App, {
   providers: [provideExperimentalZonelessChangeDetection()]
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Migrate to Zoneless mode. Use Signals to notify Angular when a re-render is needed.
 ---

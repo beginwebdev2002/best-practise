@@ -77,6 +77,10 @@ fetchData() {
   });
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use `signal()`. It forces the developer to explicitly use `.set()` or `.update()`, signaling to the framework exactly when and where the change occurred.
 ---
@@ -101,6 +105,10 @@ Manually syncing state variables is error-prone. If you update `items` but forge
 items = signal([1, 2, 3]);
 total = computed(() => this.items().reduce((a, b) => a + b, 0));
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use `computed()`. The calculated value is memoized and only re-evaluates when its specific signal dependencies (in this case, `items`) change.
 ---
@@ -122,6 +130,10 @@ constructor() {
   });
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use `effect()`. Effects track dependencies automatically and ensure the side effect runs solely when required. Always define them within an injection context (like a constructor).
 ---
@@ -145,6 +157,10 @@ user = input.required<User>();
 // For two-way data binding synchronization
 userProfile = model<User>();
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 > [!IMPORTANT]
 > Use the `input()` and `model()` functional APIs. They return signals that MUST be directly used in `computed()` properties within the child component.
