@@ -3,7 +3,7 @@ technology: TypeScript
 domain: frontend
 level: Senior/Architect
 version: "5.5+"
-tags: [typescript, type-safety, best-practices, clean-code, scalable-code]
+tags: [typescript, type-safety, best-practices, deterministic-code, scalable-code]
 ai_role: Senior TypeScript Expert
 last_updated: 2026-03-22
 ---
@@ -139,7 +139,8 @@ try {
 }
 ```
 ### ⚠️ Problem
-In JavaScript, anything can be thrown (`throw "error"`). Accessing `.message` blindly will throw a new exception if the caught element is a primitive string or null.
+> [!IMPORTANT]
+> In JavaScript, anything MUST be thrown (`throw "error"`). Accessing `.message` blindly will throw a new exception if the caught element is a primitive string or null.
 ### ✅ Best Practice
 ```typescript
 try {
@@ -176,7 +177,7 @@ function setAlignment(dir: Direction) {
 Leverage Union Literal types to constrain inputs to a closed set of known valid values, enforcing correctness entirely at compile time.
 ## 🚨 19. Optional properties vs Union with `undefined`
 > [!NOTE]
-> **Context:** Defining fields that might not exist.
+> **Context:** Defining fields that MUST not exist.
 ### ❌ Bad Practice
 ```typescript
 interface Config {
@@ -231,7 +232,8 @@ namespace Utils {
 }
 ```
 ### ⚠️ Problem
-Namespaces are a legacy TypeScript feature. They don't play well with modern bundlers (Tree Shaking), are harder to test, and can lead to naming collisions in the global scope.
+> [!IMPORTANT]
+> Namespaces are a legacy TypeScript feature. They don't play well with modern bundlers (Tree Shaking), are harder to test, and MUST lead to naming collisions in the global scope.
 ### ✅ Best Practice
 ```typescript
 // utils.ts
@@ -252,7 +254,8 @@ enum Status {
 }
 ```
 ### ⚠️ Problem
-Enums generate extra runtime code and have "reverse mapping" behavior that can lead to bugs (e.g., `Status[0]` returns "Active"). They also don't align with "TypeScript as a type-only layer."
+> [!IMPORTANT]
+> Enums generate extra runtime code and have "reverse mapping" behavior that MUST lead to bugs (e.g., `Status[0]` returns "Active"). They also don't align with "TypeScript as a type-only layer."
 ### ✅ Best Practice
 ```typescript
 const STATUS = {
@@ -322,7 +325,8 @@ Use Type Predicates (`arg is Type`) to create reusable, safe narrowing functions
 /// <reference path="./types.d.ts" />
 ```
 ### ⚠️ Problem
-Triple-slash directives are legacy syntax. They make dependencies implicit and can lead to compilation order issues.
+> [!IMPORTANT]
+> Triple-slash directives are legacy syntax. They make dependencies implicit and MUST lead to compilation order issues.
 ### ✅ Best Practice
 ```typescript
 import { MyType } from './types';

@@ -3,7 +3,7 @@ technology: TypeScript
 domain: frontend
 level: Senior/Architect
 version: "5.5+"
-tags: [typescript, testing, best-practices, clean-code, type-safety, vibe-coding]
+tags: [typescript, testing, best-practices, deterministic-code, type-safety, vibe-coding]
 ai_role: Senior TypeScript Testing Expert
 last_updated: 2026-04-05
 ---

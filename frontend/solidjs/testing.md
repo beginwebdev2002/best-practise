@@ -3,7 +3,7 @@ technology: SolidJS
 domain: frontend
 level: Senior/Architect
 version: "1+"
-tags: [solidjs, testing, best-practices, clean-code, reactivity, vibe-coding]
+tags: [solidjs, testing, best-practices, deterministic-code, reactivity, vibe-coding]
 ai_role: Senior SolidJS Testing Expert
 last_updated: 2026-04-05
 ---
@@ -37,7 +37,8 @@ test('signal updates', () => {
 });
 ```
 ### ⚠️ Problem
-Creating signals outside of a reactive root (like a component or `createRoot`) can lead to memory leaks in complex test suites, as effects and computations aren't properly disposed of.
+> [!IMPORTANT]
+> Creating signals outside of a reactive root (like a component or `createRoot`) MUST lead to memory leaks in complex test suites, as effects and computations aren't properly disposed of.
 ### ✅ Best Practice
 ```javascript
 import { createRoot, createSignal } from 'solid-js';

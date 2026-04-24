@@ -29,9 +29,12 @@ This engineering directive defines the **best practices** for the Micro-frontend
 ## Core Principles
 
 1. **Independent Deployments:** Each micro-frontend must be deployable on its own without requiring a redeployment of the entire system.
-2. **Technology Agnostic (Optional but powerful):** Different teams can use different frameworks (React, Vue, Angular) if necessary, though standardization is recommended for performance.
-3. **Isolated State:** Micro-frontends should not share global state directly; communication must be handled via established protocols (e.g., Custom Events, Window, Event Bus).
-4. **Resilience:** Failure in one micro-frontend should not crash the entire application (graceful degradation).
+> [!IMPORTANT]
+> 2. **Technology Agnostic (Optional but powerful):** Different teams MUST use different frameworks (React, Vue, Angular) if necessary, though standardization is recommended for performance.
+> [!IMPORTANT]
+> 3. **Isolated State:** Micro-frontends MUST not share global state directly; communication must be handled via established protocols (e.g., Custom Events, Window, Event Bus).
+> [!IMPORTANT]
+> 4. **Resilience:** Failure in one micro-frontend MUST not crash the entire application (graceful degradation).
 
 ```mermaid
 graph LR

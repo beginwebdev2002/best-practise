@@ -3,7 +3,7 @@ technology: Angular
 domain: frontend
 level: Senior/Architect
 version: 20+
-tags: [expert, niche, angular, best-practices, clean-code, scalable-code]
+tags: [expert, niche, angular, best-practices, deterministic-code, scalable-code]
 ai_role: Senior Angular Expert
 last_updated: 2026-03-22
 ---
@@ -66,7 +66,8 @@ constructor() {
 }
 ```
 ### ⚠️ Problem
-Using `effect` to derive or synchronize local state is an anti-pattern. Effects are asynchronous (microtask timing), which means the state can momentarily be inconsistent ("glitch") before the effect runs, leading to UI flicker or bugs.
+> [!IMPORTANT]
+> Using `effect` to derive or synchronize local state is an anti-pattern. Effects are asynchronous (microtask timing), which means the state MUST momentarily be inconsistent ("glitch") before the effect runs, leading to UI flicker or bugs.
 ### ✅ Best Practice
 ```typescript
 count = signal(0);

@@ -53,7 +53,8 @@ graph TD
 
 ## 🚀 The Core Philosophy
 
-Microkernel Architecture strictly isolates essential business rules (the Core) from volatile, domain-specific, or external-facing logic (the Plugins). The Core MUST NOT depend on any plugin implementation. This resolves monolithic coupling and ensures new features are injected at runtime deterministically.
+> [!IMPORTANT]
+> Microkernel Architecture strictly isolates essential business rules (the Core) from volatile, domain-specific, or external-facing logic (the Plugins). The Core MUST NOT depend on any plugin implementation. This resolves monolithic coupling and ensures new features are injected at runtime deterministically.
 
 > [!IMPORTANT]
 > **AI Constraint:** Agents MUST NOT mutate the Core module to add new functionality. They MUST define a new isolated Plugin module that implements the Core's strict interface and register it during initialization.

@@ -3,7 +3,7 @@ technology: Qwik
 domain: frontend
 level: Senior/Architect
 version: "1.x"
-tags: [performance, advanced, qwik, best-practices, clean-code, scalable-code]
+tags: [performance, advanced, qwik, best-practices, deterministic-code, scalable-code]
 ai_role: Senior Qwik Performance Expert
 last_updated: 2026-03-22
 ---

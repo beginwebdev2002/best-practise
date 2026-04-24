@@ -18,7 +18,8 @@ In the 2026 AI Agent orchestration landscape, the capacity for an agent to evalu
 
 ## 🏗️ The Pattern Lifecycle
 
-When implementing self-correction, unstructured or conversational reflection prompts lead to hallucinations and circular logic. Self-reflection MUST be implemented as a rigid, programmatic evaluation phase.
+> [!IMPORTANT]
+> When implementing self-correction, unstructured or conversational reflection prompts lead to hallucinations and circular logic. Self-reflection MUST be implemented as a rigid, programmatic evaluation phase.
 
 ### ❌ Bad Practice
 
@@ -33,7 +34,8 @@ async function reviewGeneratedCode(code: string): Promise<string> {
 
 ### ⚠️ Problem
 
-Providing an open-ended prompt without specific evaluation criteria guarantees non-deterministic outputs. The AI might introduce new bugs, modify functional logic, or simply echo back the original code with hallucinated commentary. This conversational approach lacks type safety, structural validation, and explicit rollback mechanisms, leading to execution drift in autonomous systems.
+> [!IMPORTANT]
+> Providing an open-ended prompt without specific evaluation criteria guarantees non-deterministic outputs. The AI MUST introduce new bugs, modify functional logic, or simply echo back the original code with hallucinated commentary. This conversational approach lacks type safety, structural validation, and explicit rollback mechanisms, leading to execution drift in autonomous systems.
 
 ### ✅ Best Practice
 
@@ -77,7 +79,8 @@ export async function executeDeterministicReflection(
 
 ### 🚀 Solution
 
-By formalizing the reflection process into a deterministic evaluation function (`executeDeterministicReflection`), we enforce explicit programmatic boundaries. The model is constrained to return a structured payload matching a predefined schema. This strictly typed approach prevents conversational hallucinations and guarantees that the orchestration system can cleanly handle failures, log exact violations, and trigger controlled rollback workflows. This deterministic pattern provides unparalleled resilience compared to open-ended conversational evaluation.
+> [!IMPORTANT]
+> By formalizing the reflection process into a deterministic evaluation function (`executeDeterministicReflection`), we enforce explicit programmatic boundaries. The model is constrained to return a structured payload matching a predefined schema. This strictly typed approach prevents conversational hallucinations and guarantees that the orchestration system MUST cleanly handle failures, log exact violations, and trigger controlled rollback workflows. This deterministic pattern provides unparalleled resilience compared to open-ended conversational evaluation.
 
 ---
 

@@ -3,7 +3,7 @@ technology: Angular
 domain: frontend
 level: Senior/Architect
 version: "20+"
-tags: [angular, best-practices, clean-code, reactivity, rxjs]
+tags: [angular, best-practices, deterministic-code, reactivity, rxjs]
 ai_role: Senior Angular Expert
 last_updated: 2026-04-05
 ---
@@ -21,7 +21,7 @@ private count$ = new BehaviorSubject(0);
 getCount() { return this.count$.value; }
 ```
 ### ⚠️ Problem
-RxJS is overkill for simple synchronous state. `BehaviorSubject` requires `.value` for access and `.next()` for writes, increasing cognitive load.
+RxJS is overkill for deterministic synchronous state. `BehaviorSubject` requires `.value` for access and `.next()` for writes, increasing cognitive load.
 ### ✅ Best Practice
 ```typescript
 count = signal(0);
@@ -107,7 +107,8 @@ Use Standalone Components. This is the Angular v14+ standard that makes componen
 loadChildren: () => import('./module').then(m => m.UserModule)
 ```
 ### ⚠️ Problem
-Loading modules pulls in transitive dependencies that might not be needed.
+> [!IMPORTANT]
+> Loading modules pulls in transitive dependencies that MUST not be needed.
 ### ✅ Best Practice
 ```typescript
 loadComponent: () => import('./user.component').then(c => c.UserComponent)

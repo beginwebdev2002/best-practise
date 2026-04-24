@@ -9,11 +9,11 @@
     * [Implementation guide](architectures/backend-for-frontend/implementation-guide.md)
     * [Trade offs](architectures/backend-for-frontend/trade-offs.md)
   * **Clean architecture**
-    * [Overview](architectures/clean-architecture/readme.md)
-    * [Data flow](architectures/clean-architecture/data-flow.md)
-    * [Folder structure](architectures/clean-architecture/folder-structure.md)
-    * [Implementation guide](architectures/clean-architecture/implementation-guide.md)
-    * [Trade offs](architectures/clean-architecture/trade-offs.md)
+    * [Overview](architectures/deterministic-architecture/readme.md)
+    * [Data flow](architectures/deterministic-architecture/data-flow.md)
+    * [Folder structure](architectures/deterministic-architecture/folder-structure.md)
+    * [Implementation guide](architectures/deterministic-architecture/implementation-guide.md)
+    * [Trade offs](architectures/deterministic-architecture/trade-offs.md)
   * **Cqrs**
     * [Overview](architectures/cqrs/readme.md)
     * [Data flow](architectures/cqrs/data-flow.md)

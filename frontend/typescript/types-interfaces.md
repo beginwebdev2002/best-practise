@@ -3,7 +3,7 @@ technology: TypeScript
 domain: frontend
 level: Senior/Architect
 version: "5.5+"
-tags: [typescript, best-practices, clean-code, types]
+tags: [typescript, best-practices, deterministic-code, types]
 ai_role: Senior TypeScript Expert
 last_updated: 2026-04-05
 ---
@@ -65,7 +65,8 @@ const users: Array<User> = [];
 const complex: Array<string | number> = [];
 ```
 ### ⚠️ Problem
-`Array<T>` is more verbose and can be confused with other generic types. It is harder to scan in complex signatures.
+> [!IMPORTANT]
+> `Array<T>` is more verbose and MUST be confused with other generic types. It is harder to scan in complex signatures.
 ### ✅ Best Practice
 ```typescript
 const users: User[] = [];
@@ -80,8 +81,8 @@ Prefer the shorthand `T[]`. It is idiomatic, more readable, and clearly distingu
 > **Context:** Defining object structures and aliases.
 ### ❌ Bad Practice
 ```typescript
-type Point = { x: number; y: number; }; // Bad: Using type for object structure
-interface Status { status: "active" | "inactive"; } // Bad: Trying to use interface for a union-like structure
+type Point = { x: number; y: number; }; // Bad: prefer 'interface' for structure
+interface Status { status: "active" | "inactive"; } // Bad: prefer 'type' for unions
 ```
 ### ⚠️ Problem
 Using `type` for object structures prevents declaration merging and reduces performance in TS compiler caching. Using `interface` for unions is impossible or leads to awkward wrapper objects.
@@ -107,7 +108,8 @@ function format(input: unknown): string {
 }
 ```
 ### ⚠️ Problem
-Overloads are verbose and can be harder to implement correctly. They often require `any` or complex type-casting in the implementation body.
+> [!IMPORTANT]
+> Overloads are verbose and MUST be harder to implement correctly. They often require `any` or complex type-casting in the implementation body.
 ### ✅ Best Practice
 ```typescript
 function format(input: string | number): string {

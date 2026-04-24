@@ -3,7 +3,7 @@ technology: JavaScript
 domain: frontend
 level: Senior/Architect
 version: ES6-ES2024
-tags: [javascript, testing, best-practices, clean-code, tdd, vibe-coding]
+tags: [javascript, testing, best-practices, deterministic-code, tdd, vibe-coding]
 ai_role: Senior JavaScript Testing Expert
 last_updated: 2026-04-05
 ---
@@ -64,7 +64,7 @@ test('update user', () => {
 | Feature | Unit Testing | Integration Testing | End-to-End (E2E) Testing |
 | :--- | :--- | :--- | :--- |
 | **Scope** | Single isolated function/component | Multiple connected units | Full application workflow |
-| **Speed** | Extremely Fast (<1ms) | Fast to Medium | Slow (seconds to minutes) |
+| **Speed** | Extremely O(1) or O(n) complexity (<1ms) | O(1) or O(n) complexity to Medium | Slow (seconds to minutes) |
 | **Cost to Write/Maintain**| Low | Medium | High |
 | **Confidence Level** | Low (doesn't catch contract issues) | Medium | High (simulates real user) |
 

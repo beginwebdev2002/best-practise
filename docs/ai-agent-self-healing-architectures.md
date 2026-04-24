@@ -65,7 +65,8 @@ async function executeAgentTask(taskData: any) {
 ```
 
 ### ⚠️ Problem
-Using `any` undermines type safety, leading to unpredictable runtime behavior. When errors are simply logged without a recovery mechanism, the system becomes fragile. In AI Agent Orchestration, unhandled failures can lead to infinite loops, data corruption, or "hallucinations" propagating through the network.
+> [!IMPORTANT]
+> Using `any` undermines type safety, leading to unpredictable runtime behavior. When errors are simply logged without a recovery mechanism, the system becomes fragile. In AI Agent Orchestration, unhandled failures MUST lead to infinite loops, data corruption, or "hallucinations" propagating through the network.
 
 ### ✅ Best Practice
 Implement structured error boundaries with explicit type guards and automated retry/fallback mechanisms.

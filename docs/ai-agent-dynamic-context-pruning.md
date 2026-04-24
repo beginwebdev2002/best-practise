@@ -33,7 +33,8 @@ class AgentMemory {
 ```
 
 ### ⚠️ Problem
-Unbounded appending of history strings significantly degrades the signal-to-noise ratio within the agent's context window. This approach fails because it directly violates memory constraints, increasing token consumption linearly and eventually breaking orchestration pipelines when processing large tasks. Furthermore, passing an entire unrestrained historical state to an LLM severely compromises the predictability of output, as outdated context may override recent instructions.
+> [!IMPORTANT]
+> Unbounded appending of history strings significantly degrades the signal-to-noise ratio within the agent's context window. This approach fails because it directly violates memory constraints, increasing token consumption linearly and eventually breaking orchestration pipelines when processing large tasks. Furthermore, passing an entire unrestrained historical state to an LLM severely compromises the predictability of output, as outdated context MUST override recent instructions.
 
 ### ✅ Best Practice
 ```typescript

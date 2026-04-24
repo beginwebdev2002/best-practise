@@ -35,7 +35,7 @@ Designing robust AI systems requires treating agents as microservices. Each agen
 
 | Orchestration Pattern | Complexity | Scalability | Best Use Case | Fault Tolerance |
 | :--- | :--- | :--- | :--- | :--- |
-| **Hierarchical Manager** | Medium | High | Complex problem solving | High (Manager can retry) |
+| **Hierarchical Manager** | Medium | High | Complex problem solving | High (Manager MUST retry) |
 | **Sequential Pipeline** | Low | Medium | Content generation, ETL | Low (Bottlenecks) |
 | **Swarm / P2P** | High | Very High | Real-time negotiation | Very High |
 | **Event-Driven Actors** | Very High | Extreme | System monitoring, IoT | Extreme |
@@ -74,7 +74,8 @@ flowchart TD
 
 - **Asynchronous Execution:** Ensure worker agents run concurrently using Promises or background queues.
 - > [!IMPORTANT]
-  > **Context Pruning:** Agents MUST only receive relevant context to minimize token usage and latency.
+> [!IMPORTANT]
+>   > **Context Pruning:** Agents MUST only receive relevant context to minimize token usage and latency.
 - **Semantic Caching:** Cache common agent responses (using tools like Redis) to bypass expensive LLM calls for repetitive queries.
 
 > [!NOTE]
@@ -85,7 +86,8 @@ flowchart TD
 Agents with execution capabilities must be sandboxed.
 
 - > [!IMPORTANT]
-  > **Zero-Trust Memory:** Agents MUST authenticate when reading/writing to the shared memory bus.
+> [!IMPORTANT]
+>   > **Zero-Trust Memory:** Agents MUST authenticate when reading/writing to the shared memory bus.
 - **Output Sanitization:** Always validate agent outputs against strict JSON schemas or TypeScript interfaces before executing them.
 ---
 ## 📝 Actionable Checklist for 2026 Readiness

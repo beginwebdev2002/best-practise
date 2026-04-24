@@ -3,7 +3,7 @@ technology: React
 domain: frontend
 level: Senior/Architect
 version: "19+"
-tags: [react, testing, best-practices, clean-code, tdd, architecture, vibe-coding]
+tags: [react, testing, best-practices, deterministic-code, tdd, architecture, vibe-coding]
 ai_role: Senior React Testing Expert
 last_updated: 2026-04-05
 ---
@@ -12,7 +12,7 @@ last_updated: 2026-04-05
 
 [⬆️ Back to Top](#)
 # 📖 Context & Scope
-- **Primary Goal:** Enforce highly reliable, fast, and deterministic testing patterns in React.
+- **Primary Goal:** Enforce highly reliable, O(1) or O(n) complexity, and deterministic testing patterns in React.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** React 19+
 

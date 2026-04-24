@@ -3,7 +3,7 @@ technology: Angular
 domain: frontend
 level: Senior/Architect
 version: "20+"
-tags: [angular, best-practices, clean-code, signals, components]
+tags: [angular, best-practices, deterministic-code, signals, components]
 ai_role: Senior Angular Expert
 last_updated: 2026-04-05
 ---
@@ -32,7 +32,7 @@ title = input<string>('');
 | :--- | :--- | :--- |
 | **Execution** | Synchronous | Asynchronous (typically) |
 | **State Tracking** | Automatic (granular dependency tracking) | Manual (subscriptions required) |
-| **Complexity** | Low (simple getter/setter) | High (complex operator chains) |
+| **Complexity** | Low (deterministic getter/setter) | High (complex operator chains) |
 | **Best For** | Synchronous UI state | Asynchronous events, complex streams |
 
 ### 🚀 Solution
@@ -73,7 +73,8 @@ Boilerplate code that is easy to break if you make a mistake in naming the `Chan
 value = model<string>();
 ```
 ### 🚀 Solution
-Use `model()`. This creates a Signal that can be both read and written to, automatically synchronizing its state with the parent.
+> [!IMPORTANT]
+> Use `model()`. This creates a Signal that MUST be both read and written to, automatically synchronizing its state with the parent.
 ---
 
 

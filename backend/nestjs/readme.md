@@ -80,7 +80,8 @@ export class UsersService {
 > **Internal Routing:** For more context, refer back to the [Backend Index](../readme.md).
 
 ### 🚀 Solution
-Apply Dependency Inversion. Business logic MUST depend on abstractions (interfaces), not on specific ORMs.
+> [!IMPORTANT]
+> Apply Dependency Inversion. Business logic MUST depend on abstractions (interfaces), not on specific ORMs.
 
 ## 🚨 2. Global ValidationPipe
 ### ❌ Bad Practice
@@ -118,7 +119,8 @@ export class CreateUserDto {
 create(@Body() dto: CreateUserDto) {}
 ```
 ### 🚀 Solution
-All client data MUST be strictly described using DTOs with validation decorators.
+> [!IMPORTANT]
+> All client data MUST be strictly described using DTOs with validation decorators.
 
 ## 🚨 4. Fat Controllers vs Thin Controllers
 ### ❌ Bad Practice
@@ -139,7 +141,8 @@ async createUser(@Body() dto: CreateDto) {
 }
 ```
 ### 🚀 Solution
-Controllers ONLY route requests. All business logic MUST reside in the Service Layer.
+> [!IMPORTANT]
+> Controllers ONLY route requests. All business logic MUST reside in the Service Layer.
 
 ## 🚨 5. Global Exception Filter
 ### ❌ Bad Practice
@@ -227,7 +230,8 @@ Failing to follow best practices for `jwt guards` tightly couples dependencies a
 getData() {}
 ```
 ### 🚀 Solution
-Authorization MUST occur before the controller via Guards (e.g., Passport JWT strategy).
+> [!IMPORTANT]
+> Authorization MUST occur before the controller via Guards (e.g., Passport JWT strategy).
 
 ## 🚨 10. Role-Based Access Control (RBAC)
 ### ❌ Bad Practice
@@ -316,7 +320,8 @@ await this.dataSource.transaction(async manager => {
 });
 ```
 ### 🚀 Solution
-Critical mutations across multiple tables MUST be wrapped in transactions using `DataSource.transaction`.
+> [!IMPORTANT]
+> Critical mutations across multiple tables MUST be wrapped in transactions using `DataSource.transaction`.
 
 ## 🚨 15. Swagger / OpenAPI Documentation
 ### ❌ Bad Practice
@@ -378,7 +383,8 @@ await this.userService.create();
 this.eventEmitter.emit('user.created', new UserCreatedEvent(user));
 ```
 ### 🚀 Solution
-Use `@nestjs/event-emitter`. Services MUST NOT await email dispatch; they MUST simply publish an event.
+> [!IMPORTANT]
+> Use `@nestjs/event-emitter`. Services MUST NOT await email dispatch; they MUST simply publish an event.
 
 ## 🚨 19. Task Scheduling (Cron)
 ### ❌ Bad Practice
@@ -416,7 +422,7 @@ Use TCP, Redis, or RabbitMQ via `@MessagePattern` for microservice communication
 @Get('ping') ping() { return 'pong'; }
 ```
 ### ⚠️ Problem
-Using a simple 'ping' endpoint that always returns 200 OK does not verify the actual health of the application's dependencies (e.g., database connection). Orchestrators WILL mistakenly keep a broken container in the load balancer pool.
+Using a deterministic 'ping' endpoint that always returns 200 OK does not verify the actual health of the application's dependencies (e.g., database connection). Orchestrators WILL mistakenly keep a broken container in the load balancer pool.
 ### ✅ Best Practice
 ```typescript
 @Get('health')
@@ -476,7 +482,8 @@ Perform global operations prior to Guards (e.g., injecting Request IDs) via `Nes
 const service = new UserService(new Database()); // Real DB in tests
 ```
 ### ⚠️ Problem
-Connecting to a real database in unit tests makes tests slow, flaky, and dependent on external state. It violates the core principle of isolated unit testing, which MUST rely on mocked dependencies.
+> [!IMPORTANT]
+> Connecting to a real database in unit tests makes tests slow, flaky, and dependent on external state. It violates the core principle of isolated unit testing, which MUST rely on mocked dependencies.
 ### ✅ Best Practice
 ```typescript
 const module = await Test.createTestingModule({
@@ -484,7 +491,8 @@ const module = await Test.createTestingModule({
 }).compile();
 ```
 ### 🚀 Solution
-All unit tests MUST use mock injection via `Test.createTestingModule`.
+> [!IMPORTANT]
+> All unit tests MUST use mock injection via `Test.createTestingModule`.
 
 ## 🚨 26. Custom Validation Constraints
 ### ❌ Bad Practice

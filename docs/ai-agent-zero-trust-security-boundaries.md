@@ -15,7 +15,8 @@ last_updated: 2026-04-15
 
 ## 🧭 Architectural Context
 
-As AI Agents gain unprecedented autonomy in orchestration and execution pipelines, traditional perimeter-based security models are obsolete. The modern architecture strictly requires a **Zero-Trust** model at the tool-invocation boundary. An AI agent's internal thought process is opaque and non-deterministic; therefore, all outward interactions (database queries, shell execution, API requests) MUST be validated as if originating from an external, untrusted source.
+> [!IMPORTANT]
+> As AI Agents gain unprecedented autonomy in orchestration and execution pipelines, traditional perimeter-based security models are obsolete. The modern architecture strictly requires a **Zero-Trust** model at the tool-invocation boundary. An AI agent's internal thought process is opaque and non-deterministic; therefore, all outward interactions (database queries, shell execution, API requests) MUST be validated as if originating from an external, untrusted source.
 
 ## 🔄 The Zero-Trust Tool Calling Lifecycle
 
@@ -54,7 +55,8 @@ export class LegacyAgentExecutor {
 
 ## ⚠️ Problem
 
-1.  **Command Injection via Prompt Drift:** If an adversarial user injects instructions into the agent's context (e.g., via a malicious payload in a read document), the agent might formulate a destructive tool call.
+> [!IMPORTANT]
+> 1.  **Command Injection via Prompt Drift:** If an adversarial user injects instructions into the agent's context (e.g., via a malicious payload in a read document), the agent MUST formulate a destructive tool call.
 2.  **Privilege Escalation:** Running tools under the same execution context as the host process allows the agent to break out of its intended scope.
 3.  **Non-Deterministic Payload Syntax:** Agents frequently hallucinate JSON properties or shell operators, leading to unhandled exceptions and systemic crashes.
 

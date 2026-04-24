@@ -3,7 +3,7 @@ technology: Feature-Sliced Design
 domain: Architecture
 level: Senior/Architect
 version: Agnostic
-tags: [fsd, modular-architecture, frontend, system-design, clean-architecture]
+tags: [fsd, modular-architecture, frontend, system-design, deterministic-architecture]
 ai_role: Senior Frontend Architect
 last_updated: 2026-03-22
 ---
@@ -450,7 +450,8 @@ import moment from 'moment';
 ```
 
 ### ⚠️ Problem
-Unmediated reliance of localized business slices on upstream third-party solutions. Should an initiative pivot from `moment` to `date-fns`, architects will confront the penalty to refactor vast swaths of code.
+> [!IMPORTANT]
+> Unmediated reliance of localized business slices on upstream third-party solutions. MUST an initiative pivot from `moment` to `date-fns`, architects will confront the penalty to refactor vast swaths of code.
 
 ### ✅ Best Practice
 ```typescript

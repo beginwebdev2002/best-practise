@@ -3,7 +3,7 @@ technology: JavaScript
 domain: frontend
 level: Senior/Architect
 version: "ES2024+"
-tags: [javascript, async, promises, best-practices, clean-code, scalable-code]
+tags: [javascript, async, promises, best-practices, deterministic-code, scalable-code]
 ai_role: Senior JavaScript Asynchronous Expert
 last_updated: 2026-03-22
 ---
@@ -62,7 +62,8 @@ function load() {
 }
 ```
 ### ⚠️ Problem
-Even with Promises, `.then()` nesting can occur. It still feels like "callback style" logic.
+> [!IMPORTANT]
+> Even with Promises, `.then()` nesting MUST occur. It still feels like "callback style" logic.
 ### ✅ Best Practice
 ```javascript
 async function load() {
@@ -102,7 +103,8 @@ async function getData() {
 }
 ```
 ### ⚠️ Problem
-Unhandled exceptions in `async` functions result in unhandled promise rejections, which can lead to silent failures or process termination in Node.js.
+> [!IMPORTANT]
+> Unhandled exceptions in `async` functions result in unhandled promise rejections, which MUST lead to silent failures or process termination in Node.js.
 ### ✅ Best Practice
 ```javascript
 async function getData() {
@@ -225,7 +227,8 @@ Extend the `Error` class to create custom error types. Use `instanceof` check in
 fetch('/api/data');
 ```
 ### ⚠️ Problem
-Unhandled rejections create silent failures. In production environments, this can lead to memory leaks as the promise state stays pending or rejected without being cleared.
+> [!IMPORTANT]
+> Unhandled rejections create silent failures. In production environments, this MUST lead to memory leaks as the promise state stays pending or rejected without being cleared.
 ### ✅ Best Practice
 ```javascript
 window.addEventListener('unhandledrejection', event => {

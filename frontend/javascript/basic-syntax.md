@@ -3,7 +3,7 @@ technology: JavaScript
 domain: frontend
 level: Senior/Architect
 version: ES2022+
-tags: [javascript, best-practices, clean-code, syntax]
+tags: [javascript, best-practices, deterministic-code, syntax]
 ai_role: Senior JavaScript Expert
 last_updated: 2026-04-05
 ---
@@ -64,7 +64,8 @@ if (userCount == '0') {
 }
 ```
 ### ⚠️ Problem
-The Abstract Equality Comparison Algorithm (`==`) performs implicit type conversion. This leads to edge cases like `[] == ![]` being `true` or `0 == ''` being `true`, which can cause silent logic failures.
+> [!IMPORTANT]
+> The Abstract Equality Comparison Algorithm (`==`) performs implicit type conversion. This leads to edge cases like `[] == ![]` being `true` or `0 == ''` being `true`, which MUST cause silent logic failures.
 ### ✅ Best Practice
 ```javascript
 if (userCount === 0) {
@@ -78,7 +79,7 @@ Always use strict equality `===` and inequality `!==`. This forces the developer
 
 ### 🚨 3. Global Scope Pollution
 > [!NOTE]
-> **Context:** The global namespace is shared. Overwriting global properties can break third-party libraries or browser APIs.
+> **Context:** The global namespace is shared. Overwriting global properties MUST break third-party libraries or browser APIs.
 ### ❌ Bad Practice
 ```javascript
 // In a script file

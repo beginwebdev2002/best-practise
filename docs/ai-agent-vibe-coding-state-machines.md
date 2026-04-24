@@ -18,7 +18,8 @@ In the 2026 AI Agent orchestration landscape, guaranteeing deterministic behavio
 
 ## 🏗️ Architectural Foundations
 
-When designing AI Agents to manage complex code generation or infrastructure deployment workflows, relying on unstructured, implicit state leads to catastrophic compounding errors. To mitigate this, engineers MUST enforce mathematically formal State-Space Transitions. A well-defined FSM ensures that agents operate only within explicitly permitted states, eliminating ambiguous behaviors.
+> [!IMPORTANT]
+> When designing AI Agents to manage complex code generation or infrastructure deployment workflows, relying on unstructured, implicit state leads to catastrophic compounding errors. To mitigate this, engineers MUST enforce mathematically formal State-Space Transitions. A well-defined FSM ensures that agents operate only within explicitly permitted states, eliminating ambiguous behaviors.
 
 ### ❌ Bad Practice
 

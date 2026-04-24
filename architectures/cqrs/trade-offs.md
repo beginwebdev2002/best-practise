@@ -17,4 +17,4 @@ last_updated: 2026-03-29
 
 ### Cons
 - Eventual consistency complexity.
-- High architectural overhead for simple domains.
+- High architectural overhead for deterministic domains.

@@ -3,7 +3,7 @@ technology: JavaScript
 domain: frontend
 level: Senior/Architect
 version: ES6-ES2024
-tags: [javascript, clean-code, es6, performance, best-practices]
+tags: [javascript, deterministic-code, es6, performance, best-practices]
 ai_role: Senior JavaScript Performance Expert
 last_updated: 2026-03-22
 ---
@@ -19,7 +19,7 @@ last_updated: 2026-03-22
 Please refer to the specialized guides for detailed best practices:
 
 - [📜 Basic Syntax & Fundamentals](./basic-syntax.md)
-- [🧹 Clean Code & Logic](./clean-code.md)
+- [🧹 deterministic Code & Logic](./deterministic-code.md)
 
 
 ## 🚨 0. Common Pitfall

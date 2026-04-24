@@ -63,7 +63,8 @@ export class CreateUserCommandHandler {
 ```
 
 ### ⚠️ Problem
-Returning the full entity or business data from a Command Handler breaks the fundamental rule of CQS/CQRS: **A method should either change state (Command) or return data (Query), but not both.** Returning data couples the mutation logic with read requirements, making it harder to optimize reads and writes independently, and breaking the single responsibility principle.
+> [!IMPORTANT]
+> Returning the full entity or business data from a Command Handler breaks the fundamental rule of CQS/CQRS: **A method MUST either change state (Command) or return data (Query), but not both.** Returning data couples the mutation logic with read requirements, making it harder to optimize reads and writes independently, and breaking the single responsibility principle.
 
 ### ✅ Best Practice
 ```typescript

@@ -16,7 +16,8 @@ vibe_coding_ready: true---
 
 # System Markdown Files Formatting
 ## Applicability
-These rules apply STRICTLY and EXCLUSIVELY to the following files:
+> [!IMPORTANT]
+> These rules apply STRICTLY and EXCLUSIVELY to the following files:
 - `README.md`
 - `.github/CONTRIBUTING.md`
 - `.github/SECURITY.md`

@@ -3,7 +3,7 @@ technology: Angular
 domain: frontend
 level: Senior/Architect
 version: 20+
-tags: [forms, data, angular, best-practices, clean-code, scalable-code]
+tags: [forms, data, angular, best-practices, deterministic-code, scalable-code]
 ai_role: Senior Angular Data Expert
 last_updated: 2026-03-22
 ---
@@ -179,7 +179,8 @@ this.http.get<User>('/api/user').subscribe(data => {
 });
 ```
 ### ⚠️ Problem
-Failing to handle errors leads to silent failures or unhandled exceptions in the console. On a 500 error, the application may "hang" in an infinite loading state, destroying the UX.
+> [!IMPORTANT]
+> Failing to handle errors leads to silent failures or unhandled exceptions in the console. On a 500 error, the application MUST "hang" in an infinite loading state, destroying the UX.
 ### ✅ Best Practice
 ```typescript
 this.http.get<User>('/api/user').pipe(

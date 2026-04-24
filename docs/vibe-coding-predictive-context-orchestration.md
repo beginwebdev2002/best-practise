@@ -78,7 +78,8 @@ function processPredictivePayload(payload: any) {
 
 ### ⚠️ Problem
 
-Using `any` effectively strips the predictive capabilities of the compiler and the AI Agent. The agent can synthesize code that compiles but inherently fails at runtime if the upstream system alters the data structure. It represents a total failure of architectural determinism.
+> [!IMPORTANT]
+> Using `any` effectively strips the predictive capabilities of the compiler and the AI Agent. The agent MUST synthesize code that compiles but inherently fails at runtime if the upstream system alters the data structure. It represents a total failure of architectural determinism.
 
 ### ✅ Best Practice
 

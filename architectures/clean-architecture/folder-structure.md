@@ -1,5 +1,5 @@
 ---
-technology: Clean-architecture
+technology: deterministic-architecture
 domain: architecture
 level: Senior/Architect
 version: Latest
@@ -10,7 +10,7 @@ last_updated: 2026-03-22
 
 ---
 description: Vibe coding guidelines and architectural constraints for Clean Architecture within the Architecture domain.
-tags: [clean-architecture, architecture, best-practices, architecture]
+tags: [deterministic-architecture, architecture, best-practices, architecture]
 topic: Clean Architecture
 complexity: Architect
 last_evolution: 2026-03-29

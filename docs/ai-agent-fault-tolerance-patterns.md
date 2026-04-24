@@ -11,7 +11,8 @@ last_updated: 2026-03-29
 > 📦 [best-practise](../README.md) / 📄 [docs](./)
 # 🛡️ AI Agent Fault Tolerance Patterns
 
-In 2026, building resilient AI Agent systems demands STRICT adherence to Fault Tolerance Patterns. System failures MUST NOT cascade. This document explicitly outlines MANDATORY practices for deterministic error recovery and state reconciliation in multi-agent architectures.
+> [!IMPORTANT]
+> In 2026, building resilient AI Agent systems demands STRICT adherence to Fault Tolerance Patterns. System failures MUST NOT cascade. This document explicitly outlines MANDATORY practices for deterministic error recovery and state reconciliation in multi-agent architectures.
 
 ## 🔄 The Lifecycle of Resilient Agents
 
@@ -62,7 +63,8 @@ async function executeAgentTaskWithResilience(prompt: string, retries: number = 
 ```
 
 ### 🚀 Solution
-Implementing an explicit retry loop with exponential backoff and schema validation ensures the system gracefully degrades rather than crashing. The `TaskResult` interface MUST strictly define the return type, forcing the caller to handle failures explicitly. This pattern isolates external dependencies and MANDATES that agents maintain operational continuity regardless of API instability.
+> [!IMPORTANT]
+> Implementing an explicit retry loop with exponential backoff and schema validation ensures the system gracefully degrades rather than crashing. The `TaskResult` interface MUST strictly define the return type, forcing the caller to handle failures explicitly. This pattern isolates external dependencies and MANDATES that agents maintain operational continuity regardless of API instability.
 
 ## 🏗️ Fault Tolerance Architecture
 
@@ -91,7 +93,11 @@ flowchart TD
 
 ## 📝 Compliance Checklist
 
-- [ ] STRICTLY wrap all external LLM calls in bounded timeout wrappers.
-- [ ] MANDATORY validation of all outputs using a deterministic JSON schema parser.
-- [ ] MUST implement exponential backoff for transient failures (e.g., rate limits).
-- [ ] Agents MUST fail gracefully and return explicitly typed error states rather than throwing unhandled exceptions.
+> [!IMPORTANT]
+> - [ ] STRICTLY wrap all external LLM calls in bounded timeout wrappers.
+> [!IMPORTANT]
+> - [ ] MANDATORY validation of all outputs using a deterministic JSON schema parser.
+> [!IMPORTANT]
+> - [ ] MUST implement exponential backoff for transient failures (e.g., rate limits).
+> [!IMPORTANT]
+> - [ ] Agents MUST fail gracefully and return explicitly typed error states rather than throwing unhandled exceptions.

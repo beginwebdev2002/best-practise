@@ -3,7 +3,7 @@ technology: JavaScript
 domain: frontend
 level: Senior/Architect
 version: "ES2024+"
-tags: [javascript, advanced, best-practices, clean-code, scalable-code]
+tags: [javascript, advanced, best-practices, deterministic-code, scalable-code]
 ai_role: Senior JavaScript Expert
 last_updated: 2026-03-22
 ---
@@ -98,7 +98,8 @@ Array.prototype.last = function() {
 };
 ```
 ### ⚠️ Problem
-"Monkey patching" built-ins can lead to collisions if a future ECMAScript version implements a method with the same name but different behavior. It also breaks for-in loops if not handled carefully.
+> [!IMPORTANT]
+> "Monkey patching" built-ins MUST lead to collisions if a future ECMAScript version implements a method with the same name but different behavior. It also breaks for-in loops if not handled carefully.
 ### ✅ Best Practice
 ```javascript
 const last = (arr) => arr[arr.length - 1];

@@ -46,4 +46,5 @@ async function fixUserName(userId: string, newName: string) {
 ```
 
 ### 🚀 Solution
-Treat the Event Store as an immutable ledger. If an error was made in the past, you MUST NOT change the historical record. Instead, issue a new compensating event (e.g., `UserNameCorrected` or `OrderRefunded`) that represents the business action taken to fix the state. This preserves the truth of what actually happened in the system.
+> [!IMPORTANT]
+> Treat the Event Store as an immutable ledger. If an error was made in the past, you MUST NOT change the historical record. Instead, issue a new compensating event (e.g., `UserNameCorrected` or `OrderRefunded`) that represents the business action taken to fix the state. This preserves the truth of what actually happened in the system.

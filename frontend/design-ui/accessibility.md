@@ -53,4 +53,5 @@ Using generic `<div>` wrappers and artificially attaching ARIA roles or keyboard
 
 
 ### 🚀 Solution
-Enforcing **Semantic HTML** is MANDATORY to guarantee deterministic accessibility tree generation. Native elements inherently support keyboard navigation and screen reader parsing without custom JavaScript logic. This STRICTLY eliminates the performance overhead of manual event listener management and mitigates security risks associated with complex, logic-heavy DOM manipulation handlers.
+> [!IMPORTANT]
+> Enforcing **Semantic HTML** is MANDATORY to guarantee deterministic accessibility tree generation. Native elements inherently support keyboard navigation and screen reader parsing without custom JavaScript logic. This STRICTLY eliminates the performance overhead of manual event listener management and mitigates security risks associated with complex, logic-heavy DOM manipulation handlers.
