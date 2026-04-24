@@ -33,6 +33,10 @@ window.addEventListener('resize', handler);
 // Cleanup:
 window.removeEventListener('resize', handler);
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Always remove event listeners in cleanup phases (e.g., `componentWillUnmount` or `useEffect` return). Use `AbortController` for an even more modern approach to listener cleanup.
 ## ⚡ 32. Memory Leaks: Forgotten Intervals/Timeouts
@@ -52,6 +56,10 @@ const intervalId = setInterval(fetchStatus, 1000);
 // Later:
 clearInterval(intervalId);
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Store the ID returned by `setTimeout` or `setInterval` and clear it when the task is no longer relevant.
 ## ⚡ 33. Closures inside loops (Memory/Scope issues)
@@ -71,6 +79,10 @@ for (let i = 0; i < 5; i++) {
     setTimeout(() => console.log(i), 100); // Prints 0, 1, 2, 3, 4
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use `let` in loop headers. It creates a new binding for each iteration, ensuring the closure captures the value of `i` at that specific moment.
 ## ⚡ 34. Throwing Strings instead of `new Error()`
@@ -86,6 +98,10 @@ Throwing a string provides no stack trace. It makes it nearly impossible to dete
 ```javascript
 throw new Error('Something went wrong');
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Always throw an instance of `Error` (or a subclass). This captures the `stack` property, which is vital for debugging.
 ## ⚡ 35. Modifying Built-in Prototypes
@@ -103,6 +119,10 @@ Array.prototype.last = function() {
 ```javascript
 const last = (arr) => arr[arr.length - 1];
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use utility functions or wrapper classes instead of modifying global prototypes.
 ## ⚡ 36. Premature Optimization (e.g., bitwise for rounding)
@@ -118,6 +138,10 @@ While `~~` is slightly faster in some engines, it makes the code cryptic. It als
 ```javascript
 const floor = Math.floor(x);
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Prioritize readability. Modern JIT compilers are smart enough to optimize `Math.floor`. Only use bitwise tricks if profiling proves it's a critical bottleneck in a hot path.
 ## ⚡ 37. V8 Hidden Classes: Changing object shape after initialization
@@ -141,6 +165,10 @@ function User(name, age) {
 }
 const u1 = new User('Alice', 25);
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Initialize all object properties in the constructor or a factory function. Maintain a consistent object "shape" to keep V8 in the optimized path.
 ## ⚡ 38. Array Hole (Sparse Arrays) performance
@@ -157,6 +185,10 @@ Creating "holes" in arrays makes them "sparse". Sparse arrays are stored differe
 ```javascript
 const arr = Array.from({ length: 100 }, () => null);
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Initialize arrays with default values (like `null` or `0`) instead of leaving empty slots. This keeps the array in "packed" mode.
 ## ⚡ 39. Using `eval()` or `new Function()`
@@ -174,6 +206,10 @@ const result = new Function('a', 'b', 'return a + b')(2, 2); // Slightly better,
 // Better:
 const operations = { '+': (a, b) => a + b };
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Avoid `eval()`. Use lookup tables, JSON parsing, or safe math libraries to handle dynamic logic.
 ## ⚡ 40. Micro-optimizations that hurt readability
@@ -189,5 +225,9 @@ Caching `arr.length` was necessary 15 years ago. Today, modern engines optimize 
 ```javascript
 for (const item of arr) { /* ... */ }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Focus on "Big O" complexity and deterministic, strictly typed code. Only micro-optimize after profiling identifies a specific performance hotspot.

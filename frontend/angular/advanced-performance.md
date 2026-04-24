@@ -33,6 +33,10 @@ A charting library (e.g., ECharts) loads immediately, blocking TTI (Time to Inte
   <div>Loading chart...</div>
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use `@defer`. This defers component code loading until a trigger occurs (viewport, interaction, timer).
 ## ⚡ 32. Heavy Computation in Main Thread
@@ -44,6 +48,10 @@ Sorting an array of 100k elements directly in the component.
 Freezes the UI.
 ### ✅ Best Practice
 Offload computations to a Web Worker.
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use Angular Web Workers. In v20, this is easily configured via the CLI.
 ## ⚡ 33. Memory Leaks in `effect()`
@@ -65,6 +73,10 @@ effect((onCleanup) => {
   onCleanup(() => clearInterval(timer));
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Always use the `onCleanup` callback to release resources.
 ## ⚡ 34. Excessive Change Detection with `NgZone.run()`
@@ -80,6 +92,10 @@ ngZone.runOutsideAngular(() => {
   // Heavy chart rendering or canvas animation
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Run frequent events (scroll, mousemove, animationFrame) *outside* the Angular zone. Update signals only when UI updates are required.
 ## ⚡ 35. Signals equality check default
@@ -96,6 +112,10 @@ If you create a new object with the same data `{ id: 1 }`, the signal triggers a
 import { isEqual } from 'lodash-es';
 data = signal(obj, { equal: isEqual });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use a custom comparison function for complex objects to avoid redundant re-renders.
 ## ⚡ 36. Lacking `trackBy` in iterables
@@ -111,6 +131,10 @@ Without tracking, any array change leads to the recreation of all DOM nodes in t
 ```html
 @for (item of items; track item.id)
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Always use a unique key in `track`. This allows Angular to move DOM nodes instead of recreating them.
 ## ⚡ 37. Recursive Template without Caching
@@ -146,6 +170,10 @@ export class TreeNodeComponent {
   node = input.required<TreeNode>();
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use standalone components with `ChangeDetectionStrategy.OnPush` and modern `@for` control flow for recursive structures. This ensures change detection only runs when inputs change, drastically improving performance for deeply nested trees.
 ## ⚡ 38. Global Styles Leakage
@@ -160,6 +188,10 @@ button { padding: 10px; }
 Global styles unpredictably affect components.
 ### ✅ Best Practice
 Use `ViewEncapsulation.Emulated` (default) and specific selectors.
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Keep styles locally within components.
 ## ⚡ 39. Large Component Bundle
@@ -171,6 +203,10 @@ A single huge component of 3000 lines.
 Poor readability, rendering lazy loading of UI parts impossible.
 ### ✅ Best Practice
 Decompose into "dumb" (UI) and "smart" components.
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Break down the UI into small, reusable blocks.
 ## ⚡ 40. Image Optimization Ignorance
@@ -186,6 +222,10 @@ The browser loads the full image, shifting the layout (CLS).
 ```html
 <img ngSrc="hero.jpg" width="800" height="600" priority />
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Use the `NgOptimizedImage` directive. It automatically handles lazy loading, preconnect, and srcset.
 ## ⚡ 41. Hydration Mismatch
@@ -197,6 +237,10 @@ Rendering `Date.now()` or random numbers (`Math.random()`) directly in the templ
 The server generates one number, the client another. This causes "flickering" and a hydration error; Angular discards the server DOM and renders from scratch.
 ### ✅ Best Practice
 Use stable data or defer random generation until `afterNextRender`.
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Pay attention to template determinism with SSR.
 ## ⚡ 42. Synchronous `inject()` inside loops
@@ -225,6 +269,10 @@ export class ItemProcessor {
   }
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Inject dependencies exactly once at the class or property level. This caches the reference to the service, bypassing redundant DI resolution and keeping hot paths efficient.
 ## ⚡ 43. Unused Signal Dependencies
@@ -249,6 +297,10 @@ effect(() => {
   console.log('Value changed:', currentVal);
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 > [!IMPORTANT]
 > Use `untracked()` to read signals that MUST not register as dependencies. This prevents unintended re-evaluations and ensures effects only run when their primary state changes.
@@ -273,6 +325,10 @@ Unnecessary wrapper `<div>` elements deeply nest the DOM tree ("div soup"). This
   </ng-container>
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Utilize `<ng-container>` to apply structural logic or apply classes directly to component hosts. `<ng-container>` is rendered as an invisible comment, keeping the DOM tree shallow and performant.
 ## ⚡ 45. Neglecting `runOutsideAngular` for Events
@@ -304,6 +360,10 @@ export class ScrollTracker {
   }
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Bind high-frequency events outside the Angular Zone using `NgZone.runOutsideAngular()`. Only re-enter the Angular Zone (`zone.run()`) when a threshold is met and a UI update is strictly required.
 ---

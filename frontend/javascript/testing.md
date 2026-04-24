@@ -68,6 +68,10 @@ test('update user', () => {
 | **Cost to Write/Maintain**| Low | Medium | High |
 | **Confidence Level** | Low (doesn't catch contract issues) | Medium | High (simulates real user) |
 
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Ensure every test is fully isolated. Use `beforeEach` or setup functions to instantiate fresh state for every individual test case.
 
@@ -95,6 +99,10 @@ test('fetches data', async () => {
   expect(data).toBe('success');
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Always use `async/await` when testing asynchronous code. This ensures the test runner waits for the Promise to resolve or reject before marking the test as complete.
 

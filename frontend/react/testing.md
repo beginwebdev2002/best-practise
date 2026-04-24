@@ -51,6 +51,10 @@ test('increments counter on click', () => {
   expect(screen.getByText('Count: 1')).toBeInTheDocument();
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [React Architecture](./readme.md).
+
 ### 🚀 Solution
 Test from the user's perspective using React Testing Library. Query by accessible roles and verify the DOM output. This guarantees that refactoring implementation details will not break your test suite.
 
@@ -82,6 +86,10 @@ test('loads data', async () => {
   expect(userName).toBeInTheDocument();
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [React Architecture](./readme.md).
+
 ### 🚀 Solution
 Use async utilities like `findBy*` or `waitFor` from React Testing Library. These tools inherently wrap updates in `act()` and poll the DOM until the asynchronous state resolves, ensuring deterministic test execution.
 

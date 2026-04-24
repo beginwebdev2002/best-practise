@@ -51,6 +51,10 @@ test('signal updates', () => {
   });
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [SolidJS Architecture](./readme.md).
+
 ### 🚀 Solution
 Wrap reactive primitives in `createRoot` and invoke the `dispose` function at the end of the test block. This mimics the component lifecycle and prevents memory leaks.
 

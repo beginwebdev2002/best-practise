@@ -45,6 +45,10 @@ import { UserService } from './user.service';
 const mockUserService = mock<UserService>();
 mockUserService.getUser.mockResolvedValue({ id: 1, name: 'Alice', email: 'alice@test.com' });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use deep mocking libraries (like `jest-mock-extended`) or precisely type your stubs using `Partial<T>` and strictly typecast with `as unknown as T` if absolutely necessary, to ensure mocks structurally match the actual interface.
 
@@ -77,6 +81,10 @@ test('returns user', async () => {
   expect((result as UserResponse).name).toBe('Alice');
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Leverage strict typing within assertions. Define the expected types or rely on inferred return types to guarantee that the shape of the data matches the expected contract seamlessly.
 

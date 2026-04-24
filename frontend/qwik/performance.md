@@ -39,6 +39,10 @@ const Component = component$(() => {
   return <button onClick$={handleClick}>Click</button>;
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Qwik Architecture](./readme.md).
+
 ### 🚀 Solution
 > [!IMPORTANT]
 > Ensure all event handlers use the `$` suffix (like `onClick$`) and their corresponding logic is wrapped in `$()`. This explicit syntax breaks the application into tiny resumable closures that Qwik MUST fetch only when the user interacts with them.

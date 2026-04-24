@@ -26,6 +26,10 @@ Comparing a boolean to `true` or `false` is redundant. It adds visual noise with
 if (isValid) { /* ... */ }
 if (!isPending) { /* ... */ }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Leverage JavaScript's truthiness/falsiness or direct boolean evaluation. It makes the code more concise and idiomatic.
 ---
@@ -46,6 +50,10 @@ The `Array` constructor is inconsistent: `new Array(3)` creates an empty array o
 const list = [1, 2, 3];
 const map = {};
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use literals `[]` and `{}`. They are visually cleaner and perform slightly better as they don't involve a function call.
 ---
@@ -74,6 +82,10 @@ function processOrder(order) {
     notifyUser(order);
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Break functions into smaller, pure components. Aim for functions under 20 lines that do exactly one thing.
 ---
@@ -105,6 +117,10 @@ function getData(user) {
     return fetchData();
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use "Guard Clauses" to return early. This flattens the structure and handles edge cases first, leaving the happy path at the lowest nesting level.
 ---
@@ -125,6 +141,10 @@ Single-letter variables (except for standard loop indices like `i` or `j`) provi
 const today = new Date();
 const userNames = users.map(user => user.name);
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use descriptive, camelCase names that convey the intent and data type of the variable.
 ---

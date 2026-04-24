@@ -68,6 +68,10 @@ flowchart TD
     class A,B,C,D,E,F default;
 ```
 
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Always use `TestBed` to create the component. Simulate user interactions via the DOM, run `detectChanges()`, and assert against the rendered output to ensure both the signal and the template are synchronized correctly.
 
@@ -112,6 +116,10 @@ it('should fetch data', () => {
   req.flush({ data: 'real-like' });
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular Architecture](./readme.md).
+
 ### 🚀 Solution
 Utilize built-in testing utilities provided by Angular (`HttpTestingController`, `RouterTestingHarness`). They provide reliable, standardized APIs for asserting and mocking framework-level interactions.
 

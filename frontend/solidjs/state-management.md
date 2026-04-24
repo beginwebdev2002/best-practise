@@ -53,6 +53,10 @@ function Profile(props) {
   );
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [SolidJS Architecture](./readme.md).
+
 ### 🚀 Solution
 Never destructure props directly. Access props dynamically via `props.propertyName` or use `splitProps()` / `mergeProps()` utilities if you need to separate internal from forwarded properties while preserving reactive getters.
 ---

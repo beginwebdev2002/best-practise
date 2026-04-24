@@ -76,6 +76,10 @@ flowchart TD
     class A,B,C,D,E,F,G default;
 ```
 
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [React Architecture](./readme.md).
+
 ### 🚀 Solution
 Use the `useActionState` Hook (React 19+) for seamless action state management. This hook natively handles loading and error states, resolves race conditions by ensuring only the latest action state is applied to the UI, and optimizes rendering cycles deterministically.
 
@@ -103,6 +107,10 @@ function Dropdown() {
   return <div onClick={() => setIsOpen(!isOpen)}>{isOpen ? 'Open' : 'Closed'}</div>;
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [React Architecture](./readme.md).
+
 ### 🚀 Solution
 Use `useState` or `useReducer` for UI state that belongs locally to a component tree. Only elevate state to a global store when it is shared across multiple disjoint component branches, maintaining strict state colocation for optimal rendering performance.
 

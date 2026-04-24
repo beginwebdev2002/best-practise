@@ -46,6 +46,10 @@ fetchData(url)
     .then(details => saveData(details))
     .catch(err => handleError(err));
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use Promises to flatten the structure and centralize error handling with `.catch()`.
 ## ⚡ 22. Promise.then() nesting vs Async/Await
@@ -71,6 +75,10 @@ async function load() {
     return processed;
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use `async/await`. It allows asynchronous code to be written and read like synchronous code, improving maintainability.
 ## ⚡ 23. Sequential `await` in loops vs `Promise.all`
@@ -89,6 +97,10 @@ Sequential `await` in a loop causes a "waterfall" effect, where each request wai
 const promises = ids.map(id => fetchItem(id));
 await Promise.all(promises);
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use `Promise.all` to execute independent promises in parallel. This utilizes the full network/IO bandwidth.
 ## ⚡ 24. Missing `try/catch` in async
@@ -114,6 +126,10 @@ async function getData() {
     }
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Wrap `await` calls in `try/catch` blocks or use a higher-order function to catch errors.
 ## ⚡ 25. Floating point math errors (`0.1 + 0.2`)
@@ -133,6 +149,10 @@ const areEqual = (a, b) => Math.abs(a - b) < EPSILON;
 // Or for money:
 const totalCents = (10 + 20); // 30 cents
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use `Number.EPSILON` for comparisons or represent decimals as integers (e.g., cents instead of dollars) to avoid floating point drift.
 ## ⚡ 26. Multiple Boolean flags vs State Machine
@@ -150,6 +170,10 @@ Multiple flags allow for "impossible states" (e.g., `isLoading` and `isError` bo
 ```javascript
 const [status, setStatus] = useState('IDLE'); // IDLE, LOADING, ERROR, SUCCESS
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Use a single state variable or a state machine. This ensures only one state is active at a time and simplifies transitions.
 ## ⚡ 27. Sync logic in Event Loop
@@ -174,6 +198,10 @@ function processInChunks(arr) {
     setTimeout(() => processInChunks(arr), 0);
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Offload heavy tasks to Web Workers or use `requestIdleCallback`/`setTimeout` to break long tasks into smaller chunks, allowing the browser to render between frames.
 ## ⚡ 28. Overusing `classes` where functions suffice
@@ -192,6 +220,10 @@ Classes introduce unnecessary overhead (prototype chain, `this` binding issues) 
 ```javascript
 export const add = (a, b) => a + b;
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 > [!IMPORTANT]
 > Use unambiguous functions and modules for logic. Use classes only when you need to manage complex stateful instances with shared behavior.
@@ -214,6 +246,10 @@ class UserNotFoundError extends Error {
     }
 }
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Extend the `Error` class to create custom error types. Use `instanceof` check in catch blocks to handle specific errors differently.
 ## ⚡ 30. Unhandled Rejections
@@ -232,6 +268,10 @@ window.addEventListener('unhandledrejection', event => {
     reportToSentry(event.reason);
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript Architecture](./readme.md).
+
 ### 🚀 Solution
 Always handle promise rejections. Implement a global unhandled rejection listener as a safety net for monitoring.
 ---
