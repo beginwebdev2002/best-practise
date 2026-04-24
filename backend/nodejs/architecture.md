@@ -67,7 +67,8 @@ app.post('/api/users', async (req, res, next) => {
 > **Internal Routing:** For more context, refer back to the [Nodejs Index](./readme.md).
 
 ### 🚀 Solution
-Controllers MUST ONLY handle HTTP payload parsing and response formatting. Core business operations MUST be delegated to isolated Service classes.
+> [!IMPORTANT]
+> Controllers MUST ONLY handle HTTP payload parsing and response formatting. Core business operations MUST be delegated to isolated Service classes.
 
 ## 2. 🗂️ Dependency Inversion
 
@@ -98,7 +99,8 @@ class UserService {
 }
 ```
 ### 🚀 Solution
-STRICTLY apply Dependency Injection. Services MUST receive infrastructural dependencies via their constructor, enabling decoupled layers and testability.
+> [!IMPORTANT]
+> STRICTLY apply Dependency Injection. Services MUST receive infrastructural dependencies via their constructor, enabling decoupled layers and testability.
 
 ## 3. 🌐 Global State Mutation
 
@@ -120,4 +122,5 @@ const config = Object.freeze({
 });
 ```
 ### 🚀 Solution
-Configuration objects MUST be locked and immutable after initialization. FORBID any runtime mutations to the global execution environment.
+> [!IMPORTANT]
+> Configuration objects MUST be locked and immutable after initialization. FORBID any runtime mutations to the global execution environment.

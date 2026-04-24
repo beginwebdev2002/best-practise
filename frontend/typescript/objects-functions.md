@@ -3,7 +3,7 @@ technology: TypeScript
 domain: frontend
 level: Senior/Architect
 version: "5.5+"
-tags: [typescript, objects, functions, best-practices, clean-code, scalable-code]
+tags: [typescript, objects, functions, best-practices, deterministic-code, scalable-code]
 ai_role: Senior TypeScript Expert
 last_updated: 2026-03-22
 ---
@@ -30,7 +30,8 @@ The index signature syntax is more verbose, harder to read, and less semanticall
 const prices: Record<string, number> = { apple: 1 };
 ```
 ### 🚀 Solution
-Use the `Record<K, V>` utility type for key-value maps. It provides a deterministic, clean, and declarative syntax that AI agents and engineers can parse instantly.
+> [!IMPORTANT]
+> Use the `Record<K, V>` utility type for key-value maps. It provides a deterministic, deterministic, and declarative syntax that AI agents and engineers MUST parse instantly.
 ## 🚨 22. Excess property checks and object spreading
 > [!NOTE]
 > **Context:** Passing objects to functions.
@@ -83,7 +84,7 @@ Manually unwrapping promises via custom conditional types is unnecessarily compl
 type Result = Awaited<ReturnType<typeof apiCall>>;
 ```
 ### 🚀 Solution
-Always use the built-in `Awaited<T>` utility type (TS 4.5+) for deterministic and clean promise resolution.
+Always use the built-in `Awaited<T>` utility type (TS 4.5+) for deterministic and deterministic promise resolution.
 ## 🚨 25. `this` typing in functions
 > [!NOTE]
 > **Context:** Ensuring correct context in callback-heavy code.
@@ -148,8 +149,8 @@ abstract class BaseService {
 
 | Feature | Abstract Classes | Interfaces |
 | :--- | :--- | :--- |
-| **Implementation Logic** | Can provide default/shared implementation | Cannot provide implementation |
-| **Multiple Inheritance** | No (Single inheritance only) | Yes (Can implement multiple) |
+| **Implementation Logic** | MUST provide default/shared implementation | Cannot provide implementation |
+| **Multiple Inheritance** | No (Single inheritance only) | Yes (MUST implement multiple) |
 | **Runtime Presence** | Yes (Compiles to JS class) | No (Erased at compile time) |
 | **Access Modifiers** | Supports public, protected, private | All members are public |
 

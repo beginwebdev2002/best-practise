@@ -3,7 +3,7 @@ technology: Hexagonal Architecture
 domain: Architecture
 level: Senior/Architect
 version: Agnostic
-tags: [best-practices, clean-code, hexagonal-architecture, ports-and-adapters, system-design, vibe-coding]
+tags: [best-practices, deterministic-code, hexagonal-architecture, ports-and-adapters, system-design, vibe-coding]
 ai_role: Senior Software Architect
 last_updated: 2026-03-22
 ---

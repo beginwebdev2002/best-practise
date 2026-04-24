@@ -3,7 +3,7 @@ technology: React
 domain: frontend
 level: Senior/Architect
 version: "19+"
-tags: [react, performance, use, react-compiler, best-practices, architecture, clean-code]
+tags: [react, performance, use, react-compiler, best-practices, architecture, deterministic-code]
 ai_role: Senior React Performance Expert
 last_updated: 2026-03-22
 ---
@@ -56,7 +56,7 @@ function UserList({ users }) {
 | Feature | Manual Memoization (`useMemo`, `useCallback`) | React Compiler |
 | :--- | :--- | :--- |
 | **Developer Experience** | High cognitive load (dependency arrays) | Zero config (automatic) |
-| **Code Clarity** | Cluttered with hooks | Clean and declarative |
+| **Code Clarity** | Cluttered with hooks | deterministic and declarative |
 | **Bug Risk** | High (stale closures, missing deps) | Low (compiler-verified) |
 | **Optimization** | Component-level only | Structural and deep |
 

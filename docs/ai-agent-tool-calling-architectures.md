@@ -20,10 +20,14 @@ An AI Agent's capability is strictly bound by the precision of its tool definiti
 
 ### Key Tenets
 
-1. **Schema Explicitness:** Tool descriptions MUST be unambiguous, strictly typing every parameter and detailing expected responses.
-2. **Atomic Granularity:** Tools MUST adhere to the Single Responsibility Principle, executing one specific function per call to reduce context overhead.
-3. **Graceful Degradation:** Tool execution architectures MUST implement robust error handling (e.g., retries with exponential backoff) for external service failures.
-4. **Contextual Purity:** Output from tools MUST be sanitized to prevent context-window pollution before being returned to the agent's memory.
+> [!IMPORTANT]
+> 1. **Schema Explicitness:** Tool descriptions MUST be unambiguous, strictly typing every parameter and detailing expected responses.
+> [!IMPORTANT]
+> 2. **Atomic Granularity:** Tools MUST adhere to the Single Responsibility Principle, executing one specific function per call to reduce context overhead.
+> [!IMPORTANT]
+> 3. **Graceful Degradation:** Tool execution architectures MUST implement robust error handling (e.g., retries with exponential backoff) for external service failures.
+> [!IMPORTANT]
+> 4. **Contextual Purity:** Output from tools MUST be sanitized to prevent context-window pollution before being returned to the agent's memory.
 
 ---
 
@@ -64,7 +68,8 @@ graph TD
 
 ## 📝 Implementing Tool Defintions (The Pattern Lifecycle)
 
-To ensure systemic stability and deterministic execution, tool definitions MUST adhere to strict constraints.
+> [!IMPORTANT]
+> To ensure systemic stability and deterministic execution, tool definitions MUST adhere to strict constraints.
 
 ### ❌ Bad Practice
 
@@ -85,7 +90,8 @@ To ensure systemic stability and deterministic execution, tool definitions MUST 
 
 ### ⚠️ Problem
 
-The provided schema is dangerously vague. It lacks explicit descriptions for the parameter, omits the required array, and fails to specify whether the path should be relative or absolute. This ambiguity forces the LLM to guess, drastically increasing the probability of `ENOENT` runtime errors or hallucinations.
+> [!IMPORTANT]
+> The provided schema is dangerously vague. It lacks explicit descriptions for the parameter, omits the required array, and fails to specify whether the path MUST be relative or absolute. This ambiguity forces the LLM to guess, drastically increasing the probability of `ENOENT` runtime errors or hallucinations.
 
 ### ✅ Best Practice
 

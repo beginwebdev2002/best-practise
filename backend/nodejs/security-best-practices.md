@@ -56,7 +56,8 @@ function safeMerge(target, source) {
 > **Internal Routing:** For more context, refer back to the [Nodejs Index](./readme.md).
 
 ### 🚀 Solution
-STRICTLY filter reserved prototype keys (`__proto__`, `constructor`, `prototype`) during deep clone or merge operations. Alternatively, use robust, community-vetted libraries (like lodash.merge) that have built-in pollution defenses.
+> [!IMPORTANT]
+> STRICTLY filter reserved prototype keys (`__proto__`, `constructor`, `prototype`) during deep clone or merge operations. Alternatively, use robust, community-vetted libraries (like lodash.merge) that have built-in pollution defenses.
 
 ## 2. 🔏 Hardcoded Secrets
 
@@ -76,7 +77,8 @@ if (!dbUrl) throw new Error('MANDATORY DATABASE_URL config is missing');
 const dbClient = new Database(dbUrl);
 ```
 ### 🚀 Solution
-MANDATORY injection of secrets via environment variables or secret management vaults (e.g., AWS Secrets Manager, HashiCorp Vault). NEVER commit sensitive material to version control.
+> [!IMPORTANT]
+> MANDATORY injection of secrets via environment variables or secret management vaults (e.g., AWS Secrets Manager, HashiCorp Vault). NEVER commit sensitive material to version control.
 
 ## 3. 🛡️ Regular Expression Denial of Service (ReDoS)
 
@@ -103,7 +105,8 @@ app.post('/validate', (req, res) => {
 });
 ```
 ### 🚀 Solution
-FORBID the use of complex, custom regular expressions on unconstrained user input. STRICTLY utilize established validation libraries and apply input length constraints before regex execution.
+> [!IMPORTANT]
+> FORBID the use of complex, custom regular expressions on unconstrained user input. STRICTLY utilize established validation libraries and apply input length constraints before regex execution.
 
 ### 📊 Security Process Flow
 

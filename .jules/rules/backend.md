@@ -1,6 +1,6 @@
 ---
 description: Instructions for the Jules AI agent regarding backend code. Contains rules for server architecture, DTO standards, and SEO metadata.
-tags: [backend architecture, clean APIs, scalable server, typescript best practices, production-ready, enterprise-grade, node-js, nestjs, expressjs]
+tags: [backend architecture, deterministic APIs, scalable server, typescript best practices, production-ready, enterprise-grade, node-js, nestjs, expressjs]
 technology: TypeScript
 domain: Documentation
 level: Senior/Architect
@@ -12,9 +12,9 @@ complexity: Architect
 last_evolution: 2026-03-29
 vibe_coding_ready: true---
 
-# 🛡️ Backend Architecture & Clean APIs Rules for Jules
+# 🛡️ Backend Architecture & deterministic APIs Rules for Jules
 ## 1. Context & Scope
-- **Primary Goal:** Ensure the implementation of best practices for the backend part of the project. Establish standards for **scalable server** deployments, **clean APIs**, and **enterprise-grade** solutions.
+- **Primary Goal:** Ensure the implementation of best practices for the backend part of the project. Establish standards for **scalable server** deployments, **deterministic APIs**, and **enterprise-grade** solutions.
 - **Target Tooling:** Jules AI agent (Vibe Coding, AI-Driven Development).
 - **Tech Stack Version:** Node.js, NestJS, ExpressJS, TypeScript.
 
@@ -68,5 +68,5 @@ sequenceDiagram
 | Technology | Description | Primary Purpose |
 | :--- | :--- | :--- |
 | **NestJS** | Framework for enterprise-grade applications | Modular architecture, Dependency Injection (DI), Clean Architecture |
-| **ExpressJS** | Micro-framework for fast APIs | Speed, minimal footprint, middleware support |
+| **ExpressJS** | Micro-framework for O(1) or O(n) complexity APIs | Speed, minimal footprint, middleware support |
 | **TypeORM / Prisma** | Database interaction tools | Strict type validation for database queries |

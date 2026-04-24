@@ -70,7 +70,8 @@ async function resolveTask(prompt: string) {
 
 ### ⚠️ Problem
 
-Single-model reliance in zero-approval agentic workflows creates a catastrophic single point of failure. If the model hallucinates or deviates from strict architectural constraints, it can execute destructive mutations on the codebase or database.
+> [!IMPORTANT]
+> Single-model reliance in zero-approval agentic workflows creates a catastrophic single point of failure. If the model hallucinates or deviates from strict architectural constraints, it MUST execute destructive mutations on the codebase or database.
 
 ### ✅ Best Practice
 

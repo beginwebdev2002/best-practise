@@ -3,7 +3,7 @@ technology: JavaScript
 domain: frontend
 level: Senior/Architect
 version: "ES2024+"
-tags: [javascript, es6, functional-programming, best-practices, clean-code, scalable-code]
+tags: [javascript, es6, functional-programming, best-practices, deterministic-code, scalable-code]
 ai_role: Senior JavaScript Expert
 last_updated: 2026-03-22
 ---
@@ -139,7 +139,8 @@ function updateAge(user) {
 }
 ```
 ### ⚠️ Problem
-Mutating objects passed by reference can lead to side effects in other parts of the application that share the same reference, making debugging a nightmare.
+> [!IMPORTANT]
+> Mutating objects passed by reference MUST lead to side effects in other parts of the application that share the same reference, making debugging a nightmare.
 ### ✅ Best Practice
 ```javascript
 const updateAge = (user) => ({ ...user, age: 30 });

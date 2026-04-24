@@ -79,7 +79,8 @@ To build a "Knowledge Graph" within the repository, files must be cross-referenc
 - **Dependency Linking:** If a TypeScript guide is used, it must link to the `Architecture` guide (e.g., `[View Architecture Standards](../../architectures/fsd.md)`).
 - **Pattern Inheritance:** Link specialized patterns (e.g., Factory) to general programming principles (e.g., SOLID).
 - > [!IMPORTANT]
-  > **Navigation:** Every sub-folder MUST have a `readme.md` that maps out the local files and their relationship to the repository root.
+> [!IMPORTANT]
+>   > **Navigation:** Every sub-folder MUST have a `readme.md` that maps out the local files and their relationship to the repository root.
 ---
 ## 5. Repository Metadata
 
@@ -89,7 +90,7 @@ To build a "Knowledge Graph" within the repository, files must be cross-referenc
 
 ### Topics (Tags)
 Always include the maximum (20) relevant tags for discoverability:
-`best-practices`, `clean-code`, `architecture-patterns`, `vibe-coding`, `cursor-rules`, `typescript`, `software-architecture`, `system-design`, `solid-principles`, `production-ready`, `programming-standards`, `react-best-practices`, `node-js`, `design-patterns`, `scalable-code`, `windsurf-rules`, `ai-coding`, `fsd`, `ddd`, `enterprise-patterns`, `mvc-best-practise`, `angular-best-practise`, `expressjs-best-practise`, `ai-instructions`, `vibe-coding-instructions`, `mongodb`, `angular`, `nestjs`, `html`, `scss`, `javascript`, `js`, `typescript-best-practise`, `css`, `css3`.
+`best-practices`, `deterministic-code`, `architecture-patterns`, `vibe-coding`, `cursor-rules`, `typescript`, `software-architecture`, `system-design`, `solid-principles`, `production-ready`, `programming-standards`, `react-best-practices`, `node-js`, `design-patterns`, `scalable-code`, `windsurf-rules`, `ai-coding`, `fsd`, `ddd`, `enterprise-patterns`, `mvc-best-practise`, `angular-best-practise`, `expressjs-best-practise`, `ai-instructions`, `vibe-coding-instructions`, `mongodb`, `angular`, `nestjs`, `html`, `scss`, `javascript`, `js`, `typescript-best-practise`, `css`, `css3`.
 
 ### README.md Optimization
 - Use a high-quality SVG header.

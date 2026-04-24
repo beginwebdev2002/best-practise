@@ -3,7 +3,7 @@ technology: Clean Architecture
 domain: Architecture
 level: Senior/Architect
 version: Agnostic
-tags: [architecture, system-design, clean-architecture, best-practices]
+tags: [architecture, system-design, deterministic-architecture, best-practices]
 ai_role: Senior Architect
 last_updated: 2026-03-29
 ---
@@ -18,7 +18,8 @@ This engineering directive defines the **best practices** for Clean Architecture
 # Context & Scope
 - **Primary Goal:** Provide strict architectural rules and practical patterns for creating scalable systems.
 - > [!IMPORTANT]
-  > **Description:** A concept created by Robert C. Martin (Uncle Bob). It separates a project into concentric rings. The main rule is the Dependency Rule: dependencies MUST STRICTLY only point inward.
+> [!IMPORTANT]
+>   > **Description:** A concept created by Robert C. Martin (Uncle Bob). It separates a project into concentric rings. The main rule is the Dependency Rule: dependencies MUST STRICTLY only point inward.
 
 ## Map of Patterns
 - 📊 [**Data Flow:** Request and Event Lifecycle](./data-flow.md)

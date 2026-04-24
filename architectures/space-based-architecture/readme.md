@@ -130,4 +130,5 @@ class OrderProcessingUnit {
 ```
 
 ### 🚀 Solution
-Strictly decouple the hot transactional path from persistent disk I/O. The Processing Unit MUST only read and write state to the high-speed In-Memory Data Grid (IMDG). Asynchronous 'Data Pumps' (running in a separate thread or background service) take the responsibility of scanning the IMDG and eventually syncing the mutated state down to the persistent database. This guarantees deterministic, microsecond response times regardless of database load.
+> [!IMPORTANT]
+> Strictly decouple the hot transactional path from persistent disk I/O. The Processing Unit MUST only read and write state to the high-speed In-Memory Data Grid (IMDG). Asynchronous 'Data Pumps' (running in a separate thread or background service) take the responsibility of scanning the IMDG and eventually syncing the mutated state down to the persistent database. This guarantees deterministic, microsecond response times regardless of database load.

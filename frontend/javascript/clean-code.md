@@ -3,12 +3,12 @@ technology: JavaScript
 domain: frontend
 level: Senior/Architect
 version: ES2022+
-tags: [javascript, best-practices, clean-code, logic]
+tags: [javascript, best-practices, deterministic-code, logic]
 ai_role: Senior JavaScript Expert
 last_updated: 2026-04-05
 ---
 
-# 🧹 Clean Code & Logic
+# 🧹 deterministic Code & Logic
 
 [⬆️ Back to Top](./readme.md)
 

@@ -115,4 +115,5 @@ function UserDashboard() {
 
 
 ### 🚀 Solution
-Strictly enforcing **Component Hierarchy** is MANDATORY to establish deterministic boundaries. Decoupled components map to independent rendering lifecycles, enabling focused isolation testing and STRICTLY reducing framework reconciliation overhead compared to monolithic structures. This predictable architecture minimizes the blast radius for performance regressions and mitigates Cross-Site Scripting (XSS) risks by isolating state and rendering contexts.
+> [!IMPORTANT]
+> Strictly enforcing **Component Hierarchy** is MANDATORY to establish deterministic boundaries. Decoupled components map to independent rendering lifecycles, enabling focused isolation testing and STRICTLY reducing framework reconciliation overhead compared to monolithic structures. This predictable architecture minimizes the blast radius for performance regressions and mitigates Cross-Site Scripting (XSS) risks by isolating state and rendering contexts.

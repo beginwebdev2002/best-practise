@@ -3,7 +3,7 @@ technology: General Architecture
 domain: Architecture
 level: Senior/Architect
 version: Agnostic
-tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
+tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior Software Architect
 last_updated: 2026-03-29
 ---
@@ -44,7 +44,7 @@ Don't know where to start? Here are a few golden rules:
 ## 🗺️ Map of Patterns
 
 - [Backend-For-Frontend (BFF)](./backend-for-frontend/readme.md)
-- [Clean Architecture](./clean-architecture/readme.md)
+- [Clean Architecture](./deterministic-architecture/readme.md)
 - [CQRS](./cqrs/readme.md)
 - [Domain-Driven Design (DDD)](./domain-driven-design/readme.md)
 - [Event-Driven Architecture (EDA)](./event-driven-architecture/readme.md)
@@ -110,11 +110,11 @@ src/
 ---
 
 ### 2. Clean Architecture
-[![Clean Arch](https://img.shields.io/badge/Clean_Architecture-black?style=flat-square)](#)
+[![deterministic Arch](https://img.shields.io/badge/Clean_Architecture-black?style=flat-square)](#)
 
 > [!IMPORTANT]
 > **Description:** A concept created by Robert C. Martin (Uncle Bob). It separates a project into concentric rings. The main rule is the Dependency Rule: dependencies MUST STRICTLY only point inward (towards core business entities).
-**📖 Map of Patterns:** [Go to Clean Architecture Guidelines](./clean-architecture/readme.md)
+**📖 Map of Patterns:** [Go to Clean Architecture Guidelines](./deterministic-architecture/readme.md)
 
 **Architecture Diagram & Folder Tree:**
 ```mermaid

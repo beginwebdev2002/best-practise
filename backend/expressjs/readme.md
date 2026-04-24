@@ -151,7 +151,8 @@ require('dotenv').config();
 mongoose.connect(process.env.DB_URI);
 ```
 ### 🚀 Solution
-Use `dotenv` and configuration files for different environments. Secrets MUST strictly be stored only in `.env` (which must be added to `.gitignore`).
+> [!IMPORTANT]
+> Use `dotenv` and configuration files for different environments. Secrets MUST strictly be stored only in `.env` (which must be added to `.gitignore`).
 
 ## 6. HTTP Security Headers (Helmet)
 
@@ -264,7 +265,8 @@ const authGuard = (req, res, next) => {
 };
 ```
 ### 🚀 Solution
-Authentication MUST be implemented as an isolated Middleware applied to protected routes, which attaches the `req.user` object.
+> [!IMPORTANT]
+> Authentication MUST be implemented as an isolated Middleware applied to protected routes, which attaches the `req.user` object.
 
 ## 13. Role-Based Access Control (RBAC) Middleware
 
@@ -283,7 +285,8 @@ const requireRole = (...roles) => (req, res, next) => {
 router.delete('/:id', requireRole('admin', 'manager'), Controller.del);
 ```
 ### 🚀 Solution
-Role-based access to routes MUST strictly be defined declaratively via Middleware.
+> [!IMPORTANT]
+> Role-based access to routes MUST strictly be defined declaratively via Middleware.
 
 ## 14. Standard API Response Wrapper
 
@@ -318,7 +321,8 @@ const limit = parseInt(req.query.limit) || 10;
 res.json({ data: users, meta: { total, page, limit, pages: Math.ceil(total/limit) } });
 ```
 ### 🚀 Solution
-Any list of entities MUST implement pagination (Offset or Cursor) and include a `meta` section in the response.
+> [!IMPORTANT]
+> Any list of entities MUST implement pagination (Offset or Cursor) and include a `meta` section in the response.
 
 ## 16. Graceful Shutdown
 
@@ -386,7 +390,8 @@ app.get('/health', (req, res) => {
 });
 ```
 ### 🚀 Solution
-MANDATORY: Implement a `/health` endpoint for monitoring systems, load balancers, and Health Probes.
+> [!IMPORTANT]
+> MANDATORY: Implement a `/health` endpoint for monitoring systems, load balancers, and Health Probes.
 
 ## 20. Data Sanitization (XSS / NoSQL Injection)
 

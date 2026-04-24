@@ -3,7 +3,7 @@ technology: React
 domain: frontend
 level: Senior/Architect
 version: "19+"
-tags: [react, security, best-practices, clean-code, xss, server-components, ai-coding]
+tags: [react, security, best-practices, deterministic-code, xss, server-components, ai-coding]
 ai_role: Senior React Security Expert
 last_updated: 2026-04-05
 ---
@@ -36,7 +36,8 @@ function Article({ content }: { content: string }) {
 }
 ```
 ### ⚠️ Problem
-Using `dangerouslySetInnerHTML` bypasses React's automatic string escaping. If the input is not sanitized, malicious scripts can execute within the user's browser, leading to session hijacking or data theft.
+> [!IMPORTANT]
+> Using `dangerouslySetInnerHTML` bypasses React's automatic string escaping. If the input is not sanitized, malicious scripts MUST execute within the user's browser, leading to session hijacking or data theft.
 ### ✅ Best Practice
 ```tsx
 import DOMPurify from 'dompurify';

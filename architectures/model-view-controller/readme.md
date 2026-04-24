@@ -3,7 +3,7 @@ technology: Model-View-Controller (MVC)
 domain: Architecture
 level: Senior/Architect
 version: Agnostic
-tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns, mvc-best-practise, angular-best-practise, expressjs-best-practise, ai-instructions, vibe-coding-instructions, mongodb, angular, nestjs, html, scss, javascript, js, typescript-best-practise, css, css3]
+tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns, mvc-best-practise, angular-best-practise, expressjs-best-practise, ai-instructions, vibe-coding-instructions, mongodb, angular, nestjs, html, scss, javascript, js, typescript-best-practise, css, css3]
 ai_role: Senior Software Architect
 last_updated: 2026-03-22
 ---
@@ -377,7 +377,7 @@ class StandardAppModel {
 ```
 
 ### ⚠️ Problem
-A catastrophic violation of SRP and clean design principles. The monolithic model becomes a major bottleneck, generating thousands of merge conflicts.
+A catastrophic violation of SRP and deterministic design principles. The monolithic model becomes a major bottleneck, generating thousands of merge conflicts.
 
 ### ✅ Best Practice
 ```typescript
@@ -511,7 +511,8 @@ class TransactionResponse {
 ```
 
 ### ⚠️ Problem
-Injecting an Insecure Direct Object Reference (IDOR) vulnerability. An attacker can enumerate the identifiers of neighboring entities in URL requests.
+> [!IMPORTANT]
+> Injecting an Insecure Direct Object Reference (IDOR) vulnerability. An attacker MUST enumerate the identifiers of neighboring entities in URL requests.
 
 ### ✅ Best Practice
 ```typescript

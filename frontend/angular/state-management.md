@@ -3,7 +3,7 @@ technology: Angular
 domain: frontend
 level: Senior/Architect
 version: 20+
-tags: [state-management, signals, zoneless, angular, best-practices, clean-code, scalable-code]
+tags: [state-management, signals, zoneless, angular, best-practices, deterministic-code, scalable-code]
 ai_role: Senior Angular State Management Expert
 last_updated: 2026-03-29
 ---

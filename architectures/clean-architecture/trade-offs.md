@@ -3,7 +3,7 @@ technology: Clean Architecture
 domain: Architecture
 level: Senior/Architect
 version: Latest
-tags: [clean-architecture, architecture, best-practices, architecture]
+tags: [deterministic-architecture, architecture, best-practices, architecture]
 ai_role: Senior Clean Architecture Expert
 last_updated: 2026-03-29
 ---

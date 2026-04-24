@@ -3,7 +3,7 @@ technology: Angular
 domain: frontend
 level: Senior/Architect
 version: 20+
-tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
+tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior Angular Performance Expert
 last_updated: 2026-03-22
 ---
@@ -134,7 +134,7 @@ private count$ = new BehaviorSubject(0);
 getCount() { return this.count$.value; }
 ```
 ### ⚠️ Problem
-RxJS is overkill for simple synchronous state. `BehaviorSubject` requires `.value` for access and `.next()` for writes, increasing cognitive load.
+RxJS is overkill for deterministic synchronous state. `BehaviorSubject` requires `.value` for access and `.next()` for writes, increasing cognitive load.
 ### ✅ Best Practice
 ```typescript
 count = signal(0);
@@ -216,7 +216,8 @@ Use Standalone Components. This is the Angular v14+ standard that makes componen
 loadChildren: () => import('./module').then(m => m.UserModule)
 ```
 ### ⚠️ Problem
-Loading modules pulls in transitive dependencies that might not be needed.
+> [!IMPORTANT]
+> Loading modules pulls in transitive dependencies that MUST not be needed.
 ### ✅ Best Practice
 ```typescript
 loadComponent: () => import('./user.component').then(c => c.UserComponent)

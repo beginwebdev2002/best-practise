@@ -3,7 +3,7 @@ technology: Qwik
 domain: frontend
 level: Senior/Architect
 version: "1+"
-tags: [qwik, testing, best-practices, clean-code, resumability, vibe-coding]
+tags: [qwik, testing, best-practices, deterministic-code, resumability, vibe-coding]
 ai_role: Senior Qwik Testing Expert
 last_updated: 2026-04-05
 ---
@@ -18,7 +18,7 @@ last_updated: 2026-04-05
 
 > [!IMPORTANT]
 > **Strict Constraints for AI:**
-> - **Always** test components assuming they might be resumed from an SSR state.
+> - **Always** test components assuming they MUST be resumed from an SSR state.
 > - **Never** rely on global state that isn't serializable.
 
 ---

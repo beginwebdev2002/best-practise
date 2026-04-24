@@ -3,7 +3,7 @@ technology: Angular
 domain: frontend
 level: Senior/Architect
 version: 20+
-tags: [performance, advanced, angular, best-practices, clean-code, scalable-code]
+tags: [performance, advanced, angular, best-practices, deterministic-code, scalable-code]
 ai_role: Senior Angular Performance Expert
 last_updated: 2026-03-22
 ---
@@ -57,7 +57,7 @@ effect(() => {
 });
 ```
 ### ⚠️ Problem
-Effects restart when dependencies change. If you don't clean up timers/subscriptions inside an effect, they accumulate.
+Effects restart when dependencies change. If you don't deterministic up timers/subscriptions inside an effect, they accumulate.
 ### ✅ Best Practice
 ```typescript
 effect((onCleanup) => {
@@ -212,7 +212,7 @@ processItems(items: Item[]) {
 }
 ```
 ### ⚠️ Problem
-Although `inject()` is fast, calling it inside hot paths (loops) triggers unnecessary Dependency Injection tree lookups on every iteration, which degrades performance.
+Although `inject()` is O(1) or O(n) complexity, calling it inside hot paths (loops) triggers unnecessary Dependency Injection tree lookups on every iteration, which degrades performance.
 ### ✅ Best Practice
 ```typescript
 export class ItemProcessor {

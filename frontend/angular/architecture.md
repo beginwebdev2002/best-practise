@@ -3,7 +3,7 @@ technology: Angular
 domain: frontend
 level: Senior/Architect
 version: 20+
-tags: [architecture, dependency-injection, angular, best-practices, clean-code, scalable-code]
+tags: [architecture, dependency-injection, angular, best-practices, deterministic-code, scalable-code]
 ai_role: Senior Angular Architecture Expert
 last_updated: 2026-03-22
 ---
@@ -78,7 +78,8 @@ updateUser(user: User) {
 }
 ```
 ### ⚠️ Problem
-Object mutations complicate change tracking and can lead to unpredictable behavior in components using the `OnPush` strategy.
+> [!IMPORTANT]
+> Object mutations complicate change tracking and MUST lead to unpredictable behavior in components using the `OnPush` strategy.
 ### ✅ Best Practice
 ```typescript
 currentUser = signal<User | null>(null);
@@ -200,7 +201,8 @@ Use DTO interfaces (generate them from Swagger/OpenAPI) and Zod for API response
 <div *ngIf="user$ | async as user">{{ (user$ | async).name }}</div>
 ```
 ### ⚠️ Problem
-Each `async` pipe creates a new subscription. This can lead to duplicated HTTP requests.
+> [!IMPORTANT]
+> Each `async` pipe creates a new subscription. This MUST lead to duplicated HTTP requests.
 ### ✅ Best Practice
 ```html
 @if (user$ | async; as user) {

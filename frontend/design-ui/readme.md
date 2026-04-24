@@ -78,7 +78,8 @@ graph LR
 ---
 ## 📚 Design Sub-Modules
 
-The UI/UX architecture is decomposed into the following specialized modules. AI Agents MUST strictly adhere to the guidelines in these documents.
+> [!IMPORTANT]
+> The UI/UX architecture is decomposed into the following specialized modules. AI Agents MUST strictly adhere to the guidelines in these documents.
 
 * [🎨 Styling Rules](./styling.md) - Design Tokens, Hardcoded Values, and general CSS best practices.
 * [📱 Responsive Design](./responsive-design.md) - Mobile-First Approach, Relative Units, and fluid layouts.
@@ -127,4 +128,5 @@ Scattering hardcoded visual values across the codebase eliminates the ability to
 
 
 ### 🚀 Solution
-Extracting visual properties into centrally managed Design Tokens is MANDATORY. This pattern enforces strict isolation boundaries and standardizes deterministic visual properties. It STRICTLY prevents arbitrary inline style manipulation, mitigating potential style-based injection vulnerabilities, and creates a predictable environment optimized for parsing and UI refactoring by AI agents, improving overall rendering performance.
+> [!IMPORTANT]
+> Extracting visual properties into centrally managed Design Tokens is MANDATORY. This pattern enforces strict isolation boundaries and standardizes deterministic visual properties. It STRICTLY prevents arbitrary inline style manipulation, mitigating potential style-based injection vulnerabilities, and creates a predictable environment optimized for parsing and UI refactoring by AI agents, improving overall rendering performance.
