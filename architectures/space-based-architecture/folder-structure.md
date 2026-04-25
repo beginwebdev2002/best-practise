@@ -46,3 +46,17 @@ src/
 - **processing-units:** The core. Contains business logic. Interacts only with the `data-grid` layer.
 - **data-grid:** Defines how data is structured and cached in memory.
 - **data-pumps:** Contains asynchronous workers that take data from the grid and flush it to the permanent database.
+
+```mermaid
+graph LR
+    A[api-gateway] --> B[middleware]
+    B --> C[processing-units]
+    C --> D[data-grid]
+    E[data-pumps] --> D
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+
+    class A,B default;
+    class C,D,E component;
+```
