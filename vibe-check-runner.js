@@ -3,13 +3,21 @@ import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
+import { pathToFileURL } from 'node:url';
 import { GoogleGenAI } from '@google/genai';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_AI_API_KEY });
+let ai;
+try {
+  if (process.env.GOOGLE_AI_API_KEY) {
+    ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_AI_API_KEY });
+  }
+} catch (e) {
+  console.warn('GoogleGenAI initialization skipped:', e.message);
+}
 
 // Constants for scoring
 
-async function fileOrDirExists(filePath) {
+export async function fileOrDirExists(filePath) {
   try {
     await fsPromises.stat(filePath);
     return true;
@@ -25,7 +33,7 @@ const SCORES = {
   EFFICIENCY: 10,
 };
 
-function getModifiedFiles() {
+export function getModifiedFiles() {
   try {
     // In CI (daily run), check files modified in the last 24 hours.
     // We filter for non-empty lines that end in .md and are in frontend/ or backend/
@@ -43,9 +51,11 @@ function getModifiedFiles() {
   }
 }
 
-async function syncBenchmarks(tech, mdContent, retries = 5, delay = 10000) {
+export async function syncBenchmarks(tech, mdContent, retries = 5, delay = 10000) {
   try {
     const prompt = `Based on the following documentation:\n\n${mdContent}\n\n1. Generate a "Golden Prompt" (a comprehensive instruction for generating a typical module using this technology) in JSON format: {"golden_prompt": "...", "tech": "${tech}"}\n2. Generate a JSON Schema for TS-Morph AST validation rules enforcing DDD/FSD layers and strict typing for this technology. The generated JSON schema must explicitly follow a nested structure compatible with \`analyzeAST\`. Format: {"$schema": "...", "type": "object", "properties": {"forbidden_types": {"contains": {"enum": ["any"]}}}}.\n\nRespond strictly with ONLY a JSON array containing these two objects in order. No markdown wrappers.`;
+    if (!ai) throw new Error('GoogleGenAI is not initialized.');
+    if (!ai) throw new Error('GoogleGenAI is not initialized.');
     const response = await ai.models.generateContent({
         model: 'gemini-2.5-pro',
         contents: prompt
@@ -85,7 +95,7 @@ async function syncBenchmarks(tech, mdContent, retries = 5, delay = 10000) {
   }
 }
 
-async function simulateAIGeneration(goldenPrompt, tech, mdContent, retries = 5, delay = 10000) {
+export async function simulateAIGeneration(goldenPrompt, tech, mdContent, retries = 5, delay = 10000) {
   try {
     const prompt = `${goldenPrompt}\n\nConstraints and instructions from the following documentation:\n\n${mdContent}\n\nGenerate ONLY raw code. No markdown formatting, no explanations.`;
     const response = await ai.models.generateContent({
@@ -110,7 +120,7 @@ async function simulateAIGeneration(goldenPrompt, tech, mdContent, retries = 5, 
   }
 }
 
-function analyzeAST(sourceFile, tech) {
+export function analyzeAST(sourceFile, tech) {
   let score = {
     arch: SCORES.ARCH,
     type: SCORES.TYPE,
@@ -167,7 +177,7 @@ function analyzeAST(sourceFile, tech) {
   for (const param of parameters) {
       if (!param.getTypeNode()) {
           missingTypes++;
-          score.type -= 5;
+          score.type -= 10;
       }
   }
   if (missingTypes > 0) {
@@ -177,14 +187,6 @@ function analyzeAST(sourceFile, tech) {
   const anyKeywords = sourceFile.getDescendantsOfKind(SyntaxKind.AnyKeyword);
   if (anyKeywords.length > 0) {
     score.type -= 15 * anyKeywords.length;
-  }
-
-  // Enforce explicit parameter types
-  const explicitParameters = sourceFile.getDescendantsOfKind(SyntaxKind.Parameter);
-  for (const param of explicitParameters) {
-    if (!param.getTypeNode()) {
-      score.type -= 5;
-    }
   }
 
   // Error handling pattern check
@@ -222,7 +224,7 @@ function analyzeAST(sourceFile, tech) {
   return { total, breakdown: score };
 }
 
-async function runVibeCheck() {
+export async function runVibeCheck() {
   console.log('Running Vibe-Check Runner...');
 
   const modifiedFiles = getModifiedFiles();
@@ -244,7 +246,7 @@ async function runVibeCheck() {
   for (const file of modifiedFiles) {
     console.log(`Processing ${file}...`);
 
-    if (!fs.existsSync(file)) {
+    if (!await fileOrDirExists(file)) {
       console.log(`File ${file} does not exist. Skipping.`);
       continue;
     }
@@ -270,7 +272,7 @@ async function runVibeCheck() {
     await syncBenchmarks(tech, mdContent);
 
     const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
-    if (!fs.existsSync(suitePath)) {
+    if (!await fileOrDirExists(suitePath)) {
       console.log(`No benchmark suite found for ${tech}. Skipping.`);
       continue;
     }
@@ -321,7 +323,15 @@ async function runVibeCheck() {
       if (!await fileOrDirExists(reportDir)) await fsPromises.mkdir(reportDir, { recursive: true });
 
       const reportPath = path.join(reportDir, `violation-report.md`);
-      const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n\`\`\`typescript\n${generatedCode}\n\`\`\`\n\nReview the AST rules.`;
+      let maxBackticks = 0;
+      const backtickMatches = generatedCode.match(/`+/g);
+      if (backtickMatches) {
+          maxBackticks = Math.max(...backtickMatches.map(m => m.length));
+      }
+      const fenceLength = Math.max(3, maxBackticks + 1);
+      const fence = '`'.repeat(fenceLength);
+
+      const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n${fence}typescript\n${generatedCode}\n${fence}\n\nReview the AST rules.`;
 
       await fsPromises.writeFile(reportPath, reportContent);
       console.log(`Generated violation report: ${reportPath}`);
@@ -338,4 +348,6 @@ async function runVibeCheck() {
   }
 }
 
-runVibeCheck().catch(console.error);
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  runVibeCheck().catch(console.error);
+}
