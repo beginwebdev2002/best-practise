@@ -130,4 +130,22 @@ eventBus.on('CodeCompleted', async (event: CodeEvent) => {
 
 ### 🚀 Solution
 
+```mermaid
+graph LR
+    A[TaskRequested] --> B[plannerAgent.generate]
+    B --> C[PlanGenerated]
+    C --> D[coderAgent.execute]
+    D --> E[CodeCompleted]
+    E --> F[reviewerAgent.analyze]
+    F -- Passed --> G[WorkflowSucceeded]
+    F -- Failed --> H[TaskRequested]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+
+    class A,C,E,G,H default;
+    class B,D,F component;
+```
+
+
 By implementing a strict Pub/Sub model, each agent operates as an isolated, reactive microservice. This guarantees O(1) complexity in adding new agents (e.g., attaching a `SecurityScannerAgent` to the `CodeCompleted` event requires zero changes to the existing flow). The deterministic state is preserved within the event payload, ensuring the system remains responsive, scalable, and highly resistant to individual model timeouts.

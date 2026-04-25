@@ -99,6 +99,24 @@ For extensions like Cloud Code or GitHub Copilot, append the contents of `AGENTS
 2.  **Constraint Identification:** Locate the specific `.md` file corresponding to the user's task (e.g., if the user asks for a NestJS service, read `backend/nestjs/readme.md`).
 3.  **Hierarchy Alignment:** Prioritize `architectures/` constraints over `frontend/` or `backend/` specifics to ensure structural integrity.
 4.  **Verification:** Before outputting code, run a "Constraint Check" against the identified rules to ensure zero violations of the "Best Practise" standard.
+
+```mermaid
+flowchart TD
+    A[Start Vibe Coding Protocol] --> B[Context Discovery: Scan AGENTS.md]
+    B --> C[Constraint Identification: Locate specific .md file]
+    C --> D[Hierarchy Alignment: Prioritize architectures/ constraints]
+    D --> E[Verification: Run Constraint Check]
+    E --> F[Zero violations?]
+    F -- Yes --> G[Output code]
+    F -- No --> E
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+
+    class A,B,C,D,E,F default;
+    class G component;
+```
+
 ---
 ## 🔍 5. SEO & Discoverability
 <!--

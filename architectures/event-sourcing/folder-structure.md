@@ -29,3 +29,31 @@ src/
 └── 📁 infrastructure/      # Event Store bindings, Repositories, Message Bus
     └── EventStoreRepository.ts
 ```
+
+```mermaid
+classDiagram
+    class Command {
+        +CreateOrderCommand
+    }
+    class Aggregate {
+        +OrderAggregate
+        +processCommand(Command)
+        +emitEvent() Event
+    }
+    class Event {
+        +OrderCreatedEvent
+    }
+    class Projection {
+        +OrderReadModelProjector
+        +updateReadModel(Event)
+    }
+    class Infrastructure {
+        +EventStoreRepository
+    }
+
+    Command --> Aggregate : Sent to
+    Aggregate --> Event : Emits
+    Event --> Projection : Handled by
+    Aggregate --> Infrastructure : Saved to Event Store
+
+```
