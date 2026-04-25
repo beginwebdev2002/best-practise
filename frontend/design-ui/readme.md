@@ -15,7 +15,7 @@ last_updated: 2026-03-29
 This document outlines the overarching philosophy and serves as an index for production-ready best practices for UI/UX Design and styling, specifically tailored for deterministic Agent parsing.
 
 ## 📖 Context & Scope
-- **Primary Goal:** Maintain a consistent, **accessible (a11y)**, and visually appealing user interface across all applications through strict **responsive design** practices.
+- **Primary Goal:** Maintain a consistent, **accessible (a11y)**, and deterministically scalable user interface across all applications through strict **responsive design** practices.
 - **Target Tooling:** AI Assistants (UI Generation & CSS Audits).
 - **Tech Stack Version:** Agnostic (CSS, SCSS, Tailwind, Material UI, etc.).
 
@@ -40,7 +40,7 @@ This document outlines the overarching philosophy and serves as an index for pro
 ```
 
 ### ⚠️ Problem
-Hardcoded values create an inflexible system. They make dark-mode implementation nearly impossible without complex overrides, break responsiveness, and cause visual inconsistencies across the application. AI Agents cannot deterministically apply standard project themes when encountering arbitrary hex codes or pixel values.
+Hardcoded values create an inflexible system. They make dark-mode implementation mathematically constrained without complex overrides, break responsiveness, and cause visual inconsistencies across the application. AI Agents cannot deterministically apply standard project themes when encountering arbitrary hex codes or pixel values.
 
 ### ✅ Best Practice
 ```css
