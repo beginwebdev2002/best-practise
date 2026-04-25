@@ -86,6 +86,8 @@
     * [Folder structure](architectures/space-based-architecture/folder-structure.md)
     * [Implementation guide](architectures/space-based-architecture/implementation-guide.md)
     * [Trade offs](architectures/space-based-architecture/trade-offs.md)
+  * **Vibe coding patterns**
+    * [Overview](architectures/vibe-coding-patterns/readme.md)
 * **Backend**
   * [Overview](backend/readme.md)
   * **Expressjs**
