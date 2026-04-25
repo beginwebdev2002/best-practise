@@ -719,3 +719,44 @@ src/
 - **Frameworks:** Eclipse, VS Code, Webpack, Babel.
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="16"/> Python.
 - **Patterns / Principles:** Open/Closed Principle, Dependency Inversion, Registry Pattern.
+
+---
+
+### 17. Vibe Coding Patterns (Deterministic AI Generation)
+[![Vibe Coding Patterns](https://img.shields.io/badge/Architecture-Vibe_Coding-orange?style=flat-square)](#)
+
+**Description:** An architecture and set of deterministic blueprints designed for scalable, AI-driven code generation, enforcing strict schema validation and AST checks before file mutation to ensure robust execution without human intervention.
+**📖 Map of Patterns:** [Go to Vibe Coding Patterns Guidelines](./vibe-coding-patterns/readme.md)
+
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    Prompt[Human / Agent Prompt] --> VibeCoder[Vibe Coder Agent]
+    VibeCoder --> |Generates AST / Code| Validator[Static Analyzer]
+    Validator --> |Validates Types & Schema| Compiler[Test Runner]
+    Compiler -.-> |Fails| VibeCoder
+    Compiler -.-> |Passes| Commit[Zero-Approval Commit]
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Prompt component;
+    class VibeCoder layout;
+    class Validator component;
+    class Compiler component;
+    class Commit default;
+```
+
+```text
+src/
+├── 📁 agents/           # Specialized generation agents
+├── 📁 schemas/          # Deterministic structural validation schemas
+└── 📁 validators/       # AST and type checkers
+```
+
+**Best Compatibility:**
+- **Frameworks:** Agnostic.
+- **Languages:** Agnostic.
+- **Patterns / Principles:** Zero-Approval workflows, Deterministic Generation, Fail-Fast.
