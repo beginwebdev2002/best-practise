@@ -85,6 +85,9 @@ class UserService {
 Combining complex read queries and heavy write operations in a single service and database leads to severe performance bottlenecks. Scaling writes and reads independently is impossible, and the Domain logic for commands becomes entangled with data-shaping logic for queries.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // --- COMMAND SIDE ---
 class CreateUserCommandHandler {

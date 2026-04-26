@@ -78,6 +78,9 @@ services:
 Sharing a single database among multiple microservices completely violates the core principle of microservices (independence). If `order-service` performs a heavy migration or drops a table, `inventory-service` crashes. Database schemas cannot evolve independently, recreating monolithic tight coupling at the data layer.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```yaml
 # docker-compose.yml
 services:

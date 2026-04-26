@@ -32,6 +32,9 @@ function navigateToCart() {
 Hardcoding URLs within a micro-frontend creates brittle links. If the App Shell changes its routing strategy or paths, the micro-frontend breaks. It violates the boundary principles.
 
 #### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](./readme.md).
+
 ```javascript
 // Navigating via agnostic Intent Events
 function navigateToCart() {
@@ -63,6 +66,9 @@ const AddToCartButton = () => <button style={{ background: 'green', margin: '5px
 Without a shared design system, the user experiences disjointed UI elements across different pages of the same application. This degrades UX and creates massive design debt for teams to maintain independently.
 
 #### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](./readme.md).
+
 ```javascript
 // Both MFEs consume a federated, versioned Design System
 import { Button } from '@company/design-system';

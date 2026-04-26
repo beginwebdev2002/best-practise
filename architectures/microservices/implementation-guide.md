@@ -40,6 +40,9 @@ async function processOrder() {
 Avoid synchronous cascading calls between services. When `processOrder` calls `inventory`, `payment`, and `notification` synchronously over HTTP/RPC, it creates tight coupling and fragility. If `notificationService` fails or is slow, the entire order process fails or hangs, tying up resources.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](./readme.md).
+
 ```typescript
 // Asynchronous event-driven communication
 async function processOrder() {

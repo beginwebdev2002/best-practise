@@ -63,6 +63,9 @@ const cart = window.__APP_STATE__.cart;
 Directly mutating and depending on global objects like `window` creates tight coupling between micro-frontends. This leads to race conditions, unpredictable state mutations, and makes isolated testing impossible. It destroys the independence of micro-frontends.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```javascript
 // Using an Event Bus or Custom Events for decoupled communication
 
