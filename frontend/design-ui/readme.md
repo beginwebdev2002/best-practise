@@ -128,3 +128,11 @@ Scattering hardcoded visual values across the codebase eliminates the ability to
 
 ### 🚀 Solution
 Extracting visual properties into centrally managed Design Tokens is MANDATORY. This pattern enforces strict isolation boundaries and standardizes deterministic visual properties. It STRICTLY prevents arbitrary inline style manipulation, mitigating potential style-based injection vulnerabilities, and creates a predictable environment optimized for parsing and UI refactoring by AI agents, improving overall rendering performance.
+## ⚙️ Under the Hood
+
+The overarching design system logic serves as the foundational compiler target for all visual assets. By centralizing design tokens, accessibility constraints, and responsive breakpoints into a cohesive architecture, AI Agents and UI rendering engines can construct a single, deterministic CSS Object Model (CSSOM). This prevents the fragmentation of rendering trees and ensures that theme transitions (like Dark Mode) resolve in constant time O(1) at the root level, rather than requiring O(N) traversals to overwrite inline styles.
+
+## 🔀 Edge Cases & Architectural Handling
+
+- **Legacy System Migration:** When gradually migrating a legacy application with extensive hardcoded styles, implement a dual-track strategy. Establish the new design token system at the root, and incrementally wrap legacy components in isolation layers (e.g., CSS Modules or specific container classes) to prevent the new global variables from causing unintended visual regressions in un-refactored code.
+- **Cross-Platform Synchronization:** For organizations sharing UI logic between web and native mobile (e.g., React Native), the design token dictionary MUST be abstracted into a platform-agnostic format (like JSON via Style Dictionary) before being compiled into platform-specific artifacts (CSS variables for web, JS objects for mobile) to maintain total systemic parity.

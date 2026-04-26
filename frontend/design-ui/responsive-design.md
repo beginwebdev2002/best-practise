@@ -71,3 +71,28 @@ A desktop-first approach with absolute units (`px`) often leads to horizontal sc
 
 ### 🚀 Solution
 Implementing a **Mobile-First Approach** using relative units is MANDATORY. Enforcing base constraints on mobile and dynamically scaling upward STRICTLY limits layout shift (CLS) and reduces the CSS parser's evaluation overhead. This unified cascading structure inherently standardizes deterministic scaling properties, ensuring robust layout performance and mitigating the risk of unpredictable rendering states.
+## ⚙️ Under the Hood
+
+```mermaid
+graph TD
+    Parser[CSSOM Parser] --> ViewportCheck{Viewport Query}
+    ViewportCheck -- Mobile First Default --> BaseStyles[Apply Base Relative Constraints]
+    ViewportCheck -- min-width Triggered --> MediaQueries[Apply Enhancements via Media Queries]
+    BaseStyles --> Paint[Render Pipeline]
+    MediaQueries --> Paint
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Parser default;
+    class ViewportCheck default;
+    class BaseStyles component;
+    class MediaQueries component;
+    class Paint default;
+```
+
+The mobile-first `min-width` paradigm explicitly aligns with browser rendering cascades. The browser loads base constraints immediately and only evaluates overrides when specific viewport triggers are crossed. This predictable tree significantly reduces layout recalculations compared to an ad-hoc desktop-first approach.
+
+## 🔀 Edge Cases & Architectural Handling
+
+- **Container Queries:** For highly modular components that must adapt to their immediate parent container rather than the global viewport (e.g., dashboard widgets), utilize CSS `@container` queries instead of `@media` queries to isolate the component's internal responsiveness.
+- **Extreme Viewports:** For ultra-wide monitors (e.g., > 1920px), implement a strict global `max-width` wrapper centered with `margin: 0 auto` to prevent text line-lengths from exceeding the optimal reading span (typically 60-80 characters).

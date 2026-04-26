@@ -54,3 +54,25 @@ Using generic `<div>` wrappers and artificially attaching ARIA roles or keyboard
 
 ### 🚀 Solution
 Enforcing **Semantic HTML** is MANDATORY to guarantee deterministic accessibility tree generation. Native elements inherently support keyboard navigation and screen reader parsing without custom JavaScript logic. This STRICTLY eliminates the performance overhead of manual event listener management and mitigates security risks associated with complex, logic-heavy DOM manipulation handlers.
+## ⚙️ Under the Hood
+
+```mermaid
+graph TD
+    User[User / Assistive Tech] --> DOM[Browser DOM]
+    DOM --> AOM[Accessibility Object Model]
+    AOM --> ScreenReader[Screen Reader Output]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class User default;
+    class DOM component;
+    class AOM component;
+    class ScreenReader default;
+```
+
+When native semantic HTML is used, the browser intrinsically maps DOM elements directly into the Accessibility Object Model (AOM), ensuring screen readers accurately announce element roles, states, and interactive capabilities.
+
+## 🔀 Edge Cases & Architectural Handling
+
+- **Complex Custom Controls:** For highly specialized interactive components lacking native HTML equivalents (e.g., sortable data grids or intricate combo boxes), strict WAI-ARIA authoring practices MUST be applied. Ensure explicit state binding (e.g., \`aria-expanded\`, \`aria-selected\`) and manage focus via \`tabindex="-1"\` in conjunction with JavaScript arrow key navigation (the roving tabindex pattern) to avoid breaking systemic flow.
+- **Dynamic Content Injection:** If client-side routing or async operations inject fresh UI boundaries, utilize an \`aria-live\` region to deterministically notify screen readers, preventing context starvation.
