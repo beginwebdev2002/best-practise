@@ -5,7 +5,14 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { GoogleGenAI } from '@google/genai';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_AI_API_KEY });
+let ai;
+try {
+  if (process.env.GOOGLE_AI_API_KEY) {
+    ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_AI_API_KEY });
+  }
+} catch (e) {
+  console.warn('GoogleGenAI initialization failed. If running locally, this might be expected.');
+}
 
 // Constants for scoring
 
@@ -46,6 +53,7 @@ function getModifiedFiles() {
 async function syncBenchmarks(tech, mdContent, retries = 5, delay = 10000) {
   try {
     const prompt = `Based on the following documentation:\n\n${mdContent}\n\n1. Generate a "Golden Prompt" (a comprehensive instruction for generating a typical module using this technology) in JSON format: {"golden_prompt": "...", "tech": "${tech}"}\n2. Generate a JSON Schema for TS-Morph AST validation rules enforcing DDD/FSD layers and strict typing for this technology. The generated JSON schema must explicitly follow a nested structure compatible with \`analyzeAST\`. Format: {"$schema": "...", "type": "object", "properties": {"forbidden_types": {"contains": {"enum": ["any"]}}}}.\n\nRespond strictly with ONLY a JSON array containing these two objects in order. No markdown wrappers.`;
+    if (!ai) throw new Error('AI client not initialized');
     const response = await ai.models.generateContent({
         model: 'gemini-2.5-pro',
         contents: prompt
@@ -118,8 +126,33 @@ function analyzeAST(sourceFile, tech) {
     efficiency: SCORES.EFFICIENCY,
   };
 
+  // Consolidated TS-Morph AST traversals
+  const nodes = sourceFile.getDescendants();
+
+  const decorators = [];
+  const classDeclarations = [];
+  const parameters = [];
+  const anyKeywords = [];
+  const tryStatements = [];
+  const catchClauses = [];
+  const awaitExpressions = [];
+  const stringLiterals = [];
+  const callExpressions = [];
+
+  for (const node of nodes) {
+    const kind = node.getKind();
+    if (kind === SyntaxKind.Decorator) decorators.push(node);
+    else if (kind === SyntaxKind.ClassDeclaration) classDeclarations.push(node);
+    else if (kind === SyntaxKind.Parameter) parameters.push(node);
+    else if (kind === SyntaxKind.AnyKeyword) anyKeywords.push(node);
+    else if (kind === SyntaxKind.TryStatement) tryStatements.push(node);
+    else if (kind === SyntaxKind.CatchClause) catchClauses.push(node);
+    else if (kind === SyntaxKind.AwaitExpression) awaitExpressions.push(node);
+    else if (kind === SyntaxKind.StringLiteral) stringLiterals.push(node);
+    else if (kind === SyntaxKind.CallExpression) callExpressions.push(node);
+  }
+
   // 1. Arch Integrity (40)
-  const decorators = sourceFile.getDescendantsOfKind(SyntaxKind.Decorator);
   const decoratorNames = decorators.map(d => d.getName());
 
   if (tech === 'nestjs') {
@@ -128,7 +161,6 @@ function analyzeAST(sourceFile, tech) {
       }
 
       // DTO Validation check
-      const classDeclarations = sourceFile.getDescendantsOfKind(SyntaxKind.ClassDeclaration);
       let hasValidation = false;
       for (const classDecl of classDeclarations) {
           const classDecorators = classDecl.getProperties().flatMap(p => p.getDecorators().map(d => d.getName()));
@@ -162,7 +194,6 @@ function analyzeAST(sourceFile, tech) {
   }
 
   // 2. Type Safety (30)
-  const parameters = sourceFile.getDescendantsOfKind(SyntaxKind.Parameter);
   let missingTypes = 0;
   for (const param of parameters) {
       if (!param.getTypeNode()) {
@@ -174,30 +205,23 @@ function analyzeAST(sourceFile, tech) {
       score.type -= 10;
   }
 
-  const anyKeywords = sourceFile.getDescendantsOfKind(SyntaxKind.AnyKeyword);
-  if (anyKeywords.length > 0) {
-    score.type -= 15 * anyKeywords.length;
-  }
-
   // Enforce explicit parameter types
-  const explicitParameters = sourceFile.getDescendantsOfKind(SyntaxKind.Parameter);
-  for (const param of explicitParameters) {
+  for (const param of parameters) {
     if (!param.getTypeNode()) {
       score.type -= 5;
     }
   }
 
+  if (anyKeywords.length > 0) {
+    score.type -= 15 * anyKeywords.length;
+  }
+
   // Error handling pattern check
-  const tryStatements = sourceFile.getDescendantsOfKind(SyntaxKind.TryStatement);
-  const catchClauses = sourceFile.getDescendantsOfKind(SyntaxKind.CatchClause);
-  // If we have functions that do awaiting, they probably should have try/catch
-  const awaitExpressions = sourceFile.getDescendantsOfKind(SyntaxKind.AwaitExpression);
   if (awaitExpressions.length > 0 && tryStatements.length === 0) {
       score.type -= 10; // Penalize lack of error handling
   }
 
   // 3. Security (20)
-  const stringLiterals = sourceFile.getDescendantsOfKind(SyntaxKind.StringLiteral);
   for (const literal of stringLiterals) {
       const text = literal.getText();
       if (text.includes('password') || text.includes('secret') || text.includes('token')) {
@@ -206,7 +230,6 @@ function analyzeAST(sourceFile, tech) {
   }
 
   // 4. Efficiency (10)
-  const callExpressions = sourceFile.getDescendantsOfKind(SyntaxKind.CallExpression);
   for(const call of callExpressions) {
     if(call.getText().includes('readFileSync')) {
       score.efficiency -= 10;
@@ -244,7 +267,7 @@ async function runVibeCheck() {
   for (const file of modifiedFiles) {
     console.log(`Processing ${file}...`);
 
-    if (!fs.existsSync(file)) {
+    if (!await fileOrDirExists(file)) {
       console.log(`File ${file} does not exist. Skipping.`);
       continue;
     }
@@ -270,7 +293,7 @@ async function runVibeCheck() {
     await syncBenchmarks(tech, mdContent);
 
     const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
-    if (!fs.existsSync(suitePath)) {
+    if (!await fileOrDirExists(suitePath)) {
       console.log(`No benchmark suite found for ${tech}. Skipping.`);
       continue;
     }
@@ -321,7 +344,13 @@ async function runVibeCheck() {
       if (!await fileOrDirExists(reportDir)) await fsPromises.mkdir(reportDir, { recursive: true });
 
       const reportPath = path.join(reportDir, `violation-report.md`);
-      const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n\`\`\`typescript\n${generatedCode}\n\`\`\`\n\nReview the AST rules.`;
+      // Dynamically generate backticks for Markdown safety
+      const matches = generatedCode.match(/`+/g);
+      const maxBackticks = matches ? Math.max(...matches.map(m => m.length)) : 0;
+      const fenceLength = Math.max(3, maxBackticks + 1);
+      const fence = '`'.repeat(fenceLength);
+
+      const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n${fence}typescript\n${generatedCode}\n${fence}\n\nReview the AST rules.`;
 
       await fsPromises.writeFile(reportPath, reportContent);
       console.log(`Generated violation report: ${reportPath}`);
@@ -338,4 +367,11 @@ async function runVibeCheck() {
   }
 }
 
-runVibeCheck().catch(console.error);
+
+import { pathToFileURL } from 'node:url';
+
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  runVibeCheck().catch(console.error);
+}
+
+export { simulateAIGeneration, analyzeAST, runVibeCheck, syncBenchmarks };
