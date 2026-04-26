@@ -12,7 +12,7 @@ const SCAN_DIRS = ['docs', 'architectures', 'frontend', 'backend', 'benchmarks']
 // Patterns to exclude
 const EXCLUDE_PATTERNS = [
   /^_/,          // _sidebar.md, _coverpage.md, etc.
-  /^readme\.md$/i,
+
   /node_modules/,
   /\.git/,
 ];
