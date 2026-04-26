@@ -68,6 +68,9 @@ import { User } from 'entities/user';
 Violation of the upward dependency flow constraints. `shared` is the lowest infrastructure layer; it has no right to know anything about the business domain (`entities`), features (`features`), and widgets. This leads to circular dependencies and tight coupling.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // The Entities layer naturally depends on the infra-layer below (Shared)
 import { Button } from 'shared/ui/button';
@@ -88,6 +91,9 @@ import { addToFavorites } from 'features/favorites';
 Business slices within the same layer (`features`, `entities`, etc.) are isolated and must not depend on each other. Tight coupling of features deprives the project of flexibility, breaks refactoring, and complicates cross-functional reusability.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // Relationship composition is built on the layer above (e.g., in Widgets)
 import { AddToCartButton } from 'features/cart';
@@ -118,6 +124,9 @@ import { fetchUser } from 'entities/user/api/fetchUser';
 Deep imports break module encapsulation. When refactoring internal files and the directory structure of `entities/user`, external components tightly bound to them will break.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // Legal import exclusively through the Public API
 import { UserCard, fetchUser } from 'entities/user';
@@ -141,6 +150,9 @@ export const ArticleCard = () => {
 The `entities` domain is responsible for the structure of the domain and its visual representation, not for interactive business scenarios. Placing the like logic in `ArticleCard` prevents using this card in Read-Only contexts.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // The Entity provides slots for UI composition
 export const ArticleCard = ({ article, actionSlot }: Props) => (
@@ -169,6 +181,9 @@ import { calculateUserRating } from 'shared/user/utils';
 The infrastructure layer `shared` has no business slices. It is strictly segmented by technical purpose (`ui`, `lib`, `api`, `config`). The appearance of domain segments (user, cart) in `shared` categorically violates the agnostic paradigm.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // Strict technical grouping
 import { formatDate } from 'shared/lib/date';
@@ -194,6 +209,9 @@ export const ProductPage = () => {
 The `pages` layer does not manage business scenarios or complex network requests directly. "Thick" pages generate Legacy, are extremely difficult to unit test, and defy refactoring.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // The page acts solely as a "router" and composition layer for widgets
 import { ProductDetailsWidget } from 'widgets/product-details';
@@ -225,6 +243,9 @@ features/auth-user/
 Chaotic folder naming breaks the standardization of the FSD architecture. Engineers lose the ability to deterministically navigate the code in slices that do not conform to a uniform format.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // Strictly using standardized FSD segments
 features/auth-user/
@@ -253,6 +274,9 @@ const App = () => {
 The `app` layer is reserved for system platform initialization. Concentrating domain state or logic in it forms a monolith and breaks FSD separation (Slices).
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // app/App.tsx merely contains a composition of providers
 import { AppProviders } from './providers';
@@ -285,6 +309,9 @@ const store = configureStore({
 Forming a Redux state detached from business slices destroys the cohesion of FSD. Logic scatters across the system, making mutation tracking counter-intuitive.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // app/store.ts composes reducers strictly from slice Public APIs
 import { userModel } from 'entities/user';
@@ -313,6 +340,9 @@ import { Button } from '../../../../shared/ui/button';
 Deep relative imports between architectural layers break static analysis tools, spoil the visual cleanliness of the code, and turn file relocation into a nightmare.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // Using configured absolute paths (Absolute Imports)
 import { Button } from 'shared/ui/button';
@@ -335,6 +365,9 @@ export type UserDTO = { id: string; role: string };
 The infrastructure (`shared`) belongs to an agnostic zone and must not "know" about business entities (User). Placing domain types in the global context breaks domain isolation paradigms.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // entities/user/model/types.ts
 export type UserDTO = { id: string; role: string };
@@ -358,6 +391,9 @@ const isMessageValid = text.length > 255;
 The lack of a centralized local configuration for a feature engenders technical debt, duplicate values, and a high probability of bugs when business requirements mutate.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // features/send-message/config/constants.ts
 export const MAX_MESSAGE_LENGTH = 255;
@@ -381,6 +417,9 @@ import { authHelper } from '../lib/authHelper';
 Testing private methods (White-Box Testing) notoriously engenders a high level of fragile tests. The slightest refactoring to internal implementations nullifies assertion results.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // Validating feature functionality solely through an exported public contract
 import { AuthFeature } from 'features/auth';
@@ -402,6 +441,9 @@ entities/user/
 Disregarding Domain-Driven Design (DDD) doctrines. The monolithic entity transforms into a critical project bottleneck, provoking perpetual merge conflicts and logic breakdowns.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // Decomposition into decoupled, atomic domains
 entities/user/       // Profile fundamentals (Name, Avatar)
@@ -429,6 +471,9 @@ export const UserCard = () => {
 Hardcoding physical URL endpoints within a reusable UI module forcibly binds it to the structural topology of a specific Frontend application.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // Handing over navigation authority upstream via Callbacks
 export const UserCard = ({ onNavigate }: Props) => (
@@ -453,6 +498,9 @@ import moment from 'moment';
 Unmediated reliance of localized business slices on upstream third-party solutions. Should an initiative pivot from `moment` to `date-fns`, architects will confront the penalty to refactor vast swaths of code.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // Constructing an Adapter in the shared zone
 // shared/lib/date/formatDate.ts
@@ -480,6 +528,9 @@ api.get('/profile').catch(err => {
 Multiplying system error handling mechanics inside feature constructs. Drives severe Code Duplication (disobeying the DRY principle) and an inconsistent application experience framework.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // Configuration in shared/api/apiClient.ts
 apiClient.interceptors.response.use(res => res, err => {
@@ -505,6 +556,9 @@ widgets/main-block/
 Deploying generic naming completely diminishes the semantic value of FSD. The business-oriented focus of practically any directory is obfuscated, forcing exhaustive code scans to comprehend purpose.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // Nomenclature rigorously conveying the targeted domain capability
 features/add-to-cart/
@@ -533,6 +587,9 @@ export const CheckoutFeature = () => (
 Subordinating global infra-providers inside isolated modules distorts Context flows engineered for React/Vue, artificially locking themes/configurations underneath non-root layer fragments.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // Solely maintained within app/providers setup
 export const AppLayer = () => (
@@ -562,6 +619,9 @@ export const HeaderWidget = () => {
 Rearing monolithic entities via circumventing optimized "lightweight" routines (Logout Actions) and disconnected entities (User Models) directly conjoins Networking, Handling, and UI in a massive, unscalable block.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 import { UserAvatar } from 'entities/user';
 import { LogoutButton } from 'features/auth';

@@ -52,6 +52,9 @@ class OrderService {
 This is an anemic domain model. The `Order` entity is merely a data holder with public setters, and all the business logic is stripped out and placed in an external `OrderService`. This violates encapsulation, makes the system harder to reason about, and leads to business rules being scattered across multiple services.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](./readme.md).
+
 ```typescript
 class Order {
   private id: string;

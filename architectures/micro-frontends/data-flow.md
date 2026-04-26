@@ -30,6 +30,9 @@ window.AppShell.updateUserSession(userData);
 Synchronous calls introduce severe, rigid coupling. If the App Shell hasn't loaded or changes its method signature, the MFE Auth crashes. It makes parallel development nearly impossible and creates hard dependencies on loading order.
 
 #### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](./readme.md).
+
 ```javascript
 // MFE Auth publishes an event asynchronously
 const loginEvent = new CustomEvent('auth:loginSuccess', {

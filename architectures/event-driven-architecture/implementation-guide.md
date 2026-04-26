@@ -63,6 +63,9 @@ class PaymentEventHandler {
 ```
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](./readme.md).
+
 ```typescript
 class PaymentEventHandler {
   async handle(event: OrderCreatedEvent) {
@@ -113,6 +116,9 @@ class OrderService {
 ```
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](./readme.md).
+
 ```typescript
 class OrderService {
   async createOrder(data: CreateOrderDto) {
@@ -151,6 +157,9 @@ The Transactional Outbox pattern guarantees atomic operations. By saving the eve
 Microservices evolve independently. If a publisher changes the shape of a JSON event payload, all downstream subscribers will break. Always enforce a Schema Registry (Avro, Protobuf, JSON Schema) for all events.
 
 ### ✅ Best Practice (Avro Example)
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](./readme.md).
+
 ```typescript
 // 1. Define a strict Avro schema for the event
 const orderCreatedSchema = {

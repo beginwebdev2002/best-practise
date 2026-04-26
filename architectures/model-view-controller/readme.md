@@ -84,6 +84,9 @@ class UserController {
 The Controller is overloaded with low-level implementation details (SQL, hashing, email processing). This grossly violates the Single Responsibility Principle (SRP) and makes the code monolithic and untestable.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 class UserController {
   constructor(private userService: UserService) {}
@@ -122,6 +125,9 @@ class OrderService {
 Domain models lack behavior, and business logic is procedurally scattered across service functions. This anti-pattern leads to duplicated state validation.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // Rich Domain Model encapsulating invariant state rules
 class Order {
@@ -154,6 +160,9 @@ class UserController {
 Absolute leakage of sensitive data and tight coupling of the API response structure to the database column organization.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 class UserController {
   async getUser(req, res) {
@@ -183,6 +192,9 @@ Architecturally, it is mandatory to use DTO (Data Transfer Object) or ViewModel 
 The View layer gets infected with business computations (calculating access rights). This makes the frontend logic extremely fragile.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```html
 <!-- Primitive boolean check consumed from ViewModel -->
 <div>
@@ -208,6 +220,9 @@ renderList(users);
 The View bypasses the Controller and communicates directly with the Persistence layer. This breaks the isolation and transaction control of MVC.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // Controller gathers context and constructs the rendering pipeline
 class UserController {
@@ -238,6 +253,9 @@ class Invoice {
 Hidden global dependencies turn Domain models into objects that are absolutely impossible to cover with Isolated Unit tests.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 class Invoice {
   generate(taxRate: number) {
@@ -270,6 +288,9 @@ class RouterController {
 Syntax parsing of HTTP headers, URIs, and the business call are mixed together in a single file.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // Framework native routing abstracts URI path parsing away
 router.post('/users', userController.create);
@@ -297,6 +318,9 @@ class UserService {
 The business logic layer is polluted with HTTP format validation, which is the prerogative of the infrastructural Controller (Middleware / Validators).
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 class UserController {
   // Validation triggered inherently via decorators and decorators upstream
@@ -326,6 +350,9 @@ class OrderController {
 Absolute tight coupling. It is impossible to mock the `OrderService` when testing the `OrderController`.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 class OrderController {
   // Dependency Injection driven by Container
@@ -352,6 +379,9 @@ class WelcomeController {
 Destroying the View layer. Drastic changes in UI design will require modifying the compiled server business logic.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 class WelcomeController {
   index(req, res) {
@@ -380,6 +410,9 @@ class StandardAppModel {
 A catastrophic violation of SRP and clean design principles. The monolithic model becomes a major bottleneck, generating thousands of merge conflicts.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // Granular Domain Isolation
 class UserEntity { ... }
@@ -402,6 +435,9 @@ Decompose god models into focused aggregates within strict Bounded Contexts.
 The View mutates the Model's state, bypassing the Controller and failing to notify external systems (databases or server state).
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // View emits command downstream towards Controller / Orchestrator
 <form action="/users/status/toggle" method="POST">
@@ -428,6 +464,9 @@ class BillingService {
 A critical codebase vulnerability (Data Leak). Coupling the service to a single environment (Impossible to test on Staging servers).
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 class BillingService {
   constructor(private configOpts: AppConfig) {}
@@ -457,6 +496,9 @@ class ReportController {
 A synchronous CPU block freezes the entire application. Users on other routes will experience Timeouts.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 class ReportController {
   async generate(req, res) {
@@ -487,6 +529,9 @@ class DashboardController {
 Erasing DBMS abstractions. The Controller is aware of the SQL/GraphQL dialect. Changing the database will require rewriting all server routing.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 class DashboardController {
   async view(req, res) {
@@ -514,6 +559,9 @@ class TransactionResponse {
 Injecting an Insecure Direct Object Reference (IDOR) vulnerability. An attacker can enumerate the identifiers of neighboring entities in URL requests.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 class TransactionResponse {
   id: string; // Values mapped to '7f9c2d14-3a21... ' (UUIDv4 Hash)
@@ -538,6 +586,9 @@ class Package { isFragile() { return this.weight > 50; } }
 Duplicating business system domain invariants. If the weight threshold changes to 40 kg, programmers will have to manually audit all frontend templates.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 // View inherently relies on Domain evaluation
 {{ if package.isFragile }} <span>Fragile Tag</span> {{ /if }}
@@ -567,6 +618,9 @@ class SubscriptionController {
 The Controller assumes the role of an Orchestrator God. Any new side-effects will increase its size exponentially and slow down the HTTP channel.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 class SubscriptionController {
   async charge(req, res) {
@@ -601,6 +655,9 @@ class ItemController {
 The proliferation of thousands of useless `try/catch` blocks throughout the MVC codebase. Client applications receive differently formatted errors from different endpoints.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 class ItemController {
   // Gracefully handles exceptions implicitly relying on a Pipeline Filter
@@ -630,6 +687,9 @@ class CompanyLogo {
 The Model is fused with the S3 SDK infrastructure. This integration breaks the "Clean Architecture" and strips the module of portability to other hosting platforms.
 
 ### ✅ Best Practice
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Map of Patterns](../readme.md).
+
 ```typescript
 class CompanyLogo {
   // Domain Model operates strictly locally
