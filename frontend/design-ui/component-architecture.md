@@ -116,3 +116,11 @@ function UserDashboard() {
 
 ### 🚀 Solution
 Strictly enforcing **Component Hierarchy** is MANDATORY to establish deterministic boundaries. Decoupled components map to independent rendering lifecycles, enabling focused isolation testing and STRICTLY reducing framework reconciliation overhead compared to monolithic structures. This predictable architecture minimizes the blast radius for performance regressions and mitigates Cross-Site Scripting (XSS) risks by isolating state and rendering contexts.
+## ⚙️ Under the Hood
+
+The Atomic Design paradigm fundamentally maps to framework component trees (like React's Fiber or Angular's Injector tree). By isolating state and rendering logic within atomic nodes, frameworks can short-circuit the reconciliation process. If an atomic `Button` receives no prop changes, the framework bypasses re-rendering its entire sub-tree, providing O(1) performance updates rather than an O(N) evaluation of a massive "God component".
+
+## 🔀 Edge Cases & Architectural Handling
+
+- **Prop Drilling in Complex Hierarchies:** When atomic composition creates deeply nested trees, strict adherence to composition (e.g., passing `children` or slots) or localized state management patterns (like Context API for specific branches) MUST be used to prevent excessive prop drilling, keeping atomic elements decoupled from business logic.
+- **Micro-Frontend Integration:** In a federated architecture, strictly decouple atomic elements from any global routing or state. Components MUST rely solely on passed properties and emit events, acting as isolated "dumb" rendering units capable of being consumed by disparate host applications.

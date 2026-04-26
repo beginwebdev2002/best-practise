@@ -61,3 +61,25 @@ Using hardcoded absolute values (`20px`, hex codes) creates inconsistencies acro
 
 ### 🚀 Solution
 Strictly utilizing **Design Tokens** is MANDATORY to establish deterministic visual contracts. Constraining styles strictly to these centrally-managed tokens ensures a single source of truth, reducing CSS payload size and standardizing rendering performance. This pattern STRICTLY prevents arbitrary style manipulation, mitigating style-based injection vulnerabilities and enforcing uncompromised environmental immutability for safe AI Agent parsing.
+## ⚙️ Under the Hood
+
+```mermaid
+graph LR
+    System[Design System Config] --> GlobalTokens[Global CSS Variables]
+    GlobalTokens --> ComponentStyles[Component-Level CSS]
+    ComponentStyles --> Browser[Browser DOM Rendering]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class System default;
+    class GlobalTokens component;
+    class ComponentStyles component;
+    class Browser default;
+```
+
+By declaring `:root` level custom properties (CSS Variables), the rendering engine builds a single dictionary of layout constraints. When theme properties change, the browser simply repaints the specific token references rather than forcing a full CSSOM recalculation of hardcoded inline values.
+
+## 🔀 Edge Cases & Architectural Handling
+
+- **Third-Party Library Overrides:** When wrapping third-party libraries (e.g., date pickers) that do not inherit design tokens, isolate overrides within a specific container class and remap their internal variables to the application's global tokens to prevent CSS leak.
+- **Dynamic Theming Contexts:** When supporting multiple embedded themes (e.g., a "dark mode" widget inside a "light mode" dashboard), scope the CSS variables specifically to the container's DOM node (e.g., `.theme-dark { --bg-surface: #121212; }`) rather than mutating global root variables dynamically.
