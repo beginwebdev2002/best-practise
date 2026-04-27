@@ -45,6 +45,40 @@ workspace/
 ```
 
 
+```mermaid
+classDiagram
+    class workspace
+    note for workspace "Root Workspace"
+    class apps:::component
+    note for apps "Applications"
+    class packages:::component
+    note for packages "Shared Libraries"
+    class app_shell:::component
+    note for app_shell "Entry point, Router, MF config"
+    class mfe_catalog:::component
+    note for mfe_catalog "Independent application"
+    class mfe_checkout:::component
+    note for mfe_checkout "Independent application"
+    class design_system:::component
+    note for design_system "Pure, dumb UI components only"
+    class event_bus:::component
+    note for event_bus "Agnostic communication contract types"
+
+    workspace *-- apps
+    workspace *-- packages
+    apps *-- app_shell
+    apps *-- mfe_catalog
+    apps *-- mfe_checkout
+    packages *-- design_system
+    packages *-- event_bus
+
+    %% Design Token Adherence
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+```
+
+
+
 
 ### Structural Comparison: Monorepo vs Polyrepo for MFEs
 
