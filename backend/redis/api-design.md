@@ -15,14 +15,14 @@ last_updated: 2026-03-27
 
 ## 1. 🛑 API Design: Blocking Commands
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Using KEYS in production which blocks Redis
 client.keys('*');
 ```
 ### ⚠️ Problem
 Using `KEYS` command blocks the single-threaded Redis server, causing huge performance issues and potentially freezing your entire application.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Use SCAN for iterating over keys
 let cursor = '0';
 do {

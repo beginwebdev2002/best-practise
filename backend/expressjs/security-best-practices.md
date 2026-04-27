@@ -15,14 +15,14 @@ last_updated: 2026-03-27
 
 ## 1. 🛑 Exposing Server Information
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Express sends 'X-Powered-By: Express' header by default
 const app = express();
 ```
 ### ⚠️ Problem
 Exposing the underlying technology stack provides attackers with valuable reconnaissance information to target framework-specific vulnerabilities.
 ### ✅ Best Practice
-```javascript
+```typescript
 const helmet = require('helmet');
 const app = express();
 app.use(helmet());

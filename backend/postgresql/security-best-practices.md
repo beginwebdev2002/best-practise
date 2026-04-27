@@ -15,14 +15,14 @@ last_updated: 2026-03-27
 
 ## 1. 🛑 Plaintext Password Storage
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Storing plain text passwords in the database
 await pool.query(`INSERT INTO users (email, password) VALUES ($1, $2)`, [email, plaintextPassword]);
 ```
 ### ⚠️ Problem
 Storing plaintext passwords is a catastrophic security failure. If the database is compromised, all user accounts are immediately vulnerable.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Hashing the password using bcrypt or argon2
 const hashedPassword = await bcrypt.hash(plaintextPassword, 10);
 await pool.query(`INSERT INTO users (email, password_hash) VALUES ($1, $2)`, [email, hashedPassword]);

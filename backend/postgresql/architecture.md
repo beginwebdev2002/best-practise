@@ -15,7 +15,7 @@ last_updated: 2026-03-27
 
 ## 1. 🛑 Unbounded Connection Pools
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Creating a new connection per request
 app.get('/users', async (req, res) => {
   const client = new Client();
@@ -26,7 +26,7 @@ app.get('/users', async (req, res) => {
 ### ⚠️ Problem
 Creating a new PostgreSQL connection per request is expensive and quickly exhausts the database's maximum connections under load, causing outages.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Using a connection pool (e.g., pg-pool)
 const pool = new Pool({ max: 20 });
 app.get('/users', async (req, res) => {

@@ -15,14 +15,14 @@ last_updated: 2026-03-27
 
 ## 1. 🛑 Unprotected Redis Instances
 ### ❌ Bad Practice
-```javascript
+```typescript
 const redis = require('redis');
 const client = redis.createClient({ host: '127.0.0.1', port: 6379 }); // No authentication
 ```
 ### ⚠️ Problem
 Exposing Redis without authentication or encryption allows any connected client to read and write data, causing severe data breaches.
 ### ✅ Best Practice
-```javascript
+```typescript
 const redis = require('redis');
 const client = redis.createClient({
     url: process.env.REDIS_URL, // e.g., rediss://user:password@host:port

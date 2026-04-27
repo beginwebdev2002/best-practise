@@ -53,7 +53,7 @@ sequenceDiagram
 
 ## 🚨 1. Resolving the N+1 Query Problem
 ### ❌ Bad Practice
-```javascript
+```typescript
 // A resolver fetching a related entity synchronously inside a loop
 const resolvers = {
   User: {
@@ -67,7 +67,7 @@ const resolvers = {
 ### ⚠️ Problem
 Fetching associated records one by one within a list resolver results in the N+1 problem, overwhelming the database with redundant queries, leading to severe performance degradation.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Utilizing DataLoader to batch and cache database requests
 const resolvers = {
   User: {

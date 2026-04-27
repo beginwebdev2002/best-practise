@@ -59,7 +59,7 @@ sequenceDiagram
 
 ## 🚨 1. Schema Validation
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Inserting data without validation
 db.users.insertOne({ name: "John", age: -5, admin: true });
 ```
@@ -72,7 +72,7 @@ Implement strict schema validation using JSON Schema in MongoDB.
 > **Internal Routing:** For more context, refer back to the [Backend Index](../readme.md).
 
 ### 🚀 Solution
-```javascript
+```typescript
 db.createCollection("users", {
   validator: {
     $jsonSchema: {

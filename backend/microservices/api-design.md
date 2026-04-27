@@ -15,7 +15,7 @@ last_updated: 2026-03-27
 
 ## 1. 🛑 Direct Service-to-Client Exposure
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Client talks directly to multiple microservices
 fetch('http://user-service:3000/users');
 fetch('http://order-service:4000/orders');
@@ -23,7 +23,7 @@ fetch('http://order-service:4000/orders');
 ### ⚠️ Problem
 Exposing individual microservices directly to clients creates security risks, forces the client to handle aggregation, and makes API versioning difficult.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Client talks to API Gateway
 fetch('https://api.example.com/graphql');
 ```

@@ -19,7 +19,7 @@ This document outlines the strict security configurations and anti-patterns that
 
 ## 1. 🛑 Prototype Pollution
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Unsafe recursive object merging
 function merge(target, source) {
   for (let key in source) {
@@ -36,7 +36,7 @@ function merge(target, source) {
 ### ⚠️ Problem
 Unsafe object merging allows attackers to overwrite properties on the global `Object.prototype` (e.g., via `__proto__`). This Prototype Pollution leads to application-wide configuration manipulation, privilege escalation, or Remote Code Execution (RCE).
 ### ✅ Best Practice
-```javascript
+```typescript
 // Safe merging utilizing null-prototype objects and property validation
 function safeMerge(target, source) {
   for (let key in source) {
@@ -61,14 +61,14 @@ STRICTLY filter reserved prototype keys (`__proto__`, `constructor`, `prototype`
 ## 2. 🔏 Hardcoded Secrets
 
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Exposing secrets in code
 const dbClient = new Database('postgres://admin:supersecretpassword@db.internal:5432/mydb');
 ```
 ### ⚠️ Problem
 Embedding plaintext passwords or API keys directly in source code guarantees a critical security breach if the repository is compromised. Hardcoded secrets persist in Git history forever and expose backend infrastructure to attackers.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Utilizing environment variables safely
 const dbUrl = process.env.DATABASE_URL;
 if (!dbUrl) throw new Error('MANDATORY DATABASE_URL config is missing');
@@ -81,7 +81,7 @@ MANDATORY injection of secrets via environment variables or secret management va
 ## 3. 🛡️ Regular Expression Denial of Service (ReDoS)
 
 ### ❌ Bad Practice
-```javascript
+```typescript
 // A vulnerable regex pattern evaluated on user input
 const emailRegex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 app.post('/validate', (req, res) => {
@@ -92,7 +92,7 @@ app.post('/validate', (req, res) => {
 ### ⚠️ Problem
 Using poorly optimized regular expressions with nested quantifiers (Catastrophic Backtracking) allows an attacker to send crafted payloads that block the Node.js event loop entirely. This causes a complete Denial of Service (ReDoS).
 ### ✅ Best Practice
-```javascript
+```typescript
 // Using a robust, vetted validation library
 const validator = require('validator');
 

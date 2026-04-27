@@ -50,7 +50,7 @@ This folder acts as a container for documentation around the following backend t
 ---
 ## 1. 🛑 Global Domain Bleeding
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Returning database ORM models directly in HTTP responses
 app.get('/users/:id', async (req, res) => {
   const user = await db.User.findByPk(req.params.id);
@@ -60,7 +60,7 @@ app.get('/users/:id', async (req, res) => {
 ### ⚠️ Problem
 Returning database ORM models directly in HTTP responses tightly couples the database schema to the API contract. This exposes sensitive internal fields (like password hashes or internal IDs) and prevents evolving the database schema without breaking API clients.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Mapping the database entity to a specialized DTO
 app.get('/users/:id', async (req, res) => {
   const user = await db.User.findByPk(req.params.id);

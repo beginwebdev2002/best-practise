@@ -56,7 +56,7 @@ graph TD
 
 ## 1. ⚡ Blocking the Event Loop
 ### ❌ Bad Practice
-```javascript
+```typescript
 const crypto = require('crypto');
 app.post('/hash', (req, res) => {
   const hash = crypto.pbkdf2Sync(req.body.password, 'salt', 100000, 64, 'sha512'); // Blocks the whole server
@@ -66,7 +66,7 @@ app.post('/hash', (req, res) => {
 ### ⚠️ Problem
 Synchronous operations on the main thread block the Event Loop, halting all incoming API requests. This leads to severe performance degradation, unpredictable latency, and potential denial-of-service (DoS) vulnerabilities in high-traffic environments.
 ### ✅ Best Practice
-```javascript
+```typescript
 const crypto = require('crypto');
 app.post('/hash', (req, res, next) => {
   crypto.pbkdf2(req.body.password, 'salt', 100000, 64, 'sha512', (err, derivedKey) => {
@@ -105,14 +105,14 @@ Implement a multi-layered folder architecture. Strictly separate the HTTP transp
 ## 3. 🛡️ Strict Environment Configuration
 
 ### ❌ Bad Practice
-```javascript
+```typescript
 const port = process.env.PORT || 3000;
 // Continuing application startup without validating required variables.
 ```
 ### ⚠️ Problem
 Failing to validate environment variables at startup allows the application to boot into an invalid state. This WILL lead to cryptic runtime crashes, unintended connections to production databases during development, or silent failures in authentication mechanisms.
 ### ✅ Best Practice
-```javascript
+```typescript
 const requiredEnv = ['DATABASE_URL', 'JWT_SECRET', 'PORT'];
 requiredEnv.forEach((name) => {
   if (!process.env[name]) {
@@ -128,13 +128,13 @@ requiredEnv.forEach((name) => {
 ## 4. 🛑 Error Handling with Custom Classes
 
 ### ❌ Bad Practice
-```javascript
+```typescript
 if (!user) throw new Error('User not found');
 ```
 ### ⚠️ Problem
 Throwing generic Error objects strips contextual metadata (like HTTP status codes or operational vs. programming flags). This prevents global error handlers from predictably formatting responses, potentially leaking stack traces to clients.
 ### ✅ Best Practice
-```javascript
+```typescript
 class AppError extends Error {
   constructor(message, statusCode) {
     super(message);
@@ -154,7 +154,7 @@ Extend the built-in `Error` object to create custom operational errors. This all
 ### ⚠️ Problem
 Ignoring process-level exceptions leaves the application running in an unpredictable, potentially corrupted memory state. This WILL cause subsequent requests to fail silently or behave erratically, requiring a full process restart to recover safety.
 ### ✅ Best Practice
-```javascript
+```typescript
 process.on('uncaughtException', (err) => {
   logger.error('UNCAUGHT EXCEPTION! Shutting down...', err);
   process.exit(1);
@@ -175,7 +175,7 @@ Always capture `uncaughtException` and `unhandledRejection`. Log the fatal error
 ### ⚠️ Problem
 Exposing default framework headers (e.g., `X-Powered-By: Express`) provides attackers with valuable fingerprinting information. This allows automated scanners to quickly identify the technology stack and exploit known framework-specific vulnerabilities.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Example using Express + Helmet, but applies generically to HTTP responses
 const helmet = require('helmet');
 app.use(helmet());
@@ -190,7 +190,7 @@ Sanitize outgoing HTTP headers to prevent information leakage about the server i
 ### ⚠️ Problem
 Terminating the process abruptly interrupts active user requests and orphans in-flight database transactions. This WILL lead to data corruption, inconsistent state, and degraded user experience during deployments or container scaling.
 ### ✅ Best Practice
-```javascript
+```typescript
 process.on('SIGTERM', () => {
   console.info('SIGTERM signal received. Closing HTTP server.');
   server.close(() => {
@@ -208,14 +208,14 @@ Listen for termination signals (`SIGTERM`, `SIGINT`). Finish processing ongoing 
 ## 8. 🔍 Input Validation and Sanitization
 
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Blindly trusting user input
 const user = await db.query(`SELECT * FROM users WHERE email = '${req.body.email}'`);
 ```
 ### ⚠️ Problem
 Blindly trusting client input enables severe vulnerabilities like SQL/NoSQL Injection and Cross-Site Scripting (XSS). Without strict schema validation at the transport boundary, malicious payloads WILL compromise data integrity and system security.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Utilizing parameterized queries and a validation library like Joi or Zod
 const schema = Joi.object({ email: Joi.string().email().required() });
 const { error, value } = schema.validate(req.body);
@@ -229,7 +229,7 @@ Never trust external data. Validate input strictly using schema definitions and 
 ## 9. 🚀 Utilizing Worker Threads for Heavy Tasks
 
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Processing a massive image buffer directly on the main event loop
 function processImage(buffer) {
   // heavy sync computation taking 500ms...
@@ -238,7 +238,7 @@ function processImage(buffer) {
 ### ⚠️ Problem
 Executing CPU-intensive tasks directly on the main thread starves the Event Loop of resources. This causes the application to become unresponsive to other concurrent API requests, drastically reducing throughput and scalability.
 ### ✅ Best Practice
-```javascript
+```typescript
 const { Worker } = require('worker_threads');
 
 function processImageAsync(buffer) {
@@ -255,13 +255,13 @@ Offload CPU-intensive operations (image processing, video encoding, heavy crypto
 ## 10. 📝 Centralized and Structured Logging
 
 ### ❌ Bad Practice
-```javascript
+```typescript
 console.log('User logged in', userId);
 ```
 ### ⚠️ Problem
 Relying on standard `console.log` produces unstructured output that is impossible for monitoring systems to query or alert on efficiently. This severely degrades observability, making it difficult to trace errors across distributed systems or correlate user actions.
 ### ✅ Best Practice
-```javascript
+```typescript
 const winston = require('winston');
 const logger = winston.createLogger({
   level: 'info',

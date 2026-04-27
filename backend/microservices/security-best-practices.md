@@ -15,8 +15,8 @@ last_updated: 2026-03-27
 
 ## 1. 🛑 Implicit Trust Between Services
 ### ❌ Bad Practice
-```javascript
-// Service A trusts Service B without any validation
+```typescript
+// Service A trusts Service B without unknown validation
 app.post('/internal/process', (req, res) => {
     // Process without checking authorization
 });
@@ -24,7 +24,7 @@ app.post('/internal/process', (req, res) => {
 ### ⚠️ Problem
 Assuming the internal network is secure (Zero Trust violation) means if one service is compromised, the attacker has unrestricted access to the entire cluster.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Using mutual TLS (mTLS) and passing JWTs
 app.post('/internal/process', verifyJwt, (req, res) => {
     // Process after validation

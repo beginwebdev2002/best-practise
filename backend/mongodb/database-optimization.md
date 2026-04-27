@@ -21,7 +21,7 @@ When designing indexes, always follow the ESR rule to maximize efficiency.
 
 Creating indexes randomly without understanding the query patterns.
 
-```javascript
+```typescript
 // A query with equality, sort, and range:
 // db.orders.find({ status: "shipped", amount: { $gt: 100 } }).sort({ date: 1 })
 
@@ -54,7 +54,7 @@ graph LR
 
 ### 🚀 Solution
 
-```javascript
+```typescript
 // Ideal index for the ESR query
 db.orders.createIndex({ status: 1, date: 1, amount: 1 })
 ```
@@ -67,7 +67,7 @@ Pipelines process documents in stages. Optimizing the order of these stages dram
 
 Filtering data after heavy transformations or sorting large un-indexed datasets.
 
-```javascript
+```typescript
 db.users.aggregate([
   { $project: { name: 1, age: 1, status: 1 } },
   { $sort: { age: -1 } },
@@ -85,7 +85,7 @@ Always use `$match` and `$sort` as early as possible in the pipeline to reduce t
 
 ### 🚀 Solution
 
-```javascript
+```typescript
 db.users.aggregate([
   { $match: { status: "active" } },
   { $sort: { age: -1 } },
@@ -99,7 +99,7 @@ A covered query is a query that WILL be satisfied entirely using an index, witho
 
 ### ❌ Bad Practice
 
-```javascript
+```typescript
 // A query that fetches the entire document when only a few fields are needed
 // If an index exists on { status: 1 }, this query still needs to fetch the document to get the amount
 db.orders.find({ status: "shipped" })
@@ -111,7 +111,7 @@ Fetching entire documents when only a subset of fields is required causes unnece
 
 ### ✅ Best Practice
 
-```javascript
+```typescript
 // Create a compound index that covers the query
 db.orders.createIndex({ status: 1, amount: 1 })
 ```
@@ -120,7 +120,7 @@ db.orders.createIndex({ status: 1, amount: 1 })
 
 If you have an index on `{ status: 1, amount: 1 }`:
 
-```javascript
+```typescript
 // This is a covered query because it only projects indexed fields (and explicitly excludes _id)
 db.orders.find(
   { status: "shipped" },
