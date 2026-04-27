@@ -85,6 +85,10 @@ export class User extends BaseEntity {
 The Domain layer (the core of the application) is tightly coupled with a specific third-party ORM library (`TypeORM`). This violates the Dependency Rule. Changing the database technology will require rewriting core business logic.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 ```typescript
 // Pure Domain Entity completely agnostic of infrastructure
 export class User {
@@ -107,7 +111,7 @@ export class UserTypeOrmEntity {
 ```
 
 ### 🚀 Solution
-Isolate your Domain models from any external libraries. Use Data Mapper patterns in the Infrastructure layer to map between pure Domain entities and ORM-specific models. This ensures your core business logic is portable and testable without a database connection.
+Isolate your Domain models from any external libraries. Use Data Mapper patterns in the Infrastructure layer to map between pure Domain entities and ORM-specific models. This ensures your core business logic is portable and testable without a database connection. This decoupling inherently hardens the system's security by preventing ORM-specific injection vulnerabilities from leaking into core logic. Performance is enhanced through reduced payload overhead and isolated memory usage without heavy DB abstractions in the domain layer.
 
 ---
 
@@ -132,6 +136,10 @@ export class UploadAvatarUseCase {
 The Use Case (Application layer) depends directly on an external hardware/infrastructure concern (`aws-sdk`). You cannot test this Use Case without mocking AWS S3, and you cannot switch to Azure or Google Cloud without modifying the Use Case.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 ```typescript
 // Application Layer defines the abstraction (Port)
 export interface IFileStorageService {
@@ -151,6 +159,8 @@ export class UploadAvatarUseCase {
 ### 🚀 Solution
 > [!IMPORTANT]
 > Apply the Dependency Inversion Principle. The Application layer MUST define abstract interfaces (`Ports`) that dictate what it needs from the outside world. The Infrastructure layer implements these interfaces (`Adapters`). This guarantees true architectural decouple.
+>
+> By injecting interfaces instead of real infrastructure logic, security is optimized since external service integrations can be fully mocked or sandboxed during security audits. Performance is strictly controlled as the infrastructure layer alone manages scaling strategies (e.g. connection pooling), independent of the core application flow.
 
 ---
 
@@ -182,6 +192,10 @@ class UserController {
 The Controller (Interface Adapters layer) contains the business rules. It directly uses the Repository, bypassing the Application Use Case layer. This makes the logic difficult to reuse across different entry points (e.g., CLI, gRPC, HTTP).
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 ```typescript
 class UserController {
   constructor(private readonly registerUserUseCase: RegisterUserUseCase) {}
@@ -201,3 +215,5 @@ class UserController {
 ### 🚀 Solution
 > [!IMPORTANT]
 > Controllers MUST be entirely "dumb". Their only responsibility is to parse incoming requests, pass standard DTOs to the corresponding Use Case, and format the output. All branching business logic and validation must reside inside the independent Use Case interactor.
+>
+> Keeping controllers dumb improves security by restricting attack vectors at the API boundary, validating strictly structured DTOs before reaching logic execution. Performance throughput increases since routing handles structural mappings exclusively without awaiting deep business computations within the same scope.

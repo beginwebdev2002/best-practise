@@ -69,6 +69,10 @@ export class ProcessDocumentService {
 The Core Domain is directly importing and depending on a specific technical implementation (`AWS S3`). If the project migrates to Azure or GCP, the core business logic must be rewritten. Testing requires a live S3 connection or complex module mocking.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 ```typescript
 // Port (Interface defined in the Core Domain)
 export interface IFileStoragePort {
@@ -88,4 +92,4 @@ export class ProcessDocumentService {
 ```
 
 ### 🚀 Solution
-Apply the Dependency Inversion Principle using Ports. The Core Domain defines *what* it needs via interfaces (Ports). The Infrastructure layer implements *how* it's done via concrete Adapters. The Domain remains pristine, technology-agnostic, and trivially unit-testable using memory-based mocks.
+Apply the Dependency Inversion Principle using Ports. The Core Domain defines *what* it needs via interfaces (Ports). The Infrastructure layer implements *how* it's done via concrete Adapters. The Domain remains pristine, technology-agnostic, and trivially unit-testable using memory-based mocks. Isolating the domain through ports limits the blast radius of security vulnerabilities in third-party libraries entirely to the external adapter ring. Performance profiling can also be conducted independently on adapters without affecting the core computational speed.
