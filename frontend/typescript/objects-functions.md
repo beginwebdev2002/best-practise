@@ -195,7 +195,7 @@ Legacy decorators rely on the deprecated `experimentalDecorators` flag, misalign
 ### ✅ Best Practice
 ```typescript
 // TC39 standard (TS 5.0+)
-function Logged<Class extends new (...args: any[]) => unknown>(
+function Logged<Class extends new (...args: unknown[]) => unknown>(
   value: Class,
   context: ClassDecoratorContext
 ) { /* ... */ }
