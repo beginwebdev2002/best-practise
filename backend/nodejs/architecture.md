@@ -38,7 +38,7 @@ graph TD
 
 ## 1. 🛑 Domain Coupling in Controllers
 ### ❌ Bad Practice
-```javascript
+```typescript
 // A controller handling HTTP request parsing, business logic, and database operations.
 app.post('/api/users', async (req, res) => {
   const { name, email } = req.body;
@@ -51,7 +51,7 @@ app.post('/api/users', async (req, res) => {
 ### ⚠️ Problem
 Tightly coupling business logic and database queries directly inside the HTTP transport layer (controllers) prevents unit testing and code reusability. It violates the Single Responsibility Principle, turning routes into unmaintainable monoliths.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Controller delegating logic to the Service Layer
 app.post('/api/users', async (req, res, next) => {
   try {
@@ -72,7 +72,7 @@ Controllers MUST ONLY handle HTTP payload parsing and response formatting. Core 
 ## 2. 🗂️ Dependency Inversion
 
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Hardcoding a database dependency directly into a service
 const db = require('../config/database');
 
@@ -85,7 +85,7 @@ class UserService {
 ### ⚠️ Problem
 Hardcoding infrastructural dependencies directly into the service layer creates rigid code. It prevents dynamic swapping of database adapters and blocks the use of isolated mock databases during unit testing.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Injecting dependencies through the constructor
 class UserService {
   constructor(userRepository) {
@@ -103,7 +103,7 @@ STRICTLY apply Dependency Injection. Services MUST receive infrastructural depen
 ## 3. 🌐 Global State Mutation
 
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Mutating global process.env during runtime
 function setConfig(newPort) {
   process.env.PORT = newPort;
@@ -112,7 +112,7 @@ function setConfig(newPort) {
 ### ⚠️ Problem
 Mutating global state variables like `process.env` during application runtime creates unpredictable, non-deterministic side effects across all imported modules. This leads to untraceable bugs in asynchronous execution.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Using an immutable configuration object
 const config = Object.freeze({
   port: process.env.PORT || 3000,

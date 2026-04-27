@@ -15,14 +15,14 @@ last_updated: 2026-03-27
 
 ## 1. 🛑 Synchronous Communication Bottlenecks
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Service A waits synchronously for Service B
 const result = await axios.get('http://service-b/data');
 ```
 ### ⚠️ Problem
 Synchronous chains across microservices create tight coupling and cascading failures. If one service is slow, the entire request chain slows down or times out.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Event-driven asynchronous communication
 await messageBroker.publish('OrderCreated', orderData);
 ```

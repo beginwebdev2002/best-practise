@@ -29,14 +29,14 @@ This document establishes **best practices** for building and maintaining Redis 
 
 ### Cache Design
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Setting a cache key without an expiration (TTL)
 await redisClient.set('user:123', JSON.stringify(user));
 ```
 ### ⚠️ Problem
 Storing keys without a TTL leads to severe memory exhaustion, out-of-memory (OOM) crashes, and serving stale data to clients, breaking cache consistency.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Cache-Aside Pattern with strict TTL enforcement
 const cacheKey = 'user:123';
 let user = await redisClient.get(cacheKey);
@@ -81,14 +81,14 @@ sequenceDiagram
 
 ### Connection Security
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Connecting to Redis on the default port without authentication
 const redisClient = redis.createClient({ url: 'redis://127.0.0.1:6379' });
 ```
 ### ⚠️ Problem
 Exposing Redis without a password or on a public network invites unauthorized access, catastrophic data breaches, and accidental data loss via command injection (e.g., executing FLUSHALL).
 ### ✅ Best Practice
-```javascript
+```typescript
 // Connecting via TLS with strict authentication using environment variables
 const redisClient = redis.createClient({
   url: process.env.REDIS_URL, // e.g., rediss://default:securepass@internal.net:6380
@@ -100,14 +100,14 @@ Never expose Redis to the public internet. Isolate it within a private VPC, enfo
 
 ### Network Architecture
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Plaintext communication over the network
 const redisClient = redis.createClient({ url: 'redis://redis.internal.net:6379' });
 ```
 ### ⚠️ Problem
 Transmitting data in plaintext allows attackers to intercept sensitive information (like session tokens or cached user data) via packet sniffing, leading to severe data breaches.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Enforcing TLS for all connections
 const redisClient = redis.createClient({
   url: 'rediss://redis.internal.net:6380',
@@ -120,14 +120,14 @@ Mandate TLS (Transport Layer Security) for encrypting all data in transit, ensur
 
 ### Command Usage
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Blocking the entire Redis server to find keys
 const keys = await redisClient.keys('session:*');
 ```
 ### ⚠️ Problem
 The `KEYS *` command is a blocking operation. Executing it on a production database with millions of keys halts all other operations, causing massive latency spikes and application timeouts.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Non-blocking iteration using SCAN
 let cursor = 0;
 const keys = [];
@@ -142,14 +142,14 @@ Strictly avoid blocking commands (`KEYS *`, `SMEMBERS`). Use iterative commands 
 
 ### Data Types
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Storing a massive, monolithic JSON object as a single string
 await redisClient.set('user:profile:123', JSON.stringify(massiveProfileObject));
 ```
 ### ⚠️ Problem
 Storing massive objects as single strings requires fetching and deserializing the entire object even if only one field is needed. This wastes network bandwidth and memory, reducing overall cache performance.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Utilizing Redis Hashes for efficient field-level access
 await redisClient.hSet('user:profile:123', {
   name: 'John Doe',

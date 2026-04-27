@@ -15,7 +15,7 @@ last_updated: 2026-03-27
 
 ## 1. 🛑 God Controllers
 ### ❌ Bad Practice
-```javascript
+```typescript
 app.post('/users', async (req, res) => {
   // Parsing logic
   // Validation logic
@@ -27,7 +27,7 @@ app.post('/users', async (req, res) => {
 ### ⚠️ Problem
 Mixing routing, business logic, and data access in a single function violates the Single Responsibility Principle, making the code impossible to unit test and maintain.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Controller merely orchestrates
 const userController = async (req, res, next) => {
   try {

@@ -15,7 +15,7 @@ last_updated: 2026-03-29
 
 ## 1. 🛑 Query Depth & Complexity Limiting
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Accepting unbounded GraphQL queries
 const server = new ApolloServer({
   schema,
@@ -25,7 +25,7 @@ const server = new ApolloServer({
 ### ⚠️ Problem
 Without depth or complexity limits, an attacker WILL craft a deeply nested query (e.g., requesting `user -> friends -> user -> friends` recursively) causing catastrophic Resource Exhaustion (DoS) on the server and database.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Implementing Query Depth Limit
 import depthLimit from 'graphql-depth-limit';
 

@@ -101,14 +101,14 @@ classDiagram
 
 ## 1. 🛑 Schema-less Anti-pattern
 ### ❌ Bad Practice
-```javascript
+```typescript
 // Inserting whatever object properties exist
 db.collection('users').insertOne({ anything: "goes", random: 123 });
 ```
 ### ⚠️ Problem
 Treating MongoDB as completely schema-less leads to data inconsistencies, corrupted application logic, and complex migrations down the line.
 ### ✅ Best Practice
-```javascript
+```typescript
 // Using JSON Schema validation at the database level or an ODM like Mongoose
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true },

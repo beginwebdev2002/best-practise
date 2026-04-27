@@ -21,7 +21,7 @@ Ensure MongoDB requires authentication and enforce Role-Based Access Control (RB
 
 Running MongoDB with authorization disabled or using powerful built-in roles (e.g., `root`, `dbAdminAnyDatabase`) for application connections.
 
-```javascript
+```typescript
 // A common mistake is using the root user for application access
 db.createUser({ user: "appUser", pwd: "secretPassword", roles: ["root"] })
 ```
@@ -49,7 +49,7 @@ Enable authorization in `mongod.conf` (`security.authorization: enabled`) and cr
 
 ### 🚀 Solution
 
-```javascript
+```typescript
 // Grant read/write access to specific collections only
 db.createRole({
    role: "appRole",
@@ -75,9 +75,9 @@ MongoDB queries WILL be vulnerable to NoSQL injection if user input is not prope
 
 Directly passing unsanitized user input (e.g., from a web request) into a MongoDB query.
 
-```javascript
+```typescript
 // Express.js example: Vulnerable to NoSQL Injection
-// If req.body.username = { "$gt": "" }, it matches any username
+// If req.body.username = { "$gt": "" }, it matches unknown username
 const user = await db.collection('users').findOne({
     username: req.body.username,
     password: req.body.password
@@ -96,7 +96,7 @@ Validate and sanitize all inputs to ensure they are primitives (strings, numbers
 
 Using a library like `express-mongo-sanitize` to strip out keys beginning with `$` or `.`.
 
-```javascript
+```typescript
 // Express.js with express-mongo-sanitize
 const mongoSanitize = require('express-mongo-sanitize');
 app.use(mongoSanitize()); // Automatically removes $ and . from req.body, req.query, req.params
