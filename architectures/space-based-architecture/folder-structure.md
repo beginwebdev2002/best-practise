@@ -39,6 +39,33 @@ src/
     └── recovery/
 ```
 
+```mermaid
+classDiagram
+    class src
+    note for src "Root Source Directory"
+    class api_gateway:::component
+    note for api_gateway "Routing and basic validation"
+    class middleware:::component
+    note for middleware "Virtualized middleware for processing unit routing"
+    class processing_units:::component
+    note for processing_units "Independent processing components"
+    class data_grid:::component
+    note for data_grid "IMDG configuration and schema definitions"
+    class data_pumps:::component
+    note for data_pumps "Background services syncing IMDG to DB"
+
+    src *-- api_gateway
+    src *-- middleware
+    src *-- processing_units
+    src *-- data_grid
+    src *-- data_pumps
+
+    %% Design Token Adherence
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+```
+
+
 ## Layering Logic
 
 - **api-gateway:** The initial entry point. Minimal logic.

@@ -79,6 +79,16 @@ export async function executeDeterministicReflection(
 
 By formalizing the reflection process into a deterministic evaluation function (`executeDeterministicReflection`), we enforce explicit programmatic boundaries. The model is constrained to return a structured payload matching a predefined schema. This strictly typed approach prevents conversational hallucinations and guarantees that the orchestration system can cleanly handle failures, log exact violations, and trigger controlled rollback workflows. This deterministic pattern provides unparalleled resilience compared to open-ended conversational evaluation.
 
+### Structural Comparison: Deterministic Reflection vs Conversational
+
+| Feature | Deterministic Reflection | Conversational Reflection |
+| :--- | :--- | :--- |
+| **Output Type** | Structured Schema (e.g. JSON) | Unstructured Text |
+| **Validation** | Programmatic (e.g. Zod) | Human/AI Interpretation |
+| **Resilience** | High (prevents hallucinations) | Low (prone to circular logic) |
+| **Error Handling**| Typed failures with specific violations | Implicit failures |
+
+
 ---
 
 ## 🔄 Self-Reflection Workflow
