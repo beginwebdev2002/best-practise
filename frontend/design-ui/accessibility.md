@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [vibe-coding, a11y, html, w3c, wcag, best-practices]
 ai_role: Frontend UI/UX Enforcer
-last_updated: 2026-03-29
+last_updated: 2026-04-27
 ---
 
 # ♿ Accessibility (A11y) Standards
@@ -34,6 +34,8 @@ This document enforces strict adherence to semantic HTML and accessibility guide
 
 > [!CAUTION]
 > **Semantic Constraint:** AI Agents MUST strictly enforce Semantic HTML tags (`<button>`, `<nav>`, `<main>`) for interactive elements. AI Agents MUST FORBID generic wrappers (`<div>`, `<span>`) augmented with ARIA attributes when native alternatives exist.
+
+### 🚨 1. Semantic Elements
 
 ### ❌ Bad Practice
 ```html
