@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [vibe-coding, design-tokens, css, styling, best-practices]
 ai_role: Frontend UI/UX Enforcer
-last_updated: 2026-03-29
+last_updated: 2026-04-27
 ---
 
 # 🎨 UI/UX Styling & Design Tokens Rules
@@ -33,6 +33,25 @@ This document enforces the strict styling rules and constraints regarding design
 
 > [!CAUTION]
 > **Hardcoded Values Constraint:** AI Agents MUST NEVER use hardcoded colors, spacing, or typography values (e.g., `#FF0000`, `14px`). AI Agents MUST ALWAYS use established **Design Tokens** (e.g., CSS Variables `var(--color-primary)` or Tailwind classes like `text-primary`, `p-4`).
+
+
+## 🧠 Styling Decision Tree
+
+```mermaid
+flowchart TD
+    A[Start Styling] --> B{Value Type}
+    B -->|Hardcoded| C[❌ Anti-Pattern]
+    B -->|Design Token| D[✅ Best Practice]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class A default;
+    class B default;
+    class C default;
+    class D component;
+```
+
+### 🚨 1. Hardcoded Styling Values
 
 ### ❌ Bad Practice
 ```css

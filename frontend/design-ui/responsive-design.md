@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [vibe-coding, responsive, adaptive, css, best-practices]
 ai_role: Frontend UI/UX Enforcer
-last_updated: 2026-03-29
+last_updated: 2026-04-27
 ---
 
 # 📱 Responsive & Adaptive Design Principles
@@ -33,6 +33,8 @@ This document enforces the strict standards for building fluid, universally adap
 
 > [!IMPORTANT]
 > **Mobile-First Constraint:** AI Agents MUST strictly apply a mobile-first approach. Define base CSS for mobile screens and progressively enhance the layout for larger viewports using `min-width` media queries. Always prefer relative units (`rem`, `%`) over absolute units (`px`).
+
+### 🚨 1. Mobile First Approach
 
 ### ❌ Bad Practice
 ```css
