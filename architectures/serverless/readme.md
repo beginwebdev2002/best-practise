@@ -13,10 +13,10 @@ last_updated: 2026-03-29
 </div>
 ---
 
-Этот инженерный директив определяет **лучшие практики (best practices)** для архитектуры Serverless. Данный документ спроектирован для обеспечения максимальной масштабируемости, безопасности и качества кода при разработке приложений корпоративного уровня.
+This engineering directive defines **best practices** for Serverless Architecture. This document is designed to ensure maximum scalability, security, and code quality when developing enterprise-level applications.
 
 # Context & Scope
-- **Primary Goal:** Предоставить строгие архитектурные правила и практические паттерны для создания масштабируемых систем.
+- **Primary Goal:** Provide strict architectural rules and practical patterns for creating scalable systems.
 - **Description:** Developers do not manage servers at all. The entire "server" consists of bite-sized pieces of business logic (functions/Lambdas) living in the cloud.
 
 ## Map of Patterns
@@ -75,6 +75,10 @@ exports.handler = async (event) => {
 Grouping unrelated endpoints into a single function defeats the purpose of Serverless. It increases the deployment package size (slowing down cold starts), couples business domains together, complicates IAM permissions (granting excessive privileges), and makes individual function metrics/tracing impossible.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 ```javascript
 // One function strictly mapped to one specific capability
 // users-create.js
@@ -90,7 +94,7 @@ exports.handler = async (event) => {
 ```
 
 ### 🚀 Solution
-Embrace the "Single Responsibility Principle" at the infrastructure level. Decompose logic into granular, single-purpose functions. Use an API Gateway to handle routing rather than parsing paths inside the compute layer. This ensures precise IAM scoping, accurate observability, and isolated failure domains.
+Embrace the "Single Responsibility Principle" at the infrastructure level. Decompose logic into granular, single-purpose functions. Use an API Gateway to handle routing rather than parsing paths inside the compute layer. This ensures precise IAM scoping, accurate observability, and isolated failure domains. This approach is highly resilient regarding security, as IAM roles can be restricted strictly per function, preventing widespread data leaks if one route is compromised. From a performance perspective, smaller deployment packages minimize cold start latency.
 
 ---
 
@@ -122,6 +126,10 @@ exports.handler = async (event) => {
 Serverless environments are ephemeral. You cannot guarantee that subsequent requests will be routed to the same container instance. Relying on local variable state leads to unpredictable race conditions, phantom data bugs, and security leaks across tenant requests.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 ```javascript
 // Safely caching connections, but keeping data strictly stateless
 let databaseConnection = null;
@@ -143,4 +151,4 @@ exports.handler = async (event) => {
 ```
 
 ### 🚀 Solution
-Treat every function invocation as stateless. It is acceptable (and encouraged) to cache static assets or database connection pools globally (outside the handler) to reduce cold start latency. However, all business data, session state, or mutable variables must be strictly scoped to the handler's execution context or offloaded to Redis/DynamoDB.
+Treat every function invocation as stateless. It is acceptable (and encouraged) to cache static assets or database connection pools globally (outside the handler) to reduce cold start latency. However, all business data, session state, or mutable variables must be strictly scoped to the handler's execution context or offloaded to Redis/DynamoDB. Statelesness eliminates race conditions, avoiding cross-tenant data leaks and improving security. Performance is optimized because any instance can safely serve any incoming request without waiting for state synchronization.
