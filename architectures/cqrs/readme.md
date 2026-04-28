@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, system-design, cqrs, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 
@@ -111,3 +111,8 @@ class GetActiveUsersQueryHandler {
 ### 🚀 Solution
 > [!IMPORTANT]
 > Strictly segregate Commands (mutations) from Queries (reads). Use separate models and potentially separate databases optimized for each task. Commands encapsulate complex business logic and write to a normalized DB. Queries bypass complex domain models, reading directly from a denormalized, blazing-O(1) or O(n) complexity Read DB, allowing deterministic scaling for read-heavy workloads.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

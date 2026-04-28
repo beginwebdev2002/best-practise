@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, system-design, monolithic-architecture, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-28
 ---
 
 
@@ -106,3 +106,8 @@ export class PaymentProcessor {
 ### 🚀 Solution
 > [!IMPORTANT]
 > Treat logical modules inside the monolith as if they were independent microservices. Enforce strict boundaries. Modules must only communicate with each other through explicit public interfaces (Facades or Services). Never share database queries or raw internal state across domain boundaries. This creates a "Modular Monolith" that is deterministic and ready for future extraction.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [monolithic-architecture, architecture, best-practices, architecture]
 ai_role: Senior Monolithic Architecture Expert
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 # Monolithic Architecture - Folder Structure

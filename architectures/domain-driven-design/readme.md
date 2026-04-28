@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, system-design, domain-driven-design, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-28
 ---
 
 
@@ -116,3 +116,8 @@ class OrderApplicationService {
 ### 🚀 Solution
 > [!IMPORTANT]
 > MANDATORY: Always implement Rich Domain Models. Entities and Aggregates MUST encapsulate both state and the business rules that mutate that state. Services MUST be relegated to application orchestration (fetching data, calling entity methods, and saving data), ensuring that invariant business logic is securely locked inside the Domain layer.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

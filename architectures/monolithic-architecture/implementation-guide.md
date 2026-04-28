@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [monolithic-architecture, architecture, best-practices, architecture]
 ai_role: Senior Monolithic Architecture Expert
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 # Monolithic Architecture - Implementation Guide
@@ -82,3 +82,8 @@ class OrderService {
 ### 🚀 Solution
 > [!IMPORTANT]
 > Build a "Modular Monolith". Even though the code runs in a single process, strictly isolate the data and state of different business domains. Modules MUST communicate with each other through explicit interfaces or an in-memory event bus, rather than sharing global variables or databases.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

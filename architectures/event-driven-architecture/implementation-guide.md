@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [eda, implementation-guide, kafka, microservices, typescript, nestjs, architecture-patterns]
 ai_role: Senior Event-Driven Architecture Expert
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 
@@ -209,3 +209,8 @@ A Schema Registry enforces a strict, versioned contract (e.g., Avro, Protobuf, J
   [Back to Main Blueprint](./readme.md) <br><br>
   <b>Master these implementation constraints to guarantee asynchronous consistency! 🛠️</b>
 </div>
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

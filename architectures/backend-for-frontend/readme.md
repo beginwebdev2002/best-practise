@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, system-design, bff, backend-for-frontend, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 <div align="center">
@@ -117,3 +117,8 @@ class MobileDashboardController {
 
 ### 🚀 Solution
 Implement a dedicated Backend-For-Frontend (BFF) for each distinct client experience (e.g., one for Web, one for Mobile). This ensures APIs are optimized for the specific UI, eliminates brittle conditional logic, and allows frontend teams to autonomously evolve their respective backends without blocking each other.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, implementation, event-sourcing, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 <div align="center">
@@ -47,3 +47,8 @@ async function fixUserName(userId: string, newName: string) {
 
 ### 🚀 Solution
 Treat the Event Store as an immutable ledger. If an error was made in the past, you MUST NOT change the historical record. Instead, issue a new compensating event (e.g., `UserNameCorrected` or `OrderRefunded`) that represents the business action taken to fix the state. This preserves the truth of what actually happened in the system.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

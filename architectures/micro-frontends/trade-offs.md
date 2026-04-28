@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [micro-frontends, architecture, module-federation, frontend, trade-offs, constraints, vibe-coding]
 ai_role: Senior Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-28
 ---
 
 <div align="center">
@@ -53,3 +53,8 @@ Utilize Webpack 5 Module Federation (or similar tools like Vite Federation) to s
 - **System Governance:** Do you have robust CI/CD pipelines to manage 10+ independent deployments?
 - **Team Size:** Micro-frontends add overhead. They are designed for large organizations (e.g., 30+ frontend engineers) divided into autonomous squads. Avoid for small MVPs.
 - **Testing Complexity:** End-to-End (E2E) testing becomes significantly harder because the true application only exists at runtime.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

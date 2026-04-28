@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, system-design, microservices, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 
@@ -93,3 +93,8 @@ services:
 
 ### 🚀 Solution
 Strictly enforce the "Database-per-Service" pattern. A microservice's persistent data must be private and accessible only via its API. If `order-service` needs inventory data, it must call the `inventory-service` API asynchronously or subscribe to its data replication events, rather than running cross-database SQL JOINs.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns, mvc-best-practise, angular-best-practise, expressjs-best-practise, ai-instructions, vibe-coding-instructions, mongodb, angular, nestjs, html, scss, javascript, js, typescript-best-practise, css, css3]
 ai_role: Senior Software Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-28
 ---
 
 
@@ -655,3 +655,8 @@ Observe the boundaries of Ports and Adapters. Delegate integration with hardware
   [Go to FSD Architecture](../../architectures/feature-sliced-design/readme.md) <br><br>
   <b>Strictly observe the boundaries of the Model-View-Controller pattern to build reliable, adaptive software! 🏛️🚀</b>
 </div>
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

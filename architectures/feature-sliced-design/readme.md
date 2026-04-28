@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [fsd, modular-architecture, frontend, system-design, clean-architecture]
 ai_role: Senior Frontend Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-28
 ---
 
 
@@ -586,3 +586,8 @@ The inherent mission and philosophy underlying the `widgets` stratum is high-lev
 <div align="center">
   <b>Adhere firmly to the principles of Feature-Sliced Design to establish a relentlessly deterministic, radically scalable, and robust foundational codebase! 🚀</b>
 </div>
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

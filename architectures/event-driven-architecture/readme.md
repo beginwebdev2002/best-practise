@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [eda, event-driven, architecture, pub-sub, asynchronous, messaging, kafka, rabbitmq, system-design]
 ai_role: Senior Event-Driven Architecture Expert
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 
@@ -112,3 +112,8 @@ class OrderService {
 
 ### 🚀 Solution
 Strictly enforce asynchronous "fire-and-forget" behavior for events. The producer MUST NOT wait for a response from the consumer. Use eventual consistency and asynchronous workflows (e.g., WebSockets, polling, or client-side subscriptions) to handle the outcome of the event processing.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

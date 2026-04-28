@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [ddd, architecture, best-practices, architecture]
 ai_role: Senior DDD Expert
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 # Domain-Driven Design - Implementation Guide
@@ -82,3 +82,8 @@ class Order {
 ### 🚀 Solution
 > [!IMPORTANT]
 > Create rich domain models. Business logic and rules that belong to an entity MUST be encapsulated within the entity itself. The entity MUST protect its invariants and expose business-meaningful methods (like `applyDiscount`) instead of public setters.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [micro-frontends, architecture, module-federation, frontend, folder-structure, vibe-coding]
 ai_role: Senior Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-28
 ---
 
 <div align="center">
@@ -57,3 +57,8 @@ workspace/
 
 #### 🚀 Solution
 Structure your repository (whether mono or polyrepo) to ensure each application folder (`mfe-*`) operates as a completely standalone entity. Shared libraries must be restricted strictly to agnostic utilities and purely visual design system components. Ensure zero business logic crossover.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

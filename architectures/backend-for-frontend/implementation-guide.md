@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, implementation, bff, backend-for-frontend]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 <div align="center">
@@ -47,3 +47,8 @@ async function getDashboardData(userId: string) {
 
 ### 🚀 Solution
 Always use `Promise.all()` (or equivalent parallel execution features in your language) to call independent downstream services concurrently. Furthermore, wrap these calls in error handlers (`.catch()`) to prevent a single downstream failure from crashing the entire aggregated response, enabling graceful degradation.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
