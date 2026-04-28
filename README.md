@@ -198,6 +198,7 @@ graph TD
     * 🤖 [ai-agent-zero-trust-security-boundaries.md](./docs/ai-agent-zero-trust-security-boundaries.md)
     * 🤖 [ai-agent-tool-calling-architectures.md](./docs/ai-agent-tool-calling-architectures.md)
     * 🤖 [vibe-coding-agents.md](./docs/vibe-coding-agents.md)
+    * 🤖 [vibe-coding-automated-refactoring-pipelines.md](./docs/vibe-coding-automated-refactoring-pipelines.md)
     * 🤖 [vibe-coding-autonomous-testing-patterns.md](./docs/vibe-coding-autonomous-testing-patterns.md)
     * 🤖 [vibe-coding-deterministic-patterns.md](./docs/vibe-coding-deterministic-patterns.md)
     * 🤖 [vibe-coding-multi-agent-state-sync.md](./docs/vibe-coding-multi-agent-state-sync.md)
