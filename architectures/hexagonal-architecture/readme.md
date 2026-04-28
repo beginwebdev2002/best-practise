@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [best-practices, clean-code, hexagonal-architecture, ports-and-adapters, system-design, vibe-coding]
 ai_role: Senior Software Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-28
 ---
 
 # 🛑 Hexagonal Architecture Production-Ready Best Practices
@@ -89,3 +89,8 @@ export class ProcessDocumentService {
 
 ### 🚀 Solution
 Apply the Dependency Inversion Principle using Ports. The Core Domain defines *what* it needs via interfaces (Ports). The Infrastructure layer implements *how* it's done via concrete Adapters. The Domain remains pristine, technology-agnostic, and trivially unit-testable using memory-based mocks.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

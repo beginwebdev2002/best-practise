@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [clean-architecture, architecture, best-practices, architecture]
 ai_role: Senior Clean Architecture Expert
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 # Clean Architecture - Trade-offs

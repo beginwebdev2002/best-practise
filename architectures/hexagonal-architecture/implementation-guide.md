@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [best-practices, implementation-guide, hexagonal-architecture, ports-and-adapters]
 ai_role: Senior Software Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-28
 ---
 
 # 🛠️ Hexagonal Architecture Implementation Guide
@@ -282,3 +282,8 @@ export class UserController {
 ### 🚀 Solution
 > [!IMPORTANT]
 > Isolate the Core Domain from infrastructure. The `User` entity must be a pure TypeScript class devoid of external imports or decorators. The mapping between the database rows and the Domain Entity must be handled strictly by the Secondary Adapter (e.g., via a Mapper or DTO class), ensuring the Core remains deterministic, testable, and completely vendor-agnostic.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

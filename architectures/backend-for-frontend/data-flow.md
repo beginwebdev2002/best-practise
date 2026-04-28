@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, data-flow, system-design, bff, backend-for-frontend]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 <div align="center">

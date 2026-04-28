@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [architecture, clean-architecture, best-practices]
 ai_role: System Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-28
 ---
 
 # 🛠️ Clean Architecture Implementation Guide
@@ -86,3 +86,7 @@ export class UploadUserAvatarUseCase {
 
 ### 🚀 Solution
 By using the **Dependency Inversion Principle**, the Application layer defines an abstract interface (`IFileStoragePort`) that dictates its needs. The Infrastructure layer implements this interface (e.g., `S3FileStorageAdapter`). The Use Case is fully decoupled from the external framework, making it easily testable and agnostic to the storage provider.
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

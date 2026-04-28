@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, implementation, microservices, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 # Microservices - Implementation Guide
@@ -54,3 +54,8 @@ async function processOrder() {
 ### 🚀 Solution
 > [!IMPORTANT]
 > Use Event-Driven Architecture for cross-service communication when immediate consistency is not strictly required. By publishing an `OrderPaid` event, the `notificationService` MUST react to it asynchronously. This decouples the services, improves fault tolerance, and reduces the latency of the initial `processOrder` request.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

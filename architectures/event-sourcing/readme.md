@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, system-design, event-sourcing, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 
@@ -103,3 +103,8 @@ class BankAccount {
 
 ### 🚀 Solution
 Never overwrite state directly. Actions must result in creating immutable Domain Events. State mutations occur strictly by *applying* these events. This guarantees a mathematically precise audit log and allows reconstructing the exact state of the system at any point in time by replaying the event stream.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

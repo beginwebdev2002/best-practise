@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [cqrs, architecture, best-practices]
 ai_role: Senior CQRS Expert
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 # 🛠️ CQRS Implementation Guide
@@ -86,3 +86,7 @@ export class CreateUserCommandHandler {
 ### 🚀 Solution
 > [!IMPORTANT]
 > Strictly separate Commands and Queries. A Command Handler MUST only return a success acknowledgment or the unique identifier of the newly created resource. If the client needs the full entity data, it MUST subsequently issue a separate Query (e.g., `GetUserQuery`) using the returned ID. This ensures independent scaling and maintainability of the read and write models.
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

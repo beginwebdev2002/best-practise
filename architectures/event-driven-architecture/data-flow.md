@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [eda, data-flow, sequence-diagram, asynchronous, messaging, event-lifecycle]
 ai_role: Senior Event-Driven Architecture Expert
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 

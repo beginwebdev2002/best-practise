@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [best-practices, data-flow, hexagonal-architecture, ports-and-adapters]
 ai_role: Senior Software Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-28
 ---
 
 # 🔄 Hexagonal Architecture Data Flow Best Practices

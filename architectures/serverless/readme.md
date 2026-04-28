@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, system-design, serverless, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 <div align="center">
@@ -144,3 +144,8 @@ exports.handler = async (event) => {
 
 ### 🚀 Solution
 Treat every function invocation as stateless. It is acceptable (and encouraged) to cache static assets or database connection pools globally (outside the handler) to reduce cold start latency. However, all business data, session state, or mutable variables must be strictly scoped to the handler's execution context or offloaded to Redis/DynamoDB.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

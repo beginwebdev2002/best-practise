@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [vibe-coding, architecture, best-practices, architecture]
 ai_role: Senior Vibe Coding Expert
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 # Microservices - Data Flow

@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, system-design, clean-architecture, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 <div align="center">
@@ -201,3 +201,8 @@ class UserController {
 ### 🚀 Solution
 > [!IMPORTANT]
 > Controllers MUST be entirely "dumb". Their only responsibility is to parse incoming requests, pass standard DTOs to the corresponding Use Case, and format the output. All branching business logic and validation must reside inside the independent Use Case interactor.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

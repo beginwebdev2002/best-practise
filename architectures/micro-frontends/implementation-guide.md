@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [micro-frontends, architecture, module-federation, frontend, implementation, guide, vibe-coding]
 ai_role: Senior Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-28
 ---
 
 <div align="center">
@@ -73,3 +73,8 @@ const AddToCartButton = () => <Button variant="success">Add to Cart</Button>;
 
 #### 🚀 Solution
 Establish a centralized, strictly versioned UI Component Library (Design System) that all micro-frontends must consume. This ensures visual consistency while keeping the business logic decoupled.
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).

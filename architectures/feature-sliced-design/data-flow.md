@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [fsd, architecture, best-practices, architecture]
 ai_role: Senior FSD Expert
-last_updated: 2026-03-29
+last_updated: 2026-04-28
 ---
 
 # Feature-Sliced Design (FSD) - Data Flow

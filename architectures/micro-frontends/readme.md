@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [micro-frontends, architecture, module-federation, frontend, scalable, web-components, vibe-coding]
 ai_role: Senior Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-28
 ---
 
 <div align="center">
@@ -102,3 +102,8 @@ graph TD
     class MFE_Catalog component;
     class MFE_Checkout component;
 ```
+
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
