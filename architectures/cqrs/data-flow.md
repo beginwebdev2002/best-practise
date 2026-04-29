@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [cqrs, architecture, best-practices, architecture]
 ai_role: Senior CQRS Expert
-last_updated: 2026-03-29
+last_updated: 2026-04-29
 ---
 
 # CQRS - Data Flow

@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [architecture, best-practices]
 ai_role: System Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-29
 ---
 
 ---

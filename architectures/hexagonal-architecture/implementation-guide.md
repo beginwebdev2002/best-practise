@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [best-practices, implementation-guide, hexagonal-architecture, ports-and-adapters]
 ai_role: Senior Software Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-29
 ---
 
 # 🛠️ Hexagonal Architecture Implementation Guide
@@ -66,6 +66,9 @@ classDiagram
 
 ### ✅ Best Practice: Core Domain (`src/core/domain/User.ts`)
 
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [hexagonal-architecture README](./readme.md).
+
 ```typescript
 // Pure domain object - No framework annotations like @Entity or @Table
 export class User {
@@ -90,6 +93,9 @@ export class User {
 
 ### ✅ Best Practice: Output Port (`src/core/ports/out/UserRepositoryPort.ts`)
 
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [hexagonal-architecture README](./readme.md).
+
 ```typescript
 // Interface defined by the Domain to specify its needs from a DB
 import { User } from '../../domain/User';
@@ -101,6 +107,9 @@ export interface UserRepositoryPort {
 ```
 
 ### ✅ Best Practice: Secondary Adapter (`src/adapters/secondary/database/PostgresUserRepository.ts`)
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [hexagonal-architecture README](./readme.md).
 
 ```typescript
 // Adapter implementing the Port using an ORM (e.g., TypeORM or Prisma)
@@ -126,6 +135,9 @@ export class PostgresUserRepository implements UserRepositoryPort {
 
 ### ✅ Best Practice: Use Case / Input Port (`src/core/ports/in/DeactivateUserUseCase.ts`)
 
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [hexagonal-architecture README](./readme.md).
+
 ```typescript
 import { UserRepositoryPort } from '../out/UserRepositoryPort';
 
@@ -144,6 +156,9 @@ export class DeactivateUserUseCase {
 ```
 
 ### ✅ Best Practice: Primary Adapter (`src/adapters/primary/http/UserController.ts`)
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [hexagonal-architecture README](./readme.md).
 
 ```typescript
 // HTTP Controller invoking the Use Case
@@ -192,6 +207,9 @@ export class User {
 The Core Domain entity (`User`) is polluted with database-specific decorators (`@Entity`, `@Column`) from an external library (`typeorm`). This tightly couples the business logic to a specific ORM and database technology. If you want to change the database or ORM later, you must rewrite the core business logic. Furthermore, the domain entity cannot be easily tested in isolation without setting up the ORM environment.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [hexagonal-architecture README](./readme.md).
 ```typescript
 // GOOD: Core Domain is purely business logic, decoupled from infrastructure
 // src/core/domain/User.ts

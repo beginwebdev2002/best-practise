@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, system-design, event-sourcing, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-29
 ---
 
 
@@ -77,6 +77,9 @@ class BankAccount {
 Directly mutating state overwrites historical data. If there is a bug or an audit requirement, it is impossible to determine *why* an account has a specific balance. We have only the final snapshot, not the journey.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
 ```typescript
 class BankAccount {
   private balance: number = 0;

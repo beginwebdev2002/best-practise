@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [ddd, architecture, best-practices, architecture]
 ai_role: Senior DDD Expert
-last_updated: 2026-03-29
+last_updated: 2026-04-29
 ---
 
 # Domain-Driven Design - Implementation Guide
@@ -52,6 +52,9 @@ class OrderService {
 This is an anemic domain model. The `Order` entity is merely a data holder with public setters, and all the business logic is stripped out and placed in an external `OrderService`. This violates encapsulation, makes the system harder to reason about, and leads to business rules being scattered across multiple services.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [domain-driven-design README](./readme.md).
 ```typescript
 class Order {
   private id: string;

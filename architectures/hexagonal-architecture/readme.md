@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [best-practices, clean-code, hexagonal-architecture, ports-and-adapters, system-design, vibe-coding]
 ai_role: Senior Software Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-29
 ---
 
 # 🛑 Hexagonal Architecture Production-Ready Best Practices
@@ -69,6 +69,9 @@ export class ProcessDocumentService {
 The Core Domain is directly importing and depending on a specific technical implementation (`AWS S3`). If the project migrates to Azure or GCP, the core business logic must be rewritten. Testing requires a live S3 connection or complex module mocking.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
 ```typescript
 // Port (Interface defined in the Core Domain)
 export interface IFileStoragePort {

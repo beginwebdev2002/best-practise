@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, system-design, bff, backend-for-frontend, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-29
 ---
 
 <div align="center">
@@ -95,6 +95,9 @@ class UniversalGatewayController {
 Using a single gateway or backend for diverse clients leads to bloated endpoints, complex `if/else` branching for different client needs, and over-fetching or under-fetching of data. Changing the API for a web feature risks breaking the mobile app.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
 ```typescript
 // --- Web BFF ---
 class WebDashboardController {

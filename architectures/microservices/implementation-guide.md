@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, implementation, microservices, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-29
 ---
 
 # Microservices - Implementation Guide
@@ -40,6 +40,9 @@ async function processOrder() {
 Avoid synchronous cascading calls between services. When `processOrder` calls `inventory`, `payment`, and `notification` synchronously over HTTP/RPC, it creates tight coupling and fragility. If `notificationService` fails or is slow, the entire order process fails or hangs, tying up resources.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [microservices README](./readme.md).
 ```typescript
 // Asynchronous event-driven communication
 async function processOrder() {

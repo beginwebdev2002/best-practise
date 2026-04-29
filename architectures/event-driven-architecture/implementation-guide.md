@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [eda, implementation-guide, kafka, microservices, typescript, nestjs, architecture-patterns]
 ai_role: Senior Event-Driven Architecture Expert
-last_updated: 2026-03-29
+last_updated: 2026-04-29
 ---
 
 
@@ -63,6 +63,9 @@ class PaymentEventHandler {
 ```
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [event-driven-architecture README](./readme.md).
 ```typescript
 class PaymentEventHandler {
   async handle(event: OrderCreatedEvent) {
@@ -113,6 +116,9 @@ class OrderService {
 ```
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [event-driven-architecture README](./readme.md).
 ```typescript
 class OrderService {
   async createOrder(data: CreateOrderDto) {
@@ -151,6 +157,9 @@ The Transactional Outbox pattern guarantees atomic operations. By saving the eve
 Microservices evolve independently. If a publisher changes the shape of a JSON event payload, all downstream subscribers will break. Always enforce a Schema Registry (Avro, Protobuf, JSON Schema) for all events.
 
 ### ✅ Best Practice (Avro Example)
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [event-driven-architecture README](./readme.md).
 ```typescript
 // 1. Define a strict Avro schema for the event
 const orderCreatedSchema = {

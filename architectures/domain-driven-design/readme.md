@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, system-design, domain-driven-design, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-29
 ---
 
 
@@ -78,6 +78,9 @@ class OrderService {
 Using Anemic Domain Models breaks the core principle of Domain-Driven Design. The Entity (`Order`) is reduced to a pure data structure without behavior. The business rules ("How does an order get paid?") leak into the `OrderService`, causing logic duplication, difficult testing, and poor encapsulation. The Domain becomes passive.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
 ```typescript
 // Rich Domain Entity - Encapsulates both data and behavior
 class Order {
