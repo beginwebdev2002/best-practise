@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "24+"
 tags: [security, best-practices, nodejs, deterministic-code, scalable-code, system-design]
 ai_role: Senior Node.js Security Expert
-last_updated: 2026-03-24
+last_updated: 2026-04-29
 ---
 
 # 🟢 Node.js Security Best Practices
