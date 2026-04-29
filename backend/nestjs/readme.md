@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "11+"
 tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior NestJS Architecture Expert
-last_updated: 2026-03-23
+last_updated: 2026-04-29
 ---
 
 
@@ -208,7 +208,7 @@ export const CurrentUser = createParamDecorator((data, ctx: ExecutionContext) =>
 @Get()
 getProfile(@CurrentUser() user: UserEntity) { return user; }
 ```
-#### 🚀 Solution
+### 🚀 Solution
 > [!IMPORTANT]
 > Create custom decorators for deterministic data extraction from the Request (e.g., the current user).
 

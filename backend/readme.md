@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior Backend Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-29
 ---
 
 # Backend Best Practices & Production-Ready Patterns
@@ -23,6 +23,31 @@ last_updated: 2026-03-22
   **The foundational rules and standards governing backend logic.**
 </div>
 ---
+
+### 🏗️ Global Backend Data Flow
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant API Gateway
+    participant Application Services
+    participant Caching Layer
+    participant Persistence Layer
+
+    Client->>API Gateway: Request
+    API Gateway->>Application Services: Authenticated Route
+    Application Services->>Caching Layer: Check Cache
+    alt Cache Hit
+        Caching Layer-->>Application Services: Return Cached Data
+    else Cache Miss
+        Application Services->>Persistence Layer: Fetch Data
+        Persistence Layer-->>Application Services: Return Source Data
+        Application Services->>Caching Layer: Store Data
+    end
+    Application Services-->>API Gateway: Response DTO
+    API Gateway-->>Client: Final Response
+```
+
 ## Architecture Principles
 
 - Adhere to the defined [Architectural Patterns](../../architectures/readme.md) when building applications, specifically Hexagonal Architecture / Clean Architecture.

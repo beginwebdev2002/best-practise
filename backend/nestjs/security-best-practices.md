@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "11+"
 tags: [best-practices, deterministic-code, security-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, node-js, security, scalable-code, windsurf-rules, ai-coding, enterprise-patterns]
 ai_role: Senior NestJS Security Expert
-last_updated: 2026-03-27
+last_updated: 2026-04-29
 ---
 
 # 🔒 NestJS 11+ Security Best Practices

@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "24+"
 tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, cursor-rules, javascript, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior Node.js Architecture Expert
-last_updated: 2026-03-23
+last_updated: 2026-04-29
 ---
 
 
