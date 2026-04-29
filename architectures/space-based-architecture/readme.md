@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, system-design, space-based-architecture, best-practices, scalable]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-29
 ---
 
 <div align="center">
@@ -88,6 +88,9 @@ class OrderProcessingUnit {
 Directly writing to a persistent database synchronously within a Processing Unit defeats the entire purpose of the Space-Based Architecture. During high-traffic spikes, the database connection pool will exhaust, locks will accumulate, and the central database will become a catastrophic bottleneck, crashing the independent processing units waiting for disk I/O.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
 ```typescript
 import { InvalidateType } from 'infrastructure/cache';
 

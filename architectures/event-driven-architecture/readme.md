@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [eda, event-driven, architecture, pub-sub, asynchronous, messaging, kafka, rabbitmq, system-design]
 ai_role: Senior Event-Driven Architecture Expert
-last_updated: 2026-03-29
+last_updated: 2026-04-29
 ---
 
 
@@ -95,6 +95,9 @@ class OrderService {
 Treating an event bus like an RPC (Remote Procedure Call) mechanism defeats the purpose of EDA. Synchronous waiting re-introduces tight temporal coupling. If the consumer is slow, it blocks the producer, leading to cascading failures and timeouts across the system.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
 ```typescript
 class OrderService {
   async createOrder(data: OrderData) {

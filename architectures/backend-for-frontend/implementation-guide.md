@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, implementation, bff, backend-for-frontend]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-29
 ---
 
 <div align="center">
@@ -32,6 +32,9 @@ async function getDashboardData(userId: string) {
 Making sequential requests to independent downstream microservices drastically increases the total response time. The BFF becomes a bottleneck, degrading the client experience instead of improving it.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [backend-for-frontend README](./readme.md).
 ```typescript
 // Parallel execution using Promise.all
 async function getDashboardData(userId: string) {

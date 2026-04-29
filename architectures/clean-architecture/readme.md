@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, system-design, clean-architecture, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-29
 ---
 
 <div align="center">
@@ -85,6 +85,9 @@ export class User extends BaseEntity {
 The Domain layer (the core of the application) is tightly coupled with a specific third-party ORM library (`TypeORM`). This violates the Dependency Rule. Changing the database technology will require rewriting core business logic.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
 ```typescript
 // Pure Domain Entity completely agnostic of infrastructure
 export class User {
@@ -132,6 +135,9 @@ export class UploadAvatarUseCase {
 The Use Case (Application layer) depends directly on an external hardware/infrastructure concern (`aws-sdk`). You cannot test this Use Case without mocking AWS S3, and you cannot switch to Azure or Google Cloud without modifying the Use Case.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
 ```typescript
 // Application Layer defines the abstraction (Port)
 export interface IFileStorageService {
@@ -182,6 +188,9 @@ class UserController {
 The Controller (Interface Adapters layer) contains the business rules. It directly uses the Repository, bypassing the Application Use Case layer. This makes the logic difficult to reuse across different entry points (e.g., CLI, gRPC, HTTP).
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
 ```typescript
 class UserController {
   constructor(private readonly registerUserUseCase: RegisterUserUseCase) {}

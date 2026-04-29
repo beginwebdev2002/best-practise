@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [ai-agents, orchestration, multi-agent-systems, vibe-coding, best-practices]
 ai_role: Senior Software Architect
-last_updated: 2026-04-17
+last_updated: 2026-04-29
 ---
 
 # 🤖 Agentic Architecture (AI Agent Orchestration) Production-Ready Best Practices
@@ -90,6 +90,9 @@ class MonolithicAIAgent {
 Loading a monolithic agent with unbounded context leads to "Context Explosion", resulting in non-deterministic hallucinations, excessive token costs, and security risks (like arbitrary code execution). A single LLM call attempting multiple distinct personas (Planner, Coder, Reviewer) fundamentally degrades reasoning quality.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
 ```typescript
 interface AgentTask {
   goal: string;

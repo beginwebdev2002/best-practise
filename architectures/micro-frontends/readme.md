@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [micro-frontends, architecture, module-federation, frontend, scalable, web-components, vibe-coding]
 ai_role: Senior Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-29
 ---
 
 <div align="center">
@@ -63,6 +63,9 @@ const cart = window.__APP_STATE__.cart;
 Directly mutating and depending on global objects like `window` creates tight coupling between micro-frontends. This leads to race conditions, unpredictable state mutations, and makes isolated testing impossible. It destroys the independence of micro-frontends.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
 ```javascript
 // Using an Event Bus or Custom Events for decoupled communication
 

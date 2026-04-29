@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [monolithic-architecture, architecture, best-practices, architecture]
 ai_role: Senior Monolithic Architecture Expert
-last_updated: 2026-03-29
+last_updated: 2026-04-29
 ---
 
 # Monolithic Architecture - Implementation Guide
@@ -55,6 +55,9 @@ class OrderService {
 Using a shared global state or tightly coupling modules without clear boundaries in a monolith creates a "Big Ball of Mud". Changes in one domain (like `OrderService` mutating a cache) unexpectedly break another domain (`UserService`). This makes scaling, testing, and eventual extraction into microservices nearly impossible.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [monolithic-architecture README](./readme.md).
 ```typescript
 // Define explicit interfaces and isolated storage per module
 class UserService {

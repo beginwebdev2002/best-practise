@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, system-design, serverless, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-29
 ---
 
 <div align="center">
@@ -75,6 +75,9 @@ exports.handler = async (event) => {
 Grouping unrelated endpoints into a single function defeats the purpose of Serverless. It increases the deployment package size (slowing down cold starts), couples business domains together, complicates IAM permissions (granting excessive privileges), and makes individual function metrics/tracing impossible.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
 ```javascript
 // One function strictly mapped to one specific capability
 // users-create.js
@@ -122,6 +125,9 @@ exports.handler = async (event) => {
 Serverless environments are ephemeral. You cannot guarantee that subsequent requests will be routed to the same container instance. Relying on local variable state leads to unpredictable race conditions, phantom data bugs, and security leaks across tenant requests.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
 ```javascript
 // Safely caching connections, but keeping data strictly stateless
 let databaseConnection = null;

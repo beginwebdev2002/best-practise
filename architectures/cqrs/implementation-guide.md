@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [cqrs, architecture, best-practices]
 ai_role: Senior CQRS Expert
-last_updated: 2026-03-29
+last_updated: 2026-04-29
 ---
 
 # 🛠️ CQRS Implementation Guide
@@ -66,6 +66,9 @@ export class CreateUserCommandHandler {
 Returning the full entity or business data from a Command Handler breaks the fundamental rule of CQS/CQRS: **A method should either change state (Command) or return data (Query), but not both.** Returning data couples the mutation logic with read requirements, making it harder to optimize reads and writes independently, and breaking the single responsibility principle.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [cqrs README](./readme.md).
 ```typescript
 import { Database } from '../infrastructure/Database';
 

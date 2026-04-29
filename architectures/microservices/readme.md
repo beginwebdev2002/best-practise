@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [architecture, system-design, microservices, best-practices]
 ai_role: Senior Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-29
 ---
 
 
@@ -78,6 +78,9 @@ services:
 Sharing a single database among multiple microservices completely violates the core principle of microservices (independence). If `order-service` performs a heavy migration or drops a table, `inventory-service` crashes. Database schemas cannot evolve independently, recreating monolithic tight coupling at the data layer.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
 ```yaml
 # docker-compose.yml
 services:

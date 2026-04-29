@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior Software Architect
-last_updated: 2026-03-29
+last_updated: 2026-04-29
 ---
 
 # Architecture Best Practices & Production-Ready Patterns
@@ -706,6 +706,10 @@ graph TD
     Registry --> PluginA[Payment Plugin]
     Registry --> PluginB[Notification Plugin]
     Registry --> PluginC[Analytics Plugin]
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
 ```
 
 ```text
