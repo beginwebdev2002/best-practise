@@ -29,6 +29,21 @@ last_updated: 2026-03-29
 4. **Maintenance Burden:** Requires frontend teams to have backend development and DevOps skills to maintain the BFF.
 
 
+
+```mermaid
+graph LR
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+
+    Client[Client App]:::component -->|Request| BFF[Backend-For-Frontend]:::default
+    BFF -->|Fetch| Service1[Microservice 1]:::component
+    BFF -->|Fetch| Service2[Microservice 2]:::component
+    Service1 -->|Response| BFF
+    Service2 -->|Response| BFF
+    BFF -->|Aggregate Data| Client
+```
+
+
 ### Structural Comparison: Pros vs Cons
 
 | Category | Factor | Description |
