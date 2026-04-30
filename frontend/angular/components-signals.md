@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "20+"
 tags: [angular, best-practices, clean-code, signals, components]
 ai_role: Senior Angular Expert
-last_updated: 2026-04-05
+last_updated: 2026-04-30
 ---
 
 # 🧩 Components & Signals
@@ -35,6 +35,11 @@ title = input<string>('');
 | **Complexity** | Low (simple getter/setter) | High (complex operator chains) |
 | **Best For** | Synchronous UI state | Asynchronous events, complex streams |
 
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular](./readme.md).
+
 ### 🚀 Solution
 Use Signal Inputs (`input()`). This allows Angular to precisely know *which* specific component requires an update, paving the way for Zoneless applications.
 ---
@@ -53,6 +58,11 @@ The classic `EventEmitter` adds an unnecessary layer of abstraction over RxJS Su
 ```typescript
 save = output<void>();
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular](./readme.md).
+
 ### 🚀 Solution
 Use the `output()` function. It provides strict typing, better performance, and a unified API with Signal Inputs.
 ---
@@ -72,6 +82,11 @@ Boilerplate code that is easy to break if you make a mistake in naming the `Chan
 ```typescript
 value = model<string>();
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular](./readme.md).
+
 ### 🚀 Solution
 Use `model()`. This creates a Signal that can be both read and written to, automatically synchronizing its state with the parent.
 ---
@@ -98,6 +113,11 @@ Directives require importing `CommonModule` or `NgIf/NgFor`, increasing bundle s
   <app-loader />
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular](./readme.md).
+
 ### 🚀 Solution
 Use the built-in Control Flow (`@if`, `@for`). It is built into the compiler, requires no imports, supports improved type-narrowing, and runs faster.
 ---
@@ -119,6 +139,11 @@ Imperative subscriptions lead to memory leaks (if you forget to `unsubscribe`), 
 ```typescript
 data = toSignal(this.service.getData());
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular](./readme.md).
+
 ### 🚀 Solution
 Use `toSignal()` to convert an Observable into a Signal. This automatically manages the subscription and integrates the data stream into the reactivity system.
 ---

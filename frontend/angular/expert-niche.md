@@ -5,7 +5,7 @@ level: Senior/Architect
 version: 20+
 tags: [expert, niche, angular, best-practices, clean-code, scalable-code]
 ai_role: Senior Angular Expert
-last_updated: 2026-03-22
+last_updated: 2026-04-30
 ---
 
 # 🧠 Angular Expert/Niche Best Practices
@@ -31,6 +31,11 @@ computed(() => {
   return user.name;
 });
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular](./readme.md).
+
 ### 🚀 Solution
 Use `untracked()` for side effects or reads that shouldn't affect recalculation.
 ## ⚡ 57. V8 Hidden Classes Optimization
@@ -49,6 +54,11 @@ Initializing with an empty object and later adding fields changes the object "sh
 interface User { name: string | null; age: number | null; }
 user = signal<User>({ name: null, age: null });
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular](./readme.md).
+
 ### 🚀 Solution
 Always initialize signals with the full object shape (even with null) to preserve property access monomorphism.
 ## ⚡ 58. Signal Glitch Freedom abuse
@@ -72,6 +82,11 @@ Using `effect` to derive or synchronize local state is an anti-pattern. Effects 
 count = signal(0);
 doubleCount = computed(() => this.count() * 2);
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular](./readme.md).
+
 ### 🚀 Solution
 Use `computed` for derived state. Computed signals evaluate lazily and synchronously when read, ensuring true Glitch Freedom and eliminating unnecessary change detection cycles.
 ## ⚡ 59. Memory leaks in `root` Effects
@@ -104,6 +119,11 @@ export class GlobalService implements OnDestroy {
   }
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular](./readme.md).
+
 ### 🚀 Solution
 When creating effects in long-lived or dynamic services, explicitly configure them with `{ manualCleanup: true }` and destroy the reference during the service's `ngOnDestroy` lifecycle hook. This ensures deterministic resource management.
 ## 📖 60. `runInInjectionContext`
@@ -120,5 +140,10 @@ runInInjectionContext(this.injector, () => {
   const service = inject(MyService);
 });
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Angular](./readme.md).
+
 ### 🚀 Solution
 Use this helper to execute functions requiring a DI context outside the constructor/initialization.

@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "1.8+"
 tags: [state-management, advanced, solidjs, best-practices, clean-code, scalable-code]
 ai_role: Senior SolidJS State Management Expert
-last_updated: 2026-03-22
+last_updated: 2026-04-30
 ---
 
 # 🔄 SolidJS State Management Best Practices
@@ -53,6 +53,11 @@ function Profile(props) {
   );
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [SolidJS](./readme.md).
+
 ### 🚀 Solution
 Never destructure props directly. Access props dynamically via `props.propertyName` or use `splitProps()` / `mergeProps()` utilities if you need to separate internal from forwarded properties while preserving reactive getters.
 ---

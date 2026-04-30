@@ -5,7 +5,7 @@ level: Senior/Architect
 version: ES2022+
 tags: [javascript, best-practices, clean-code, syntax]
 ai_role: Senior JavaScript Expert
-last_updated: 2026-04-05
+last_updated: 2026-04-30
 ---
 
 # 📜 Basic Syntax & Fundamentals
@@ -33,6 +33,11 @@ if (true) {
 }
 console.log(price); // 100
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript](./readme.md).
+
 ### 🚀 Solution
 Use `const` by default to ensure immutability of the reference. Use `let` only when reassigning a variable is strictly necessary. This enforces block-level scoping and prevents accidental overrides.
 
@@ -71,6 +76,11 @@ if (userCount === 0) {
     // Strict comparison
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript](./readme.md).
+
 ### 🚀 Solution
 Always use strict equality `===` and inequality `!==`. This forces the developer to handle type conversions explicitly, making the code's intent clear and predictable.
 ---
@@ -97,6 +107,11 @@ export const config = { api: '/v1' };
     const config = { api: '/v1' };
 })();
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript](./readme.md).
+
 ### 🚀 Solution
 Use ES Modules (`import/export`) to encapsulate code. Modules have their own scope and do not leak to the global object.
 ---
@@ -117,6 +132,11 @@ Concatenation with `+` is error-prone, hard to read, and difficult to maintain f
 const greeting = `Hello, ${user.firstName} ${user.lastName}!
 Welcome to ${siteName}.`;
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript](./readme.md).
+
 ### 🚀 Solution
 Use Template Literals (backticks). They allow for embedded expressions, multi-line strings, and superior readability.
 ---
@@ -141,6 +161,11 @@ if (user.age >= LEGAL_AGE) {
     grantAccess();
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [JavaScript](./readme.md).
+
 ### 🚀 Solution
 Extract magic numbers into named constants. This provides semantic meaning and a single source of truth for configuration.
 ---

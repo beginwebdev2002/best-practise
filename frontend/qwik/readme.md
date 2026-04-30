@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "1.x"
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior Qwik Expert
-last_updated: 2026-03-22
+last_updated: 2026-04-30
 ---
 
 # ⚡ Qwik Best Practices & Production-Ready Patterns
@@ -41,6 +41,11 @@ const Component = component$(({ onClick$ }: { onClick$: PropFunction<() => void>
   <button onClick$={onClick$}>Click</button>
 ));
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Use the `$` suffix (`onClick$`) to mark the prop as a `PropFunction`, allowing Qwik to serialize the closure and load it lazily.
 

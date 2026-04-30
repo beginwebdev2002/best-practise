@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior Frontend Architect
-last_updated: 2026-03-22
+last_updated: 2026-04-30
 ---
 
 # 🎨 Frontend Best Practices & Production-Ready Patterns
@@ -62,6 +62,11 @@ function processEvent(event: unknown) {
     }
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../README.md).
+
 ### 🚀 Solution
 Exploit TypeScript. Use `unknown` and Type Guards to enforce explicit return types and strict contract adherence.
 
@@ -82,6 +87,11 @@ function render(userStore: UserStore) {
     userStore.updateUser("Alice"); // Abstracted call
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../README.md).
+
 ### 🚀 Solution
 Abstract global state logically depending on the specific framework rules. Ensure immutable updates.
 ## 💻 Technologies Included

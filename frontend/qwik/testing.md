@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "1+"
 tags: [qwik, testing, best-practices, clean-code, resumability, vibe-coding]
 ai_role: Senior Qwik Testing Expert
-last_updated: 2026-04-05
+last_updated: 2026-04-30
 ---
 
 # 🧪 Qwik Testing Best Practices
@@ -53,6 +53,11 @@ test('clicks button', async () => {
   expect(btn.textContent).toBe('1');
 });
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Qwik](./readme.md).
+
 ### 🚀 Solution
 Use Qwik's specialized testing utilities that simulate the resumability framework accurately, ensuring DOM events trigger the lazy-loaded closures as they would in production.
 

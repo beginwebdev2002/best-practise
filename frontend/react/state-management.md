@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "19+"
 tags: [react, state-management, server-actions, best-practices, architecture, clean-code]
 ai_role: Senior React State Management Expert
-last_updated: 2026-03-22
+last_updated: 2026-04-30
 ---
 
 # 🔄 React State Management & Server Actions Best Practices
@@ -76,6 +76,11 @@ flowchart TD
     class A,B,C,D,E,F,G default;
 ```
 
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [React](./readme.md).
+
 ### 🚀 Solution
 Use the `useActionState` Hook (React 19+) for seamless action state management. This hook natively handles loading and error states, resolves race conditions by ensuring only the latest action state is applied to the UI, and optimizes rendering cycles deterministically.
 
@@ -103,6 +108,11 @@ function Dropdown() {
   return <div onClick={() => setIsOpen(!isOpen)}>{isOpen ? 'Open' : 'Closed'}</div>;
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [React](./readme.md).
+
 ### 🚀 Solution
 Use `useState` or `useReducer` for UI state that belongs locally to a component tree. Only elevate state to a global store when it is shared across multiple disjoint component branches, maintaining strict state colocation for optimal rendering performance.
 
