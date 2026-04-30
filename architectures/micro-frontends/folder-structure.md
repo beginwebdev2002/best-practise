@@ -44,6 +44,106 @@ workspace/
 │   └── event-bus/ (Agnostic communication contract types)
 ```
 
+```mermaid
+classDiagram
+    class workspace
+    class apps
+    class packages
+    class app_shell
+    class mfe_catalog
+    class mfe_checkout
+    class design_system
+    class event_bus
+
+    workspace --> apps
+    workspace --> packages
+    apps --> app_shell
+    apps --> mfe_catalog
+    apps --> mfe_checkout
+    packages --> design_system
+    packages --> event_bus
+
+    note for app_shell "Entry point, Router, Module Federation config"
+    note for mfe_catalog "Independent application"
+    note for mfe_checkout "Independent application"
+    note for design_system "Pure, dumb UI components only"
+    note for event_bus "Agnostic communication contract types"
+
+    cssClass workspace layout
+    cssClass apps layout
+    cssClass packages layout
+    cssClass app_shell component
+    cssClass mfe_catalog component
+    cssClass mfe_checkout component
+    cssClass design_system component
+    cssClass event_bus component
+```
+
+```mermaid
+classDiagram
+    class workspace
+    class apps
+    class packages
+    class app_shell
+    class mfe_catalog
+    class mfe_checkout
+    class design_system
+    class event_bus
+
+    workspace --> apps
+    workspace --> packages
+    apps --> app_shell
+    apps --> mfe_catalog
+    apps --> mfe_checkout
+    packages --> design_system
+    packages --> event_bus
+
+    note for app_shell "Entry point, Router, Module Federation config"
+    note for mfe_catalog "Independent application"
+    note for mfe_checkout "Independent application"
+    note for design_system "Pure, dumb UI components only"
+    note for event_bus "Agnostic communication contract types"
+
+    cssClass workspace layout
+    cssClass apps layout
+    cssClass packages layout
+    cssClass app_shell component
+    cssClass mfe_catalog component
+    cssClass mfe_checkout component
+    cssClass design_system component
+    cssClass event_bus component
+```
+
+```mermaid
+classDiagram
+    class workspace:::layout
+    class apps:::layout
+    class packages:::layout
+    class app_shell:::component
+    class mfe_catalog:::component
+    class mfe_checkout:::component
+    class design_system:::component
+    class event_bus:::component
+
+    workspace --> apps
+    workspace --> packages
+    apps --> app_shell
+    apps --> mfe_catalog
+    apps --> mfe_checkout
+    packages --> design_system
+    packages --> event_bus
+
+    note for app_shell "Entry point, Router, Module Federation config"
+    note for mfe_catalog "Independent application"
+    note for mfe_checkout "Independent application"
+    note for design_system "Pure, dumb UI components only"
+    note for event_bus "Agnostic communication contract types"
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+```
+
 
 
 ### Structural Comparison: Monorepo vs Polyrepo for MFEs
