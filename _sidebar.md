@@ -140,6 +140,7 @@
   * [Cursor memory structures](docs/cursor-memory-structures.md)
   * [Vibe coding agents](docs/vibe-coding-agents.md)
   * [Vibe coding autonomous testing patterns](docs/vibe-coding-autonomous-testing-patterns.md)
+  * [Vibe coding continuous alignment loops](docs/vibe-coding-continuous-alignment-loops.md)
   * [Vibe coding deterministic patterns](docs/vibe-coding-deterministic-patterns.md)
   * [Vibe coding dynamic context pruning](docs/vibe-coding-dynamic-context-pruning.md)
   * [Vibe coding multi agent state sync](docs/vibe-coding-multi-agent-state-sync.md)
