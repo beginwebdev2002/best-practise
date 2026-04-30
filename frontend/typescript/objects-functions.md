@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "5.5+"
 tags: [typescript, objects, functions, best-practices, clean-code, scalable-code]
 ai_role: Senior TypeScript Expert
-last_updated: 2026-03-22
+last_updated: 2026-04-30
 ---
 
 # 📦 TypeScript Objects & Functions Best Practices
@@ -29,6 +29,11 @@ The index signature syntax is more verbose, harder to read, and less semanticall
 ```typescript
 const prices: Record<string, number> = { apple: 1 };
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript](./readme.md).
+
 ### 🚀 Solution
 Use the `Record<K, V>` utility type for key-value maps. It provides a deterministic, clean, and declarative syntax that AI agents and engineers can parse instantly.
 ## 🚨 22. Excess property checks and object spreading
@@ -48,6 +53,11 @@ Excess property checks only apply to inline object literals. Passing pre-defined
 const { maliciousField, ...validUser } = inputData;
 saveUser(validUser);
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript](./readme.md).
+
 ### 🚀 Solution
 Be strictly explicit about data payload boundaries. Use destructuring to strip unknown or unsafe properties before passing objects to persistence layers or external APIs, guaranteeing deterministic data shapes.
 ## 🚨 23. `Readonly<T>` for Immutability
@@ -67,6 +77,11 @@ function process(config: Readonly<Config>) {
     // config.port = 80; // TS Error: Cannot assign to 'port' because it is a read-only property.
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript](./readme.md).
+
 ### 🚀 Solution
 Use `Readonly<T>` for function parameters and `as const` for configuration objects. This enforces strict immutability at compile time, guaranteeing predictable and pure function execution.
 ## 🚨 24. `Awaited<T>` for Promise Unwrapping
@@ -82,6 +97,11 @@ Manually unwrapping promises via custom conditional types is unnecessarily compl
 ```typescript
 type Result = Awaited<ReturnType<typeof apiCall>>;
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript](./readme.md).
+
 ### 🚀 Solution
 Always use the built-in `Awaited<T>` utility type (TS 4.5+) for deterministic and clean promise resolution.
 ## 🚨 25. `this` typing in functions
@@ -101,6 +121,11 @@ function handleClick(this: HTMLElement, event: Event) {
     this.classList.add('active'); // Safe, 'this' is HTMLElement
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript](./readme.md).
+
 ### 🚀 Solution
 Always type the first pseudo-parameter `this` explicitly in functions that rely on dynamic execution contexts. This provides a deterministic context for the compiler and Vibe Coding agents.
 ## 🚨 26. Constructor Shorthand
@@ -123,6 +148,11 @@ class User {
     constructor(public readonly name: string) {}
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript](./readme.md).
+
 ### 🚀 Solution
 Leverage TypeScript parameter properties in constructors to declare and initialize class members in a single deterministic step, minimizing noise.
 ## 🚨 27. Abstract classes vs Interfaces
@@ -153,6 +183,11 @@ abstract class BaseService {
 | **Runtime Presence** | Yes (Compiles to JS class) | No (Erased at compile time) |
 | **Access Modifiers** | Supports public, protected, private | All members are public |
 
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript](./readme.md).
+
 ### 🚀 Solution
 Utilize `abstract` classes when requiring shared implementation logic combined with strict contractual enforcement of specific methods by subclasses.
 ## 🚨 28. Private vs `#private`
@@ -177,6 +212,11 @@ class User {
     }
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript](./readme.md).
+
 ### 🚀 Solution
 Implement ES2020 `#private` fields for guaranteed runtime encapsulation, specifically when architecting SDKs, libraries, or processing highly secure data.
 ## 🚨 29. Decorators (Legacy vs TC39)
@@ -203,6 +243,11 @@ function Logged<Class extends new (...args: any[]) => unknown>(
 @Logged
 class MyClass {}
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript](./readme.md).
+
 ### 🚀 Solution
 Migrate to TC39 Standard Decorators supported in TypeScript 5.0+. Unless dictated by an explicit framework architecture (like NestJS or Angular), strictly use standard implementations.
 ## 🚨 30. Utility Types (`Omit`, `Pick`, `Partial`)
@@ -225,6 +270,11 @@ interface User { name: string; age: number; role: string; }
 
 type UserUpdate = Partial<Pick<User, 'name' | 'age'>>;
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript](./readme.md).
+
 ### 🚀 Solution
 Always derive sub-types deterministically from the single source of truth using built-in utility types (`Pick`, `Omit`, `Partial`).
 ---

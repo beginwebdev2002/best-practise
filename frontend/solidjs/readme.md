@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "1.8+"
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior SolidJS Expert
-last_updated: 2026-03-22
+last_updated: 2026-04-30
 ---
 
 # ⚡ SolidJS Best Practices & Production-Ready Patterns
@@ -39,6 +39,11 @@ Using `.map` creates the DOM nodes once and does not react to array changes opti
 ```tsx
 return <ul><For each={items()}>{item => <li>{item.name}</li>}</For></ul>;
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Use the `<For>` component. It caches DOM elements and handles granular updates when the array changes.
 

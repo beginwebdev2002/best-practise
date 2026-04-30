@@ -5,7 +5,7 @@ level: Senior/Architect
 version: 5.5+
 tags: [typescript, type-safety, clean-code, best-practices, architecture]
 ai_role: Senior TypeScript Architecture Expert
-last_updated: 2026-03-29
+last_updated: 2026-04-30
 ---
 
 # 🎨 TypeScript Best Practise
@@ -31,6 +31,11 @@ function process(data: unknown) {
     }
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Use `unknown` for values whose type is not yet determined. It requires a type check or assertion before usage, ensuring the developer acknowledges the data's structure.
 ---
@@ -51,6 +56,11 @@ interface UserResponse {
     bio?: string | null; // Optional if missing, null if explicitly empty
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Standardize: use `undefined` (optional properties) for missing keys and `null` for intentional absence of value. Avoid using both for the same field unless strictly required by a legacy API.
 ---
@@ -69,6 +79,11 @@ const complex: Array<string | number> = [];
 const users: User[] = [];
 const complex: (string | number)[] = [];
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Prefer the shorthand `T[]`. It is idiomatic, more readable, and clearly distinguishes arrays from other generic containers like `Record` or `Promise`.
 ---
@@ -87,6 +102,11 @@ Using `type` for object structures prevents declaration merging and reduces perf
 interface Point { x: number; y: number; }
 type Status = "active" | "inactive";
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 > [!IMPORTANT]
 > Prefer `interface` for structure, `type` for unions. Interfaces provide better error messages and performance for structural types in TypeScript 5.x.
@@ -112,6 +132,11 @@ function format(input: string | number): string {
     return String(input);
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Prefer Union types when the implementation logic is identical for all types. Reserve overloads only for cases where the return type strictly depends on the input type and cannot be expressed via generics.
 ---
@@ -131,6 +156,11 @@ Namespaces are a legacy TypeScript feature. They don't play well with modern bun
 // utils.ts
 export const log = (msg: string) => console.log(msg);
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Use ES Modules (`export`/`import`). They are the industry standard, supported by all modern environments, and allow for better static analysis.
 ---
@@ -154,6 +184,11 @@ const STATUS = {
 } as const;
 type Status = typeof STATUS[keyof typeof STATUS];
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Use `const` objects with `as const` and a derived union type. This is more predictable, emits cleaner code, and is easier to iterate over.
 ---

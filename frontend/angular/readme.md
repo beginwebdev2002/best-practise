@@ -5,7 +5,7 @@ level: Senior/Architect
 version: 20+
 tags: [best-practices, clean-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior Angular Performance Expert
-last_updated: 2026-03-22
+last_updated: 2026-04-30
 ---
 
 # 🎨 Angular Best Practices & Production-Ready Patterns
@@ -40,6 +40,11 @@ Using the `@Input()` decorator breaks the functional reactivity of Zoneless appl
 ```typescript
 title = input<string>();
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Use Signal Inputs (`input()`). This allows Angular to precisely know *which* specific component requires an update, paving the way for Zoneless applications.
 ---
@@ -57,6 +62,11 @@ The classic `EventEmitter` adds an unnecessary layer of abstraction over RxJS Su
 ```typescript
 save = output<void>();
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Use the `output()` function. It provides strict typing, better performance, and a unified API with Signal Inputs.
 ---
@@ -75,6 +85,11 @@ Boilerplate code that is easy to break if you make a mistake in naming the `Chan
 ```typescript
 value = model<string>();
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 > [!IMPORTANT]
 > Use `model()`. This creates a Signal that MUST be both read and written to, automatically synchronizing its state with the parent.
@@ -101,6 +116,11 @@ Directives require importing `CommonModule` or `NgIf/NgFor`, increasing bundle s
   <app-loader />
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Use the built-in Control Flow (`@if`, `@for`). It is built into the compiler, requires no imports, supports improved type-narrowing, and runs faster.
 ---
@@ -121,6 +141,11 @@ Imperative subscriptions lead to memory leaks (if you forget to `unsubscribe`), 
 ```typescript
 data = toSignal(this.service.getData());
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Use `toSignal()` to convert an Observable into a Signal. This automatically manages the subscription and integrates the data stream into the reactivity system.
 ---
@@ -141,6 +166,11 @@ count = signal(0);
 // Access: count()
 // Update: count.set(1)
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Use `signal()` for local state. It is a primitive designed specifically for synchronizing UI and data.
 ---
@@ -162,6 +192,11 @@ ngOnChanges(changes: SimpleChanges) {
 ```typescript
 fullName = computed(() => `${this.firstName()} ${this.lastName()}`);
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Use `computed()`. The signal is recalculated *only* when its dependencies change, and the result is memoized (cached).
 ---
@@ -180,6 +215,11 @@ Constructors become cluttered with many dependencies. When inheriting classes, d
 private http = inject(HttpClient);
 private store = inject(Store);
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Use the `inject()` function. It operates in the initialization context (fields or constructor), is type-safe, and does not require `super()` during inheritance.
 ---
@@ -204,6 +244,11 @@ Modules create an unnecessary level of indirection. Components become dependent 
   imports: [CommonModule]
 })
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Use Standalone Components. This is the Angular v14+ standard that makes components self-sufficient and tree-shakable.
 ---
@@ -221,6 +266,11 @@ Loading modules pulls in transitive dependencies that might not be needed.
 ```typescript
 loadComponent: () => import('./user.component').then(c => c.UserComponent)
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Use `loadComponent` for routing to Standalone components. This ensures minimal chunk size.
 ---
@@ -241,6 +291,11 @@ total = computed(() => this.calculateTotal(this.items()));
 ```html
 <div>{{ total() }}</div>
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Extract logic into `computed()` signals or Pure Pipes. They are only executed when input data changes.
 ---
@@ -260,6 +315,11 @@ It's easy to forget `takeUntil` or `unsubscribe`. Requires a lot of boilerplate 
 ```typescript
 stream$.pipe(takeUntilDestroyed()).subscribe();
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Use the `takeUntilDestroyed()` operator. It automatically unsubscribes upon context destruction (component, directive, service).
 ---
@@ -283,6 +343,11 @@ theme = signal('dark');
 // Grandchild
 theme = inject(ThemeService).theme;
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Use Signal Stores or services for state sharing, or the new `input()` API with context inheritance (in the future).
 ---
@@ -301,6 +366,11 @@ Direct DOM access breaks abstraction (doesn't work in SSR/Web Workers) and opens
 // Use Renderer2 or bindings
 <div [style.background-color]="color()"></div>
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Use style/class bindings or `Renderer2`. For direct manipulations, consider directives.
 ---
@@ -318,6 +388,11 @@ bootstrapApplication(App, {
   providers: [provideExperimentalZonelessChangeDetection()]
 });
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Migrate to Zoneless mode. Use Signals to notify Angular when a re-render is needed.
 ---

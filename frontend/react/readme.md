@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "19+"
 tags: [react, best-practices, architecture, clean-code, scalable-code, modern-react, server-components]
 ai_role: Senior React Expert
-last_updated: 2026-03-22
+last_updated: 2026-04-30
 ---
 
 # ⚛️ React Production-Ready Best Practices
@@ -50,6 +50,11 @@ function Component() {
   );
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Always use state and props to drive the UI. React uses a virtual DOM to efficiently update the real DOM based on state changes, ensuring deterministic rendering loops.
 
@@ -77,6 +82,11 @@ function Dashboard() {
   );
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Break down the UI into smaller, reusable components. Extract logic into custom hooks and modularize presentational elements into separate, encapsulated files.
 ## 📚 Specialized Topics

@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "19+"
 tags: [react, performance, use, react-compiler, best-practices, architecture, clean-code]
 ai_role: Senior React Performance Expert
-last_updated: 2026-03-22
+last_updated: 2026-04-30
 ---
 
 # ⚡ React Performance & Best Practices
@@ -60,6 +60,11 @@ function UserList({ users }) {
 | **Bug Risk** | High (stale closures, missing deps) | Low (compiler-verified) |
 | **Optimization** | Component-level only | Structural and deep |
 
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [React](./readme.md).
+
 ### 🚀 Solution
 Rely on the **React Compiler** (introduced in React 19+). The compiler automatically memoizes values and functions, meaning manual hooks are largely obsolete and code becomes purely declarative. This optimizes components structurally and removes manual dependency tracking overhead.
 
@@ -97,6 +102,11 @@ function Profile({ profilePromise }) {
 //   <Profile profilePromise={profilePromise} />
 // </Suspense>
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [React](./readme.md).
+
 ### 🚀 Solution
 Use the `use()` API inside components combined with `<Suspense>`. `use()` suspends the component rendering if the promise is not resolved. This seamlessly integrates with `<Suspense>`, providing a highly optimized rendering fallback behavior and ensuring safe resolution of asynchronous data.
 

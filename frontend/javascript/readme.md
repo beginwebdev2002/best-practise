@@ -5,7 +5,7 @@ level: Senior/Architect
 version: ES6-ES2024
 tags: [javascript, clean-code, es6, performance, best-practices]
 ai_role: Senior JavaScript Performance Expert
-last_updated: 2026-03-22
+last_updated: 2026-04-30
 ---
 
 # 🎨 JavaScript Best Practise
@@ -35,6 +35,11 @@ Using `var` leads to unpredictable scoping issues and hoisting bugs.
 ```javascript
 const name = "Alice";
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Frontend Architecture](../readme.md).
+
 ### 🚀 Solution
 Strictly use `const` and `let` to ensure block scoping and predictability.
 

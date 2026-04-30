@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "5.5+"
 tags: [typescript, best-practices, clean-code, types]
 ai_role: Senior TypeScript Expert
-last_updated: 2026-04-05
+last_updated: 2026-04-30
 ---
 
 # 📜 Types & Interfaces
@@ -31,6 +31,11 @@ function process(data: unknown) {
     }
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript](./readme.md).
+
 ### 🚀 Solution
 Use `unknown` for values whose type is not yet determined. It requires a type check or assertion before usage, ensuring the developer acknowledges the data's structure.
 ---
@@ -52,6 +57,11 @@ interface UserResponse {
     bio?: string | null; // Optional if missing, null if explicitly empty
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript](./readme.md).
+
 ### 🚀 Solution
 Standardize: use `undefined` (optional properties) for missing keys and `null` for intentional absence of value. Avoid using both for the same field unless strictly required by a legacy API.
 ---
@@ -71,6 +81,11 @@ const complex: Array<string | number> = [];
 const users: User[] = [];
 const complex: (string | number)[] = [];
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript](./readme.md).
+
 ### 🚀 Solution
 Prefer the shorthand `T[]`. It is idiomatic, more readable, and clearly distinguishes arrays from other generic containers like `Record` or `Promise`.
 ---
@@ -90,6 +105,11 @@ Using `type` for object structures prevents declaration merging and reduces perf
 interface Point { x: number; y: number; }
 type Status = "active" | "inactive";
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript](./readme.md).
+
 ### 🚀 Solution
 > [!IMPORTANT]
 > Prefer `interface` for structure, `type` for unions. Interfaces provide better error messages and performance for structural types in TypeScript 5.x.
@@ -114,6 +134,11 @@ function format(input: string | number): string {
     return String(input);
 }
 ```
+
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [TypeScript](./readme.md).
+
 ### 🚀 Solution
 Prefer Union types when the implementation logic is identical for all types. Reserve overloads only for cases where the return type strictly depends on the input type and cannot be expressed via generics.
 ---

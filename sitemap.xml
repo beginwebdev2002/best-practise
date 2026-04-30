@@ -5,775 +5,829 @@
           http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/ai-agent-context-injection-pipelines</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/ai-agent-context-pruning</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/ai-agent-dynamic-context-pruning</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://beginwebdev2002.github.io/best-practise/#/docs/ai-agent-event-driven-orchestration</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://beginwebdev2002.github.io/best-practise/#/docs/ai-agent-fault-tolerance-patterns</loc>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/ai-agent-memory-architectures</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/ai-agent-multi-model-consensus</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/ai-agent-orchestration-patterns</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/ai-agent-orchestration</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/ai-agent-self-healing-architectures</loc>
-    <lastmod>2026-04-02</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/ai-agent-semantic-routing</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/ai-agent-tool-calling-architectures</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/ai-agent-vibe-coding-state-machines</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/ai-agent-zero-trust-security-boundaries</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/antigravity-ide-vibe-coding</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/cursor-memory-structures</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/vibe-coding-agents</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/vibe-coding-autonomous-testing-patterns</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://beginwebdev2002.github.io/best-practise/#/docs/vibe-coding-cognitive-load-balancing</loc>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/vibe-coding-deterministic-patterns</loc>
-    <lastmod>2026-03-30</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/vibe-coding-dynamic-context-pruning</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/vibe-coding-multi-agent-state-sync</loc>
-    <lastmod>2026-04-02</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/vibe-coding-predictive-context-orchestration</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://beginwebdev2002.github.io/best-practise/#/docs/vibe-coding-self-reflection-loops</loc>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/vibe-coding-swarm-intelligence-patterns</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/vibe-coding-telemetry-patterns</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/vibe-coding-zero-approval-workflows</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/docs/windsurf-vibe-coding-hints</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/backend-for-frontend/data-flow</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/backend-for-frontend/folder-structure</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/backend-for-frontend/implementation-guide</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/backend-for-frontend/trade-offs</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/clean-architecture/data-flow</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/clean-architecture/folder-structure</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/clean-architecture/implementation-guide</loc>
-    <lastmod>2026-04-02</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/clean-architecture/trade-offs</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/cqrs/data-flow</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/cqrs/folder-structure</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/cqrs/implementation-guide</loc>
-    <lastmod>2026-04-02</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/cqrs/trade-offs</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/domain-driven-design/data-flow</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/domain-driven-design/folder-structure</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/domain-driven-design/implementation-guide</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/domain-driven-design/trade-offs</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/event-driven-architecture/data-flow</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/event-driven-architecture/folder-structure</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/event-driven-architecture/implementation-guide</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/event-driven-architecture/trade-offs</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/event-sourcing/data-flow</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/event-sourcing/folder-structure</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/event-sourcing/implementation-guide</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/event-sourcing/trade-offs</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/feature-sliced-design/data-flow</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/feature-sliced-design/folder-structure</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/feature-sliced-design/implementation-guide</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/feature-sliced-design/trade-offs</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/hexagonal-architecture/data-flow</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/hexagonal-architecture/folder-structure</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/hexagonal-architecture/implementation-guide</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/hexagonal-architecture/trade-offs</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/micro-frontends/data-flow</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/micro-frontends/folder-structure</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/micro-frontends/implementation-guide</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/micro-frontends/trade-offs</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/microservices/data-flow</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/microservices/folder-structure</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/microservices/implementation-guide</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/microservices/trade-offs</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/model-view-controller/data-flow</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/model-view-controller/folder-structure</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/model-view-controller/implementation-guide</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/model-view-controller/trade-offs</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/monolithic-architecture/data-flow</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/monolithic-architecture/folder-structure</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/monolithic-architecture/implementation-guide</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/monolithic-architecture/trade-offs</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/serverless/data-flow</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/serverless/folder-structure</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/serverless/implementation-guide</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/serverless/trade-offs</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/space-based-architecture/data-flow</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/space-based-architecture/folder-structure</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/space-based-architecture/implementation-guide</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/architectures/space-based-architecture/trade-offs</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/angular/advanced-performance</loc>
-    <lastmod>2026-04-02</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/angular/architecture</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/angular/components-signals</loc>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/angular/data-forms</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/angular/expert-niche</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/angular/reactivity</loc>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/angular/state-management</loc>
-    <lastmod>2026-04-02</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/angular/testing</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/design-ui/accessibility</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/design-ui/component-architecture</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/design-ui/responsive-design</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/design-ui/styling</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/javascript/async-logic</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/javascript/basic-syntax</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/javascript/clean-code</loc>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/javascript/modern-syntax</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/javascript/professional-niche</loc>
-    <lastmod>2026-04-07</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/javascript/testing</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/qwik/performance</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/qwik/state-management</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/qwik/testing</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/react/performance</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/react/security</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/react/state-management</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/react/testing</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/solidjs/performance</loc>
-    <lastmod>2026-04-02</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/solidjs/state-management</loc>
-    <lastmod>2026-04-02</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/solidjs/testing</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/typescript/logic-safety</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/typescript/objects-functions</loc>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/typescript/professional-niche</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/typescript/testing</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://beginwebdev2002.github.io/best-practise/#/frontend/typescript/types-interfaces</loc>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/expressjs/architecture</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/expressjs/security-best-practices</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/graphql/architecture</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/graphql/security-best-practices</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/microservices/api-design</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/microservices/architecture</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/microservices/security-best-practices</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/mongodb/architecture</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/mongodb/database-optimization</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/mongodb/security-best-practices</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/nestjs/architecture</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/nestjs/security-best-practices</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/nodejs/architecture</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/nodejs/security-best-practices</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/postgresql/architecture</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/postgresql/database-optimization</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/postgresql/security-best-practices</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/redis/api-design</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/redis/architecture</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://beginwebdev2002.github.io/best-practise/#/backend/redis/security-best-practices</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
