@@ -26,10 +26,10 @@ last_updated: 2026-04-17
 
 This architecture defines the operational boundaries for multi-agent workflows, specifically optimizing for context windows, token efficiency, and deterministic output.
 
-- 🌊 **Data Flow:** Orchestrator-to-Worker execution paths.
-- 📁 **Folder Structure:** Modular isolation of Prompts, Skills, and Contexts.
-- ⚖️ **Trade-offs:** Latency vs. Reasoning depth.
-- 🛠️ **Implementation Guide:** Rules for defining strict agent personas and constraints.
+- 🌊 **[Data Flow](./data-flow.md):** Orchestrator-to-Worker execution paths.
+- 📁 **[Folder Structure](./folder-structure.md):** Modular isolation of Prompts, Skills, and Contexts.
+- ⚖️ **[Trade-offs](./trade-offs.md):** Latency vs. Reasoning depth.
+- 🛠️ **[Implementation Guide](./implementation-guide.md):** Rules for defining strict agent personas and constraints.
 
 ```mermaid
 graph TD
@@ -88,6 +88,9 @@ class MonolithicAIAgent {
 
 ### ⚠️ Problem
 Loading a monolithic agent with unbounded context leads to "Context Explosion", resulting in non-deterministic hallucinations, excessive token costs, and security risks (like arbitrary code execution). A single LLM call attempting multiple distinct personas (Planner, Coder, Reviewer) fundamentally degrades reasoning quality.
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
 
 ### ✅ Best Practice
 ```typescript
