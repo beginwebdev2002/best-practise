@@ -129,6 +129,7 @@
   * [Ai agent context pruning](docs/ai-agent-context-pruning.md)
   * [Ai agent dynamic context pruning](docs/ai-agent-dynamic-context-pruning.md)
   * [Ai agent memory architectures](docs/ai-agent-memory-architectures.md)
+  * [Ai agent knowledge graph orchestration](docs/ai-agent-knowledge-graph-orchestration.md)
   * [Ai agent multi model consensus](docs/ai-agent-multi-model-consensus.md)
   * [Ai agent orchestration patterns](docs/ai-agent-orchestration-patterns.md)
   * [Ai agent orchestration](docs/ai-agent-orchestration.md)
