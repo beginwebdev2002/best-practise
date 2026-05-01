@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "19+"
 tags: [react, performance, use, react-compiler, best-practices, architecture, clean-code]
 ai_role: Senior React Performance Expert
-last_updated: 2026-03-22
+last_updated: 2026-05-01
 ---
 
 # ⚡ React Performance & Best Practices

@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "19+"
 tags: [react, best-practices, architecture, clean-code, scalable-code, modern-react, server-components]
 ai_role: Senior React Expert
-last_updated: 2026-03-22
+last_updated: 2026-05-01
 ---
 
 # ⚛️ React Production-Ready Best Practices

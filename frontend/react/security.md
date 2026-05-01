@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "19+"
 tags: [react, security, best-practices, clean-code, xss, server-components, ai-coding]
 ai_role: Senior React Security Expert
-last_updated: 2026-04-05
+last_updated: 2026-05-01
 ---
 
 # 🛡️ React Security Best Practices

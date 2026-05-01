@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "19+"
 tags: [react, testing, best-practices, clean-code, tdd, architecture, vibe-coding]
 ai_role: Senior React Testing Expert
-last_updated: 2026-04-05
+last_updated: 2026-05-01
 ---
 
 # 🧪 React Testing Best Practices

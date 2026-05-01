@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "1+"
 tags: [solidjs, testing, best-practices, clean-code, reactivity, vibe-coding]
 ai_role: Senior SolidJS Testing Expert
-last_updated: 2026-04-05
+last_updated: 2026-05-01
 ---
 
 # 🧪 SolidJS Testing Best Practices

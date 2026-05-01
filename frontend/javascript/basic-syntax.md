@@ -5,7 +5,7 @@ level: Senior/Architect
 version: ES2022+
 tags: [javascript, best-practices, clean-code, syntax]
 ai_role: Senior JavaScript Expert
-last_updated: 2026-04-05
+last_updated: 2026-05-01
 ---
 
 # 📜 Basic Syntax & Fundamentals
