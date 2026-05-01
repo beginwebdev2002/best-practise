@@ -64,6 +64,23 @@ Optimizing memory structures requires a deliberate approach to providing instruc
 1. **Explicit Context:** Always reference specific files or functions when asking the AI to perform a task.
 2. **Rule Enforcement:** Utilize `.cursorrules` and `AGENTS.md` to establish global constraints that the AI must follow.
 3. **Limit Scope:** Avoid asking the AI to refactor the entire application in a single prompt. Break down tasks into smaller, manageable units.
+
+```mermaid
+graph LR
+    Step1[Explicit Context]
+    Step2[Rule Enforcement]
+    Step1 --> Step2
+    Step3[Limit Scope]
+    Step2 --> Step3
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+```
+
+
 ## ✅ 5. Actionable Checklist for Memory Optimization
 
 Follow these steps to ensure optimal performance when using Cursor:

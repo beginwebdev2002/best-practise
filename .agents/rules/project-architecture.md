@@ -42,6 +42,23 @@ To prevent the main technology `readme.md` from becoming overloaded, detailed in
 1. The file is created within the `[Technology]` folder.
 2. The filename must reflect a narrow context (e.g., `performance.md`, `testing.md`, `naming-convention.md`).
 3. The module must be entirely focused on its stated topic. The AI agent will only include this file when the task overlaps with this specific context.
+
+```mermaid
+graph LR
+    Step1[The file is created within the]
+    Step2[The filename must reflect a na]
+    Step1 --> Step2
+    Step3[The module must be entirely fo]
+    Step2 --> Step3
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+```
+
+
 ## 4. AI Agent Path (Visualization)
 
 Below is a diagram of the AI agent's navigation when searching for context for a task:
@@ -93,3 +110,24 @@ When adding a new technology, contributors must follow this algorithm:
 3. **Initialize Entry Point:** Create the mandatory `[Technology]/readme.md` file with foundational rules and standards.
 4. **Decomposition (if necessary):** If the rules are too extensive, separate narrow aspects (testing, security, performance) into standalone files (e.g., `security.md`).
 5. **Linking (optional):** Mention the existence of specific modules in the main technology `readme.md` to improve AI agent indexing.
+
+```mermaid
+graph LR
+    Step1[Localization]
+    Step2[Setup Container]
+    Step1 --> Step2
+    Step3[Initialize Entry Point]
+    Step2 --> Step3
+    Step4[Decomposition if necessary]
+    Step3 --> Step4
+    Step5[Linking optional]
+    Step4 --> Step5
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+    class Step4 component;
+    class Step5 component;
+```

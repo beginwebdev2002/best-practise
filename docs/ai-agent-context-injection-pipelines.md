@@ -30,6 +30,26 @@ This document specifies the architectural constraints for creating robust Contex
 3. **Technological Scoping:** Exact best practices for the chosen language or framework (e.g., NestJS, TypeScript).
 4. **Task-Specific Hydration:** Injecting the exact schema, file dependencies, and interface contracts needed for the immediate execution.
 
+```mermaid
+graph LR
+    Step1[Global Constants Root Rules]
+    Step2[Domain Specifications]
+    Step1 --> Step2
+    Step3[Technological Scoping]
+    Step2 --> Step3
+    Step4[TaskSpecific Hydration]
+    Step3 --> Step4
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+    class Step4 component;
+```
+
+
+
 > [!IMPORTANT]
 > The primary cause of AI hallucinations is context bloat. Injecting the entire repository structure into an agent's memory window dilutes its focus. Context must be selectively hydrated based on the task bounds.
 

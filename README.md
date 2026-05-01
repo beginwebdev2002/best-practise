@@ -224,6 +224,26 @@ This is a living repository. Even if you're building alone, the AI ecosystem thr
 2. Navigate to the appropriate `[domain]/[technology]/` folder (or create it).
 3. Add a `readme.md` with core principles, and break down complex rules into specific markdown files.
 4. Submit a Pull Request.
+
+```mermaid
+graph LR
+    Step1[Fork the repository]
+    Step2[Navigate to the appropriate do]
+    Step1 --> Step2
+    Step3[Add a readme]
+    Step2 --> Step3
+    Step4[Submit a Pull Request]
+    Step3 --> Step4
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+    class Step4 component;
+```
+
+
 ---
 
 <div align="center">
@@ -448,6 +468,26 @@ graph TD
 2. Проведите локализацию в директории `[domain]/[technology]/`.
 3. Реализуйте файл `readme.md`, декларирующий ключевые парадигмы в рамках стэка. Для покрытия узкоспециализированных кейсов инициируйте декомпозицию с выделением изолированных конфигураций (например, `performance.md`).
 4. Настройте Pull Request в ветку `main`.
+
+```mermaid
+graph LR
+    Step1[Fork]
+    Step2[domaintechnology]
+    Step1 --> Step2
+    Step3[readme]
+    Step2 --> Step3
+    Step4[Pull Request   main]
+    Step3 --> Step4
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+    class Step4 component;
+```
+
+
 ---
 
 <div align="center">

@@ -26,6 +26,23 @@ AI Agent Orchestration involves coordinating multiple specialized agents to solv
 1. **Hierarchical Task Delegation:** A primary manager agent delegates sub-tasks to specialized worker agents.
 2. **Swarm Intelligence:** Agents operate peer-to-peer, sharing context via a unified memory bus.
 3. **Sequential Pipelines:** Agents act as stages in a pipeline, refining outputs progressively.
+
+```mermaid
+graph LR
+    Step1[Hierarchical Task Delegation]
+    Step2[Swarm Intelligence]
+    Step1 --> Step2
+    Step3[Sequential Pipelines]
+    Step2 --> Step3
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+```
+
+
 ---
 ## 🏗️ Architectural Blueprints for Multi-Agent Systems
 

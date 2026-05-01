@@ -70,3 +70,18 @@ src/
 1. **Isolation in `core/`:** Code inside `core/` is forbidden from importing modules from `adapters/`.
 2. **Implementation in `adapters/`:** Code inside `adapters/` relies heavily on implementing the interfaces declared in `core/ports/`.
 3. **Primary vs Secondary File Naming:** Append descriptive suffixes to Adapters to clarify intent (e.g., `PostgresUserRepository`, `StripePaymentService`).
+
+```mermaid
+graph LR
+    Step1[Isolation in core]
+    Step2[Implementation in adapters]
+    Step1 --> Step2
+    Step3[Primary vs Secondary File Nami]
+    Step2 --> Step3
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+```

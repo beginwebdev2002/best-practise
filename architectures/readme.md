@@ -30,6 +30,23 @@ In a world where application logic becomes more complex every day, **Architectur
 2. **Collaboration:** Lowers the barrier to entry for new developers (since everything has a strictly defined place) and reduces merge conflicts.
 3. **Isolation & Testability:** Changing a single feature doesn't break the entire business process, because the logic is isolated from the UI and third-party libraries.
 
+```mermaid
+graph LR
+    Step1[Scalability]
+    Step2[Collaboration]
+    Step1 --> Step2
+    Step3[Isolation  Testability]
+    Step2 --> Step3
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+```
+
+
+
 Without strict architecture, even the most modern frameworks (Angular, React, Vue, NestJS) quickly become unmanageable.
 ---
 ## 💡 Best Tips for Choosing an Architecture

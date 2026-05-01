@@ -57,6 +57,23 @@ graph TD
 2. **Replayable State:** Any entity's current state can be fully reconstructed by replaying all its past events from the beginning.
 3. **Decoupled Read/Write:** Often combined with CQRS, Event Sourcing naturally decouples the write model (Event Store) from the read models (Projections).
 
+```mermaid
+graph LR
+    Step1[Immutable Log]
+    Step2[Replayable State]
+    Step1 --> Step2
+    Step3[Decoupled ReadWrite]
+    Step2 --> Step3
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+```
+
+
+
 ## 1. Mutating State Instead of Appending Events
 
 ### ❌ Bad Practice

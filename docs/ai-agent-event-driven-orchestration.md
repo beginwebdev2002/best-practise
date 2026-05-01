@@ -24,6 +24,23 @@ An AI ecosystem should resemble a bustling stock exchange floor, not a micromana
 2. **Idempotent Handlers:** Event handlers MUST be idempotent. Network retries or duplicate LLM outputs should not corrupt the system state.
 3. **Traceable Lineage:** Every event MUST carry a `correlationId` and `causationId` to reconstruct the exact contextual chain of thought across the swarm.
 
+```mermaid
+graph LR
+    Step1[Decoupled Execution]
+    Step2[Idempotent Handlers]
+    Step1 --> Step2
+    Step3[Traceable Lineage]
+    Step2 --> Step3
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+```
+
+
+
 ---
 
 ## 🏗️ Architectural Blueprint for Event Streams

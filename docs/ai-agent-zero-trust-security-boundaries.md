@@ -58,6 +58,23 @@ export class LegacyAgentExecutor {
 2.  **Privilege Escalation:** Running tools under the same execution context as the host process allows the agent to break out of its intended scope.
 3.  **Non-Deterministic Payload Syntax:** Agents frequently hallucinate JSON properties or shell operators, leading to unhandled exceptions and systemic crashes.
 
+```mermaid
+graph LR
+    Step1[Command Injection via Prompt D]
+    Step2[Privilege Escalation]
+    Step1 --> Step2
+    Step3[NonDeterministic Payload Synta]
+    Step2 --> Step3
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+```
+
+
+
 ## ✅ Best Practice: Deterministic Tool Sandboxing
 
 Implement rigid boundaries using `spawnSync`, strict argument arrays, and runtime schema validation (e.g., Zod) to ensure the agent's intent is deterministic and safely scoped.
@@ -106,6 +123,23 @@ export class ZeroTrustAgentExecutor {
 1.  **Immutability of Execution Context:** By strictly forbidding `shell: true` and utilizing `spawnSync` with an argument array, shell operators are rendered inert. The executable treats them as literal string arguments rather than commands.
 2.  **Schema-Driven Validation:** The Zod schema acts as an immutable boundary. If the agent hallucinates properties or attempts to invoke unauthorized executables (e.g., `rm`), the runtime strictly denies execution before invoking the host kernel.
 3.  **Predictable Failure Modes:** Setting a deterministic `timeout` ensures that if an agent attempts a long-running or blocking operation, the execution fails safely without freezing the orchestrator process.
+
+```mermaid
+graph LR
+    Step1[Immutability of Execution Cont]
+    Step2[SchemaDriven Validation]
+    Step1 --> Step2
+    Step3[Predictable Failure Modes]
+    Step2 --> Step3
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+```
+
+
 
 > [!NOTE]
 > Ensure all tool validation schemas are exposed back to the Agent's system prompt to minimize validation loops. A well-informed agent will self-correct structure before invoking the boundary.

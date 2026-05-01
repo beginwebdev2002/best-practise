@@ -31,6 +31,23 @@ vibe_coding_ready: true---
 2. **Cross-Site Scripting (XSS):** Automatically escape or sanitize all untrusted user content before rendering it in the browser. Do not use unsafe innerHTML setters without a strict HTML sanitizer (like DOMPurify).
 3. **Cross-Site Request Forgery (CSRF):** State-changing endpoints must require modern CSRF mitigation, such as SameSite cookies or Anti-CSRF tokens.
 
+```mermaid
+graph LR
+    Step1[Injection SQLi NoSQLi Command]
+    Step2[CrossSite Scripting XSS]
+    Step1 --> Step2
+    Step3[CrossSite Request Forgery CSRF]
+    Step2 --> Step3
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+```
+
+
+
 ### 🔑 Identity & Access Management (IAM)
 1. **Authentication:** Passwords must be hashed using strong, salted algorithms (e.g., Argon2, bcrypt). Plaintext passwords must never hit the database or logs.
 2. **Authorization:** Implement Principle of Least Privilege (PoLP). Role-Based Access Control (RBAC) or Attribute-Based Access Control (ABAC) must be checked at the *server level*, not just hidden on the client UI.
