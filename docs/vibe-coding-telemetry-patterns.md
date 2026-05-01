@@ -80,6 +80,23 @@ async function generateComponent(prompt: string) {
 2. **Missing Context:** The log lacks critical data such as model version, temperature, token usage, and system prompt constraints.
 3. **Type Safety Risk:** Using `error: any` bypasses TypeScript's safety mechanisms, leading to unpredictable runtime crashes if the `error` object lacks a `message` property.
 
+```mermaid
+graph LR
+    Step1[Unstructured Data]
+    Step2[Missing Context]
+    Step1 --> Step2
+    Step3[Type Safety Risk]
+    Step2 --> Step3
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+```
+
+
+
 ### ✅ Best Practice
 
 ```typescript

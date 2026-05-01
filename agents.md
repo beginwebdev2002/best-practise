@@ -99,6 +99,26 @@ For extensions like Cloud Code or GitHub Copilot, append the contents of `AGENTS
 2.  **Constraint Identification:** Locate the specific `.md` file corresponding to the user's task (e.g., if the user asks for a NestJS service, read `backend/nestjs/readme.md`).
 3.  **Hierarchy Alignment:** Prioritize `architectures/` constraints over `frontend/` or `backend/` specifics to ensure structural integrity.
 4.  **Verification:** Before outputting code, run a "Constraint Check" against the identified rules to ensure zero violations of the "Best Practise" standard.
+
+```mermaid
+graph LR
+    Step1[Context Discovery]
+    Step2[Constraint Identification]
+    Step1 --> Step2
+    Step3[Hierarchy Alignment]
+    Step2 --> Step3
+    Step4[Verification]
+    Step3 --> Step4
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+    class Step4 component;
+```
+
+
 ---
 ## 🔍 5. SEO & Discoverability
 <!--
@@ -128,6 +148,44 @@ For extensions like Cloud Code or GitHub Copilot, append the contents of `AGENTS
 8. **No cultural references**
 9. **No idioms or expressions**
 10. **No slang or colloquialisms**
+
+```mermaid
+graph LR
+    Step1[Technical Easy English languag]
+    Step2[No slang or colloquialisms]
+    Step1 --> Step2
+    Step3[No jargon or technical terms w]
+    Step2 --> Step3
+    Step4[No abbreviations or acronyms w]
+    Step3 --> Step4
+    Step5[No metaphors or analogies with]
+    Step4 --> Step5
+    Step6[No sarcasm or irony]
+    Step5 --> Step6
+    Step7[No humor or jokes]
+    Step6 --> Step7
+    Step8[No cultural references]
+    Step7 --> Step8
+    Step9[No idioms or expressions]
+    Step8 --> Step9
+    Step10[No slang or colloquialisms]
+    Step9 --> Step10
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+    class Step4 component;
+    class Step5 component;
+    class Step6 component;
+    class Step7 component;
+    class Step8 component;
+    class Step9 component;
+    class Step10 component;
+```
+
+
 
 **Status:** `READY_FOR_INFERENCE`
 **Version:** `1.0.0`

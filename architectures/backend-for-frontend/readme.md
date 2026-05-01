@@ -65,6 +65,23 @@ graph TD
 2. **Aggregation:** The BFF orchestrates and aggregates calls to various downstream microservices.
 3. **Resilience:** The BFF must gracefully handle failures from downstream services, ensuring a seamless user experience.
 
+```mermaid
+graph LR
+    Step1[Client Focus]
+    Step2[Aggregation]
+    Step1 --> Step2
+    Step3[Resilience]
+    Step2 --> Step3
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+```
+
+
+
 ---
 
 ## 1. Single Universal API for All Clients

@@ -61,6 +61,26 @@ graph TD
 3. **Independent Processing Units:** Microservices or components that contain business logic and operate over small shards of data, executing autonomously.
 4. **Asynchronous Persistence:** The IMDG eventually syncs data back to a persistent store in the background, out of the hot path.
 
+```mermaid
+graph LR
+    Step1[Database Bottleneck Eliminatio]
+    Step2[InMemory Data Grid IMDG]
+    Step1 --> Step2
+    Step3[Independent Processing Units]
+    Step2 --> Step3
+    Step4[Asynchronous Persistence]
+    Step3 --> Step4
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+    class Step4 component;
+```
+
+
+
 ## 1. Synchronous Database Writes in Processing Units
 
 ### ❌ Bad Practice

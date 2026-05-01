@@ -33,11 +33,45 @@ For Web and UI clients, Jules must ensure:
 2. **Memoization & Re-renders:** Prevent unnecessary component re-renders (using `useMemo`, `React.memo`, or Angular's `OnPush` change detection).
 3. **Asset Optimization:** Images must be optimized (WebP/AVIF format) and served with native lazy loading (`loading="lazy"`).
 
+```mermaid
+graph LR
+    Step1[Lazy Loading]
+    Step2[Memoization  Rerenders]
+    Step1 --> Step2
+    Step3[Asset Optimization]
+    Step2 --> Step3
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+```
+
+
+
 ### 🛡️ Backend & Database Efficiency
 For server infrastructure:
 1. **Query Optimization:** Never use `SELECT *` in SQL databases. Always explicitly request only the required fields. Add standard indexes for frequently queried columns.
 2. **Caching Strategy:** Implement in-memory caching (like Redis) for expensive computations or frequently accessed, rarely mutated data.
 3. **Pagination:** All endpoints returning lists of data must implement pagination (Cursor-based or Offset-based) and rate limiting.
+
+```mermaid
+graph LR
+    Step1[Query Optimization]
+    Step2[Caching Strategy]
+    Step1 --> Step2
+    Step3[Pagination]
+    Step2 --> Step3
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Step1 component;
+    class Step2 component;
+    class Step3 component;
+```
+
+
 
 ### 🛠️ Performance Pattern Selection
 
