@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "4.x / 5.x"
 tags: [best-practices, deterministic-code, expressjs, vibe-coding, cursor-rules, javascript, typescript, software-architecture, system-design, mvc, production-ready, programming-standards, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, enterprise-patterns, backend]
 ai_role: Senior Express.js Backend Expert
-last_updated: 2026-03-23
+last_updated: 2026-05-01
 ---
 
 
@@ -28,8 +28,8 @@ This document outlines the **best practices** for Express.js architecture. The f
 
 ## 📑 Specialized Documentation
 
-- [Security Best Practices](./security-best-practices.md)
 - [Architecture](./architecture.md)
+- [Security Best Practices](./security-best-practices.md)
 
 ## 🔄 Architecture Data Flow
 
