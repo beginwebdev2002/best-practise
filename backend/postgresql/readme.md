@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "16+"
 tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, postgresql, database, sql, rdbms, system-design, production-ready, scalable-code]
 ai_role: Senior PostgreSQL Database Architect
-last_updated: 2026-03-27
+last_updated: 2026-05-01
 ---
 
 
@@ -157,6 +157,6 @@ Be explicit in queries: never use `SELECT *`. Utilize Keyset Pagination (Cursor-
 
 ## 📑 Specialized Documentation
 
+- [Architecture](./architecture.md)
 - [Database Optimization](./database-optimization.md)
 - [Security Best Practices](./security-best-practices.md)
-- [Architecture](./architecture.md)

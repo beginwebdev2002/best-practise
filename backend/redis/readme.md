@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "7+"
 tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, redis, in-memory, nosql, system-design, production-ready, scalable-code]
 ai_role: Senior Redis Architecture Expert
-last_updated: 2026-03-27
+last_updated: 2026-05-01
 ---
 
 
@@ -171,6 +171,6 @@ Explore advanced architectural topics for Redis:
 
 ## 📑 Specialized Documentation
 
-- [Security Best Practices](./security-best-practices.md)
-- [Architecture](./architecture.md)
 - [Api Design](./api-design.md)
+- [Architecture](./architecture.md)
+- [Security Best Practices](./security-best-practices.md)
