@@ -1,3 +1,4 @@
+import { pathToFileURL } from 'node:url';
 import { Project, SyntaxKind } from 'ts-morph';
 import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
@@ -231,8 +232,6 @@ async function runVibeCheck() {
     return;
   }
 
-  const project = new Project();
-
   // Configure git user for commits
   try {
     execFileSync('git', ['config', '--global', 'user.name', 'github-actions[bot]']);
@@ -241,12 +240,11 @@ async function runVibeCheck() {
     console.warn('Failed to configure git user. If running locally, this is expected.');
   }
 
-  for (const file of modifiedFiles) {
-    console.log(`Processing ${file}...`);
-
-    if (!fs.existsSync(file)) {
+  // 1. Read files and extract tech concurrently
+  const fileDataPromises = modifiedFiles.map(async (file) => {
+    if (!await fileOrDirExists(file)) {
       console.log(`File ${file} does not exist. Skipping.`);
-      continue;
+      return null;
     }
 
     let tech = '';
@@ -256,37 +254,59 @@ async function runVibeCheck() {
     else if (file.includes('/express/')) tech = 'express';
     else if (file.includes('/nodejs/')) tech = 'nodejs';
     else {
-      // Fallback
       const parts = file.split('/');
       if (parts.length > 1) {
         tech = parts[1];
       } else {
-        continue;
+        return null;
       }
     }
 
     const mdContent = await fsPromises.readFile(file, 'utf-8');
+    return { file, tech, mdContent };
+  });
 
-    await syncBenchmarks(tech, mdContent);
+  const fileDataRaw = await Promise.all(fileDataPromises);
+  const fileData = fileDataRaw.filter(Boolean);
 
+  // 2. Sequential Sync Benchmarks to avoid config overwrites
+  for (const data of fileData) {
+    await syncBenchmarks(data.tech, data.mdContent);
+  }
+
+  // 3. Concurrent AI Generation and AST Analysis
+  const analysisPromises = fileData.map(async (data) => {
+    const { file, tech, mdContent } = data;
     const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
-    if (!fs.existsSync(suitePath)) {
+
+    if (!await fileOrDirExists(suitePath)) {
       console.log(`No benchmark suite found for ${tech}. Skipping.`);
-      continue;
+      return { ...data, skipped: true };
     }
 
     const suiteConfig = JSON.parse(await fsPromises.readFile(suitePath, 'utf-8'));
-
     const generatedCode = await simulateAIGeneration(suiteConfig.golden_prompt, tech, mdContent);
 
     if (!generatedCode) {
       console.error(`Failed to generate code for ${tech}.`);
-      continue;
+      return { ...data, skipped: true };
     }
 
-    const sourceFile = project.createSourceFile(`temp_${tech}.ts`, generatedCode, { overwrite: true });
+    const project = new Project();
+    const uniqueFilename = `temp_${tech}_${Math.random().toString(36).substring(7)}.ts`;
+    const sourceFile = project.createSourceFile(uniqueFilename, generatedCode, { overwrite: true });
     const { total: score, breakdown } = analyzeAST(sourceFile, tech);
 
+    return { ...data, generatedCode, score, breakdown };
+  });
+
+  const analysisResults = await Promise.all(analysisPromises);
+
+  // 4. Sequential stateful operations (Git, Issue Creation)
+  for (const result of analysisResults) {
+    if (result.skipped) continue;
+
+    const { file, score, breakdown, generatedCode } = result;
     console.log(`Fidelity Score for ${file}: ${score}%`);
     console.log(`Breakdown:`, breakdown);
 
@@ -302,7 +322,6 @@ async function runVibeCheck() {
       try {
         execFileSync('git', ['add', file]);
         try { execFileSync('sh', ['-c', 'git add benchmarks/suites/*.json benchmarks/criteria/*.json 2>/dev/null || true']); } catch (e) {}
-        // Only commit if there are changes (badge might already be there)
         const status = execFileSync('git', ['status', '--porcelain'], { encoding: 'utf-8' });
         if (status.includes(file) || status.includes('benchmarks/')) {
            execFileSync('git', ['commit', '-m', '[chore: benchmark-sync]']);
@@ -321,7 +340,10 @@ async function runVibeCheck() {
       if (!await fileOrDirExists(reportDir)) await fsPromises.mkdir(reportDir, { recursive: true });
 
       const reportPath = path.join(reportDir, `violation-report.md`);
-      const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n\`\`\`typescript\n${generatedCode}\n\`\`\`\n\nReview the AST rules.`;
+      const ticksLength = (generatedCode.match(/`{3,}/g) || ['``']).reduce((a, b) => a.length > b.length ? a : b).length;
+      const fences = '`'.repeat(Math.max(3, ticksLength + 1));
+
+      const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n${fences}typescript\n${generatedCode}\n${fences}\n\nReview the AST rules.`;
 
       await fsPromises.writeFile(reportPath, reportContent);
       console.log(`Generated violation report: ${reportPath}`);
@@ -338,4 +360,8 @@ async function runVibeCheck() {
   }
 }
 
-runVibeCheck().catch(console.error);
+export { getModifiedFiles, syncBenchmarks, simulateAIGeneration, analyzeAST, runVibeCheck };
+
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  runVibeCheck().catch(console.error);
+}
