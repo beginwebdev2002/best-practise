@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "20+"
 tags: [angular, best-practices, clean-code, reactivity, rxjs]
 ai_role: Senior Angular Expert
-last_updated: 2026-04-05
+last_updated: 2026-05-01
 ---
 
 # ⚡ Reactivity & RxJS

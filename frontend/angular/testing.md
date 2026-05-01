@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "20+"
 tags: [angular, testing, best-practices, clean-code, signals, vibe-coding]
 ai_role: Senior Angular Testing Expert
-last_updated: 2026-04-05
+last_updated: 2026-05-01
 ---
 
 # 🧪 Angular Testing Best Practices

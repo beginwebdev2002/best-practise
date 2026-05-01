@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "5.5+"
 tags: [typescript, best-practices, clean-code, types]
 ai_role: Senior TypeScript Expert
-last_updated: 2026-04-05
+last_updated: 2026-05-01
 ---
 
 # 📜 Types & Interfaces
