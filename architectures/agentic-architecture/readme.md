@@ -26,10 +26,10 @@ last_updated: 2026-04-17
 
 This architecture defines the operational boundaries for multi-agent workflows, specifically optimizing for context windows, token efficiency, and deterministic output.
 
-- 🌊 **Data Flow:** Orchestrator-to-Worker execution paths.
-- 📁 **Folder Structure:** Modular isolation of Prompts, Skills, and Contexts.
-- ⚖️ **Trade-offs:** Latency vs. Reasoning depth.
-- 🛠️ **Implementation Guide:** Rules for defining strict agent personas and constraints.
+- 🌊 **[Data Flow](./data-flow.md):** Orchestrator-to-Worker execution paths.
+- 📁 **[Folder Structure](./folder-structure.md):** Modular isolation of Prompts, Skills, and Contexts.
+- ⚖️ **[Trade-offs](./trade-offs.md):** Latency vs. Reasoning depth.
+- 🛠️ **[Implementation Guide](./implementation-guide.md):** Rules for defining strict agent personas and constraints.
 
 ```mermaid
 graph TD
