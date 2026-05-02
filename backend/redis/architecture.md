@@ -27,7 +27,7 @@ A single Redis instance creates a single point of failure. If the node crashes, 
 ```yaml
 # Using Redis Cluster or Sentinel for high availability
 services:
-  redis-master:
+  redis-primary:
     image: redis:latest
   redis-replica-1:
     image: redis:latest
@@ -46,7 +46,7 @@ Deploy Redis in a Cluster or Sentinel topology to ensure high availability, auto
 ```mermaid
 graph TD
     A[Client Request] --> B[Redis Load Balancer / Sentinel]
-    B --> C[Redis Master]
+    B --> C[Redis Primary]
     C --> D[Redis Replica 1]
     C --> E[Redis Replica 2]
 

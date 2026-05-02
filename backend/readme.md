@@ -38,14 +38,15 @@ last_updated: 2026-03-22
 
 
 This folder acts as a container for documentation around the following backend technologies:
-- [NestJS](./nestjs/readme.md)
 - [ExpressJS](./expressjs/readme.md)
-- [Node.js](./nodejs/readme.md)
+- [Fastify](./fastify/readme.md)
 - [GraphQL](./graphql/readme.md)
-- [PostgreSQL](./postgresql/readme.md)
-- [MongoDB](./mongodb/readme.md)
-- [Redis](./redis/readme.md)
 - [Microservices](./microservices/readme.md)
+- [MongoDB](./mongodb/readme.md)
+- [NestJS](./nestjs/readme.md)
+- [Node.js](./nodejs/readme.md)
+- [PostgreSQL](./postgresql/readme.md)
+- [Redis](./redis/readme.md)
 
 ---
 ## 1. 🛑 Global Domain Bleeding

@@ -139,7 +139,7 @@ Enable WiredTiger encryption at rest using a robust Key Management Service (KMS)
 security:
   enableEncryption: true
   encryptionCipherMode: AES256-CBC
-  encryptionKeyFile: /path/to/master/key/file
+  encryptionKeyFile: /path/to/primary/key/file
 ```
 ---
 
