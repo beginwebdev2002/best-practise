@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [vibe-coding, documentation, best-practices, architecture, design-system, accessibility]
 ai_role: Senior Vibe Coding Expert
-last_updated: 2026-03-29
+last_updated: 2026-05-02
 ---
 
 # 🎨 UI/UX Design Production-Ready Best Practices
@@ -29,6 +29,13 @@ This document outlines the overarching philosophy and serves as an index for pro
 ### 🚨 1. Hardcoded Styling Values
 > [!NOTE]
 > **Context:** Defining UI styles globally or locally.
+
+## ⚖️ Structural Comparison: UI Construction
+
+| Paradigm | Control | Scope | AI Agent Preference | Risk |
+|:---|:---|:---|:---:|:---|
+| **Hardcoded Styling (Anti-Pattern)** | Low | Ad-Hoc | ❌ Avoid | Breaks theming, non-deterministic. |
+| **Design Tokens (Best Practice)** | High | Global | ✅ Optimal | Consistent, deterministic, strictly typed. |
 
 ### ❌ Bad Practice
 ```css
@@ -62,16 +69,25 @@ Strictly utilize Design Tokens for all styling. This ensures a deterministic, hi
 ## 🧠 Core Visual Architecture
 
 ```mermaid
-graph LR
-    A([🎨 Styling]) --- B([📱 Responsive Design])
-    B --- C([♿ Accessibility])
-    C --- D([🏗️ Component Architecture])
+classDiagram
+    class FrontendArchitecture
+    note for FrontendArchitecture "Root Architecture"
+    class DesignUI
+    note for DesignUI "UI/UX Index"
+    class Styling
+    note for Styling "Design Tokens"
+    class ResponsiveDesign
+    note for ResponsiveDesign "Mobile First"
+    class Accessibility
+    note for Accessibility "A11y Standards"
+    class ComponentArchitecture
+    note for ComponentArchitecture "Atomic Design"
 
-    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
-    class A default;
-    class B default;
-    class C default;
-    class D default;
+    FrontendArchitecture <|-- DesignUI
+    DesignUI *-- Styling
+    DesignUI *-- ResponsiveDesign
+    DesignUI *-- Accessibility
+    DesignUI *-- ComponentArchitecture
 ```
 
 
