@@ -29,7 +29,7 @@ Swarm Intelligence relies on Peer-to-Peer (P2P) communication over a highly regu
 | :--- | :--- | :--- |
 | **Fault Tolerance** | Extreme (Agents self-heal and replace peers) | Medium (Dependent on Manager health) |
 | **Complexity** | Very High | Medium |
-| **Execution Speed** | Ultra-Fast (Parallelized negotiation) | Slower (Sequential delegation) |
+| **Execution Speed** | Ultra-O(1) or O(n) complexity (Parallelized negotiation) | Slower (Sequential delegation) |
 | **Best Use Case** | Ambiguous, multi-disciplinary problem solving | Well-defined, predictable pipelines |
 
 ---

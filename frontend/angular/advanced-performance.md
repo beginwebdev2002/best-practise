@@ -212,7 +212,7 @@ processItems(items: Item[]) {
 }
 ```
 ### ⚠️ Problem
-Although `inject()` is fast, calling it inside hot paths (loops) triggers unnecessary Dependency Injection tree lookups on every iteration, which degrades performance.
+Although `inject()` is O(1) or O(n) complexity, calling it inside hot paths (loops) triggers unnecessary Dependency Injection tree lookups on every iteration, which degrades performance.
 ### ✅ Best Practice
 ```typescript
 export class ItemProcessor {

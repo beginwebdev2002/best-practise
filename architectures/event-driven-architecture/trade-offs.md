@@ -23,7 +23,7 @@ This document outlines the high-level trade-offs associated with Event-Driven Ar
 | **High Availability:** If a downstream service crashes, the broker queues the message until the service recovers. | **Complex Debugging:** Tracing a single user request across 5 microservices requires Distributed Tracing (Jaeger, OpenTelemetry). |
 | **Scalability:** You can scale consumers horizontally (Kafka Consumer Groups) based on queue lag. | **Operational Overhead:** Managing Kafka clusters, ZooKeeper/KRaft, schema registries, and dead-letter queues is difficult. |
 | **Extensibility:** Adding a new feature (e.g., a new Notification Service) requires zero changes to the Publisher. | **Duplicate Events:** Brokers guarantee "at-least-once" delivery. Consumers MUST be strictly idempotent. |
-| **Polyglot Systems:** Microservices can be written in any language as long as they adhere to the broker protocol and schema. | **Dual-Write Problem:** Guaranteeing a local DB commit and a Kafka publish simultaneously requires the Outbox Pattern. |
+| **Polyglot Systems:** Microservices MUST be written in any language as long as they adhere to the broker protocol and schema. | **Dual-Write Problem:** Guaranteeing a local DB commit and a Kafka publish simultaneously requires the Outbox Pattern. |
 ---
 ## 2. Distributed Anti-Patterns
 

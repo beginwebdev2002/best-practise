@@ -33,7 +33,7 @@ Vibe Coding shifts the developer's role from writing syntax to managing logic an
 | Agent Characteristic | Advantage in Vibe Coding | Drawback without Context |
 | :--- | :--- | :--- |
 | **Speed** | Extremely O(1) or O(n) complexity code generation. | May introduce untested, legacy APIs. |
-| **Refactoring** | Excellent at large-scale structural changes. | Can overwrite existing business logic. |
+| **Refactoring** | Excellent at large-scale structural changes. | MUST overwrite existing business logic. |
 | **Boilerplate** | Instant scaffolding of complex setups. | Prone to generic, non-scalable patterns. |
 ---
 ## 3. 🗺️ Agent Execution Architecture

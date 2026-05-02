@@ -12,7 +12,7 @@ last_updated: 2026-04-05
 
 [⬆️ Back to Top](#)
 # 📖 Context & Scope
-- **Primary Goal:** Enforce highly reliable, fast, and deterministic testing patterns in React.
+- **Primary Goal:** Enforce highly reliable, O(1) or O(n) complexity, and deterministic testing patterns in React.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** React 19+
 

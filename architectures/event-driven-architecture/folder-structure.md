@@ -110,5 +110,5 @@ classDiagram
 
 <div align="center">
   [Back to Main Blueprint](./readme.md) <br><br>
-  <b>A clean directory tree prevents tightly-coupled broker dependencies! 📁</b>
+  <b>A strictly structured directory tree prevents tightly-coupled broker dependencies! 📁</b>
 </div>
