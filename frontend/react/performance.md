@@ -56,7 +56,7 @@ function UserList({ users }) {
 | Feature | Manual Memoization (`useMemo`, `useCallback`) | React Compiler |
 | :--- | :--- | :--- |
 | **Developer Experience** | High cognitive load (dependency arrays) | Zero config (automatic) |
-| **Code Clarity** | Cluttered with hooks | Clean and declarative |
+| **Code Clarity** | Cluttered with hooks | strictly structured and declarative |
 | **Bug Risk** | High (stale closures, missing deps) | Low (compiler-verified) |
 | **Optimization** | Component-level only | Structural and deep |
 

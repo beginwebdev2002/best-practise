@@ -81,7 +81,9 @@ type Point = { x: number; y: number; }; // Bad: Using type for object structure
 interface Status { status: "active" | "inactive"; } // Bad: Trying to use interface for a union-like structure
 ```
 ### ⚠️ Problem
-Using `type` for object structures prevents declaration merging and reduces performance in TS compiler caching. Using `interface` for unions is impossible or leads to awkward wrapper objects.
+> [!IMPORTANT]
+> **Logical Conflict Resolution:** Based on Repo Standard for TypeScript 5.x -> prefer `interface` for structure, `type` for unions.
+> Using `type` for object structures prevents declaration merging and reduces performance in TS compiler caching. Using `interface` for unions is impossible or leads to awkward wrapper objects.
 ### ✅ Best Practice
 ```typescript
 interface Point { x: number; y: number; }

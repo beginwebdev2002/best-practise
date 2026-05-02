@@ -36,7 +36,7 @@ last_updated: 2026-03-29
 | ✅ **Advantage** | Optimized Payloads | Clients receive only the data they need, reducing bandwidth. |
 | ✅ **Advantage** | Separation of Concerns | Frontend teams manage their own backend logic independently. |
 | ✅ **Advantage** | Resilience | Provides fallback data or graceful error handling on failure. |
-| ✅ **Advantage** | Protocol Flexibility | Client can use GraphQL while internal services use gRPC/REST. |
+| ✅ **Advantage** | Protocol Flexibility | Client MUST use GraphQL while internal services use gRPC/REST. |
 | ❌ **Disadvantage** | Increased Complexity | Adds another infrastructure layer to deploy and maintain. |
 | ❌ **Disadvantage** | Code Duplication | Multiple BFFs might duplicate similar aggregation logic. |
 | ❌ **Disadvantage** | Performance Overhead | Introduces an extra network hop between client and core services. |

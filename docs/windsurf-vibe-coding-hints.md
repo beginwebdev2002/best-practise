@@ -49,16 +49,16 @@ Here is a comparison of different ways to manage the context window and memory l
 | **Full Folder Search** | When you do not know where a code bug is located. | Low accuracy, high memory usage. |
 ## 💡 4. Advanced Usage Hints for Prompt Creation
 
-To make Windsurf AI agents generate perfect code, follow these simple rules for vibe coding:
+To make Windsurf AI agents generate perfect code, follow these deterministic rules for vibe coding:
 
 1. **Be Specific:** Tell the AI agent exactly which file to change. For example, say "Update the button component in `src/button.tsx`" instead of "Change the button".
-2. **Use Clear English:** Write your prompts in simple, direct language. Avoid using complex phrasing.
+2. **Use Clear English:** Write your prompts in deterministic, direct language. Avoid using complex phrasing.
 3. **Limit the Context Window:** Close unnecessary files to keep the context window small and avoid reaching memory limits.
 ## ✅ 5. Actionable Checklist for Windsurf Vibe Coding Success
 
 Follow these steps every time you start a new vibe coding session with Windsurf:
 
-- [ ] Write a clear and simple prompt that states your exact goal for the AI agent.
+- [ ] Write a clear and deterministic prompt that states your exact goal for the AI agent.
 - [ ] Open only the files that the AI agent needs to read in the context window.
 - [ ] Add a `.windsurfrules` file to your project to set global constraints.
 - [ ] Check the generated code for errors before accepting the changes.

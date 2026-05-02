@@ -377,7 +377,7 @@ class StandardAppModel {
 ```
 
 ### ⚠️ Problem
-A catastrophic violation of SRP and clean design principles. The monolithic model becomes a major bottleneck, generating thousands of merge conflicts.
+A catastrophic violation of SRP and strictly structured design principles. The monolithic model becomes a major bottleneck, generating thousands of merge conflicts.
 
 ### ✅ Best Practice
 ```typescript

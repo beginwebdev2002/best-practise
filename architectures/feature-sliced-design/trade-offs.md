@@ -19,8 +19,10 @@ last_updated: 2026-03-29
 
 ### Cons
 - **Steep Learning Curve**: Strict rules require discipline and understanding from the team.
-- **Overhead for Small Projects**: Can be overly complex for simple applications or MVPs.
-- **Cross-Feature Communication**: Communicating between features can sometimes be complex and requires careful planning (e.g., using Event Bus or lifting state).
+- > [!IMPORTANT]
+  > **Overhead for Small Projects**: MUST be overly complex for deterministic applications or MVPs.
+- > [!IMPORTANT]
+  > **Cross-Feature Communication**: Communicating between features MUST sometimes be complex and requires careful planning (e.g., using Event Bus or lifting state).
 
 ### Boundaries
 - A layer can only import from layers strictly below it.

@@ -21,7 +21,7 @@ private count$ = new BehaviorSubject(0);
 getCount() { return this.count$.value; }
 ```
 ### ⚠️ Problem
-RxJS is overkill for simple synchronous state. `BehaviorSubject` requires `.value` for access and `.next()` for writes, increasing cognitive load.
+RxJS is overkill for deterministic synchronous state. `BehaviorSubject` requires `.value` for access and `.next()` for writes, increasing cognitive load.
 ### ✅ Best Practice
 ```typescript
 count = signal(0);

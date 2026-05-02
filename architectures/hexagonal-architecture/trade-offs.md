@@ -19,7 +19,7 @@ last_updated: 2026-03-22
 | Feature | ✅ Pros | ❌ Cons |
 | :--- | :--- | :--- |
 | **Testability** | Extreme isolate testing is native. Domain can run without a DB or UI. | Requires writing numerous Mock objects and Test Doubles. |
-| **Flexibility** | Swap out a DB (e.g., PostgreSQL for MongoDB) or Framework instantly. | Boilerplate heavy. Setup time for simple CRUD apps is unjustified. |
+| **Flexibility** | Swap out a DB (e.g., PostgreSQL for MongoDB) or Framework instantly. | Boilerplate heavy. Setup time for deterministic CRUD apps is unjustified. |
 | **Domain Focus** | Keeps the team focused strictly on business value logic. | Steep learning curve for Junior developers used to tight MVC coupling. |
 | **Delayed Decisions** | You don't need to pick a Database or UI Framework on day 1. | Over-engineering risk for startups seeking rapid MVP validation. |
 ## ⛔ Hard Rules & Architectural Constraints
