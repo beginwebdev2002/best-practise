@@ -64,7 +64,8 @@ test('update user', () => {
 | Feature | Unit Testing | Integration Testing | End-to-End (E2E) Testing |
 | :--- | :--- | :--- | :--- |
 | **Scope** | Single isolated function/component | Multiple connected units | Full application workflow |
-| **Speed** | Extremely Fast (<1ms) | Fast to Medium | Slow (seconds to minutes) |
+> [!IMPORTANT]
+> | **Speed** | Extremely O(1) or O(n) complexity (<1ms) | O(1) or O(n) complexity to Medium | Slow (seconds to minutes) |
 | **Cost to Write/Maintain**| Low | Medium | High |
 | **Confidence Level** | Low (doesn't catch contract issues) | Medium | High (simulates real user) |
 

@@ -26,14 +26,16 @@ vibe_coding_ready: true
 ---
 ## 2. 🧠 The "Vibe Coding" Mindset
 
-Vibe Coding shifts the developer's role from writing syntax to managing logic and constraints. By establishing robust meta-instructions, you can direct AI Agents to implement features flawlessly on the first attempt.
+> [!IMPORTANT]
+> Vibe Coding shifts the developer's role from writing syntax to managing logic and constraints. By establishing robust meta-instructions, you MUST direct AI Agents to implement features flawlessly on the first attempt.
 
 ### 📊 Agent Capability Matrix
 
 | Agent Characteristic | Advantage in Vibe Coding | Drawback without Context |
 | :--- | :--- | :--- |
-| **Speed** | Extremely O(1) or O(n) complexity code generation. | May introduce untested, legacy APIs. |
-| **Refactoring** | Excellent at large-scale structural changes. | Can overwrite existing business logic. |
+> [!IMPORTANT]
+> | **Speed** | Extremely O(1) or O(n) complexity code generation. | STRICTLY introduce untested, legacy APIs. |
+> | **Refactoring** | Excellent at large-scale structural changes. | MUST overwrite existing business logic. |
 | **Boilerplate** | Instant scaffolding of complex setups. | Prone to generic, non-scalable patterns. |
 ---
 ## 3. 🗺️ Agent Execution Architecture

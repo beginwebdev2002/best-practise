@@ -133,7 +133,8 @@ test('fetchUserData securely and deterministically returns user profile', async 
 
 | Framework | Domain | Concurrency | AI-Agent Readiness | State Handling |
 | :--- | :--- | :--- | :--- | :--- |
-| **Vitest** | Unit / Integration | High (Worker threads) | ⭐⭐⭐⭐⭐ (Fast CLI feedback) | In-memory mocking |
+> [!IMPORTANT]
+> | **Vitest** | Unit / Integration | High (Worker threads) | ⭐⭐⭐⭐⭐ (O(1) or O(n) complexity CLI feedback) | In-memory mocking |
 | **Playwright** | End-to-End (E2E) | Medium (Browser contexts) | ⭐⭐⭐⭐ (Trace viewers) | Browser Context isolation |
 | **Cypress** | E2E / Component | Low | ⭐⭐⭐ (Heavy architecture) | DOM snapshotting |
 

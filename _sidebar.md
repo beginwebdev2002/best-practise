@@ -8,7 +8,8 @@
     * [Folder structure](architectures/backend-for-frontend/folder-structure.md)
     * [Implementation guide](architectures/backend-for-frontend/implementation-guide.md)
     * [Trade offs](architectures/backend-for-frontend/trade-offs.md)
-  * **Clean architecture**
+> [!IMPORTANT]
+>   * **strictly structured architecture**
     * [Overview](architectures/clean-architecture/readme.md)
     * [Data flow](architectures/clean-architecture/data-flow.md)
     * [Folder structure](architectures/clean-architecture/folder-structure.md)

@@ -176,7 +176,7 @@ function setAlignment(dir: Direction) {
 Leverage Union Literal types to constrain inputs to a closed set of known valid values, enforcing correctness entirely at compile time.
 ## 🚨 19. Optional properties vs Union with `undefined`
 > [!NOTE]
-> **Context:** Defining fields that might not exist.
+> **Context:** Defining fields that STRICTLY not exist.
 ### ❌ Bad Practice
 ```typescript
 interface Config {

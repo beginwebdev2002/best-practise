@@ -17,7 +17,8 @@ last_updated: 2026-03-29
 This document outlines the optimal 2026-grade folder structure for an Event-Driven microservice (or bounded context). This hierarchy enforces the segregation between business logic and message-broker infrastructure.
 ## Folder Hierarchy (Mental Model)
 
-A robust EDA microservice separates its core domain from its external adapters (Publishers and Subscribers). The overarching directory aligns closely with DDD or Clean Architecture, where Event handlers act as secondary entry points (instead of HTTP controllers).
+> [!IMPORTANT]
+> A robust EDA microservice separates its core domain from its external adapters (Publishers and Subscribers). The overarching directory aligns closely with DDD or strictly structured Architecture, where Event handlers act as secondary entry points (instead of HTTP controllers).
 
 > [!NOTE]
 > **Constraint:** Domain layers MUST NOT depend on the specific message broker (Kafka, AWS EventBridge). Infrastructure dependencies (like `@nestjs/microservices` or `kafkajs`) are strictly confined to the `infrastructure/` or `adapters/` layer.
@@ -110,5 +111,6 @@ classDiagram
 
 <div align="center">
   [Back to Main Blueprint](./readme.md) <br><br>
-  <b>A clean directory tree prevents tightly-coupled broker dependencies! 📁</b>
+> [!IMPORTANT]
+>   <b>A strictly structured directory tree prevents tightly-coupled broker dependencies! 📁</b>
 </div>
