@@ -53,13 +53,14 @@ Don't know where to start? Here are a few golden rules:
 - [Hexagonal Architecture](./hexagonal-architecture/readme.md)
 - [Micro-frontends](./micro-frontends/readme.md)
 - [Microservices](./microservices/readme.md)
+- [Microkernel Architecture](./microkernel-architecture/readme.md)
 - [MVC (Model-View-Controller)](./model-view-controller/readme.md)
 - [Monolithic Architecture](./monolithic-architecture/readme.md)
 - [Space-Based Architecture](./space-based-architecture/readme.md)
 - [Serverless](./serverless/readme.md)
 - [Agentic Architecture (AI Agent Orchestration)](./agentic-architecture/readme.md)
 
-## 🏆 Top 15 Best Architectural Approaches
+## 🏆 Top 16 Best Architectural Approaches
 
 Below are the most popular architectural patterns along with examples, tips, technology stacks, and their logos. A Folder Tree is provided for each to give you a deep understanding of its structure.
 ---
