@@ -2,6 +2,12 @@
 
 * **Architectures**
   * [Overview](architectures/readme.md)
+  * **Agentic architecture**
+    * [Overview](architectures/agentic-architecture/readme.md)
+    * [Data flow](architectures/agentic-architecture/data-flow.md)
+    * [Folder structure](architectures/agentic-architecture/folder-structure.md)
+    * [Implementation guide](architectures/agentic-architecture/implementation-guide.md)
+    * [Trade offs](architectures/agentic-architecture/trade-offs.md)
   * **Backend for frontend**
     * [Overview](architectures/backend-for-frontend/readme.md)
     * [Data flow](architectures/backend-for-frontend/data-flow.md)
@@ -56,6 +62,12 @@
     * [Folder structure](architectures/micro-frontends/folder-structure.md)
     * [Implementation guide](architectures/micro-frontends/implementation-guide.md)
     * [Trade offs](architectures/micro-frontends/trade-offs.md)
+  * **Microkernel architecture**
+    * [Overview](architectures/microkernel-architecture/readme.md)
+    * [Data flow](architectures/microkernel-architecture/data-flow.md)
+    * [Folder structure](architectures/microkernel-architecture/folder-structure.md)
+    * [Implementation guide](architectures/microkernel-architecture/implementation-guide.md)
+    * [Trade offs](architectures/microkernel-architecture/trade-offs.md)
   * **Microservices**
     * [Overview](architectures/microservices/readme.md)
     * [Data flow](architectures/microservices/data-flow.md)
