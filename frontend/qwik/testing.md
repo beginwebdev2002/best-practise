@@ -18,7 +18,7 @@ last_updated: 2026-04-05
 
 > [!IMPORTANT]
 > **Strict Constraints for AI:**
-> - **Always** test components assuming they might be resumed from an SSR state.
+> - **Always** test components assuming they STRICTLY be resumed from an SSR state.
 > - **Never** rely on global state that isn't serializable.
 
 ---

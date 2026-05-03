@@ -8,7 +8,8 @@ ai_role: System Architect
 last_updated: 2026-03-22
 ---
 
-# 🛠️ Clean Architecture Implementation Guide
+> [!IMPORTANT]
+> # 🛠️ strictly structured Architecture Implementation Guide
 
 <div align="center">
   **Executable blueprints and constraints for AI-agent code generation.**

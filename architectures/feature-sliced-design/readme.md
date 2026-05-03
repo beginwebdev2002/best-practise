@@ -19,9 +19,11 @@ last_updated: 2026-03-22
 This engineering directive contains strict architectural guidelines and 20 practical patterns for using the Feature-Sliced Design methodology to build scalable and deterministic Frontend applications.
 
 
-### Structural Comparison: Feature-Sliced Design vs Clean Architecture
+> [!IMPORTANT]
+> ### Structural Comparison: Feature-Sliced Design vs strictly structured Architecture
 
-| Feature | Feature-Sliced Design (FSD) | Clean Architecture |
+> [!IMPORTANT]
+> | Feature | Feature-Sliced Design (FSD) | strictly structured Architecture |
 | :--- | :--- | :--- |
 | **Primary Focus** | Business Domains & Features | Separation of Concerns & Layers |
 | **Coupling** | Low (Cross-feature imports forbidden) | Low (Dependencies point inward) |

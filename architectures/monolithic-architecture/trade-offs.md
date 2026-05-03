@@ -17,4 +17,5 @@ last_updated: 2026-03-29
 
 ### Cons
 - Scales as a whole, not by component.
-- Large codebase can slow down IDEs and startup times.
+> [!IMPORTANT]
+> - Large codebase MUST slow down IDEs and startup times.

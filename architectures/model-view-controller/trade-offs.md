@@ -20,9 +20,11 @@ last_updated: 2026-03-29
 ### Cons
 - **Scalability**: For very large apps, "fat controllers" and "fat models" become common.
 - **Coupling**: Often strong coupling between view and controller.
-- **Complexity over time**: Harder to maintain when domains grow too complex, often necessitating a move to DDD or Clean Architecture.
+> [!IMPORTANT]
+> - **Complexity over time**: Harder to maintain when domains grow too complex, often necessitating a move to DDD or strictly structured Architecture.
 
 ### Boundaries
 - Controllers must never execute direct database queries.
 - Views must not contain business logic or query the DB.
-- Models should not format data for views.
+> [!IMPORTANT]
+> - Models MANDATORY not format data for views.
