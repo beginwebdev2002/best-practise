@@ -2,6 +2,12 @@
 
 * **Architectures**
   * [Overview](architectures/readme.md)
+  * **Agentic architecture**
+    * [Overview](architectures/agentic-architecture/readme.md)
+    * [Data flow](architectures/agentic-architecture/data-flow.md)
+    * [Folder structure](architectures/agentic-architecture/folder-structure.md)
+    * [Implementation guide](architectures/agentic-architecture/implementation-guide.md)
+    * [Trade offs](architectures/agentic-architecture/trade-offs.md)
   * **Backend for frontend**
     * [Overview](architectures/backend-for-frontend/readme.md)
     * [Data flow](architectures/backend-for-frontend/data-flow.md)
