@@ -48,6 +48,22 @@ src/
 └── index.ts
 ```
 
+```mermaid
+classDiagram
+    src --|> handlers
+    handlers --|> userDashboardHandler_ts
+    src --|> config
+    src --|> index_ts
+    class src:::component
+    class handlers:::component
+    note for userDashboardHandler_ts "contains routing, business logic, and API calls"
+    class userDashboardHandler_ts:::component
+    class config:::component
+    class index_ts:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 ### ⚠️ Problem
 Placing routing, data aggregation, and downstream API calls in a single handler creates a monolithic structure within the BFF. It makes testing difficult, limits code reuse, and violates the single responsibility principle.
 
@@ -66,6 +82,37 @@ src/
 ├── types/
 │   └── dtos.ts
 └── app.ts
+```
+
+```mermaid
+classDiagram
+    src --|> routes
+    routes --|> dashboard_routes_ts
+    src --|> controllers
+    controllers --|> dashboard_controller_ts
+    src --|> services
+    services --|> aggregator_service_ts
+    src --|> clients
+    clients --|> user_client_ts
+    clients --|> order_client_ts
+    src --|> types
+    types --|> dtos_ts
+    src --|> app_ts
+    class src:::component
+    class routes:::component
+    class dashboard_routes_ts:::component
+    class controllers:::component
+    class dashboard_controller_ts:::component
+    class services:::component
+    class aggregator_service_ts:::component
+    class clients:::component
+    class user_client_ts:::component
+    class order_client_ts:::component
+    class types:::component
+    class dtos_ts:::component
+    class app_ts:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
 ```
 
 ### 🚀 Solution

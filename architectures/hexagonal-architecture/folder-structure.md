@@ -65,6 +65,65 @@ src/
         └── 📁 external/     # 3rd Party APIs (SendGrid, Stripe)
             └── SendGridEmailSender.ts
 ```
+
+```mermaid
+classDiagram
+    src --|> core
+    core --|> domain
+    domain --|> User_ts
+    domain --|> AccountId_ts
+    core --|> ports
+    ports --|> in
+    in --|> CreateUserUseCase_ts
+    ports --|> out
+    out --|> UserRepositoryPort_ts
+    out --|> EmailSenderPort_ts
+    src --|> adapters
+    adapters --|> primary
+    primary --|> http
+    http --|> UserController_ts
+    primary --|> cli
+    adapters --|> secondary
+    secondary --|> database
+    database --|> PostgresUserRepository_ts
+    secondary --|> external
+    external --|> SendGridEmailSender_ts
+    class src:::component
+    note for core "The Heart of the System (No External Tech"
+    class core:::component
+    note for domain "Entities, Value Objects, Business Rules"
+    class domain:::component
+    class User_ts:::component
+    class AccountId_ts:::component
+    note for ports "Interfaces defining interactions"
+    class ports:::component
+    note for in "Primary Ports (Use Cases / Commands"
+    class in:::component
+    class CreateUserUseCase_ts:::component
+    note for out "Secondary Ports (SPIs / Repositories"
+    class out:::component
+    class UserRepositoryPort_ts:::component
+    class EmailSenderPort_ts:::component
+    note for adapters "Concrete implementations"
+    class adapters:::component
+    note for primary "Entry Points (Driving Adapters"
+    class primary:::component
+    note for http "REST Controllers / Express Routes"
+    class http:::component
+    class UserController_ts:::component
+    note for cli "Console Commands"
+    class cli:::component
+    note for secondary "Exit Points (Driven Adapters"
+    class secondary:::component
+    note for database "ORMs (TypeORM, Prisma"
+    class database:::component
+    class PostgresUserRepository_ts:::component
+    note for external "3rd Party APIs (SendGrid, Stripe"
+    class external:::component
+    class SendGridEmailSender_ts:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
 ## ⛔ Boundary Constraints
 
 1. **Isolation in `core/`:** Code inside `core/` is forbidden from importing modules from `adapters/`.
