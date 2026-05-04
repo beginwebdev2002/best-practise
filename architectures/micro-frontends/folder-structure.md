@@ -29,6 +29,23 @@ monorepo/
 │   ├── mfe-auth/ (imports directly from app-shell)
 ```
 
+```mermaid
+classDiagram
+    monorepo --|> packages
+    packages --|> shared_ui
+    packages --|> app_shell
+    packages --|> mfe_auth
+    class monorepo:::component
+    class packages:::component
+    note for shared_ui "contains business logic!"
+    class shared_ui:::component
+    class app_shell:::component
+    note for mfe_auth "imports directly from app-shell"
+    class mfe_auth:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 #### ⚠️ Problem
 Storing business logic in shared libraries or directly importing cross-package code defeats the purpose of micro-frontends. It binds deployment cycles together, meaning a change in `shared-ui` forces all dependent MFEs to re-test and redeploy simultaneously.
 
@@ -42,6 +59,32 @@ workspace/
 ├── packages/
 │   ├── design-system/ (Pure, dumb UI components only)
 │   └── event-bus/ (Agnostic communication contract types)
+```
+
+```mermaid
+classDiagram
+    workspace --|> apps
+    apps --|> app_shell
+    apps --|> mfe_catalog
+    apps --|> mfe_checkout
+    workspace --|> packages
+    packages --|> design_system
+    packages --|> event_bus
+    class workspace:::component
+    class apps:::component
+    note for app_shell "Entry point, Router, Module Federation config"
+    class app_shell:::component
+    note for mfe_catalog "Independent application"
+    class mfe_catalog:::component
+    note for mfe_checkout "Independent application"
+    class mfe_checkout:::component
+    class packages:::component
+    note for design_system "Pure, dumb UI components only"
+    class design_system:::component
+    note for event_bus "Agnostic communication contract types"
+    class event_bus:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
 ```
 
 

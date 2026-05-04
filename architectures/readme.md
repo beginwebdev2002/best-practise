@@ -102,6 +102,31 @@ src/
 └── 📁 shared/     # Reusable code (UI-components, API, utils)
 ```
 
+```mermaid
+classDiagram
+    src --|> app
+    src --|> pages
+    src --|> widgets
+    src --|> features
+    src --|> entities
+    src --|> shared
+    class src:::component
+    note for app "Global app setup (Global Store, Global CSS, Router init"
+    class app:::component
+    note for pages "Pages and Routing"
+    class pages:::component
+    note for widgets "Complex, independent UI blocks (Header, Footer"
+    class widgets:::component
+    note for features "Business-value user actions (UserAuth, AddToCart"
+    class features:::component
+    note for entities "Core business entities (User, Product"
+    class entities:::component
+    note for shared "Reusable code (UI-components, API, utils"
+    class shared:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 **Best Compatibility:**
 - **Frameworks:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" width="16"/> React, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg" width="16"/> Vue, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" width="16"/> Angular
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript
@@ -142,6 +167,25 @@ src/
 └── 📁 infrastructure/       # The outside world: DB Repositories, Frameworks, UI
 ```
 
+```mermaid
+classDiagram
+    src --|> domain
+    src --|> usecases
+    src --|> interface_adapters
+    src --|> infrastructure
+    class src:::component
+    note for domain "The heart of the system: Entities and Interfaces"
+    class domain:::component
+    note for usecases "Business Scenarios (Interactors"
+    class usecases:::component
+    note for interface_adapters "Controllers, Presenters, Gateways (Data translators"
+    class interface_adapters:::component
+    note for infrastructure "The outside world: DB Repositories, Frameworks, UI"
+    class infrastructure:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 **Best Compatibility:**
 - **Frameworks:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" width="16"/> NestJS, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" width="16"/> Spring Boot
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" width="16"/> C#, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript
@@ -180,6 +224,25 @@ src/
 ├── 📁 views/         # Templates (HTML, Pug, EJS) or React views
 ├── 📁 controllers/   # HTTP request handlers bridging Model and View
 └── 📁 routes/        # API endpoint definitions (URLs)
+```
+
+```mermaid
+classDiagram
+    src --|> models
+    src --|> views
+    src --|> controllers
+    src --|> routes
+    class src:::component
+    note for models "Database schemas and data manipulation methods"
+    class models:::component
+    note for views "Templates (HTML, Pug, EJS"
+    class views:::component
+    note for controllers "HTTP request handlers bridging Model and View"
+    class controllers:::component
+    note for routes "API endpoint definitions (URLs"
+    class routes:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
 ```
 
 **Best Compatibility:**
@@ -225,6 +288,28 @@ microservices-cluster/
 └── 📁 api-gateway/          # Router for all external client requests
 ```
 
+```mermaid
+classDiagram
+    microservices_cluster --|> auth_service
+    microservices_cluster --|> order_service
+    microservices_cluster --|> payment_service
+    microservices_cluster --|> notification_service
+    microservices_cluster --|> api_gateway
+    class microservices_cluster:::component
+    note for auth_service "Authentication Microservice (w/ PostgreSQL"
+    class auth_service:::component
+    note for order_service "Orders Microservice (w/ MongoDB"
+    class order_service:::component
+    note for payment_service "Transaction logic layer"
+    class payment_service:::component
+    note for notification_service "Email and Push notifications"
+    class notification_service:::component
+    note for api_gateway "Router for all external client requests"
+    class api_gateway:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 **Best Compatibility:**
 - **Frameworks:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" width="16"/> Spring Boot (Netflix OSS), <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" width="16"/> NestJS (Microservices module)
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original.svg" width="16"/> Go, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" width="16"/> Node.js
@@ -268,6 +353,31 @@ src/
     └── 📁 secondary/        # MongoAdapter.ts, PostgresAdapter.ts (System Exit)
 ```
 
+```mermaid
+classDiagram
+    src --|> core
+    core --|> ports
+    core --|> domain
+    src --|> adapters
+    adapters --|> primary
+    adapters --|> secondary
+    class src:::component
+    note for core "Ports (Interfaces"
+    class core:::component
+    note for ports "IUserRepository.ts"
+    class ports:::component
+    note for domain "Business rules for the application"
+    class domain:::component
+    note for adapters "Concrete implementations (Adapters"
+    class adapters:::component
+    note for primary "HTTP Controllers, GraphQL (System Entry"
+    class primary:::component
+    note for secondary "MongoAdapter.ts, PostgresAdapter.ts (System Exit"
+    class secondary:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 **Best Compatibility:**
 - **Frameworks:** Any strictly-typed IoC frameworks.
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" width="16"/> C#
@@ -309,6 +419,32 @@ src/
     └── ...
 ```
 
+```mermaid
+classDiagram
+    src --|> identity_access
+    identity_access --|> domain
+    identity_access --|> application
+    identity_access --|> infrastructure
+    src --|> content_management
+    content_management --|> domain_1
+    content_management --|> ___
+    class src:::component
+    note for identity_access "Bounded Context (Auth domain"
+    class identity_access:::component
+    note for domain "Aggregates, Value Objects, Entities"
+    class domain:::component
+    note for application "Command Handlers (Business Use Cases"
+    class application:::component
+    note for infrastructure "DB Repositories"
+    class infrastructure:::component
+    note for content_management "Bounded Context (Articles domain"
+    class content_management:::component
+    class domain_1:::component
+    class ___:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 **Best Compatibility:**
 - **Frameworks:** Complex Backend ERP or Banking systems.
 - **Languages:** Highly-typed OOP languages (Java, C#, TypeScript).
@@ -346,6 +482,25 @@ src/
 ├── 📁 subscribers/          # Listen to events (e.g., NotifyUserListener)
 ├── 📁 events/               # Type definitions for event payloads
 └── 📁 brokers/              # Connection configurations to message brokers
+```
+
+```mermaid
+classDiagram
+    src --|> publishers
+    src --|> subscribers
+    src --|> events
+    src --|> brokers
+    class src:::component
+    note for publishers "Generate events (e.g., OrderPayedEvent"
+    class publishers:::component
+    note for subscribers "Listen to events (e.g., NotifyUserListener"
+    class subscribers:::component
+    note for events "Type definitions for event payloads"
+    class events:::component
+    note for brokers "Connection configurations to message brokers"
+    class brokers:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
 ```
 
 **Best Compatibility:**
@@ -386,6 +541,28 @@ project-functions/
 └── serverless.yml         # Deployment config for AWS / GCP (Serverless Framework)
 ```
 
+```mermaid
+classDiagram
+    project_functions --|> user_signup
+    user_signup --|> index_js
+    user_signup --|> package_json
+    project_functions --|> process_payment
+    project_functions --|> serverless_yml
+    class project_functions:::component
+    note for user_signup "Cloud Function (Lambda"
+    class user_signup:::component
+    note for index_js "Function entry point (exports.handler"
+    class index_js:::component
+    note for package_json "Dependencies specific to this function alone"
+    class package_json:::component
+    note for process_payment "Cloud Function to process Stripe payments"
+    class process_payment:::component
+    note for serverless_yml "Deployment config for AWS / GCP (Serverless Framework"
+    class serverless_yml:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 **Best Compatibility:**
 - **Frameworks:** Serverless Framework, AWS SAM. Clouds: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-plain.svg" width="16"/> Firebase, Vercel Functions.
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" width="16"/> Node.js, Python, Go (Languages with O(1) or O(n) cold starts).
@@ -422,6 +599,25 @@ monolith-app/
 ├── 📁 config/        # Environment configurations (DB, S3)
 ├── 📁 src/           # All business logic (Controllers, Services)
 └── 📁 workers/       # Background processes (e.g., Queue processing)
+```
+
+```mermaid
+classDiagram
+    monolith_app --|> public
+    monolith_app --|> config
+    monolith_app --|> src
+    monolith_app --|> workers
+    class monolith_app:::component
+    note for public "Static files for the server (incl. bundled React UI"
+    class public:::component
+    note for config "Environment configurations (DB, S3"
+    class config:::component
+    note for src "All business logic (Controllers, Services"
+    class src:::component
+    note for workers "Background processes (e.g., Queue processing"
+    class workers:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
 ```
 
 **Best Compatibility:**
@@ -467,6 +663,30 @@ src/
     └── GetUserHandler.ts      # Logic: Reads from a blazing fast DB (Elastic/Redis)
 ```
 
+```mermaid
+classDiagram
+    src --|> commands
+    commands --|> CreateUserCommand_ts
+    commands --|> CreateUserHandler_ts
+    src --|> queries
+    queries --|> GetUserQuery_ts
+    queries --|> GetUserHandler_ts
+    class src:::component
+    note for commands "Mutates system state"
+    class commands:::component
+    note for CreateUserCommand_ts "The incoming data structure"
+    class CreateUserCommand_ts:::component
+    note for CreateUserHandler_ts "Logic: Writes to the heavy Main DB (Postgres"
+    class CreateUserHandler_ts:::component
+    note for queries "Exclusively reading data"
+    class queries:::component
+    class GetUserQuery_ts:::component
+    note for GetUserHandler_ts "Logic: Reads from a blazing fast DB (Elastic/Redis"
+    class GetUserHandler_ts:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 **Best Compatibility:**
 - **Frameworks:** NestJS (`@nestjs/cqrs`), MediatR (.NET).
 - **Languages:** Strongly-typed languages (TypeScript, C#).
@@ -508,6 +728,32 @@ workspace/
 └── 📁 packages/
     ├── 📁 design-system/ # Pure, dumb UI components only
     └── 📁 event-bus/     # Agnostic communication contract types
+```
+
+```mermaid
+classDiagram
+    workspace --|> apps
+    apps --|> app_shell
+    apps --|> mfe_catalog
+    apps --|> mfe_checkout
+    workspace --|> packages
+    packages --|> design_system
+    packages --|> event_bus
+    class workspace:::component
+    class apps:::component
+    note for app_shell "Entry point, Router, Module Federation config"
+    class app_shell:::component
+    note for mfe_catalog "Independent application"
+    class mfe_catalog:::component
+    note for mfe_checkout "Independent application"
+    class mfe_checkout:::component
+    class packages:::component
+    note for design_system "Pure, dumb UI components only"
+    class design_system:::component
+    note for event_bus "Agnostic communication contract types"
+    class event_bus:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
 ```
 
 **Best Compatibility:**
@@ -556,6 +802,25 @@ src/
     └── event-store/
 ```
 
+```mermaid
+classDiagram
+    src --|> commands
+    src --|> aggregates
+    src --|> events
+    src --|> projections
+    src --|> infrastructure
+    infrastructure --|> event_store
+    class src:::component
+    class commands:::component
+    class aggregates:::component
+    class events:::component
+    class projections:::component
+    class infrastructure:::component
+    class event_store:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 - **When to use:** When you need a complete audit log, temporal queries, or when decoupling read and write models is critical.
 - **Patterns / Principles:** Event Log, CQRS, Projections, Snapshots.
 
@@ -594,6 +859,25 @@ src/
 ├── 📁 controllers/      # Handles incoming requests from specific clients
 ├── 📁 services/         # Aggregates data from multiple downstream APIs
 └── 📁 clients/          # Logic to call downstream Microservices
+```
+
+```mermaid
+classDiagram
+    src --|> routes
+    src --|> controllers
+    src --|> services
+    src --|> clients
+    class src:::component
+    note for routes "Route definitions mapped to controllers"
+    class routes:::component
+    note for controllers "Handles incoming requests from specific clients"
+    class controllers:::component
+    note for services "Aggregates data from multiple downstream APIs"
+    class services:::component
+    note for clients "Logic to call downstream Microservices"
+    class clients:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
 ```
 
 **Best Compatibility:**
@@ -642,6 +926,22 @@ src/
 └── 📁 grid-storage/     # In-Memory Data Grid operations
 ```
 
+```mermaid
+classDiagram
+    src --|> processing_units
+    src --|> virtual_middleware
+    src --|> grid_storage
+    class src:::component
+    note for processing_units "Independent logic components"
+    class processing_units:::component
+    note for virtual_middleware "Handles messaging and grid routing"
+    class virtual_middleware:::component
+    note for grid_storage "In-Memory Data Grid operations"
+    class grid_storage:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 **Best Compatibility:**
 - **Frameworks:** Hazelcast, Apache Ignite, GigaSpaces.
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" width="16"/> C#, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original.svg" width="16"/> Go.
@@ -687,6 +987,22 @@ src/
 └── 📁 memory/           # Shared context and validation schemas
 ```
 
+```mermaid
+classDiagram
+    src --|> orchestrator
+    src --|> workers
+    src --|> memory
+    class src:::component
+    note for orchestrator "Main coordinator agent"
+    class orchestrator:::component
+    note for workers "Specialized worker agents (Planner, Coder, Reviewer"
+    class workers:::component
+    note for memory "Shared context and validation schemas"
+    class memory:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 **Best Compatibility:**
 - **Frameworks:** LangChain, AutoGen, CrewAI.
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="16"/> Python, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript.
@@ -713,6 +1029,22 @@ src/
 ├── 📁 core/             # Core system orchestrator and registry interfaces
 ├── 📁 plugins/          # Independent modules implementing core interfaces
 └── 📁 shared/           # Data types and common utilities
+```
+
+```mermaid
+classDiagram
+    src --|> core
+    src --|> plugins
+    src --|> shared
+    class src:::component
+    note for core "Core system orchestrator and registry interfaces"
+    class core:::component
+    note for plugins "Independent modules implementing core interfaces"
+    class plugins:::component
+    note for shared "Data types and common utilities"
+    class shared:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
 ```
 
 **Best Compatibility:**

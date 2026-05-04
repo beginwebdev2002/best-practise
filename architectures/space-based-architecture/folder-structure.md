@@ -39,6 +39,57 @@ src/
     └── recovery/
 ```
 
+```mermaid
+classDiagram
+    src --|> api_gateway
+    api_gateway --|> routes
+    api_gateway --|> middleware
+    src --|> middleware_1
+    middleware_1 --|> load_balancer
+    middleware_1 --|> data_router
+    src --|> processing_units
+    processing_units --|> auth_unit
+    auth_unit --|> logic
+    auth_unit --|> data_access
+    processing_units --|> catalog_unit
+    catalog_unit --|> logic_1
+    catalog_unit --|> data_access_1
+    src --|> data_grid
+    data_grid --|> schemas
+    data_grid --|> config
+    src --|> data_pumps
+    data_pumps --|> writers
+    data_pumps --|> recovery
+    class src:::component
+    note for api_gateway "Routing and basic validation"
+    class api_gateway:::component
+    class routes:::component
+    class middleware:::component
+    note for middleware_1 "Virtualized middleware for processing unit routing"
+    class middleware_1:::component
+    class load_balancer:::component
+    class data_router:::component
+    note for processing_units "Independent processing components"
+    class processing_units:::component
+    class auth_unit:::component
+    class logic:::component
+    note for data_access "Communicates with IMDG"
+    class data_access:::component
+    class catalog_unit:::component
+    class logic_1:::component
+    class data_access_1:::component
+    note for data_grid "IMDG configuration and schema definitions"
+    class data_grid:::component
+    class schemas:::component
+    class config:::component
+    note for data_pumps "Background services syncing IMDG to DB"
+    class data_pumps:::component
+    class writers:::component
+    class recovery:::component
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 ## Layering Logic
 
 - **api-gateway:** The initial entry point. Minimal logic.
