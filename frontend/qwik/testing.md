@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "1+"
 tags: [qwik, testing, best-practices, clean-code, resumability, vibe-coding]
 ai_role: Senior Qwik Testing Expert
-last_updated: 2026-04-05
+last_updated: 2026-05-05
 ---
 
 # 🧪 Qwik Testing Best Practices

@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "1.x"
 tags: [performance, advanced, qwik, best-practices, clean-code, scalable-code]
 ai_role: Senior Qwik Performance Expert
-last_updated: 2026-03-22
+last_updated: 2026-05-05
 ---
 
 # 🚀 Qwik Advanced Performance Best Practices

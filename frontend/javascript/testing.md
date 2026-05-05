@@ -5,7 +5,7 @@ level: Senior/Architect
 version: ES6-ES2024
 tags: [javascript, testing, best-practices, clean-code, tdd, vibe-coding]
 ai_role: Senior JavaScript Testing Expert
-last_updated: 2026-04-05
+last_updated: 2026-05-05
 ---
 
 # 🧪 JavaScript Testing Best Practices
