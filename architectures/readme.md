@@ -57,6 +57,7 @@ Don't know where to start? Here are a few golden rules:
 - [Monolithic Architecture](./monolithic-architecture/readme.md)
 - [Space-Based Architecture](./space-based-architecture/readme.md)
 - [Serverless](./serverless/readme.md)
+- [Vibe Coding Patterns](./vibe-coding-patterns/readme.md)
 - [Agentic Architecture (AI Agent Orchestration)](./agentic-architecture/readme.md)
 
 ## 🏆 Top 15 Best Architectural Approaches
@@ -719,3 +720,42 @@ src/
 - **Frameworks:** Eclipse, VS Code, Webpack, Babel.
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="16"/> Python.
 - **Patterns / Principles:** Open/Closed Principle, Dependency Inversion, Registry Pattern.
+
+---
+
+### 17. Vibe Coding Patterns
+[![Vibe Coding Patterns](https://img.shields.io/badge/Architecture-Vibe_Coding-black?style=flat-square)](#)
+
+**Description:** An architecture pattern designed specifically for deterministic collaboration between human developers and AI Orchestration systems, emphasizing strict types and unambiguous workflows.
+**📖 Map of Patterns:** [Go to Vibe Coding Patterns Guidelines](./vibe-coding-patterns/readme.md)
+
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph LR
+    User[Human Developer] --> Agent[AI Agent]
+    Agent --> Repo[Repository]
+    Repo -.-> CI[Validation]
+    CI -.-> User
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class User component;
+    class Agent layout;
+    class Repo component;
+    class CI component;
+```
+
+```text
+src/
+├── 📁 orchestrator/     # AI execution logic
+├── 📁 core/             # Business rules and explicit types
+└── 📁 validations/      # CI checks and verification rules
+```
+
+**Best Compatibility:**
+- **Frameworks:** Agnostic.
+- **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="16"/> Python.
+- **Patterns / Principles:** Vibe Coding, Zero-Approval AI, Orchestration.
