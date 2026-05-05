@@ -226,7 +226,7 @@ const user = await db.query('SELECT * FROM users WHERE email = $1', [value.email
 ### 🚀 Solution
 Never trust external data. Validate input strictly using schema definitions and always utilize parameterized queries or an ORM to prevent SQL/NoSQL Injection attacks.
 
-## 9. 🚀 Utilizing Worker Threads for Heavy Tasks
+## 9. ⚡ Utilizing Worker Threads for Heavy Tasks
 
 ### ❌ Bad Practice
 ```javascript

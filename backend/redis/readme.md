@@ -116,7 +116,7 @@ const redisClient = redis.createClient({
 ```
 ### 🚀 Solution
 Mandate TLS (Transport Layer Security) for encrypting all data in transit, ensuring that even if the internal network is compromised, the Redis traffic remains secure.
-## 🚀 3. Performance Optimization
+## ⚡ 3. Performance Optimization
 
 ### Command Usage
 ### ❌ Bad Practice
