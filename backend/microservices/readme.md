@@ -133,7 +133,7 @@ services:
 ```
 ### 🚀 Solution
 Enforce the "Database per Service" pattern. Services must never share a single database or directly query another service's tables. Ensure independent scaling, deployment, and technology choices per domain.
-## 🚀 3. Reliability Optimization
+## 🛡️ 3. Reliability Optimization
 
 ### Resilience Patterns
 ### ❌ Bad Practice

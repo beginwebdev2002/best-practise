@@ -105,7 +105,7 @@ REVOKE DROP ON ALL TABLES IN SCHEMA public FROM app_user;
 ```
 ### 🚀 Solution
 Enforce the Principle of Least Privilege (PoLP). Create specific, restricted database roles for application services. Implement Row-Level Security (RLS) for multi-tenant applications to isolate data strictly at the database layer.
-## 🚀 3. Performance Optimization
+## ⚡ 3. Performance Optimization
 
 ### Indexing Strategies
 ### ❌ Bad Practice
