@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [vibe-coding, a11y, html, w3c, wcag, best-practices]
 ai_role: Frontend UI/UX Enforcer
-last_updated: 2026-03-29
+last_updated: 2026-05-05
 ---
 
 # ♿ Accessibility (A11y) Standards

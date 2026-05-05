@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "1.8+"
 tags: [performance, advanced, solidjs, best-practices, clean-code, scalable-code]
 ai_role: Senior SolidJS Performance Expert
-last_updated: 2026-03-22
+last_updated: 2026-05-05
 ---
 
 # 🚀 SolidJS Advanced Performance Best Practices

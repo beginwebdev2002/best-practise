@@ -3,12 +3,12 @@ technology: TypeScript
 domain: frontend
 level: Senior/Architect
 version: "5.5+"
-tags: [typescript, best-practices, clean-code, types]
+tags: [typescript, best-practices, clean-code, fundamentals]
 ai_role: Senior TypeScript Expert
 last_updated: 2026-05-05
 ---
 
-# 📜 Types & Interfaces
+# 🚀 Fundamentals (1-10)
 
 [⬆️ Back to Top](./readme.md)
 
@@ -34,7 +34,6 @@ function process(data: unknown) {
 ### 🚀 Solution
 Use `unknown` for values whose type is not yet determined. It requires a type check or assertion before usage, ensuring the developer acknowledges the data's structure.
 ---
-
 ## ⚡ 2. `null` vs `undefined` in APIs
 > [!NOTE]
 > **Context:** Distinguishing between "value not provided" and "value is empty."
@@ -55,7 +54,6 @@ interface UserResponse {
 ### 🚀 Solution
 Standardize: use `undefined` (optional properties) for missing keys and `null` for intentional absence of value. Avoid using both for the same field unless strictly required by a legacy API.
 ---
-
 ## ⚡ 3. `Array<T>` vs `T[]`
 > [!NOTE]
 > **Context:** Visual consistency in array declarations.
@@ -74,7 +72,6 @@ const complex: (string | number)[] = [];
 ### 🚀 Solution
 Prefer the shorthand `T[]`. It is idiomatic, more readable, and clearly distinguishes arrays from other generic containers like `Record` or `Promise`.
 ---
-
 ## ⚡ 4. `interface` vs `type`
 > [!NOTE]
 > **Context:** Defining object structures and aliases.
@@ -93,8 +90,9 @@ type Status = "active" | "inactive";
 ### 🚀 Solution
 > [!IMPORTANT]
 > Prefer `interface` for structure, `type` for unions. Interfaces provide better error messages and performance for structural types in TypeScript 5.x.
+>
+> **Logical Conflict Resolution:** To enforce the repo standard, NEVER use `type` for defining object structures, and NEVER use `interface` for unions.
 ---
-
 ## ⚡ 5. Function Overloads vs Union Types
 > [!NOTE]
 > **Context:** Handling functions with different input/output combinations.
@@ -116,4 +114,46 @@ function format(input: string | number): string {
 ```
 ### 🚀 Solution
 Prefer Union types when the implementation logic is identical for all types. Reserve overloads only for cases where the return type strictly depends on the input type and cannot be expressed via generics.
+---
+## 🎯 6. Global Scope Pollution (Legacy Namespaces)
+> [!NOTE]
+> **Context:** Organizing code in the ES Module era.
+### ❌ Bad Practice
+```typescript
+namespace Utils {
+    export const log = (msg: string) => console.log(msg);
+}
+```
+### ⚠️ Problem
+Namespaces are a legacy TypeScript feature. They don't play well with modern bundlers (Tree Shaking), are harder to test, and can lead to naming collisions in the global scope.
+### ✅ Best Practice
+```typescript
+// utils.ts
+export const log = (msg: string) => console.log(msg);
+```
+### 🚀 Solution
+Use ES Modules (`export`/`import`). They are the industry standard, supported by all modern environments, and allow for better static analysis.
+---
+## ⚡ 7. `enum` vs `const object`
+> [!NOTE]
+> **Context:** Grouping related constants.
+### ❌ Bad Practice
+```typescript
+enum Status {
+    Active,
+    Inactive
+}
+```
+### ⚠️ Problem
+Enums generate extra runtime code and have "reverse mapping" behavior that can lead to bugs (e.g., `Status[0]` returns "Active"). They also don't align with "TypeScript as a type-only layer."
+### ✅ Best Practice
+```typescript
+const STATUS = {
+    ACTIVE: 'active',
+    INACTIVE: 'inactive'
+} as const;
+type Status = typeof STATUS[keyof typeof STATUS];
+```
+### 🚀 Solution
+Use `const` objects with `as const` and a derived union type. This is more predictable, emits cleaner code, and is easier to iterate over.
 ---

@@ -5,7 +5,7 @@ level: Senior/Architect
 version: ES6-ES2024
 tags: [javascript, clean-code, es6, performance, best-practices]
 ai_role: Senior JavaScript Performance Expert
-last_updated: 2026-03-22
+last_updated: 2026-05-05
 ---
 
 # 🎨 JavaScript Best Practise

@@ -5,7 +5,7 @@ level: Senior/Architect
 version: 20+
 tags: [performance, advanced, angular, best-practices, clean-code, scalable-code]
 ai_role: Senior Angular Performance Expert
-last_updated: 2026-03-22
+last_updated: 2026-05-05
 ---
 
 # 🚀 Angular Advanced Performance Best Practices & Expert Patterns
