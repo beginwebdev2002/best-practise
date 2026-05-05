@@ -44,6 +44,17 @@ To maximize the value of the $300 Google Cloud free tier/credits, follow these b
 4. **Monitoring:**
    - Use the [Google Cloud Console Billing](https://console.cloud.google.com/billing) to set alerts at 50%, 75%, and 90% of credit usage.
    - Check Vertex AI "Quotas & System Limits" to ensure no unexpected spikes in usage.
+
+```mermaid
+graph LR
+    A[Selective Triggering] --> B[Model Selection]
+    B --> C[Storage Lifecycle]
+    C --> D[Monitoring]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class A,B,C,D default;
+```
 ## Setup Requirements
 Ensure the following GitHub Secrets are configured:
 - `GCP_SA_KEY`: Service Account JSON with Vertex AI User and Storage Admin roles.
