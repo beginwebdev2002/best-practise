@@ -35,7 +35,8 @@ Designing robust AI systems requires treating agents as microservices. Each agen
 
 | Orchestration Pattern | Complexity | Scalability | Best Use Case | Fault Tolerance |
 | :--- | :--- | :--- | :--- | :--- |
-| **Hierarchical Manager** | Medium | High | Complex problem solving | High (Manager can retry) |
+> [!IMPORTANT]
+> | **Hierarchical Manager** | Medium | High | Complex problem solving | High (Manager MUST retry) |
 | **Sequential Pipeline** | Low | Medium | Content generation, ETL | Low (Bottlenecks) |
 | **Swarm / P2P** | High | Very High | Real-time negotiation | Very High |
 | **Event-Driven Actors** | Very High | Extreme | System monitoring, IoT | Extreme |

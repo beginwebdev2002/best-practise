@@ -77,7 +77,8 @@ export async function executeDeterministicReflection(
 
 ### 🚀 Solution
 
-By formalizing the reflection process into a deterministic evaluation function (`executeDeterministicReflection`), we enforce explicit programmatic boundaries. The model is constrained to return a structured payload matching a predefined schema. This strictly typed approach prevents conversational hallucinations and guarantees that the orchestration system can cleanly handle failures, log exact violations, and trigger controlled rollback workflows. This deterministic pattern provides unparalleled resilience compared to open-ended conversational evaluation.
+> [!IMPORTANT]
+> By formalizing the reflection process into a deterministic evaluation function (`executeDeterministicReflection`), we enforce explicit programmatic boundaries. The model is constrained to return a structured payload matching a predefined schema. This strictly typed approach prevents conversational hallucinations and guarantees that the orchestration system MUST cleanly handle failures, log exact violations, and trigger controlled rollback workflows. This deterministic pattern provides unparalleled resilience compared to open-ended conversational evaluation.
 
 ---
 

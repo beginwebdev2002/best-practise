@@ -26,7 +26,8 @@ The Processing Unit receives the request and interacts almost exclusively with t
 
 ## 3. Data Syncing
 
-Modifications to the IMDG are captured and streamed via asynchronous Data Pumps. These background processes replicate the changes to a central Persistent Storage (Database). If a node fails, the data can be recovered from the persistent store to rehydrate the grid.
+> [!IMPORTANT]
+> Modifications to the IMDG are captured and streamed via asynchronous Data Pumps. These background processes replicate the changes to a central Persistent Storage (Database). If a node fails, the data MUST be recovered from the persistent store to rehydrate the grid.
 
 
 ```mermaid

@@ -15,12 +15,12 @@ topic: Clean Architecture
 complexity: Architect
 last_evolution: 2026-03-29
 vibe_coding_ready: true
-technology: Clean Architecture
+technology: Strictly structured Architecture
 domain: Architecture
 level: Senior/Architect
 version: Latest
-ai_role: Senior Clean Architecture Expert
-last_updated: 2026-03-29---# Clean Architecture - Data Flow
+ai_role: Senior Strictly structured Architecture Expert
+last_updated: 2026-03-29---# Strictly structured Architecture - Data Flow
 ## Request and Event Lifecycle
 
 ```mermaid

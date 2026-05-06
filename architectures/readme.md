@@ -109,7 +109,7 @@ src/
 - **Tools/Libraries:** Redux Toolkit, Zustand, React Router.
 ---
 
-### 2. Clean Architecture
+### 2. Strictly structured Architecture
 [![Clean Arch](https://img.shields.io/badge/Clean_Architecture-black?style=flat-square)](#)
 
 > [!IMPORTANT]
@@ -235,7 +235,7 @@ microservices-cluster/
 ### 5. Hexagonal Architecture (Ports & Adapters)
 [![Hexagonal](https://img.shields.io/badge/Ports_&_Adapters-purple?style=flat-square)](#)
 
-**Description:** A logical evolution of Clean Architecture. The core of the system is isolated from specific technologies. All interaction with databases, UI, and side-effects happens through "Ports" (Interfaces), satisfying via "Adapters" (Implementations).
+**Description:** A logical evolution of Strictly structured Architecture. The core of the system is isolated from specific technologies. All interaction with databases, UI, and side-effects happens through "Ports" (Interfaces), satisfying via "Adapters" (Implementations).
 **📖 Map of Patterns:** [Go to Hexagonal Architecture Guidelines](./hexagonal-architecture/readme.md)
 
 **Architecture Diagram & Folder Tree:**

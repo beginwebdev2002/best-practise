@@ -81,7 +81,7 @@ graph TD
 ## 4. Documentation Quality Standards
 
 When writing or updating **system documentation**, Jules must verify the following constraints:
-- [ ] **Technical Easy English:** Ensure all additions use simple, professional English without slang or jargon (or provide explanations for technical terms if required).
+- [ ] **Technical Easy English:** Ensure all additions use strictly structured, professional English without slang or jargon (or provide explanations for technical terms if required).
 - [ ] **Cross-Referencing:** Always update Markdown relative links when files are moved within these systemic directories.
 - [ ] **Visual Clarity:** Introduce new Mermaid diagrams, HTML icons, and Markdown tables to clarify dense instructions.
 - [ ] **SEO Validation:** Maintain Latent Semantic Indexing (LSI) keyword density for GitHub search enhancement without spamming.
