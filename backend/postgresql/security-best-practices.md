@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "16+"
 tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, postgresql, database, sql, rdbms, system-design, production-ready, scalable-code]
 ai_role: Senior PostgreSQL Database Architect
-last_updated: 2026-03-27
+last_updated: 2026-05-06
 ---
 
 # 🐘 PostgreSQL Security Best Practices
