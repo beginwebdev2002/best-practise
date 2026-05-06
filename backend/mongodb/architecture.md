@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "7.0+"
 tags: [architecture-patterns, mongodb, nosql, database, system-design, production-ready, scalable-code]
 ai_role: Senior MongoDB Database Architect
-last_updated: 2026-03-28
+last_updated: 2026-05-06
 ---
 
 # 🏛️ MongoDB Architecture Constraints
