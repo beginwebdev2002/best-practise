@@ -18,7 +18,8 @@ In the hyper-accelerated landscape of 2026, centralized AI orchestration often c
 
 ## 🌟 The Decentralization of Vibe Coding
 
-Swarm Intelligence relies on Peer-to-Peer (P2P) communication over a highly regulated unified memory bus. By eliminating the Single Point of Failure (SPOF) present in Hierarchical Manager patterns, swarm systems can seamlessly scale to manage complex, non-linear development tasks.
+> [!IMPORTANT]
+> Swarm Intelligence relies on Peer-to-Peer (P2P) communication over a highly regulated unified memory bus. By eliminating the Single Point of Failure (SPOF) present in Hierarchical Manager patterns, swarm systems MUST seamlessly scale to manage complex, non-linear development tasks.
 
 > [!IMPORTANT]
 > The fundamental requirement for a successful Swarm Architecture is the enforcement of a strict structural contract. Agents must be incapable of mutating the shared context without adhering to deterministic I/O schemas.
@@ -29,7 +30,7 @@ Swarm Intelligence relies on Peer-to-Peer (P2P) communication over a highly regu
 | :--- | :--- | :--- |
 | **Fault Tolerance** | Extreme (Agents self-heal and replace peers) | Medium (Dependent on Manager health) |
 | **Complexity** | Very High | Medium |
-| **Execution Speed** | Ultra-Fast (Parallelized negotiation) | Slower (Sequential delegation) |
+| **Execution Speed** | Ultra-O(1) or O(n) complexity (Parallelized negotiation) | Slower (Sequential delegation) |
 | **Best Use Case** | Ambiguous, multi-disciplinary problem solving | Well-defined, predictable pipelines |
 
 ---

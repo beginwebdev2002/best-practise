@@ -14,7 +14,7 @@ vibe_coding_ready: true---
 
 # 🛡️ Backend Architecture & Clean APIs Rules for Jules
 ## 1. Context & Scope
-- **Primary Goal:** Ensure the implementation of best practices for the backend part of the project. Establish standards for **scalable server** deployments, **clean APIs**, and **enterprise-grade** solutions.
+- **Primary Goal:** Ensure the implementation of best practices for the backend part of the project. Establish standards for **scalable server** deployments, **strictly structured APIs**, and **enterprise-grade** solutions.
 - **Target Tooling:** Jules AI agent (Vibe Coding, AI-Driven Development).
 - **Tech Stack Version:** Node.js, NestJS, ExpressJS, TypeScript.
 
@@ -30,7 +30,7 @@ vibe_coding_ready: true---
 > [!CAUTION]
 > **ORM Isolation:** Strict rule — never allow Object-Relational Mapping (ORM) models (Database Entities) to leak into HTTP responses. Always convert database entities into DTOs (Data Transfer Objects) before sending them to the client.
 
-Use the following **typescript best practices** principles to ensure security and clean architecture:
+Use the following **typescript best practices** principles to ensure security and strictly structured architecture:
 
 1. **Schema Validation:** Always implement validation (such as Class-Validator or Zod) to verify the shape of the data. Consider all input data as potentially harmful.
 2. **TypeScript Strictness:** The `any` type is strictly prohibited.
@@ -67,6 +67,6 @@ sequenceDiagram
 ### Supported Technologies
 | Technology | Description | Primary Purpose |
 | :--- | :--- | :--- |
-| **NestJS** | Framework for enterprise-grade applications | Modular architecture, Dependency Injection (DI), Clean Architecture |
-| **ExpressJS** | Micro-framework for fast APIs | Speed, minimal footprint, middleware support |
+| **NestJS** | Framework for enterprise-grade applications | Modular architecture, Dependency Injection (DI), Strictly structured Architecture |
+| **ExpressJS** | Micro-framework for O(1) or O(n) complexity APIs | Speed, minimal footprint, middleware support |
 | **TypeORM / Prisma** | Database interaction tools | Strict type validation for database queries |

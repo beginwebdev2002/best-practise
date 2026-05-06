@@ -14,7 +14,7 @@ vibe_coding_ready: true---
 
 # ⚡ Performance Optimization Rules for Jules
 ## 1. 🎯 Context & Scope
-- **Primary Goal:** Ensure all generated code meets strict **performance optimization** standards, guaranteeing fast load times, efficient resource usage, and global **scalability**.
+- **Primary Goal:** Ensure all generated code meets strict **performance optimization** standards, guaranteeing O(1) or O(n) complexity load times, efficient resource usage, and global **scalability**.
 - **Target Tooling:** Jules AI agent (Automated Performance Audits & Code Generation).
 - **Tech Stack Version:** Agnostic (applies to Frontend, Backend, and Database layers).
 

@@ -29,7 +29,7 @@ When the User requests a new service or module, Jules must first rely on these *
 > [!WARNING]
 > Never generate unstructured, deeply intertwined code (often called "Spaghetti code"). Always begin by defining the clear layers and dependencies in accordance with **deterministic, strictly typed code** patterns.
 
-### Pattern: Clean Architecture (Hexagonal / Ports & Adapters)
+### Pattern: Strictly structured Architecture (Hexagonal / Ports & Adapters)
 
 Diagram representing the correct dependency direction:
 ```mermaid
@@ -60,7 +60,7 @@ graph TD
 | :--- | :--- | :--- |
 | **Monolith (MVC)** | Startups, Minimum Viable Products (MVP) | Separate data management from visual display (Model vs View). |
 | **Microservices** | Large enterprise systems | Services must only communicate through Application Programming Interfaces (API) or Event systems. |
-| **Clean Architecture** | Complex business rules and logic | Dependencies must only point inward toward the core Domain. |
+| **Strictly structured Architecture** | Complex business rules and logic | Dependencies must only point inward toward the core Domain. |
 | **CQRS** | Systems with very high read traffic | Separate the methods that write data (Command) from the methods that read data (Query). |
 ---
 ## 3. Checklist for Jules Agent

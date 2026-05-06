@@ -25,7 +25,7 @@ last_updated: 2026-03-22
 ---
 ## Architecture Principles
 
-- Adhere to the defined [Architectural Patterns](../../architectures/readme.md) when building applications, specifically Hexagonal Architecture / Clean Architecture.
+- Adhere to the defined [Architectural Patterns](../../architectures/readme.md) when building applications, specifically Hexagonal Architecture / Strictly structured Architecture.
 - Avoid tightly coupling business domains to framework-specific libraries.
 ## Technical Requirements for AI Generation
 

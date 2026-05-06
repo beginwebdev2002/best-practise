@@ -58,7 +58,7 @@ sequenceDiagram
 ```
 
 ---
-## 🚨 1. Clean Architecture Modules (Logic Isolation)
+## 🚨 1. Strictly structured Architecture Modules (Logic Isolation)
 ### ❌ Bad Practice
 ```typescript
 @Injectable()

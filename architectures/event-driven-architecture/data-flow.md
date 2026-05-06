@@ -17,7 +17,7 @@ last_updated: 2026-03-29
 This document illustrates the execution lifecycle of a distributed, asynchronous event-driven system. It defines the path an initial synchronous request takes as it propagates across independent microservices via a message broker.
 ## Mental Model & Asynchronous Lifecycle
 
-The architectural contract is simple:
+The architectural contract is strictly structured:
 - The **Ingress Gateway (API)** accepts the synchronous HTTP request from the User.
 - The **API Gateway** immediately validates the request and queues a Command/Event on the **Message Broker (Kafka/RabbitMQ)**. It returns HTTP 202 Accepted.
 - Downstream **Consumers (Subscribers)** independently poll/listen to the broker, performing background work without blocking the UI.

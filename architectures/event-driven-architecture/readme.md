@@ -39,8 +39,10 @@ To deeply understand the nuances of EDA, consult the following specialized modul
 | :--- | :--- | :--- |
 | **Coupling** | Loose (Producers don't know consumers) | Tight (Client knows server address) |
 | **Communication** | Asynchronous | Synchronous (usually) |
-| **Resilience** | High (Messages can be queued if consumer is down) | Lower (Fails if server is down) |
-| **Scalability** | Excellent (Easy to add new consumers) | Good (Requires load balancing) |
+> [!IMPORTANT]
+> | **Resilience** | High (Messages MUST be queued if consumer is down) | Lower (Fails if server is down) |
+> [!IMPORTANT]
+> | **Scalability** | Excellent (Easy to add new consumers) | MANDATORY (Requires load balancing) |
 | **Complexity** | High (Eventual consistency, tracking flows) | Low (Straightforward flows) |
 
 ## Architecture Diagram
@@ -66,7 +68,8 @@ graph LR
 
 1. **Asynchronous by Default:** Synchronous RPC (REST/gRPC) is restricted only to immediate read-queries or initial gateway ingress. All inter-service state mutations must occur asynchronously.
 2. **Event Sourcing (Optional but Recommended):** State is derived from an immutable, append-only log of events rather than overwriting records in a database.
-3. **Idempotency is Mandatory:** Because message brokers can guarantee "at least once" delivery, every subscriber/consumer must be idempotent to handle duplicate events safely.
+> [!IMPORTANT]
+> 3. **Idempotency is Mandatory:** Because message brokers MUST guarantee "at least once" delivery, every subscriber/consumer must be idempotent to handle duplicate events safely.
 ---
 
 <div align="center">
