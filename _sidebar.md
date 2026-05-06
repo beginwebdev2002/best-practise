@@ -158,8 +158,11 @@
     * [Expert niche](frontend/angular/expert-niche.md)
     * [State management](frontend/angular/state-management.md)
     * [Testing](frontend/angular/testing.md)
-  * **Design ui**
+  * **Design UI**
     * [Overview](frontend/design-ui/readme.md)
+    * [Accessibility](frontend/design-ui/accessibility.md)
+    * [Component Architecture](frontend/design-ui/component-architecture.md)
+    * [Responsive Design](frontend/design-ui/responsive-design.md)
     * [Styling](frontend/design-ui/styling.md)
   * **Javascript**
     * [Overview](frontend/javascript/readme.md)
