@@ -51,9 +51,6 @@ Hardcoded values create an inflexible system. They make dark-mode implementation
 }
 ```
 
-> [!NOTE]
-> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
-
 
 ### 🚀 Solution
 Strictly utilize Design Tokens for all styling. This ensures a deterministic, highly cohesive design system. By relying on CSS variables or framework tokens, updates propagate instantly across the app, allowing agents to reliably structure layouts without guessing aesthetic intent.
@@ -80,10 +77,10 @@ graph LR
 
 The UI/UX architecture is decomposed into the following specialized modules. AI Agents MUST strictly adhere to the guidelines in these documents.
 
-* [🎨 Styling Rules](./styling.md) - Design Tokens, Hardcoded Values, and general CSS best practices.
-* [📱 Responsive Design](./responsive-design.md) - Mobile-First Approach, Relative Units, and fluid layouts.
 * [♿ Accessibility (A11y)](./accessibility.md) - Semantic HTML, ARIA attributes, Focus visibility, and WCAG standards.
 * [🏗️ Component Architecture](./component-architecture.md) - Atomic Design principles and structural UI diagrams.
+* [📱 Responsive Design](./responsive-design.md) - Mobile-First Approach, Relative Units, and fluid layouts.
+* [🎨 Styling Rules](./styling.md) - Design Tokens, Hardcoded Values, and general CSS best practices.
 
 ---
 ## ✅ Checklist for Agents
@@ -121,9 +118,6 @@ Scattering hardcoded visual values across the codebase eliminates the ability to
   padding: var(--spacing-md) var(--spacing-lg);
 }
 ```
-
-> [!NOTE]
-> **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
 
 
 ### 🚀 Solution

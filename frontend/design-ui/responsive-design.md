@@ -65,9 +65,6 @@ A desktop-first approach with absolute units (`px`) often leads to horizontal sc
 }
 ```
 
-> [!NOTE]
-> **Internal Routing:** For more context, refer back to the [🎨 UI/UX Design Index](./readme.md).
-
 
 ### 🚀 Solution
 Implementing a **Mobile-First Approach** using relative units is MANDATORY. Enforcing base constraints on mobile and dynamically scaling upward STRICTLY limits layout shift (CLS) and reduces the CSS parser's evaluation overhead. This unified cascading structure inherently standardizes deterministic scaling properties, ensuring robust layout performance and mitigating the risk of unpredictable rendering states.

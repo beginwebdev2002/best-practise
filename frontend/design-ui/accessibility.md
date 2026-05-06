@@ -48,9 +48,6 @@ Using generic `<div>` wrappers and artificially attaching ARIA roles or keyboard
 <button class="btn" onclick="openModal()" aria-label="Open Settings Modal">Click Me</button>
 ```
 
-> [!NOTE]
-> **Internal Routing:** For more context, refer back to the [🎨 UI/UX Design Index](./readme.md).
-
 
 ### 🚀 Solution
 Enforcing **Semantic HTML** is MANDATORY to guarantee deterministic accessibility tree generation. Native elements inherently support keyboard navigation and screen reader parsing without custom JavaScript logic. This STRICTLY eliminates the performance overhead of manual event listener management and mitigates security risks associated with complex, logic-heavy DOM manipulation handlers.
