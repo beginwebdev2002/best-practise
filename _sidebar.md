@@ -134,6 +134,7 @@
   * [Ai agent orchestration](docs/ai-agent-orchestration.md)
   * [Ai agent self healing architectures](docs/ai-agent-self-healing-architectures.md)
   * [Ai agent semantic routing](docs/ai-agent-semantic-routing.md)
+  * [Ai agent token optimization strategies](docs/ai-agent-token-optimization-strategies.md)
   * [Ai agent tool calling architectures](docs/ai-agent-tool-calling-architectures.md)
   * [Ai agent vibe coding state machines](docs/ai-agent-vibe-coding-state-machines.md)
   * [Antigravity ide vibe coding](docs/antigravity-ide-vibe-coding.md)
