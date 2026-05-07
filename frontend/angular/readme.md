@@ -21,12 +21,6 @@ last_updated: 2026-03-22
 > - **Always** utilize the built-in control flow (`@if`, `@for`, `@switch`) instead of structural directives (`*ngIf`, `*ngFor`).
 ## 🚀 I. Basics & Popular (1-15)
 
-
-Please refer to the specialized guides for detailed best practices:
-
-- [🧩 Components & Signals](./components-signals.md)
-- [⚡ Reactivity & RxJS](./reactivity.md)
-
 ### 🚨 1. Using `@Input()` Decorator
 > [!NOTE]
 > **Context:** Component Inputs
@@ -326,9 +320,12 @@ Migrate to Zoneless mode. Use Signals to notify Angular when a re-render is need
 
 For further reading, please refer to the following specialized guides:
 
-- [🏗 Architecture & Dependency Injection](./architecture.md)
+
 - [🚀 Advanced Performance](./advanced-performance.md)
-- [📦 State Management](./state-management.md)
+- [🏗 Architecture & Dependency Injection](./architecture.md)
+- [🧩 Components & Signals](./components-signals.md)
 - [📝 Data & Forms](./data-forms.md)
 - [🧠 Expert/Niche Topics](./expert-niche.md)
+- [⚡ Reactivity & RxJS](./reactivity.md)
+- [📦 State Management](./state-management.md)
 - [🧪 Testing](./testing.md)

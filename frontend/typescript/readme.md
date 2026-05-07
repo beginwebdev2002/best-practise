@@ -158,16 +158,13 @@ type Status = typeof STATUS[keyof typeof STATUS];
 Use `const` objects with `as const` and a derived union type. This is more predictable, emits cleaner code, and is easier to iterate over.
 ---
 
-Please refer to the specialized guides for detailed best practices:
-
-- [📜 Types & Interfaces](./types-interfaces.md)
-- [🛡️ Logic Safety](./logic-safety.md)
-
 ## 📚 Specialized Topics
 
 For further reading, please refer to the following specialized guides:
 
-- [🛡️ Logic & Safety](./logic-safety.md)
+
+- [🛡️ Logic Safety](./logic-safety.md)
 - [📦 Objects & Functions](./objects-functions.md)
 - [🧠 Professional & Niche Topics](./professional-niche.md)
 - [🧪 Testing](./testing.md)
+- [📜 Types & Interfaces](./types-interfaces.md)
