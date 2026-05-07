@@ -83,9 +83,9 @@ Break down the UI into smaller, reusable components. Extract logic into custom h
 
 For further reading, please refer to the following specialized guides:
 
-- [🔄 State Management](./state-management.md)
+
 - [⚡ Performance](./performance.md)
 - [🛡️ Security](./security.md)
+- [🔄 State Management](./state-management.md)
 - [🧪 Testing](./testing.md)
-
 [⬆️ Back to Top](#)

@@ -89,16 +89,16 @@ Abstract global state logically depending on the specific framework rules. Ensur
 This folder acts as a container for documentation around the following technologies:
 - [Angular](./angular/readme.md)
 - [JavaScript](./javascript/readme.md)
-- [TypeScript](./typescript/readme.md)
+- [Qwik](./qwik/readme.md)
 - [React](./react/readme.md)
 - [SolidJS](./solidjs/readme.md)
-- [Qwik](./qwik/readme.md)
+- [TypeScript](./typescript/readme.md)
 
 ## 🎨 UI/UX Design & Styling
-- [Styling Rules](./design-ui/styling.md)
-- [Responsive Design](./design-ui/responsive-design.md)
 - [Accessibility](./design-ui/accessibility.md)
 - [Component Architecture](./design-ui/component-architecture.md)
+- [Responsive Design](./design-ui/responsive-design.md)
+- [Styling Rules](./design-ui/styling.md)
 
 - [UI/UX Design Index](./design-ui/readme.md)
 

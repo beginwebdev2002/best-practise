@@ -23,7 +23,6 @@ This document outlines the overarching philosophy and serves as an index for pro
   <img src="https://img.icons8.com/?size=100&id=65664&format=png&color=000000" width="100" alt="Design Overview">
 </div>
 
-
 ## ⚡ I. Fundamentals
 
 ### 🚨 1. Hardcoded Styling Values
@@ -54,10 +53,8 @@ Hardcoded values create an inflexible system. They make dark-mode implementation
 > [!NOTE]
 > **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
 
-
 ### 🚀 Solution
 Strictly utilize Design Tokens for all styling. This ensures a deterministic, highly cohesive design system. By relying on CSS variables or framework tokens, updates propagate instantly across the app, allowing agents to reliably structure layouts without guessing aesthetic intent.
-
 
 ## 🧠 Core Visual Architecture
 
@@ -73,7 +70,6 @@ graph LR
     class C default;
     class D default;
 ```
-
 
 ---
 ## 📚 Design Sub-Modules
@@ -125,6 +121,15 @@ Scattering hardcoded visual values across the codebase eliminates the ability to
 > [!NOTE]
 > **Internal Routing:** For more context, refer back to the [🎨 Frontend Architecture](../readme.md).
 
-
 ### 🚀 Solution
 Extracting visual properties into centrally managed Design Tokens is MANDATORY. This pattern enforces strict isolation boundaries and standardizes deterministic visual properties. It STRICTLY prevents arbitrary inline style manipulation, mitigating potential style-based injection vulnerabilities, and creates a predictable environment optimized for parsing and UI refactoring by AI agents, improving overall rendering performance.
+
+## 📚 Specialized Topics
+
+For further reading, please refer to the following specialized guides:
+
+
+* [♿ Accessibility (A11y)](./accessibility.md) - Semantic HTML, ARIA attributes, Focus visibility, and WCAG standards.
+* [🏗️ Component Architecture](./component-architecture.md) - Atomic Design principles and structural UI diagrams.
+* [📱 Responsive Design](./responsive-design.md) - Mobile-First Approach, Relative Units, and fluid layouts.
+* [🎨 Styling Rules](./styling.md) - Design Tokens, Hardcoded Values, and general CSS best practices.
