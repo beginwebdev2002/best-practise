@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "7.0+"
 tags: [security-best-practices, mongodb, nosql, database, authentication, authorization, rbac, encryption, injection-prevention, production-ready, scalable-code]
 ai_role: Senior MongoDB Database Architect
-last_updated: 2026-03-28
+last_updated: 2026-05-08
 ---
 
 # 🔒 MongoDB Security Best Practices
@@ -43,9 +43,6 @@ Enable authorization in `mongod.conf` (`security.authorization: enabled`) and cr
 | **Granularity** | Collection and Action level | Database or System level |
 | **Auditability** | High (Clear mapping of who did what) | Low (Generic roles obscure intent) |
 | **Complexity** | High (Requires planning and maintenance) | Low (Easy but dangerous) |
-
-> [!NOTE]
-> **Internal Routing:** For more context, refer back to the [Mongodb Index](./readme.md).
 
 ### 🚀 Solution
 

@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "7+"
 tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, redis, in-memory, nosql, system-design, production-ready, scalable-code]
 ai_role: Senior Redis Architecture Expert
-last_updated: 2026-03-27
+last_updated: 2026-05-08
 ---
 
 # 🟥 Redis API Design
@@ -32,9 +32,6 @@ do {
     // process keys
 } while (cursor !== '0');
 ```
-
-> [!NOTE]
-> **Internal Routing:** For more context, refer back to the [Redis Index](./readme.md).
 
 ### 🚀 Solution
 Always use `SCAN` instead of `KEYS` to iterate over large datasets without blocking the Redis event loop.

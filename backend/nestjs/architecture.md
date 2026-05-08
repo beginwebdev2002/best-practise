@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "11+"
 tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, react-best-practices, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, fsd, ddd, enterprise-patterns]
 ai_role: Senior NestJS Architecture Expert
-last_updated: 2026-03-27
+last_updated: 2026-05-08
 ---
 
 # 🏗️ NestJS 11+ Architecture Best Practices
@@ -32,9 +32,6 @@ Placing unrelated domains in the root module creates a monolith that is hard to 
 })
 export class AppModule {}
 ```
-
-> [!NOTE]
-> **Internal Routing:** For more context, refer back to the [Nestjs Index](./readme.md).
 
 ### 🚀 Solution
 Adopt Domain-Driven Design (DDD). Encapsulate domain logic within feature modules to ensure low coupling and high cohesion.

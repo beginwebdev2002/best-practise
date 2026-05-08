@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "7+"
 tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, redis, in-memory, nosql, system-design, production-ready, scalable-code]
 ai_role: Senior Redis Architecture Expert
-last_updated: 2026-03-27
+last_updated: 2026-05-08
 ---
 
 
@@ -47,9 +47,6 @@ if (!user) {
     await redisClient.setEx(cacheKey, 3600, JSON.stringify(user));
 }
 ```
-
-> [!NOTE]
-> **Internal Routing:** For more context, refer back to the [Backend Index](../readme.md).
 
 ### 🚀 Solution
 Implement the Cache-Aside pattern. Always read from the cache first; on a miss, query the database, populate the cache, and set an explicit Time-To-Live (TTL) to guarantee memory rotation and data freshness.
@@ -171,6 +168,6 @@ Explore advanced architectural topics for Redis:
 
 ## 📑 Specialized Documentation
 
-- [Security Best Practices](./security-best-practices.md)
-- [Architecture](./architecture.md)
 - [Api Design](./api-design.md)
+- [Architecture](./architecture.md)
+- [Security Best Practices](./security-best-practices.md)

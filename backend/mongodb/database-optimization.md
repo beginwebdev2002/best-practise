@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "7.0+"
 tags: [database-optimization, mongodb, nosql, indexing, aggregation-pipeline, system-design, production-ready, scalable-code]
 ai_role: Senior MongoDB Database Architect
-last_updated: 2026-03-28
+last_updated: 2026-05-08
 ---
 
 # ⚡ MongoDB Database Optimization Best Practices
@@ -48,9 +48,6 @@ graph LR
     classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
     class A,B,C default;
 ```
-
-> [!NOTE]
-> **Internal Routing:** For more context, refer back to the [Mongodb Index](./readme.md).
 
 ### 🚀 Solution
 

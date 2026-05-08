@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "7.0+"
 tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, mongodb, nosql, database, system-design, production-ready, scalable-code, document-database]
 ai_role: Senior MongoDB Database Architect
-last_updated: 2026-03-28
+last_updated: 2026-05-08
 ---
 
 
@@ -53,9 +53,9 @@ sequenceDiagram
 
 ## 📑 Specialized Documentation
 
+- [Architecture](./architecture.md)
 - [Database Optimization](./database-optimization.md)
 - [Security Best Practices](./security-best-practices.md)
-- [Architecture](./architecture.md)
 
 ## 🚨 1. Schema Validation
 ### ❌ Bad Practice
@@ -67,9 +67,6 @@ db.users.insertOne({ name: "John", age: -5, admin: true });
 Failing to follow best practices for `schema validation` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
 ### ✅ Best Practice
 Implement strict schema validation using JSON Schema in MongoDB.
-
-> [!NOTE]
-> **Internal Routing:** For more context, refer back to the [Backend Index](../readme.md).
 
 ### 🚀 Solution
 ```javascript

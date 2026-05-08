@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "4.x / 5.x"
 tags: [best-practices, deterministic-code, expressjs, vibe-coding, cursor-rules, javascript, typescript, software-architecture, system-design, mvc, production-ready, programming-standards, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, enterprise-patterns, backend]
 ai_role: Senior Express.js Architecture Expert
-last_updated: 2026-03-27
+last_updated: 2026-05-08
 ---
 
 # 🏗️ Express.js Architecture Best Practices
@@ -39,9 +39,6 @@ const userController = async (req, res, next) => {
 };
 app.post('/users', userController);
 ```
-
-> [!NOTE]
-> **Internal Routing:** For more context, refer back to the [Expressjs Index](./readme.md).
 
 ### 🚀 Solution
 Implement the layered architecture pattern. Controllers handle HTTP concerns, Services handle business rules, and Repositories handle database interactions.
