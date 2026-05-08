@@ -28,10 +28,10 @@ last_updated: 2026-04-18
 
 This architecture defines strict boundaries between a minimal core system and extended functionalities implemented as standalone plugins. It guarantees O(1) impact on the core when adding or modifying auxiliary features.
 
-- 🌊 **Data Flow:** Core-to-Plugin execution paths and contract enforcement.
-- 📁 **Folder Structure:** Absolute isolation of the Core engine from volatile Plugins.
-- ⚖️ **Trade-offs:** Extensibility vs. Contract Management complexity.
-- 🛠️ **Implementation Guide:** Rules for defining strict interface boundaries and registry mechanisms.
+- 🌊 [**Data Flow:** Core-to-Plugin execution paths and contract enforcement](./data-flow.md)
+- 📁 [**Folder Structure:** Absolute isolation of the Core engine from volatile Plugins](./folder-structure.md)
+- ⚖️ [**Trade-offs:** Extensibility vs. Contract Management complexity](./trade-offs.md)
+- 🛠️ [**Implementation Guide:** Rules for defining strict interface boundaries and registry mechanisms](./implementation-guide.md)
 
 ```mermaid
 graph TD
