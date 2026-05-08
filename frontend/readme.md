@@ -95,10 +95,10 @@ This folder acts as a container for documentation around the following technolog
 - [Qwik](./qwik/readme.md)
 
 ## 🎨 UI/UX Design & Styling
-- [Styling Rules](./design-ui/styling.md)
-- [Responsive Design](./design-ui/responsive-design.md)
 - [Accessibility](./design-ui/accessibility.md)
 - [Component Architecture](./design-ui/component-architecture.md)
+- [Responsive Design](./design-ui/responsive-design.md)
+- [Styling Rules](./design-ui/styling.md)
 
 - [UI/UX Design Index](./design-ui/readme.md)
 
