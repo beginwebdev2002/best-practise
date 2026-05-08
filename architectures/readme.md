@@ -43,22 +43,22 @@ Don't know where to start? Here are a few golden rules:
 ---
 ## 🗺️ Map of Patterns
 
+- [Agentic Architecture (AI Agent Orchestration)](./agentic-architecture/readme.md)
 - [Backend-For-Frontend (BFF)](./backend-for-frontend/readme.md)
 - [Clean Architecture](./clean-architecture/readme.md)
 - [CQRS](./cqrs/readme.md)
 - [Domain-Driven Design (DDD)](./domain-driven-design/readme.md)
-- [Event-Driven Architecture (EDA)](./event-driven-architecture/readme.md)
 - [Event Sourcing](./event-sourcing/readme.md)
+- [Event-Driven Architecture (EDA)](./event-driven-architecture/readme.md)
 - [Feature-Sliced Design (FSD)](./feature-sliced-design/readme.md)
 - [Hexagonal Architecture](./hexagonal-architecture/readme.md)
 - [Micro-frontends](./micro-frontends/readme.md)
 - [Microservices](./microservices/readme.md)
-- [MVC (Model-View-Controller)](./model-view-controller/readme.md)
 - [Monolithic Architecture](./monolithic-architecture/readme.md)
-- [Space-Based Architecture](./space-based-architecture/readme.md)
+- [MVC (Model-View-Controller)](./model-view-controller/readme.md)
 - [Serverless](./serverless/readme.md)
-- [Agentic Architecture (AI Agent Orchestration)](./agentic-architecture/readme.md)
-
+- [Space-Based Architecture](./space-based-architecture/readme.md)
+- [Vibe Coding Patterns](./vibe-coding-patterns/readme.md)
 ## 🏆 Top 15 Best Architectural Approaches
 
 Below are the most popular architectural patterns along with examples, tips, technology stacks, and their logos. A Folder Tree is provided for each to give you a deep understanding of its structure.
