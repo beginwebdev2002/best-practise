@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "7.0+"
 tags: [architecture-patterns, mongodb, nosql, database, system-design, production-ready, scalable-code]
 ai_role: Senior MongoDB Database Architect
-last_updated: 2026-03-28
+last_updated: 2026-05-08
 ---
 
 # 🏛️ MongoDB Architecture Constraints
@@ -116,9 +116,6 @@ const userSchema = new mongoose.Schema({
 });
 const User = mongoose.model('User', userSchema);
 ```
-
-> [!NOTE]
-> **Internal Routing:** For more context, refer back to the [Mongodb Index](./readme.md).
 
 ### 🚀 Solution
 Enforce structural constraints either via MongoDB's native JSON Schema validation or using an Object Data Modeling (ODM) library.

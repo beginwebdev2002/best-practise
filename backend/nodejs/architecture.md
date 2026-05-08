@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "24+"
 tags: [best-practices, nodejs, architecture, design-patterns, deterministic-code, scalable-code, system-design]
 ai_role: Senior Node.js Architecture Expert
-last_updated: 2026-03-24
+last_updated: 2026-05-08
 ---
 
 # 🟢 Node.js Architectural Patterns & Structuring
@@ -62,9 +62,6 @@ app.post('/api/users', async (req, res, next) => {
   }
 });
 ```
-
-> [!NOTE]
-> **Internal Routing:** For more context, refer back to the [Nodejs Index](./readme.md).
 
 ### 🚀 Solution
 Controllers MUST ONLY handle HTTP payload parsing and response formatting. Core business operations MUST be delegated to isolated Service classes.

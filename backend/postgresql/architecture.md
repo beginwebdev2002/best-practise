@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "16+"
 tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, postgresql, database, sql, rdbms, system-design, production-ready, scalable-code]
 ai_role: Senior PostgreSQL Database Architect
-last_updated: 2026-03-27
+last_updated: 2026-05-08
 ---
 
 # 🐘 PostgreSQL Architecture
@@ -34,9 +34,6 @@ app.get('/users', async (req, res) => {
   // ...
 });
 ```
-
-> [!NOTE]
-> **Internal Routing:** For more context, refer back to the [Postgresql Index](./readme.md).
 
 ### 🚀 Solution
 Always use connection pooling (e.g., PgBouncer or application-level pooling) to reuse existing connections and cap the maximum number of concurrent database connections.
