@@ -29,3 +29,26 @@ src/
 └── 📁 infrastructure/      # Event Store bindings, Repositories, Message Bus
     └── EventStoreRepository.ts
 ```
+```mermaid
+classDiagram
+    class src
+    class commands:::component
+    note for commands "Intentions to change state"
+    src *-- commands
+    class events:::component
+    note for events "Facts that have occurred"
+    src *-- events
+    class aggregates:::component
+    note for aggregates "Domain entities that process commands and emit events"
+    src *-- aggregates
+    class projections:::component
+    note for projections "Listeners that update read models based on events"
+    src *-- projections
+    class infrastructure:::component
+    note for infrastructure "Event Store bindings, Repositories, Message Bus"
+    src *-- infrastructure
+
+    %% Design Tokens
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```

@@ -22,6 +22,19 @@ last_updated: 2026-03-29
 - **Coupling**: Often strong coupling between view and controller.
 - **Complexity over time**: Harder to maintain when domains grow too complex, often necessitating a move to DDD or Clean Architecture.
 
+
+### Structural Comparison
+
+| Category | Description |
+| :--- | :--- |
+| ✅ **Advantage** | **Familiarity**: Easy to understand, widely adopted pattern. |
+| ✅ **Advantage** | **Separation of Concerns**: Clear distinction between data, UI, and control logic. |
+| ✅ **Advantage** | **Rapid Development**: Excellent for starting MVP applications. |
+| ✅ **Advantage** | **Framework Support**: High support across many frameworks (Spring, Express, Rails, Django). |
+| ❌ **Disadvantage** | **Scalability**: For very large apps, "fat controllers" and "fat models" become common. |
+| ❌ **Disadvantage** | **Coupling**: Often strong coupling between view and controller. |
+| ❌ **Disadvantage** | **Complexity over time**: Harder to maintain when domains grow too complex, often necessitating a move to DDD or Clean Architecture. |
+
 ### Boundaries
 - Controllers must never execute direct database queries.
 - Views must not contain business logic or query the DB.

@@ -38,6 +38,30 @@ src/
     ├── writers/
     └── recovery/
 ```
+```mermaid
+classDiagram
+    class src
+    class api_gateway:::component
+    note for api_gateway "Routing and basic validation"
+    src *-- api_gateway
+    class middleware:::component
+    note for middleware "Virtualized middleware for processing unit routing"
+    src *-- middleware
+    class processing_units:::component
+    note for processing_units "Independent processing components"
+    src *-- processing_units
+    class data_grid:::component
+    note for data_grid "IMDG configuration and schema definitions"
+    src *-- data_grid
+    class data_pumps:::component
+    note for data_pumps "Background services syncing IMDG to DB"
+    src *-- data_pumps
+
+    %% Design Tokens
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 
 ## Layering Logic
 
