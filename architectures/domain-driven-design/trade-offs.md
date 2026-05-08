@@ -18,3 +18,13 @@ last_updated: 2026-03-29
 ### Cons
 - Extreme overhead for CRUD operations.
 - Requires domain experts collaboration.
+
+
+### Structural Comparison
+
+| Category | Description |
+| :--- | :--- |
+| ✅ **Advantage** | Aligns code strictly with business realities. |
+| ✅ **Advantage** | High focus on the core domain complexity. |
+| ❌ **Disadvantage** | Extreme overhead for CRUD operations. |
+| ❌ **Disadvantage** | Requires domain experts collaboration. |

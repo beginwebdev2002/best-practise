@@ -47,6 +47,21 @@ src/
 ├── config/
 └── index.ts
 ```
+```mermaid
+classDiagram
+    class src
+    class handlers:::component
+    src *-- handlers
+    class config:::component
+    src *-- config
+    class index:::component
+    src *-- index
+
+    %% Design Tokens
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 
 ### ⚠️ Problem
 Placing routing, data aggregation, and downstream API calls in a single handler creates a monolithic structure within the BFF. It makes testing difficult, limits code reuse, and violates the single responsibility principle.
@@ -67,6 +82,27 @@ src/
 │   └── dtos.ts
 └── app.ts
 ```
+```mermaid
+classDiagram
+    class src
+    class routes:::component
+    src *-- routes
+    class controllers:::component
+    src *-- controllers
+    class services:::component
+    src *-- services
+    class clients:::component
+    src *-- clients
+    class types:::component
+    src *-- types
+    class app:::component
+    src *-- app
+
+    %% Design Tokens
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 
 ### 🚀 Solution
 Separate responsibilities clearly. `routes` handle HTTP concerns. `controllers` parse requests and format responses. `services` (or aggregators) orchestrate the calls to multiple downstream microservices. `clients` isolate the network logic (HTTP/gRPC) for communicating with downstream microservices. This structure enhances testability and maintainability.

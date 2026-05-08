@@ -101,6 +101,33 @@ src/
 ├── 📁 entities/   # Core business entities (User, Product)
 └── 📁 shared/     # Reusable code (UI-components, API, utils)
 ```
+```mermaid
+classDiagram
+    class src
+    class app:::component
+    note for app "Global app setup (Global Store, Global CSS, Router init)"
+    src *-- app
+    class pages:::component
+    note for pages "Pages and Routing"
+    src *-- pages
+    class widgets:::component
+    note for widgets "Complex, independent UI blocks (Header, Footer)"
+    src *-- widgets
+    class features:::component
+    note for features "Business-value user actions (UserAuth, AddToCart)"
+    src *-- features
+    class entities:::component
+    note for entities "Core business entities (User, Product)"
+    src *-- entities
+    class shared:::component
+    note for shared "Reusable code (UI-components, API, utils)"
+    src *-- shared
+
+    %% Design Tokens
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 
 **Best Compatibility:**
 - **Frameworks:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" width="16"/> React, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg" width="16"/> Vue, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" width="16"/> Angular
@@ -141,6 +168,27 @@ src/
 ├── 📁 interface-adapters/   # Controllers, Presenters, Gateways (Data translators)
 └── 📁 infrastructure/       # The outside world: DB Repositories, Frameworks, UI
 ```
+```mermaid
+classDiagram
+    class src
+    class domain:::component
+    note for domain "The heart of the system: Entities and Interfaces"
+    src *-- domain
+    class usecases:::component
+    note for usecases "Business Scenarios (Interactors) - "What the system does""
+    src *-- usecases
+    class interface_adapters:::component
+    note for interface_adapters "Controllers, Presenters, Gateways (Data translators)"
+    src *-- interface_adapters
+    class infrastructure:::component
+    note for infrastructure "The outside world: DB Repositories, Frameworks, UI"
+    src *-- infrastructure
+
+    %% Design Tokens
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 
 **Best Compatibility:**
 - **Frameworks:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" width="16"/> NestJS, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" width="16"/> Spring Boot
@@ -181,6 +229,27 @@ src/
 ├── 📁 controllers/   # HTTP request handlers bridging Model and View
 └── 📁 routes/        # API endpoint definitions (URLs)
 ```
+```mermaid
+classDiagram
+    class src
+    class models:::component
+    note for models "Database schemas and data manipulation methods"
+    src *-- models
+    class views:::component
+    note for views "Templates (HTML, Pug, EJS) or React views"
+    src *-- views
+    class controllers:::component
+    note for controllers "HTTP request handlers bridging Model and View"
+    src *-- controllers
+    class routes:::component
+    note for routes "API endpoint definitions (URLs)"
+    src *-- routes
+
+    %% Design Tokens
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 
 **Best Compatibility:**
 - **Frameworks:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" width="16"/> Express.js, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rubyonrails/rubyonrails-original.svg" width="16"/> Ruby on Rails, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" width="16"/> Laravel, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg" width="16"/> Django
@@ -267,6 +336,21 @@ src/
     ├── 📁 primary/          # HTTP Controllers, GraphQL (System Entry)
     └── 📁 secondary/        # MongoAdapter.ts, PostgresAdapter.ts (System Exit)
 ```
+```mermaid
+classDiagram
+    class src
+    class core:::component
+    note for core "Ports (Interfaces) and strict Domain"
+    src *-- core
+    class adapters:::component
+    note for adapters "Concrete implementations (Adapters)"
+    src *-- adapters
+
+    %% Design Tokens
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 
 **Best Compatibility:**
 - **Frameworks:** Any strictly-typed IoC frameworks.
@@ -308,6 +392,21 @@ src/
     ├── 📁 domain/
     └── ...
 ```
+```mermaid
+classDiagram
+    class src
+    class identity_access:::component
+    note for identity_access "Bounded Context (Auth domain)"
+    src *-- identity_access
+    class content_management:::component
+    note for content_management "Bounded Context (Articles domain)"
+    src *-- content_management
+
+    %% Design Tokens
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 
 **Best Compatibility:**
 - **Frameworks:** Complex Backend ERP or Banking systems.
@@ -347,6 +446,27 @@ src/
 ├── 📁 events/               # Type definitions for event payloads
 └── 📁 brokers/              # Connection configurations to message brokers
 ```
+```mermaid
+classDiagram
+    class src
+    class publishers:::component
+    note for publishers "Generate events (e.g., OrderPayedEvent)"
+    src *-- publishers
+    class subscribers:::component
+    note for subscribers "Listen to events (e.g., NotifyUserListener)"
+    src *-- subscribers
+    class events:::component
+    note for events "Type definitions for event payloads"
+    src *-- events
+    class brokers:::component
+    note for brokers "Connection configurations to message brokers"
+    src *-- brokers
+
+    %% Design Tokens
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 
 **Best Compatibility:**
 - **Frameworks/Platforms:** Node.js, Spring Cloud.
@@ -466,6 +586,21 @@ src/
     ├── GetUserQuery.ts
     └── GetUserHandler.ts      # Logic: Reads from a blazing fast DB (Elastic/Redis)
 ```
+```mermaid
+classDiagram
+    class src
+    class commands:::component
+    note for commands "Mutates system state"
+    src *-- commands
+    class queries:::component
+    note for queries "Exclusively reading data"
+    src *-- queries
+
+    %% Design Tokens
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 
 **Best Compatibility:**
 - **Frameworks:** NestJS (`@nestjs/cqrs`), MediatR (.NET).
@@ -555,6 +690,25 @@ src/
 └── infrastructure/
     └── event-store/
 ```
+```mermaid
+classDiagram
+    class src
+    class commands:::component
+    src *-- commands
+    class aggregates:::component
+    src *-- aggregates
+    class events:::component
+    src *-- events
+    class projections:::component
+    src *-- projections
+    class infrastructure:::component
+    src *-- infrastructure
+
+    %% Design Tokens
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 
 - **When to use:** When you need a complete audit log, temporal queries, or when decoupling read and write models is critical.
 - **Patterns / Principles:** Event Log, CQRS, Projections, Snapshots.
@@ -595,6 +749,27 @@ src/
 ├── 📁 services/         # Aggregates data from multiple downstream APIs
 └── 📁 clients/          # Logic to call downstream Microservices
 ```
+```mermaid
+classDiagram
+    class src
+    class routes:::component
+    note for routes "Route definitions mapped to controllers"
+    src *-- routes
+    class controllers:::component
+    note for controllers "Handles incoming requests from specific clients"
+    src *-- controllers
+    class services:::component
+    note for services "Aggregates data from multiple downstream APIs"
+    src *-- services
+    class clients:::component
+    note for clients "Logic to call downstream Microservices"
+    src *-- clients
+
+    %% Design Tokens
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 
 **Best Compatibility:**
 - **Frameworks:** NestJS, Express.js.
@@ -641,6 +816,24 @@ src/
 ├── 📁 virtual-middleware/ # Handles messaging and grid routing
 └── 📁 grid-storage/     # In-Memory Data Grid operations
 ```
+```mermaid
+classDiagram
+    class src
+    class processing_units:::component
+    note for processing_units "Independent logic components"
+    src *-- processing_units
+    class virtual_middleware:::component
+    note for virtual_middleware "Handles messaging and grid routing"
+    src *-- virtual_middleware
+    class grid_storage:::component
+    note for grid_storage "In-Memory Data Grid operations"
+    src *-- grid_storage
+
+    %% Design Tokens
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 
 **Best Compatibility:**
 - **Frameworks:** Hazelcast, Apache Ignite, GigaSpaces.
@@ -686,6 +879,24 @@ src/
 ├── 📁 workers/          # Specialized worker agents (Planner, Coder, Reviewer)
 └── 📁 memory/           # Shared context and validation schemas
 ```
+```mermaid
+classDiagram
+    class src
+    class orchestrator:::component
+    note for orchestrator "Main coordinator agent"
+    src *-- orchestrator
+    class workers:::component
+    note for workers "Specialized worker agents (Planner, Coder, Reviewer)"
+    src *-- workers
+    class memory:::component
+    note for memory "Shared context and validation schemas"
+    src *-- memory
+
+    %% Design Tokens
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 
 **Best Compatibility:**
 - **Frameworks:** LangChain, AutoGen, CrewAI.
@@ -714,6 +925,24 @@ src/
 ├── 📁 plugins/          # Independent modules implementing core interfaces
 └── 📁 shared/           # Data types and common utilities
 ```
+```mermaid
+classDiagram
+    class src
+    class core:::component
+    note for core "Core system orchestrator and registry interfaces"
+    src *-- core
+    class plugins:::component
+    note for plugins "Independent modules implementing core interfaces"
+    src *-- plugins
+    class shared:::component
+    note for shared "Data types and common utilities"
+    src *-- shared
+
+    %% Design Tokens
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 
 **Best Compatibility:**
 - **Frameworks:** Eclipse, VS Code, Webpack, Babel.

@@ -65,6 +65,21 @@ src/
         └── 📁 external/     # 3rd Party APIs (SendGrid, Stripe)
             └── SendGridEmailSender.ts
 ```
+```mermaid
+classDiagram
+    class src
+    class core:::component
+    note for core "The Heart of the System (No External Tech)"
+    src *-- core
+    class adapters:::component
+    note for adapters "Concrete implementations"
+    src *-- adapters
+
+    %% Design Tokens
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+```
+
 ## ⛔ Boundary Constraints
 
 1. **Isolation in `core/`:** Code inside `core/` is forbidden from importing modules from `adapters/`.

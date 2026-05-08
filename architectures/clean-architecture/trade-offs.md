@@ -19,3 +19,14 @@ last_updated: 2026-03-29
 ### Cons
 - Increased boilerplate and indirection.
 - Steep learning curve for beginners.
+
+
+### Structural Comparison
+
+| Category | Description |
+| :--- | :--- |
+| ✅ **Advantage** | High testability. |
+| ✅ **Advantage** | Framework agnostic. |
+| ✅ **Advantage** | Database agnostic. |
+| ❌ **Disadvantage** | Increased boilerplate and indirection. |
+| ❌ **Disadvantage** | Steep learning curve for beginners. |
