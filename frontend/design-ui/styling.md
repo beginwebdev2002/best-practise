@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [vibe-coding, design-tokens, css, styling, best-practices]
 ai_role: Frontend UI/UX Enforcer
-last_updated: 2026-03-29
+last_updated: 2026-05-08
 ---
 
 # 🎨 UI/UX Styling & Design Tokens Rules
@@ -30,6 +30,24 @@ This document enforces the strict styling rules and constraints regarding design
 |:---|:---|:---|:---:|:---|
 | **Hardcoded Values (Anti-Pattern)** | Inline hex codes (e.g., `#FFF`) | None | ❌ Avoid | Fragments visual consistency; impossible to theme globally. |
 | **Design Tokens (Best Practice)** | CSS Custom Properties (e.g., `var(--color-bg)`) | High | ✅ Optimal | Single source of truth; supports dark mode and safe refactoring. |
+
+
+```mermaid
+graph LR
+    A([Design Tokens]) --> B([CSS Variables])
+    B --> C([Components])
+    B --> D([Layouts])
+    C --> E([Consistent UI])
+    D --> E
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class A default;
+    class B component;
+    class C default;
+    class D default;
+    class E component;
+```
 
 > [!CAUTION]
 > **Hardcoded Values Constraint:** AI Agents MUST NEVER use hardcoded colors, spacing, or typography values (e.g., `#FF0000`, `14px`). AI Agents MUST ALWAYS use established **Design Tokens** (e.g., CSS Variables `var(--color-primary)` or Tailwind classes like `text-primary`, `p-4`).
