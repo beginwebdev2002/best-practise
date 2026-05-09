@@ -18,3 +18,33 @@ last_updated: 2026-03-29
 ### Cons
 - Cold starts.
 - Vendor lock-in (AWS, GCP, Azure).
+
+| Pros | Cons |
+| :--- | :--- |
+| Zero server management. | Cold starts. |
+| Scales to zero (cost effective). | Vendor lock-in (AWS, GCP, Azure). |
+
+| Pros | Cons |
+| :--- | :--- |
+| Zero server management. | Cold starts. |
+| Scales to zero (cost effective). | Vendor lock-in (AWS, GCP, Azure). |
+|  | | :--- | |
+
+| Pros | Cons |
+| :--- | :--- |
+| Zero server management. | Cold starts. |
+| Scales to zero (cost effective). | Vendor lock-in (AWS, GCP, Azure). |
+|  | | :--- | |
+|  | | :--- | |
+|  | | | |
+
+| Pros | Cons |
+| :--- | :--- |
+| Zero server management. | Cold starts. |
+| Scales to zero (cost effective). | Vendor lock-in (AWS, GCP, Azure). |
+|  | | :--- | |
+|  | | :--- | |
+|  | | | |
+|  | | :--- | |
+|  | | | |
+|  | | | |

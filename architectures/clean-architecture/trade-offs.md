@@ -19,3 +19,34 @@ last_updated: 2026-03-29
 ### Cons
 - Increased boilerplate and indirection.
 - Steep learning curve for beginners.
+
+| Pros | Cons |
+| :--- | :--- |
+| High testability. | Increased boilerplate and indirection. |
+| Framework agnostic. | Steep learning curve for beginners. |
+| Database agnostic. |  |
+
+| Pros | Cons |
+| :--- | :--- |
+| High testability. | Increased boilerplate and indirection. |
+| Framework agnostic. | Steep learning curve for beginners. |
+| Database agnostic. | | :--- | |
+
+| Pros | Cons |
+| :--- | :--- |
+| High testability. | Increased boilerplate and indirection. |
+| Framework agnostic. | Steep learning curve for beginners. |
+| Database agnostic. | | :--- | |
+|  | | :--- | |
+|  | | | |
+
+| Pros | Cons |
+| :--- | :--- |
+| High testability. | Increased boilerplate and indirection. |
+| Framework agnostic. | Steep learning curve for beginners. |
+| Database agnostic. | | :--- | |
+|  | | :--- | |
+|  | | | |
+|  | | :--- | |
+|  | | | |
+|  | | | |

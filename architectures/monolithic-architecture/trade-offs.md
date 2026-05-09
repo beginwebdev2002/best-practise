@@ -18,3 +18,33 @@ last_updated: 2026-03-29
 ### Cons
 - Scales as a whole, not by component.
 - Large codebase can slow down IDEs and startup times.
+
+| Pros | Cons |
+| :--- | :--- |
+| Easy to develop, test, and deploy. | Scales as a whole, not by component. |
+| Strong transactional guarantees (ACID). | Large codebase can slow down IDEs and startup times. |
+
+| Pros | Cons |
+| :--- | :--- |
+| Easy to develop, test, and deploy. | Scales as a whole, not by component. |
+| Strong transactional guarantees (ACID). | Large codebase can slow down IDEs and startup times. |
+|  | | :--- | |
+
+| Pros | Cons |
+| :--- | :--- |
+| Easy to develop, test, and deploy. | Scales as a whole, not by component. |
+| Strong transactional guarantees (ACID). | Large codebase can slow down IDEs and startup times. |
+|  | | :--- | |
+|  | | :--- | |
+|  | | | |
+
+| Pros | Cons |
+| :--- | :--- |
+| Easy to develop, test, and deploy. | Scales as a whole, not by component. |
+| Strong transactional guarantees (ACID). | Large codebase can slow down IDEs and startup times. |
+|  | | :--- | |
+|  | | :--- | |
+|  | | | |
+|  | | :--- | |
+|  | | | |
+|  | | | |

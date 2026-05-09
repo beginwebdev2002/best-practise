@@ -18,3 +18,33 @@ last_updated: 2026-03-29
 ### Cons
 - Eventual consistency complexity.
 - High architectural overhead for simple domains.
+
+| Pros | Cons |
+| :--- | :--- |
+| Independent scaling of read and write workloads. | Eventual consistency complexity. |
+| Optimized data schemas for read vs write operations. | High architectural overhead for simple domains. |
+
+| Pros | Cons |
+| :--- | :--- |
+| Independent scaling of read and write workloads. | Eventual consistency complexity. |
+| Optimized data schemas for read vs write operations. | High architectural overhead for simple domains. |
+|  | | :--- | |
+
+| Pros | Cons |
+| :--- | :--- |
+| Independent scaling of read and write workloads. | Eventual consistency complexity. |
+| Optimized data schemas for read vs write operations. | High architectural overhead for simple domains. |
+|  | | :--- | |
+|  | | :--- | |
+|  | | | |
+
+| Pros | Cons |
+| :--- | :--- |
+| Independent scaling of read and write workloads. | Eventual consistency complexity. |
+| Optimized data schemas for read vs write operations. | High architectural overhead for simple domains. |
+|  | | :--- | |
+|  | | :--- | |
+|  | | | |
+|  | | :--- | |
+|  | | | |
+|  | | | |

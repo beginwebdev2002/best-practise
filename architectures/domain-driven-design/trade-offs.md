@@ -18,3 +18,33 @@ last_updated: 2026-03-29
 ### Cons
 - Extreme overhead for CRUD operations.
 - Requires domain experts collaboration.
+
+| Pros | Cons |
+| :--- | :--- |
+| Aligns code strictly with business realities. | Extreme overhead for CRUD operations. |
+| High focus on the core domain complexity. | Requires domain experts collaboration. |
+
+| Pros | Cons |
+| :--- | :--- |
+| Aligns code strictly with business realities. | Extreme overhead for CRUD operations. |
+| High focus on the core domain complexity. | Requires domain experts collaboration. |
+|  | | :--- | |
+
+| Pros | Cons |
+| :--- | :--- |
+| Aligns code strictly with business realities. | Extreme overhead for CRUD operations. |
+| High focus on the core domain complexity. | Requires domain experts collaboration. |
+|  | | :--- | |
+|  | | :--- | |
+|  | | | |
+
+| Pros | Cons |
+| :--- | :--- |
+| Aligns code strictly with business realities. | Extreme overhead for CRUD operations. |
+| High focus on the core domain complexity. | Requires domain experts collaboration. |
+|  | | :--- | |
+|  | | :--- | |
+|  | | | |
+|  | | :--- | |
+|  | | | |
+|  | | | |
