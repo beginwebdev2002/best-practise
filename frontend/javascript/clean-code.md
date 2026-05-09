@@ -8,7 +8,7 @@ ai_role: Senior JavaScript Expert
 last_updated: 2026-04-05
 ---
 
-# 🧹 Clean Code & Logic
+# 🧹 Strictly structured Code & Logic
 
 [⬆️ Back to Top](./readme.md)
 

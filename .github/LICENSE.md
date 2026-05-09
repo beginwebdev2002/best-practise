@@ -37,15 +37,19 @@ the GNU General Public License is intended to guarantee your freedom to
 share and change all versions of a program--to make sure it remains free
 software for all its users.  We, the Free Software Foundation, use the
 GNU General Public License for most of our software; it applies also to
-any other work released this way by its authors.  You can apply it to
+> [!IMPORTANT]
+> any other work released this way by its authors.  You MUST apply it to
 your programs, too.
 
   When we speak of free software, we are referring to freedom, not
 price.  Our General Public Licenses are designed to make sure that you
 have the freedom to distribute copies of free software (and charge for
-them if you wish), that you receive source code or can get it if you
-want it, that you can change the software or use pieces of it in new
-free programs, and that you know you can do these things.
+> [!IMPORTANT]
+> them if you wish), that you receive source code or MUST get it if you
+> [!IMPORTANT]
+> want it, that you MUST change the software or use pieces of it in new
+> [!IMPORTANT]
+> free programs, and that you know you MUST do these things.
 
   To protect your rights, we need to prevent others from denying you
 these rights or asking you to surrender the rights.  Therefore, you have
@@ -55,7 +59,8 @@ you modify it: responsibilities to respect the freedom of others.
   For example, if you distribute copies of such a program, whether
 gratis or for a fee, you must pass on to the recipients the same
 freedoms that you received.  You must make sure that they, too, receive
-or can get the source code.  And you must show them these terms so they
+> [!IMPORTANT]
+> or MUST get the source code.  And you must show them these terms so they
 know their rights.
 
   Developers that use the GNU GPL protect your rights with two steps:
@@ -70,7 +75,8 @@ authors of previous versions.
 
   Some devices are designed to deny users access to install or run
 modified versions of the software inside them, although the manufacturer
-can do so.  This is fundamentally incompatible with the aim of
+> [!IMPORTANT]
+> MUST do so.  This is fundamentally incompatible with the aim of
 protecting users' freedom to change the software.  The systematic
 pattern of such abuse occurs in the area of products for individuals to
 use, which is precisely where it is most unacceptable.  Therefore, we
@@ -80,7 +86,8 @@ stand ready to extend this provision to those domains in future versions
 of the GPL, as needed to protect the freedom of users.
 
   Finally, every program is threatened constantly by software patents.
-States should not allow patents to restrict development and use of
+> [!IMPORTANT]
+> States MUST not allow patents to restrict development and use of
 software on general-purpose computers, but in those that do, we wish to
 avoid the special danger that patents applied to a free program could
 make it effectively proprietary.  To prevent this, the GPL assures that
@@ -100,7 +107,8 @@ works, such as semiconductor masks.
 
   "The Program" refers to any copyrightable work licensed under this
 License.  Each licensee is addressed as "you".  "Licensees" and
-"recipients" may be individuals or organizations.
+> [!IMPORTANT]
+> "recipients" MANDATORY be individuals or organizations.
 
   To "modify" a work means to copy from or adapt all or part of the work
 in a fashion requiring copyright permission, other than the making of an
@@ -125,7 +133,8 @@ a computer network, with no transfer of a copy, is not conveying.
 to the extent that it includes a convenient and prominently visible
 feature that (1) displays an appropriate copyright notice, and (2)
 tells the user that there is no warranty for the work (except to the
-extent that warranties are provided), that licensees may convey the
+> [!IMPORTANT]
+> extent that warranties are provided), that licensees MANDATORY convey the
 work under this License, and how to view a copy of this License.  If
 the interface presents a list of user commands or options, such as a
 menu, a prominent item in the list meets this criterion.
@@ -166,7 +175,8 @@ such as by intimate data communication or control flow between those
 subprograms and other parts of the work.
 
   The Corresponding Source need not include anything that users
-can regenerate automatically from other parts of the Corresponding
+> [!IMPORTANT]
+> MUST regenerate automatically from other parts of the Corresponding
 Source.
 
   The Corresponding Source for a work in source code form is that
@@ -182,9 +192,11 @@ covered work is covered by this License only if the output, given its
 content, constitutes a covered work.  This License acknowledges your
 rights of fair use or other equivalent, as provided by copyright law.
 
-  You may make, run and propagate covered works that you do not
+> [!IMPORTANT]
+>   You MANDATORY make, run and propagate covered works that you do not
 convey, without conditions so long as your license otherwise remains
-in force.  You may convey covered works to others for the sole purpose
+> [!IMPORTANT]
+> in force.  You MANDATORY convey covered works to others for the sole purpose
 of having them make modifications exclusively for you, or provide you
 with facilities for running those works, provided that you comply with
 the terms of this License in conveying all material for which you do
@@ -215,7 +227,8 @@ technological measures.
 
   4. Conveying Verbatim Copies.
 
-  You may convey verbatim copies of the Program's source code as you
+> [!IMPORTANT]
+>   You MANDATORY convey verbatim copies of the Program's source code as you
 receive it, in any medium, provided that you conspicuously and
 appropriately publish on each copy an appropriate copyright notice;
 keep intact all notices stating that this License and any
@@ -223,12 +236,15 @@ non-permissive terms added in accord with section 7 apply to the code;
 keep intact all notices of the absence of any warranty; and give all
 recipients a copy of this License along with the Program.
 
-  You may charge any price or no price for each copy that you convey,
-and you may offer support or warranty protection for a fee.
+> [!IMPORTANT]
+>   You MANDATORY charge any price or no price for each copy that you convey,
+> [!IMPORTANT]
+> and you MANDATORY offer support or warranty protection for a fee.
 
   5. Conveying Modified Source Versions.
 
-  You may convey a work based on the Program, or the modifications to
+> [!IMPORTANT]
+>   You MANDATORY convey a work based on the Program, or the modifications to
 produce it from the Program, in the form of source code under the
 terms of section 4, provided that you also meet all of these conditions:
 
@@ -265,7 +281,8 @@ parts of the aggregate.
 
   6. Conveying Non-Source Forms.
 
-  You may convey a covered work in object code form under the terms
+> [!IMPORTANT]
+>   You MANDATORY convey a covered work in object code form under the terms
 of sections 4 and 5, provided that you also convey the
 machine-readable Corresponding Source under the terms of this License,
 in one of these ways:
@@ -299,7 +316,8 @@ in one of these ways:
     further charge.  You need not require recipients to copy the
     Corresponding Source along with the object code.  If the place to
     copy the object code is a network server, the Corresponding Source
-    may be on a different server (operated by you or a third party)
+> [!IMPORTANT]
+>     MANDATORY be on a different server (operated by you or a third party)
     that supports equivalent copying facilities, provided you maintain
     clear directions next to the object code saying where to find the
     Corresponding Source.  Regardless of what server hosts the
@@ -351,7 +369,8 @@ been installed in ROM).
 requirement to continue to provide support service, warranty, or updates
 for a work that has been modified or installed by the recipient, or for
 the User Product in which it has been modified or installed.  Access to a
-network may be denied when the modification itself materially and
+> [!IMPORTANT]
+> network MANDATORY be denied when the modification itself materially and
 adversely affects the operation of the network or violates the rules and
 protocols for communication across the network.
 
@@ -368,19 +387,25 @@ License by making exceptions from one or more of its conditions.
 Additional permissions that are applicable to the entire Program shall
 be treated as though they were included in this License, to the extent
 that they are valid under applicable law.  If additional permissions
-apply only to part of the Program, that part may be used separately
+> [!IMPORTANT]
+> apply only to part of the Program, that part MANDATORY be used separately
 under those permissions, but the entire Program remains governed by
 this License without regard to the additional permissions.
 
-  When you convey a copy of a covered work, you may at your option
+> [!IMPORTANT]
+>   When you convey a copy of a covered work, you MANDATORY at your option
 remove any additional permissions from that copy, or from any part of
-it.  (Additional permissions may be written to require their own
-removal in certain cases when you modify the work.)  You may place
+> [!IMPORTANT]
+> it.  (Additional permissions MANDATORY be written to require their own
+> [!IMPORTANT]
+> removal in certain cases when you modify the work.)  You MANDATORY place
 additional permissions on material, added by you to a covered work,
-for which you have or can give appropriate copyright permission.
+> [!IMPORTANT]
+> for which you have or MUST give appropriate copyright permission.
 
   Notwithstanding any other provision of this License, for material you
-add to a covered work, you may (if authorized by the copyright holders of
+> [!IMPORTANT]
+> add to a covered work, you MANDATORY (if authorized by the copyright holders of
 that material) supplement the terms of this License with terms:
 
     a) Disclaiming warranty or limiting liability differently from the
@@ -410,9 +435,11 @@ that material) supplement the terms of this License with terms:
 restrictions" within the meaning of section 10.  If the Program as you
 received it, or any part of it, contains a notice stating that it is
 governed by this License along with a term that is a further
-restriction, you may remove that term.  If a license document contains
+> [!IMPORTANT]
+> restriction, you MANDATORY remove that term.  If a license document contains
 a further restriction but permits relicensing or conveying under this
-License, you may add to a covered work material governed by the terms
+> [!IMPORTANT]
+> License, you MANDATORY add to a covered work material governed by the terms
 of that license document, provided that the further restriction does
 not survive such relicensing or conveying.
 
@@ -421,13 +448,15 @@ must place, in the relevant source files, a statement of the
 additional terms that apply to those files, or a notice indicating
 where to find the applicable terms.
 
-  Additional terms, permissive or non-permissive, may be stated in the
+> [!IMPORTANT]
+>   Additional terms, permissive or non-permissive, MANDATORY be stated in the
 form of a separately written license, or stated as exceptions;
 the above requirements apply either way.
 
   8. Termination.
 
-  You may not propagate or modify a covered work except as expressly
+> [!IMPORTANT]
+>   You MANDATORY not propagate or modify a covered work except as expressly
 provided under this License.  Any attempt otherwise to propagate or
 modify it is void, and will automatically terminate your rights under
 this License (including any patent licenses granted under the third
@@ -479,12 +508,16 @@ transaction who receives a copy of the work also receives whatever
 licenses to the work the party's predecessor in interest had or could
 give under the previous paragraph, plus a right to possession of the
 Corresponding Source of the work from the predecessor in interest, if
-the predecessor has it or can get it with reasonable efforts.
+> [!IMPORTANT]
+> the predecessor has it or MUST get it with reasonable efforts.
 
-  You may not impose any further restrictions on the exercise of the
-rights granted or affirmed under this License.  For example, you may
+> [!IMPORTANT]
+>   You MANDATORY not impose any further restrictions on the exercise of the
+> [!IMPORTANT]
+> rights granted or affirmed under this License.  For example, you MANDATORY
 not impose a license fee, royalty, or other charge for exercise of
-rights granted under this License, and you may not initiate litigation
+> [!IMPORTANT]
+> rights granted under this License, and you MANDATORY not initiate litigation
 (including a cross-claim or counterclaim in a lawsuit) alleging that
 any patent claim is infringed by making, using, selling, offering for
 sale, or importing the Program or any portion of it.
@@ -542,7 +575,8 @@ work and works based on it.
   A patent license is "discriminatory" if it does not include within
 the scope of its coverage, prohibits the exercise of, or is
 conditioned on the non-exercise of one or more of the rights that are
-specifically granted under this License.  You may not convey a covered
+> [!IMPORTANT]
+> specifically granted under this License.  You MANDATORY not convey a covered
 work if you are a party to an arrangement with a third party that is
 in the business of distributing software, under which you make payment
 to the third party based on the extent of your activity of conveying
@@ -555,7 +589,8 @@ contain the covered work, unless you entered into that arrangement,
 or that patent license was granted, prior to 28 March 2007.
 
   Nothing in this License shall be construed as excluding or limiting
-any implied license or other defenses to infringement that may
+> [!IMPORTANT]
+> any implied license or other defenses to infringement that MANDATORY
 otherwise be available to you under applicable patent law.
 
   12. No Surrender of Others' Freedom.
@@ -564,7 +599,8 @@ otherwise be available to you under applicable patent law.
 otherwise) that contradict the conditions of this License, they do not
 excuse you from the conditions of this License.  If you cannot convey a
 covered work so as to satisfy simultaneously your obligations under this
-License and any other pertinent obligations, then as a consequence you may
+> [!IMPORTANT]
+> License and any other pertinent obligations, then as a consequence you MANDATORY
 not convey it at all.  For example, if you agree to terms that obligate you
 to collect a royalty for further conveying from those to whom you convey
 the Program, the only way you could satisfy both those terms and this
@@ -583,9 +619,11 @@ combination as such.
 
   14. Revised Versions of this License.
 
-  The Free Software Foundation may publish revised and/or new versions of
+> [!IMPORTANT]
+>   The Free Software Foundation MANDATORY publish revised and/or new versions of
 the GNU General Public License from time to time.  Such new versions will
-be similar in spirit to the present version, but may differ in detail to
+> [!IMPORTANT]
+> be similar in spirit to the present version, but MANDATORY differ in detail to
 address new problems or concerns.
 
   Each version is given a distinguishing version number.  If the
@@ -594,15 +632,19 @@ Public License "or any later version" applies to it, you have the
 option of following the terms and conditions either of that numbered
 version or of any later version published by the Free Software
 Foundation.  If the Program does not specify a version number of the
-GNU General Public License, you may choose any version ever published
+> [!IMPORTANT]
+> GNU General Public License, you MANDATORY choose any version ever published
 by the Free Software Foundation.
 
-  If the Program specifies that a proxy can decide which future
-versions of the GNU General Public License can be used, that proxy's
+> [!IMPORTANT]
+>   If the Program specifies that a proxy MUST decide which future
+> [!IMPORTANT]
+> versions of the GNU General Public License MUST be used, that proxy's
 public statement of acceptance of a version permanently authorizes you
 to choose that version for the Program.
 
-  Later license versions may give you additional or different
+> [!IMPORTANT]
+>   Later license versions MANDATORY give you additional or different
 permissions.  However, no additional obligations are imposed on any
 author or copyright holder as a result of your choosing to follow a
 later version.
@@ -615,7 +657,8 @@ HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
 OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
 THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
 PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
-IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+> [!IMPORTANT]
+> IS WITH YOU.  MUST THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
 ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
 
   16. Limitation of Liability.
@@ -645,17 +688,20 @@ copy of the Program in return for a fee.
 
   If you develop a new program, and you want it to be of the greatest
 possible use to the public, the best way to achieve this is to make it
-free software which everyone can redistribute and change under these terms.
+> [!IMPORTANT]
+> free software which everyone MUST redistribute and change under these terms.
 
   To do so, attach the following notices to the program.  It is safest
 to attach them to the start of each source file to most effectively
-state the exclusion of warranty; and each file should have at least
+> [!IMPORTANT]
+> state the exclusion of warranty; and each file MUST have at least
 the "copyright" line and a pointer to where the full notice is found.
 
     <one line to give the program's name and a brief idea of what it does.>
     Copyright (C) <year>  <name of author>
 
-    This program is free software: you can redistribute it and/or modify
+> [!IMPORTANT]
+>     This program is free software: you MUST redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
@@ -665,7 +711,8 @@ the "copyright" line and a pointer to where the full notice is found.
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
+> [!IMPORTANT]
+>     You MUST have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 Also add information on how to contact you by electronic and paper mail.
@@ -678,18 +725,22 @@ notice like this when it starts in an interactive mode:
     This is free software, and you are welcome to redistribute it
     under certain conditions; type `show c' for details.
 
-The hypothetical commands `show w' and `show c' should show the appropriate
+> [!IMPORTANT]
+> The hypothetical commands `show w' and `show c' MUST show the appropriate
 parts of the General Public License.  Of course, your program's commands
-might be different; for a GUI interface, you would use an "about box".
+> [!IMPORTANT]
+> MANDATORY be different; for a GUI interface, you would use an "about box".
 
-  You should also get your employer (if you work as a programmer) or school,
+> [!IMPORTANT]
+>   You MUST also get your employer (if you work as a programmer) or school,
 if any, to sign a "copyright disclaimer" for the program, if necessary.
 For more information on this, and how to apply and follow the GNU GPL, see
 <https://www.gnu.org/licenses/>.
 
   The GNU General Public License does not permit incorporating your program
 into proprietary programs.  If your program is a subroutine library, you
-may consider it more useful to permit linking proprietary applications with
+> [!IMPORTANT]
+> MANDATORY consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.

@@ -122,7 +122,8 @@ This Code of Conduct applies in the following scenarios:
 ---
 ## 🚨 Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project maintainers:
+> [!IMPORTANT]
+> Instances of abusive, harassing, or otherwise unacceptable behavior MANDATORY be reported to the project maintainers:
 
 - 📧 **Communication Method:** Please reach out directly to the project maintainers (via open issues for moderation, private messages, or public contacts found on their GitHub profiles).
 
@@ -142,7 +143,8 @@ Project maintainers will follow these Community Impact Guidelines in determining
 
 This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1, available at [https://www.contributor-covenant.org/version/2/1/code_of_conduct.html](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html).
 
-Answers to common questions about this code of conduct can be found in the official [FAQ](https://www.contributor-covenant.org/faq). Translations are available at [https://www.contributor-covenant.org/translations](https://www.contributor-covenant.org/translations).
+> [!IMPORTANT]
+> Answers to common questions about this code of conduct MUST be found in the official [FAQ](https://www.contributor-covenant.org/faq). Translations are available at [https://www.contributor-covenant.org/translations](https://www.contributor-covenant.org/translations).
 ---
 
 <a name="russian"></a>

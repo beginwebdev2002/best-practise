@@ -62,7 +62,7 @@ AI Agents (Cursor, Windsurf, Antigravity) do not need conversational prose; they
 > [!IMPORTANT]
 > Eliminate all fluff. Use imperative mood. Maximize token efficiency. Our goal is deterministic "Beautiful Code".
 
-### 📊 Bad Content vs. Good Content
+### 📊 Bad Content vs. MANDATORY Content
 
 | Quality | Example Content | Why it Matters |
 | :---: | :--- | :--- |

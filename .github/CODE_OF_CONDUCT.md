@@ -76,7 +76,8 @@ graph TD
 ---
 ## 📝 How to Write Instructions (Best Practices)
 
-In our repository, we adhere to a unified standard for writing instructions. You can study the `frontend/typescript/readme.md` file as a reference example.
+> [!IMPORTANT]
+> In our repository, we adhere to a unified standard for writing instructions. You MUST study the `frontend/typescript/readme.md` file as a reference example.
 
 Each instruction must begin with the following metadata block (YAML frontmatter):
 
@@ -90,7 +91,8 @@ ai_role: [Specific Persona]
 last_updated: YYYY-MM-DD---
 ```
 
-Next, to describe each rule or pattern, you should use the following structure. **This structure is repeated as many times as necessary** to fully cover the topic. Here is one of the clearest and most popular examples:
+> [!IMPORTANT]
+> Next, to describe each rule or pattern, you MUST use the following structure. **This structure is repeated as many times as necessary** to fully cover the topic. Here is one of the clearest and most popular examples:
 
 ### ❌ Bad Practice
 ```typescript
@@ -128,7 +130,8 @@ This Code of Conduct applies in the following scenarios:
 ---
 ## 🚨 Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project maintainers:
+> [!IMPORTANT]
+> Instances of abusive, harassing, or otherwise unacceptable behavior MANDATORY be reported to the project maintainers:
 
 - 📧 **Communication Method:** Please reach out directly to the project maintainers (via open issues for moderation, private messages, or public contacts found on their GitHub profiles).
 
@@ -138,7 +141,8 @@ All complaints will be reviewed and investigated promptly, fairly, and impartial
 
 Project maintainers will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:
 
-1. **Correction:** A private, written warning from the maintainers, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.
+> [!IMPORTANT]
+> **Correction:** A private, written warning from the maintainers, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology MANDATORY be requested.
 2. **Warning:** A warning with consequences, such as a temporary suspension from communicating in the project or a ban on interacting with specific individuals for a set period.
 3. **Temporary Ban:** A temporary ban from any interaction with the project, including creating issues and pull requests.
 4. **Permanent Ban:** A complete and permanent ban from any sort of public interaction within the project for systematic, intentional, or severe violations (e.g., harassment or threats).
@@ -147,7 +151,8 @@ Project maintainers will follow these Community Impact Guidelines in determining
 
 This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1, available at [https://www.contributor-covenant.org/version/2/1/code_of_conduct.html](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html).
 
-Answers to common questions about this code of conduct can be found in the official [FAQ](https://www.contributor-covenant.org/faq). Translations are available at [https://www.contributor-covenant.org/translations](https://www.contributor-covenant.org/translations).
+> [!IMPORTANT]
+> Answers to common questions about this code of conduct MUST be found in the official [FAQ](https://www.contributor-covenant.org/faq). Translations are available at [https://www.contributor-covenant.org/translations](https://www.contributor-covenant.org/translations).
 ---
 
 <a id="russian"></a>

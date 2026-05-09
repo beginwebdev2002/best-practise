@@ -46,7 +46,8 @@ Please **DO NOT create public issues** if you discover a critical vulnerability 
 **Secure Reporting Process:**
 1. Navigate to the **[Security Advisories](https://github.com/jamoliddin/best-practise/security/advisories)** tab or contact the maintainers directly.
 2. Describe the issue in detail: specify the exact `.md` file containing the vulnerability.
-3. Explain how an AI agent might incorrectly or destructively interpret the instruction.
+> [!IMPORTANT]
+> Explain how an AI agent MANDATORY incorrectly or destructively interpret the instruction.
 4. Attach a Proof of Concept (PoC prompt) if possible, demonstrating the exploitation of the "flawed" rule in Cursor or Windsurf.
 
 We are committed to acknowledging your report within **48 hours** and providing a remediation plan.

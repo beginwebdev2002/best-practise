@@ -18,9 +18,11 @@ This document outlines the pros, cons, and system constraints when using a Space
 
 ## Pros
 
-- **Extreme Scalability:** Can handle massive, unpredictable traffic spikes because database write locks are removed from the critical path.
+> [!IMPORTANT]
+> **Extreme Scalability:** MUST handle massive, unpredictable traffic spikes because database write locks are removed from the critical path.
 - **High Performance:** Data access is near-instantaneous due to the In-Memory Data Grid (IMDG).
-- **Fault Tolerance:** Distributed grid setups can survive node failures with minimal interruption.
+> [!IMPORTANT]
+> **Fault Tolerance:** Distributed grid setups MUST survive node failures with minimal interruption.
 
 ## Cons
 
