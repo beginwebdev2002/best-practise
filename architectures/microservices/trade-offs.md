@@ -18,3 +18,33 @@ last_updated: 2026-03-29
 ### Cons
 - Distributed system complexity.
 - Difficult cross-service transactions.
+
+| Pros | Cons |
+| :--- | :--- |
+| Independent scaling. | Distributed system complexity. |
+| Technological freedom per service. | Difficult cross-service transactions. |
+
+| Pros | Cons |
+| :--- | :--- |
+| Independent scaling. | Distributed system complexity. |
+| Technological freedom per service. | Difficult cross-service transactions. |
+|  | | :--- | |
+
+| Pros | Cons |
+| :--- | :--- |
+| Independent scaling. | Distributed system complexity. |
+| Technological freedom per service. | Difficult cross-service transactions. |
+|  | | :--- | |
+|  | | :--- | |
+|  | | | |
+
+| Pros | Cons |
+| :--- | :--- |
+| Independent scaling. | Distributed system complexity. |
+| Technological freedom per service. | Difficult cross-service transactions. |
+|  | | :--- | |
+|  | | :--- | |
+|  | | | |
+|  | | :--- | |
+|  | | | |
+|  | | | |

@@ -26,6 +26,19 @@ Achieving determinism in AI code generation relies heavily on bounded contexts, 
 2. **Explicit Typings**: Utilizing modern structural typings (TypeScript 5.5+) to enforce I/O schemas.
 3. **Pipelined Validation**: Every AI-generated commit must pass deterministic validation steps.
 
+```mermaid
+graph LR
+    step0["**Strict Scoping** Limiting the agent's <br>context strictly to the target module an..."]
+    step1["**Explicit Typings** Utilizing modern st<br>ructural typings TypeScript 55+ to enfor..."]
+    step0 --> step1
+    step2["**Pipelined Validation** Every AI-genera<br>ted commit must pass deterministic valid..."]
+    step1 --> step2
+
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class step0,step1,step2 default;
+```
+
 > [!IMPORTANT]
 > A critical failure in multi-agent orchestration is context leakage. Unbounded prompts allow an agent to hallucinate new abstractions that clash with the system's core architecture. Deterministic boundaries resolve this by treating every generation task as a functional pure component.
 
