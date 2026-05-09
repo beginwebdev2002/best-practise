@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Latest
 tags: [vibe-coding, documentation, best-practices, architecture, design-system, accessibility]
 ai_role: Senior Vibe Coding Expert
-last_updated: 2026-03-29
+last_updated: 2026-05-09
 ---
 
 # 🎨 UI/UX Design Production-Ready Best Practices
@@ -80,10 +80,10 @@ graph LR
 
 The UI/UX architecture is decomposed into the following specialized modules. AI Agents MUST strictly adhere to the guidelines in these documents.
 
-* [🎨 Styling Rules](./styling.md) - Design Tokens, Hardcoded Values, and general CSS best practices.
-* [📱 Responsive Design](./responsive-design.md) - Mobile-First Approach, Relative Units, and fluid layouts.
 * [♿ Accessibility (A11y)](./accessibility.md) - Semantic HTML, ARIA attributes, Focus visibility, and WCAG standards.
 * [🏗️ Component Architecture](./component-architecture.md) - Atomic Design principles and structural UI diagrams.
+* [📱 Responsive Design](./responsive-design.md) - Mobile-First Approach, Relative Units, and fluid layouts.
+* [🎨 Styling Rules](./styling.md) - Design Tokens, Hardcoded Values, and general CSS best practices.
 
 ---
 ## ✅ Checklist for Agents
