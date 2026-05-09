@@ -16,33 +16,49 @@ last_updated: 2026-03-29
 
 This document outlines the strict directory blueprints for organizing logic within a Space-Based Architecture system.
 
-```text
-src/
-├── api-gateway/            # Routing and basic validation
-│   ├── routes/
-│   └── middleware/
-├── middleware/             # Virtualized middleware for processing unit routing
-│   ├── load-balancer/
-│   └── data-router/
-├── processing-units/       # Independent processing components
-│   ├── auth-unit/
-│   │   ├── logic/
-│   │   └── data-access/  # Communicates with IMDG
-│   └── catalog-unit/
-│       ├── logic/
-│       └── data-access/
-├── data-grid/              # IMDG configuration and schema definitions
-│   ├── schemas/
-│   └── config/
-└── data-pumps/             # Background services syncing IMDG to DB
-    ├── writers/
-    └── recovery/
+## Component Relations
+
+```mermaid
+classDiagram
+    class src {
+    }
+    class api_gateway {
+        +routes
+        +middleware
+    }
+    class middleware {
+        +load_balancer
+        +data_router
+    }
+    class processing_units {
+        +auth_unit
+        +catalog_unit
+    }
+    class data_grid {
+        +schemas
+        +config
+    }
+    class data_pumps {
+        +writers
+        +recovery
+    }
+
+    src *-- api_gateway
+    src *-- middleware
+    src *-- processing_units
+    src *-- data_grid
+    src *-- data_pumps
+
+    note for api_gateway "Routing and basic validation"
+    note for middleware "Virtualized middleware for processing unit routing"
+    note for processing_units "Independent processing components"
+    note for data_grid "IMDG configuration and schema definitions"
+    note for data_pumps "Background services syncing IMDG to DB"
+
+    %% Design Tokens
+    class api_gateway:::component
+    class middleware:::layout
+    class processing_units:::component
+    class data_grid:::default
+    class data_pumps:::default
 ```
-
-## Layering Logic
-
-- **api-gateway:** The initial entry point. Minimal logic.
-- **middleware:** Manages the grid and distributes the load to the Processing Units.
-- **processing-units:** The core. Contains business logic. Interacts only with the `data-grid` layer.
-- **data-grid:** Defines how data is structured and cached in memory.
-- **data-pumps:** Contains asynchronous workers that take data from the grid and flush it to the permanent database.
