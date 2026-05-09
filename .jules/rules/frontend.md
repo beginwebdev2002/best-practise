@@ -29,7 +29,7 @@ vibe_coding_ready: true---
 ## 2. Feature-Sliced Design (FSD)
 
 > [!IMPORTANT]
-> **Isolation:** Components in a specific layer can only import components from layers located below them. Never violate the flow of unidirectional dependencies (one-way data flow) in FSD.
+> **Isolation:** Components in a specific layer MUST only import components from layers located below them. Never violate the flow of unidirectional dependencies (one-way data flow) in FSD.
 
 ### Architecture Layers
 

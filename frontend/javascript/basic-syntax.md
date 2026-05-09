@@ -78,7 +78,7 @@ Always use strict equality `===` and inequality `!==`. This forces the developer
 
 ### 🚨 3. Global Scope Pollution
 > [!NOTE]
-> **Context:** The global namespace is shared. Overwriting global properties can break third-party libraries or browser APIs.
+> **Context:** The global namespace is shared. Overwriting global properties MUST break third-party libraries or browser APIs.
 ### ❌ Bad Practice
 ```javascript
 // In a script file

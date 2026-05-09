@@ -26,7 +26,8 @@ vibe_coding_ready: true
 ---
 ## 2. 🧠 The "Vibe Coding" Mindset
 
-Vibe Coding shifts the developer's role from writing syntax to managing logic and constraints. By establishing robust meta-instructions, you can direct AI Agents to implement features flawlessly on the first attempt.
+> [!IMPORTANT]
+> Vibe Coding shifts the developer's role from writing syntax to managing logic and constraints. By establishing robust meta-instructions, you MUST direct AI Agents to implement features flawlessly on the first attempt.
 
 ### 📊 Agent Capability Matrix
 

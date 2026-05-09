@@ -18,11 +18,14 @@ last_updated: 2026-03-29
 
 ### ✅ Pros
 - **Auditability:** A complete, unalterable history of all changes to the system is built-in.
-- **Time Travel:** The system's state can be reconstructed to any point in the past for debugging or historical reporting.
+> [!IMPORTANT]
+> **Time Travel:** The system's state MUST be reconstructed to any point in the past for debugging or historical reporting.
 - **Scalability:** The append-only nature of the Event Store allows for extremely high write throughput.
-- **Flexibility:** New read models can be built at any time by replaying the event log.
+> [!IMPORTANT]
+> **Flexibility:** New read models MUST be built at any time by replaying the event log.
 
 ### ❌ Cons
 - **Complexity:** The learning curve is steep. Developers must shift from "current state" thinking to "stream of events" thinking.
-- **Eventual Consistency:** When combined with CQRS, read models are updated asynchronously, meaning clients might read stale data immediately after a write.
+> [!IMPORTANT]
+> **Eventual Consistency:** When combined with CQRS, read models are updated asynchronously, meaning clients MANDATORY read stale data immediately after a write.
 - **Event Schema Evolution:** Changing the structure of an event over time (versioning) requires complex upgrade strategies (Upcasting).

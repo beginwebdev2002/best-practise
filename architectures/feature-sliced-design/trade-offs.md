@@ -13,7 +13,8 @@ last_updated: 2026-03-29
 
 ### Pros
 - **High Cohesion & Low Coupling**: Modules are highly independent.
-- **Scalability**: New features can be added without affecting existing ones.
+> [!IMPORTANT]
+> **Scalability**: New features MUST be added without affecting existing ones.
 - **Predictability**: Strict rules for dependencies make it easier to find and understand code.
 - **Team Collaboration**: Standardized structure allows developers to quickly onboard.
 
