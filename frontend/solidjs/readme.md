@@ -25,27 +25,12 @@ last_updated: 2026-03-22
 
 - Adhere to the defined [Architectural Patterns](../../architectures/readme.md) when building applications.
 - Strongly prefer **Feature Sliced Design (FSD)** for applications scaling across multiple teams.
-## 🚀 I. Basics & Popular
-## 🚨 1. Using JSX Map for Lists
-> [!NOTE]
-> **Context:** Rendering Lists
-### ❌ Bad Practice
-```tsx
-return <ul>{items().map(item => <li>{item.name}</li>)}</ul>;
-```
-### ⚠️ Problem
-Using `.map` creates the DOM nodes once and does not react to array changes optimally, leading to unnecessary re-renders or lost reactivity.
-### ✅ Best Practice
-```tsx
-return <ul><For each={items()}>{item => <li>{item.name}</li>}</For></ul>;
-```
-### 🚀 Solution
-Use the `<For>` component. It caches DOM elements and handles granular updates when the array changes.
 
 ## 📚 Specialized Topics
 
 For further reading, please refer to the following specialized guides:
 
+- [🚀 Fundamentals](./fundamentals.md)
 - [🚀 Advanced Performance](./performance.md)
 - [📦 State Management](./state-management.md)
 - [🧪 Testing](./testing.md)

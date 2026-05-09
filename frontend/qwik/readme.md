@@ -25,29 +25,12 @@ last_updated: 2026-03-22
 
 - Adhere to the defined [Architectural Patterns](../../architectures/readme.md) when building applications.
 - Strongly prefer **Feature Sliced Design (FSD)** for applications scaling across multiple teams.
-## 🚀 I. Basics & Popular
-## 🚨 1. Passing Closures as Props
-> [!NOTE]
-> **Context:** Component Props
-### ❌ Bad Practice
-```tsx
-const Component = ({ onClick }) => <button onClick={onClick}>Click</button>;
-```
-### ⚠️ Problem
-Closures cannot be serialized natively by Qwik, breaking resumability and throwing an error.
-### ✅ Best Practice
-```tsx
-const Component = component$(({ onClick$ }: { onClick$: PropFunction<() => void> }) => (
-  <button onClick$={onClick$}>Click</button>
-));
-```
-### 🚀 Solution
-Use the `$` suffix (`onClick$`) to mark the prop as a `PropFunction`, allowing Qwik to serialize the closure and load it lazily.
 
 ## 📚 Specialized Topics
 
 For further reading, please refer to the following specialized guides:
 
+- [🚀 Fundamentals](./fundamentals.md)
 - [🚀 Advanced Performance](./performance.md)
 - [📦 State Management](./state-management.md)
 - [🧪 Testing](./testing.md)
