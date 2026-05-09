@@ -17,7 +17,7 @@ last_updated: 2026-03-27
 ### ❌ Bad Practice
 ```typescript
 @Post()
-create(@Body() createUserDto: any) {
+create(@Body() createUserDto: unknown) {
   return this.userService.create(createUserDto);
 }
 ```

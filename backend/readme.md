@@ -23,6 +23,20 @@ last_updated: 2026-03-22
   **The foundational rules and standards governing backend logic.**
 </div>
 ---
+
+## 🔄 Global Backend Architecture
+
+```mermaid
+graph TD
+    A[Client Request] --> B[API Gateway / Load Balancer]
+    B --> C[Microservices / Monolith]
+    C --> D[(Primary Database)]
+    C --> E[(Redis Cache)]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+```
+
 ## Architecture Principles
 
 - Adhere to the defined [Architectural Patterns](../../architectures/readme.md) when building applications, specifically Hexagonal Architecture / Clean Architecture.
@@ -41,6 +55,7 @@ This folder acts as a container for documentation around the following backend t
 - [NestJS](./nestjs/readme.md)
 - [ExpressJS](./expressjs/readme.md)
 - [Node.js](./nodejs/readme.md)
+- [Fastify](./fastify/readme.md)
 - [GraphQL](./graphql/readme.md)
 - [PostgreSQL](./postgresql/readme.md)
 - [MongoDB](./mongodb/readme.md)
