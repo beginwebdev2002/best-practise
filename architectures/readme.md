@@ -56,6 +56,7 @@ Don't know where to start? Here are a few golden rules:
 - [MVC (Model-View-Controller)](./model-view-controller/readme.md)
 - [Monolithic Architecture](./monolithic-architecture/readme.md)
 - [Space-Based Architecture](./space-based-architecture/readme.md)
+- [Vibe Coding Patterns](./vibe-coding-patterns/readme.md)
 - [Serverless](./serverless/readme.md)
 - [Agentic Architecture (AI Agent Orchestration)](./agentic-architecture/readme.md)
 
@@ -719,3 +720,24 @@ src/
 - **Frameworks:** Eclipse, VS Code, Webpack, Babel.
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="16"/> Python.
 - **Patterns / Principles:** Open/Closed Principle, Dependency Inversion, Registry Pattern.
+
+---
+**📖 Map of Patterns:** [Go to Vibe Coding Patterns Guidelines](./vibe-coding-patterns/readme.md)
+
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    User[Engineer] --> Agent[AI Agent]
+    Agent --> Context[Predictive Context]
+    Agent --> CodeGen[Deterministic Code Generation]
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class User component;
+    class Agent layout;
+    class Context component;
+    class CodeGen component;
+```
