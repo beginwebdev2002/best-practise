@@ -16,19 +16,15 @@ last_updated: 2026-03-29
 
 This document outlines the pros, cons, and system constraints when using a Space-Based Architecture.
 
-## Pros
+## Structural Comparison
 
-- **Extreme Scalability:** Can handle massive, unpredictable traffic spikes because database write locks are removed from the critical path.
-- **High Performance:** Data access is near-instantaneous due to the In-Memory Data Grid (IMDG).
-- **Fault Tolerance:** Distributed grid setups can survive node failures with minimal interruption.
-
-## Cons
-
-- **High Complexity:** Setting up the IMDG, Virtualized Middleware, and Data Pumps is significantly more complex than a standard MVC or Microservices setup.
-- **Eventual Consistency:** Because writes are synced to the persistent database asynchronously, the system is eventually consistent. Read-after-write guarantees to the persistent store are not immediate.
-- **Cost:** Keeping vast amounts of transactional data in memory across multiple nodes requires substantial RAM, making infrastructure costs high.
+| Feature | Advantage (Pro) | Disadvantage (Con) |
+| :--- | :--- | :--- |
+| **Scalability** | Can handle massive, unpredictable traffic spikes because database write locks are removed from the critical path. | High Complexity in setting up the IMDG, Virtualized Middleware, and Data Pumps compared to standard MVC. |
+| **Performance** | Data access is near-instantaneous due to the In-Memory Data Grid (IMDG). | Eventual Consistency limits read-after-write guarantees to the persistent database. |
+| **Fault Tolerance** | Distributed grid setups can survive node failures with minimal interruption. | High infrastructure cost due to vast RAM requirements for storing transactional data in memory. |
 
 ## System Constraints
 
-- Must have a robust monitoring system for the IMDG. Memory leaks or unoptimized caching will crash the processing units.
-- Requires sophisticated deployment and partitioning strategies to ensure data locality (Processing Units must run near the data shards they need).
+- **MONITORING MANDATE:** Must strictly monitor the IMDG. Memory leaks or unoptimized caching WILL crash the processing units.
+- **DATA LOCALITY:** Requires sophisticated deployment and partitioning strategies to ensure Processing Units run near their needed data shards.
