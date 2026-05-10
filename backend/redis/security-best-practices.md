@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "7+"
 tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, redis, in-memory, nosql, system-design, production-ready, scalable-code]
 ai_role: Senior Redis Architecture Expert
-last_updated: 2026-03-27
+last_updated: 2026-05-10
 ---
 
 # 🟥 Redis Security Best Practices
@@ -29,6 +29,9 @@ const client = redis.createClient({
     socket: { tls: true }
 });
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 
 > [!NOTE]
 > **Internal Routing:** For more context, refer back to the [Redis Index](./readme.md).

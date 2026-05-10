@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "19+"
 tags: [react, state-management, server-actions, best-practices, architecture, clean-code]
 ai_role: Senior React State Management Expert
-last_updated: 2026-03-22
+last_updated: 2026-05-10
 ---
 
 # 🔄 React State Management & Server Actions Best Practices
@@ -63,6 +63,9 @@ function Form() {
 }
 ```
 
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ```mermaid
 flowchart TD
     A[Form Submitted] --> B{Action isPending?}
@@ -103,6 +106,9 @@ function Dropdown() {
   return <div onClick={() => setIsOpen(!isOpen)}>{isOpen ? 'Open' : 'Closed'}</div>;
 }
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Use `useState` or `useReducer` for UI state that belongs locally to a component tree. Only elevate state to a global store when it is shared across multiple disjoint component branches, maintaining strict state colocation for optimal rendering performance.
 

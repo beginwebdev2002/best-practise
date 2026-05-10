@@ -5,7 +5,7 @@ level: Senior/Architect
 version: ES6-ES2024
 tags: [javascript, testing, best-practices, clean-code, tdd, vibe-coding]
 ai_role: Senior JavaScript Testing Expert
-last_updated: 2026-04-05
+last_updated: 2026-05-10
 ---
 
 # 🧪 JavaScript Testing Best Practices
@@ -59,6 +59,9 @@ test('update user', () => {
 });
 ```
 
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### Structural Comparison: Unit Testing vs Integration Testing vs E2E
 
 | Feature | Unit Testing | Integration Testing | End-to-End (E2E) Testing |
@@ -95,6 +98,9 @@ test('fetches data', async () => {
   expect(data).toBe('success');
 });
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Always use `async/await` when testing asynchronous code. This ensures the test runner waits for the Promise to resolve or reject before marking the test as complete.
 

@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "ES2024+"
 tags: [javascript, es6, functional-programming, best-practices, clean-code, scalable-code]
 ai_role: Senior JavaScript Expert
-last_updated: 2026-03-22
+last_updated: 2026-05-10
 ---
 
 # ✨ Modern JavaScript Syntax & Functional Programming Best Practices
@@ -34,6 +34,9 @@ Redundant repetition of keys and values increases file size and makes the code n
 const name = 'Alice';
 const user = { name, age };
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Use Property Shorthand. When the key and variable name match, omit the value.
 ## ⚡ 12. Using `arguments` vs Rest parameters
@@ -52,6 +55,9 @@ The `arguments` object is not a real array (it lacks methods like `map` or `redu
 ```javascript
 const sum = (...args) => args.reduce((a, b) => a + b);
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Use Rest Parameters (`...args`). They create a real array and are more explicit about the function's intent.
 ## ⚡ 13. Manual array copying vs Spread
@@ -72,6 +78,9 @@ Manual loops for copying are verbose and imperative. They increase the surface a
 const original = [1, 2, 3];
 const copy = [...original];
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Use the Spread Operator (`...`). It is concise, declarative, and highly optimized by modern engines.
 ## ⚡ 14. Nested Destructuring
@@ -88,6 +97,9 @@ Repetitive property access is verbose and risks "cannot read property of undefin
 ```javascript
 const { location: { address: { city, zip } } } = user;
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Use nested destructuring to extract deeply nested values in a single statement. (Note: Combine with optional chaining if path existence isn't guaranteed).
 ## ⚡ 15. Default Parameters
@@ -108,6 +120,9 @@ function setRole(role = 'guest') {
     // ...
 }
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Use ES6 Default Parameters. They only apply if the argument is `undefined`.
 ## ⚡ 16. `forEach` for data transformation vs `map/filter`
@@ -126,6 +141,9 @@ numbers.forEach(n => {
 ```javascript
 const double = numbers.map(n => n * 2);
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Use `map`, `filter`, and `reduce` for data transformations. They return new arrays and promote immutability.
 ## ⚡ 17. Object mutation vs Immutability
@@ -144,6 +162,9 @@ Mutating objects passed by reference can lead to side effects in other parts of 
 ```javascript
 const updateAge = (user) => ({ ...user, age: 30 });
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Treat objects as immutable. Use the spread operator to create copies with updated properties.
 ## ⚡ 18. Switch statements vs Object Literals
@@ -174,6 +195,9 @@ function executeAction(action) {
     return (actions[action] || doNothing)();
 }
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Use an Object Literal (or Map) as a lookup table. It provides a deterministic, type-safe execution path that is cleaner, faster, and allows for dynamic extension without modifying the core logic.
 ## ⚡ 19. Not using Optional Chaining `?.`
@@ -189,6 +213,9 @@ The "logical AND" chain is verbose and repetitive. It quickly becomes unreadable
 ```javascript
 const street = user?.address?.street;
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Use Optional Chaining (`?.`). It short-circuits to `undefined` if any part of the chain is nullish.
 ## ⚡ 20. Not using Nullish Coalescing `??`
@@ -204,6 +231,9 @@ If `config.timeout` is `0`, the code will incorrectly fall back to `5000` becaus
 ```javascript
 const timeout = config.timeout ?? 5000;
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Use Nullish Coalescing (`??`). It only falls back if the value is `null` or `undefined`, allowing `0`, `false`, and `''` to be valid.
 ---

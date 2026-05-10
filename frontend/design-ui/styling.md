@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [vibe-coding, design-tokens, css, styling, best-practices]
 ai_role: Frontend UI/UX Enforcer
-last_updated: 2026-03-29
+last_updated: 2026-05-10
 ---
 
 # 🎨 UI/UX Styling & Design Tokens Rules
@@ -54,6 +54,9 @@ Using hardcoded absolute values (`20px`, hex codes) creates inconsistencies acro
   color: var(--text-primary);
 }
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 
 > [!NOTE]
 > **Internal Routing:** For more context, refer back to the [🎨 UI/UX Design Index](./readme.md).

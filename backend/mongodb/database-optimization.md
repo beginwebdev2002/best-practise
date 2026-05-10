@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "7.0+"
 tags: [database-optimization, mongodb, nosql, indexing, aggregation-pipeline, system-design, production-ready, scalable-code]
 ai_role: Senior MongoDB Database Architect
-last_updated: 2026-03-28
+last_updated: 2026-05-10
 ---
 
 # ⚡ MongoDB Database Optimization Best Practices
@@ -115,6 +115,9 @@ Fetching entire documents when only a subset of fields is required causes unnece
 // Create a compound index that covers the query
 db.orders.createIndex({ status: 1, amount: 1 })
 ```
+
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
 
 ### 🚀 Solution
 

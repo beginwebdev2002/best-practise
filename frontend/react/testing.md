@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "19+"
 tags: [react, testing, best-practices, clean-code, tdd, architecture, vibe-coding]
 ai_role: Senior React Testing Expert
-last_updated: 2026-04-05
+last_updated: 2026-05-10
 ---
 
 # 🧪 React Testing Best Practices
@@ -51,6 +51,9 @@ test('increments counter on click', () => {
   expect(screen.getByText('Count: 1')).toBeInTheDocument();
 });
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Test from the user's perspective using React Testing Library. Query by accessible roles and verify the DOM output. This guarantees that refactoring implementation details will not break your test suite.
 
@@ -82,6 +85,9 @@ test('loads data', async () => {
   expect(userName).toBeInTheDocument();
 });
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Use async utilities like `findBy*` or `waitFor` from React Testing Library. These tools inherently wrap updates in `act()` and poll the DOM until the asynchronous state resolves, ensuring deterministic test execution.
 

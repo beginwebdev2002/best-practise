@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "20+"
 tags: [angular, testing, best-practices, clean-code, signals, vibe-coding]
 ai_role: Senior Angular Testing Expert
-last_updated: 2026-04-05
+last_updated: 2026-05-10
 ---
 
 # 🧪 Angular Testing Best Practices
@@ -55,6 +55,9 @@ it('should render incremented counter on click', async () => {
   expect(text).toContain('1');
 });
 ```
+
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
 
 ```mermaid
 flowchart TD
@@ -112,6 +115,9 @@ it('should fetch data', () => {
   req.flush({ data: 'real-like' });
 });
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Utilize built-in testing utilities provided by Angular (`HttpTestingController`, `RouterTestingHarness`). They provide reliable, standardized APIs for asserting and mocking framework-level interactions.
 

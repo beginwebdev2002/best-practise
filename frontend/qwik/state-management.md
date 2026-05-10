@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "1.x"
 tags: [state-management, advanced, qwik, best-practices, clean-code, scalable-code]
 ai_role: Senior Qwik State Management Expert
-last_updated: 2026-03-22
+last_updated: 2026-05-10
 ---
 
 # 🔄 Qwik State Management Best Practices
@@ -56,6 +56,9 @@ export const MyComponent = component$(() => {
   return <div>Connecting...</div>;
 });
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Do not put instances like WebSockets or DOM references into `useStore`. Use `useSignal()` when you need isolated references that initialize lazily on the client using `useVisibleTask$()`, or handle them outside the reactive serialization boundaries.
 ---

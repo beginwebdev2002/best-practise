@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [vibe-coding, a11y, html, w3c, wcag, best-practices]
 ai_role: Frontend UI/UX Enforcer
-last_updated: 2026-03-29
+last_updated: 2026-05-10
 ---
 
 # ♿ Accessibility (A11y) Standards
@@ -47,6 +47,9 @@ Using generic `<div>` wrappers and artificially attaching ARIA roles or keyboard
 ```html
 <button class="btn" onclick="openModal()" aria-label="Open Settings Modal">Click Me</button>
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 
 > [!NOTE]
 > **Internal Routing:** For more context, refer back to the [🎨 UI/UX Design Index](./readme.md).

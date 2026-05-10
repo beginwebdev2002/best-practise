@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "16+"
 tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, postgresql, database, sql, rdbms, system-design, production-ready, scalable-code]
 ai_role: Senior PostgreSQL Database Architect
-last_updated: 2026-03-27
+last_updated: 2026-05-10
 ---
 
 # 🐘 PostgreSQL Security Best Practices
@@ -27,6 +27,9 @@ Storing plaintext passwords is a catastrophic security failure. If the database 
 const hashedPassword = await bcrypt.hash(plaintextPassword, 10);
 await pool.query(`INSERT INTO users (email, password_hash) VALUES ($1, $2)`, [email, hashedPassword]);
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 
 > [!NOTE]
 > **Internal Routing:** For more context, refer back to the [Postgresql Index](./readme.md).
