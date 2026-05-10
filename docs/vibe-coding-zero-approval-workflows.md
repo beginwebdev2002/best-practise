@@ -27,6 +27,20 @@ A Zero-Approval Workflow does not mean zero oversight; it means **deterministic 
 2.  **Constraint-Driven Development:** AI agents must operate within strict, pre-defined boundaries (e.g., specific folders, architectural layers).
 3.  **Atomic Commits:** Changes must be small, isolated, and reversible.
 4.  **Continuous Self-Correction:** Agents must be capable of parsing error logs and iteratively fixing failing pipelines.
+
+```mermaid
+graph LR
+    Trust[Trust via Verification] --> Constraint[Constraint-Driven Development]
+    Constraint --> Atomic[Atomic Commits]
+    Atomic --> Correction[Continuous Self-Correction]
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Trust component;
+    class Constraint component;
+    class Atomic component;
+    class Correction component;
+```
+
 ---
 ## 🏗️ Architectural Blueprint for Autonomy
 

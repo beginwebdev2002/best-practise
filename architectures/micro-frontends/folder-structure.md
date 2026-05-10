@@ -44,6 +44,31 @@ workspace/
 │   └── event-bus/ (Agnostic communication contract types)
 ```
 
+```mermaid
+classDiagram
+    class workspace {
+    }
+    class apps {
+        +app-shell/
+        +mfe-catalog/
+        +mfe-checkout/
+    }
+    class packages {
+        +design-system/
+        +event-bus/
+    }
+    workspace *-- apps
+    workspace *-- packages
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+
+    cssClass "workspace" component
+    cssClass "apps" component
+    cssClass "packages" component
+```
+
+
 
 
 ### Structural Comparison: Monorepo vs Polyrepo for MFEs
