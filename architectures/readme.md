@@ -719,3 +719,44 @@ src/
 - **Frameworks:** Eclipse, VS Code, Webpack, Babel.
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="16"/> Python.
 - **Patterns / Principles:** Open/Closed Principle, Dependency Inversion, Registry Pattern.
+
+
+---
+
+### 17. Vibe Coding Patterns
+[![Vibe Coding](https://img.shields.io/badge/Architecture-Vibe_Coding-black?style=flat-square)](#)
+
+**Description:** An orchestration framework explicitly designed for autonomous multi-agent environments, enabling predictable, deterministic, and verifiable code generation using the Vibe Coding methodology.
+**📖 Map of Patterns:** [Go to Vibe Coding Guidelines](./vibe-coding/readme.md)
+
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    Vibe[Vibe Command] --> Planner[Planner Protocol]
+    Planner --> Exec[Execution Layer]
+    Exec --> Validator[Deterministic Validator]
+    Validator --> Output[Verified Artifact]
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Vibe component;
+    class Planner component;
+    class Exec layout;
+    class Validator component;
+    class Output default;
+```
+
+```text
+src/
+├── 📁 agents/           # Specialized worker agents
+├── 📁 schemas/          # Strict validation boundaries
+└── 📁 tests/            # Deterministic fidelity suites
+```
+
+**Best Compatibility:**
+- **Frameworks:** Node.js, Next.js, NestJS.
+- **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript.
+- **Patterns / Principles:** Zero-Approval Flow, O(1) Context Pruning.
