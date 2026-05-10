@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "1.x"
 tags: [performance, advanced, qwik, best-practices, clean-code, scalable-code]
 ai_role: Senior Qwik Performance Expert
-last_updated: 2026-03-22
+last_updated: 2026-05-10
 ---
 
 # 🚀 Qwik Advanced Performance Best Practices
@@ -39,6 +39,9 @@ const Component = component$(() => {
   return <button onClick$={handleClick}>Click</button>;
 });
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 > [!IMPORTANT]
 > Ensure all event handlers use the `$` suffix (like `onClick$`) and their corresponding logic is wrapped in `$()`. This explicit syntax breaks the application into tiny resumable closures that Qwik MUST fetch only when the user interacts with them.

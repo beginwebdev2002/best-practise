@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "24+"
 tags: [security, best-practices, nodejs, deterministic-code, scalable-code, system-design]
 ai_role: Senior Node.js Security Expert
-last_updated: 2026-03-24
+last_updated: 2026-05-10
 ---
 
 # 🟢 Node.js Security Best Practices
@@ -51,6 +51,9 @@ function safeMerge(target, source) {
   return target;
 }
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 
 > [!NOTE]
 > **Internal Routing:** For more context, refer back to the [Nodejs Index](./readme.md).
@@ -75,6 +78,9 @@ if (!dbUrl) throw new Error('MANDATORY DATABASE_URL config is missing');
 
 const dbClient = new Database(dbUrl);
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 MANDATORY injection of secrets via environment variables or secret management vaults (e.g., AWS Secrets Manager, HashiCorp Vault). NEVER commit sensitive material to version control.
 
@@ -102,6 +108,9 @@ app.post('/validate', (req, res) => {
   res.send({ isValid });
 });
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 FORBID the use of complex, custom regular expressions on unconstrained user input. STRICTLY utilize established validation libraries and apply input length constraints before regex execution.
 

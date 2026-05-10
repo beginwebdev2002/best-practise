@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [vibe-coding, atomic-design, architecture, ui-components]
 ai_role: Frontend UI/UX Enforcer
-last_updated: 2026-03-29
+last_updated: 2026-05-10
 ---
 
 # 🏗️ UI Component Architecture
@@ -109,6 +109,9 @@ function UserDashboard() {
   );
 }
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 
 > [!NOTE]
 > **Internal Routing:** For more context, refer back to the [🎨 UI/UX Design Index](./readme.md).

@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, microservices, distributed-systems, system-design, solid-principles, production-ready, scalable-code]
 ai_role: Senior Microservices Architect
-last_updated: 2026-03-27
+last_updated: 2026-05-10
 ---
 
 # 🧩 Microservices Security Best Practices
@@ -30,6 +30,9 @@ app.post('/internal/process', verifyJwt, (req, res) => {
     // Process after validation
 });
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 
 > [!NOTE]
 > **Internal Routing:** For more context, refer back to the [Microservices Index](./readme.md).

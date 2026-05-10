@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [vibe-coding, responsive, adaptive, css, best-practices]
 ai_role: Frontend UI/UX Enforcer
-last_updated: 2026-03-29
+last_updated: 2026-05-10
 ---
 
 # 📱 Responsive & Adaptive Design Principles
@@ -64,6 +64,9 @@ A desktop-first approach with absolute units (`px`) often leads to horizontal sc
   }
 }
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 
 > [!NOTE]
 > **Internal Routing:** For more context, refer back to the [🎨 UI/UX Design Index](./readme.md).

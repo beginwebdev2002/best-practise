@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "11+"
 tags: [best-practices, deterministic-code, security-patterns, vibe-coding, cursor-rules, typescript, software-architecture, system-design, solid-principles, production-ready, programming-standards, node-js, security, scalable-code, windsurf-rules, ai-coding, enterprise-patterns]
 ai_role: Senior NestJS Security Expert
-last_updated: 2026-03-27
+last_updated: 2026-05-10
 ---
 
 # 🔒 NestJS 11+ Security Best Practices
@@ -30,6 +30,9 @@ create(@Body() createUserDto: CreateUserDto) { // Use ValidationPipe globally
   return this.userService.create(createUserDto);
 }
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 
 > [!NOTE]
 > **Internal Routing:** For more context, refer back to the [Nestjs Index](./readme.md).

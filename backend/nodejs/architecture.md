@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "24+"
 tags: [best-practices, nodejs, architecture, design-patterns, deterministic-code, scalable-code, system-design]
 ai_role: Senior Node.js Architecture Expert
-last_updated: 2026-03-24
+last_updated: 2026-05-10
 ---
 
 # 🟢 Node.js Architectural Patterns & Structuring
@@ -62,6 +62,9 @@ app.post('/api/users', async (req, res, next) => {
   }
 });
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 
 > [!NOTE]
 > **Internal Routing:** For more context, refer back to the [Nodejs Index](./readme.md).
@@ -97,6 +100,9 @@ class UserService {
   }
 }
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 STRICTLY apply Dependency Injection. Services MUST receive infrastructural dependencies via their constructor, enabling decoupled layers and testability.
 
@@ -119,5 +125,8 @@ const config = Object.freeze({
   dbUrl: process.env.DATABASE_URL
 });
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Configuration objects MUST be locked and immutable after initialization. FORBID any runtime mutations to the global execution environment.

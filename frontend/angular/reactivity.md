@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "20+"
 tags: [angular, best-practices, clean-code, reactivity, rxjs]
 ai_role: Senior Angular Expert
-last_updated: 2026-04-05
+last_updated: 2026-05-10
 ---
 
 # ⚡ Reactivity & RxJS
@@ -28,6 +28,9 @@ count = signal(0);
 // Access: count()
 // Update: count.set(1)
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Use `signal()` for local state. It is a primitive designed specifically for synchronizing UI and data.
 ---
@@ -50,6 +53,9 @@ ngOnChanges(changes: SimpleChanges) {
 ```typescript
 fullName = computed(() => `${this.firstName()} ${this.lastName()}`);
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Use `computed()`. The signal is recalculated *only* when its dependencies change, and the result is memoized (cached).
 ---
@@ -69,6 +75,9 @@ Constructors become cluttered with many dependencies. When inheriting classes, d
 private http = inject(HttpClient);
 private store = inject(Store);
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Use the `inject()` function. It operates in the initialization context (fields or constructor), is type-safe, and does not require `super()` during inheritance.
 ---
@@ -94,6 +103,9 @@ Modules create an unnecessary level of indirection. Components become dependent 
   imports: [CommonModule]
 })
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Use Standalone Components. This is the Angular v14+ standard that makes components self-sufficient and tree-shakable.
 ---
@@ -112,6 +124,9 @@ Loading modules pulls in transitive dependencies that might not be needed.
 ```typescript
 loadComponent: () => import('./user.component').then(c => c.UserComponent)
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Use `loadComponent` for routing to Standalone components. This ensures minimal chunk size.
 ---

@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "5.5+"
 tags: [typescript, testing, best-practices, clean-code, type-safety, vibe-coding]
 ai_role: Senior TypeScript Testing Expert
-last_updated: 2026-04-05
+last_updated: 2026-05-10
 ---
 
 # 🧪 TypeScript Testing Best Practices
@@ -45,6 +45,9 @@ import { UserService } from './user.service';
 const mockUserService = mock<UserService>();
 mockUserService.getUser.mockResolvedValue({ id: 1, name: 'Alice', email: 'alice@test.com' });
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Use deep mocking libraries (like `jest-mock-extended`) or precisely type your stubs using `Partial<T>` and strictly typecast with `as unknown as T` if absolutely necessary, to ensure mocks structurally match the actual interface.
 
@@ -77,6 +80,9 @@ test('returns user', async () => {
   expect((result as UserResponse).name).toBe('Alice');
 });
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Leverage strict typing within assertions. Define the expected types or rely on inferred return types to guarantee that the shape of the data matches the expected contract seamlessly.
 

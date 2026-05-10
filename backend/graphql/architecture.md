@@ -5,7 +5,7 @@ level: Senior/Architect
 version: Agnostic
 tags: [best-practices, deterministic-code, architecture-patterns, vibe-coding, cursor-rules, graphql, software-architecture, system-design, solid-principles, production-ready, programming-standards, node-js, design-patterns, scalable-code, windsurf-rules, ai-coding, enterprise-patterns]
 ai_role: Senior GraphQL Architecture Expert
-last_updated: 2026-03-29
+last_updated: 2026-05-10
 ---
 
 # 🏗️ GraphQL Architecture Best Practices
@@ -39,6 +39,9 @@ type UserConnection {
   pageInfo: PageInfo!
 }
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 
 > [!NOTE]
 > **Internal Routing:** For more context, refer back to the [Graphql Index](./readme.md).

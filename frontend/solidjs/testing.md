@@ -5,7 +5,7 @@ level: Senior/Architect
 version: "1+"
 tags: [solidjs, testing, best-practices, clean-code, reactivity, vibe-coding]
 ai_role: Senior SolidJS Testing Expert
-last_updated: 2026-04-05
+last_updated: 2026-05-10
 ---
 
 # 🧪 SolidJS Testing Best Practices
@@ -51,6 +51,9 @@ test('signal updates', () => {
   });
 });
 ```
+> [!NOTE]
+> **Internal Routing:** [./readme.md](./readme.md)
+
 ### 🚀 Solution
 Wrap reactive primitives in `createRoot` and invoke the `dispose` function at the end of the test block. This mimics the component lifecycle and prevents memory leaks.
 
