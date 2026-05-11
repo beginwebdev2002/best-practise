@@ -56,6 +56,7 @@ Don't know where to start? Here are a few golden rules:
 - [MVC (Model-View-Controller)](./model-view-controller/readme.md)
 - [Monolithic Architecture](./monolithic-architecture/readme.md)
 - [Space-Based Architecture](./space-based-architecture/readme.md)
+- [Saga Pattern](./saga-pattern/readme.md)
 - [Serverless](./serverless/readme.md)
 - [Agentic Architecture (AI Agent Orchestration)](./agentic-architecture/readme.md)
 
@@ -719,3 +720,38 @@ src/
 - **Frameworks:** Eclipse, VS Code, Webpack, Babel.
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="16"/> Python.
 - **Patterns / Principles:** Open/Closed Principle, Dependency Inversion, Registry Pattern.
+
+---
+
+### 17. Saga Pattern
+[![Saga Pattern](https://img.shields.io/badge/Architecture-Saga-orange?style=flat-square)](#)
+
+**Description:** An architecture that manages distributed transactions by breaking them down into a sequence of local transactions, executed sequentially via events. If a step fails, compensating transactions are triggered to rollback changes.
+**📖 Map of Patterns:** [Go to Saga Pattern Guidelines](./saga-pattern/readme.md)
+
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    Order[Order Service] -->|Event| Payment[Payment Service]
+    Payment -->|Event| Inventory[Inventory Service]
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+
+    class Order component;
+    class Payment component;
+    class Inventory component;
+```
+
+```text
+src/
+├── 📁 orchestrator/     # Centralized Saga orchestrator (if using orchestration)
+├── 📁 events/           # Shared event definitions
+└── 📁 compensations/    # Rollback logic for local transactions
+```
+
+**Best Compatibility:**
+- **Frameworks:** EventStore, Kafka Streams, Temporal.
+- **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java.
+- **Patterns / Principles:** Choreography, Orchestration, Event-Driven Architecture.

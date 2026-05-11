@@ -74,6 +74,8 @@
     * [Folder structure](architectures/monolithic-architecture/folder-structure.md)
     * [Implementation guide](architectures/monolithic-architecture/implementation-guide.md)
     * [Trade offs](architectures/monolithic-architecture/trade-offs.md)
+  * **Saga pattern**
+    * [Overview](architectures/saga-pattern/readme.md)
   * **Serverless**
     * [Overview](architectures/serverless/readme.md)
     * [Data flow](architectures/serverless/data-flow.md)
