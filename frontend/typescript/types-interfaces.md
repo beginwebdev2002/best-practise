@@ -3,7 +3,7 @@ technology: TypeScript
 domain: frontend
 level: Senior/Architect
 version: "5.5+"
-tags: [typescript, best-practices, clean-code, types]
+tags: [typescript, best-practices, strictly structured-code, types]
 ai_role: Senior TypeScript Expert
 last_updated: 2026-04-05
 ---

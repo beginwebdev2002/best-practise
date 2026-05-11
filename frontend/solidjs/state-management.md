@@ -3,7 +3,7 @@ technology: SolidJS
 domain: frontend
 level: Senior/Architect
 version: "1.8+"
-tags: [state-management, advanced, solidjs, best-practices, clean-code, scalable-code]
+tags: [state-management, advanced, solidjs, best-practices, strictly structured-code, scalable-code]
 ai_role: Senior SolidJS State Management Expert
 last_updated: 2026-03-22
 ---

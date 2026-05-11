@@ -3,7 +3,7 @@ technology: JavaScript
 domain: frontend
 level: Senior/Architect
 version: ES6-ES2024
-tags: [javascript, clean-code, es6, performance, best-practices]
+tags: [javascript, strictly structured-code, es6, performance, best-practices]
 ai_role: Senior JavaScript Performance Expert
 last_updated: 2026-03-22
 ---

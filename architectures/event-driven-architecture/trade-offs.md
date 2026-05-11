@@ -32,7 +32,7 @@ This document outlines the high-level trade-offs associated with Event-Driven Ar
 **Resolution:** Services must rely on Choreography or Orchestration (Saga Pattern) rather than synchronous-style request/reply over a message broker.
 
 ### ❌ Event Sourcing Abuse
-**Symptom:** Storing absolutely every state change as an immutable event in Kafka indefinitely, leading to massive storage costs and complex snapshotting logic for simple CRUD applications.
+**Symptom:** Storing absolutely every state change as an immutable event in Kafka indefinitely, leading to massive storage costs and complex snapshotting logic for deterministic CRUD applications.
 **Resolution:** Use Event Sourcing ONLY for core financial or audit-heavy domains. Use standard State-Oriented CRUD for basic entities.
 
 ### ❌ Shared Database Integration

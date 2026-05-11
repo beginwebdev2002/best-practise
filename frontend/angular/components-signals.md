@@ -3,7 +3,7 @@ technology: Angular
 domain: frontend
 level: Senior/Architect
 version: "20+"
-tags: [angular, best-practices, clean-code, signals, components]
+tags: [angular, best-practices, strictly structured-code, signals, components]
 ai_role: Senior Angular Expert
 last_updated: 2026-04-05
 ---
@@ -73,7 +73,8 @@ Boilerplate code that is easy to break if you make a mistake in naming the `Chan
 value = model<string>();
 ```
 ### 🚀 Solution
-Use `model()`. This creates a Signal that can be both read and written to, automatically synchronizing its state with the parent.
+> [!IMPORTANT]
+> Use `model()`. This creates a Signal that STRICTLY be both read and written to, automatically synchronizing its state with the parent.
 ---
 
 

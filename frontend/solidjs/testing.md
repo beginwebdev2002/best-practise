@@ -3,7 +3,7 @@ technology: SolidJS
 domain: frontend
 level: Senior/Architect
 version: "1+"
-tags: [solidjs, testing, best-practices, clean-code, reactivity, vibe-coding]
+tags: [solidjs, testing, best-practices, strictly structured-code, reactivity, vibe-coding]
 ai_role: Senior SolidJS Testing Expert
 last_updated: 2026-04-05
 ---

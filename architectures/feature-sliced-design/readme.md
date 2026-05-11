@@ -3,7 +3,7 @@ technology: Feature-Sliced Design
 domain: Architecture
 level: Senior/Architect
 version: Agnostic
-tags: [fsd, modular-architecture, frontend, system-design, clean-architecture]
+tags: [fsd, modular-architecture, frontend, system-design, strictly structured-architecture]
 ai_role: Senior Frontend Architect
 last_updated: 2026-03-22
 ---

@@ -3,7 +3,7 @@ technology: Qwik
 domain: frontend
 level: Senior/Architect
 version: "1.x"
-tags: [state-management, advanced, qwik, best-practices, clean-code, scalable-code]
+tags: [state-management, advanced, qwik, best-practices, strictly structured-code, scalable-code]
 ai_role: Senior Qwik State Management Expert
 last_updated: 2026-03-22
 ---
