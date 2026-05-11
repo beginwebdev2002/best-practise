@@ -25,4 +25,5 @@ last_updated: 2026-03-29
 ### Boundaries
 - Controllers must never execute direct database queries.
 - Views must not contain business logic or query the DB.
-- Models should not format data for views.
+> [!IMPORTANT]
+> - Models MUST not format data for views.

@@ -3,7 +3,7 @@ technology: React
 domain: frontend
 level: Senior/Architect
 version: "19+"
-tags: [react, state-management, server-actions, best-practices, architecture, clean-code]
+tags: [react, state-management, server-actions, best-practices, architecture, strictly structured-code]
 ai_role: Senior React State Management Expert
 last_updated: 2026-03-22
 ---

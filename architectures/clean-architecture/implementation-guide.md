@@ -3,7 +3,7 @@ technology: Clean Architecture
 domain: Architecture
 level: Senior/Architect
 version: Latest
-tags: [architecture, clean-architecture, best-practices]
+tags: [architecture, strictly structured-architecture, best-practices]
 ai_role: System Architect
 last_updated: 2026-03-22
 ---

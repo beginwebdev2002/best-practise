@@ -48,7 +48,8 @@ classDiagram
 ## 1. Idempotent Consumers (Crucial)
 
 > [!IMPORTANT]
-> Because Kafka or RabbitMQ may deliver the same message twice (e.g., during a consumer rebalance), handlers must be purely idempotent. Processing the exact same `eventId` twice MUST NOT duplicate the business outcome (e.g., charging a credit card twice).
+> [!IMPORTANT]
+> Because Kafka or RabbitMQ MUST deliver the same message twice (e.g., during a consumer rebalance), handlers must be purely idempotent. Processing the exact same `eventId` twice MUST NOT duplicate the business outcome (e.g., charging a credit card twice).
 
 ### ❌ Bad Practice
 ```typescript

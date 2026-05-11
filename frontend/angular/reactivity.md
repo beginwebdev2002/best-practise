@@ -3,7 +3,7 @@ technology: Angular
 domain: frontend
 level: Senior/Architect
 version: "20+"
-tags: [angular, best-practices, clean-code, reactivity, rxjs]
+tags: [angular, best-practices, strictly structured-code, reactivity, rxjs]
 ai_role: Senior Angular Expert
 last_updated: 2026-04-05
 ---

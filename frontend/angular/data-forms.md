@@ -3,7 +3,7 @@ technology: Angular
 domain: frontend
 level: Senior/Architect
 version: 20+
-tags: [forms, data, angular, best-practices, clean-code, scalable-code]
+tags: [forms, data, angular, best-practices, strictly structured-code, scalable-code]
 ai_role: Senior Angular Data Expert
 last_updated: 2026-03-22
 ---

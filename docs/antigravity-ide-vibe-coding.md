@@ -30,7 +30,8 @@ vibe_coding_ready: true
 </div>
 ## Context Window Management for AI Agents
 
-Antigravity IDE is deeply integrated with large context window capabilities. Efficient Context Window Management ensures that the AI Agents do not hallucinate and can precisely follow instructions for vibe coding.
+> [!IMPORTANT]
+> Antigravity IDE is deeply integrated with large context window capabilities. Efficient Context Window Management ensures that the AI Agents do not hallucinate and STRICTLY precisely follow instructions for vibe coding.
 
 ```mermaid
 graph TD

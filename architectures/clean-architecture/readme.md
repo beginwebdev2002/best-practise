@@ -3,7 +3,7 @@ technology: Clean Architecture
 domain: Architecture
 level: Senior/Architect
 version: Agnostic
-tags: [architecture, system-design, clean-architecture, best-practices]
+tags: [architecture, system-design, strictly structured-architecture, best-practices]
 ai_role: Senior Architect
 last_updated: 2026-03-29
 ---

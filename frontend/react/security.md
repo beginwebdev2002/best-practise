@@ -3,7 +3,7 @@ technology: React
 domain: frontend
 level: Senior/Architect
 version: "19+"
-tags: [react, security, best-practices, clean-code, xss, server-components, ai-coding]
+tags: [react, security, best-practices, strictly structured-code, xss, server-components, ai-coding]
 ai_role: Senior React Security Expert
 last_updated: 2026-04-05
 ---

@@ -3,7 +3,7 @@ technology: JavaScript
 domain: frontend
 level: Senior/Architect
 version: ES6-ES2024
-tags: [javascript, testing, best-practices, clean-code, tdd, vibe-coding]
+tags: [javascript, testing, best-practices, strictly structured-code, tdd, vibe-coding]
 ai_role: Senior JavaScript Testing Expert
 last_updated: 2026-04-05
 ---

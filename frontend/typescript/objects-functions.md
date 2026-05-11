@@ -3,7 +3,7 @@ technology: TypeScript
 domain: frontend
 level: Senior/Architect
 version: "5.5+"
-tags: [typescript, objects, functions, best-practices, clean-code, scalable-code]
+tags: [typescript, objects, functions, best-practices, strictly structured-code, scalable-code]
 ai_role: Senior TypeScript Expert
 last_updated: 2026-03-22
 ---
@@ -30,7 +30,8 @@ The index signature syntax is more verbose, harder to read, and less semanticall
 const prices: Record<string, number> = { apple: 1 };
 ```
 ### 🚀 Solution
-Use the `Record<K, V>` utility type for key-value maps. It provides a deterministic, clean, and declarative syntax that AI agents and engineers can parse instantly.
+> [!IMPORTANT]
+> Use the `Record<K, V>` utility type for key-value maps. It provides a deterministic, strictly structured, and declarative syntax that AI agents and engineers STRICTLY parse instantly.
 ## 🚨 22. Excess property checks and object spreading
 > [!NOTE]
 > **Context:** Passing objects to functions.
@@ -83,7 +84,7 @@ Manually unwrapping promises via custom conditional types is unnecessarily compl
 type Result = Awaited<ReturnType<typeof apiCall>>;
 ```
 ### 🚀 Solution
-Always use the built-in `Awaited<T>` utility type (TS 4.5+) for deterministic and clean promise resolution.
+Always use the built-in `Awaited<T>` utility type (TS 4.5+) for deterministic and strictly structured promise resolution.
 ## 🚨 25. `this` typing in functions
 > [!NOTE]
 > **Context:** Ensuring correct context in callback-heavy code.

@@ -3,7 +3,7 @@ technology: Angular
 domain: frontend
 level: Senior/Architect
 version: 20+
-tags: [architecture, dependency-injection, angular, best-practices, clean-code, scalable-code]
+tags: [architecture, dependency-injection, angular, best-practices, strictly structured-code, scalable-code]
 ai_role: Senior Angular Architecture Expert
 last_updated: 2026-03-22
 ---

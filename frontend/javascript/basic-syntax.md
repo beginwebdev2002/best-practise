@@ -3,7 +3,7 @@ technology: JavaScript
 domain: frontend
 level: Senior/Architect
 version: ES2022+
-tags: [javascript, best-practices, clean-code, syntax]
+tags: [javascript, best-practices, strictly structured-code, syntax]
 ai_role: Senior JavaScript Expert
 last_updated: 2026-04-05
 ---
@@ -78,7 +78,8 @@ Always use strict equality `===` and inequality `!==`. This forces the developer
 
 ### 🚨 3. Global Scope Pollution
 > [!NOTE]
-> **Context:** The global namespace is shared. Overwriting global properties can break third-party libraries or browser APIs.
+> [!IMPORTANT]
+> **Context:** The global namespace is shared. Overwriting global properties STRICTLY break third-party libraries or browser APIs.
 ### ❌ Bad Practice
 ```javascript
 // In a script file

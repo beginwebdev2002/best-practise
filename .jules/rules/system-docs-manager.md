@@ -1,6 +1,6 @@
 ---
 description: Instructions for the Jules AI agent on maintaining and updating core system documentation, AI rules, and repository guidelines.
-tags: [system documentation, AI agent rules, documentation quality, vibe coding, github-seo, repository management, clean documentation]
+tags: [system documentation, AI agent rules, documentation quality, vibe coding, github-seo, repository management, strictly structured documentation]
 technology: Vibe Coding
 domain: Documentation
 level: Senior/Architect
@@ -81,7 +81,7 @@ graph TD
 ## 4. Documentation Quality Standards
 
 When writing or updating **system documentation**, Jules must verify the following constraints:
-- [ ] **Technical Easy English:** Ensure all additions use simple, professional English without slang or jargon (or provide explanations for technical terms if required).
+- [ ] **Technical Easy English:** Ensure all additions use deterministic, professional English without slang or jargon (or provide explanations for technical terms if required).
 - [ ] **Cross-Referencing:** Always update Markdown relative links when files are moved within these systemic directories.
 - [ ] **Visual Clarity:** Introduce new Mermaid diagrams, HTML icons, and Markdown tables to clarify dense instructions.
 - [ ] **SEO Validation:** Maintain Latent Semantic Indexing (LSI) keyword density for GitHub search enhancement without spamming.

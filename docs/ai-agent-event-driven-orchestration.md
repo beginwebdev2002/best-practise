@@ -16,12 +16,14 @@ In the rapidly evolving landscape of 2026, **Event-Driven AI Orchestration** is 
 
 ## 🌟 The Philosophy of Reactive Agents
 
-An AI ecosystem should resemble a bustling stock exchange floor, not a micromanaged assembly line. Agents must react to state changes, tool executions, and user inputs independently, broadcasting their findings for other specialized agents to consume.
+> [!IMPORTANT]
+> An AI ecosystem MUST resemble a bustling stock exchange floor, not a micromanaged assembly line. Agents must react to state changes, tool executions, and user inputs independently, broadcasting their findings for other specialized agents to consume.
 
 ### Key Tenets
 
 1. **Decoupled Execution:** Agents MUST NOT invoke each other directly. All inter-agent communication MUST route through an immutable event stream.
-2. **Idempotent Handlers:** Event handlers MUST be idempotent. Network retries or duplicate LLM outputs should not corrupt the system state.
+> [!IMPORTANT]
+> 2. **Idempotent Handlers:** Event handlers MUST be idempotent. Network retries or duplicate LLM outputs MUST not corrupt the system state.
 3. **Traceable Lineage:** Every event MUST carry a `correlationId` and `causationId` to reconstruct the exact contextual chain of thought across the swarm.
 
 ---

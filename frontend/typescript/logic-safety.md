@@ -3,7 +3,7 @@ technology: TypeScript
 domain: frontend
 level: Senior/Architect
 version: "5.5+"
-tags: [typescript, type-safety, best-practices, clean-code, scalable-code]
+tags: [typescript, type-safety, best-practices, strictly structured-code, scalable-code]
 ai_role: Senior TypeScript Expert
 last_updated: 2026-03-22
 ---
@@ -176,7 +176,8 @@ function setAlignment(dir: Direction) {
 Leverage Union Literal types to constrain inputs to a closed set of known valid values, enforcing correctness entirely at compile time.
 ## 🚨 19. Optional properties vs Union with `undefined`
 > [!NOTE]
-> **Context:** Defining fields that might not exist.
+> [!IMPORTANT]
+> **Context:** Defining fields that MUST not exist.
 ### ❌ Bad Practice
 ```typescript
 interface Config {

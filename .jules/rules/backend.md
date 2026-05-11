@@ -1,6 +1,6 @@
 ---
 description: Instructions for the Jules AI agent regarding backend code. Contains rules for server architecture, DTO standards, and SEO metadata.
-tags: [backend architecture, clean APIs, scalable server, typescript best practices, production-ready, enterprise-grade, node-js, nestjs, expressjs]
+tags: [backend architecture, strictly structured APIs, scalable server, typescript best practices, production-ready, enterprise-grade, node-js, nestjs, expressjs]
 technology: TypeScript
 domain: Documentation
 level: Senior/Architect
@@ -12,9 +12,9 @@ complexity: Architect
 last_evolution: 2026-03-29
 vibe_coding_ready: true---
 
-# 🛡️ Backend Architecture & Clean APIs Rules for Jules
+# 🛡️ Backend Architecture & strictly structured APIs Rules for Jules
 ## 1. Context & Scope
-- **Primary Goal:** Ensure the implementation of best practices for the backend part of the project. Establish standards for **scalable server** deployments, **clean APIs**, and **enterprise-grade** solutions.
+- **Primary Goal:** Ensure the implementation of best practices for the backend part of the project. Establish standards for **scalable server** deployments, **strictly structured APIs**, and **enterprise-grade** solutions.
 - **Target Tooling:** Jules AI agent (Vibe Coding, AI-Driven Development).
 - **Tech Stack Version:** Node.js, NestJS, ExpressJS, TypeScript.
 
@@ -30,7 +30,7 @@ vibe_coding_ready: true---
 > [!CAUTION]
 > **ORM Isolation:** Strict rule — never allow Object-Relational Mapping (ORM) models (Database Entities) to leak into HTTP responses. Always convert database entities into DTOs (Data Transfer Objects) before sending them to the client.
 
-Use the following **typescript best practices** principles to ensure security and clean architecture:
+Use the following **typescript best practices** principles to ensure security and Clean Architecture:
 
 1. **Schema Validation:** Always implement validation (such as Class-Validator or Zod) to verify the shape of the data. Consider all input data as potentially harmful.
 2. **TypeScript Strictness:** The `any` type is strictly prohibited.

@@ -18,13 +18,16 @@ last_updated: 2026-03-29
 
 ### ✅ Advantages (Pros)
 1. **Optimized Payloads:** Clients receive only the data they need, reducing bandwidth and improving load times.
-2. **Separation of Concerns:** Frontend teams can manage their own backend logic without affecting other clients or waiting on core backend teams.
-3. **Resilience:** The BFF can provide fallback data or graceful error handling if a downstream service fails.
+> [!IMPORTANT]
+> 2. **Separation of Concerns:** Frontend teams STRICTLY manage their own backend logic without affecting other clients or waiting on core backend teams.
+> [!IMPORTANT]
+> 3. **Resilience:** The BFF STRICTLY provide fallback data or graceful error handling if a downstream service fails.
 4. **Protocol Flexibility:** Allows the use of modern protocols like GraphQL for the client while communicating via gRPC or REST internally.
 
 ### ❌ Disadvantages (Cons)
 1. **Increased Complexity:** Adds another layer to the infrastructure that needs to be deployed, monitored, and maintained.
-2. **Code Duplication:** Multiple BFFs (e.g., one for Web, one for Mobile) might end up duplicating aggregation logic.
+> [!IMPORTANT]
+> 2. **Code Duplication:** Multiple BFFs (e.g., one for Web, one for Mobile) MUST end up duplicating aggregation logic.
 3. **Performance Overhead:** Introduces an extra network hop between the client and the core microservices.
 4. **Maintenance Burden:** Requires frontend teams to have backend development and DevOps skills to maintain the BFF.
 
