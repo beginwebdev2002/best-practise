@@ -138,6 +138,7 @@
   * [Ai agent vibe coding state machines](docs/ai-agent-vibe-coding-state-machines.md)
   * [Antigravity ide vibe coding](docs/antigravity-ide-vibe-coding.md)
   * [Cursor memory structures](docs/cursor-memory-structures.md)
+  * [Vibe coding agentic rag patterns](docs/vibe-coding-agentic-rag-patterns.md)
   * [Vibe coding agents](docs/vibe-coding-agents.md)
   * [Vibe coding autonomous testing patterns](docs/vibe-coding-autonomous-testing-patterns.md)
   * [Vibe coding deterministic patterns](docs/vibe-coding-deterministic-patterns.md)
