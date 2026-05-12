@@ -25,6 +25,16 @@ last_updated: 2026-03-22
 ---
 ## Architecture Principles
 
+```mermaid
+graph TD
+    A["Client HTTP Request"] --> B["API Gateway / Controller Layer"]
+    B --> C["Service Layer (Business Logic)"]
+    C --> D["Data Access Layer (Repository / DTO mapping)"]
+    D --> E[("Primary Database (PostgreSQL/MongoDB)")]
+    C -.-> F["Message Broker (Kafka/RabbitMQ)"]
+    C -.-> G[("Cache (Redis)")]
+```
+
 - Adhere to the defined [Architectural Patterns](../../architectures/readme.md) when building applications, specifically Hexagonal Architecture / Clean Architecture.
 - Avoid tightly coupling business domains to framework-specific libraries.
 ## Technical Requirements for AI Generation
