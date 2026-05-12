@@ -69,6 +69,10 @@ export class ProcessDocumentService {
 The Core Domain is directly importing and depending on a specific technical implementation (`AWS S3`). If the project migrates to Azure or GCP, the core business logic must be rewritten. Testing requires a live S3 connection or complex module mocking.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 ```typescript
 // Port (Interface defined in the Core Domain)
 export interface IFileStoragePort {
