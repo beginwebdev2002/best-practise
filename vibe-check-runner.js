@@ -1,3 +1,4 @@
+import { pathToFileURL } from 'node:url';
 import { Project, SyntaxKind } from 'ts-morph';
 import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
@@ -9,7 +10,7 @@ const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_AI_API_KEY });
 
 // Constants for scoring
 
-async function fileOrDirExists(filePath) {
+export async function fileOrDirExists(filePath) {
   try {
     await fsPromises.stat(filePath);
     return true;
@@ -25,7 +26,7 @@ const SCORES = {
   EFFICIENCY: 10,
 };
 
-function getModifiedFiles() {
+export function getModifiedFiles() {
   try {
     // In CI (daily run), check files modified in the last 24 hours.
     // We filter for non-empty lines that end in .md and are in frontend/ or backend/
@@ -43,7 +44,7 @@ function getModifiedFiles() {
   }
 }
 
-async function syncBenchmarks(tech, mdContent, retries = 5, delay = 10000) {
+export async function syncBenchmarks(tech, mdContent, retries = 5, delay = 10000) {
   try {
     const prompt = `Based on the following documentation:\n\n${mdContent}\n\n1. Generate a "Golden Prompt" (a comprehensive instruction for generating a typical module using this technology) in JSON format: {"golden_prompt": "...", "tech": "${tech}"}\n2. Generate a JSON Schema for TS-Morph AST validation rules enforcing DDD/FSD layers and strict typing for this technology. The generated JSON schema must explicitly follow a nested structure compatible with \`analyzeAST\`. Format: {"$schema": "...", "type": "object", "properties": {"forbidden_types": {"contains": {"enum": ["any"]}}}}.\n\nRespond strictly with ONLY a JSON array containing these two objects in order. No markdown wrappers.`;
     const response = await ai.models.generateContent({
@@ -85,7 +86,7 @@ async function syncBenchmarks(tech, mdContent, retries = 5, delay = 10000) {
   }
 }
 
-async function simulateAIGeneration(goldenPrompt, tech, mdContent, retries = 5, delay = 10000) {
+export async function simulateAIGeneration(goldenPrompt, tech, mdContent, retries = 5, delay = 10000) {
   try {
     const prompt = `${goldenPrompt}\n\nConstraints and instructions from the following documentation:\n\n${mdContent}\n\nGenerate ONLY raw code. No markdown formatting, no explanations.`;
     const response = await ai.models.generateContent({
@@ -110,7 +111,7 @@ async function simulateAIGeneration(goldenPrompt, tech, mdContent, retries = 5, 
   }
 }
 
-function analyzeAST(sourceFile, tech) {
+export function analyzeAST(sourceFile, tech) {
   let score = {
     arch: SCORES.ARCH,
     type: SCORES.TYPE,
@@ -222,7 +223,7 @@ function analyzeAST(sourceFile, tech) {
   return { total, breakdown: score };
 }
 
-async function runVibeCheck() {
+export async function runVibeCheck() {
   console.log('Running Vibe-Check Runner...');
 
   const modifiedFiles = getModifiedFiles();
@@ -241,14 +242,14 @@ async function runVibeCheck() {
     console.warn('Failed to configure git user. If running locally, this is expected.');
   }
 
-  for (const file of modifiedFiles) {
-    console.log(`Processing ${file}...`);
+  // Deduplicate by tech and process concurrently for reads
+  const techGroups = {};
 
-    if (!fs.existsSync(file)) {
-      console.log(`File ${file} does not exist. Skipping.`);
-      continue;
-    }
+  const existingFiles = (await Promise.all(modifiedFiles.map(async (file) => {
+    return { file, exists: await fileOrDirExists(file) };
+  }))).filter(f => f.exists).map(f => f.file);
 
+  for (const file of existingFiles) {
     let tech = '';
     if (file.includes('/angular/')) tech = 'angular';
     else if (file.includes('/nestjs/')) tech = 'nestjs';
@@ -256,7 +257,6 @@ async function runVibeCheck() {
     else if (file.includes('/express/')) tech = 'express';
     else if (file.includes('/nodejs/')) tech = 'nodejs';
     else {
-      // Fallback
       const parts = file.split('/');
       if (parts.length > 1) {
         tech = parts[1];
@@ -265,19 +265,35 @@ async function runVibeCheck() {
       }
     }
 
-    const mdContent = await fsPromises.readFile(file, 'utf-8');
+    if (!techGroups[tech]) techGroups[tech] = [];
+    techGroups[tech].push(file);
+  }
 
-    await syncBenchmarks(tech, mdContent);
+  // Process each tech sequentially
+  for (const tech of Object.keys(techGroups)) {
+    console.log(`Processing technology: ${tech}...`);
+    const files = techGroups[tech];
+
+    // Concurrently read all files and update badges
+    const mdContents = await Promise.all(files.map(async (file) => {
+      let content = await fsPromises.readFile(file, 'utf-8');
+      return content;
+    }));
+
+    // Concatenate contents
+    const combinedMdContent = mdContents.join('\n\n');
+
+    await syncBenchmarks(tech, combinedMdContent);
 
     const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
-    if (!fs.existsSync(suitePath)) {
+    if (!(await fileOrDirExists(suitePath))) {
       console.log(`No benchmark suite found for ${tech}. Skipping.`);
       continue;
     }
 
     const suiteConfig = JSON.parse(await fsPromises.readFile(suitePath, 'utf-8'));
 
-    const generatedCode = await simulateAIGeneration(suiteConfig.golden_prompt, tech, mdContent);
+    const generatedCode = await simulateAIGeneration(suiteConfig.golden_prompt, tech, combinedMdContent);
 
     if (!generatedCode) {
       console.error(`Failed to generate code for ${tech}.`);
@@ -287,48 +303,60 @@ async function runVibeCheck() {
     const sourceFile = project.createSourceFile(`temp_${tech}.ts`, generatedCode, { overwrite: true });
     const { total: score, breakdown } = analyzeAST(sourceFile, tech);
 
-    console.log(`Fidelity Score for ${file}: ${score}%`);
+    console.log(`Fidelity Score for ${tech}: ${score}%`);
     console.log(`Breakdown:`, breakdown);
 
     if (score >= 95) {
-      console.log(`✅ Validation passed for ${file}. Updating badge and auto-committing.`);
+      console.log(`✅ Validation passed for ${tech}. Updating badges and auto-committing.`);
 
-      let content = await fsPromises.readFile(file, 'utf-8');
-      if (!content.includes('[![Vibe-Coding Verified]')) {
-         content = content.replace(/^# /, '[![Vibe-Coding Verified](https://img.shields.io/badge/Vibe--Coding-Verified-brightgreen?style=for-the-badge)](#)\n\n# ');
-         await fsPromises.writeFile(file, content);
-      }
+      // Update badges concurrently
+      await Promise.all(files.map(async (file) => {
+        let content = await fsPromises.readFile(file, 'utf-8');
+        if (!content.includes('[![Vibe-Coding Verified]')) {
+           content = content.replace(/^# /, '[![Vibe-Coding Verified](https://img.shields.io/badge/Vibe--Coding-Verified-brightgreen?style=for-the-badge)](#)\n\n# ');
+           await fsPromises.writeFile(file, content);
+        }
+      }));
 
       try {
-        execFileSync('git', ['add', file]);
+        for(const file of files) {
+           execFileSync('git', ['add', file]);
+        }
         try { execFileSync('sh', ['-c', 'git add benchmarks/suites/*.json benchmarks/criteria/*.json 2>/dev/null || true']); } catch (e) {}
-        // Only commit if there are changes (badge might already be there)
+
         const status = execFileSync('git', ['status', '--porcelain'], { encoding: 'utf-8' });
-        if (status.includes(file) || status.includes('benchmarks/')) {
+
+        let shouldCommit = false;
+        for (const file of files) {
+           if (status.includes(file)) shouldCommit = true;
+        }
+        if (status.includes('benchmarks/')) shouldCommit = true;
+
+        if (shouldCommit) {
            execFileSync('git', ['commit', '-m', '[chore: benchmark-sync]']);
            execFileSync('git', ['push', 'origin', 'HEAD:main']);
         } else {
-           console.log(`Badge already present in ${file}, skipping commit.`);
+           console.log(`Badges already present for ${tech}, skipping commit.`);
         }
       } catch (err) {
          console.error('Failed to commit or push:', err.message);
       }
 
     } else {
-      console.error(`❌ Validation failed for ${file}. Score below 95%.`);
+      console.error(`❌ Validation failed for ${tech}. Score below 95%.`);
 
       const reportDir = path.join('benchmarks', 'logs');
       if (!await fileOrDirExists(reportDir)) await fsPromises.mkdir(reportDir, { recursive: true });
 
       const reportPath = path.join(reportDir, `violation-report.md`);
-      const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n\`\`\`typescript\n${generatedCode}\n\`\`\`\n\nReview the AST rules.`;
+      const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**Tech:** \`${tech}\`\n**Files:** ${files.join(', ')}\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n\`\`\`typescript\n${generatedCode}\n\`\`\`\n\nReview the AST rules.`;
 
       await fsPromises.writeFile(reportPath, reportContent);
       console.log(`Generated violation report: ${reportPath}`);
 
       try {
-        execFileSync('gh', ['issue', 'create', '--title', `Critical Issue: Fidelity Gap for ${file}`, '--label', 'critical,bug', '--body-file', reportPath]);
-        console.log(`Created GitHub Issue for ${file}`);
+        execFileSync('gh', ['issue', 'create', '--title', `Critical Issue: Fidelity Gap for ${tech}`, '--label', 'critical,bug', '--body-file', reportPath]);
+        console.log(`Created GitHub Issue for ${tech}`);
       } catch (err) {
         console.error('Failed to create GitHub Issue (gh cli might not be installed or authenticated):', err.message);
       }
@@ -338,4 +366,6 @@ async function runVibeCheck() {
   }
 }
 
-runVibeCheck().catch(console.error);
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  runVibeCheck().catch(console.error);
+}
