@@ -70,7 +70,7 @@ import { Database } from 'infrastructure/database';
 class OrderProcessingUnit {
   constructor(private readonly db: Database) {}
 
-  public async processOrder(orderData: any): Promise<void> {
+  public async processOrder(orderData: unknown): Promise<void> {
     // 1. Process business logic
     const processedOrder = this.calculateTaxes(orderData);
 
@@ -78,7 +78,7 @@ class OrderProcessingUnit {
     await this.db.save(processedOrder);
   }
 
-  private calculateTaxes(data: any): any {
+  private calculateTaxes(data: unknown): unknown {
     return { ...data, tax: 10 };
   }
 }
@@ -88,6 +88,10 @@ class OrderProcessingUnit {
 Directly writing to a persistent database synchronously within a Processing Unit defeats the entire purpose of the Space-Based Architecture. During high-traffic spikes, the database connection pool will exhaust, locks will accumulate, and the central database will become a catastrophic bottleneck, crashing the independent processing units waiting for disk I/O.
 
 ### ✅ Best Practice
+
+> [!NOTE]
+> **Internal Routing:** For more context, refer back to the [Architecture Map](../readme.md).
+
 ```typescript
 import { InvalidateType } from 'infrastructure/cache';
 

@@ -86,6 +86,10 @@
     * [Folder structure](architectures/space-based-architecture/folder-structure.md)
     * [Implementation guide](architectures/space-based-architecture/implementation-guide.md)
     * [Trade offs](architectures/space-based-architecture/trade-offs.md)
+  * **Agentic architecture**
+    * [Overview](architectures/agentic-architecture/readme.md)
+  * **Microkernel architecture**
+    * [Overview](architectures/microkernel-architecture/readme.md)
 * **Backend**
   * [Overview](backend/readme.md)
   * **Expressjs**
