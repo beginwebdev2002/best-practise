@@ -142,6 +142,7 @@
   * [Vibe coding autonomous testing patterns](docs/vibe-coding-autonomous-testing-patterns.md)
   * [Vibe coding deterministic patterns](docs/vibe-coding-deterministic-patterns.md)
   * [Vibe coding dynamic context pruning](docs/vibe-coding-dynamic-context-pruning.md)
+  * [Vibe coding knowledge graph orchestration](docs/vibe-coding-knowledge-graph-orchestration.md)
   * [Vibe coding multi agent state sync](docs/vibe-coding-multi-agent-state-sync.md)
   * [Vibe coding predictive context orchestration](docs/vibe-coding-predictive-context-orchestration.md)
   * [Vibe coding swarm intelligence patterns](docs/vibe-coding-swarm-intelligence-patterns.md)
