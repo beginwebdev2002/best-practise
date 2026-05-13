@@ -638,7 +638,7 @@ class CompanyLogo {
 
 class AssetUploaderService {
   constructor(private storage: IStorageProvider) {}
-  async handleUpload(logo: CompanyLogo, file) {
+  async handleUpload(logo: CompanyLogo, file: unknown) {
     const url = await this.storage.upload(file);
     logo.setRemoteURI(url);
   }
