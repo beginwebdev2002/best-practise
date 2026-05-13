@@ -40,7 +40,9 @@ graph LR
     State --- Resilience[Resilience & Graceful Degradation]
 
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
     class Deploy,TechAgnostic,State,Resilience default;
+    class Deploy,State,Resilience,TechAgnostic component;
 ```
 
 ---

@@ -45,7 +45,9 @@ graph LR
     Boundaries --- Decoupling[Decoupling]
 
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
     class Isolation,Boundaries,Decoupling default;
+    class Decoupling,Boundaries,Isolation component;
 ```
 
 
@@ -56,6 +58,8 @@ graph LR
     B --> C[Decoupling]
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
     class A,B,C default;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class A,C,B component;
 ```
 
 ## 1. Shared Database Across Services
