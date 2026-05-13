@@ -39,6 +39,36 @@ src/
     └── recovery/
 ```
 
+```mermaid
+classDiagram
+    class src {
+    }
+    class api_gateway {
+        Routing and basic validation
+    }
+    class middleware {
+        Virtualized middleware
+    }
+    class processing_units {
+        Independent processing components
+    }
+    class data_grid {
+        IMDG configuration
+    }
+    class data_pumps {
+        Background services syncing IMDG to DB
+    }
+
+    src *-- api_gateway
+    src *-- middleware
+    src *-- processing_units
+    src *-- data_grid
+    src *-- data_pumps
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class src,api_gateway,middleware,processing_units,data_grid,data_pumps default;
+```
+
 ## Layering Logic
 
 - **api-gateway:** The initial entry point. Minimal logic.
