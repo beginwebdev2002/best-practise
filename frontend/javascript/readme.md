@@ -22,22 +22,6 @@ Please refer to the specialized guides for detailed best practices:
 - [🧹 Clean Code & Logic](./clean-code.md)
 
 
-## 🚨 0. Common Pitfall
-> [!NOTE]
-> **Context:** An example of a common JavaScript pitfall.
-### ❌ Bad Practice
-```javascript
-var name = "Alice";
-```
-### ⚠️ Problem
-Using `var` leads to unpredictable scoping issues and hoisting bugs.
-### ✅ Best Practice
-```javascript
-const name = "Alice";
-```
-### 🚀 Solution
-Strictly use `const` and `let` to ensure block scoping and predictability.
-
 ## 📚 Specialized Topics
 
 For further reading, please refer to the following specialized guides:

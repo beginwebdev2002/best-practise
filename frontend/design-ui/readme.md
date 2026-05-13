@@ -128,3 +128,12 @@ Scattering hardcoded visual values across the codebase eliminates the ability to
 
 ### 🚀 Solution
 Extracting visual properties into centrally managed Design Tokens is MANDATORY. This pattern enforces strict isolation boundaries and standardizes deterministic visual properties. It STRICTLY prevents arbitrary inline style manipulation, mitigating potential style-based injection vulnerabilities, and creates a predictable environment optimized for parsing and UI refactoring by AI agents, improving overall rendering performance.
+## 📚 Specialized Topics
+
+For further reading, please refer to the following specialized guides:
+
+- [🚀 Basics & General](./basics.md)
+- [💅 Styling](./styling.md)
+- [📱 Responsive Design](./responsive-design.md)
+- [♿ Accessibility](./accessibility.md)
+- [🧱 Component Architecture](./component-architecture.md)

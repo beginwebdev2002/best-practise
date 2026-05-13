@@ -12,6 +12,22 @@ last_updated: 2026-04-05
 
 [⬆️ Back to Top](./readme.md)
 
+### 🚨 0. Common Pitfall
+> [!NOTE]
+> **Context:** An example of a common JavaScript pitfall.
+### ❌ Bad Practice
+```javascript
+var name = "Alice";
+```
+### ⚠️ Problem
+Using `var` leads to unpredictable scoping issues and hoisting bugs.
+### ✅ Best Practice
+```javascript
+const name = "Alice";
+```
+### 🚀 Solution
+Strictly use `const` and `let` to ensure block scoping and predictability.
+
 ### 🚨 1. `var` vs `const/let`
 > [!NOTE]
 > **Context:** Scoping and hoisting mechanisms in modern JavaScript. `var` is function-scoped and hoisted, leading to unpredictable behavior and accidental global leakage.
