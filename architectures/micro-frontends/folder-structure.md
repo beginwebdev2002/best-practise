@@ -44,6 +44,42 @@ workspace/
 │   └── event-bus/ (Agnostic communication contract types)
 ```
 
+```mermaid
+classDiagram
+    class workspace {
+    }
+    class apps {
+    }
+    class app_shell {
+        Entry point, Router
+    }
+    class mfe_catalog {
+        Independent app
+    }
+    class mfe_checkout {
+        Independent app
+    }
+    class packages {
+    }
+    class design_system {
+        Pure UI components
+    }
+    class event_bus {
+        Agnostic communication contracts
+    }
+
+    workspace *-- apps
+    apps *-- app_shell
+    apps *-- mfe_catalog
+    apps *-- mfe_checkout
+    workspace *-- packages
+    packages *-- design_system
+    packages *-- event_bus
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class workspace,apps,app_shell,mfe_catalog,mfe_checkout,packages,design_system,event_bus default;
+```
+
 
 
 ### Structural Comparison: Monorepo vs Polyrepo for MFEs

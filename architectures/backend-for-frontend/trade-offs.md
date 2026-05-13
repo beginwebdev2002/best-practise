@@ -29,6 +29,19 @@ last_updated: 2026-03-29
 4. **Maintenance Burden:** Requires frontend teams to have backend development and DevOps skills to maintain the BFF.
 
 
+### Process Flow: BFF Lifecycle
+```mermaid
+graph LR
+    Client[Client App] -->|Request| BFF[BFF Service]
+    BFF -->|Aggregate Request| Microservices[Downstream Microservices]
+    Microservices -->|Response| BFF
+    BFF -->|Optimized Payload| Client
+
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Client,BFF,Microservices component;
+```
+
+
 ### Structural Comparison: Pros vs Cons
 
 | Category | Factor | Description |

@@ -21,6 +21,15 @@ if (isValid === true) { /* ... */ }
 ```
 ### ⚠️ Problem
 Comparing a boolean to `true` or `false` is redundant. It adds visual noise without increasing safety.
+
+### Structural Comparison: Boolean Checking
+
+| Feature | `x === true` | `x` (Truthiness) |
+| :--- | :--- | :--- |
+| **Readability** | Redundant & noisy | Idiomatic & clean |
+| **Execution** | Strict equality check | Truthy evaluation |
+| **Cognitive Load** | Higher (extra tokens) | Lower (direct intent) |
+
 ### ✅ Best Practice
 ```javascript
 if (isValid) { /* ... */ }
