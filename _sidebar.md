@@ -144,6 +144,7 @@
   * [Vibe coding dynamic context pruning](docs/vibe-coding-dynamic-context-pruning.md)
   * [Vibe coding multi agent state sync](docs/vibe-coding-multi-agent-state-sync.md)
   * [Vibe coding predictive context orchestration](docs/vibe-coding-predictive-context-orchestration.md)
+  * [Vibe coding secure sandbox execution](docs/vibe-coding-secure-sandbox-execution.md)
   * [Vibe coding swarm intelligence patterns](docs/vibe-coding-swarm-intelligence-patterns.md)
   * [Vibe coding telemetry patterns](docs/vibe-coding-telemetry-patterns.md)
   * [Vibe coding zero approval workflows](docs/vibe-coding-zero-approval-workflows.md)
