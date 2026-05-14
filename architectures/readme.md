@@ -58,8 +58,9 @@ Don't know where to start? Here are a few golden rules:
 - [Space-Based Architecture](./space-based-architecture/readme.md)
 - [Serverless](./serverless/readme.md)
 - [Agentic Architecture (AI Agent Orchestration)](./agentic-architecture/readme.md)
+- [Layered Architecture (N-Tier)](./layered-architecture/readme.md)
 
-## 🏆 Top 15 Best Architectural Approaches
+## 🏆 Top 17 Best Architectural Approaches
 
 Below are the most popular architectural patterns along with examples, tips, technology stacks, and their logos. A Folder Tree is provided for each to give you a deep understanding of its structure.
 ---
@@ -719,3 +720,39 @@ src/
 - **Frameworks:** Eclipse, VS Code, Webpack, Babel.
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="16"/> Python.
 - **Patterns / Principles:** Open/Closed Principle, Dependency Inversion, Registry Pattern.
+---
+
+### 17. Layered Architecture (N-Tier)
+[![Layered Architecture](https://img.shields.io/badge/Architecture-Layered-blue?style=flat-square)](#)
+
+**Description:** An architecture that organizes a system into strict hierarchical layers. Data and control must flow sequentially from top to bottom (e.g., Presentation → Business Logic → Persistence → Database). Bypassing layers is strictly prohibited to ensure maximum separation of concerns.
+**📖 Map of Patterns:** [Go to Layered Architecture Guidelines](./layered-architecture/readme.md)
+
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    Presentation[Presentation Layer] --> Business[Business Logic Layer]
+    Business --> Persistence[Persistence / Data Access Layer]
+    Persistence --> Database[(Database)]
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+
+    class Presentation component;
+    class Business component;
+    class Persistence component;
+    class Database default;
+```
+
+```text
+src/
+├── 📁 presentation/     # Controllers, Routes, and View models
+├── 📁 business/         # Core business logic and rules
+└── 📁 persistence/      # Repositories and Data Access Objects (DAOs)
+```
+
+**Best Compatibility:**
+- **Frameworks:** Spring Boot, ASP.NET Core, Express.js.
+- **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" width="16"/> C#, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript.
+- **Patterns / Principles:** Separation of Concerns, Closed Layers.
