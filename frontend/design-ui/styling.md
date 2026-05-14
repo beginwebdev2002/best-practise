@@ -23,6 +23,23 @@ This document enforces the strict styling rules and constraints regarding design
 
 ---
 
+## 🧠 Styling Logic Flow
+
+```mermaid
+graph TD
+    Theme[Global Theme] --> Tokens[Design Tokens]
+    Tokens --> ComponentStyles[Component Styles]
+    ComponentStyles --> Layouts[Layout Rendering]
+
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+
+    class Theme default;
+    class Tokens component;
+    class ComponentStyles default;
+    class Layouts component;
+```
+
 ---
 ## ⚖️ Structural Comparison: Styling Paradigms
 

@@ -23,6 +23,21 @@ This document enforces the strict standards for building fluid, universally adap
 
 ---
 
+## 🧠 Responsive Scaling Flow
+
+```mermaid
+graph TD
+    MobileBase[Mobile Base Styles: max-width 100%] --> Tablet[Tablet Viewport: min-width 768px]
+    Tablet --> Desktop[Desktop Viewport: min-width 1024px]
+
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+
+    class MobileBase default;
+    class Tablet component;
+    class Desktop component;
+```
+
 ---
 ## ⚖️ Structural Comparison: Responsive Paradigms
 
