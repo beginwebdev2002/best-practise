@@ -23,6 +23,25 @@ This document enforces strict adherence to semantic HTML and accessibility guide
 
 ---
 
+## 🧠 Accessibility Event Routing Flow
+
+```mermaid
+graph TD
+    UserAction[User Interaction] --> SemanticHTML[Semantic HTML Element]
+    SemanticHTML --> NativeEvent[Native Browser Event Routing]
+    NativeEvent --> AccessibilityTree[Accessibility Tree]
+    AccessibilityTree --> AssistiveTech[Assistive Technologies]
+
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+
+    class UserAction default;
+    class SemanticHTML component;
+    class NativeEvent default;
+    class AccessibilityTree component;
+    class AssistiveTech default;
+```
+
 ---
 
 ## ⚖️ Structural Comparison: Accessibility Paradigms
