@@ -36,6 +36,15 @@ console.log(price); // 100
 ### 🚀 Solution
 Use `const` by default to ensure immutability of the reference. Use `let` only when reassigning a variable is strictly necessary. This enforces block-level scoping and prevents accidental overrides.
 
+
+| Feature | `var` | `const` / `let` |
+| :--- | :--- | :--- |
+| **Scope** | Function / Global | Block Scope |
+| **Hoisting** | Yes (initialized as undefined) | Yes (Temporal Dead Zone) |
+| **Reassignment** | Yes | No (`const`) / Yes (`let`) |
+| **Safety** | Low (easy to leak) | High (strict boundaries) |
+
+
 ```mermaid
 flowchart TD
     A[Variable Declaration Required] --> B{Reassignment needed?}

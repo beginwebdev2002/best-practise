@@ -36,6 +36,14 @@ const user = { name, age };
 ```
 ### 🚀 Solution
 Use Property Shorthand. When the key and variable name match, omit the value.
+
+
+| Feature | Manual Assignment | Property Shorthand |
+| :--- | :--- | :--- |
+| **Syntax** | `{ name: name }` | `{ name }` |
+| **Boilerplate**| High | Minimal |
+| **Readability**| Cluttered | Clean |
+
 ## ⚡ 12. Using `arguments` vs Rest parameters
 > [!NOTE]
 > **Context:** Handling variable numbers of arguments.

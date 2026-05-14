@@ -68,5 +68,34 @@ src/
 └── app.ts
 ```
 
+
+```mermaid
+classDiagram
+    class src {
+    }
+    class routes {
+    }
+    class controllers {
+    }
+    class services {
+    }
+    class clients {
+    }
+    class types {
+    }
+    class app_ts {
+    }
+    src *-- routes
+    src *-- controllers
+    src *-- services
+    src *-- clients
+    src *-- types
+    src *-- app_ts
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+```
+
+
 ### 🚀 Solution
 Separate responsibilities clearly. `routes` handle HTTP concerns. `controllers` parse requests and format responses. `services` (or aggregators) orchestrate the calls to multiple downstream microservices. `clients` isolate the network logic (HTTP/gRPC) for communicating with downstream microservices. This structure enhances testability and maintainability.

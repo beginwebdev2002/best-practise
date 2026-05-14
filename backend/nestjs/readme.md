@@ -141,6 +141,14 @@ async createUser(@Body() dto: CreateDto) {
 ### 🚀 Solution
 Controllers ONLY route requests. All business logic MUST reside in the Service Layer.
 
+
+| Feature | Fat Controller | Thin Controller |
+| :--- | :--- | :--- |
+| **Logic Location** | Inside the HTTP route | Delegated to a Service |
+| **Testability** | Hard (requires full HTTP context) | Easy (isolated functions) |
+| **Reusability** | Zero | High (services can be called by other modules) |
+
+
 ## 🚨 5. Global Exception Filter
 ### ❌ Bad Practice
 ```typescript

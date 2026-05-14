@@ -37,6 +37,14 @@ if (isValidUser(response.data)) {
 ```
 ### 🚀 Solution
 Avoid type assertions. Use runtime validation (Zod, Valibot) or explicit Type Guards to deterministically ensure the data matches the expected type before processing.
+
+
+| Feature | Type Assertions (`as`) | Narrowing / Validation |
+| :--- | :--- | :--- |
+| **Safety** | Low (overrides compiler) | High (proves type at runtime) |
+| **Runtime Errors**| High Risk | Low Risk |
+| **Use Case** | Migrations, strict DOM | API responses, unknown data |
+
 ## 🚨 12. Non-null Assertion Operator (`!`)
 > [!NOTE]
 > **Context:** Dealing with potentially `null` or `undefined` values.
