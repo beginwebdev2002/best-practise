@@ -125,6 +125,7 @@
     * [Architecture](backend/redis/architecture.md)
     * [Security best practices](backend/redis/security-best-practices.md)
 * **Docs**
+  * [Ai agent context boundary contracts](docs/ai-agent-context-boundary-contracts.md)
   * [Ai agent context injection pipelines](docs/ai-agent-context-injection-pipelines.md)
   * [Ai agent context pruning](docs/ai-agent-context-pruning.md)
   * [Ai agent dynamic context pruning](docs/ai-agent-dynamic-context-pruning.md)
