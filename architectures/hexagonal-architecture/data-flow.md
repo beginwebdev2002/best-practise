@@ -47,4 +47,13 @@ sequenceDiagram
 3. **Primary vs Secondary:**
    - Primary Adapters (Driving) call the Domain (Input Ports). Examples: REST Controllers, CLI scripts, Event Listeners.
    - Secondary Adapters (Driven) are called by the Domain (Output Ports). Examples: Database Repositories, SMTP Clients, External API clients.
+
+
+| Concept | Primary Adapters | Secondary Adapters |
+| :--- | :--- | :--- |
+| **Role** | Drive the application | Are driven by the application |
+| **Initiates Action?**| Yes | No |
+| **Examples** | REST Controllers, CLI scripts, Event Listeners | Database Repositories, SMTP Clients, External API clients |
+| **Connection to Core**| Calls Input Ports | Implement Output Ports |
+
 4. **Data Translation:** Data must be mapped at the boundary. Do not pass the internal DB Model directly out to the Primary Adapter. Use DTOs at the Ports.

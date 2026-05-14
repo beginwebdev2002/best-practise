@@ -31,6 +31,14 @@ The service is included in the bundle even if it is not used.
 ```
 ### 🚀 Solution
 Always use `providedIn: 'root'`. This allows the bundler to remove unused services (Tree Shaking).
+
+
+| Feature | `providedIn: 'root'` | `NgModule` providers |
+| :--- | :--- | :--- |
+| **Tree Shaking** | Excellent (removed if unused) | Poor (always included) |
+| **Simplicity** | High (single file) | Low (requires module) |
+| **Bundle Size** | Smaller | Larger |
+
 ## ⚡ 17. Class-based Guards
 > [!NOTE]
 > **Context:** Routing Security

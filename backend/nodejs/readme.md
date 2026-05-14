@@ -99,6 +99,30 @@ A monolithic file structure tightly couples routing, business logic, and data ac
   /config (Environment and configurations)
   /utils (Helper functions)
 ```
+
+```mermaid
+classDiagram
+    class src {
+    }
+    class api {
+    }
+    class services {
+    }
+    class models {
+    }
+    class config {
+    }
+    class utils {
+    }
+    src *-- api
+    src *-- services
+    src *-- models
+    src *-- config
+    src *-- utils
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+```
 ### 🚀 Solution
 Implement a multi-layered folder architecture. Strictly separate the HTTP transport layer (Routes/Controllers) from the Business Logic (Services) and Database operations.
 

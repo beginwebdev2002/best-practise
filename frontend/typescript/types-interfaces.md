@@ -33,6 +33,14 @@ function process(data: unknown) {
 ```
 ### 🚀 Solution
 Use `unknown` for values whose type is not yet determined. It requires a type check or assertion before usage, ensuring the developer acknowledges the data's structure.
+
+
+| Feature | `any` | `unknown` |
+| :--- | :--- | :--- |
+| **Type Checking** | Disabled | Enforced |
+| **Safety** | Zero | High (requires narrowing) |
+| **Usage** | Never | API responses, generic catch blocks |
+
 ---
 
 ## ⚡ 2. `null` vs `undefined` in APIs

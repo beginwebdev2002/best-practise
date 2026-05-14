@@ -48,6 +48,14 @@ const map = {};
 ```
 ### 🚀 Solution
 Use literals `[]` and `{}`. They are visually cleaner and perform slightly better as they don't involve a function call.
+
+
+| Feature | Literals (`[]`, `{}`) | Constructors (`new Array()`) |
+| :--- | :--- | :--- |
+| **Syntax** | Concise & Intuitive | Verbose |
+| **Consistency** | High (`[3]` = array with one item) | Low (`new Array(3)` = 3 empty slots) |
+| **Performance** | Faster | Slower |
+
 ---
 
 

@@ -37,6 +37,19 @@ classDiagram
 2. **DTOs**: Pass Data Transfer Objects between layers to avoid leaking DB schemas.
 3. **Dependency Injection**: Use DI to pass services into controllers for better testability.
 
+
+```mermaid
+graph LR
+    Step1[Keep Controllers Thin] --> Step2[Use DTOs]
+    Step2 --> Step3[Apply Dependency Injection]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+
+    class Step1,Step2,Step3 default;
+```
+
+
 ### Anti-patterns:
 - **Fat Controllers**: Containing raw SQL, business logic, or file system access.
 - **Logic in Views**: Conditional statements that reflect business rules in the UI layer.

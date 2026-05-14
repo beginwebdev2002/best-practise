@@ -370,6 +370,30 @@ src/
   ├── middlewares/
   ├── routes/
 ```
+
+```mermaid
+classDiagram
+    class src {
+    }
+    class controllers {
+    }
+    class services {
+    }
+    class models {
+    }
+    class middlewares {
+    }
+    class routes {
+    }
+    src *-- controllers
+    src *-- services
+    src *-- models
+    src *-- middlewares
+    src *-- routes
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+```
 ### 🚀 Solution
 Strictly organize the project into logical directories. Implement a multi-layered architecture.
 
