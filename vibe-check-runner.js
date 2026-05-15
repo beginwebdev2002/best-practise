@@ -2,6 +2,7 @@ import { Project, SyntaxKind } from 'ts-morph';
 import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { execFileSync } from 'node:child_process';
 import { GoogleGenAI } from '@google/genai';
 
@@ -241,10 +242,10 @@ async function runVibeCheck() {
     console.warn('Failed to configure git user. If running locally, this is expected.');
   }
 
+  // 1. Deduplicate files by technology and group them
+  const filesByTech = {};
   for (const file of modifiedFiles) {
-    console.log(`Processing ${file}...`);
-
-    if (!fs.existsSync(file)) {
+    if (!(await fileOrDirExists(file))) {
       console.log(`File ${file} does not exist. Skipping.`);
       continue;
     }
@@ -256,7 +257,6 @@ async function runVibeCheck() {
     else if (file.includes('/express/')) tech = 'express';
     else if (file.includes('/nodejs/')) tech = 'nodejs';
     else {
-      // Fallback
       const parts = file.split('/');
       if (parts.length > 1) {
         tech = parts[1];
@@ -265,28 +265,68 @@ async function runVibeCheck() {
       }
     }
 
+    if (!filesByTech[tech]) {
+      filesByTech[tech] = [];
+    }
+    filesByTech[tech].push(file);
+  }
+
+  // 2. Process benchmarks sequentially by technology
+  for (const tech of Object.keys(filesByTech)) {
+    const files = filesByTech[tech];
+    let concatenatedContent = '';
+    for (const file of files) {
+      const mdContent = await fsPromises.readFile(file, 'utf-8');
+      concatenatedContent += `\n\n--- Content from ${file} ---\n\n` + mdContent;
+    }
+    await syncBenchmarks(tech, concatenatedContent);
+  }
+
+  // 3. Process simulations and validations concurrently using Promise.all
+  const results = await Promise.all(modifiedFiles.map(async (file) => {
+    if (!(await fileOrDirExists(file))) {
+      return null;
+    }
+
+    let tech = '';
+    if (file.includes('/angular/')) tech = 'angular';
+    else if (file.includes('/nestjs/')) tech = 'nestjs';
+    else if (file.includes('/typescript/')) tech = 'typescript';
+    else if (file.includes('/express/')) tech = 'express';
+    else if (file.includes('/nodejs/')) tech = 'nodejs';
+    else {
+      const parts = file.split('/');
+      if (parts.length > 1) tech = parts[1];
+      else return null;
+    }
+
     const mdContent = await fsPromises.readFile(file, 'utf-8');
 
-    await syncBenchmarks(tech, mdContent);
-
     const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
-    if (!fs.existsSync(suitePath)) {
+    if (!(await fileOrDirExists(suitePath))) {
       console.log(`No benchmark suite found for ${tech}. Skipping.`);
-      continue;
+      return null;
     }
 
     const suiteConfig = JSON.parse(await fsPromises.readFile(suitePath, 'utf-8'));
-
     const generatedCode = await simulateAIGeneration(suiteConfig.golden_prompt, tech, mdContent);
 
     if (!generatedCode) {
       console.error(`Failed to generate code for ${tech}.`);
-      continue;
+      return null;
     }
 
-    const sourceFile = project.createSourceFile(`temp_${tech}.ts`, generatedCode, { overwrite: true });
+    const sourceFile = project.createSourceFile(`temp_${tech}_${Math.random().toString(36).substring(7)}.ts`, generatedCode, { overwrite: true });
     const { total: score, breakdown } = analyzeAST(sourceFile, tech);
 
+    return { file, tech, score, breakdown, generatedCode };
+  }));
+
+  // 4. Handle stateful side effects sequentially
+  for (const result of results) {
+    if (!result) continue;
+
+    const { file, tech, score, breakdown, generatedCode } = result;
     console.log(`Fidelity Score for ${file}: ${score}%`);
     console.log(`Breakdown:`, breakdown);
 
@@ -302,10 +342,10 @@ async function runVibeCheck() {
       try {
         execFileSync('git', ['add', file]);
         try { execFileSync('sh', ['-c', 'git add benchmarks/suites/*.json benchmarks/criteria/*.json 2>/dev/null || true']); } catch (e) {}
-        // Only commit if there are changes (badge might already be there)
+
         const status = execFileSync('git', ['status', '--porcelain'], { encoding: 'utf-8' });
         if (status.includes(file) || status.includes('benchmarks/')) {
-           execFileSync('git', ['commit', '-m', '[chore: benchmark-sync]']);
+           execFileSync('git', ['commit', '-m', '[chore: fidelity-pass]']);
            execFileSync('git', ['push', 'origin', 'HEAD:main']);
         } else {
            console.log(`Badge already present in ${file}, skipping commit.`);
@@ -313,12 +353,11 @@ async function runVibeCheck() {
       } catch (err) {
          console.error('Failed to commit or push:', err.message);
       }
-
     } else {
       console.error(`❌ Validation failed for ${file}. Score below 95%.`);
 
       const reportDir = path.join('benchmarks', 'logs');
-      if (!await fileOrDirExists(reportDir)) await fsPromises.mkdir(reportDir, { recursive: true });
+      if (!(await fileOrDirExists(reportDir))) await fsPromises.mkdir(reportDir, { recursive: true });
 
       const reportPath = path.join(reportDir, `violation-report.md`);
       const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n\`\`\`typescript\n${generatedCode}\n\`\`\`\n\nReview the AST rules.`;
@@ -337,5 +376,8 @@ async function runVibeCheck() {
     }
   }
 }
+export { runVibeCheck, syncBenchmarks, simulateAIGeneration, analyzeAST };
 
-runVibeCheck().catch(console.error);
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  runVibeCheck().catch(console.error);
+}
