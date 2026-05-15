@@ -70,7 +70,7 @@ import { Database } from 'infrastructure/database';
 class OrderProcessingUnit {
   constructor(private readonly db: Database) {}
 
-  public async processOrder(orderData: any): Promise<void> {
+  public async processOrder(orderData: unknown): Promise<void> {
     // 1. Process business logic
     const processedOrder = this.calculateTaxes(orderData);
 
@@ -78,7 +78,7 @@ class OrderProcessingUnit {
     await this.db.save(processedOrder);
   }
 
-  private calculateTaxes(data: any): any {
+  private calculateTaxes(data: unknown): unknown {
     return { ...data, tax: 10 };
   }
 }

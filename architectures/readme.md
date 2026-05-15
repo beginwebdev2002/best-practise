@@ -59,7 +59,7 @@ Don't know where to start? Here are a few golden rules:
 - [Serverless](./serverless/readme.md)
 - [Agentic Architecture (AI Agent Orchestration)](./agentic-architecture/readme.md)
 
-## 🏆 Top 15 Best Architectural Approaches
+## 🏆 Top 16 Best Architectural Approaches
 
 Below are the most popular architectural patterns along with examples, tips, technology stacks, and their logos. A Folder Tree is provided for each to give you a deep understanding of its structure.
 ---
@@ -706,6 +706,17 @@ graph TD
     Registry --> PluginA[Payment Plugin]
     Registry --> PluginB[Notification Plugin]
     Registry --> PluginC[Analytics Plugin]
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Core layout;
+    class Registry layout;
+    class PluginA component;
+    class PluginB component;
+    class PluginC component;
+
 ```
 
 ```text

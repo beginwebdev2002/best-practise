@@ -44,7 +44,7 @@ class UserService {
 }
 
 class OrderService {
-  processOrder(order: any) {
+  processOrder(order: unknown) {
     // Arbitrarily mutating global state used by other domains
     globalAppCache.set(`user_${order.userId}`, { lastOrder: Date.now() });
   }
