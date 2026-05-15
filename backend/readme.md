@@ -72,5 +72,26 @@ app.get('/users/:id', async (req, res) => {
 > [!NOTE]
 > **Internal Routing:** For more context, refer back to the [Global Index](../README.md).
 
+
+### 🔄 Request / Response Flow
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Controller
+    participant Service
+    participant ORM
+    participant Database
+
+    Client->>Controller: GET /users/1
+    Controller->>Service: getUser(1)
+    Service->>ORM: findById(1)
+    ORM->>Database: SELECT * FROM users WHERE id = 1
+    Database-->>ORM: Result Set
+    ORM-->>Service: ORM Model
+    Service-->>Controller: DTO (Data Transfer Object)
+    Controller-->>Client: 200 OK (JSON)
+```
+
 ### 🚀 Solution
 Never allow Database Object Relational Mapping (ORM) models to bleed into standard HTTP responses. Always map through a DTO.
