@@ -33,7 +33,7 @@ To deeply understand the nuances of EDA, consult the following specialized modul
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
 ---
 
-### Structural Comparison: Event-Driven vs Request-Response
+### ⚖️ Structural Comparison: Event-Driven vs Request-Response
 
 | Feature | Event-Driven Architecture | Request-Response (REST/RPC) |
 | :--- | :--- | :--- |

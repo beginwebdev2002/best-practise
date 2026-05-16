@@ -24,7 +24,7 @@ This engineering directive defines the **best practices** for the Microservices 
 - ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
 
-### Structural Comparison: Microservices vs SOA (Service-Oriented Architecture)
+### ⚖️ Structural Comparison: Microservices vs SOA (Service-Oriented Architecture)
 
 | Feature | Microservices | SOA |
 | :--- | :--- | :--- |
@@ -50,12 +50,29 @@ graph LR
 
 
 
+## Architecture Diagram
+
 ```mermaid
-graph LR
-    A[Isolation & Testability] --> B[Strict Boundaries]
-    B --> C[Decoupling]
+graph TD
+    API[API Gateway] --> S1[Order Service]
+    API --> S2[Inventory Service]
+    API --> S3[User Service]
+    S1 --> DB1[(Order DB)]
+    S2 --> DB2[(Inventory DB)]
+    S3 --> DB3[(User DB)]
+
+    %% Added Design Token Styles for Mermaid Diagrams
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
-    class A,B,C default;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class API layout;
+    class S1 component;
+    class S2 component;
+    class S3 component;
+    class DB1 default;
+    class DB2 default;
+    class DB3 default;
 ```
 
 ## 1. Shared Database Across Services
