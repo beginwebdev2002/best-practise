@@ -159,7 +159,10 @@
     * [State management](frontend/angular/state-management.md)
     * [Testing](frontend/angular/testing.md)
   * **Design ui**
+    * [Accessibility](frontend/design-ui/accessibility.md)
+    * [Component architecture](frontend/design-ui/component-architecture.md)
     * [Overview](frontend/design-ui/readme.md)
+    * [Responsive design](frontend/design-ui/responsive-design.md)
     * [Styling](frontend/design-ui/styling.md)
   * **Javascript**
     * [Overview](frontend/javascript/readme.md)
