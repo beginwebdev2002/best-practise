@@ -24,7 +24,7 @@ last_updated: 2026-03-22
 - ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
 
-### Structural Comparison: Monolithic Architecture vs Microservices
+### ⚖️ Structural Comparison: Monolithic Architecture vs Microservices
 
 | Feature | Monolithic Architecture | Microservices |
 | :--- | :--- | :--- |

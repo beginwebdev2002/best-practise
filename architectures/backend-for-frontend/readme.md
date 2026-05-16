@@ -28,7 +28,7 @@ This engineering directive defines the **best practices** for the Backend-For-Fr
 
 
 
-### Structural Comparison: Backend-for-Frontend (BFF) vs API Gateway
+### ⚖️ Structural Comparison: Backend-for-Frontend (BFF) vs API Gateway
 
 | Feature | Backend-for-Frontend (BFF) | API Gateway |
 | :--- | :--- | :--- |

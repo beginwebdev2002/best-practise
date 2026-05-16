@@ -46,7 +46,7 @@ workspace/
 
 
 
-### Structural Comparison: Monorepo vs Polyrepo for MFEs
+### ⚖️ Structural Comparison: Monorepo vs Polyrepo for MFEs
 
 | Feature | Monorepo (Workspace) | Polyrepo (Independent Repos) |
 | :--- | :--- | :--- |

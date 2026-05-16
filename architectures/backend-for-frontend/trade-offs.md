@@ -29,7 +29,7 @@ last_updated: 2026-03-29
 4. **Maintenance Burden:** Requires frontend teams to have backend development and DevOps skills to maintain the BFF.
 
 
-### Structural Comparison: Pros vs Cons
+### ⚖️ Structural Comparison: Pros vs Cons
 
 | Category | Factor | Description |
 | :--- | :--- | :--- |
