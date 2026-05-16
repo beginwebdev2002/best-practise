@@ -144,7 +144,7 @@ abstract class BaseService {
 }
 ```
 
-### Structural Comparison: Abstract Classes vs Interfaces
+### ⚖️ Structural Comparison: Abstract Classes vs Interfaces
 
 | Feature | Abstract Classes | Interfaces |
 | :--- | :--- | :--- |

@@ -51,7 +51,7 @@ function UserList({ users }) {
 }
 ```
 
-### Structural Comparison: Manual Memoization vs React Compiler
+### ⚖️ Structural Comparison: Manual Memoization vs React Compiler
 
 | Feature | Manual Memoization (`useMemo`, `useCallback`) | React Compiler |
 | :--- | :--- | :--- |

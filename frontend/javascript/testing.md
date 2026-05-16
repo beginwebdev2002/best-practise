@@ -59,7 +59,7 @@ test('update user', () => {
 });
 ```
 
-### Structural Comparison: Unit Testing vs Integration Testing vs E2E
+### ⚖️ Structural Comparison: Unit Testing vs Integration Testing vs E2E
 
 | Feature | Unit Testing | Integration Testing | End-to-End (E2E) Testing |
 | :--- | :--- | :--- | :--- |
