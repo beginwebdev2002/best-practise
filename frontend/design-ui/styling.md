@@ -31,6 +31,20 @@ This document enforces the strict styling rules and constraints regarding design
 | **Hardcoded Values (Anti-Pattern)** | Inline hex codes (e.g., `#FFF`) | None | ❌ Avoid | Fragments visual consistency; impossible to theme globally. |
 | **Design Tokens (Best Practice)** | CSS Custom Properties (e.g., `var(--color-bg)`) | High | ✅ Optimal | Single source of truth; supports dark mode and safe refactoring. |
 
+```mermaid
+graph LR
+    A([🎨 UI Component]) -->|Anti-Pattern| B([Inline/Hardcoded Styles])
+    B -->|Fragments| C([Inconsistent UI & No Theming])
+
+    A -->|Best Practice| D([Design Tokens])
+    D -->|Scales| E([Themeable & Consistent UI])
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class A,B,C default;
+    class D,E component;
+```
+
 > [!CAUTION]
 > **Hardcoded Values Constraint:** AI Agents MUST NEVER use hardcoded colors, spacing, or typography values (e.g., `#FF0000`, `14px`). AI Agents MUST ALWAYS use established **Design Tokens** (e.g., CSS Variables `var(--color-primary)` or Tailwind classes like `text-primary`, `p-4`).
 

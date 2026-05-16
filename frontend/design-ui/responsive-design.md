@@ -31,6 +31,20 @@ This document enforces the strict standards for building fluid, universally adap
 | **Desktop-First (Anti-Pattern)** | Desktop (`> 1024px`) | `max-width` constraints down to mobile. | ❌ Avoid | Breaks mobile layouts; complex media queries. |
 | **Mobile-First (Best Practice)** | Mobile (`< 768px`) | `min-width` progressive enhancements. | ✅ Optimal | Deterministic scaling; highly predictable CSS context. |
 
+```mermaid
+graph LR
+    A([📱 Viewport Strategy]) -->|Anti-Pattern| B([Desktop-First max-width])
+    B -->|Breaks| C([Mobile Layout & Complex Queries])
+
+    A -->|Best Practice| D([Mobile-First min-width])
+    D -->|Scales| E([Deterministic & Predictable CSS])
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class A,B,C default;
+    class D,E component;
+```
+
 > [!IMPORTANT]
 > **Mobile-First Constraint:** AI Agents MUST strictly apply a mobile-first approach. Define base CSS for mobile screens and progressively enhance the layout for larger viewports using `min-width` media queries. Always prefer relative units (`rem`, `%`) over absolute units (`px`).
 

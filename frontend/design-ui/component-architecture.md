@@ -32,6 +32,20 @@ This document enforces the structural principles for composing robust, maintaina
 | **God Components (Anti-Pattern)** | Low | Low | ❌ Avoid | Exponential logic coupling (O(n²) refactor complexity); high blast radius for bugs. |
 | **Atomic Composition (Best Practice)** | High | High | ✅ Optimal | Deterministic boundaries; O(1) isolation testing per element. |
 
+```mermaid
+graph LR
+    A([🏗️ Architecture]) -->|Anti-Pattern| B([God Components])
+    B -->|Causes| C([Exponential logic coupling])
+
+    A -->|Best Practice| D([Atomic Composition])
+    D -->|Enables| E([Deterministic boundaries])
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class A,B,C default;
+    class D,E component;
+```
+
 > [!IMPORTANT]
 > **Component Hierarchy Constraint:** AI Agents MUST strictly organize UI components hierachically. Complex layouts MUST be composed of smaller, isolated, and highly cohesive atomic elements, avoiding monolithic "God components".
 

@@ -32,6 +32,20 @@ This document enforces strict adherence to semantic HTML and accessibility guide
 | **Generic Wrappers (Anti-Pattern)** | Manual JS Event Listeners | None | ❌ Avoid | Breaks native accessibility protocols; requires O(n) custom event management. |
 | **Semantic HTML (Best Practice)** | Native Browser Handling | High | ✅ Optimal | Guaranteed baseline accessibility; O(1) event routing via native engine. |
 
+```mermaid
+graph LR
+    A([♿ Interactive Element]) -->|Anti-Pattern| B([Generic div/span Wrappers])
+    B -->|Requires| C([Manual JS Event & ARIA mgmt])
+
+    A -->|Best Practice| D([Semantic HTML])
+    D -->|Inherits| E([Native Browser Accessibility])
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class A,B,C default;
+    class D,E component;
+```
+
 > [!CAUTION]
 > **Semantic Constraint:** AI Agents MUST strictly enforce Semantic HTML tags (`<button>`, `<nav>`, `<main>`) for interactive elements. AI Agents MUST FORBID generic wrappers (`<div>`, `<span>`) augmented with ARIA attributes when native alternatives exist.
 
