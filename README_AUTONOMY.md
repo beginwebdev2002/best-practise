@@ -37,10 +37,10 @@ To maximize the value of the $300 Google Cloud free tier/credits, follow these b
 
 1. **Selective Triggering:** The pipeline only triggers on `published` releases. Avoid frequent pre-releases if credits are low.
 2. **Model Selection:**
-   - Gemini 1.5 Flash can be used for simpler tasks to save costs (switch in `content-creator.js`).
+   - Gemini 1.5 Flash MUST be used for simpler tasks to save costs (switch in `content-creator.js`).
    - Imagen 3 is cost-effective for 4K renders compared to manual design.
 3. **Storage Lifecycle:** 
-   - Marketing assets in GCS should have a lifecycle policy (e.g., move to Coldline after 90 days) to minimize persistent storage costs.
+   - Marketing assets in GCS MUST have a lifecycle policy (e.g., move to Coldline after 90 days) to minimize persistent storage costs.
 4. **Monitoring:**
    - Use the [Google Cloud Console Billing](https://console.cloud.google.com/billing) to set alerts at 50%, 75%, and 90% of credit usage.
    - Check Vertex AI "Quotas & System Limits" to ensure no unexpected spikes in usage.

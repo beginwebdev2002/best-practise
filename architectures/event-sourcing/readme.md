@@ -54,7 +54,8 @@ graph TD
 ## Core Principles
 
 1. **Immutable Log:** Events are facts that happened in the past. They cannot be changed or deleted, only appended.
-2. **Replayable State:** Any entity's current state can be fully reconstructed by replaying all its past events from the beginning.
+> [!IMPORTANT]
+> 2. **Replayable State:** Any entity's current state MUST be fully reconstructed by replaying all its past events from the beginning.
 3. **Decoupled Read/Write:** Often combined with CQRS, Event Sourcing naturally decouples the write model (Event Store) from the read models (Projections).
 
 ## 1. Mutating State Instead of Appending Events
