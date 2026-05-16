@@ -241,14 +241,15 @@ async function runVibeCheck() {
     console.warn('Failed to configure git user. If running locally, this is expected.');
   }
 
-  for (const file of modifiedFiles) {
-    console.log(`Processing ${file}...`);
-
-    if (!fs.existsSync(file)) {
-      console.log(`File ${file} does not exist. Skipping.`);
-      continue;
+  const validFiles = (await Promise.all(modifiedFiles.map(async (file) => {
+    if (await fileOrDirExists(file)) {
+      return file;
     }
+    console.log(`File ${file} does not exist. Skipping.`);
+    return null;
+  }))).filter(Boolean);
 
+  const fileMappings = validFiles.map(file => {
     let tech = '';
     if (file.includes('/angular/')) tech = 'angular';
     else if (file.includes('/nestjs/')) tech = 'nestjs';
@@ -256,36 +257,68 @@ async function runVibeCheck() {
     else if (file.includes('/express/')) tech = 'express';
     else if (file.includes('/nodejs/')) tech = 'nodejs';
     else {
-      // Fallback
       const parts = file.split('/');
       if (parts.length > 1) {
         tech = parts[1];
-      } else {
-        continue;
       }
     }
+    return { file, tech };
+  }).filter(m => m.tech !== '');
 
-    const mdContent = await fsPromises.readFile(file, 'utf-8');
+  const techGroups = {};
+  for (const { file, tech } of fileMappings) {
+    if (!techGroups[tech]) {
+      techGroups[tech] = [];
+    }
+    techGroups[tech].push(file);
+  }
 
-    await syncBenchmarks(tech, mdContent);
+  // Read all file contents concurrently via Promise.all
+  const fileContents = await Promise.all(
+    validFiles.map(async (file) => {
+      const content = await fsPromises.readFile(file, 'utf-8');
+      return { file, content };
+    })
+  );
 
+  const contentMap = Object.fromEntries(fileContents.map(fc => [fc.file, fc.content]));
+
+  // syncBenchmarks must deduplicate by technology and process sequentially, concatenating markdown contents
+  for (const [tech, files] of Object.entries(techGroups)) {
+    const concatenatedContent = files.map(f => contentMap[f]).join('\n\n---\n\n');
+    console.log(`Syncing benchmarks for ${tech}...`);
+    await syncBenchmarks(tech, concatenatedContent);
+  }
+
+  // Run AI generation and AST analysis for all valid files concurrently via Promise.all
+  const analysisResults = await Promise.all(fileMappings.map(async ({ file, tech }) => {
     const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
-    if (!fs.existsSync(suitePath)) {
-      console.log(`No benchmark suite found for ${tech}. Skipping.`);
-      continue;
+    if (!(await fileOrDirExists(suitePath))) {
+      console.log(`No benchmark suite found for ${tech}. Skipping ${file}.`);
+      return null;
     }
 
     const suiteConfig = JSON.parse(await fsPromises.readFile(suitePath, 'utf-8'));
+    const mdContent = contentMap[file];
 
     const generatedCode = await simulateAIGeneration(suiteConfig.golden_prompt, tech, mdContent);
 
     if (!generatedCode) {
-      console.error(`Failed to generate code for ${tech}.`);
-      continue;
+      console.error(`Failed to generate code for ${tech} (${file}).`);
+      return null;
     }
 
-    const sourceFile = project.createSourceFile(`temp_${tech}.ts`, generatedCode, { overwrite: true });
+    const sourceFile = project.createSourceFile(`temp_${tech}_${file.replace(/[^a-zA-Z0-9]/g, '_')}.ts`, generatedCode, { overwrite: true });
     const { total: score, breakdown } = analyzeAST(sourceFile, tech);
+
+    return { file, tech, score, breakdown, generatedCode };
+  }));
+
+  // Stateful side effects must be sequential
+  for (const result of analysisResults) {
+    if (!result) continue;
+
+    const { file, tech, score, breakdown, generatedCode } = result;
 
     console.log(`Fidelity Score for ${file}: ${score}%`);
     console.log(`Breakdown:`, breakdown);
@@ -293,7 +326,7 @@ async function runVibeCheck() {
     if (score >= 95) {
       console.log(`✅ Validation passed for ${file}. Updating badge and auto-committing.`);
 
-      let content = await fsPromises.readFile(file, 'utf-8');
+      let content = contentMap[file];
       if (!content.includes('[![Vibe-Coding Verified]')) {
          content = content.replace(/^# /, '[![Vibe-Coding Verified](https://img.shields.io/badge/Vibe--Coding-Verified-brightgreen?style=for-the-badge)](#)\n\n# ');
          await fsPromises.writeFile(file, content);
@@ -301,7 +334,11 @@ async function runVibeCheck() {
 
       try {
         execFileSync('git', ['add', file]);
-        try { execFileSync('sh', ['-c', 'git add benchmarks/suites/*.json benchmarks/criteria/*.json 2>/dev/null || true']); } catch (e) {}
+        try {
+          execFileSync('git', ['add', 'benchmarks/suites/*.json']);
+          execFileSync('git', ['add', 'benchmarks/criteria/*.json']);
+        } catch (e) {}
+
         // Only commit if there are changes (badge might already be there)
         const status = execFileSync('git', ['status', '--porcelain'], { encoding: 'utf-8' });
         if (status.includes(file) || status.includes('benchmarks/')) {
