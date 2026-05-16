@@ -54,7 +54,8 @@ export class LegacyAgentExecutor {
 
 ## ⚠️ Problem
 
-1.  **Command Injection via Prompt Drift:** If an adversarial user injects instructions into the agent's context (e.g., via a malicious payload in a read document), the agent might formulate a destructive tool call.
+> [!IMPORTANT]
+> 1.  **Command Injection via Prompt Drift:** If an adversarial user injects instructions into the agent's context (e.g., via a malicious payload in a read document), the agent MUST formulate a destructive tool call.
 2.  **Privilege Escalation:** Running tools under the same execution context as the host process allows the agent to break out of its intended scope.
 3.  **Non-Deterministic Payload Syntax:** Agents frequently hallucinate JSON properties or shell operators, leading to unhandled exceptions and systemic crashes.
 

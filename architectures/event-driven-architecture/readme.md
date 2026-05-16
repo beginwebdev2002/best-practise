@@ -66,7 +66,8 @@ graph LR
 
 1. **Asynchronous by Default:** Synchronous RPC (REST/gRPC) is restricted only to immediate read-queries or initial gateway ingress. All inter-service state mutations must occur asynchronously.
 2. **Event Sourcing (Optional but Recommended):** State is derived from an immutable, append-only log of events rather than overwriting records in a database.
-3. **Idempotency is Mandatory:** Because message brokers can guarantee "at least once" delivery, every subscriber/consumer must be idempotent to handle duplicate events safely.
+> [!IMPORTANT]
+> 3. **Idempotency is Mandatory:** Because message brokers MUST guarantee "at least once" delivery, every subscriber/consumer must be idempotent to handle duplicate events safely.
 ---
 
 <div align="center">

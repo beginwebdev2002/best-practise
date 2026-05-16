@@ -14,7 +14,7 @@ vibe_coding_ready: true---
 
 # 🛡️ Backend Architecture & Clean APIs Rules for Jules
 ## 1. Context & Scope
-- **Primary Goal:** Ensure the implementation of best practices for the backend part of the project. Establish standards for **scalable server** deployments, **clean APIs**, and **enterprise-grade** solutions.
+- **Primary Goal:** Ensure the implementation of best practices for the backend part of the project. Establish standards for **scalable server** deployments, **deterministic APIs**, and **enterprise-grade** solutions.
 - **Target Tooling:** Jules AI agent (Vibe Coding, AI-Driven Development).
 - **Tech Stack Version:** Node.js, NestJS, ExpressJS, TypeScript.
 
