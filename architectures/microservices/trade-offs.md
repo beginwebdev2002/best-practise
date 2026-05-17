@@ -18,3 +18,12 @@ last_updated: 2026-03-29
 ### Cons
 - Distributed system complexity.
 - Difficult cross-service transactions.
+
+### ⚖️ Structural Comparison: Pros vs Cons
+
+| Category | Point |
+| :--- | :--- |
+| ✅ **Pros** | Independent scaling. |
+| ✅ **Pros** | Technological freedom per service. |
+| ❌ **Cons** | Distributed system complexity. |
+| ❌ **Cons** | Difficult cross-service transactions. |

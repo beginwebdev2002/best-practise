@@ -19,3 +19,13 @@ last_updated: 2026-03-29
 ### Cons
 - Increased boilerplate and indirection.
 - Steep learning curve for beginners.
+
+### ⚖️ Structural Comparison: Pros vs Cons
+
+| Category | Point |
+| :--- | :--- |
+| ✅ **Pros** | High testability. |
+| ✅ **Pros** | Framework agnostic. |
+| ✅ **Pros** | Database agnostic. |
+| ❌ **Cons** | Increased boilerplate and indirection. |
+| ❌ **Cons** | Steep learning curve for beginners. |

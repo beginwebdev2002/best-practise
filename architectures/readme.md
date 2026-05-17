@@ -101,6 +101,45 @@ src/
 ├── 📁 entities/   # Core business entities (User, Product)
 └── 📁 shared/     # Reusable code (UI-components, API, utils)
 ```
+```mermaid
+classDiagram
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class Node1_src {
+        src/
+    }
+    cssClass "Node1_src" default
+    class Node2_app {
+        app/
+    }
+    Node1_src *-- Node2_app
+    cssClass "Node2_app" default
+    class Node3_pages {
+        pages/
+    }
+    Node1_src *-- Node3_pages
+    cssClass "Node3_pages" default
+    class Node4_widgets {
+        widgets/
+    }
+    Node1_src *-- Node4_widgets
+    cssClass "Node4_widgets" default
+    class Node5_features {
+        features/
+    }
+    Node1_src *-- Node5_features
+    cssClass "Node5_features" default
+    class Node6_entities {
+        entities/
+    }
+    Node1_src *-- Node6_entities
+    cssClass "Node6_entities" default
+    class Node7_shared {
+        shared/
+    }
+    Node1_src *-- Node7_shared
+    cssClass "Node7_shared" default
+```
 
 **Best Compatibility:**
 - **Frameworks:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" width="16"/> React, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg" width="16"/> Vue, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" width="16"/> Angular

@@ -22,6 +22,18 @@ last_updated: 2026-03-29
 - **Coupling**: Often strong coupling between view and controller.
 - **Complexity over time**: Harder to maintain when domains grow too complex, often necessitating a move to DDD or Clean Architecture.
 
+### ⚖️ Structural Comparison: Pros vs Cons
+
+| Category | Point |
+| :--- | :--- |
+| ✅ **Pros** | **Familiarity**: Easy to understand, widely adopted pattern. |
+| ✅ **Pros** | **Separation of Concerns**: Clear distinction between data, UI, and control logic. |
+| ✅ **Pros** | **Rapid Development**: Excellent for starting MVP applications. |
+| ✅ **Pros** | **Framework Support**: High support across many frameworks (Spring, Express, Rails, Django). |
+| ❌ **Cons** | **Scalability**: For very large apps, "fat controllers" and "fat models" become common. |
+| ❌ **Cons** | **Coupling**: Often strong coupling between view and controller. |
+| ❌ **Cons** | **Complexity over time**: Harder to maintain when domains grow too complex, often necessitating a move to DDD or Clean Architecture. |
+
 ### Boundaries
 - Controllers must never execute direct database queries.
 - Views must not contain business logic or query the DB.

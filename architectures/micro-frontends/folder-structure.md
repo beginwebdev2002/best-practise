@@ -28,6 +28,35 @@ monorepo/
 │   ├── app-shell/
 │   ├── mfe-auth/ (imports directly from app-shell)
 ```
+```mermaid
+classDiagram
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class Node1_monorepo {
+        monorepo/
+    }
+    cssClass "Node1_monorepo" default
+    class Node2_packages {
+        packages/
+    }
+    Node1_monorepo *-- Node2_packages
+    cssClass "Node2_packages" default
+    class Node3_shareduicontainsbusinesslogic {
+        shared-ui/ (contains business logic!)
+    }
+    Node2_packages *-- Node3_shareduicontainsbusinesslogic
+    cssClass "Node3_shareduicontainsbusinesslogic" component
+    class Node4_appshell {
+        app-shell/
+    }
+    Node2_packages *-- Node4_appshell
+    cssClass "Node4_appshell" default
+    class Node5_mfeauthimportsdirectlyfromappshell {
+        mfe-auth/ (imports directly from app-shell)
+    }
+    Node2_packages *-- Node5_mfeauthimportsdirectlyfromappshell
+    cssClass "Node5_mfeauthimportsdirectlyfromappshell" component
+```
 
 #### ⚠️ Problem
 Storing business logic in shared libraries or directly importing cross-package code defeats the purpose of micro-frontends. It binds deployment cycles together, meaning a change in `shared-ui` forces all dependent MFEs to re-test and redeploy simultaneously.

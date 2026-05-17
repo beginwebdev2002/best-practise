@@ -18,3 +18,12 @@ last_updated: 2026-03-29
 ### Cons
 - Cold starts.
 - Vendor lock-in (AWS, GCP, Azure).
+
+### ⚖️ Structural Comparison: Pros vs Cons
+
+| Category | Point |
+| :--- | :--- |
+| ✅ **Pros** | Zero server management. |
+| ✅ **Pros** | Scales to zero (cost effective). |
+| ❌ **Cons** | Cold starts. |
+| ❌ **Cons** | Vendor lock-in (AWS, GCP, Azure). |

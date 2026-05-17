@@ -47,6 +47,35 @@ src/
 ├── config/
 └── index.ts
 ```
+```mermaid
+classDiagram
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class Node1_src {
+        src/
+    }
+    cssClass "Node1_src" default
+    class Node2_handlers {
+        handlers/
+    }
+    Node1_src *-- Node2_handlers
+    cssClass "Node2_handlers" default
+    class Node3_userDashboardHandlertscontainsroutingbusinesslogicandAPIcalls {
+        userDashboardHandler.ts (contains routing, business logic, and API calls)
+    }
+    Node2_handlers *-- Node3_userDashboardHandlertscontainsroutingbusinesslogicandAPIcalls
+    cssClass "Node3_userDashboardHandlertscontainsroutingbusinesslogicandAPIcalls" component
+    class Node4_config {
+        config/
+    }
+    Node1_src *-- Node4_config
+    cssClass "Node4_config" default
+    class Node5_indexts {
+        index.ts
+    }
+    Node1_src *-- Node5_indexts
+    cssClass "Node5_indexts" component
+```
 
 ### ⚠️ Problem
 Placing routing, data aggregation, and downstream API calls in a single handler creates a monolithic structure within the BFF. It makes testing difficult, limits code reuse, and violates the single responsibility principle.
