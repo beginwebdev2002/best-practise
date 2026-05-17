@@ -65,6 +65,115 @@ src/
         └── 📁 external/     # 3rd Party APIs (SendGrid, Stripe)
             └── SendGridEmailSender.ts
 ```
+```mermaid
+classDiagram
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class Node1_src {
+        src/
+    }
+    cssClass "Node1_src" default
+    class Node2_core {
+        core/
+    }
+    Node1_src *-- Node2_core
+    cssClass "Node2_core" default
+    class Node3_domain {
+        domain/
+    }
+    Node2_core *-- Node3_domain
+    cssClass "Node3_domain" default
+    class Node4_Userts {
+        User.ts
+    }
+    Node3_domain *-- Node4_Userts
+    cssClass "Node4_Userts" component
+    class Node5_AccountIdts {
+        AccountId.ts
+    }
+    Node3_domain *-- Node5_AccountIdts
+    cssClass "Node5_AccountIdts" component
+    class Node6_ports {
+        ports/
+    }
+    Node2_core *-- Node6_ports
+    cssClass "Node6_ports" default
+    class Node7_in {
+        in/
+    }
+    Node6_ports *-- Node7_in
+    cssClass "Node7_in" default
+    class Node8_CreateUserUseCasets {
+        CreateUserUseCase.ts
+    }
+    Node7_in *-- Node8_CreateUserUseCasets
+    cssClass "Node8_CreateUserUseCasets" component
+    class Node9_out {
+        out/
+    }
+    Node6_ports *-- Node9_out
+    cssClass "Node9_out" default
+    class Node10_UserRepositoryPortts {
+        UserRepositoryPort.ts
+    }
+    Node9_out *-- Node10_UserRepositoryPortts
+    cssClass "Node10_UserRepositoryPortts" component
+    class Node11_EmailSenderPortts {
+        EmailSenderPort.ts
+    }
+    Node9_out *-- Node11_EmailSenderPortts
+    cssClass "Node11_EmailSenderPortts" component
+    class Node12_adapters {
+        adapters/
+    }
+    Node1_src *-- Node12_adapters
+    cssClass "Node12_adapters" default
+    class Node13_primary {
+        primary/
+    }
+    Node12_adapters *-- Node13_primary
+    cssClass "Node13_primary" default
+    class Node14_http {
+        http/
+    }
+    Node13_primary *-- Node14_http
+    cssClass "Node14_http" default
+    class Node15_UserControllerts {
+        UserController.ts
+    }
+    Node14_http *-- Node15_UserControllerts
+    cssClass "Node15_UserControllerts" component
+    class Node16_cli {
+        cli/
+    }
+    Node13_primary *-- Node16_cli
+    cssClass "Node16_cli" default
+    class Node17_secondary {
+        secondary/
+    }
+    Node12_adapters *-- Node17_secondary
+    cssClass "Node17_secondary" default
+    class Node18_database {
+        database/
+    }
+    Node17_secondary *-- Node18_database
+    cssClass "Node18_database" default
+    class Node19_PostgresUserRepositoryts {
+        PostgresUserRepository.ts
+    }
+    Node18_database *-- Node19_PostgresUserRepositoryts
+    cssClass "Node19_PostgresUserRepositoryts" component
+    class Node20_external {
+        external/
+    }
+    Node17_secondary *-- Node20_external
+    cssClass "Node20_external" default
+    class Node21_SendGridEmailSenderts {
+        SendGridEmailSender.ts
+    }
+    Node20_external *-- Node21_SendGridEmailSenderts
+    cssClass "Node21_SendGridEmailSenderts" component
+```
 ## ⛔ Boundary Constraints
 
 1. **Isolation in `core/`:** Code inside `core/` is forbidden from importing modules from `adapters/`.

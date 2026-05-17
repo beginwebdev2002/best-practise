@@ -18,3 +18,12 @@ last_updated: 2026-03-29
 ### Cons
 - Scales as a whole, not by component.
 - Large codebase can slow down IDEs and startup times.
+
+### ⚖️ Structural Comparison: Pros vs Cons
+
+| Category | Point |
+| :--- | :--- |
+| ✅ **Pros** | Easy to develop, test, and deploy. |
+| ✅ **Pros** | Strong transactional guarantees (ACID). |
+| ❌ **Cons** | Scales as a whole, not by component. |
+| ❌ **Cons** | Large codebase can slow down IDEs and startup times. |

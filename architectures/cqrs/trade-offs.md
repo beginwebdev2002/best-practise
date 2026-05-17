@@ -18,3 +18,12 @@ last_updated: 2026-03-29
 ### Cons
 - Eventual consistency complexity.
 - High architectural overhead for simple domains.
+
+### ⚖️ Structural Comparison: Pros vs Cons
+
+| Category | Point |
+| :--- | :--- |
+| ✅ **Pros** | Independent scaling of read and write workloads. |
+| ✅ **Pros** | Optimized data schemas for read vs write operations. |
+| ❌ **Cons** | Eventual consistency complexity. |
+| ❌ **Cons** | High architectural overhead for simple domains. |
