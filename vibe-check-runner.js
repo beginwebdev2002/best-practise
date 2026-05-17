@@ -241,10 +241,10 @@ async function runVibeCheck() {
     console.warn('Failed to configure git user. If running locally, this is expected.');
   }
 
+  // 1. Collect and group by technology
+  const techGroups = {};
   for (const file of modifiedFiles) {
-    console.log(`Processing ${file}...`);
-
-    if (!fs.existsSync(file)) {
+    if (!(await fileOrDirExists(file))) {
       console.log(`File ${file} does not exist. Skipping.`);
       continue;
     }
@@ -256,7 +256,6 @@ async function runVibeCheck() {
     else if (file.includes('/express/')) tech = 'express';
     else if (file.includes('/nodejs/')) tech = 'nodejs';
     else {
-      // Fallback
       const parts = file.split('/');
       if (parts.length > 1) {
         tech = parts[1];
@@ -265,27 +264,52 @@ async function runVibeCheck() {
       }
     }
 
-    const mdContent = await fsPromises.readFile(file, 'utf-8');
+    if (!techGroups[tech]) techGroups[tech] = [];
+    techGroups[tech].push(file);
+  }
 
-    await syncBenchmarks(tech, mdContent);
+  // 2. Process each technology concurrently via Promise.all
+  // Within each technology, we process files sequentially for syncBenchmarks
+  const fileResults = [];
 
-    const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
-    if (!fs.existsSync(suitePath)) {
-      console.log(`No benchmark suite found for ${tech}. Skipping.`);
-      continue;
+  await Promise.all(Object.keys(techGroups).map(async (tech) => {
+    for (const file of techGroups[tech]) {
+      const mdContent = await fsPromises.readFile(file, 'utf-8');
+      await syncBenchmarks(tech, mdContent);
+      fileResults.push({ tech, file, mdContent });
+    }
+  }));
+
+  // 3. Execute AI generation and AST analysis concurrently
+  const analysisPromises = fileResults.map(async (item) => {
+    const suitePath = path.join('benchmarks', 'suites', `${item.tech}.json`);
+    if (!(await fileOrDirExists(suitePath))) {
+      return { ...item, error: `No benchmark suite found for ${item.tech}.` };
     }
 
     const suiteConfig = JSON.parse(await fsPromises.readFile(suitePath, 'utf-8'));
-
-    const generatedCode = await simulateAIGeneration(suiteConfig.golden_prompt, tech, mdContent);
+    const generatedCode = await simulateAIGeneration(suiteConfig.golden_prompt, item.tech, item.mdContent);
 
     if (!generatedCode) {
-      console.error(`Failed to generate code for ${tech}.`);
+      return { ...item, error: `Failed to generate code for ${item.tech}.` };
+    }
+
+    const sourceFile = project.createSourceFile(`temp_${item.tech}_${Buffer.from(item.file).toString('base64')}.ts`, generatedCode, { overwrite: true });
+    const { total: score, breakdown } = analyzeAST(sourceFile, item.tech);
+
+    return { ...item, generatedCode, score, breakdown };
+  });
+
+  const analyzedResults = await Promise.all(analysisPromises);
+
+  // 4. Iterate over results sequentially to handle stateful side effects
+  for (const result of analyzedResults) {
+    if (result.error) {
+      console.log(result.error);
       continue;
     }
 
-    const sourceFile = project.createSourceFile(`temp_${tech}.ts`, generatedCode, { overwrite: true });
-    const { total: score, breakdown } = analyzeAST(sourceFile, tech);
+    const { file, score, breakdown, generatedCode } = result;
 
     console.log(`Fidelity Score for ${file}: ${score}%`);
     console.log(`Breakdown:`, breakdown);
@@ -301,10 +325,11 @@ async function runVibeCheck() {
 
       try {
         execFileSync('git', ['add', file]);
-        try { execFileSync('sh', ['-c', 'git add benchmarks/suites/*.json benchmarks/criteria/*.json 2>/dev/null || true']); } catch (e) {}
-        // Only commit if there are changes (badge might already be there)
+        // Explicitly add JSON suites/criteria before status check
+        execFileSync('sh', ['-c', 'git add benchmarks/suites/*.json benchmarks/criteria/*.json 2>/dev/null || true']);
+
         const status = execFileSync('git', ['status', '--porcelain'], { encoding: 'utf-8' });
-        if (status.includes(file) || status.includes('benchmarks/')) {
+        if (status.includes(file) || status.includes('benchmarks/suites') || status.includes('benchmarks/criteria')) {
            execFileSync('git', ['commit', '-m', '[chore: benchmark-sync]']);
            execFileSync('git', ['push', 'origin', 'HEAD:main']);
         } else {
@@ -318,7 +343,8 @@ async function runVibeCheck() {
       console.error(`❌ Validation failed for ${file}. Score below 95%.`);
 
       const reportDir = path.join('benchmarks', 'logs');
-      if (!await fileOrDirExists(reportDir)) await fsPromises.mkdir(reportDir, { recursive: true });
+      if (!(await fileOrDirExists(reportDir))) await fsPromises.mkdir(reportDir, { recursive: true });
+
 
       const reportPath = path.join(reportDir, `violation-report.md`);
       const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n\`\`\`typescript\n${generatedCode}\n\`\`\`\n\nReview the AST rules.`;
