@@ -139,6 +139,7 @@
   * [Antigravity ide vibe coding](docs/antigravity-ide-vibe-coding.md)
   * [Cursor memory structures](docs/cursor-memory-structures.md)
   * [Vibe coding agents](docs/vibe-coding-agents.md)
+  * [Vibe coding autonomous error recovery](docs/vibe-coding-autonomous-error-recovery.md)
   * [Vibe coding autonomous testing patterns](docs/vibe-coding-autonomous-testing-patterns.md)
   * [Vibe coding deterministic patterns](docs/vibe-coding-deterministic-patterns.md)
   * [Vibe coding dynamic context pruning](docs/vibe-coding-dynamic-context-pruning.md)
