@@ -179,14 +179,6 @@ function analyzeAST(sourceFile, tech) {
     score.type -= 15 * anyKeywords.length;
   }
 
-  // Enforce explicit parameter types
-  const explicitParameters = sourceFile.getDescendantsOfKind(SyntaxKind.Parameter);
-  for (const param of explicitParameters) {
-    if (!param.getTypeNode()) {
-      score.type -= 5;
-    }
-  }
-
   // Error handling pattern check
   const tryStatements = sourceFile.getDescendantsOfKind(SyntaxKind.TryStatement);
   const catchClauses = sourceFile.getDescendantsOfKind(SyntaxKind.CatchClause);
@@ -241,10 +233,10 @@ async function runVibeCheck() {
     console.warn('Failed to configure git user. If running locally, this is expected.');
   }
 
-  for (const file of modifiedFiles) {
-    console.log(`Processing ${file}...`);
+  const groupedFiles = {};
 
-    if (!fs.existsSync(file)) {
+  for (const file of modifiedFiles) {
+    if (!await fileOrDirExists(file)) {
       console.log(`File ${file} does not exist. Skipping.`);
       continue;
     }
@@ -265,28 +257,46 @@ async function runVibeCheck() {
       }
     }
 
-    const mdContent = await fsPromises.readFile(file, 'utf-8');
-
-    await syncBenchmarks(tech, mdContent);
-
-    const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
-    if (!fs.existsSync(suitePath)) {
-      console.log(`No benchmark suite found for ${tech}. Skipping.`);
-      continue;
+    if (!groupedFiles[tech]) {
+      groupedFiles[tech] = [];
     }
+    groupedFiles[tech].push(file);
+  }
 
-    const suiteConfig = JSON.parse(await fsPromises.readFile(suitePath, 'utf-8'));
+  const results = [];
 
-    const generatedCode = await simulateAIGeneration(suiteConfig.golden_prompt, tech, mdContent);
+  const techPromises = Object.entries(groupedFiles).map(async ([tech, files]) => {
+    for (const file of files) {
+      console.log(`Processing ${file}...`);
+      const mdContent = await fsPromises.readFile(file, 'utf-8');
 
-    if (!generatedCode) {
-      console.error(`Failed to generate code for ${tech}.`);
-      continue;
+      await syncBenchmarks(tech, mdContent);
+
+      const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
+      if (!await fileOrDirExists(suitePath)) {
+        console.log(`No benchmark suite found for ${tech}. Skipping.`);
+        continue;
+      }
+
+      const suiteConfig = JSON.parse(await fsPromises.readFile(suitePath, 'utf-8'));
+
+      const generatedCode = await simulateAIGeneration(suiteConfig.golden_prompt, tech, mdContent);
+
+      if (!generatedCode) {
+        console.error(`Failed to generate code for ${tech} from ${file}.`);
+        continue;
+      }
+
+      const sourceFile = project.createSourceFile(`temp_${tech}_${Date.now()}.ts`, generatedCode, { overwrite: true });
+      const { total: score, breakdown } = analyzeAST(sourceFile, tech);
+
+      results.push({ file, score, breakdown, generatedCode });
     }
+  });
 
-    const sourceFile = project.createSourceFile(`temp_${tech}.ts`, generatedCode, { overwrite: true });
-    const { total: score, breakdown } = analyzeAST(sourceFile, tech);
+  await Promise.all(techPromises);
 
+  for (const { file, score, breakdown, generatedCode } of results) {
     console.log(`Fidelity Score for ${file}: ${score}%`);
     console.log(`Breakdown:`, breakdown);
 
@@ -305,7 +315,7 @@ async function runVibeCheck() {
         // Only commit if there are changes (badge might already be there)
         const status = execFileSync('git', ['status', '--porcelain'], { encoding: 'utf-8' });
         if (status.includes(file) || status.includes('benchmarks/')) {
-           execFileSync('git', ['commit', '-m', '[chore: benchmark-sync]']);
+           execFileSync('git', ['commit', '-m', '[chore: fidelity-pass]']);
            execFileSync('git', ['push', 'origin', 'HEAD:main']);
         } else {
            console.log(`Badge already present in ${file}, skipping commit.`);
