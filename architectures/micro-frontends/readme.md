@@ -16,17 +16,17 @@ last_updated: 2026-03-22
 
 This engineering directive defines the **best practices** for the Micro-frontends architecture. This document is designed to ensure maximum scalability, security, and code quality when developing enterprise-level frontend applications.
 
-# Context & Scope
+# 🎯 Context & Scope
 - **Primary Goal:** Provide strict architectural rules and practical patterns for breaking down a monolithic frontend into independent, deployable micro-applications.
 - **Description:** An architectural style where independently deliverable frontend applications are composed into a greater whole. This enables multiple teams to work simultaneously without stepping on each other's toes.
 
-## Map of Patterns
+## 🗺️ Map of Patterns
 - 📊 [**Data Flow:** Request and Event Lifecycle](./data-flow.md)
 - 📁 [**Folder Structure:** Layering logic](./folder-structure.md)
 - ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
 
-## Core Principles
+## 🧱 Core Principles
 
 1. **Independent Deployments:** Each micro-frontend must be deployable on its own without requiring a redeployment of the entire system.
 2. **Technology Agnostic (Optional but powerful):** Different teams can use different frameworks (React, Vue, Angular) if necessary, though standardization is recommended for performance.
@@ -45,7 +45,7 @@ graph LR
 
 ---
 
-## 1. Global State Coupling
+## 🚧 1. Global State Coupling
 
 ### ❌ Bad Practice
 ```javascript
@@ -84,7 +84,7 @@ Communication between micro-frontends must be asynchronous and event-driven. Usi
 
 ---
 
-## Architecture Diagram
+## 📐 Architecture Diagram
 
 ```mermaid
 graph TD

@@ -16,17 +16,17 @@ last_updated: 2026-03-29
 
 This engineering directive defines the **best practices** for the Space-Based Architecture (SBA). This document is designed to ensure maximum scalability, security, and code quality when developing applications that require extreme high-performance and low-latency under unpredictable, fluctuating user loads.
 
-# Context & Scope
+# 🎯 Context & Scope
 - **Primary Goal:** Provide strict architectural rules and practical patterns for building systems that rely on distributed in-memory data grids to eliminate database bottlenecks.
 - **Description:** A pattern designed to minimize the constraints of a central database by keeping state in an in-memory data grid. The architecture relies on "processing units" that independently execute logic and communicate with each other or the grid.
 
-## Map of Patterns
+## 🗺️ Map of Patterns
 - 📊 [**Data Flow:** Request and Event Lifecycle](./data-flow.md)
 - 📁 [**Folder Structure:** Layering logic](./folder-structure.md)
 - ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
 
-## Architecture Diagram
+## 📐 Architecture Diagram
 
 ```mermaid
 graph TD
@@ -54,14 +54,14 @@ graph TD
 
 ---
 
-## Core Principles
+## 🧱 Core Principles
 
 1. **Database Bottleneck Elimination:** Traditional central databases act as a choke point during high load. SBA completely avoids synchronous DB writes in the critical request path.
 2. **In-Memory Data Grid (IMDG):** The state is aggressively cached and maintained in an IMDG, providing microsecond access times for Processing Units.
 3. **Independent Processing Units:** Microservices or components that contain business logic and operate over small shards of data, executing autonomously.
 4. **Asynchronous Persistence:** The IMDG eventually syncs data back to a persistent store in the background, out of the hot path.
 
-## 1. Synchronous Database Writes in Processing Units
+## 🚧 1. Synchronous Database Writes in Processing Units
 
 ### ❌ Bad Practice
 ```typescript
@@ -70,7 +70,7 @@ import { Database } from 'infrastructure/database';
 class OrderProcessingUnit {
   constructor(private readonly db: Database) {}
 
-  public async processOrder(orderData: any): Promise<void> {
+  public async processOrder(orderData: unknown): Promise<void> {
     // 1. Process business logic
     const processedOrder = this.calculateTaxes(orderData);
 
@@ -78,8 +78,11 @@ class OrderProcessingUnit {
     await this.db.save(processedOrder);
   }
 
-  private calculateTaxes(data: any): any {
-    return { ...data, tax: 10 };
+  private calculateTaxes(data: unknown): unknown {
+    if (typeof data === 'object' && data !== null) {
+      return { ...data, tax: 10 };
+    }
+    return { tax: 10 };
   }
 }
 ```
