@@ -131,6 +131,16 @@ async createUser(@Body() dto: CreateDto) {
 ```
 ### ⚠️ Problem
 Failing to follow best practices for `fat controllers vs thin controllers` tightly couples dependencies and degrades predictability. This unstructured approach deviates from deterministic AI-coding standards, creating severe architectural debt and potential security vulnerabilities in enterprise scaling.
+
+### ⚖️ Structural Comparison: Fat Controllers vs Thin Controllers
+
+| Feature | Fat Controllers | Thin Controllers |
+| :--- | :--- | :--- |
+| **Business Logic** | Embedded in controller | Delegated to Service layer |
+| **Testability** | Hard (Requires mocking HTTP context) | Easy (Pure functions/methods) |
+| **Reusability** | Low (Tied to HTTP routes) | High (Can be called from CLI/Events) |
+| **Dependency Coupling** | High | Low |
+
 ### ✅ Best Practice
 ```typescript
 @Post()
