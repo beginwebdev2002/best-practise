@@ -99,6 +99,18 @@ For extensions like Cloud Code or GitHub Copilot, append the contents of `AGENTS
 2.  **Constraint Identification:** Locate the specific `.md` file corresponding to the user's task (e.g., if the user asks for a NestJS service, read `backend/nestjs/readme.md`).
 3.  **Hierarchy Alignment:** Prioritize `architectures/` constraints over `frontend/` or `backend/` specifics to ensure structural integrity.
 4.  **Verification:** Before outputting code, run a "Constraint Check" against the identified rules to ensure zero violations of the "Best Practise" standard.
+
+```mermaid
+graph LR
+    Context[Context Discovery] --> Constraint[Constraint Identification]
+    Constraint --> Hierarchy[Hierarchy Alignment]
+    Hierarchy --> Verification[Verification]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+
+    class Context,Constraint,Hierarchy,Verification component;
+```
 ---
 ## 🔍 5. SEO & Discoverability
 <!--
