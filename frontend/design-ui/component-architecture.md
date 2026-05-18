@@ -56,6 +56,8 @@ graph TD
 
 ---
 
+### 🏗️ 1. Strict Atomic Composition
+
 ### ❌ Bad Practice
 ```tsx
 // A massive monolithic component rendering the entire layout, fetching data, and styling inner elements manually.
@@ -116,3 +118,15 @@ function UserDashboard() {
 
 ### 🚀 Solution
 Strictly enforcing **Component Hierarchy** is MANDATORY to establish deterministic boundaries. Decoupled components map to independent rendering lifecycles, enabling focused isolation testing and STRICTLY reducing framework reconciliation overhead compared to monolithic structures. This predictable architecture minimizes the blast radius for performance regressions and mitigates Cross-Site Scripting (XSS) risks by isolating state and rendering contexts.
+
+---
+
+## 🔬 Under the Hood: VDOM Reconciliation & Context Bleeding
+
+Modern UI frameworks (like React, Vue, or Solid) rely heavily on tree-based reconciliation to determine what parts of the DOM need updating.
+
+### O(1) Isolation
+When UI is built using strict atomic composition, state changes are localized. If a single `<Button>` component updates its internal "hovered" state, the framework only re-evaluates the rendering tree from that specific isolated component node down. This results in an **O(1) reconciliation overhead**.
+
+### Context Bleeding in Monoliths
+In a "God component" (e.g., a massive `Dashboard` that manages its own header, sidebar, and content state simultaneously), any single state update (like toggling a dropdown in the header) forces the framework to reconcile the *entire* massive component tree. This is known as **Context Bleeding**. The logic boundaries are porous, causing an **O(n²) refactor complexity**, where the blast radius of a single bug or performance bottleneck extends globally across the entire UI structure.

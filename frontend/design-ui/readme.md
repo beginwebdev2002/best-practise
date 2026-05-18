@@ -101,6 +101,8 @@ When generating UI components or modifying styles:
 > [!IMPORTANT]
 > **Constraint:** AI Agents MUST adhere to the overarching standard of isolating design tokens from application logic.
 
+### 🛡️ 1. Token Isolation Standard
+
 ### ❌ Bad Practice
 ```css
 /* Hardcoding values directly in the application code */

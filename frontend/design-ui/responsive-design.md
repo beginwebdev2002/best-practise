@@ -34,6 +34,21 @@ This document enforces the strict standards for building fluid, universally adap
 > [!IMPORTANT]
 > **Mobile-First Constraint:** AI Agents MUST strictly apply a mobile-first approach. Define base CSS for mobile screens and progressively enhance the layout for larger viewports using `min-width` media queries. Always prefer relative units (`rem`, `%`) over absolute units (`px`).
 
+```mermaid
+graph LR
+    M[📱 Mobile base CSS] --> |min-width: 768px| T[💻 Tablet enhancements]
+    T --> |min-width: 1024px| D[🖥️ Desktop enhancements]
+    D --> |min-width: 1440px| U[📺 Ultra-Wide constraints]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class M default;
+    class T default;
+    class D default;
+    class U default;
+```
+
+### 📱 1. Mobile-First Progressive Enhancement
+
 ### ❌ Bad Practice
 ```css
 .container {
@@ -71,3 +86,17 @@ A desktop-first approach with absolute units (`px`) often leads to horizontal sc
 
 ### 🚀 Solution
 Implementing a **Mobile-First Approach** using relative units is MANDATORY. Enforcing base constraints on mobile and dynamically scaling upward STRICTLY limits layout shift (CLS) and reduces the CSS parser's evaluation overhead. This unified cascading structure inherently standardizes deterministic scaling properties, ensuring robust layout performance and mitigating the risk of unpredictable rendering states.
+
+---
+
+## 🔬 Under the Hood: CSSOM Evaluation & Viewport Edges
+
+When a browser processes CSS, it constructs the **CSS Object Model (CSSOM)**. A critical part of this process involves evaluating media queries against the current viewport.
+
+### Top-Down Cascading Efficiency
+In a mobile-first approach using `min-width`, the browser loads the base styles and then applies layout shifts additively as the viewport grows. If a user is on a mobile device, the browser completely ignores the complex grid or layout modifications hidden inside `min-width: 1024px` queries, saving rendering overhead.
+
+In a desktop-first approach (`max-width`), the browser often has to calculate complex desktop layouts and then immediately *override* or destroy those calculations with `max-width` rules when rendering on mobile. This results in unnecessary layout thrashing and computational waste.
+
+### The Viewport Edge Case
+Using absolute units (`px`) creates brittle layouts. If a user increases their browser's default font size for accessibility reasons, layouts defined rigidly in pixels will not adapt, leading to text overflow or overlap. By strictly enforcing relative units (`rem`, `em`, `%`), the layout respects the user's root font size, ensuring the UI structure scales holistically.
