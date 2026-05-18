@@ -45,13 +45,20 @@ function getModifiedFiles() {
 
 async function syncBenchmarks(tech, mdContent, retries = 5, delay = 10000) {
   try {
-    const prompt = `Based on the following documentation:\n\n${mdContent}\n\n1. Generate a "Golden Prompt" (a comprehensive instruction for generating a typical module using this technology) in JSON format: {"golden_prompt": "...", "tech": "${tech}"}\n2. Generate a JSON Schema for TS-Morph AST validation rules enforcing DDD/FSD layers and strict typing for this technology. The generated JSON schema must explicitly follow a nested structure compatible with \`analyzeAST\`. Format: {"$schema": "...", "type": "object", "properties": {"forbidden_types": {"contains": {"enum": ["any"]}}}}.\n\nRespond strictly with ONLY a JSON array containing these two objects in order. No markdown wrappers.`;
+    const prompt = `Based on the following documentation:
+
+${mdContent}
+
+1. Generate a "Golden Prompt" (a comprehensive instruction for generating a typical module using this technology) in JSON format: {"golden_prompt": "...", "tech": "${tech}"}
+2. Generate a JSON Schema for TS-Morph AST validation rules enforcing DDD/FSD layers and strict typing for this technology. The generated JSON schema must explicitly follow a nested structure compatible with \`analyzeAST\`. Format: {"$schema": "...", "type": "object", "properties": {"forbidden_types": {"contains": {"enum": ["any"]}}}}.
+
+Respond strictly with ONLY a JSON array containing these two objects in order. No markdown wrappers.`;
     const response = await ai.models.generateContent({
         model: 'gemini-2.5-pro',
         contents: prompt
     });
     let text = response.text || '';
-    text = text.replace(/^\`\`\`[a-z]*\n/gm, '').replace(/\`\`\`$/gm, '').trim();
+    text = text.replace(/^```[a-z]*\n/gm, '').replace(/```$/gm, '').trim();
 
     let parsed;
     try {
@@ -241,14 +248,13 @@ async function runVibeCheck() {
     console.warn('Failed to configure git user. If running locally, this is expected.');
   }
 
+  // Group by tech
+  const filesByTech = {};
   for (const file of modifiedFiles) {
-    console.log(`Processing ${file}...`);
-
-    if (!fs.existsSync(file)) {
+    if (!await fileOrDirExists(file)) {
       console.log(`File ${file} does not exist. Skipping.`);
       continue;
     }
-
     let tech = '';
     if (file.includes('/angular/')) tech = 'angular';
     else if (file.includes('/nestjs/')) tech = 'nestjs';
@@ -256,7 +262,6 @@ async function runVibeCheck() {
     else if (file.includes('/express/')) tech = 'express';
     else if (file.includes('/nodejs/')) tech = 'nodejs';
     else {
-      // Fallback
       const parts = file.split('/');
       if (parts.length > 1) {
         tech = parts[1];
@@ -264,31 +269,50 @@ async function runVibeCheck() {
         continue;
       }
     }
+    if (!filesByTech[tech]) filesByTech[tech] = [];
+    filesByTech[tech].push(file);
+  }
 
-    const mdContent = await fsPromises.readFile(file, 'utf-8');
+  // Promise.all for concurrent processing across technologies
+  const results = await Promise.all(Object.entries(filesByTech).map(async ([tech, files]) => {
+    const techResults = [];
 
-    await syncBenchmarks(tech, mdContent);
+    // Process markdown files sequentially within syncBenchmarks to keep original signatures
+    for (const file of files) {
+      console.log(`Processing ${file} for ${tech}...`);
+      const mdContent = await fsPromises.readFile(file, 'utf-8');
+      await syncBenchmarks(tech, mdContent);
 
-    const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
-    if (!fs.existsSync(suitePath)) {
-      console.log(`No benchmark suite found for ${tech}. Skipping.`);
-      continue;
+      const suitePath = path.join('benchmarks', 'suites', `${tech}.json`);
+      if (!await fileOrDirExists(suitePath)) {
+        console.log(`No benchmark suite found for ${tech}. Skipping.`);
+        continue;
+      }
+
+      const suiteConfig = JSON.parse(await fsPromises.readFile(suitePath, 'utf-8'));
+      const generatedCode = await simulateAIGeneration(suiteConfig.golden_prompt, tech, mdContent);
+
+      if (!generatedCode) {
+        console.error(`Failed to generate code for ${tech} based on ${file}.`);
+        continue;
+      }
+
+      const sourceFile = project.createSourceFile(`temp_${tech}_${Date.now()}.ts`, generatedCode, { overwrite: true });
+      const { total: score, breakdown } = analyzeAST(sourceFile, tech);
+
+      console.log(`Fidelity Score for ${file}: ${score}%`);
+      console.log(`Breakdown:`, breakdown);
+
+      techResults.push({ file, score, breakdown, generatedCode });
     }
+    return techResults;
+  }));
 
-    const suiteConfig = JSON.parse(await fsPromises.readFile(suitePath, 'utf-8'));
+  const flatResults = results.flat();
 
-    const generatedCode = await simulateAIGeneration(suiteConfig.golden_prompt, tech, mdContent);
-
-    if (!generatedCode) {
-      console.error(`Failed to generate code for ${tech}.`);
-      continue;
-    }
-
-    const sourceFile = project.createSourceFile(`temp_${tech}.ts`, generatedCode, { overwrite: true });
-    const { total: score, breakdown } = analyzeAST(sourceFile, tech);
-
-    console.log(`Fidelity Score for ${file}: ${score}%`);
-    console.log(`Breakdown:`, breakdown);
+  // Process stateful side effects sequentially
+  for (const result of flatResults) {
+    const { file, score, breakdown, generatedCode } = result;
 
     if (score >= 95) {
       console.log(`✅ Validation passed for ${file}. Updating badge and auto-committing.`);
@@ -302,7 +326,6 @@ async function runVibeCheck() {
       try {
         execFileSync('git', ['add', file]);
         try { execFileSync('sh', ['-c', 'git add benchmarks/suites/*.json benchmarks/criteria/*.json 2>/dev/null || true']); } catch (e) {}
-        // Only commit if there are changes (badge might already be there)
         const status = execFileSync('git', ['status', '--porcelain'], { encoding: 'utf-8' });
         if (status.includes(file) || status.includes('benchmarks/')) {
            execFileSync('git', ['commit', '-m', '[chore: benchmark-sync]']);
