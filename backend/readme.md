@@ -46,6 +46,7 @@ This folder acts as a container for documentation around the following backend t
 - [MongoDB](./mongodb/readme.md)
 - [Redis](./redis/readme.md)
 - [Microservices](./microservices/readme.md)
+- [RabbitMQ](./rabbitmq/readme.md)
 
 ---
 ## 1. 🛑 Global Domain Bleeding

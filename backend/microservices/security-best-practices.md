@@ -16,7 +16,7 @@ last_updated: 2026-03-27
 ## 1. 🛑 Implicit Trust Between Services
 ### ❌ Bad Practice
 ```javascript
-// Service A trusts Service B without any validation
+// Service A trusts Service B without strictly validating
 app.post('/internal/process', (req, res) => {
     // Process without checking authorization
 });

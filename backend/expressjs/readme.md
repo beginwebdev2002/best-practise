@@ -174,7 +174,7 @@ Use `helmet` for automatic protection against XSS, clickjacking, and to hide fra
 app.use((req, res, next) => { res.header("Access-Control-Allow-Origin", "*"); next(); });
 ```
 ### ⚠️ Problem
-Using a wildcard (`*`) for CORS allows any domain to make authenticated requests to the API. This exposes the application to Cross-Site Request Forgery (CSRF) and unauthorized data access.
+Using a wildcard (`*`) for CORS allows ALL domains to make authenticated requests to the API. This exposes the application to Cross-Site Request Forgery (CSRF) and unauthorized data access.
 ### ✅ Best Practice
 ```javascript
 const cors = require('cors');
