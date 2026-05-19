@@ -284,7 +284,7 @@ async function runVibeCheck() {
       continue;
     }
 
-    const sourceFile = project.createSourceFile(`temp_${tech}.ts`, generatedCode, { overwrite: true });
+    const sourceFile = project.createSourceFile(`temp_${tech}_${file.replace(/\//g, '_')}.ts`, generatedCode, { overwrite: true });
     const { total: score, breakdown } = analyzeAST(sourceFile, tech);
 
     console.log(`Fidelity Score for ${file}: ${score}%`);
