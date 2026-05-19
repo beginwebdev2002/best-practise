@@ -15,7 +15,7 @@ last_updated: 2026-03-22
 ---
 
 This engineering directive defines the **best practices** for the MVC architecture. This document is designed to ensure maximum scalability, security, and code quality when developing enterprise-level applications.
-# Context & Scope
+## 🎯 Context & Scope
 - **Primary Goal:** Provide strict architectural rules and 20 practical patterns for creating scalable and deterministic MVC applications.
 - **Target Tooling:** AI Agents (Cursor, Windsurf, Copilot, Antigravity) and Senior Developers.
 - **Tech Stack Version:** Agnostic (Applicable to Node.js, NestJS, Express, Spring Boot, Django, ASP.NET, etc.).
@@ -23,6 +23,8 @@ This engineering directive defines the **best practices** for the MVC architectu
 > [!IMPORTANT]
 > **Architectural Contract:** The Controller receives the HTTP request and routes commands, Services (or Domain Model) contain the business logic, and the View is strictly responsible for rendering abstract Data Transfer Objects (DTOs).
 ## Architecture Flow (Mental Model)
+
+## 📐 Architecture Diagram
 
 ```mermaid
 graph TD
@@ -59,6 +61,13 @@ graph TD
 - 📁 [**Folder Structure:** Layering logic](./folder-structure.md)
 - ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
+
+## 🧱 Core Principles
+
+1. **Isolation & Testability:** Views and Models are isolated from each other via Controllers.
+2. **Strict Boundaries:** Enforce rigid structural boundaries between UI, logic, and data.
+3. **Decoupling:** Decouple the UI from business logic to enable independent development.
+
 ## 1. Fat Controllers (God Object Controller)
 
 ### ❌ Bad Practice

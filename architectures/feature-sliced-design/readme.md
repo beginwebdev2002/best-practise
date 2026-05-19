@@ -13,11 +13,32 @@ last_updated: 2026-03-22
   <img src="https://feature-sliced.design/img/brand/logo-primary.png" width="100" alt="FSD Logo">
   
   # 🍰 Feature-Sliced Design (FSD)
+
 </div>
+
 ---
 
+## 🎯 Context & Scope
+- **Primary Goal:** Establish definitive rules and best practices for modular, scalable frontend development.
+- **Target Tooling:** AI Agents and Human Developers.
+- **Tech Stack Version:** Agnostic (React, Vue, Angular)
+
+---
 This engineering directive contains strict architectural guidelines and 20 practical patterns for using the Feature-Sliced Design methodology to build scalable and deterministic Frontend applications.
 
+
+
+## 🗺️ Map of Patterns
+- 🌊 **Data Flow:** Layer-to-layer execution paths and slice interactions.
+- 📁 **Folder Structure:** Strict vertical (slices) and horizontal (layers) isolation.
+- ⚖️ **Trade-offs:** Initial overhead vs. long-term maintainability.
+- 🛠️ **Implementation Guide:** Rules for cross-imports and boundaries.
+
+## 🧱 Core Principles
+
+1. **Isolation & Testability:** Slices are completely isolated, making them highly testable and refactorable.
+2. **Strict Boundaries:** Enforce strict cross-import boundaries (lower layers cannot import from higher layers).
+3. **Decoupling:** Decouple business logic into cohesive modules rather than scattering it across technical layers.
 
 ### Structural Comparison: Feature-Sliced Design vs Clean Architecture
 
@@ -28,7 +49,7 @@ This engineering directive contains strict architectural guidelines and 20 pract
 | **Learning Curve** | High (Strict structural rules) | High (Abstract concepts) |
 | **Scalability** | Excellent for large frontend teams | Excellent for complex enterprise backends |
 
-## Architecture Diagram
+## 📐 Architecture Diagram
 
 ```mermaid
 graph TD

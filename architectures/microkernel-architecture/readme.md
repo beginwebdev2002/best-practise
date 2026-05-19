@@ -24,6 +24,13 @@ last_updated: 2026-04-18
 </div>
 
 ---
+
+## 🧱 Core Principles
+
+1. **Isolation & Testability:** Plugins can be tested in complete isolation from the core.
+2. **Strict Boundaries:** Enforce rigid structural barriers between the core microkernel and plugins.
+3. **Decoupling:** Decouple volatile domain logic from the stable core application logic.
+
 ## 🗺️ Map of Patterns (Microkernel Modules)
 
 This architecture defines strict boundaries between a minimal core system and extended functionalities implemented as standalone plugins. It guarantees O(1) impact on the core when adding or modifying auxiliary features.
@@ -32,6 +39,8 @@ This architecture defines strict boundaries between a minimal core system and ex
 - 📁 **Folder Structure:** Absolute isolation of the Core engine from volatile Plugins.
 - ⚖️ **Trade-offs:** Extensibility vs. Contract Management complexity.
 - 🛠️ **Implementation Guide:** Rules for defining strict interface boundaries and registry mechanisms.
+
+## 📐 Architecture Diagram
 
 ```mermaid
 graph TD

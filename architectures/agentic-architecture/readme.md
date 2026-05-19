@@ -22,6 +22,13 @@ last_updated: 2026-04-17
 </div>
 
 ---
+
+## 🧱 Core Principles
+
+1. **Isolation & Testability:** Specialized agents can be tested and tuned in isolation from the orchestrator.
+2. **Strict Boundaries:** Enforce rigid responsibilities between planners, coders, and reviewers.
+3. **Decoupling:** Decouple context gathering from action execution to optimize token usage.
+
 ## 🗺️ Map of Patterns (Agentic Modules)
 
 This architecture defines the operational boundaries for multi-agent workflows, specifically optimizing for context windows, token efficiency, and deterministic output.
@@ -30,6 +37,8 @@ This architecture defines the operational boundaries for multi-agent workflows, 
 - 📁 **Folder Structure:** Modular isolation of Prompts, Skills, and Contexts.
 - ⚖️ **Trade-offs:** Latency vs. Reasoning depth.
 - 🛠️ **Implementation Guide:** Rules for defining strict agent personas and constraints.
+
+## 📐 Architecture Diagram
 
 ```mermaid
 graph TD

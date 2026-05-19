@@ -16,7 +16,7 @@ last_updated: 2026-03-29
 
 This engineering directive defines the **best practices** for the Backend-For-Frontend (BFF) architecture. This document is designed to ensure maximum scalability, security, and code quality when developing applications that require tailored APIs for different clients (e.g., web, mobile).
 
-# Context & Scope
+## 🎯 Context & Scope
 - **Primary Goal:** Provide strict architectural rules and practical patterns for creating specialized backend services dedicated to specific frontend applications.
 - **Description:** A pattern where a separate backend service is created for each specific frontend application or interface type, rather than having a single general-purpose API backend for all clients.
 
@@ -37,6 +37,8 @@ This engineering directive defines the **best practices** for the Backend-For-Fr
 | **Customization** | Highly tailored to client UI needs | Generic, serving broad needs |
 | **Complexity** | Multiple BFFs to manage | Single point of failure/bottleneck |
 
+
+## 📐 Architecture Diagram
 
 ```mermaid
 graph TD
