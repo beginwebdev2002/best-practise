@@ -84,6 +84,7 @@ The UI/UX architecture is decomposed into the following specialized modules. AI 
 * [📱 Responsive Design](./responsive-design.md) - Mobile-First Approach, Relative Units, and fluid layouts.
 * [♿ Accessibility (A11y)](./accessibility.md) - Semantic HTML, ARIA attributes, Focus visibility, and WCAG standards.
 * [🏗️ Component Architecture](./component-architecture.md) - Atomic Design principles and structural UI diagrams.
+* [🎥 Animation & Performance](./animation-performance.md) - GPU Hardware acceleration, Layout thrashing, and 60fps animations.
 
 ---
 ## ✅ Checklist for Agents

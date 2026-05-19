@@ -61,3 +61,26 @@ Using hardcoded absolute values (`20px`, hex codes) creates inconsistencies acro
 
 ### 🚀 Solution
 Strictly utilizing **Design Tokens** is MANDATORY to establish deterministic visual contracts. Constraining styles strictly to these centrally-managed tokens ensures a single source of truth, reducing CSS payload size and standardizing rendering performance. This pattern STRICTLY prevents arbitrary style manipulation, mitigating style-based injection vulnerabilities and enforcing uncompromised environmental immutability for safe AI Agent parsing.
+
+```mermaid
+classDiagram
+    class GlobalTokens {
+        --color-brand-500: #3b82f6
+        --spacing-4: 1rem
+    }
+    class SemanticTokens {
+        --color-primary: var(--color-brand-500)
+        --padding-container: var(--spacing-4)
+    }
+    class ComponentTokens {
+        --btn-bg: var(--color-primary)
+    }
+
+    GlobalTokens *-- SemanticTokens : Composition
+    SemanticTokens *-- ComponentTokens : Composition
+```
+
+### ⚙️ Under the Hood: Edge Cases & Mechanics
+- **Token Specificity:** CSS variable overrides can unintentionally cascade if scoped incorrectly. Agents MUST enforce that global tokens are declared at the `:root` level, while semantic/component tokens can be scoped locally if necessary to isolate thematic variations.
+- **Dynamic Theming Contexts:** When injecting dynamic themes (e.g., user-selected colors), agents must avoid injecting `<style>` tags or inline styles directly into elements. The best practice is to inject CSS variables into a specific DOM node's `style` object (e.g., `document.documentElement.style.setProperty`), ensuring the underlying token architecture remains the single source of truth.
+- **CSS-in-JS Overhead:** If utilizing CSS-in-JS libraries, token references must be statically extractable where possible. Generating dynamic runtime styles based on complex conditional props creates significant JS-thread overhead and breaks deterministic parsing. Static token classes should be favored.

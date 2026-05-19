@@ -71,3 +71,21 @@ A desktop-first approach with absolute units (`px`) often leads to horizontal sc
 
 ### 🚀 Solution
 Implementing a **Mobile-First Approach** using relative units is MANDATORY. Enforcing base constraints on mobile and dynamically scaling upward STRICTLY limits layout shift (CLS) and reduces the CSS parser's evaluation overhead. This unified cascading structure inherently standardizes deterministic scaling properties, ensuring robust layout performance and mitigating the risk of unpredictable rendering states.
+
+```mermaid
+stateDiagram-v2
+    [*] --> MobileBase
+    MobileBase --> Tablet : >= 768px
+    Tablet --> Desktop : >= 1024px
+    Desktop --> LargeDesktop : >= 1440px
+
+    state MobileBase {
+        direction LR
+        FluidWidth --> BaseTypography
+    }
+```
+
+### ⚙️ Under the Hood: Edge Cases & Mechanics
+- **Sub-pixel Rendering:** Avoid relying on exact pixel boundaries for breakpoint transitions. When devices perform sub-pixel rendering, layouts using strict fractional values can shift. Utilizing standard progressive `min-width` breakpoints with relative internal units prevents edge fractures.
+- **Viewport Height Units (vh):** On mobile browsers, UI toolbars (address bars) dynamically hide and show, causing `100vh` to jump and recalculate. Agents MUST prefer `100dvh` (dynamic viewport height) or rely on `flex`/`grid` stretch mechanics for full-height container calculations to ensure a deterministic paint lifecycle.
+- **Orientation Changes:** Rapid device rotation can trigger unexpected layout recalibrations. Implementing debounce mechanisms on JS-driven layout adjustments or relying entirely on CSS Grid fractionals (`fr`) mitigates reflow penalties.
