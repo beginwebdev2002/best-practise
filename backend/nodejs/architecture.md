@@ -120,4 +120,4 @@ const config = Object.freeze({
 });
 ```
 ### 🚀 Solution
-Configuration objects MUST be locked and immutable after initialization. FORBID any runtime mutations to the global execution environment.
+Configuration objects MUST be locked and immutable after initialization. FORBID ALL runtime mutations to the global execution environment.

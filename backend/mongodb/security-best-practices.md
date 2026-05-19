@@ -77,7 +77,7 @@ Directly passing unsanitized user input (e.g., from a web request) into a MongoD
 
 ```javascript
 // Express.js example: Vulnerable to NoSQL Injection
-// If req.body.username = { "$gt": "" }, it matches any username
+// If req.body.username = { "$gt": "" }, it matches ALL usernames
 const user = await db.collection('users').findOne({
     username: req.body.username,
     password: req.body.password
