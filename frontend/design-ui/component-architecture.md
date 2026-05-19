@@ -116,3 +116,8 @@ function UserDashboard() {
 
 ### 🚀 Solution
 Strictly enforcing **Component Hierarchy** is MANDATORY to establish deterministic boundaries. Decoupled components map to independent rendering lifecycles, enabling focused isolation testing and STRICTLY reducing framework reconciliation overhead compared to monolithic structures. This predictable architecture minimizes the blast radius for performance regressions and mitigates Cross-Site Scripting (XSS) risks by isolating state and rendering contexts.
+
+### ⚙️ Under the Hood: Edge Cases & Mechanics
+- **Prop Drilling vs. Context:** While atomic components isolate rendering, passing data through deeply nested hierarchies (prop drilling) degrades performance and DX. Agents MUST utilize established state architectures (e.g., Context API, Zustand, NgRx) for cross-cutting concerns, rather than relying on structural prop chains.
+- **Render Reconciliation:** Frameworks like React and Angular optimize re-renders at component boundaries. "God components" force the engine to diff the entire UI tree. Atomic isolation ensures `O(1)` diffing operations, targeting only mutated nodes.
+- **Circular Dependencies:** When composing complex layouts, agents must be vigilant against circular imports between components, which breaks module loaders and runtime initialization. Enforce unidirectional architectural boundaries (e.g., FSD or strict Atomic groupings).

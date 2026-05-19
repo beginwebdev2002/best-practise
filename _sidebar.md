@@ -160,7 +160,11 @@
     * [Testing](frontend/angular/testing.md)
   * **Design ui**
     * [Overview](frontend/design-ui/readme.md)
-    * [Styling](frontend/design-ui/styling.md)
+    * [Accessibility (a11y) standards](frontend/design-ui/accessibility.md)
+    * [Animation & performance optimization](frontend/design-ui/animation-performance.md)
+    * [Responsive & adaptive design principles](frontend/design-ui/responsive-design.md)
+    * [Ui component architecture](frontend/design-ui/component-architecture.md)
+    * [Ui/ux styling & design tokens rules](frontend/design-ui/styling.md)
   * **Javascript**
     * [Overview](frontend/javascript/readme.md)
     * [Async logic](frontend/javascript/async-logic.md)

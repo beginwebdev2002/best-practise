@@ -54,3 +54,19 @@ Using generic `<div>` wrappers and artificially attaching ARIA roles or keyboard
 
 ### 🚀 Solution
 Enforcing **Semantic HTML** is MANDATORY to guarantee deterministic accessibility tree generation. Native elements inherently support keyboard navigation and screen reader parsing without custom JavaScript logic. This STRICTLY eliminates the performance overhead of manual event listener management and mitigates security risks associated with complex, logic-heavy DOM manipulation handlers.
+
+```mermaid
+graph LR
+    A([Semantic HTML]) --> B([DOM Tree])
+    B --> C([Accessibility Tree])
+    C --> D([Assistive Tech])
+    E([Non-Semantic HTML]) -.->|Manual ARIA/JS| C
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    class A,B,C,D,E default;
+```
+
+### ⚙️ Under the Hood: Edge Cases & Mechanics
+- **Dynamic Content:** For Single Page Applications (SPAs), dynamically injected content must be announced to screen readers. Elements containing such content MUST utilize `aria-live` attributes (`polite` or `assertive`) to trigger deterministic re-evaluation of the accessibility tree.
+- **Focus Trapping:** When implementing complex interactive components like modals, focus MUST be strictly trapped within the component bounds until it is explicitly dismissed. This prevents keyboard users from interacting with occluded background elements.
+- **Contrast Ratios:** Text must maintain a minimum contrast ratio of `4.5:1` against its background (WCAG AA). Agents should verify this ratio analytically during generation rather than relying on visual approximations.
