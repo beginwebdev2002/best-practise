@@ -20,6 +20,13 @@ last_updated: 2026-03-22
   **Ports and Adapters for scalable, testable code.**
 </div>
 ---
+
+## 🧱 Core Principles
+
+1. **Isolation & Testability:** The Domain is strictly isolated from infrastructure, allowing unit testing via Ports.
+2. **Strict Boundaries:** Enforce rigid boundaries using Ports and Adapters to separate business logic from technical details.
+3. **Decoupling:** Decouple the Core logic from databases, external APIs, and UIs.
+
 ## 🗺️ Map of Patterns (Hexagonal Modules)
 
 This pattern documentation has been decomposed into specialized modules for zero-approval AI parsing and human comprehension.
@@ -28,6 +35,8 @@ This pattern documentation has been decomposed into specialized modules for zero
 - 📁 **[Folder Structure](./folder-structure.md):** The strict directory blueprints.
 - ⚖️ **[Trade-offs](./trade-offs.md):** Pros, cons, and architectural constraints.
 - 🛠️ **[Implementation Guide](./implementation-guide.md):** Step-by-step rules and code constraints for Vibe Coding.
+
+## 📐 Architecture Diagram
 
 ```mermaid
 flowchart TD
