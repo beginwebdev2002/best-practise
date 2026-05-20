@@ -17,7 +17,7 @@ last_updated: 2026-04-05
 > **Context:** Handling data of an uncertain type. `any` disables all type-checking, while `unknown` forces safety.
 ### ❌ Bad Practice
 ```typescript
-function process(data: unknown) {
+function process(data: any) {
     console.log(data.name); // No error, but might crash at runtime
 }
 ```
