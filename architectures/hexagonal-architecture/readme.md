@@ -9,7 +9,9 @@ last_updated: 2026-03-22
 ---
 
 # 🛑 Hexagonal Architecture Production-Ready Best Practices
-# Context & Scope
+[🏠 На главную](../readme.md)
+
+## 🎯 Context & Scope
 - **Primary Goal:** Document and execute the best practices for the Hexagonal Architecture pattern.
 - **Target Tooling:** AI Agents and Human Developers.
 - **Tech Stack Version:** Agnostic
@@ -36,8 +38,15 @@ flowchart TD
     C -->|Requires Port| D(Adapter)
     D -->|Talks to| E[Database/External API]
 
+    %% Added Design Token Styles for Mermaid Diagrams
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
-    class A,B,C,D,E default;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+
+    class A default;
+    class B component;
+    class C component;
+    class D component;
+    class E default;
 ```
 
 ## 🚀 The Core Philosophy
@@ -47,7 +56,7 @@ All interactions with the DB, UI, or other systems happen through **Ports** (int
 
 > **AI Constraint:** Always generate the Core Domain first. The Domain must have ZERO dependencies on frameworks or libraries (except language core features).
 
-## 1. Domain Logic Depending on External Adapters
+## 🚧 1. Domain Logic Depending on External Adapters
 
 ### ❌ Bad Practice
 ```typescript

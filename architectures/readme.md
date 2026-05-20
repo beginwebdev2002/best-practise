@@ -10,7 +10,7 @@ last_updated: 2026-03-29
 
 # Architecture Best Practices & Production-Ready Patterns
 
-[🏠 На главную](../README.md)
+[🏠 На главную](../readme.md)
 
 # Context & Scope
 - **Primary Goal:** Establish definitive rules and best practices for system design and architecture.
@@ -58,6 +58,7 @@ Don't know where to start? Here are a few golden rules:
 - [Space-Based Architecture](./space-based-architecture/readme.md)
 - [Serverless](./serverless/readme.md)
 - [Agentic Architecture (AI Agent Orchestration)](./agentic-architecture/readme.md)
+- [Microkernel Architecture](./microkernel-architecture/readme.md)
 
 ## 🏆 Top 15 Best Architectural Approaches
 
