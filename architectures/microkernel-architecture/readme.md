@@ -10,9 +10,9 @@ last_updated: 2026-04-18
 
 # 🧩 Microkernel Architecture (Plugin Architecture) Production-Ready Best Practices
 
-[🏠 На главную](../README.md)
+[🏠 На главную](../readme.md)
 
-# Context & Scope
+## 🎯 Context & Scope
 - **Primary Goal:** Document and strictly enforce best practices for Microkernel (Plugin) Architecture to ensure deterministic system extensibility.
 - **Target Tooling:** AI Agents and Human Developers.
 - **Tech Stack Version:** Agnostic
@@ -60,7 +60,7 @@ Microkernel Architecture strictly isolates essential business rules (the Core) f
 
 ---
 
-## 1. Core-Plugin Boundary Enforcement
+## 🚧 1. Core-Plugin Boundary Enforcement
 
 ### ❌ Bad Practice
 ```typescript

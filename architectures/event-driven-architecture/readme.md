@@ -17,7 +17,7 @@ last_updated: 2026-03-29
 ---
 
 This engineering directive contains strict architectural guidelines and 2026-grade patterns for using Event-Driven Architecture (EDA) to build highly scalable, decoupled, and fault-tolerant backend systems.
-## Context & Scope
+### 🎯 Context & Scope
 - **Primary Goal:** Provide a determinist structural blueprint for managing asynchronous communication across autonomous microservices or domains using event streams and message brokers.
 - **Target Tooling:** AI Agents (Cursor, Copilot) and Senior/Architect Developers.
 - **Tech Stack Version:** Agnostic (Kafka, RabbitMQ, AWS EventBridge, Redis Pub/Sub, Node.js, Spring Boot).
@@ -33,7 +33,7 @@ To deeply understand the nuances of EDA, consult the following specialized modul
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
 ---
 
-### Structural Comparison: Event-Driven vs Request-Response
+### ⚖️ Structural Comparison: Event-Driven vs Request-Response
 
 | Feature | Event-Driven Architecture | Request-Response (REST/RPC) |
 | :--- | :--- | :--- |
@@ -43,7 +43,7 @@ To deeply understand the nuances of EDA, consult the following specialized modul
 | **Scalability** | Excellent (Easy to add new consumers) | Good (Requires load balancing) |
 | **Complexity** | High (Eventual consistency, tracking flows) | Low (Straightforward flows) |
 
-## Architecture Diagram
+## 📐 Architecture Diagram
 
 ```mermaid
 graph LR
@@ -62,7 +62,13 @@ graph LR
     class Pub component;
 ```
 
-## Core Principles
+## 🗺️ Map of Patterns
+- 🌊 [**Data Flow:** Request and Event Lifecycle](./data-flow.md)
+- 📁 [**Folder Structure:** Absolute isolation of the Core engine from volatile Plugins](./folder-structure.md)
+- ⚖️ [**Trade-offs:** Extensibility vs. Contract Management complexity](./trade-offs.md)
+- 🛠️ [**Implementation Guide:** Rules for defining strict interface boundaries and registry mechanisms](./implementation-guide.md)
+
+## 🧱 Core Principles
 
 1. **Asynchronous by Default:** Synchronous RPC (REST/gRPC) is restricted only to immediate read-queries or initial gateway ingress. All inter-service state mutations must occur asynchronously.
 2. **Event Sourcing (Optional but Recommended):** State is derived from an immutable, append-only log of events rather than overwriting records in a database.
@@ -74,7 +80,7 @@ graph LR
   <b>Adhere to these EDA principles to establish a relentlessly scalable, highly-decoupled system ecosystem! 🚀</b>
 </div>
 
-## 1. Synchronous Blocking on Events
+## 🚧 1. Synchronous Blocking on Events
 
 ### ❌ Bad Practice
 ```typescript

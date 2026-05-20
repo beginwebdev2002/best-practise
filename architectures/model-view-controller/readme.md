@@ -15,7 +15,9 @@ last_updated: 2026-03-22
 ---
 
 This engineering directive defines the **best practices** for the MVC architecture. This document is designed to ensure maximum scalability, security, and code quality when developing enterprise-level applications.
-# Context & Scope
+[🏠 На главную](../readme.md)
+
+## 🎯 Context & Scope
 - **Primary Goal:** Provide strict architectural rules and 20 practical patterns for creating scalable and deterministic MVC applications.
 - **Target Tooling:** AI Agents (Cursor, Windsurf, Copilot, Antigravity) and Senior Developers.
 - **Tech Stack Version:** Agnostic (Applicable to Node.js, NestJS, Express, Spring Boot, Django, ASP.NET, etc.).
@@ -54,12 +56,12 @@ graph TD
 ```
 ---
 
-## Map of Patterns
+## 🗺️ Map of Patterns
 - 📊 [**Data Flow:** Request and Event Lifecycle](./data-flow.md)
 - 📁 [**Folder Structure:** Layering logic](./folder-structure.md)
 - ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
-## 1. Fat Controllers (God Object Controller)
+## 🚧 1. Fat Controllers (God Object Controller)
 
 ### ❌ Bad Practice
 ```typescript
@@ -99,7 +101,7 @@ class UserController {
 ### 🚀 Solution
 Adhere to the 'Thin Controllers' paradigm. Delegate all business scenarios to a dedicated Service Layer or aggregate domain models.
 ---
-## 2. Anemic Domain Model
+## 🚧 2. Anemic Domain Model
 
 ### ❌ Bad Practice
 ```typescript
@@ -137,7 +139,7 @@ class Order {
 ### 🚀 Solution
 Encapsulate internal state mutations within the Model itself (Rich Model). External services must invoke the model's action methods via established contracts rather than overriding its data directly.
 ---
-## 3. Direct Model Exposure to View
+## 🚧 3. Direct Model Exposure to View
 
 ### ❌ Bad Practice
 ```typescript
@@ -167,7 +169,7 @@ class UserController {
 ### 🚀 Solution
 Architecturally, it is mandatory to use DTO (Data Transfer Object) or ViewModel classes to isolate the transformation of the domain model into a client-safe structure (View / API).
 ---
-## 4. Complex Logic within Views
+## 🚧 4. Complex Logic within Views
 
 ### ❌ Bad Practice
 ```html
@@ -195,7 +197,7 @@ The View layer gets infected with business computations (calculating access righ
 ### 🚀 Solution
 Export aggregated states for the presentation layer (View) via a Presenter (ViewModel). The View must remain 'Dumb', capable only of rendering boolean flags and arrays of DTOs.
 ---
-## 5. View Layer Initiating Database Transactions
+## 🚧 5. View Layer Initiating Database Transactions
 
 ### ❌ Bad Practice
 ```typescript
@@ -221,7 +223,7 @@ class UserController {
 ### 🚀 Solution
 The dependency vector of the View layer is strictly unidirectional 'Top-Down', relying on data injected by the Controller. The View must not be aware of the existence of any Storage (Repositories/DBs).
 ---
-## 6. Global State and Singletons Bound to Models
+## 🚧 6. Global State and Singletons Bound to Models
 
 ### ❌ Bad Practice
 ```typescript
@@ -250,7 +252,7 @@ class Invoice {
 ### 🚀 Solution
 Eliminate the use of global Singletons within the domain area. All external parameters or environment configurations must be passed to models transparently (explicit dependencies) via constructors or method arguments.
 ---
-## 7. Mixing Low-Level Routing with Controller Logic
+## 🚧 7. Mixing Low-Level Routing with Controller Logic
 
 ### ❌ Bad Practice
 ```typescript
@@ -279,7 +281,7 @@ router.get('/settings', userController.showSettings);
 ### 🚀 Solution
 Leave routing to the framework or a dedicated Router layer. The Controller's job is to respond to an already formed method call with a prepared payload.
 ---
-## 8. Validation Rules Leaking into the Domain Layers
+## 🚧 8. Validation Rules Leaking into the Domain Layers
 
 ### ❌ Bad Practice
 ```typescript
@@ -310,7 +312,7 @@ class UserController {
 ### 🚀 Solution
 Syntax and format validation (JSON Schema, DTO Validation) must be performed at the request processing layer (Gateways / Controllers). Services must receive strictly deterministic data formats.
 ---
-## 9. Lack of Dependency Injection in Controllers
+## 🚧 9. Lack of Dependency Injection in Controllers
 
 ### ❌ Bad Practice
 ```typescript
@@ -336,7 +338,7 @@ class OrderController {
 ### 🚀 Solution
 Utilize the Dependency Injection (DI) pattern. Controllers request required services or repositories via interfaces (IoC Containers), guaranteeing the ability to hot-swap abstractions.
 ---
-## 10. Generating Raw HTML Strings Inside Controllers
+## 🚧 10. Generating Raw HTML Strings Inside Controllers
 
 ### ❌ Bad Practice
 ```typescript
@@ -364,7 +366,7 @@ class WelcomeController {
 ### 🚀 Solution
 The Controller NEVER generates markup directly. Its functional contract is to pass data structures (ViewModel / JSON) to a standardized templating engine (Handlebars, React Server, EJS).
 ---
-## 11. God Models (Monolithic Bounded Contexts)
+## 🚧 11. God Models (Monolithic Bounded Contexts)
 
 ### ❌ Bad Practice
 ```typescript
@@ -390,7 +392,7 @@ class PdfGeneratorService { ... }
 ### 🚀 Solution
 Decompose god models into focused aggregates within strict Bounded Contexts.
 ---
-## 12. View Layer Mutating Upstream State
+## 🚧 12. View Layer Mutating Upstream State
 
 ### ❌ Bad Practice
 ```typescript
@@ -412,7 +414,7 @@ The View mutates the Model's state, bypassing the Controller and failing to noti
 ### 🚀 Solution
 The MVC pattern dictates that the View is merely a Read-only Projection of the current data. For mutations, the View must send an instruction to the Controller (HTTP Request, Event), which then authorizes the process.
 ---
-## 13. Hardwired Environment Secrets within Logic Code
+## 🚧 13. Hardwired Environment Secrets within Logic Code
 
 ### ❌ Bad Practice
 ```typescript
@@ -440,7 +442,7 @@ class BillingService {
 ### 🚀 Solution
 Hardcoding any environment variables (Passwords, URLs, Tokens) in Controllers and Models is forbidden. All infrastructure configuration must be loaded from a specialized configuration provider.
 ---
-## 14. Blocking Main Thread in Standard Controllers
+## 🚧 14. Blocking Main Thread in Standard Controllers
 
 ### ❌ Bad Practice
 ```typescript
@@ -470,7 +472,7 @@ class ReportController {
 ### 🚀 Solution
 Integrate Job systems (RabbitMQ, Redis Queues). The Controller must delegate resource-intensive tasks to background workers and immediately return HTTP 202 (Accepted).
 ---
-## 15. The "Repository" Abstraction Leak to View/Controller
+## 🚧 15. The "Repository" Abstraction Leak to View/Controller
 
 ### ❌ Bad Practice
 ```typescript
@@ -500,7 +502,7 @@ class DashboardController {
 ### 🚀 Solution
 Shield the View and Controller layers from low-level I/O operations. Integrate Repository / Data Access Object (DAO) patterns.
 ---
-## 16. Exposing Sequent Database Identifiers (IDOR Threat)
+## 🚧 16. Exposing Sequent Database Identifiers (IDOR Threat)
 
 ### ❌ Bad Practice
 ```typescript
@@ -523,7 +525,7 @@ class TransactionResponse {
 ### 🚀 Solution
 Translate internal physical database identifiers (Integers) into external string UUIDs or hashes before the Controller passes them to the View.
 ---
-## 17. Duplicating Core Invariants Inside Templates
+## 🚧 17. Duplicating Core Invariants Inside Templates
 
 ### ❌ Bad Practice
 ```typescript
@@ -547,7 +549,7 @@ Duplicating business system domain invariants. If the weight threshold changes t
 > [!IMPORTANT]
 > The Domain Model is the single "Source of Truth". The View MUST read pre-computed polymorphic state provided by the system.
 ---
-## 18. Side-Effects Orchestration Inside Controller Scope
+## 🚧 18. Side-Effects Orchestration Inside Controller Scope
 
 ### ❌ Bad Practice
 ```typescript
@@ -581,7 +583,7 @@ class SubscriptionController {
 > [!IMPORTANT]
 > Implement Domain Events Architectures (Pub/Sub brokers). The Controller is strictly responsible for initiating the "Payment complete" business event; dispatch logic MUST not block the response channel to the client.
 ---
-## 19. Fractured Exception Logging (Try-Catch Hell)
+## 🚧 19. Fractured Exception Logging (Try-Catch Hell)
 
 ### ❌ Bad Practice
 ```typescript
@@ -613,7 +615,7 @@ class ItemController {
 ### 🚀 Solution
 Abstract the Error Handling procedure into framework-level Global Exception Handlers, standardizing the format of HTTP 4XX / 5XX error responses for the View.
 ---
-## 20. Overusing the Model Segment for Hardware Infrastructure (AWS, FS)
+## 🚧 20. Overusing the Model Segment for Hardware Infrastructure (AWS, FS)
 
 ### ❌ Bad Practice
 ```typescript
