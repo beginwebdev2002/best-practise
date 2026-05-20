@@ -17,7 +17,7 @@ last_updated: 2026-03-29
 ---
 
 This document establishes **best practices** for building and maintaining GraphQL APIs. These constraints guarantee a scalable, highly secure, and deterministic architecture suitable for an enterprise-level, production-ready backend.
-# ⚙️ Context & Scope
+# 🎯 Context & Scope
 - **Primary Goal:** Provide an uncompromising set of rules and architectural constraints for GraphQL API environments.
 - **Target Tooling:** AI-agents (Cursor, Windsurf, Copilot, Antigravity) and Senior Developers.
 - **Tech Stack Version:** Agnostic

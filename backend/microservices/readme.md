@@ -18,7 +18,7 @@ last_updated: 2026-03-27
 
 > [!IMPORTANT]
 > This document establishes **best practices** for designing and maintaining a Microservices architecture. These constraints guarantee a scalable, highly secure, and deterministic system suitable for an enterprise-level, production-ready backend.
-# ⚙️ Context & Scope
+# 🎯 Context & Scope
 - **Primary Goal:** Provide an uncompromising set of rules and architectural constraints for distributed system environments.
 - **Target Tooling:** AI-agents (Cursor, Windsurf, Copilot, Antigravity) and System Architects.
 - **Tech Stack Version:** Agnostic
