@@ -26,6 +26,20 @@ AI Agent Orchestration involves coordinating multiple specialized agents to solv
 1. **Hierarchical Task Delegation:** A primary manager agent delegates sub-tasks to specialized worker agents.
 2. **Swarm Intelligence:** Agents operate peer-to-peer, sharing context via a unified memory bus.
 3. **Sequential Pipelines:** Agents act as stages in a pipeline, refining outputs progressively.
+
+```mermaid
+graph LR
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+
+    subgraph Key Orchestration Paradigms
+        Hierarchical["Hierarchical Task Delegation<br>Manager delegates to Workers"]
+        Swarm["Swarm Intelligence<br>Peer-to-peer, shared memory"]
+        Sequential["Sequential Pipelines<br>Agents as stages, progressive refinement"]
+    end
+
+    class Hierarchical,Swarm,Sequential default
+```
 ---
 ## 🏗️ Architectural Blueprints for Multi-Agent Systems
 
@@ -95,5 +109,21 @@ Agents with execution capabilities must be sandboxed.
 - [ ] Introduce semantic caching for frequently requested agent tasks.
 - [ ] Establish a Shared Context Memory Database to eliminate redundant context passing.
 - [ ] Ensure all AI-generated code follows the 'Zero-Approval' automated test pipeline before deployment.
+
+```mermaid
+flowchart TD
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+
+    A[Start: Not 2026 Ready] --> B{Transition to Orchestration Framework}
+    B --> C{Implement I/O Validation Schemas}
+    C --> D{Introduce Semantic Caching}
+    D --> E{Establish Shared Context Memory DB}
+    E --> F{Ensure Zero-Approval Test Pipeline}
+    F --> G[End: 2026 Ready]
+
+    class A,G default
+    class B,C,D,E,F component
+```
 
 [Back to Top](#-ai-agent-orchestration-production-ready-best-practices)
