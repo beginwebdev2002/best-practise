@@ -17,7 +17,7 @@ last_updated: 2026-03-23
 ---
 
 This document outlines the **best practices** for Express.js architecture. The framework is highly unopinionated, meaning strict adherence to these 30 rules is critical for maintaining the cleanliness and security of enterprise code.
-# Context & Scope
+# 🎯 Context & Scope
 - **Primary Goal:** Provide a strict MVC architectural framework and 30 patterns for creating secure Express.js APIs.
 - **Target Tooling:** AI agents (Cursor, Windsurf, Copilot) and Senior Developers.
 - **Tech Stack Version:** Express 4.x / 5.x

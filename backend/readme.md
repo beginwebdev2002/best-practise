@@ -12,7 +12,7 @@ last_updated: 2026-03-22
 
 [🏠 Back to Home](../README.md)
 
-# Context & Scope
+# 🎯 Context & Scope
 - **Primary Goal:** Outline the overarching philosophy and standards for Backend and system development inside the ecosystem.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** Agnostic
@@ -23,7 +23,7 @@ last_updated: 2026-03-22
   **The foundational rules and standards governing backend logic.**
 </div>
 ---
-## Architecture Principles
+## 🧱 Core Principles
 
 - Adhere to the defined [Architectural Patterns](../../architectures/readme.md) when building applications, specifically Hexagonal Architecture / Clean Architecture.
 - Avoid tightly coupling business domains to framework-specific libraries.
@@ -74,3 +74,21 @@ app.get('/users/:id', async (req, res) => {
 
 ### 🚀 Solution
 Never allow Database Object Relational Mapping (ORM) models to bleed into standard HTTP responses. Always map through a DTO.
+
+## 2. 🗂️ Architectural Workflow
+
+```mermaid
+graph TD
+    A[Client Request] --> B[Controller]
+    B --> C[DTO Mapper]
+    C --> D[ORM/Database]
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class A layout;
+    class B component;
+    class C component;
+    class D component;
+```
