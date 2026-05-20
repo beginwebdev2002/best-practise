@@ -253,16 +253,10 @@ async function runVibeCheck() {
     if (file.includes('/angular/')) tech = 'angular';
     else if (file.includes('/nestjs/')) tech = 'nestjs';
     else if (file.includes('/typescript/')) tech = 'typescript';
-    else if (file.includes('/express/')) tech = 'express';
-    else if (file.includes('/nodejs/')) tech = 'nodejs';
+    else if (file.includes('/mongodb/')) tech = 'mongodb';
     else {
-      // Fallback
-      const parts = file.split('/');
-      if (parts.length > 1) {
-        tech = parts[1];
-      } else {
-        continue;
-      }
+      console.log(`Skipping unsupported technology in ${file}`);
+      continue;
     }
 
     const mdContent = await fsPromises.readFile(file, 'utf-8');
@@ -284,7 +278,7 @@ async function runVibeCheck() {
       continue;
     }
 
-    const sourceFile = project.createSourceFile(`temp_${tech}.ts`, generatedCode, { overwrite: true });
+    const sourceFile = project.createSourceFile(`temp_${tech}_${file.replace(/\//g, '_')}.ts`, generatedCode, { overwrite: true });
     const { total: score, breakdown } = analyzeAST(sourceFile, tech);
 
     console.log(`Fidelity Score for ${file}: ${score}%`);
