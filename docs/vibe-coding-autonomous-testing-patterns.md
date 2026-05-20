@@ -24,6 +24,20 @@ Traditional TDD/BDD relies heavily on human intuition. **Vibe Coding Autonomous 
 2. **LLM-Parseable Assertions:** Error outputs must be structured semantically for immediate agent ingestion.
 3. **Self-Healing Selectors:** E2E testing relies on robust data-attributes instead of fragile DOM paths.
 
+```mermaid
+graph LR
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+
+    subgraph Key Paradigms for 2026
+        Mocking["Deterministic State Mocking"]
+        Assertions["LLM-Parseable Assertions"]
+        Selectors["Self-Healing Selectors"]
+    end
+
+    class Mocking,Assertions,Selectors component
+```
+
 ---
 
 ## 🏗️ Visual Architecture: Autonomous Feedback Loop

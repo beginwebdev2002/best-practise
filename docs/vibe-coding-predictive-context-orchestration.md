@@ -20,6 +20,12 @@ Predictive Context Orchestration is a foundational 2026 paradigm within the Vibe
 
 Unlike reactive context fetching (where an agent asks for files after throwing an error), **Predictive Orchestration** proactively maps the logical dependencies of a given instruction and loads the necessary constraints automatically.
 
+| Aspect | Reactive Context | Predictive Orchestration |
+|:---|:---|:---|
+| **Timing** | After error/failure | Preemptively (before code gen) |
+| **Mechanism** | Agent requests files | Proactively maps dependencies & loads constraints |
+| **Outcome** | Fixes errors | Prevents errors, ensures determinism |
+
 ### 📊 Context Retrieval Lifecycle (Mermaid Flowchart)
 
 ```mermaid
@@ -124,6 +130,29 @@ To implement Predictive Context Orchestration in your Vibe Coding workflow, stri
 - [ ] Group constraint documentation functionally (e.g., `./architectures/fsd/layer-isolation.md`).
 - [ ] Enforce bi-directional dependency mapping so agents pre-fetch interfaces proactively.
 - [ ] Validate AST schema rules using `vibe-check-runner.js` to ensure the structure is immune to agent hallucinations.
+
+```mermaid
+graph TD
+    subgraph Execution Mandates
+        A[Define Bounded Contexts & Interfaces]
+        B[Replace 'any' with 'unknown' & Type Guards]
+        C[Group Constraint Documentation]
+        D[Enforce Bi-directional Dependency Mapping]
+        E[Validate AST Schema Rules]
+    end
+
+    A -- contributes to --> F((Predictive Context Orchestration))
+    B -- contributes to --> F
+    C -- contributes to --> F
+    D -- contributes to --> F
+    E -- contributes to --> F
+
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+
+    class A,B,C,D,E component;
+    class F default;
+```
 
 ---
 > 🔙 Return to [Root Repository](../README.md)
