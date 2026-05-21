@@ -29,3 +29,36 @@ src/
 └── 📁 infrastructure/      # Event Store bindings, Repositories, Message Bus
     └── EventStoreRepository.ts
 ```
+
+```mermaid
+classDiagram
+    class commands {
+        +CreateOrderCommand
+    }
+    class events {
+        +OrderCreatedEvent
+    }
+    class aggregates {
+        +OrderAggregate
+    }
+    class projections {
+        +OrderReadModelProjector
+    }
+    class infrastructure {
+        +EventStoreRepository
+    }
+
+    commands ..> aggregates : Intentions
+    aggregates ..> events : Emits
+    events ..> projections : Updates Read Model
+    aggregates ..> infrastructure : Stored in Event Store
+
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+
+    class commands:::default
+    class events:::default
+    class aggregates:::component
+    class projections:::component
+    class infrastructure:::default
+```
