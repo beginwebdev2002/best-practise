@@ -92,6 +92,7 @@ type Status = "active" | "inactive";
 ```
 ### 🚀 Solution
 > [!IMPORTANT]
+> > [!IMPORTANT]
 > Prefer `interface` for structure, `type` for unions. Interfaces provide better error messages and performance for structural types in TypeScript 5.x.
 ---
 

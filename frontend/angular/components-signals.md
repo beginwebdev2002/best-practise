@@ -73,7 +73,8 @@ Boilerplate code that is easy to break if you make a mistake in naming the `Chan
 value = model<string>();
 ```
 ### 🚀 Solution
-Use `model()`. This creates a Signal that can be both read and written to, automatically synchronizing its state with the parent.
+> [!IMPORTANT]
+> STRICTLY use `model()`. This creates a Signal with read and write capabilities, automatically synchronizing its state with the parent.
 ---
 
 
