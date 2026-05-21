@@ -14,7 +14,7 @@ last_updated: 2026-03-29
 
 ---
 
-## Architecture Diagram & Folder Tree
+## 📐 Architecture Diagram & Folder Tree
 
 ```mermaid
 graph TD
@@ -37,7 +37,7 @@ graph TD
 
 ---
 
-## 1. Directory Blueprint
+## 🚧 1. Directory Blueprint
 
 ### ❌ Bad Practice
 ```text
