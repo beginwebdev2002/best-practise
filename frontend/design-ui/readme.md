@@ -68,6 +68,7 @@ graph LR
     C --- D([🏗️ Component Architecture])
 
     classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
     class A default;
     class B default;
     class C default;
