@@ -29,8 +29,15 @@ function getModifiedFiles() {
   try {
     // In CI (daily run), check files modified in the last 24 hours.
     // We filter for non-empty lines that end in .md and are in frontend/ or backend/
-    const output = execFileSync('sh', ['-c', 'git log --since="24 hours ago" --name-only --pretty=format: | sort | uniq'], { encoding: 'utf-8' });
-    const allFiles = output.split('\n')
+    const outputLog = execFileSync('sh', ['-c', 'git log --since="24 hours ago" --name-only --pretty=format: | sort | uniq'], { encoding: 'utf-8' });
+    let outputLsFiles = '';
+    try {
+        outputLsFiles = execFileSync('sh', ['-c', 'git ls-files -m -o --exclude-standard'], { encoding: 'utf-8' });
+    } catch (e) {
+        // ignore errors
+    }
+    const combinedOutput = outputLog + '\n' + outputLsFiles;
+    const allFiles = combinedOutput.split('\n')
       .map(f => f.trim())
       .filter(f => f.length > 0)
       .filter(f => f.endsWith('.md'))
@@ -284,7 +291,7 @@ async function runVibeCheck() {
       continue;
     }
 
-    const sourceFile = project.createSourceFile(`temp_${tech}.ts`, generatedCode, { overwrite: true });
+    const sourceFile = project.createSourceFile(`temp_${tech}_${file.replace(/\//g, '_')}.ts`, generatedCode, { overwrite: true });
     const { total: score, breakdown } = analyzeAST(sourceFile, tech);
 
     console.log(`Fidelity Score for ${file}: ${score}%`);
@@ -305,7 +312,7 @@ async function runVibeCheck() {
         // Only commit if there are changes (badge might already be there)
         const status = execFileSync('git', ['status', '--porcelain'], { encoding: 'utf-8' });
         if (status.includes(file) || status.includes('benchmarks/')) {
-           execFileSync('git', ['commit', '-m', '[chore: benchmark-sync]']);
+           execFileSync('git', ['commit', '-m', '[chore: fidelity-pass]']);
            execFileSync('git', ['push', 'origin', 'HEAD:main']);
         } else {
            console.log(`Badge already present in ${file}, skipping commit.`);
@@ -320,7 +327,7 @@ async function runVibeCheck() {
       const reportDir = path.join('benchmarks', 'logs');
       if (!await fileOrDirExists(reportDir)) await fsPromises.mkdir(reportDir, { recursive: true });
 
-      const reportPath = path.join(reportDir, `violation-report.md`);
+      const reportPath = path.join(reportDir, `fidelity-gap-report.md`);
       const reportContent = `# Critical Violation Report\n\n> [!CAUTION]\n> Fidelity Score dropped below 95%.\n\n**File:** \`${file}\`\n**Fidelity Score:** ${score}%\n**Threshold:** 95%\n\n## Breakdown\n| Metric | Score |\n|---|---|\n| Arch Integrity | ${breakdown.arch} |\n| Type Safety | ${breakdown.type} |\n| Security | ${breakdown.security} |\n| Efficiency | ${breakdown.efficiency} |\n\n## Generated Code\n\`\`\`typescript\n${generatedCode}\n\`\`\`\n\nReview the AST rules.`;
 
       await fsPromises.writeFile(reportPath, reportContent);
