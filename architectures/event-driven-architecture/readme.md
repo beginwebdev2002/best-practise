@@ -33,7 +33,7 @@ To deeply understand the nuances of EDA, consult the following specialized modul
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
 ---
 
-### Structural Comparison: Event-Driven vs Request-Response
+### ⚖️ Structural Comparison: Event-Driven vs Request-Response
 
 | Feature | Event-Driven Architecture | Request-Response (REST/RPC) |
 | :--- | :--- | :--- |
@@ -43,7 +43,7 @@ To deeply understand the nuances of EDA, consult the following specialized modul
 | **Scalability** | Excellent (Easy to add new consumers) | Good (Requires load balancing) |
 | **Complexity** | High (Eventual consistency, tracking flows) | Low (Straightforward flows) |
 
-## Architecture Diagram
+## 📐 Architecture Diagram
 
 ```mermaid
 graph LR
@@ -62,7 +62,7 @@ graph LR
     class Pub component;
 ```
 
-## Core Principles
+## 🧱 Core Principles
 
 1. **Asynchronous by Default:** Synchronous RPC (REST/gRPC) is restricted only to immediate read-queries or initial gateway ingress. All inter-service state mutations must occur asynchronously.
 2. **Event Sourcing (Optional but Recommended):** State is derived from an immutable, append-only log of events rather than overwriting records in a database.
@@ -74,7 +74,7 @@ graph LR
   <b>Adhere to these EDA principles to establish a relentlessly scalable, highly-decoupled system ecosystem! 🚀</b>
 </div>
 
-## 1. Synchronous Blocking on Events
+## 🚧 1. Synchronous Blocking on Events
 
 ### ❌ Bad Practice
 ```typescript

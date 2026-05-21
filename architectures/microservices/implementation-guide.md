@@ -24,7 +24,7 @@ classDiagram
     Gateway --> Service : RPC/HTTP
 ```
 
-## 1. Synchronous Cascading Calls
+## 🚧 1. Synchronous Cascading Calls
 
 ### ❌ Bad Practice
 ```typescript

@@ -12,7 +12,7 @@ last_updated: 2026-03-29
 
 [🏠 На главную](../README.md)
 
-# Context & Scope
+# 🎯 Context & Scope
 - **Primary Goal:** Establish definitive rules and best practices for system design and architecture.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** Agnostic
@@ -58,8 +58,9 @@ Don't know where to start? Here are a few golden rules:
 - [Space-Based Architecture](./space-based-architecture/readme.md)
 - [Serverless](./serverless/readme.md)
 - [Agentic Architecture (AI Agent Orchestration)](./agentic-architecture/readme.md)
+- [Layered Architecture (N-Tier)](./layered-architecture/readme.md)
 
-## 🏆 Top 15 Best Architectural Approaches
+## 🏆 Top 16 Best Architectural Approaches
 
 Below are the most popular architectural patterns along with examples, tips, technology stacks, and their logos. A Folder Tree is provided for each to give you a deep understanding of its structure.
 ---
@@ -719,3 +720,40 @@ src/
 - **Frameworks:** Eclipse, VS Code, Webpack, Babel.
 - **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="16"/> TypeScript, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="16"/> Python.
 - **Patterns / Principles:** Open/Closed Principle, Dependency Inversion, Registry Pattern.
+---
+
+### 17. Layered Architecture (N-Tier)
+[![Layered Architecture](https://img.shields.io/badge/Architecture-Layered-orange?style=flat-square)](#)
+
+**Description:** The traditional architecture where the system is organized into horizontal layers, each with a specific role (Presentation, Business Logic, Data Access).
+**📖 Map of Patterns:** [Go to Layered Architecture Guidelines](./layered-architecture/readme.md)
+
+**Architecture Diagram & Folder Tree:**
+```mermaid
+graph TD
+    Presentation[Presentation Layer / Controllers] --> Business[Business Layer / Services]
+    Business --> Data[Data Access Layer / Repositories]
+    Data --> DB[(Database)]
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef layout fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000;
+
+    class Presentation component;
+    class Business component;
+    class Data component;
+    class DB default;
+```
+
+```text
+src/
+├── 📁 presentation/     # Controllers, Views, UI Routes
+├── 📁 business/         # Core business logic and Services
+└── 📁 data/             # Repositories and database access
+```
+
+**Best Compatibility:**
+- **Frameworks:** Spring Boot, Django, ASP.NET Core.
+- **Languages:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="16"/> Java, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" width="16"/> C#.
+- **Patterns / Principles:** Separation of Concerns, Closed Layers.

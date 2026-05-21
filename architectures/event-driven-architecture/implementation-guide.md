@@ -45,7 +45,7 @@ classDiagram
     DomainEvent <-- EventPublisher
 ```
 ---
-## 1. Idempotent Consumers (Crucial)
+## 🚧 1. Idempotent Consumers (Crucial)
 
 > [!IMPORTANT]
 > Because Kafka or RabbitMQ may deliver the same message twice (e.g., during a consumer rebalance), handlers must be purely idempotent. Processing the exact same `eventId` twice MUST NOT duplicate the business outcome (e.g., charging a credit card twice).
@@ -93,7 +93,7 @@ Without tracking `eventId` locally, duplicate deliveries from the broker (due to
 ### 🚀 Solution
 Implementing an Idempotent Receiver pattern with a unique constraint on `eventId` ensures that duplicate events are safely ignored. Wrapping the deduplication check and the business logic within an atomic database transaction guarantees state consistency even under high concurrency.
 ---
-## 2. The Transactional Outbox Pattern
+## 🚧 2. The Transactional Outbox Pattern
 
 To solve the "Dual-Write Problem" (saving state to the DB and publishing to Kafka reliably), we use an Outbox table. If the application crashes after saving to the DB but before publishing to Kafka, the message is permanently lost.
 
@@ -146,7 +146,7 @@ The Dual-Write Anti-Pattern occurs when an application attempts to update a data
 ### 🚀 Solution
 The Transactional Outbox pattern guarantees atomic operations. By saving the event to a local `outbox` table within the same DB transaction as the domain change, we achieve atomicity. A separate, reliable process (like a Debezium Connector or background poller) then reads the outbox table and guarantees "at-least-once" delivery to the broker.
 ---
-## 3. Strictly Typed Schemas (Schema Registry)
+## 🚧 3. Strictly Typed Schemas (Schema Registry)
 
 Microservices evolve independently. If a publisher changes the shape of a JSON event payload, all downstream subscribers will break. Always enforce a Schema Registry (Avro, Protobuf, JSON Schema) for all events.
 

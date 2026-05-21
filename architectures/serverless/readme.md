@@ -15,23 +15,23 @@ last_updated: 2026-03-29
 
 Этот инженерный директив определяет **лучшие практики (best practices)** для архитектуры Serverless. Данный документ спроектирован для обеспечения максимальной масштабируемости, безопасности и качества кода при разработке приложений корпоративного уровня.
 
-# Context & Scope
+# 🎯 Context & Scope
 - **Primary Goal:** Предоставить строгие архитектурные правила и практические паттерны для создания масштабируемых систем.
 - **Description:** Developers do not manage servers at all. The entire "server" consists of bite-sized pieces of business logic (functions/Lambdas) living in the cloud.
 
-## Map of Patterns
+## 🗺️ Map of Patterns
 - 📊 [**Data Flow:** Request and Event Lifecycle](./data-flow.md)
 - 📁 [**Folder Structure:** Layering logic](./folder-structure.md)
 - ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
 
-## Core Principles
+## 🧱 Core Principles
 
 1. **Isolation & Testability:** Changing a single feature doesn't break the entire business process.
 2. **Strict Boundaries:** Enforce rigid structural barriers between business logic and infrastructure.
 3. **Decoupling:** Decouple how data is stored from how it is queried and displayed.
 
-## Architecture Diagram
+## 📐 Architecture Diagram
 
 ```mermaid
 graph TD
@@ -51,7 +51,7 @@ graph TD
 
 ---
 
-## 1. The Monolithic Lambda (Fat Function)
+## 🚧 1. The Monolithic Lambda (Fat Function)
 
 ### ❌ Bad Practice
 ```javascript
@@ -94,7 +94,7 @@ Embrace the "Single Responsibility Principle" at the infrastructure level. Decom
 
 ---
 
-## 2. Stateful Execution Contexts
+## 🚧 2. Stateful Execution Contexts
 
 ### ❌ Bad Practice
 ```javascript
