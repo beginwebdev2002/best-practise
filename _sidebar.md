@@ -127,6 +127,7 @@
 * **Docs**
   * [Ai agent context injection pipelines](docs/ai-agent-context-injection-pipelines.md)
   * [Ai agent context pruning](docs/ai-agent-context-pruning.md)
+  * [Ai agent debugging loops and self correction](docs/ai-agent-debugging-loops-and-self-correction.md)
   * [Ai agent dynamic context pruning](docs/ai-agent-dynamic-context-pruning.md)
   * [Ai agent memory architectures](docs/ai-agent-memory-architectures.md)
   * [Ai agent multi model consensus](docs/ai-agent-multi-model-consensus.md)
