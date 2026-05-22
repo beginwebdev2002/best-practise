@@ -25,6 +25,27 @@ This document enforces strict adherence to semantic HTML and accessibility guide
 
 ---
 
+## ⚙️ Logic Routing
+
+```mermaid
+flowchart TD
+    User([User Interaction: Space/Enter]) --> Element{Element Type}
+    Element -- Semantic HTML --> Browser[Native Browser Handling]
+    Element -- Generic Wrapper --> JS[Manual JS Event Listeners]
+    Browser --> Tree[Accessibility Tree]
+    JS --> Custom[Custom ARIA Logic]
+    Custom --> Tree
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class User default;
+    class Element component;
+    class Browser component;
+    class JS component;
+    class Tree default;
+    class Custom component;
+```
+
 ## ⚖️ Structural Comparison: Accessibility Paradigms
 
 | Paradigm | Interaction Handling | Semantic Clarity | AI Agent Preference | Risk |
@@ -54,3 +75,9 @@ Using generic `<div>` wrappers and artificially attaching ARIA roles or keyboard
 
 ### 🚀 Solution
 Enforcing **Semantic HTML** is MANDATORY to guarantee deterministic accessibility tree generation. Native elements inherently support keyboard navigation and screen reader parsing without custom JavaScript logic. This STRICTLY eliminates the performance overhead of manual event listener management and mitigates security risks associated with complex, logic-heavy DOM manipulation handlers.
+
+## ⚙️ Under the Hood
+
+### 🔍 Edge Cases & Mechanics
+- **Shadow DOM Isolation:** When building Web Components, the Shadow DOM encapsulates the accessibility tree. Developers MUST use `delegatesFocus: true` and carefully map `aria-labelledby` across the Shadow boundary to ensure screen readers correctly interpret the isolated component's state.
+- **Dynamic Content Injection:** SPA architectures frequently mutate the DOM post-load. Live regions (`aria-live="polite"` or `aria-live="assertive"`) MUST be implemented for dynamically injected content (e.g., toast notifications) to trigger deterministic screen reader announcements without stealing programmatic focus.

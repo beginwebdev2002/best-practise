@@ -212,6 +212,12 @@ graph TD
       * ⚡ [performance.md](./frontend/angular/performance.md)
       * 📄 [readme.md](./frontend/angular/readme.md)
       * 📦 [state-management.md](./frontend/angular/state-management.md)
+    * 🎨 **[design-ui/](./frontend/design-ui/)**
+      * ♿ [accessibility.md](./frontend/design-ui/accessibility.md)
+      * 🏗️ [component-architecture.md](./frontend/design-ui/component-architecture.md)
+      * 📄 [readme.md](./frontend/design-ui/readme.md)
+      * 📱 [responsive-design.md](./frontend/design-ui/responsive-design.md)
+      * 🎨 [styling.md](./frontend/design-ui/styling.md)
     * 🟨 **[javascript/](./frontend/javascript/)**
       * 📄 [readme.md](./frontend/javascript/readme.md)
     * 🟦 **[typescript/](./frontend/typescript/)**
@@ -436,6 +442,12 @@ graph TD
       * ⚡ [performance.md](./frontend/angular/performance.md)
       * 📄 [readme.md](./frontend/angular/readme.md)
       * 📦 [state-management.md](./frontend/angular/state-management.md)
+    * 🎨 **[design-ui/](./frontend/design-ui/)**
+      * ♿ [accessibility.md](./frontend/design-ui/accessibility.md)
+      * 🏗️ [component-architecture.md](./frontend/design-ui/component-architecture.md)
+      * 📄 [readme.md](./frontend/design-ui/readme.md)
+      * 📱 [responsive-design.md](./frontend/design-ui/responsive-design.md)
+      * 🎨 [styling.md](./frontend/design-ui/styling.md)
     * 🟨 **[javascript/](./frontend/javascript/)**
       * 📄 [readme.md](./frontend/javascript/readme.md)
     * 🟦 **[typescript/](./frontend/typescript/)**
