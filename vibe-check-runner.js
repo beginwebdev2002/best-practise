@@ -29,7 +29,7 @@ function getModifiedFiles() {
   try {
     // In CI (daily run), check files modified in the last 24 hours.
     // We filter for non-empty lines that end in .md and are in frontend/ or backend/
-    const output = execFileSync('sh', ['-c', 'git log --since="24 hours ago" --name-only --pretty=format: | sort | uniq'], { encoding: 'utf-8' });
+    const output = execFileSync('sh', ['-c', '{ git log --since="24 hours ago" --name-only --pretty=format: ; git ls-files -m -o --exclude-standard; } | sort | uniq'], { encoding: 'utf-8' });
     const allFiles = output.split('\n')
       .map(f => f.trim())
       .filter(f => f.length > 0)
@@ -284,7 +284,7 @@ async function runVibeCheck() {
       continue;
     }
 
-    const sourceFile = project.createSourceFile(`temp_${tech}.ts`, generatedCode, { overwrite: true });
+    const sourceFile = project.createSourceFile(`temp_${tech}_${file.replace(/\//g, '_')}.ts`, generatedCode, { overwrite: true });
     const { total: score, breakdown } = analyzeAST(sourceFile, tech);
 
     console.log(`Fidelity Score for ${file}: ${score}%`);
@@ -305,7 +305,7 @@ async function runVibeCheck() {
         // Only commit if there are changes (badge might already be there)
         const status = execFileSync('git', ['status', '--porcelain'], { encoding: 'utf-8' });
         if (status.includes(file) || status.includes('benchmarks/')) {
-           execFileSync('git', ['commit', '-m', '[chore: benchmark-sync]']);
+           execFileSync('git', ['commit', '-m', '[chore: fidelity-pass]']);
            execFileSync('git', ['push', 'origin', 'HEAD:main']);
         } else {
            console.log(`Badge already present in ${file}, skipping commit.`);
