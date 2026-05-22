@@ -116,3 +116,9 @@ function UserDashboard() {
 
 ### 🚀 Solution
 Strictly enforcing **Component Hierarchy** is MANDATORY to establish deterministic boundaries. Decoupled components map to independent rendering lifecycles, enabling focused isolation testing and STRICTLY reducing framework reconciliation overhead compared to monolithic structures. This predictable architecture minimizes the blast radius for performance regressions and mitigates Cross-Site Scripting (XSS) risks by isolating state and rendering contexts.
+
+## ⚙️ Under the Hood
+
+### 🔍 Edge Cases & Mechanics
+- **Prop Drilling vs Context Overhead:** While Atomic design encourages passing props down (Tokens -> Elements -> Components), deeply nested layouts suffer from "prop drilling". However, prematurely replacing props with Context API/Signals at the "Element" level triggers global re-renders. State injection MUST be restricted to the "Components" or "Layouts" level to preserve atomic isolation.
+- **Hydration Mismatches:** In isomorphic applications, "God Components" that conditionally render based on window objects (e.g., `typeof window !== 'undefined'`) cause severe HTML hydration errors. By splitting layouts into strictly deterministic atomic elements, UI components can render statically, while browser-specific logic is deferred to higher-order wrappers.

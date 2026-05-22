@@ -24,6 +24,35 @@ This document enforces the strict styling rules and constraints regarding design
 ---
 
 ---
+## ⚙️ Logic Routing
+
+```mermaid
+classDiagram
+    class DesignTokens {
+        --color-primary
+        --spacing-md
+        --radius-sm
+    }
+    class ComponentStyle {
+        background-color: var(--color-primary)
+        padding: var(--spacing-md)
+    }
+    class ThemeProvider {
+        Dark Theme Overrides
+        Light Theme Base
+    }
+
+    ThemeProvider *-- DesignTokens : Controls
+    DesignTokens *-- ComponentStyle : Injects
+
+    %% Added Design Token Styles for Mermaid Diagrams
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class DesignTokens:::component
+    class ComponentStyle:::default
+    class ThemeProvider:::component
+```
+
 ## ⚖️ Structural Comparison: Styling Paradigms
 
 | Paradigm | Value Definition | Reusability | AI Agent Preference | Risk |
@@ -61,3 +90,9 @@ Using hardcoded absolute values (`20px`, hex codes) creates inconsistencies acro
 
 ### 🚀 Solution
 Strictly utilizing **Design Tokens** is MANDATORY to establish deterministic visual contracts. Constraining styles strictly to these centrally-managed tokens ensures a single source of truth, reducing CSS payload size and standardizing rendering performance. This pattern STRICTLY prevents arbitrary style manipulation, mitigating style-based injection vulnerabilities and enforcing uncompromised environmental immutability for safe AI Agent parsing.
+
+## ⚙️ Under the Hood
+
+### 🔍 Edge Cases & Mechanics
+- **CSS Variable Specificity:** CSS variables inherit down the DOM tree. If a component defines a local token (e.g., `--btn-bg`) but fails to scope it properly, child components might inadvertently inherit and override their own default backgrounds. Strict block-level scoping via BEM or CSS Modules is required.
+- **Flash of Unstyled Content (FOUC) in SSR:** When implementing Dark Mode using design tokens via JS-injected classes (e.g., `document.documentElement.classList.add('dark')`), Server-Side Rendered apps (Next.js, Angular Universal) will flash the default light theme before hydration. A blocking inline script MUST be placed in the `<head>` to read local storage and inject the correct class before the body parses.

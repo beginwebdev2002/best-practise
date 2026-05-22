@@ -24,6 +24,27 @@ This document enforces the strict standards for building fluid, universally adap
 ---
 
 ---
+## ⚙️ Logic Routing
+
+```mermaid
+flowchart TD
+    Device{Device Viewport} -->|320px - 767px| Mobile[Base CSS / Mobile]
+    Device -->|768px - 1023px| Tablet[min-width: 768px]
+    Device -->|1024px+| Desktop[min-width: 1024px]
+
+    Mobile --> Casc[Cascade Evaluation]
+    Tablet --> Casc
+    Desktop --> Casc
+
+    classDef default fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef component fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    class Device default;
+    class Mobile component;
+    class Tablet component;
+    class Desktop component;
+    class Casc default;
+```
+
 ## ⚖️ Structural Comparison: Responsive Paradigms
 
 | Paradigm | Default Viewport | Scaling Mechanism | AI Agent Preference | Risk |
@@ -71,3 +92,9 @@ A desktop-first approach with absolute units (`px`) often leads to horizontal sc
 
 ### 🚀 Solution
 Implementing a **Mobile-First Approach** using relative units is MANDATORY. Enforcing base constraints on mobile and dynamically scaling upward STRICTLY limits layout shift (CLS) and reduces the CSS parser's evaluation overhead. This unified cascading structure inherently standardizes deterministic scaling properties, ensuring robust layout performance and mitigating the risk of unpredictable rendering states.
+
+## ⚙️ Under the Hood
+
+### 🔍 Edge Cases & Mechanics
+- **Sub-Pixel Rendering Issues:** When using percentage-based widths or fractional `rem` values, browsers calculate sub-pixels. This can cause grid alignment errors or wrapping on certain devices. Using CSS Grid with `fr` units or `calc()` functions with explicit roundings mitigates layout breaking in flex containers.
+- **Viewport Height Variations:** On mobile browsers, the URL bar dynamically hides/shows, changing the viewport height. Relying on `100vh` leads to hidden content. Developers MUST use `dvh` (dynamic viewport height) or implement JS workarounds for `vh` variables to ensure bottom-anchored UI components remain visible during scrolling.
