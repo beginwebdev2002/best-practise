@@ -34,6 +34,27 @@ last_updated: 2026-03-22
 
 - **Security First:** Validate all inputs using schema validations. Assume all external input is malicious.
 - **TypeScript Strictness:** `any` is strictly prohibited. Enforce boundary definitions between the transport and core logic layers.
+
+## 🔄 Architecture Data Flow
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Controller as Controller (Thin)
+    participant Service as Service (Fat)
+    participant Repo as Repository (Port)
+    participant DB as Database
+
+    Client->>Controller: HTTP Request
+    Controller->>Service: Execute Business Logic
+    Service->>Repo: Fetch/Save Data
+    Repo->>DB: Query
+    DB-->>Repo: Data
+    Repo-->>Service: Domain Entity
+    Service-->>Controller: Result (mapped to DTO)
+    Controller-->>Client: HTTP Response
+```
+
 ## Technologies Included
 
 
