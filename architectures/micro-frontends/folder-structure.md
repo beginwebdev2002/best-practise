@@ -18,7 +18,7 @@ This document defines strict rules for the directory structure and logical layer
 
 ## Directory Layout Rules
 
-### 1. Monorepo vs Polyrepo Constraints
+### 🚧 1. Monorepo vs Polyrepo Constraints
 
 #### ❌ Bad Practice
 ```text

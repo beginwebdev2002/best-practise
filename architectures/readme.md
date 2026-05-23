@@ -12,7 +12,7 @@ last_updated: 2026-03-29
 
 [🏠 На главную](../README.md)
 
-# Context & Scope
+# 🎯 Context & Scope
 - **Primary Goal:** Establish definitive rules and best practices for system design and architecture.
 - **Target Tooling:** Cursor, Windsurf, Antigravity.
 - **Tech Stack Version:** Agnostic
@@ -64,7 +64,7 @@ Don't know where to start? Here are a few golden rules:
 Below are the most popular architectural patterns along with examples, tips, technology stacks, and their logos. A Folder Tree is provided for each to give you a deep understanding of its structure.
 ---
 
-### 1. Feature-Sliced Design (FSD)
+### 🚧 1. Feature-Sliced Design (FSD)
 <img src="https://feature-sliced.design/img/brand/logo-primary.png" width="80" alt="FSD Logo"/>
 
 **Description:** A modern architectural methodology for Frontend applications. It separates code by business meaning (features) and technical layers. It ensures strict unidirectional isolation.
@@ -109,7 +109,7 @@ src/
 - **Tools/Libraries:** Redux Toolkit, Zustand, React Router.
 ---
 
-### 2. Clean Architecture
+### 🚧 2. Clean Architecture
 [![Clean Arch](https://img.shields.io/badge/Clean_Architecture-black?style=flat-square)](#)
 
 > [!IMPORTANT]
@@ -149,7 +149,7 @@ src/
 - **Tools/Libraries:** ORMs (TypeORM, Prisma).
 ---
 
-### 3. MVC (Model-View-Controller)
+### 🚧 3. MVC (Model-View-Controller)
 [![MVC](https://img.shields.io/badge/Pattern-MVC-blue?style=flat-square)](#)
 
 **Description:** The classic design pattern for user-facing applications. It separates data logic (`Model`), presentation (`View`), and user action handling (`Controller`).
@@ -188,7 +188,7 @@ src/
 - **Patterns / Principles:** Active Record, REST, DRY.
 ---
 
-### 4. Microservices
+### 🚧 4. Microservices
 <img src="https://img.icons8.com/?size=100&id=D0aIuUaQjZzR&format=png&color=000000" width="40" alt="Microservices"/>
 
 **Description:** Breaking down a giant monolithic system into small, independent pieces, each handling its own business capability. Each service has its own Database and communicates via REST, gRPC, or events.
@@ -232,7 +232,7 @@ microservices-cluster/
 - **Tools:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" width="16"/> Docker, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-plain.svg" width="16"/> Kubernetes, gRPC.
 ---
 
-### 5. Hexagonal Architecture (Ports & Adapters)
+### 🚧 5. Hexagonal Architecture (Ports & Adapters)
 [![Hexagonal](https://img.shields.io/badge/Ports_&_Adapters-purple?style=flat-square)](#)
 
 **Description:** A logical evolution of Clean Architecture. The core of the system is isolated from specific technologies. All interaction with databases, UI, and side-effects happens through "Ports" (Interfaces), satisfying via "Adapters" (Implementations).
@@ -274,7 +274,7 @@ src/
 - **Patterns / Principles:** SOLID, Dependency Inversion (D in SOLID), Adapter.
 ---
 
-### 6. DDD (Domain-Driven Design)
+### 🚧 6. DDD (Domain-Driven Design)
 [![DDD](https://img.shields.io/badge/Architecture-DDD-darkred?style=flat-square)](#)
 
 **Description:** A philosophy and design approach centered entirely around the business "Domain". The whole team communicates using a "Ubiquitous Language," and domains are split into `Bounded Contexts`.
@@ -315,7 +315,7 @@ src/
 - **Patterns / Principles:** Bounded Contexts, Value Objects, Aggregates.
 ---
 
-### 7. Event-Driven Architecture (EDA)
+### 🚧 7. Event-Driven Architecture (EDA)
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apachekafka/apachekafka-original.svg" width="30" alt="Kafka Logo"/> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/RabbitMQ_logo.svg/100px-RabbitMQ_logo.svg.png" width="20" alt="RabbitMQ"/>
 
 **Description:** System components know nothing about each other (Low Coupling). They merely "publish" events and "subscribe" to them, reacting asynchronously. Ideal for high-load, highly-scalable backend systems.
@@ -354,7 +354,7 @@ src/
 - **Patterns / Principles:** Pub/Sub, Async Communication, Event Sourcing.
 ---
 
-### 8. Serverless (Function-as-a-Service / FaaS)
+### 🚧 8. Serverless (Function-as-a-Service / FaaS)
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" width="40" alt="AWS"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg" width="20" alt="GCP"/>
 
 **Description:** Developers do not manage servers at all. The entire "server" consists of bite-sized pieces of business logic (functions/Lambdas) living in the cloud, executed only via triggers. You pay solely for compute execution time.
@@ -392,7 +392,7 @@ project-functions/
 - **Patterns / Principles:** Backend-as-a-Service (BaaS), Vendor Lock-in (use cautiously).
 ---
 
-### 9. Monolithic Architecture
+### 🚧 9. Monolithic Architecture
 [![Monolithic](https://img.shields.io/badge/Architecture-Monolithic-brown?style=flat-square)](#)
 
 **Description:** The entire system components (Database, Message Queues, Business Logic, APIs) are deployed and operated from a single codebase on a single server. This is the optimal start for startups to avoid unnecessary complexity upfront. 
@@ -430,7 +430,7 @@ monolith-app/
 - **Patterns / Principles:** Three-Tier Architecture, KISS, YAGNI.
 ---
 
-### 10. CQRS (Command Query Responsibility Segregation)
+### 🚧 10. CQRS (Command Query Responsibility Segregation)
 [![CQRS](https://img.shields.io/badge/Pattern-CQRS-teal?style=flat-square)](#)
 
 **Description:** A powerful pattern where Commands (actions that mutate system data) are entirely decoupled from Queries (actions that only read data). This separation enables extremely sophisticated load distribution.
@@ -475,7 +475,7 @@ src/
 
 ---
 
-### 11. Micro-frontends
+### 🚧 11. Micro-frontends
 [![Micro-frontends](https://img.shields.io/badge/Architecture-Micro--frontends-orange?style=flat-square)](#)
 
 **Description:** An architectural style where independently deliverable frontend applications are composed into a greater whole. This enables multiple teams to work simultaneously without stepping on each other's toes, making scaling enterprise frontends deterministic.
@@ -518,7 +518,7 @@ workspace/
 
 ---
 
-### 12. Event Sourcing
+### 🚧 12. Event Sourcing
 [![Event Sourcing](https://img.shields.io/badge/Architecture-Event_Sourcing-darkgreen?style=flat-square)](#)
 
 **Description:** A pattern where all changes to application state are stored as a sequence of events. Instead of storing just the current state of the data in a domain, use an append-only store to record the full series of actions taken on that data.
@@ -561,7 +561,7 @@ src/
 
 ---
 
-### 13. Backend-For-Frontend (BFF)
+### 🚧 13. Backend-For-Frontend (BFF)
 [![Backend-For-Frontend](https://img.shields.io/badge/Architecture-BFF-blue?style=flat-square)](#)
 
 **Description:** A pattern where a separate backend service is created for each specific frontend application or interface type, rather than having a single general-purpose API backend for all clients. This allows the backend to be optimized for the specific needs of the frontend.
@@ -604,7 +604,7 @@ src/
 
 ---
 
-### 14. Space-Based Architecture
+### 🚧 14. Space-Based Architecture
 [![Space-Based Architecture](https://img.shields.io/badge/Architecture-Space--Based-indigo?style=flat-square)](#)
 
 **Description:** A pattern designed to minimize the constraints of a central database by keeping state in an in-memory data grid. The architecture relies on "processing units" that independently execute logic and communicate with each other or the grid.
@@ -649,7 +649,7 @@ src/
 
 ---
 
-### 15. Agentic Architecture (AI Agent Orchestration)
+### 🚧 15. Agentic Architecture (AI Agent Orchestration)
 [![Agentic Architecture](https://img.shields.io/badge/Architecture-Agentic-black?style=flat-square)](#)
 
 **Description:** An architecture that orchestrates multiple specialized AI agents, distributing complex workloads to optimize token efficiency, reduce context window overflow, and ensure deterministic, resilient outcomes.
@@ -693,7 +693,7 @@ src/
 - **Patterns / Principles:** Orchestrator-Worker, Map-Reduce, Multi-Agent Systems.
 ---
 
-### 16. Microkernel Architecture (Plugin Architecture)
+### 🚧 16. Microkernel Architecture (Plugin Architecture)
 [![Microkernel Architecture](https://img.shields.io/badge/Architecture-Microkernel-purple?style=flat-square)](#)
 
 **Description:** An architecture that strictly isolates essential business rules (the Core) from volatile, domain-specific, or external-facing logic (the Plugins). It guarantees O(1) impact on the core when adding or modifying auxiliary features.

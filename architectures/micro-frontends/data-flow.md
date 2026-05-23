@@ -18,7 +18,7 @@ This document defines strict rules for the data lifecycle, event handling, and r
 
 ## Request and Event Lifecycle
 
-### 1. Synchronous Global Communication (Anti-Pattern)
+### 🚧 1. Synchronous Global Communication (Anti-Pattern)
 
 #### ❌ Bad Practice
 ```javascript

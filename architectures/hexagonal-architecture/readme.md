@@ -9,7 +9,7 @@ last_updated: 2026-03-22
 ---
 
 # 🛑 Hexagonal Architecture Production-Ready Best Practices
-# Context & Scope
+# 🎯 Context & Scope
 - **Primary Goal:** Document and execute the best practices for the Hexagonal Architecture pattern.
 - **Target Tooling:** AI Agents and Human Developers.
 - **Tech Stack Version:** Agnostic
@@ -47,7 +47,7 @@ All interactions with the DB, UI, or other systems happen through **Ports** (int
 
 > **AI Constraint:** Always generate the Core Domain first. The Domain must have ZERO dependencies on frameworks or libraries (except language core features).
 
-## 1. Domain Logic Depending on External Adapters
+## 🚧 1. Domain Logic Depending on External Adapters
 
 ### ❌ Bad Practice
 ```typescript

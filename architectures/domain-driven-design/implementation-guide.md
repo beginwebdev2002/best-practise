@@ -28,7 +28,7 @@ classDiagram
 ### Rules
 - Ubiquitous language must be strictly used in code.
 
-### 1. Anemic Domain Model
+### 🚧 1. Anemic Domain Model
 
 ### ❌ Bad Practice
 ```typescript

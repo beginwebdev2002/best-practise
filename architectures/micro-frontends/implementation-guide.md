@@ -18,7 +18,7 @@ This document defines practical implementation patterns and anti-patterns in the
 
 ## 2026 Code Patterns & Anti-patterns
 
-### 1. Tight Routing Coupling (Hardcoded URLs)
+### 🚧 1. Tight Routing Coupling (Hardcoded URLs)
 
 #### ❌ Bad Practice
 ```javascript
@@ -48,7 +48,7 @@ function navigateToCart() {
 
 ---
 
-### 2. Inconsistent Design and Shared UI
+### 🚧 2. Inconsistent Design and Shared UI
 
 #### ❌ Bad Practice
 ```javascript

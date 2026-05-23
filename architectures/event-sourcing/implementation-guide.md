@@ -14,7 +14,7 @@ last_updated: 2026-03-29
 
 ---
 
-## 1. Mutating Existing Events
+## 🚧 1. Mutating Existing Events
 
 ### ❌ Bad Practice
 ```typescript
