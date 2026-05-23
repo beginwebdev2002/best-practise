@@ -26,7 +26,7 @@ The `@Input()` decorator operates outside the Signals reactivity system. Changes
 title = input<string>('');
 ```
 
-### Structural Comparison: Signals vs RxJS
+### ⚖️ Structural Comparison: Signals vs RxJS
 
 | Feature | Signals (`signal`, `computed`) | RxJS (`BehaviorSubject`, `Observable`) |
 | :--- | :--- | :--- |
