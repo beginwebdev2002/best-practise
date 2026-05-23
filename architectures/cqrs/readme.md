@@ -15,15 +15,15 @@ last_updated: 2026-03-29
 ---
 
 This engineering directive defines the **best practices** for the CQRS (Command Query Responsibility Segregation) architecture. This document is designed to ensure maximum scalability, security, and code quality when developing enterprise-level applications.
-# Context & Scope
+# 🎯 Context & Scope
 - **Primary Goal:** Provide strict architectural rules and practical patterns for creating scalable systems.
 - **Description:** A powerful pattern where Commands (actions that mutate system data) are entirely decoupled from Queries (actions that only read data).
-## Map of Patterns
+## 🗺️ Map of Patterns
 - 📊 [**Data Flow:** Request and Event Lifecycle](./data-flow.md)
 - 📁 [**Folder Structure:** Layering logic](./folder-structure.md)
 - ⚖️ [**Trade-offs:** Pros, Cons, and System Constraints](./trade-offs.md)
 - 🛠️ [**Implementation Guide:** Code patterns and Anti-patterns](./implementation-guide.md)
-## Core Principles
+## 🧱 Core Principles
 
 1. **Isolation & Testability:** Changing a single feature doesn't break the entire business process.
 2. **Strict Boundaries:** Enforce rigid structural barriers between business logic and infrastructure.
@@ -38,7 +38,7 @@ graph LR
     class Isolation,Boundaries,Decoupling default;
 ```
 
-## Architecture Diagram
+## 📐 Architecture Diagram
 
 ```mermaid
 graph LR
@@ -62,7 +62,7 @@ graph LR
 
 ---
 
-## 1. Mixing Reads and Writes in a Monolithic Service
+## 🚧 1. Mixing Reads and Writes in a Monolithic Service
 
 ### ❌ Bad Practice
 ```typescript

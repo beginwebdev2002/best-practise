@@ -18,7 +18,7 @@ This document defines the pros, cons, and system constraints in the Micro-fronte
 
 ## Evaluated Pros & Cons
 
-### 1. Excessive Dependency Duplication
+### 🚧 1. Excessive Dependency Duplication
 
 #### ❌ Bad Practice
 ```javascript

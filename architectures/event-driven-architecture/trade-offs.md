@@ -15,7 +15,7 @@ last_updated: 2026-03-29
 ---
 
 This document outlines the high-level trade-offs associated with Event-Driven Architecture. EDA introduces incredible scalability and loose coupling but incurs extreme operational complexity, eventual consistency, and distributed debugging challenges.
-## 1. High-Level Comparison
+## 🚧 1. High-Level Comparison
 
 | 🌟 **Pros (Advantages)** | ⚠️ **Cons (Disadvantages)** |
 | ------------------------ | --------------------------- |
@@ -25,7 +25,7 @@ This document outlines the high-level trade-offs associated with Event-Driven Ar
 | **Extensibility:** Adding a new feature (e.g., a new Notification Service) requires zero changes to the Publisher. | **Duplicate Events:** Brokers guarantee "at-least-once" delivery. Consumers MUST be strictly idempotent. |
 | **Polyglot Systems:** Microservices can be written in any language as long as they adhere to the broker protocol and schema. | **Dual-Write Problem:** Guaranteeing a local DB commit and a Kafka publish simultaneously requires the Outbox Pattern. |
 ---
-## 2. Distributed Anti-Patterns
+## 🚧 2. Distributed Anti-Patterns
 
 ### ❌ The "Distributed Monolith"
 **Symptom:** Microservices communicate via events, but they expect an immediate asynchronous response via a "reply queue" (RPC over Kafka). The system halts if the response event is not received within a timeout.

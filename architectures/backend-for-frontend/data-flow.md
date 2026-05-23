@@ -42,7 +42,7 @@ sequenceDiagram
     deactivate MobileBFF
 ```
 
-## Core Principles
+## 🧱 Core Principles
 
 1. **Aggregation:** The BFF aggregates responses from multiple services to reduce the number of client-side requests.
 2. **Formatting:** The BFF formats data precisely according to what the client needs, stripping out unnecessary fields to save bandwidth.

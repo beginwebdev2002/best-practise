@@ -27,7 +27,7 @@ classDiagram
 ### Rules
 - Adopt Modular Monolith principles over time.
 
-### 1. Tight Coupling via Global State
+### 🚧 1. Tight Coupling via Global State
 
 ### ❌ Bad Practice
 ```typescript
